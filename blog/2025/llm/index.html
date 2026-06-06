@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> LLM Year in Review </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="Blog.">
+      <meta name="keywords" content="Blog.">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2025/llm/">
+      <meta property="og:title" content="LLM Year in Review">
+      <meta property="og:description" content="here are my observations on the LLM space in 2025.">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/llm/Still-Life-with-TPU-Chip-and-Coffee-Mug-ChatGPT-2025.jpg">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="LLM Year in Review">
+      <meta name="twitter:description" content="here are my observations on the LLM space in 2025.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/llm/Still-Life-with-TPU-Chip-and-Coffee-Mug-ChatGPT-2025.jpg">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="stylesheet" href="/assets/css/main.css">
+      <link rel="canonical" href="">
+      <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+      <script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+         <script src="/assets/js/components.js" defer></script>
+   </head>
+   <style>
+     img {
+         pointer-events: none;
+      }
+     .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+     /* Timeline Styles */
+     .timeline {
+       position: relative;
+       max-width: 700px;
+       margin: 20px auto;
+       padding: 15px 0;
+     }
+
+     .timeline::before {
+       content: '';
+       position: absolute;
+       left: 20px;
+       width: 2px;
+       height: 100%;
+       background: #ddd;
+     }
+
+     .timeline-item {
+       position: relative;
+       margin-bottom: 25px;
+       width: 100%;
+     }
+
+     .timeline-item:last-child {
+       margin-bottom: 0;
+     }
+
+     .timeline-content {
+       position: relative;
+       margin-left: 50px;
+       padding: 10px 15px;
+       background: #f9f9f9;
+       border-radius: 4px;
+       border-left: 2px solid #999;
+     }
+
+     .timeline-date {
+       font-weight: 500;
+       color: #666;
+       font-size: 0.85em;
+       margin-bottom: 4px;
+     }
+
+     .timeline-description {
+       color: #555;
+       font-size: 0.9em;
+       line-height: 1.4;
+     }
+
+     .timeline-marker {
+       position: absolute;
+       left: 20px;
+       top: 12px;
+       transform: translateX(-50%);
+       width: 10px;
+       height: 10px;
+       border-radius: 50%;
+       background: #999;
+       border: 2px solid #fff;
+       z-index: 1;
+     }
+
+     @media (max-width: 768px) {
+       .timeline-content {
+         margin-left: 40px;
+         padding: 8px 12px;
+       }
+     }
+
+     /* Name and Product Styling */
+     .highlight {
+       color: #000;
+       font-weight: 400;
+     }
+
+     /* 2026 Comment Note */
+     .comment-note-2026 {
+       margin: 12px 0 0 0;
+       padding: 8px 14px;
+       border-left: 2px solid #b0c4de;
+       background: linear-gradient(to right, #f5f8fb, transparent);
+       font-size: 0.88em;
+       color: #5a6a7a;
+       line-height: 1.5;
+       border-radius: 0 3px 3px 0;
+     }
+     .comment-note-2026 .note-date {
+       font-size: 0.82em;
+       color: #8a9bae;
+       letter-spacing: 0.3px;
+     }
+   </style>
+   <body class="fixed-top-nav" data-page="blog">
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title">LLM Year in Review</h1>
+               <p class="post-meta"> Created in December, 2025 </p>
+               <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/open-source"> <i class="fa-solid fa-hashtag fa-sm"></i> open-source</a>   <a href="/blog/tag/review"> <i class="fa-solid fa-hashtag fa-sm"></i> review</a>      ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
+            </header>
+            <article class="post-content">
+               <div id="markdown-content">
+                  <p>Following <a href="https://x.com/karpathy/status/2002118205729562949?s=20" target="_blank">@karpathy's 2025 LLM Year in Review</a>, here are my observations on the LLM landscape in 2025.</p>
+                  <p><em>my year with ChatGPT:</em></p>
+                  <p><em>("Hallucination": not GPU, but TPU?)</em></p>
+                  <img src="/assets/blog/llm/Still-Life-with-TPU-Chip-and-Coffee-Mug-ChatGPT-2025.png" alt="tweet" class="img-fluid" style="max-width: 50%; height: auto; margin: 20px auto; display: block;">
+                  <p><em>My Favorite AI Breakthrough This Year: <a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">DeepSeek</a></em></p>
+               </div>
+            </article>
+            <br>
+            <hr>
+            <br>
+
+            <!-- ========================================== -->
+            <!-- YOUR CONTENT STARTS HERE -->
+            <!-- ========================================== -->
+
+            <h2>Foundation Model: Open Source vs Closed Source</h2>
+            <p>2025 has been a year of shifts in the foundation model landscape. While we've seen more powerful models from Google DeepMind, Anthropic and OpenAI, the shift between open source and closed source continues to evolve. Companies like Meta and xAI switched their previously open-source mode to closed source. OpenAI shipped gpt-oss (their 1st open-source model family post GPT-3) in August 2025.</p>
+            <p>Despite these industry shifts, my favorite AI breakthrough this year remains DeepSeek. DeepSeek proved that <em>open source is the way</em>. Their unwavering commitment to openness, even as giants like Meta retreated, has inspired a new generation of open-source models including Alibaba Qwen, Kimi, Xiaomi MiMo, MiniMax and AI2's OLMo. Open source enables innovation, research, and democratization of AI technology.</p>
+            <br>
+
+            <h2>Academia vs Industry Fusion</h2>
+            <p>First, congratulations to Professors <em>Andrew Barto</em> of UMass Amherst—my graduate alma mater—and his former graduate student <em>Richard Sutton</em> on receiving <a href="https://amturing.acm.org/">the 2024 Turing Award</a> this spring for their pioneering work in reinforcement learning.</p>
+            <p><a href="https://pengandy.com/blog/2025/neurips/">NeurIPS 2025</a> in San Diego was a crowded and hugely successful event, showcasing the vibrant intersection of academic research and industrial innovation. The conference highlighted both the opportunities and challenges facing the AI research community. The unexpected incident involving OpenReview has drawn increased attention to fairness, impartiality, transparency, high quality, and privacy protection in academic sharing, prompting concrete actions across the research community, including the NeurIPS donation and the <em>AI Research Leaders: Join Us in Supporting OpenReview</em> initiative.</p>
+            <p>The ongoing discussion about <a href="https://pengandy.com/blog/2025/RSRCHORENG/" target="_blank">research vs engineering</a> has intensified this year. We're seeing fascinating position changes between veterans and young researchers, reflecting the evolving landscape of AI careers. 2025 marks a watershed moment as more 95s young researchers are becoming executives at major companies and startups, commanding compensation comparable to NBA stars in Bay Area tech. Notable examples include Shengjia Zhao (Chief Scientist at Meta Superintelligence Labs), Shunyu Yao (姚顺雨) at Tencent, and Fuli Luo (罗福莉) at Xiaomi. These leaders share a common profile: former researchers at OpenAI or top labs like DeepSeek, PhD from Stanford or UC Berkeley, and undergraduate degrees from Tsinghua or Peking University. For startup, we also have new research-type companies like Thinking Machines Lab (founded by former OpenAI CTO, Soumith Chintala, PyTorch co-creator, joined last month) and for corporate, Amazon recently appointing Pieter Abbeel (UC Berkeley professor, co-founder of Covariant) to lead their frontier model research team.</p>
+            <p>We're witnessing a destructive restructuring of the AI talent landscape. In this new era, everyone needs to find their position. The traditional career paths are being rewritten, and adaptability has become the most valuable skill.</p>
+            <div class="comment-note-2026">
+               <span class="note-date">June 2026 ·</span> The author of <a href="https://x.com/pymhq/status/2024187984741093814?s=20">"The Cost of Staying"</a> took her own advice, shifting from investor to builder by joining SpaceX / xAI.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">May 2026 ·</span> <a href="https://x.com/deedydas/status/2055491938464489888?s=20" target="_blank">Deedy Das</a>, Partner at Menlo Ventures, captured the frenetic SF vibes and the widening divide between the ~10k frontier-AI insiders who hit retirement-level wealth and everyone else navigating layoffs, career paralysis, and an uncertain future of work.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">Feb 2026 ·</span> An investor at Bloomberg Beta captured a snapshot of this industry transition in her <a href="https://x.com/pymhq/status/2024187984741093814?s=20">"The Cost of Staying" write-up</a>.
+            </div>
+            <br>
+
+            <h2><a href="https://pengandy.com/blog/2025/llmnative/">LLM Native</a>: Open Source Ecosystem in Place</h2>
+            <p>The shift toward GPU-CPU Native infrastructure has accelerated dramatically. Key projects driving this revolution include vLLM, SGLang, llm-d, Nvidia's Dynamo, and LMCache. Looking back at GTC 25, there was no "public" concept of disaggregated inference at all. Just one year later, industry standards have emerged and are growing rapidly. There's also an interesting discussion on customizing popular open-source libraries—check out <a href="https://blog.vllm.ai/2025/11/20/vllm-plugin-system.html">this article</a>.</p>
+            <div class="comment-note-2026">
+               <span class="note-date">Mar 16, 2026 ·</span> NVIDIA GTC Keynote 2026, NVIDIA Founder and CEO Jensen Huang shared disaggregated inference on <a href="https://www.youtube.com/live/jw_o0xr8MWU?si=X9-EYGOoel3aC4cx&t=7681" target="_blank">Vera Rubin Prefill + Groq Decode</a>.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">Mar 13, 2026 ·</span> AWS and Cerebras team up to build new disaggregated inference solution: <a href="https://press.aboutamazon.com/aws/2026/3/aws-and-cerebras-collaboration-aims-to-set-a-new-standard-for-ai-inference-speed-and-performance-in-the-cloud" target="_blank">Trainium Prefill + Cerebras Decode</a>.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 ·</span> Feb: vLLM started Inferact ($150M seed) · Jan: SGLang started RadixArk (~$400M valuation).
+            </div>
+            <p>The <a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">Cloud Native Computing Foundation (CNCF) turned 10</a>. The Linux Foundation and open-source AI community have remained incredibly active in 2025, driving both agentic AI and foundation model ecosystems forward.</p>
+
+            <div class="timeline">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">December 2025</div>
+                     <div class="timeline-description">MCP 1 Year. Linux Foundation formed Agentic AI Foundation (AAIF) with MCP, goose, and AGENTS.md</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">October 30, 2025</div>
+                     <div class="timeline-description">LMCache joined PyTorch Foundation</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">October 22, 2025</div>
+                     <div class="timeline-description">Ray joined PyTorch Foundation</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">June 2025</div>
+                     <div class="timeline-description">Agent2Agent (A2A) joined Linux Foundation</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">May 2025</div>
+                     <div class="timeline-description">vLLM and DeepSpeed joined PyTorch Foundation</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">July 2024</div>
+                     <div class="timeline-description">vLLM joined Linux Foundation AI & Data</div>
+                  </div>
+               </div>
+            </div>
+            <br>
+
+            <h2>Agentic AI: Moving Fast</h2>
+            <p>The industry consensus is clear: <em>2025 is the year of the agent</em>. We've seen an explosion of agentic AI frameworks, tools, and applications that are fundamentally changing how we think about AI systems.</p>
+            <p>From autonomous coding assistants to multi-agent collaboration frameworks, agentic AI has moved from research novelty to production reality. Agent sandbox use cases have also brought <a href="https://brooker.co.za/blog/2025/09/18/firecracker.html">Firecracker</a> to the stage. The formation of the Agentic AI Foundation (AAIF) by the Linux Foundation signals that this trend is here to stay.</p>
+            <br>
+
+            <h2>Expanded Cross-Company Partnerships</h2>
+            <p>Before 2025, top AI labs were tied to one or two companies—OpenAI with Microsoft, Anthropic with Google and Amazon. This year, cross-company partnerships are expanding: OpenAI now works with Microsoft, Oracle, and AWS, while Claude Code is available on OpenRouter. Top AI labs also worked together, in August, OpenAI and Anthropic jointly conducted a pilot Alignment Evaluation Exercise and published research results.</p>
+            <br>
+
+            <h2>More and More Data Center</h2>
+            <p>Google’s TPU is back in the spotlight, even though it has been around for a long time. Meanwhile, the newly released Trainium 3 and Project Rainier, powered by Trainium 2, have been activated for Anthropic’s Claude model training and inference workloads. And multi-year, billion-dollar agreement between AWS and OpenAI. GPU versus ASIC chips. Undoubtedly, more and more purpose-built physical data centers are being constructed from the ground up, and energy become important.</p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026/03/19 ·</span> @KobeissiLetter: <a href="https://x.com/KobeissiLetter/status/2034784748640289139?s=20" target="_blank">Data centers surpass office buildings in US construction</a>
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026/03/10 ·</span> <a href="https://blogs.nvidia.com/blog/ai-5-layer-cake/" target="_blank">The AI "5-Layer Cake"</a> by Jensen Huang, Nvidia CEO.
+            </div>
+            <br>
+
+            <h2>Faster and Faster Performance</h2>
+            <p>More OPTS, shorter TTFT, and longer context lengths, the ranking race in Artificial Analysis continues. Performance is becoming critically important at every layer—from applications and agent providers to API and model providers. Companies like Fireworks AI and Together AI did a good job in this domain. AI technologies are innovating fast — <a href="https://developer.nvidia.com/blog/top-5-ai-model-optimization-techniques-for-faster-smarter-inference/">inference optimization techniques</a> like speculative decoding are a prime example. Beginning with draft-model speculative decoding (Chen et al., <a href="https://arxiv.org/abs/2302.01318">2023</a>), later the EAGLE (Extrapolation Algorithm for Greater Language‑model Efficiency) series has pushed this approach further: EAGLE-1 (<a href="https://arxiv.org/abs/2401.15077">ICML 2024</a>), EAGLE‑2 (<a href="https://arxiv.org/abs/2406.16858">EMNLP 2024</a>), EAGLE‑3 (<a href="https://arxiv.org/abs/2503.01840">2025</a>), and most recently, SuffixDecoding (<a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/115453">NeurIPS 2025 spotlight poster</a>).</p>
+            <div class="comment-note-2026">
+               <span class="note-date">May 2026 ·</span> <a href="https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/">Gemma 4: multi-token prediction drafters</a>.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">Mar 2026 ·</span> <a href="https://vllm.ai/blog/p-eagle">P-EAGLE: Faster LLM inference with Parallel Speculative Decoding in vLLM</a> &nbsp; <span class="note-date">Feb 2026 ·</span> New preprint on arXiv, <a href="https://www.arxiv.org/abs/2602.01469">P-EAGLE: Parallel-Drafting EAGLE with Scalable Training</a> from Amazon Science team.
+            </div>
+            <p>And all of these new academic innovations are supported by the open-source community from Day 0 for industry adoption. Open-source speed is incredibly fast in today’s AI community.</p>
+            <div class="comment-note-2026">
+               <span class="note-date">Mar 2026 ·</span> <a href="https://pytorch.org/blog/torchspec-speculative-decoding-training-at-scale/">TorchSpec</a> by TorchSpec team, Mooncake team &nbsp; <span class="note-date">Nov 2025 ·</span> <a href="https://developers.redhat.com/articles/2025/11/19/speculators-standardized-production-ready-speculative-decoding">Speculators</a> by vLLM, <a href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-introduces-eagle-based-adaptive-speculative-decoding-to-accelerate-generative-ai-inference/">EAGLE based adaptive speculative decoding</a> by Amazon SageMaker team &nbsp; <span class="note-date">Jul 2025 ·</span> <a href="https://lmsys.org/blog/2025-07-25-spec-forge/">SpecForge</a> by SGLang
+            </div>
+            <p>Besides, low-level innovations like kernel tuning continue unabated—for example, Perplexity’s October open sourced kernel on <a href="https://github.com/perplexityai/pplx-garden">GitHub</a> and <a href="https://arxiv.org/abs/2510.27656">paper</a> and companies like Cerebras AI design AI-native processors and infrastructure, result in high performance through tight hardware–software combination. Behind high performance is a high-quality dataset.</p>
+            <br>
+
+            <h2>Benchmark, Interpretability, Observability, Trust & Safety</h2>
+            <p>Transitioning a probability-based LLM solution into a stable, consistency, production-ready product is not trivial. Last-mile delivery: from innovations to production readiness is important. Achieving production readiness requires extensive work, including rigorous benchmarking, thorough model evaluation, and, most importantly, establishing trust and safety. Some organizations have recognized these challenges and are actively building solutions to close the gap.—examples include Arklex.ai and Virtue AI.</p>
+            <p>Besides, <a href="https://www.darioamodei.com/post/the-urgency-of-interpretability">"The Urgency of Interpretability"</a> is clear, opening the black box is necessary.</p>
+            <br>
+
+            <h2>Pitch Over Performance</h2>
+            <p>Personal experience. Nano Banana did not fully meet expectations, requiring intensive prompting and still leaving room for fine-tuning.</p>
+            <br>
+
+            <h2>Productivity</h2>
+            <p>Coding: Kiro CLI, Cursor and Claude Code. Doc: ChatGPT. Knowledge: Perplexity.</p>
+            <div class="comment-note-2026">
+               <span class="note-date">Mar 09, 2026 ·</span> Claude Code launches <a href="https://claude.com/blog/code-review" target="_blank">Code Review</a>.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">Mar 04, 2026 ·</span> The Pragmatic Engineer Podcast: <a href="https://youtu.be/julbw1JuAz0?si=PhtOF9SSVVlCU744" target="_blank">Building Claude Code with Boris Cherny</a>.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">Feb 22, 2026 ·</span> Claude Code <a href="https://x.com/bcherny/status/2025701404988592359?s=20" target="_blank">celebrates its 1 year birthday</a>.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">Feb 11, 2026 ·</span> <a href="https://www.reddit.com/r/OpenAI/comments/1r22l1j/cursor_is_dying/" target="_blank">Cursor Is Dying</a>.
+            </div>
+            <br>
+
+            <h2>LLM 3 Years</h2>
+            <p>From conversational AI in 2019 to Bedrock in 2023—I become a three-year "veteran" in the LLM domain. OpenAI turns 10 this month: https://openai.com/index/ten-years/. This space is growing at an unimaginable pace, hype and the unknown intertwined. When an industrial revolution is underway, people can only move forward step by step. See <a href="https://x.com/karpathy/status/2004607146781278521?s=20">@karpathy</a> and <a href="https://www.reddit.com/r/ClaudeAI/comments/1q2k2c0/google_engineer_says_claude_code_rebuilt_their/">@rakyll</a> threads. Recommended interviews: <a href="https://radical.vc/geoffrey-hinton-and-jeff-dean-in-conversation/">Geoff Hinton & Jeff Dean</a>, <a href="https://youtu.be/aR20FWCCjAs?si=muktbHb3paxsdjqE">Ilya Sutskever</a>, <a href="https://youtu.be/mfv0V1SxbNA?si=GQ2etIl96mmm_VCR">Linus Torvalds</a>, <a href="https://www.deeplearning.ai/the-batch/issue-333/">Andrew Ng</a> and <a href="https://blog.google/technology/ai/2025-research-breakthroughs/">Google's blog</a>.</p>
+            <br>
+
+            <h2>What's Next</h2>
+            <p>No direct answer, but open source will continue to be the way.</p>
+            <div class="comment-note-2026">
+               <span class="note-date">Mar 05, 2026 ·</span> Anthropic Economic Research report: <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank">Labor market impacts of AI: A new measure and early evidence</a>.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">Feb 22, 2026 ·</span> A Wall Street article spreading around: <a href="https://www.citriniresearch.com/p/2028gic" target="_blank">The 2028 Global Intelligence Crisis</a>.
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">Nov 2025 ·</span> <a href="https://www.linkedin.com/company/prometheus/" target="_blank">Project Prometheus</a> founded by Jeff Bezos and Vik Bajaj (ex-Google X), with $6.2B in funding and the slogan "AI for the physical economy."            </div>
+            <br>
+
+            <!-- ========================================== -->
+            <!-- YOUR CONTENT ENDS HERE -->
+            <!-- ========================================== -->
+
+         </div>
+         <div>
+           <a href="https://hits.sh/pengandy.com/blog/2025/llm/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2025/llm.svg?label=page%20views&color=007ec6"/></a>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script>
+      <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
+      <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}},{id:"post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",title:'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"We\u2019re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",section:"Posts",handler:()=>{window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/","_blank")}},{id:"post-a-post-with-tabs",title:"a post with tabs",description:"this is what included tabs in a post could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/tabs/"}},{id:"post-a-post-with-typograms",title:"a post with typograms",description:"this is what included typograms code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/typograms/"}},{id:"post-a-post-that-can-be-cited",title:"a post that can be cited",description:"this is what a post that can be cited looks like",section:"Posts",handler:()=>{window.location.href="/blog/2024/TL/"}},{id:"post-a-post-with-pseudo-code",title:"a post with pseudo code",description:"this is what included pseudo code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/pseudocode/"}},{id:"post-a-post-with-code-diff",title:"a post with code diff",description:"this is how you can display code diffs",section:"Posts",handler:()=>{window.location.href="/blog/2024/code-diff/"}},{id:"post-a-post-with-advanced-image-components",title:"a post with advanced image components",description:"this is what advanced image components could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/advanced-images/"}},{id:"post-a-post-with-vega-lite",title:"a post with vega lite",description:"this is what included vega lite code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/vega-lite/"}},{id:"post-a-post-with-geojson",title:"a post with geojson",description:"this is what included geojson code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/geojson-map/"}},{id:"post-a-post-with-echarts",title:"a post with echarts",description:"this is what included echarts code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/echarts/"}},{id:"post-a-post-with-chart-js",title:"a post with chart.js",description:"this is what included chart.js code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/chartjs/"}},{id:"post-a-post-with-tikzjax",title:"a post with TikZJax",description:"this is what included TikZ code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/tikzjax/"}},{id:"post-a-post-with-bibliography",title:"a post with bibliography",description:"an example of a blog post with bibliography",section:"Posts",handler:()=>{window.location.href="/blog/2023/post-bibliography/"}},{id:"post-a-post-with-jupyter-notebook",title:"a post with jupyter notebook",description:"an example of a blog post with jupyter notebook",section:"Posts",handler:()=>{window.location.href="/blog/2023/jupyter-notebook/"}},{id:"post-a-post-with-custom-blockquotes",title:"a post with custom blockquotes",description:"an example of a blog post with custom blockquotes",section:"Posts",handler:()=>{window.location.href="/blog/2023/custom-blockquotes/"}},{id:"post-a-post-with-table-of-contents-on-a-sidebar",title:"a post with table of contents on a sidebar",description:"an example of a blog post with table of contents on a sidebar",section:"Posts",handler:()=>{window.location.href="/blog/2023/sidebar-table-of-contents/"}},{id:"post-a-post-with-audios",title:"a post with audios",description:"this is what included audios could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/audios/"}},{id:"post-a-post-with-videos",title:"a post with videos",description:"this is what included videos could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/videos/"}},{id:"post-displaying-beautiful-tables-with-bootstrap-tables",title:"displaying beautiful tables with Bootstrap Tables",description:"an example of how to use Bootstrap Tables",section:"Posts",handler:()=>{window.location.href="/blog/2023/tables/"}},{id:"post-a-post-with-table-of-contents",title:"a post with table of contents",description:"an example of a blog post with table of contents",section:"Posts",handler:()=>{window.location.href="/blog/2023/table-of-contents/"}},{id:"post-a-post-with-giscus-comments",title:"a post with giscus comments",description:"an example of a blog post with giscus comments",section:"Posts",handler:()=>{window.location.href="/blog/2022/giscus-comments/"}},{id:"post-displaying-external-posts-on-your-al-folio-blog",title:'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"",section:"Posts",handler:()=>{window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2","_blank")}},{id:"post-a-post-with-redirect",title:"a post with redirect",description:"you can also redirect to assets like pdf",section:"Posts",handler:()=>{window.location.href="/assets/pdf/example_pdf.pdf"}},{id:"post-a-post-with-diagrams",title:"a post with diagrams",description:"an example of a blog post with diagrams",section:"Posts",handler:()=>{window.location.href="/blog/2021/diagrams/"}},{id:"post-a-distill-style-blog-post",title:"a distill-style blog post",description:"an example of a distill-style blog post and main elements",section:"Posts",handler:()=>{window.location.href="/blog/2021/distill/"}},{id:"post-a-post-with-twitter",title:"a post with twitter",description:"an example of a blog post with twitter",section:"Posts",handler:()=>{window.location.href="/blog/2020/twitter/"}},{id:"post-a-post-with-disqus-comments",title:"a post with disqus comments",description:"an example of a blog post with disqus comments",section:"Posts",handler:()=>{window.location.href="/blog/2015/disqus-comments/"}},{id:"post-a-post-with-math",title:"a post with math",description:"an example of a blog post with some math",section:"Posts",handler:()=>{window.location.href="/blog/2015/math/"}},{id:"post-a-post-with-code",title:"a post with code",description:"an example of a blog post with some code",section:"Posts",handler:()=>{window.location.href="/blog/2015/code/"}},{id:"post-a-post-with-images",title:"a post with images",description:"this is what included images could look like",section:"Posts",handler:()=>{window.location.href="/blog/2015/images/"}},{id:"post-a-post-with-formatting-and-links",title:"a post with formatting and links",description:"march & april, looking forward to summer",section:"Posts",handler:()=>{window.location.href="/blog/2015/formatting-and-links/"}},{id:"news-a-simple-inline-announcement",title:"A simple inline announcement.",description:"",section:"News"},{id:"news-a-long-announcement-with-details",title:"A long announcement with details",description:"",section:"News",handler:()=>{window.location.href="/news/announcement_2/"}},{id:"news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",title:'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',description:"",section:"News"},{id:"projects-project-1",title:"project 1",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/1_project/"}},{id:"projects-project-2",title:"project 2",description:"a project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/2_project/"}},{id:"projects-project-3-with-very-long-name",title:"project 3 with very long name",description:"a project that redirects to another website",section:"Projects",handler:()=>{window.location.href="/projects/3_project/"}},{id:"projects-project-4",title:"project 4",description:"another without an image",section:"Projects",handler:()=>{window.location.href="/projects/4_project/"}},{id:"projects-project-5",title:"project 5",description:"a project with a background image",section:"Projects",handler:()=>{window.location.href="/projects/5_project/"}},{id:"projects-project-6",title:"project 6",description:"a project with no image",section:"Projects",handler:()=>{window.location.href="/projects/6_project/"}},{id:"projects-project-7",title:"project 7",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/7_project/"}},{id:"projects-project-8",title:"project 8",description:"an other project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/8_project/"}},{id:"projects-project-9",title:"project 9",description:"another project with an image \ud83c\udf89",section:"Projects",handler:()=>{window.location.href="/projects/9_project/"}},{id:"socials-email",title:"Send email",section:"Socials",handler:()=>{window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D","_blank")}},{id:"socials-google-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ","_blank")}},{id:"socials-rss",title:"RSS Feed",section:"Socials",handler:()=>{window.open("/feed.xml","_blank")}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+   </body>
+</html>

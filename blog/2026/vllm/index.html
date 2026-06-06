@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> vLLM Community Collaboration Newsletter </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="Blog.">
+      <meta name="keywords" content="Blog.">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/vllm/">
+      <meta property="og:title" content="vLLM Community Collaboration Newsletter">
+      <meta property="og:description" content="P-EAGLE lands in vLLM 0.16.0, first SIG meetings, and multi-LoRA serving for MoE models.">
+      <meta property="og:image" content="https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Full-Logo.png">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="vLLM Community Collaboration Newsletter">
+      <meta name="twitter:description" content="P-EAGLE lands in vLLM 0.16.0, first SIG meetings, and multi-LoRA serving for MoE models.">
+      <meta name="twitter:image" content="https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Full-Logo.png">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="shortcut icon" href="/assets/projects/Peng Andys Logo Symbol.png">
+      <link rel="stylesheet" href="/assets/css/main.css">
+      <link rel="canonical" href="https://pengandy.com/blog/2026/vllm/">
+      <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+      <script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+      <script src="/assets/js/components.js" defer></script>
+   </head>
+   <style>
+     img {
+         pointer-events: none;
+      }
+     .center {
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+       width: 50%;
+     }
+
+     .sig-box {
+       background: #f8f9fa;
+       border-left: 3px solid #6c757d;
+       padding: 10px 16px;
+       margin: 12px 0;
+       border-radius: 0 4px 4px 0;
+       font-size: 0.92em;
+       color: #444;
+     }
+
+     .sig-box .sig-date {
+       font-weight: 600;
+       color: #333;
+       margin-bottom: 4px;
+     }
+
+     .sig-box ul {
+       margin: 6px 0 0 0;
+       padding-left: 18px;
+     }
+
+     .perf-badge {
+       display: inline-block;
+       background: #e8f5e9;
+       border: 1px solid #a5d6a7;
+       color: #2e7d32;
+       border-radius: 4px;
+       padding: 2px 8px;
+       font-size: 0.88em;
+       font-weight: 600;
+       margin: 2px 4px 2px 0;
+     }
+
+     .release-note {
+       background: #fff8e1;
+       border-left: 3px solid #ffc107;
+       padding: 10px 16px;
+       margin: 14px 0;
+       border-radius: 0 4px 4px 0;
+       font-size: 0.92em;
+       color: #555;
+     }
+
+     .release-note .pr-tag {
+       font-family: monospace;
+       font-size: 0.9em;
+       background: #f0f0f0;
+       padding: 1px 5px;
+       border-radius: 3px;
+       color: #333;
+     }
+   </style>
+   <body class="fixed-top-nav" data-page="blog">
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title">vLLM Community Collaboration Newsletter</h1>
+               <p class="post-meta"> Created in February, 2026 </p>
+               <p class="post-tags">
+                  <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>
+                  &nbsp;·&nbsp;
+                  <a href="/blog/tag/vllm"> <i class="fa-solid fa-hashtag fa-sm"></i> vllm</a>
+                  <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>
+                  <a href="/blog/tag/open-source"> <i class="fa-solid fa-hashtag fa-sm"></i> open-source</a>
+                  &nbsp;·&nbsp;
+                  <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a>
+               </p>
+            </header>
+            <article class="post-content">
+               <div id="markdown-content">
+                  <p>A timeline of community contributions and milestones from the vLLM ecosystem in 2026 — big-feature releases alongside my own engagements as <a href="https://github.com/pymhq" target="_blank">@pymhq</a>, organized by quarter (newest first).</p>
+               </div>
+            </article>
+            <p style="font-size: 0.82em; color: #888; line-height: 1.6;">
+               <em>Disclaimer: This newsletter is personal contribution notes from an individual builder's perspective. All topics, observations, and opinions expressed are solely my own.</em>
+            </p>
+            <br>
+            <hr>
+            <br>
+
+            <!-- ========================================== -->
+            <!-- YOUR CONTENT STARTS HERE -->
+            <!-- ========================================== -->
+
+            <h2>Q2 2026 (Apr&ndash;Jun)</h2>
+
+            <h3>pymhq Contributions</h3>
+            <ul>
+               <li><strong>May 14</strong> &mdash; <a href="https://github.com/vllm-project/vllm/issues/42687" target="_blank">vllm#42687</a> (issue): Gemma-4 fails to start on GPUs with &lt;70GB memory because the default <code>max_num_batched_tokens</code> falls below the multimodal token-size threshold. Capacity-planning footgun for sub-H100 multimodal deployments.</li>
+               <li><strong>May 13</strong> &mdash; <a href="https://github.com/vllm-project/vllm/pull/42536" target="_blank">vllm#42536</a> (PR review): Remove verifier model type check in speculative config. Stale guard removed now that the speculator stack handles the check itself. Merged.</li>
+            </ul>
+
+            <h3>May 26 &mdash; EAGLE 3.1: Stabilizing the Drafter Against Attention Drift</h3>
+
+            <p>
+               The EAGLE, vLLM, and TorchSpec teams jointly published <a href="https://vllm.ai/blog/2026-05-26-eagle-3-1" target="_blank">EAGLE 3.1</a>, an enhanced speculative-decoding algorithm that tackles <em>attention drift</em> &mdash; the instability that degrades EAGLE-3 drafting under different chat templates, long-context inputs, and out-of-distribution system prompts.
+            </p>
+
+            <div class="release-note">
+               <strong>What changed in EAGLE 3.1</strong>
+               <ul style="margin-top: 8px;">
+                  <li>FC normalization applied after each target hidden state.</li>
+                  <li>Post-norm hidden-state feedback fed into subsequent decoding steps.</li>
+                  <li>Together these stabilize the drafter across deeper speculation levels and varied deployment scenarios.</li>
+               </ul>
+            </div>
+
+            <p>
+               <span class="perf-badge">up to 2&times; acceptance length</span> vs. EAGLE 3 on long-context inputs &nbsp;
+               <span class="perf-badge">2.03&times; output tokens/sec</span> Kimi K2.6 @ C=1
+            </p>
+            <p style="font-size: 0.9em; color: #555;">
+               On the SPEED-Bench coding dataset with Kimi K2.6, per-user output throughput improves 2.03&times; at concurrency 1, 1.71&times; at C=4, and 1.66&times; at C=16.
+            </p>
+
+            <p>
+               <strong>Why it matters here:</strong> attention drift was a known failure mode for the EAGLE-style draft heads this newsletter tracks &mdash; the same family as P-EAGLE. EAGLE 3.1 lands in vLLM <a href="https://github.com/vllm-project/vllm/releases/tag/v0.22.0" target="_blank">v0.22.0</a>.
+            </p>
+
+            <p>
+               <strong>Resources:</strong>
+            </p>
+            <ul>
+               <li><a href="https://vllm.ai/blog/2026-05-26-eagle-3-1" target="_blank">vLLM blog: EAGLE 3.1</a></li>
+               <li>TorchSpec training support: <a href="https://github.com/lightseekorg/TorchSpec" target="_blank">lightseekorg/TorchSpec</a></li>
+               <li>Draft model: <a href="https://huggingface.co/lightseekorg/kimi-k2.6-eagle3.1-mla" target="_blank">lightseekorg/kimi-k2.6-eagle3.1-mla</a></li>
+            </ul>
+
+            <br>
+            <hr>
+            <br>
+
+            <h2>Q1 2026 (Jan&ndash;Mar)</h2>
+
+            <p>
+               The launch quarter &mdash; vLLM 0.16.0 shipped P-EAGLE on Feb 26, the Model Acceleration SIG kicked off mid-month, and efficient multi-LoRA serving for MoE models landed alongside the release.
+            </p>
+
+            <h3>pymhq Contributions</h3>
+            <ul>
+               <li><strong>Mar 30</strong> &mdash; <a href="https://github.com/vllm-project/speculators/issues/335" target="_blank">speculators#335</a> (RFC comment): Use vLLM's <code>extract_hidden_states</code> system (and enable online training). Wires the hidden-states extraction path from <a href="https://github.com/vllm-project/vllm/issues/33118" target="_blank">vllm#33118</a> into the speculators training loop &mdash; prerequisite for online training of EAGLE-style draft heads.</li>
+               <li><strong>Mar 12</strong> &mdash; <a href="https://github.com/vllm-project/speculators/issues/292" target="_blank">speculators#292</a> (RFC comment): Add P-EAGLE support in training. Carries the parallel-drafting collapse back into the training recipe.</li>
+               <li><strong>Mar 10</strong> &mdash; <a href="https://github.com/vllm-project/vllm/issues/36718" target="_blank">vllm#36718</a> (issue): vLLM 0.15.0 startup on H200 fails inside deep_gemm. Production-deployment regression.</li>
+               <li><strong>Feb 28</strong> &mdash; <a href="https://github.com/vllm-project/vllm/issues/26679" target="_blank">vllm#26679</a> (comment): Ensure output consistency when using LoRA with Eagle3 Speculative Decoding. Follow-up to the Feb 23 SIG discussion.</li>
+               <li><strong>Feb 16</strong> &mdash; <a href="https://github.com/vllm-project/vllm/issues/34643" target="_blank">vllm#34643</a> (issue): vLLM leaves orphan processes when parent dies on OOM. Surfaced during Qwen3 30B Coder testing; raised at the Feb 16 SIG.</li>
+            </ul>
+
+            <h3>Mar 30 &mdash; Extracting Hidden States from vLLM</h3>
+
+            <p>
+               The vLLM team published <a href="https://vllm.ai/blog/2026-03-30-extract-hidden-states" target="_blank">Extracting hidden states from vLLM</a> (by Fynn Schmitt-Ulms), introducing a native hidden-states extraction system landing in vLLM 0.18.0+. It closes the long-standing gap that forced downstream training libraries to either swap in a separate transformer implementation (losing vLLM's performance) or patch vLLM internals (creating maintenance burden) just to capture intermediate-layer representations.
+            </p>
+
+            <div class="release-note">
+               <strong>How it works</strong>
+               <ul style="margin-top: 8px;">
+                  <li>Reuses existing Eagle-3 model pathways and the KV Connector API &mdash; no bespoke hooks per model.</li>
+                  <li>Stores hidden states in dummy draft-model attention layers via vLLM's paged memory system.</li>
+                  <li>Flexible output sinks: disk or device-to-device transfer.</li>
+                  <li>No overhead on standard inference workloads when the feature is off.</li>
+               </ul>
+            </div>
+
+            <p>
+               As a concrete sizing example, Qwen3-8B with 8k tokens across 4 layers produces 268 MB of FP16 hidden-state data &mdash; manageable for offline capture, and the motivation behind ongoing work on async writes and device-to-device connectors for multi-node training scenarios.
+            </p>
+
+            <p>
+               <strong>Why it matters for speculative decoding:</strong> hidden states are the training signal for EAGLE-style draft heads (including P-EAGLE). A performant, native extraction path is the prerequisite for online training of these draft models &mdash; which is exactly what <a href="https://github.com/vllm-project/speculators/issues/335" target="_blank">speculators#335</a> is wiring up on the training side.
+            </p>
+
+            <p>
+               <strong>Read more:</strong>
+            </p>
+            <ul>
+               <li><a href="https://vllm.ai/blog/2026-03-30-extract-hidden-states" target="_blank">vLLM blog: Extracting hidden states from vLLM</a></li>
+               <li>RFC: <a href="https://github.com/vllm-project/vllm/issues/33118" target="_blank">vllm#33118</a> &mdash; hidden states extraction</li>
+            </ul>
+
+            <h3>Feb 26 &mdash; Speculative Decoding: P-EAGLE Goes Live in vLLM 0.16.0</h3>
+
+            <p>
+               <a href="https://github.com/vllm-project/vllm/releases/tag/v0.16.0" target="_blank">vLLM 0.16.0</a> shipped with P-EAGLE support &mdash; a meaningful milestone for speculative decoding in production inference. The release bundles several related improvements:
+            </p>
+
+            <div class="release-note">
+               <strong>vLLM 0.16.0 highlights for speculative decoding</strong>
+               <ul style="margin-top: 8px;">
+                  <li>Unified Parallel Drafting for speculative decoding <span class="pr-tag">#32887</span></li>
+                  <li>Spec decode now works with structured outputs <span class="pr-tag">#33374</span></li>
+                  <li>Penalty application in Model Runner V2 <span class="pr-tag">#33251</span></li>
+               </ul>
+            </div>
+
+            <h4>What is P-EAGLE?</h4>
+            <p>
+               P-EAGLE (Parallel-Drafting EAGLE) rethinks the drafting step in EAGLE-style speculative decoding. Where EAGLE generates K draft tokens through K sequential forward passes, P-EAGLE collapses them into a <em>single</em> forward pass &mdash; cutting the overhead of the draft phase significantly. The result is a throughput lift that comes essentially for free once the checkpoints are in place.
+            </p>
+
+            <p>
+               <span class="perf-badge">1.36&times; output tokens/sec</span> on GPT-OSS 120B &nbsp;
+               <span class="perf-badge">1.17&times; output tokens/sec</span> on Qwen3-Coder 30B
+            </p>
+            <p style="font-size: 0.9em; color: #555;">
+               Both models match the acceptance length of autoregressive EAGLE-3 in vLLM benchmarks, with no quality regression.
+            </p>
+
+            <p>
+               <strong>Resources:</strong>
+            </p>
+            <ul>
+               <li>Preprint: <a href="http://arxiv.org/abs/2602.01469" target="_blank">arxiv.org/abs/2602.01469</a></li>
+               <li>HuggingFace checkpoints:
+                  <a href="https://huggingface.co/amazon/gpt-oss-120b-p-eagle" target="_blank">amazon/gpt-oss-120b-p-eagle</a> &nbsp;&middot;&nbsp;
+                  <a href="https://huggingface.co/amazon/Qwen3-Coder-30B-A3B-Instruct-P-EAGLE" target="_blank">amazon/Qwen3-Coder-30B-A3B-Instruct-P-EAGLE</a>
+               </li>
+            </ul>
+
+            <h3>Feb 26 &mdash; Speeding Up Multi-LoRA Serving for MoE Models</h3>
+
+            <p>
+               Also on Feb 26, the vLLM team published work on efficient multi-LoRA serving for Mixture-of-Experts models &mdash; a problem that grows quickly in complexity as the number of fine-tuned variants scales. The approach targets the specific characteristics of MoE routing to reduce overhead when switching between adapters.
+            </p>
+
+            <p>
+               <strong>Read more:</strong>
+            </p>
+            <ul>
+               <li><a href="https://x.com/vllm_project/status/2027604078369370328?s=20" target="_blank">vLLM announcement on X</a></li>
+               <li><a href="https://blog.vllm.ai/2026/02/26/multi-lora.html" target="_blank">vLLM blog: Multi-LoRA Serving</a></li>
+               <li><a href="https://aws.amazon.com/blogs/machine-learning/efficiently-serve-dozens-of-fine-tuned-models-with-vllm-on-amazon-sagemaker-ai-and-amazon-bedrock/" target="_blank">Amazon Science blog: Efficiently Serve Dozens of Fine-Tuned Models with vLLM on Amazon SageMaker AI and Amazon Bedrock</a></li>
+            </ul>
+
+            <h3>Feb 23 &mdash; vLLM SIG Model Acceleration: Second Meeting</h3>
+
+            <div class="sig-box">
+               <div class="sig-date">Feb 23, 2026 &mdash; Second Meeting</div>
+               <ul>
+                  <li>Explored the interaction between LoRA adapters and EAGLE draft heads &mdash; specifically how LoRA fine-tuning affects acceptance length and what that means for speculative decoding pipelines.</li>
+                  <li>Discussed feasibility of integrating these patterns upstream in vLLM.</li>
+               </ul>
+            </div>
+
+            <h3>Feb 16 &mdash; vLLM SIG Model Acceleration: Inaugural Meeting (+ vllm#34643)</h3>
+
+            <p>
+               February marked the launch of the <strong>Model Acceleration SIG</strong> within the vLLM community &mdash; a dedicated working group covering quantization and speculative decoding.
+            </p>
+
+            <div class="sig-box">
+               <div class="sig-date">Feb 16, 2026 &mdash; Inaugural Meeting &nbsp;<span style="font-size:0.85em;font-weight:400;color:#888;">(Year of the Horse 🐴)</span></div>
+               <ul>
+                  <li>Discussed the hidden states extraction RFC: <a href="https://github.com/vllm-project/vllm/issues/33118" target="_blank">#33118</a> &mdash; a prerequisite for enabling EAGLE-style draft heads without model-specific hooks.</li>
+                  <li>Reviewed an OOM-handling bug surfaced during testing with Qwen3 30B Coder: <a href="https://github.com/vllm-project/vllm/issues/34643" target="_blank">#34643</a>.</li>
+               </ul>
+               <img src="/assets/blog/vllm/sig-meeting-0216.png" alt="vLLM SIG Model Acceleration inaugural meeting recording — Feb 16, 2026" class="img-fluid" style="max-width: 100%; height: auto; margin-top: 12px; border-radius: 4px;">
+            </div>
+
+
+            <!-- ========================================== -->
+            <!-- YOUR CONTENT ENDS HERE -->
+            <!-- ========================================== -->
+
+         </div>
+         <div>
+           <a href="https://hits.sh/pengandy.com/blog/2026/vllm/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/vllm.svg?label=page%20views&color=007ec6"/></a>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="/assets/js/bootstrap.bundle.min.js"></script>
+      <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
+      <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script>
+   </body>
+</html>

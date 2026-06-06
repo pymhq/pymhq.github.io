@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>PENG ANDY STUDIO</title>
+   <meta name="author" content="Peng, Andy">
+   <meta name="description" content="PENG ANDY STUDIO LLC - Professional Services">
+
+   <!-- Open Graph Meta Tags -->
+   <meta property="og:title" content="PENG ANDY STUDIO LLC">
+   <meta property="og:description" content="Professional Services - Research, Executive Leadership, Career Mentoring, and Publishing by Andy Peng">
+   <meta property="og:image" content="https://pengandy.com/assets/studio/terminal.png">
+   <meta property="og:url" content="https://pengandy.com/studio.html">
+   <meta property="og:type" content="website">
+
+   <!-- Twitter Card Meta Tags -->
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:title" content="PENG ANDY STUDIO LLC">
+   <meta name="twitter:description" content="Professional Services - Research, Executive Leadership, Career Mentoring, and Publishing by Andy Peng">
+   <meta name="twitter:image" content="https://pengandy.com/assets/studio/terminal.png">
+   <meta name="twitter:site" content="@pymhq">
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+   <link rel="shortcut icon" href="/assets/projects/Peng Andys Logo Symbol.png">
+
+   <style>
+      :root {
+         --primary: #2C3E50;
+         --secondary: #34495E;
+         --accent: #3498DB;
+         --text: #2C3E50;
+         --text-light: #7F8C8D;
+         --border: #E8ECEF;
+         --bg: #FFFFFF;
+         --bg-alt: #F8F9FA;
+      }
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      body {
+         background: var(--bg-alt);
+         color: var(--text);
+         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+         line-height: 1.5;
+         padding: 1.5rem;
+      }
+
+      .container {
+         max-width: 1200px;
+         margin: 0 auto;
+      }
+
+      /* Header */
+      .header {
+         text-align: center;
+         margin-bottom: 2rem;
+         padding: 1.5rem;
+         background: var(--bg);
+         border: 1px solid var(--border);
+         border-radius: 4px;
+      }
+
+      .header h1 {
+         font-size: 1.5rem;
+         color: var(--primary);
+         margin-bottom: 0.5rem;
+         font-weight: 700;
+         letter-spacing: 1px;
+         font-family: 'SF Mono', 'Consolas', monospace;
+      }
+
+      .header .subtitle {
+         font-size: 0.9rem;
+         color: var(--text-light);
+      }
+
+      .header .subtitle a {
+         color: var(--accent);
+         text-decoration: none;
+      }
+
+      .header .subtitle a:hover {
+         text-decoration: underline;
+      }
+
+      /* Terminal Card */
+      .terminal-card {
+         background: var(--bg);
+         border: 1px solid var(--border);
+         border-radius: 4px;
+         margin-bottom: 1rem;
+         overflow: hidden;
+      }
+
+      .terminal-header {
+         background: var(--primary);
+         color: var(--bg);
+         padding: 0.5rem 0.75rem;
+         font-size: 0.75rem;
+         font-weight: 600;
+         letter-spacing: 0.5px;
+         font-family: 'SF Mono', 'Consolas', monospace;
+      }
+
+      .terminal-body {
+         padding: 1rem;
+      }
+
+      /* Grid Layouts */
+      .grid-2 {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         gap: 1rem;
+      }
+
+      .grid-3 {
+         display: grid;
+         grid-template-columns: repeat(3, 1fr);
+         gap: 1rem;
+      }
+
+      .grid-4 {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 0.75rem;
+      }
+
+      /* Book Highlight */
+      .book-section {
+         display: grid;
+         grid-template-columns: 280px 1fr;
+         gap: 2rem;
+         align-items: start;
+      }
+
+      .book-cover {
+         width: 100%;
+         border: 1px solid var(--border);
+         border-radius: 4px;
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+         user-select: none;
+         -webkit-user-drag: none;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         pointer-events: none;
+      }
+
+      /* Image protection overlay */
+      .book-cover-wrapper {
+         position: relative;
+         display: inline-block;
+      }
+
+      .book-cover-wrapper::after {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: transparent;
+      }
+
+      .book-details h3 {
+         color: var(--primary);
+         font-size: 1.1rem;
+         margin-bottom: 0.75rem;
+         font-weight: 600;
+      }
+
+      .bestseller {
+         display: inline-block;
+         background: #FF9900;
+         color: #fff;
+         padding: 0.3rem 0.6rem;
+         font-size: 0.7rem;
+         font-weight: 600;
+         border-radius: 3px;
+         margin-bottom: 0.75rem;
+      }
+
+      .book-details p {
+         color: var(--text-light);
+         margin-bottom: 1rem;
+         font-size: 0.85rem;
+         line-height: 1.6;
+      }
+
+      .btn-link {
+         display: inline-block;
+         color: var(--bg);
+         background: var(--primary);
+         padding: 0.5rem 1.25rem;
+         text-decoration: none;
+         font-weight: 500;
+         font-size: 0.85rem;
+         border-radius: 3px;
+      }
+
+      .btn-link:hover {
+         background: var(--secondary);
+         color: var(--bg);
+         text-decoration: none;
+      }
+
+      /* Service Item */
+      .service-item {
+         display: flex;
+         align-items: center;
+         gap: 1rem;
+         padding: 0.6rem 0;
+         border-bottom: 1px solid var(--border);
+      }
+
+      .service-item:last-child {
+         border-bottom: none;
+      }
+
+      .service-badge {
+         background: var(--primary);
+         color: var(--bg);
+         padding: 0.35rem 0.6rem;
+         font-size: 0.7rem;
+         font-weight: 600;
+         min-width: 110px;
+         text-align: center;
+         flex-shrink: 0;
+         border-radius: 3px;
+         font-family: 'SF Mono', 'Consolas', monospace;
+         letter-spacing: 0.3px;
+      }
+
+      .service-name {
+         color: var(--text);
+         font-size: 0.85rem;
+         font-weight: 500;
+      }
+
+      /* Action Links */
+      .action-link {
+         display: block;
+         padding: 0.75rem;
+         text-align: center;
+         color: var(--accent);
+         text-decoration: none;
+         font-size: 0.85rem;
+         font-weight: 500;
+      }
+
+      .action-link:hover {
+         background: var(--bg-alt);
+         color: var(--primary);
+         text-decoration: none;
+      }
+
+      /* Social Links */
+      .social-link {
+         display: flex;
+         align-items: center;
+         gap: 0.6rem;
+         color: var(--text);
+         text-decoration: none;
+         font-size: 0.85rem;
+         padding: 0.5rem 0;
+      }
+
+      .social-link:hover {
+         color: var(--accent);
+         text-decoration: none;
+      }
+
+      .social-link i {
+         width: 20px;
+         text-align: center;
+         color: var(--accent);
+      }
+
+      /* Footer */
+      footer {
+         text-align: center;
+         padding: 1.5rem;
+         color: var(--text-light);
+         font-size: 0.8rem;
+         border-top: 1px solid var(--border);
+         margin-top: 2rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+         .grid-4 {
+            grid-template-columns: repeat(2, 1fr);
+         }
+      }
+
+      @media (max-width: 768px) {
+         body {
+            padding: 1rem;
+         }
+
+         .grid-2, .grid-3, .grid-4 {
+            grid-template-columns: 1fr;
+         }
+
+         .book-section {
+            grid-template-columns: 1fr;
+            text-align: center;
+         }
+
+         .book-cover {
+            max-width: 280px;
+            margin: 0 auto;
+         }
+
+         .service-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 0.5rem;
+         }
+
+         .header h1 {
+            font-size: 1.2rem;
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <!-- Header -->
+      <div class="header">
+         <h1>$ PENG ANDY STUDIO LLC</h1>
+         <p class="subtitle">professional services by <a href="https://pengandy.com">andy peng</a></p>
+      </div>
+
+      <!-- Book Highlight -->
+      <div class="terminal-card">
+         <div class="terminal-header">$ cat recent_publication.txt</div>
+         <div class="terminal-body">
+            <div class="book-section">
+               <div class="book-cover-wrapper">
+                  <img src="/assets/blog/deepseek/packtds.jpg" alt="DeepSeek in Practice" class="book-cover">
+               </div>
+               <div class="book-details">
+                  <h3>DeepSeek in Practice</h3>
+                  <span class="bestseller">AMAZON BESTSELLER #65 IN COMPUTER NEURAL NETWORKS</span>
+                  <p>From basics to fine-tuning, distillation, agent design, and prompt engineering of open source LLM. Co-authored by Andy Peng, Alex Strick van Linschoten, and Duarte O.Carmo. Published by Packt.</p>
+                  <a href="https://a.co/d/8tUgb3q" class="btn-link" target="_blank">View on Amazon →</a>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid-2">
+         <!-- Research & Academia -->
+         <div class="terminal-card">
+            <div class="terminal-header">$ ls services/research</div>
+            <div class="terminal-body">
+               <div class="service-item">
+                  <span class="service-badge">Per Case</span>
+                  <span class="service-name">Paper Advising</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">FREE</span>
+                  <span class="service-name">Paper Collaboration</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">Per Case</span>
+                  <span class="service-name">Patent Advising</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">FREE</span>
+                  <span class="service-name">Patent Collaboration</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">FREE</span>
+                  <span class="service-name">University Mentoring</span>
+               </div>
+            </div>
+         </div>
+
+         <!-- Executive Leadership -->
+         <div class="terminal-card">
+            <div class="terminal-header">$ ls services/executive</div>
+            <div class="terminal-body">
+               <div class="service-item">
+                  <span class="service-badge">NPO ONLY</span>
+                  <span class="service-name">Board Member</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">NPO ONLY</span>
+                  <span class="service-name">Part-time CTO</span>
+               </div>
+            </div>
+         </div>
+
+         <!-- Organization Behavior -->
+         <div class="terminal-card">
+            <div class="terminal-header">$ ls services/organizationbehavior</div>
+            <div class="terminal-body">
+               <div class="service-item">
+                  <span class="service-badge">Per Case (BIZ / INDIV)</span>
+                  <span class="service-name">General Mentoring</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">Per Case (BIZ / INDIV)</span>
+                  <span class="service-name">Generative AI / ML Coaching</span>
+               </div>
+            </div>
+         </div>
+
+         <!-- Publishing -->
+         <div class="terminal-card">
+            <div class="terminal-header">$ ls services/publishing</div>
+            <div class="terminal-body">
+               <div class="service-item">
+                  <span class="service-badge">ADVANCE+ROYALTY</span>
+                  <span class="service-name">Book Authoring</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">FREE</span>
+                  <span class="service-name">Book Review</span>
+               </div>
+            </div>
+         </div>
+
+         <!-- Career Services -->
+         <div class="terminal-card">
+            <div class="terminal-header">$ ls services/career</div>
+            <div class="terminal-body">
+               <div class="service-item">
+                  <span class="service-badge">$350/HR</span>
+                  <span class="service-name">Mock Interview - Generative AI / ML</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">$300/HR</span>
+                  <span class="service-name">Mock Interview - System Design</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">$260/HR</span>
+                  <span class="service-name">Mock Interview - Behavioral</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">$230/HR</span>
+                  <span class="service-name">Career Management / Team Match</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">$200/HR</span>
+                  <span class="service-name">Resume Polishing</span>
+               </div>
+               <div class="service-item">
+                  <span class="service-badge">FREE</span>
+                  <span class="service-name">Referral (Qualified Only)</span>
+               </div>
+            </div>
+         </div>
+
+         <!-- Others -->
+         <div class="terminal-card">
+            <div class="terminal-header">$ ls services/others</div>
+            <div class="terminal-body">
+               <div class="service-item">
+                  <span class="service-badge">$20/PR</span>
+                  <span class="service-name">Code Review (Human Beings)</span>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="grid-4" style="margin-top: 1rem;">
+         <div class="terminal-card">
+            <div class="terminal-header">$ schedule</div>
+            <div class="terminal-body" style="padding: 0;">
+               <a href="https://calendly.com/pengandy" class="action-link" target="_blank">Book Session</a>
+            </div>
+         </div>
+
+         <div class="terminal-card">
+            <div class="terminal-header">$ payment</div>
+            <div class="terminal-body" style="padding: 0;">
+               <a href="https://www.paypal.biz/pengandystudio" class="action-link" target="_blank">PayPal</a>
+            </div>
+         </div>
+
+         <div class="terminal-card">
+            <div class="terminal-header">$ contact</div>
+            <div class="terminal-body" style="padding: 0;">
+               <a href="mailto:pengandy.build@gmail.com" class="action-link">Email</a>
+            </div>
+         </div>
+
+         <div class="terminal-card">
+            <div class="terminal-header">$ website</div>
+            <div class="terminal-body" style="padding: 0;">
+               <a href="https://pengandy.com" class="action-link">pengandy.com</a>
+            </div>
+         </div>
+      </div>
+
+      <!-- Social Media -->
+      <div class="terminal-card" style="margin-top: 1rem;">
+         <div class="terminal-header">$ ls social_media/</div>
+         <div class="terminal-body">
+            <div class="grid-3">
+               <a href="https://twitter.com/pymhq" class="social-link" target="_blank">
+                  <i class="fab fa-twitter"></i> Twitter
+               </a>
+               <a href="https://www.linkedin.com/in/pengandy-us" class="social-link" target="_blank">
+                  <i class="fab fa-linkedin"></i> LinkedIn
+               </a>
+               <a href="https://www.xiaohongshu.com/user/profile/646a8ca2000000000f006c94" class="social-link" target="_blank">
+                  <i class="fas fa-book"></i> 小红书
+               </a>
+            </div>
+         </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="terminal-card" style="margin-top: 1rem;">
+         <div class="terminal-header">$ cat disclaimer.txt</div>
+         <div class="terminal-body">
+            <p style="color: var(--text-light); font-size: 0.85rem; margin: 0;">We do not provide any form or type of professional services that would violate Amazon's Conflict of Interest Policy.</p>
+         </div>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+         © 2026 PENG ANDY STUDIO LLC
+      </footer>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+
+   <!-- Image protection script -->
+   <script>
+      // Disable right-click on images
+      document.addEventListener('contextmenu', function(e) {
+         if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+         }
+      });
+
+      // Disable drag on images
+      document.addEventListener('dragstart', function(e) {
+         if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+         }
+      });
+
+      // Disable keyboard shortcuts for saving images
+      document.addEventListener('keydown', function(e) {
+         // Disable Ctrl+S and Cmd+S
+         if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            return false;
+         }
+      });
+   </script>
+</body>
+</html>

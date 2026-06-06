@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> MLSys 2026: Speculative Decoding, Invited Talks &amp; What's Next </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="A reading guide to speculative-decoding papers at MLSys 2026, the invited-talk lineup, and a look at the past decade's innovation cycles.">
+      <meta name="keywords" content="MLSys 2026, speculative decoding, LLM inference, innovation cycle">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/mlsys/">
+      <meta property="og:title" content="MLSys 2026: Speculative Decoding, Invited Talks &amp; What's Next">
+      <meta property="og:description" content="A reading guide to speculative-decoding papers at MLSys 2026, the invited-talk lineup, and a look at the past decade's innovation cycles.">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/mlsys/innovation-cycles-card.png">
+      <meta property="og:image:width" content="2400">
+      <meta property="og:image:height" content="1260">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="MLSys 2026: Speculative Decoding, Invited Talks &amp; What's Next">
+      <meta name="twitter:description" content="A reading guide to speculative-decoding papers at MLSys 2026, the invited-talk lineup, and a look at the past decade's innovation cycles.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/mlsys/innovation-cycles-card.png">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="shortcut icon" href="/assets/projects/Peng Andys Logo Symbol.png">
+      <link rel="stylesheet" href="/assets/css/main.css">
+      <link rel="canonical" href="https://pengandy.com/blog/2026/mlsys/">
+      <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+      <script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+      <script src="/assets/js/components.js" defer></script>
+   </head>
+   <style>
+     img {
+         pointer-events: none;
+      }
+     .center {
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+       width: 50%;
+     }
+
+     .group-label {
+       font-size: 0.95em;
+       font-weight: 700;
+       color: #333;
+       margin: 26px 0 6px 0;
+     }
+
+     .paper {
+       border-left: 3px solid #6c757d;
+       background: #f8f9fa;
+       padding: 12px 16px;
+       margin: 12px 0;
+       border-radius: 0 4px 4px 0;
+     }
+     .paper .ptitle {
+       font-weight: 600;
+       color: #222;
+       font-size: 0.98em;
+       line-height: 1.4;
+     }
+     .paper .pauthors {
+       font-size: 0.85em;
+       color: #666;
+       margin: 4px 0 6px 0;
+     }
+     .paper .psum {
+       font-size: 0.9em;
+       color: #444;
+       margin: 0;
+     }
+     .paper .plinks {
+       font-size: 0.82em;
+       margin-top: 6px;
+     }
+     .badge {
+       display: inline-block;
+       border-radius: 4px;
+       padding: 1px 7px;
+       font-size: 0.74em;
+       font-weight: 700;
+       letter-spacing: 0.02em;
+       vertical-align: middle;
+       margin-left: 6px;
+     }
+     .badge-oral   { background: #e8f0fe; border: 1px solid #adc6ff; color: #1a56db; }
+     .badge-poster { background: #fdf0e6; border: 1px solid #f3c89a; color: #b25e09; }
+     .badge-research { background: #eef0f2; border: 1px solid #cfd4da; color: #4b5563; }
+     .badge-train  { background: #f3e8fd; border: 1px solid #d6b4fb; color: #7c3aed; }
+     .badge-serve  { background: #e6f7f4; border: 1px solid #9fe0d4; color: #0d9488; }
+
+     .metric {
+       display: inline-block;
+       background: #e8f5e9;
+       border: 1px solid #a5d6a7;
+       color: #2e7d32;
+       border-radius: 4px;
+       padding: 1px 7px;
+       font-size: 0.82em;
+       font-weight: 600;
+       margin-top: 6px;
+     }
+
+     .talk {
+       margin: 10px 0;
+       font-size: 0.92em;
+       line-height: 1.5;
+     }
+     .talk .tspk { color: #666; }
+   </style>
+   <body class="fixed-top-nav" data-page="blog">
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title">MLSys 2026: Speculative Decoding, Invited Talks &amp; What's Next</h1>
+               <p class="post-meta"> Created in May, 2026 </p>
+               <p class="post-tags">
+                  <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>
+                  &nbsp;·&nbsp;
+                  <a href="/blog/tag/mlsys"> <i class="fa-solid fa-hashtag fa-sm"></i> mlsys</a>
+                  <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>
+                  <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>
+                  &nbsp;·&nbsp;
+                  <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a>
+               </p>
+            </header>
+            <article class="post-content">
+               <div id="markdown-content">
+                  <p><a href="https://mlsys.org/virtual/2026/calendar" target="_blank">MLSys 2026</a> (May 18&ndash;21, Bellevue, WA) just wrapped. This is my post-conference reading guide: the speculative-decoding papers worth your time grouped by theme, the invited-talk lineup, and a step back to think about where the next innovation cycle is heading.</p>
+               </div>
+            </article>
+            <p style="font-size: 0.82em; color: #888; line-height: 1.6;">
+               <em>Disclaimer: This is a personal reading guide from an individual builder's perspective. All groupings, summaries, and opinions are my own; headline numbers are quoted from the papers' own abstracts.</em>
+            </p>
+            <br>
+            <hr>
+            <br>
+
+            <!-- ========================================== -->
+            <!-- YOUR CONTENT STARTS HERE -->
+            <!-- ========================================== -->
+
+            <h2>Speculative Decoding @ MLSys 2026</h2>
+
+            <p>
+               Speculative decoding (SD) is one of the loudest themes at MLSys 2026 &mdash; nine papers across the program, and the conversation has clearly shifted. It's no longer "does draft-then-verify work?" but "where does it actually pay off, and where is it an illusion?" Below I group the papers by the problem they attack. Each links to its MLSys page and arXiv preprint.
+            </p>
+
+            <p style="font-size:0.86em;color:#777;">
+               <i class="fa-brands fa-linkedin"></i> <strong>Note:</strong> <a href="https://www.linkedin.com/posts/semianalysis_mlsys-2026-is-next-week-mlsys-is-the-conference-ugcPost-7461611567596617729-ZfoH" target="_blank">SemiAnalysis's MLSys 2026 preview</a> flags the same currents from the analyst side &mdash; speculative decoding for RL's long-tail rollouts, sparse attention moving into production, hardware/software co-design via disaggregation, and MoE-serving challenges.
+            </p>
+
+            <p style="font-size:0.86em;color:#777;">
+               All nine are <strong>Research Track</strong> papers. Per the <a href="https://mlsys.org/virtual/2026/calendar" target="_blank">MLSys 2026 calendar</a>, the orals split across two sessions &mdash; <em>LLM Training 2</em> (Wed, May 20) and <em>LLM Serving 5</em> (Thu, May 21) &mdash; so I tag each below with its track and whether it targets <span class="badge badge-train">LLM TRAINING</span> or <span class="badge badge-serve">LLM SERVING</span>.
+            </p>
+
+            <p class="group-label">1 &middot; RL + Speculative Decoding</p>
+            <p style="font-size:0.9em;color:#555;">The rollout/generation stage now dominates RL post-training time. Both papers retarget SD at the RL loop &mdash; where the drafter and policy are both moving.</p>
+
+            <div class="paper">
+               <div class="ptitle">ReSpec: Towards Optimizing Speculative Decoding in Reinforcement Learning Systems <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-train">LLM TRAINING</span></div>
+               <div class="pauthors">Qiaoling Chen, Zijun Liu, Peng Sun, Shenggui Li, Guoteng Wang, Ziming Liu, Yonggang Wen, Siyuan Feng, Tianwei Zhang</div>
+               <p class="psum">Generation can eat 75%+ of RL training time. ReSpec tackles the three ways naive SD breaks in RL &mdash; vanishing gains at large batch sizes, drafter staleness as the actor updates, and drafter-induced policy degradation &mdash; via dynamic SD config tuning, drafter evolution by distillation, and reward-weighted updates.</p>
+               <div class="metric">up to 4.5&times; speedup, reward convergence preserved</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3836" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2510.26475" target="_blank">arXiv:2510.26475</a> &middot; <a href="https://arxiv.org/pdf/2510.26475" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">Beat the Long Tail: Distribution-Aware Speculative Decoding for RL Training (DAS) <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-train">LLM TRAINING</span></div>
+               <div class="pauthors">Zelei Shao, Vikranth Srivatsa, Sanjana Srivastava, Qingyang Wu, Alpay Ariyak, Xiaoxia Wu, Ameen Patel, Jue Wang, Percy Liang, Tri Dao, Ce Zhang, Yiying Zhang, Ben Athiwaratkun, Chenfeng Xu, Junxiong Wang</div>
+               <p class="psum">A small fraction of long rollouts dominates wall-clock time. DAS drops the neural drafter for an adaptive, nonparametric one built from recent rollouts via an incrementally maintained suffix tree, plus a length-aware policy that spends more speculation budget on the long trajectories that set the makespan &mdash; without changing model outputs.</p>
+               <div class="metric">up to 50% rollout-time reduction, identical training curves</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3766" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2511.13841" target="_blank">arXiv:2511.13841</a> &middot; <a href="https://arxiv.org/pdf/2511.13841" target="_blank">PDF</a> &middot; <a href="https://www.linkedin.com/posts/yiyingzhang_reinforcement-learning-rl-post-training-ugcPost-7462931498493706240-VnUg" target="_blank"><i class="fa-brands fa-linkedin"></i> author's note</a></div>
+               <p class="psum" style="margin-top:6px;font-size:0.84em;color:#777;">Co-author Yiying Zhang's write-up (with Together AI) reports the split: <strong>50% faster rollout on math RL, 25% on code RL</strong> &mdash; the trick is exploiting recurring prompt patterns across training epochs, since RL weights keep moving unlike fixed-model serving.</p>
+            </div>
+
+            <p class="group-label">2 &middot; Self-Speculative Decoding</p>
+            <p style="font-size:0.9em;color:#555;">One model is both drafter and verifier &mdash; no separate draft checkpoint to train or serve.</p>
+
+            <div class="paper">
+               <div class="ptitle">Accelerating Large-Scale Reasoning Model Inference with Sparse Self-Speculative Decoding (SpecGen) <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Yilong Zhao, Jiaming Tang, Kan Zhu, Zihao Ye, Chi-Chih Chang, Chaofan Lin, Jongseok Park, Guangxuan Xiao, Mohamed Abdelfattah, Mingyu Gao, Baris Kasikci, Song Han, Ion Stoica</div>
+               <p class="psum">Long chain-of-thought makes reasoning inference memory-bound. PillarAttn drafts using only the critical tokens (highest attention scores) and cleverly reuses attention scores from the verification stage, paired with unified draft/verify scheduling, delayed verification for overlap, and dynamic KV-cache management. Lossless and training-free.</p>
+               <div class="metric">up to 2.13&times; throughput over prior SOTA</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3733" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2512.01278" target="_blank">arXiv:2512.01278</a> &middot; <a href="https://arxiv.org/pdf/2512.01278" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">Accelerating LLM Inference: Self-Speculative Decoding via Learned Seed Injection <span class="badge badge-poster">POSTER</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Anuradha Pandey</div>
+               <p class="psum">A self-speculative approach that injects a learned "seed" to drive the model's own draft path. (Poster; preprint not yet located at time of writing.)</p>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/poster/10178" target="_blank">MLSys</a></div>
+            </div>
+
+            <p class="group-label">3 &middot; Benchmarking &amp; Reality Checks</p>
+
+            <div class="paper">
+               <div class="ptitle">Speculative Decoding: Performance or Illusion? <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Xiaoxuan Liu, Jiaxiang Yu, Jongseok Park, Ion Stoica, Alvin Cheung</div>
+               <p class="psum">The first systematic study of SD on a production-grade engine (vLLM) &mdash; five variants (n-gram, EAGLE/EAGLE-3, draft-model, MTP) over four models and six workloads at batch sizes 1&ndash;128. The punchline: SD works, but gains shrink as batch grows and the system turns compute-bound; target-model verification dominates execution, and there's a large gap between observed and theoretical upper bounds.</p>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3782" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2601.11580" target="_blank">arXiv:2601.11580</a> &middot; <a href="https://arxiv.org/pdf/2601.11580" target="_blank">PDF</a> &middot; <a href="https://specdecode-bench.github.io/" target="_blank">benchmark site</a></div>
+            </div>
+
+            <p class="group-label">4 &middot; Drafter Design &amp; New Workloads</p>
+            <p style="font-size:0.9em;color:#555;">Pushing SD onto new drafter architectures (diffusion), new target families (MoE), and new hardware (the laptop NPU).</p>
+
+            <div class="paper">
+               <div class="ptitle">SpecDiff-2: Scaling Diffusion Drafter Alignment for Faster Speculative Decoding <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Jameson Sandler, Jacob K. Christopher, Tom Hartvigsen, Ferdinando Fioretto</div>
+               <p class="psum">Uses a discrete-diffusion, non-autoregressive drafter to kill the sequential dependency in drafting, plus new techniques to calibrate the diffusion drafter against the autoregressive verifier (reducing rejections).</p>
+               <div class="metric">+55% avg tokens/sec, up to 5.5&times; over standard decoding, no accuracy loss</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3755" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2511.00606" target="_blank">arXiv:2511.00606</a> &middot; <a href="https://arxiv.org/pdf/2511.00606" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">PRISM: Parametrically Refactoring Inference for Speculative Sampling Draft Models <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Xuliang Wang, Yuetao Chen, Maochan Zhen, Fang Liu, Xinzhou Zheng, Xingwu Liu, Hong Xu, Ming Li</div>
+               <p class="psum">Disaggregates each predictive step across different parameter sets, decoupling drafter capacity from inference cost &mdash; longer accepted draft sequences at minimal draft latency.</p>
+               <div class="metric">&gt;2.6&times; decoding throughput on an already-optimized engine</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3789" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2602.01762" target="_blank">arXiv:2602.01762</a> &middot; <a href="https://arxiv.org/pdf/2602.01762" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">Cascade: Utility-Driven Speculative Decoding for Mixture-of-Experts <span class="badge badge-poster">POSTER</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Anish Saxena, Po-An Tsai, Hritvik Taneja, Aamer Jaleel, Moinuddin Qureshi</div>
+               <p class="psum">In MoEs, draft tokens collectively activate more experts, inflating verification cost 2&ndash;3&times; &mdash; so naive SD can slow things down up to 1.5&times;. Cascade defines a "speculation utility" metric (token gain / verification cost) and uses its iteration-level locality to switch speculation on/off and tune the draft length K.</p>
+               <div class="metric">slowdown capped at 5% (vs 1.5&times;), +7&ndash;14% throughput over static K</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/poster/10189" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2506.20675" target="_blank">arXiv:2506.20675</a> &middot; <a href="https://arxiv.org/pdf/2506.20675" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">SD-HC: Heterogeneous Functional Pipelining for Speculative LLM Decoding on AI PCs <span class="badge badge-poster">POSTER</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Xikai (Noah) Meng, Chao Li, Spandan Tiwari</div>
+               <p class="psum">Brings SD to the laptop "AI PC," pipelining draft and verify across the heterogeneous CPU/GPU/NPU units of consumer silicon. (Poster; preprint not yet located at time of writing.)</p>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/poster/10199" target="_blank">MLSys</a></div>
+            </div>
+
+            <p style="font-size:0.9em;color:#555;margin-top:18px;">
+               <strong>The arc across these nine:</strong> SD has graduated from a single trick into a design space. The frontier moved from <em>inference latency</em> (the original use) into <em>RL training throughput</em> (ReSpec, DAS), the drafter went from a small LM to a <em>suffix tree</em> (DAS), a <em>diffusion model</em> (SpecDiff-2), or the <em>model itself</em> (SpecGen); and "Performance or Illusion?" is the field's honest mirror &mdash; at large batch the verifier dominates and the easy wins are gone.
+            </p>
+
+            <br>
+            <hr>
+            <br>
+
+            <h2>Invited Talks</h2>
+
+            <p>
+               The <a href="https://mlsys.org/virtual/2026/eventlistwithbios/Invited%20Talk" target="_blank">invited-talk lineup</a> reads like a map of where systems people think the field is going &mdash; less about a single kernel, more about co-design across the whole stack, and a recurring meta-theme: <em>AI is now writing the systems we used to write by hand.</em>
+            </p>
+
+            <div class="talk"><strong>Keynote &mdash; Amin Vahdat</strong> <span class="tspk">(SVP &amp; Chief Technologist, AI &amp; Infrastructure, Google)</span></div>
+            <div class="talk"><strong>The Next Horizon of Systems: From MLSys to System Intelligence</strong> &mdash; <span class="tspk">Lidong Zhou (Chief Scientist, Microsoft Asia-Pacific R&amp;D). Argues for "system intelligence," where AI reshapes the systems discipline itself &mdash; new forms of reasoning, design, validation, and evolution.</span></div>
+            <div class="talk"><strong>The Path to Inference Efficiency</strong> &mdash; <span class="tspk">Christos Kozyrakis (NVIDIA / Stanford). Big gains come not from isolated tricks but from treating hardware, systems, and models as one integrated stack.</span></div>
+            <div class="talk"><strong>Rethinking Pretraining: Data and Architecture</strong> &mdash; <span class="tspk">Luke Zettlemoyer (UW / Meta). Nearly all advanced capabilities ultimately trace back to the pretraining data.</span></div>
+            <div class="talk"><strong>Beyond Model Serving: Cross-Stack Co-Design for Agentic Systems</strong> &mdash; <span class="tspk">Esha Choukse (Microsoft Azure Research). Treat accuracy and quality as dynamic system-level quantities to trade against latency, cost, and energy.</span></div>
+            <div class="talk"><strong>When AI Starts Writing Systems Code</strong> &mdash; <span class="tspk">Mark Saroufim (GPU MODE, ex-Meta). Kernel LLMs for GPU optimization &mdash; and how to make AI-generated kernels production-ready.</span></div>
+            <div class="talk"><strong>Rethinking Open Source Contribution in the Age of AI Agents</strong> &mdash; <span class="tspk">Roger Wang (vLLM core maintainer). As AI-generated PRs flood in, humans must focus on understanding systems, picking the right problems, and owning what ships.</span></div>
+            <div class="talk"><strong>LMCache: An Efficient KV Cache Layer for Enterprise-Scale LLM Inference</strong> &mdash; <span class="tspk">Yuhan Liu (UChicago). Open-source KV-cache reuse across queries and engines &mdash; up to 15&times; throughput.</span></div>
+            <div class="talk"><strong>Eliciting Language Model Behaviors with Investigator Agents</strong> &mdash; <span class="tspk">Xiang Lisa Li (OpenAI; incoming UW). Investigator agents that search for prompts inducing specific target behaviors.</span></div>
+
+            <br>
+            <hr>
+            <br>
+
+            <h2>What's Next &mdash; The Innovation Cycle</h2>
+
+            <p>
+               Step back from any single paper. Over the past decade I've lived through <strong>three big technology cycles</strong> as a builder &mdash; and the speculative-decoding sprint above is just the current one in motion. The diagram below shows them two ways.
+            </p>
+
+            <img src="/assets/blog/mlsys/innovation-cycles.svg" alt="Two views of three innovation cycles over 2016-2026: hype waves and stacked adoption eras for NLP/Conversational AI, Cloud Native, and LLM/AI Native" class="img-fluid" style="max-width:100%;height:auto;margin:8px 0 16px 0;">
+
+            <p>
+               <strong>Pattern 1 &mdash; hype waves (peaks &amp; troughs).</strong> Each technology has its own crest in collective attention. <em>Cloud Native</em> took off first &mdash; Kubernetes was open-sourced in 2014, the CNCF formed in 2015, and it became the default substrate by ~2017&ndash;2019, then plateaued rather than fading. <em>NLP / Conversational AI Understanding</em> crested around 2019&ndash;2020 (the chatbot and voice-assistant era), then got absorbed into something bigger. <em>LLM / AI Native</em> looks like it appeared overnight with <a href="https://openai.com/index/chatgpt/" target="_blank">ChatGPT's launch on November 30, 2022</a> &mdash; but the curve was never zero. It sits on decades of reinforcement-learning foundations (Barto &amp; Sutton's work from the 1980s, recognized with the <a href="https://awards.acm.org/about/2024-turing" target="_blank">2024 Turing Award</a>) and the 2017 Transformer (<a href="https://arxiv.org/abs/1706.03762" target="_blank">&ldquo;Attention Is All You Need&rdquo;</a>). You can even see the early tremors in the curve: <a href="https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol" target="_blank">AlphaGo's defeat of Lee Sedol</a> (2016), AlphaZero (2017), and AlphaStar / OpenAI Five (2019) were each a small public crest of RL that rose and receded. What changed in late 2022 was the <em>vertical takeoff</em> &mdash; RLHF aligned the models and ChatGPT put them in everyone's hands &mdash; and unlike the first two, its curve is still climbing in 2026.
+            </p>
+
+            <p>
+               <strong>Pattern 2 &mdash; adoption eras (the flat steps).</strong> Strip out the hype and look at what I actually built and shipped as a builder, and you get three parallel plateaus, each higher than the last:
+            </p>
+            <ul>
+               <li><strong>2019&ndash;2020 &mdash; NLP.</strong> Building voice AI in the health &amp; wellness domain &mdash; intent, slots, and conversational understanding, before the transformer ate everything.</li>
+               <li><strong>2020&ndash;2022 &mdash; Container &amp; Serverless.</strong> Shipping on AWS Fargate and incubating AWS App Runner &mdash; virtualization and abstraction of the compute layer as the unit of work, as the platform matured.</li>
+               <li><strong>2023&ndash;now &mdash; LLM (ongoing).</strong> AI-native and agentic systems. When <strong><a href="https://newsletter.semianalysis.com/p/anthropic-growth-and-bedrock-mix" target="_blank">Amazon Bedrock</a></strong> went GA in 2023, helped found the Anthropic Claude model inference engine on Bedrock, partnering directly with Anthropic (co-founder Ben Mann). That work touched on a few ideas that are now well-known industry standards across today's open-source community &mdash; <a href="https://pengandy.com/blog/2025/llmnative/" target="_blank">disaggregated inference, multi-node inference, context-aware routing, and prompt caching</a>. Through 2024, led almost all Claude models' <a href="https://pengandy.com/blog/2024/bdrk1yo/" target="_blank">Day-0 public releases on Bedrock</a> &mdash; including Computer Use, Anthropic's first agentic-AI feature, on Claude 3.5 v2. Delivered the first Claude model release on the AWS Trainium/Inferentia platform and grew it to carry ~90% of Bedrock traffic on Trainium chips, partnering with James Bradbury (Anthropic's Head of Compute) and the Annapurna teams. In 2025, shifted to open-weights model optimization &mdash; post-training (fine-tuning) and inference optimization: training EAGLE draft models for speculative decoding, quantization, and kernel tuning, across both SageMaker AI and Bedrock. The open arrow is the point: this era hasn't peaked, which is exactly why the MLSys 2026 program looks the way it does.</li>
+            </ul>
+
+            <p>
+               The heights aren't arbitrary &mdash; each cycle absorbed and stood on the previous one. NLP's understanding problem became a sub-task of LLMs; cloud-native infrastructure became the substrate LLMs are served and sandboxed on. You can even read it in the institutions: the Linux Foundation has carried the baton across the right half of this chart &mdash; from the <a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">CNCF (cloud native)</a> to the PyTorch Foundation and now the Agentic AI Foundation (AAIF). The ladder only goes up. A concrete example of the throughline: Firecracker &mdash; the microVM born in that cloud-native era &mdash; is now actively adopted as a sandbox runtime for agentic-AI compute.
+            </p>
+
+            <p>
+               <strong>So what's the next step on the ladder?</strong> The bet from San Francisco points past the screen and into the physical world: <strong>robotics, world models, and embodied AI</strong> &mdash; systems that don't just generate tokens but perceive, predict, and act.
+            </p>
+
+            <p>
+               But here's the honest catch, and it's why this plateau hasn't crystallized yet: the <em>definition</em> is still wide open. &ldquo;World model&rdquo; is a Hamlet &mdash; <span lang="zh">一千个人眼里有一千个哈姆雷特</span> (a thousand people, a thousand Hamlets). Ask ten builders what it means and you'll get ten answers: a humanoid? a self-driving stack? a world model you can query? an agent with an API and a gripper? Each of the previous three cycles eventually crystallized around a clear <em>unit of work</em> &mdash; an intent, a container, a token. The next one won't truly take off until it finds its unit. Until then, the MLSys-style work above &mdash; efficient inference, hardware/software co-design, self-optimizing infrastructure &mdash; is exactly what lays the track for whichever definition ends up winning.
+            </p>
+
+            <br>
+            <hr>
+            <p style="font-size: 0.82em; color: #888; line-height: 1.6;">
+               <em>Co-authored with Claude.</em>
+            </p>
+
+            <!-- ========================================== -->
+            <!-- YOUR CONTENT ENDS HERE -->
+            <!-- ========================================== -->
+
+         </div>
+         <div>
+           <a href="https://hits.sh/pengandy.com/blog/2026/mlsys/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/mlsys.svg?label=page%20views&color=007ec6"/></a>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="/assets/js/bootstrap.bundle.min.js"></script>
+      <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
+      <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script>
+   </body>
+</html>

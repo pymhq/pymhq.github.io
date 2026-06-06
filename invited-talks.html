@@ -1,0 +1,619 @@
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Books & Invited Talks</title>
+<meta name="author" content="Peng, Andy">
+<meta name="description" content="Books & Invited Talks.">
+<meta name="keywords" content="Books & Invited Talks.">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+<link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media id="highlight_theme_light">
+<link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+<script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script>
+<script src="/assets/js/components.js" defer></script>
+</head>
+<style>
+	/* Books & Invited Talks page specific styles */
+	.button {
+	    display: inline-block;
+	    height: 28px;
+	    padding: 0 12px;
+	    color: #555;
+	    text-align: center;
+	    font-size: 11px;
+	    font-weight: 600;
+	    line-height: 26px;
+	    letter-spacing: .1rem;
+	    text-decoration: none;
+	    white-space: nowrap;
+	    background-color: transparent;
+	    border-radius: 4px;
+	    border: 1px solid #bbb;
+	    cursor: pointer;
+	    box-sizing: border-box;
+	}
+
+	.button:hover {
+	    background-color: rgba(0, 0, 0, 0.03);
+	}
+
+	/* Publication styles inspired by al-folio */
+	.publication-item {
+	    display: flex;
+	    margin-bottom: 2rem;
+	    padding: 1rem 0;
+	}
+
+	.publication-image {
+	    flex-shrink: 0;
+	    width: 200px;
+	    height: 150px;
+	    margin-right: 1.5rem;
+	    object-fit: cover;
+	    border-radius: 8px;
+	    background-color: #f5f5f5;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    overflow: hidden;
+	}
+
+	.publication-image img {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	}
+
+	.publication-image.no-image {
+	    background: linear-gradient(135deg, #a8b8d8 0%, #8ba4c7 100%);
+	    color: white;
+	    font-size: 14px;
+	    text-align: center;
+	    padding: 1rem;
+	}
+
+	/* Book-specific styles - show complete cover image */
+	.publication-item.book-item {
+	    align-items: flex-start;
+	}
+
+	.publication-item.book-item .publication-image {
+	    width: 200px;
+	    height: 280px;
+	    background-color: #ffffff;
+	    align-items: flex-start;
+	}
+
+	.publication-item.book-item .publication-image img {
+	    object-fit: contain;
+	    object-position: top center;
+	    width: 100%;
+	    height: 100%;
+	}
+
+	.publication-content {
+	    flex: 1;
+	}
+
+	h2.year {
+	    color: rgba(0,0,0,.1);
+	    border-top: 1px solid rgba(0,0,0,.1);
+	    padding-top: 1rem;
+	    margin-top: 2rem;
+	    margin-bottom: -2rem;
+	    text-align: right;
+	}
+
+	.section-header {
+	    font-size: 1.75rem;
+	    font-weight: 600;
+	    color: var(--global-theme-color);
+	    margin: 2rem 0 1rem 0;
+	    letter-spacing: 0.05rem;
+	}
+
+	.paper .title {
+	    font-size: 1.1rem;
+	    line-height: 1.5;
+	    margin-bottom: 0.5rem;
+	    color: #000;
+	    max-width: 90%;
+	    word-wrap: break-word;
+	}
+
+	.paper .title b {
+	    font-weight: 600;
+	}
+
+	.paper p {
+	    margin-bottom: 0.4rem;
+	    color: var(--global-text-color);
+	}
+
+	/* Simple, clean metadata styling */
+	.paper .info-line {
+	    margin-bottom: 0.3rem;
+	    color: var(--global-text-color);
+	}
+
+	.paper .venue-line {
+	    font-style: italic;
+	    color: #666;
+	    margin-top: 0.2rem;
+	}
+
+	/* Category badge styling */
+	.paper .category-badge {
+	    display: inline-block;
+	    padding: 2px 8px;
+	    font-size: 0.85em;
+	    font-style: italic;
+	    color: #666;
+	    background-color: #f0f0f0;
+	    border-radius: 3px;
+	    margin-top: 0.3rem;
+	}
+
+	.paper .button {
+	    margin-right: 0.5rem;
+	    margin-top: 0.5rem;
+	    transition: all 0.3s ease;
+	    border-color: var(--global-theme-color);
+	    color: var(--global-theme-color);
+	}
+
+	.paper .button:hover {
+	    background-color: var(--global-theme-color);
+	    color: white;
+	    transform: translateY(-2px);
+	    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+	}
+
+	/* Responsive design */
+	@media (max-width: 768px) {
+	    .publication-item {
+	        flex-direction: column;
+	    }
+
+	    .publication-image {
+	        width: 100%;
+	        height: 200px;
+	        margin-right: 0;
+	        margin-bottom: 1rem;
+	    }
+
+	    /* Book items on mobile - maintain aspect ratio */
+	    .publication-item.book-item .publication-image {
+	        width: 100%;
+	        height: 350px;
+	        max-width: 250px;
+	        margin-left: auto;
+	        margin-right: auto;
+	    }
+	}
+
+	/* Image protection */
+	.publication-image img {
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	    -webkit-user-drag: none;
+	    -khtml-user-drag: none;
+	    -moz-user-drag: none;
+	    -o-user-drag: none;
+	    pointer-events: none;
+	}
+
+	.publication-image {
+	    pointer-events: auto;
+	}
+</style>
+
+<body class="fixed-top-nav" data-page="publications">
+      <div id="navbar-placeholder"></div>
+
+
+<!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<!--
+  PUBLICATION PAGE USAGE GUIDE:
+  =============================
+
+  This page is inspired by the al-folio Jekyll theme and supports:
+  - Image thumbnails for each publication
+  - Year-based organization
+  - Consistent color scheme with purple accent (#667eea)
+
+  HOW TO ADD IMAGES:
+  1. Save your publication images in: assets/invited-talks/
+  2. Replace the <img> src with your image path: assets/invited-talks/your-image.jpg
+  3. The onerror handler will show a gradient placeholder if image is missing
+
+  EXAMPLE WITH IMAGE:
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/your-image.jpg" alt="Description"
+           onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Fallback Text</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Your Title</b>
+          <a class="button" href="URL" target="_blank">Button Text</a>
+        </p>
+        <p>Author information</p>
+        <p><i>Venue/Publisher</i></p>
+      </div>
+    </div>
+  </div>
+
+  EXAMPLE WITHOUT IMAGE (gradient placeholder):
+  <div class="publication-item">
+    <div class="publication-image no-image">
+      Short Description
+    </div>
+    <div class="publication-content">
+      ...
+    </div>
+  </div>
+-->
+
+<div class="container mt-5">
+<article>
+
+<div class="docs-section" id="publications">
+  <h2 class="section-header">Books</h2>
+
+  <h2 class="year">2025</h2>
+
+  <div class="publication-item book-item">
+    <div class="publication-image">
+      <!-- Replace 'path/to/book-cover.jpg' with actual image path -->
+      <img src="assets/invited-talks/packt ds.jpg" alt="DeepSeek Essentials Book Cover" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>DeepSeek Essentials</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>DeepSeek in Practice: From basics to fine-tuning, distillation, agent design, and prompt engineering of open source LLM</b>
+          <a class="button" href="https://a.co/d/2YyiiuA" target="_blank">Amazon US</a>
+		  <a class="button" href="https://www.packtpub.com/en-us/product/deepseek-in-practice-9781806020850" target="_blank">Packt Website</a>
+        </p>
+        <p>Authors: Andy Peng, Alex Strick van Linschoten, Duarte Carmo</p>
+        <p><i>Packt</i></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="docs-section" id="invited-talks">
+  <h2 class="section-header">Invited Talks</h2>
+
+  <h2 class="year">2025</h2>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/uwaisummit2025.jpg" alt="UW AI & Robotics Data Summit 2025" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>UW AI & Robotics Data Summit</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>LLM Native Primitives: Next Golden Path</b>
+          <a class="button" href="https://luma.com/iqjrwcal" target="_blank">Event Page</a>
+        </p>
+        <p class="info-line">Keynote Speaker: Andy Peng (Amazon)</p>
+		<p class="info-line">Hosted by Xu Chen (Associate Professor at University of Washington, Director of Boeing Advanced Research Collaboration at UW)</p>
+        <p class="venue-line">UW AI & Robotics Data Summit 2025</p>
+        <p class="venue-line">Boeing Advanced Research Center, University of Washington</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/Andy Peng - Banner.png" alt="Packt GenAI Summit 2025" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Packt GenAI Summit</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>State of Open Source LLM</b>
+          <a class="button" href="https://www.eventbrite.com/e/deepseek-in-production-tickets-1436251630289?aff=andy" target="_blank">HTML</a>
+          <a class="button" href="https://www.linkedin.com/events/deepseekdemystifiedsummit7349071392195104771/" target="_blank">Event Page</a>
+        </p>
+        <p class="info-line">Keynote Speaker: Andy Peng (Amazon)</p>
+        <p class="venue-line">Packt GenAI Summit 2025</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="year">2024</h2>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/Onboard.jpg" alt="OnBoard! Podcast" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>OnBoard! Podcast</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>LLM 时代需要怎样的软件开发新范式</b>
+          <a class="button" href="https://www.xiaoyuzhoufm.com/episode/676054e37d8426f6929d67cb?s=eyJ1IjogIjYwYjVhNzYxZTBmNWU3MjNiYjU4ZmNlYSJ9" target="_blank">Podcast</a>
+          <a class="button" href="https://mp.weixin.qq.com/s/wOZknRagMGyp8AluNqAzYg" target="_blank">HTML</a>
+        </p>
+        <p class="info-line">Panelists: 黄东旭 (PingCAP co-founder & CTO), 贾扬清 (VP Nvidia, Lepton AI co-founder & CEO), Andy Peng (Amazon)</p>
+        <p class="info-line">Moderator: Monica Xie (Head of BizOps & Partnership, Dyna Robotics)</p>
+        <p class="venue-line">OnBoard! Podcast</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/smile24.JPG" alt="SMILE GenAI Panel" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>SMILE GenAI Panel</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>GenAI 茶话会</b>
+          <a class="button" href="https://www.xiaohongshu.com/discovery/item/6688bd8b000000001c0250fe?source=webshare&xhsshare=pc_web&xsec_token=ABKX1wuwAQJwr-A9ZoGU-cldn7AEkGNosdYsdMrzpMeqg=&xsec_source=pc_share" target="_blank">Rednote Post</a>
+        </p>
+        <p class="info-line">Panelists: Andy Peng (Senior Research Engineer, AWS Bedrock), Xiaopeng Li (Senior Applied Scientist, AWS NDGE Science), Raphael Shu (Senior Applied Scientist, AWS Bedrock)</p>
+        <p class="venue-line">SMILE: Seattle Amazonian Chinese League</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="year">2023</h2>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/wit23.JPG" alt="Myth-Busting Tech Trends" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Women in Tech Regatta</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Myth-Busting Tech Trends</b>
+          <a class="button" href="https://seattleregatta2023.sched.com/event/1LEF6/myth-busting-tech-trends-supported-by-northeastern-university" target="_blank">HTML</a>
+        </p>
+        <p class="info-line">Panelists: <a href="https://seattleregatta2023.sched.com/speaker/yiming_peng.2589xy9k?iframe=no" style="color:#3A3B3C">Andy Peng (Amazon)</a>, <a href="https://seattleregatta2023.sched.com/speaker/morganziondesigns" style="color:#3A3B3C">Morgan Zion (CEO, Alpha Girl Club)</a>, <a href="https://seattleregatta2023.sched.com/speaker/caroline542" style="color:#3A3B3C">Caroline Williams (Founder, The Do Good Only Company)</a></p>
+        <p class="info-line">Moderator: <a href="https://seattleregatta2023.sched.com/moderator/pvrudhula" style="color:#3A3B3C">Padmaja Vrudhula (VP Industry Vertical Workload Solutions, Snowflake)</a></p>
+        <p class="venue-line">Seattle Women in Tech Regatta 2023</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/cncf23.jpeg" alt="KubeCon + CloudNativeCon Europe 2023" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>KubeCon Europe</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>The open-source community at AWS: containerd and Envoy</b>
+          <a class="button" href="https://twitter.com/AWSOpen/status/1647989049305575428?s=20" target="_blank">Tweet</a>
+        </p>
+        <p class="info-line">Presenters: Andy Peng (Sr. Engineer, AWS), Phil Estes (Principal Engineer, AWS)</p>
+        <p class="venue-line">KubeCon + CloudNativeCon Europe 2023</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/cuc23.jpg" alt="CUC Meetup" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>CUC Meetup</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Technical Leadership in Team Management</b>
+          <a class="button" href="https://mp.weixin.qq.com/s/NkG306k-7dw1jLEvaBBw0A" target="_blank">HTML</a>
+          <a class="button" href="https://youtu.be/F24kUu2nFDY" target="_blank">YouTube</a>
+        </p>
+        <p class="info-line">Speaker: Andy Peng (Amazon)</p>
+        <p class="info-line">Moderator: Zheng Luo (Microsoft Azure)</p>
+        <p class="venue-line">CUC Meetup</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="year">2022</h2>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/kubeconna22.png" alt="KubeCon + CloudNativeCon North America 2022" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>KubeCon North America</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Building Multi-Tenant Routing And Scaling With Envoy</b>
+          <a class="button" href="https://kccncna2022.sched.com/event/182KU/building-multi-tenant-routing-and-scaling-with-envoy-yiming-peng-amazon-web-services-inc" target="_blank">HTML</a>
+          <a class="button" href="https://www.youtube.com/watch?v=6-akjOASvxc" target="_blank">YouTube</a>
+        </p>
+        <p class="info-line">Presenter: Andy Peng (Amazon)</p>
+        <p class="venue-line">KubeCon + CloudNativeCon North America 2022</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/thumbnail03.jpg" alt="DockerCon 2022" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>DockerCon</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>How Developers can get to production web applications at scale easily</b>
+          <a class="button" href="https://awscontainerdaydocker.splashthat.com/" target="_blank">HTML</a>
+          <a class="button" href="https://www.youtube.com/watch?v=Iyp9Ugk9oRs" target="_blank">YouTube</a>
+        </p>
+        <p class="info-line">Presenters: Inbal Shani (CPO, Twilio; former CPO, GitHub; former GM, AWS), Andy Peng (Sr. Engineer, AWS), Clarinda Mascarenhas (Sr. Container Specialist, AWS)</p>
+        <p class="venue-line">DockerCon 2022</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/thumbnail22.jpg" alt="AWS App Runner X-Ray Integration" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Containers from the Couch</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>AWS App Runner X-Ray Integration</b>
+          <a class="button" href="https://twitter.com/realadamjkeller/status/1513965561671151617?s=20" target="_blank">Tweet</a>
+          <a class="button" href="https://youtu.be/cVr8N7enCMM" target="_blank">YouTube</a>
+        </p>
+        <p class="info-line">Speaker: Andy Peng (Sr. Engineer, AWS)</p>
+        <p class="info-line">Moderator: Adam Keller (Sr. Technologist, AWS)</p>
+        <p class="venue-line">Containers from the Couch</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="docs-section" id="guest-lectures">
+  <h2 class="section-header">Guest Lectures</h2>
+
+  <h2 class="year">2024</h2>
+
+  <div class="publication-item">
+    <div class="publication-image no-image">
+      UW Guest Lecture
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Transforming AI: Modern Business Redefine</b>
+          <a class="button" href="https://www.linkedin.com/posts/margaretmz_it-has-been-a-wonderful-experience-teaching-ugcPost-7190422362406735872-K7Bs?utm_source=share&utm_medium=member_desktop" target="_blank">Linkedin Post</a>
+        </p>
+        <p class="info-line">Guest Lecturer: Andy Peng (Amazon)</p>
+        <p class="venue-line">MSIS 549 (2): Machine Learning and Artificial Intelligence for Business Applications</p>
+        <p class="venue-line">University of Washington</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image no-image">
+      UW Guest Lecture
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>New Era of Generative AI and Building in the Cloud</b>
+          <a class="button" href="https://www.linkedin.com/posts/uw-foster-msis_msis-genai-demoday-ugcPost-7173432871800483841-wW0C?utm_source=share&utm_medium=member_desktop" target="_blank">UW Foster MSIS Post</a>
+          <a class="button" href="https://www.linkedin.com/posts/leonard-boussioux_forging-ai-champions-a-transformative-ugcPost-7188941809279000576-ZKov?utm_source=share&utm_medium=member_desktop" target="_blank">Linkedin Post</a>
+        </p>
+        <p class="info-line">Guest Lecturer: Andy Peng (Amazon)</p>
+        <p class="info-line">Hosted by Léonard Boussioux (Professor, University of Washington - Foster, Allen CSE). Co-present with Jay Bartot (Affiliate Professor, University of Washington and Partner, Madrona Venture Labs)</p>
+        <p class="venue-line">MSIS 547 (2): Managing in the Era of Cloud Computing</p>
+        <p class="venue-line">University of Washington</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="docs-section" id="media-coverage">
+  <h2 class="section-header">Media Coverage</h2>
+
+  <h2 class="year">2025</h2>
+
+  <div class="publication-item">
+    <div class="publication-image no-image">
+      QQ News
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>86 条 DeepSeek 的关键思考｜Best Ideas 开源</b>
+          <a class="button" href="https://news.qq.com/rain/a/20250128A06C5U00?suid=&media_id=" target="_blank">HTML</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <h2 class="year">2023</h2>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/thumbnail05.jpg" alt="Meet the Ambassadors" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>KubeCon + CloudNativeCon Europe 2023</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Meet the Ambassadors</b>
+          <a class="button" href="https://youtu.be/uS698pTnw1I?si=j7xdt1GVic_jmqSG" target="_blank">YouTube</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+</article>
+</div>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+      <!-- Image Protection Script -->
+      <script>
+        // Disable right-click on images
+        document.addEventListener('contextmenu', function(e) {
+          if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+          }
+        });
+
+        // Disable drag and drop on images
+        document.addEventListener('dragstart', function(e) {
+          if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+          }
+        });
+
+        // Disable keyboard shortcuts for saving images
+        document.addEventListener('keydown', function(e) {
+          // Ctrl+S or Cmd+S
+          if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            if (document.activeElement && document.activeElement.tagName === 'IMG') {
+              e.preventDefault();
+              return false;
+            }
+          }
+        });
+
+        // Add additional protection when images load
+        window.addEventListener('load', function() {
+          const images = document.querySelectorAll('.publication-image img');
+          images.forEach(function(img) {
+            img.setAttribute('oncontextmenu', 'return false;');
+            img.setAttribute('ondragstart', 'return false;');
+          });
+        });
+      </script>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script defer src="/assets/js/masonry.js" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script type="2ef554a3a95c8d10e5edf0a5-text/javascript">$(function(){$('[data-toggle="tooltip"]').tooltip()});</script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script defer src="/assets/js/zoom.js" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script defer src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script src="/assets/js/no_defer.js?d633890033921b33e0ceb13d22340a9c" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script defer src="/assets/js/common.js?acdb9690d7641b2f8d40529018c71a01" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script defer src="/assets/js/copy_code.js?c9d9dd48933de3831b3ee5ec9c209cac" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script type="2ef554a3a95c8d10e5edf0a5-text/javascript">window.MathJax={tex:{tags:"ams"}};</script> <script defer type="2ef554a3a95c8d10e5edf0a5-text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script type="2ef554a3a95c8d10e5edf0a5-text/javascript">function progressBarSetup(){"max"in document.createElement("progress")?(initializeProgressElement(),$(document).on("scroll",function(){progressBar.attr({value:getCurrentScrollPosition()})}),$(window).on("resize",initializeProgressElement)):(resizeProgressBar(),$(document).on("scroll",resizeProgressBar),$(window).on("resize",resizeProgressBar))}function getCurrentScrollPosition(){return $(window).scrollTop()}function initializeProgressElement(){let e=$("#navbar").outerHeight(!0);$("body").css({"padding-top":e}),$("progress-container").css({"padding-top":e}),progressBar.css({top:e}),progressBar.attr({max:getDistanceToScroll(),value:getCurrentScrollPosition()})}function getDistanceToScroll(){return $(document).height()-$(window).height()}function resizeProgressBar(){progressBar.css({width:getWidthPercentage()+"%"})}function getWidthPercentage(){return getCurrentScrollPosition()/getDistanceToScroll()*100}const progressBar=$("#progress");window.onload=function(){setTimeout(progressBarSetup,50)};</script> <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="2ef554a3a95c8d10e5edf0a5-|49" defer></script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8cdb8cbe6c3bba45',t:'MTcyODExMTc4NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8cdb8cbe6c3bba45","version":"2024.8.0","r":1,"token":"3883a19d975c447795814b16b985b97f","serverTiming":{"name":{"cfExtPri":true,"cfL4":true}}}' crossorigin="anonymous"></script>
+   </body>
+</html>
+
+
+
+
+
+
+
+

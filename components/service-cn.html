@@ -1,0 +1,14 @@
+<h2><a href="/service" style="color: inherit;">服务</a></h2>
+<div class="service" id="service-content-placeholder-cn"></div>
+<script>
+   // Load core service content
+   fetch('/components/service-content.html')
+      .then(response => response.text())
+      .then(html => {
+         const placeholder = document.getElementById('service-content-placeholder-cn');
+         if (placeholder) {
+            placeholder.innerHTML = html;
+         }
+      });
+</script>
+

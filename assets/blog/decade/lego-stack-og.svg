@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="280" viewBox="0 0 480 280" font-family="Arial, sans-serif" font-size="15" font-weight="bold">
+  <!-- LLM Research & Science -->
+  <rect x="0" y="0" width="480" height="40" rx="8" ry="8" fill="#6f42c1"/>
+  <rect x="0" y="30" width="480" height="10" fill="#6f42c1"/>
+  <rect x="0" y="37" width="480" height="3" fill="rgba(0,0,0,0.15)"/>
+  <text x="240" y="25" text-anchor="middle" fill="#ffffff">LLM Research &amp; Science</text>
+
+  <!-- GenAI -->
+  <rect x="0" y="40" width="480" height="40" fill="#ff9900"/>
+  <rect x="0" y="77" width="480" height="3" fill="rgba(0,0,0,0.15)"/>
+  <text x="240" y="65" text-anchor="middle" fill="#232f3e">GenAI: Amazon Bedrock &amp; SageMaker</text>
+
+  <!-- S3 -->
+  <rect x="0" y="80" width="480" height="40" fill="#3f8624"/>
+  <rect x="0" y="117" width="480" height="3" fill="rgba(0,0,0,0.15)"/>
+  <text x="240" y="105" text-anchor="middle" fill="#ffffff">Foundational Data Service: Amazon S3</text>
+
+  <!-- Serverless -->
+  <rect x="0" y="120" width="480" height="40" fill="#00a1c9"/>
+  <rect x="0" y="157" width="480" height="3" fill="rgba(0,0,0,0.15)"/>
+  <text x="240" y="145" text-anchor="middle" fill="#ffffff">Serverless &amp; Containers: AWS App Runner &amp; Fargate</text>
+
+  <!-- Alexa -->
+  <rect x="0" y="160" width="480" height="40" fill="#1a73e8"/>
+  <rect x="0" y="197" width="480" height="3" fill="rgba(0,0,0,0.15)"/>
+  <text x="240" y="185" text-anchor="middle" fill="#ffffff">Conversational AI: Alexa Health &amp; Wellness</text>
+
+  <!-- Fintech -->
+  <rect x="0" y="200" width="480" height="40" fill="#232f3e"/>
+  <rect x="0" y="237" width="480" height="3" fill="rgba(0,0,0,0.15)"/>
+  <text x="240" y="225" text-anchor="middle" fill="#ff9900">Fintech: AWS Payments</text>
+
+  <!-- Day 1 -->
+  <rect x="0" y="240" width="480" height="40" rx="0" ry="0" fill="#aab7b8"/>
+  <rect x="0" y="268" width="480" height="12" rx="0" ry="8" fill="#aab7b8"/>
+  <text x="240" y="265" text-anchor="middle" fill="#232f3e">Onboard (Day 1)</text>
+</svg>

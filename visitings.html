@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-HTV795ZMCP');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Visitings</title>
+    <meta name="author" content="Peng, Andy">
+    <meta name="description" content="Interactive Globe of Places I've Visited">
+    <meta name="keywords" content="Visitings, Travel, Globe, Map">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        #globe-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        svg {
+            cursor: grab;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        svg:active {
+            cursor: grabbing;
+        }
+
+        .country {
+            fill: #e0e0e0;
+            stroke: #ffffff;
+            stroke-width: 0.5px;
+        }
+
+        .country-visited {
+            fill: #2196F3;
+            stroke: #ffffff;
+            stroke-width: 0.5px;
+        }
+
+        .country:hover,
+        .country-visited:hover {
+            fill: #2196F3;
+        }
+
+        .city-marker {
+            fill: #1565C0;
+            stroke: #ffffff;
+            stroke-width: 2px;
+            cursor: pointer;
+        }
+
+        .city-marker:hover {
+            fill: #0D47A1;
+            stroke: #1565C0;
+            stroke-width: 3px;
+        }
+
+        .graticule {
+            fill: none;
+            stroke: #e0e0e0;
+            stroke-width: 0.5px;
+            stroke-opacity: 0.5;
+        }
+
+        .sphere {
+            fill: #ffffff;
+            stroke: #cccccc;
+            stroke-width: 2px;
+        }
+
+        .stats {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #ffffff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 24px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2196F3;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666666;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .legend {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ffffff;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 12px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tooltip {
+            position: fixed;
+            background: #ffffff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 2px solid #1565C0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            display: none;
+            z-index: 2000;
+        }
+
+        .tooltip-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .tooltip-date {
+            color: #666;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        footer {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            color: #999999;
+            font-size: 0.85rem;
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                bottom: 10px;
+                left: 10px;
+                gap: 16px;
+                padding: 12px 16px;
+            }
+
+            .stat-number {
+                font-size: 1.4rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .legend {
+                display: none;
+            }
+
+            footer {
+                top: 10px;
+                right: 10px;
+                font-size: 0.75rem;
+            }
+
+            .tooltip {
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats {
+                gap: 12px;
+                padding: 8px 12px;
+            }
+
+            .stat-number {
+                font-size: 1.2rem;
+            }
+
+            .stat-label {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="globe-container"></div>
+
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number" id="countriesCount">0</div>
+            <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="citiesCount">0</div>
+            <div class="stat-label">Cities</div>
+        </div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background: #1565C0;"></div>
+            <span>Cities Visited</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #2196F3;"></div>
+            <span>Countries Visited</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #e0e0e0;"></div>
+            <span>Other Countries</span>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-title" id="tooltip-title"></div>
+        <div class="tooltip-date" id="tooltip-date"></div>
+    </div>
+
+    <footer>
+        © 2026 Andy Peng
+    </footer>
+
+    <!-- D3.js for lightweight SVG globe -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+
+    <!-- Data Files -->
+    <script src="visitings/data/countries.js"></script>
+    <script src="visitings/data/cities.js"></script>
+
+    <script>
+        // Set up dimensions
+        const width = Math.min(window.innerWidth, 1200);
+        const height = window.innerHeight;
+        const radius = Math.min(width, height) / 2.5;
+
+        // Create SVG
+        const svg = d3.select('#globe-container')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        const g = svg.append('g')
+            .attr('transform', `translate(${width / 2}, ${height / 2})`);
+
+        // Add gradient definition for light beam
+        const defs = svg.append('defs');
+        const gradient = defs.append('linearGradient')
+            .attr('id', 'lightBeamGradient')
+            .attr('x1', '0%')
+            .attr('y1', '100%')
+            .attr('x2', '0%')
+            .attr('y2', '0%');
+
+        gradient.append('stop')
+            .attr('offset', '0%')
+            .attr('style', 'stop-color:#1565C0;stop-opacity:0.8');
+
+        gradient.append('stop')
+            .attr('offset', '100%')
+            .attr('style', 'stop-color:#64B5F6;stop-opacity:0');
+
+        // Create projection (orthographic = 3D globe look)
+        const projection = d3.geoOrthographic()
+            .scale(radius)
+            .translate([0, 0])
+            .clipAngle(90);
+
+        const path = d3.geoPath().projection(projection);
+
+        // Initial rotation to show Beijing area
+        projection.rotate([-116.4, -39.9, 0]);
+
+        // Add sphere (globe outline)
+        g.append('path')
+            .datum({type: 'Sphere'})
+            .attr('class', 'sphere')
+            .attr('d', path);
+
+        // Add graticule (grid lines)
+        const graticule = d3.geoGraticule();
+        g.append('path')
+            .datum(graticule)
+            .attr('class', 'graticule')
+            .attr('d', path);
+
+        // ISO code mapping
+        const isoCodeMap = {
+            'USA': 'United States of America',
+            'CAN': 'Canada',
+            'CHN': 'China',
+            'NLD': 'Netherlands',
+            'BEL': 'Belgium',
+            'MEX': 'Mexico'
+        };
+
+        const visitedCountryNames = Object.keys(COUNTRIES).map(code => isoCodeMap[code]);
+
+        // Load and render world map
+        d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
+            const countries = topojson.feature(world, world.objects.countries);
+
+            // Draw countries
+            g.selectAll('.country')
+                .data(countries.features)
+                .enter().append('path')
+                .attr('class', d => {
+                    return visitedCountryNames.includes(d.properties.name) ? 'country-visited' : 'country';
+                })
+                .attr('d', path);
+
+            // Add light beams for special cities (Seattle)
+            // Note: This is a static SVG element with gradient - no animations, very lightweight
+            // Only recalculates position during globe rotation (user interaction)
+            // Light beam is always visible regardless of front/back position
+            const seattleData = CITIES.filter(d => d.name === 'Seattle, WA');
+
+            const lightBeams = g.selectAll('.light-beam')
+                .data(seattleData)
+                .enter().append('polygon')
+                .attr('class', 'light-beam')
+                .attr('points', d => {
+                    const coords = projection([d.longitude, d.latitude]);
+                    if (!coords) return '0,0 0,0 0,0';
+
+                    const beamHeight = d.radius * 4; // 2x marker diameter
+                    const baseWidth = d.radius / 2.5; // Thinner base width
+                    const topWidth = d.radius / 6; // Thinner top width
+
+                    // Create cone shape: bottom-left, bottom-right, top-right, top-left
+                    return `${coords[0] - baseWidth},${coords[1]} ${coords[0] + baseWidth},${coords[1]} ${coords[0] + topWidth},${coords[1] - beamHeight} ${coords[0] - topWidth},${coords[1] - beamHeight}`;
+                })
+                .attr('fill', 'url(#lightBeamGradient)')
+                .attr('opacity', 1) // Always visible
+                .style('pointer-events', 'none');
+
+            // Add city markers (except Seattle - will render Seattle last for z-index priority)
+            const otherCities = CITIES.filter(d => d.name !== 'Seattle, WA');
+            const cityMarkers = g.selectAll('.city-marker')
+                .data(otherCities)
+                .enter().append('circle')
+                .attr('class', 'city-marker')
+                .attr('r', d => Math.max(3, d.radius / 2))
+                .attr('cx', d => {
+                    const coords = projection([d.longitude, d.latitude]);
+                    return coords ? coords[0] : -1000;
+                })
+                .attr('cy', d => {
+                    const coords = projection([d.longitude, d.latitude]);
+                    return coords ? coords[1] : -1000;
+                })
+                .attr('opacity', d => {
+                    const coords = projection([d.longitude, d.latitude]);
+                    return coords && coords[0] >= -radius && coords[0] <= radius ? 1 : 0;
+                })
+                .on('mouseenter', function(event, d) {
+                    const tooltip = document.getElementById('tooltip');
+                    document.getElementById('tooltip-title').textContent = d.name;
+                    document.getElementById('tooltip-date').textContent = d.date || '';
+                    tooltip.style.display = 'block';
+                    tooltip.style.left = (event.pageX + 10) + 'px';
+                    tooltip.style.top = (event.pageY + 10) + 'px';
+                })
+                .on('mousemove', function(event) {
+                    const tooltip = document.getElementById('tooltip');
+                    tooltip.style.left = (event.pageX + 10) + 'px';
+                    tooltip.style.top = (event.pageY + 10) + 'px';
+                })
+                .on('mouseleave', function() {
+                    document.getElementById('tooltip').style.display = 'none';
+                })
+                .on('touchstart', function(event, d) {
+                    event.stopPropagation();
+                    const tooltip = document.getElementById('tooltip');
+                    document.getElementById('tooltip-title').textContent = d.name;
+                    document.getElementById('tooltip-date').textContent = d.date || '';
+                    tooltip.style.display = 'block';
+                    const touch = event.touches[0];
+                    tooltip.style.left = (touch.pageX + 10) + 'px';
+                    tooltip.style.top = (touch.pageY - 50) + 'px';
+                    setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 2000);
+                });
+
+            // Add Seattle marker last so it renders on top (highest z-index priority)
+            const seattleMarker = g.selectAll('.seattle-marker')
+                .data(seattleData)
+                .enter().append('circle')
+                .attr('class', 'city-marker seattle-marker')
+                .attr('r', d => Math.max(3, d.radius / 2))
+                .attr('cx', d => {
+                    const coords = projection([d.longitude, d.latitude]);
+                    return coords ? coords[0] : -1000;
+                })
+                .attr('cy', d => {
+                    const coords = projection([d.longitude, d.latitude]);
+                    return coords ? coords[1] : -1000;
+                })
+                .attr('opacity', d => {
+                    const coords = projection([d.longitude, d.latitude]);
+                    return coords && coords[0] >= -radius && coords[0] <= radius ? 1 : 0;
+                })
+                .on('mouseenter', function(event, d) {
+                    const tooltip = document.getElementById('tooltip');
+                    document.getElementById('tooltip-title').textContent = d.name;
+                    document.getElementById('tooltip-date').textContent = d.date || '';
+                    tooltip.style.display = 'block';
+                    tooltip.style.left = (event.pageX + 10) + 'px';
+                    tooltip.style.top = (event.pageY + 10) + 'px';
+                })
+                .on('mousemove', function(event) {
+                    const tooltip = document.getElementById('tooltip');
+                    tooltip.style.left = (event.pageX + 10) + 'px';
+                    tooltip.style.top = (event.pageY + 10) + 'px';
+                })
+                .on('mouseleave', function() {
+                    document.getElementById('tooltip').style.display = 'none';
+                })
+                .on('touchstart', function(event, d) {
+                    event.stopPropagation();
+                    const tooltip = document.getElementById('tooltip');
+                    document.getElementById('tooltip-title').textContent = d.name;
+                    document.getElementById('tooltip-date').textContent = d.date || '';
+                    tooltip.style.display = 'block';
+                    const touch = event.touches[0];
+                    tooltip.style.left = (touch.pageX + 10) + 'px';
+                    tooltip.style.top = (touch.pageY - 50) + 'px';
+                    setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 2000);
+                });
+
+            // Update stats
+            document.getElementById('countriesCount').textContent = Object.keys(COUNTRIES).length;
+            document.getElementById('citiesCount').textContent = CITIES.length;
+
+            // Cache selections for better performance (avoid repeated DOM queries)
+            const allPaths = g.selectAll('path');
+            const allLightBeams = g.selectAll('.light-beam');
+            const allCityMarkers = g.selectAll('.city-marker'); // Includes both regular cities and Seattle
+
+            // Detect if mobile for performance optimization
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            // Throttle updates on mobile to reduce CPU load
+            let lastUpdate = 0;
+            const updateInterval = isMobile ? 50 : 16; // 20fps on mobile, 60fps on desktop
+
+            function updateGlobe() {
+                // Update all paths
+                allPaths.attr('d', path);
+
+                // Update light beams
+                allLightBeams
+                    .attr('points', d => {
+                        const coords = projection([d.longitude, d.latitude]);
+                        if (!coords) return '0,0 0,0 0,0';
+
+                        const beamHeight = d.radius * 4;
+                        const baseWidth = d.radius / 2.5; // Thinner
+                        const topWidth = d.radius / 6; // Thinner
+
+                        return `${coords[0] - baseWidth},${coords[1]} ${coords[0] + baseWidth},${coords[1]} ${coords[0] + topWidth},${coords[1] - beamHeight} ${coords[0] - topWidth},${coords[1] - beamHeight}`;
+                    })
+                    .attr('opacity', 1); // Always visible
+
+                // Update city markers
+                allCityMarkers
+                    .attr('cx', d => {
+                        const coords = projection([d.longitude, d.latitude]);
+                        return coords ? coords[0] : -1000;
+                    })
+                    .attr('cy', d => {
+                        const coords = projection([d.longitude, d.latitude]);
+                        return coords ? coords[1] : -1000;
+                    })
+                    .attr('opacity', d => {
+                        const coords = projection([d.longitude, d.latitude]);
+                        return coords && coords[0] >= -radius && coords[0] <= radius ? 1 : 0;
+                    });
+            }
+
+            // Add drag to rotate globe (works for both mouse and touch)
+            const drag = d3.drag()
+                .on('start', function(event) {
+                    svg.style('cursor', 'grabbing');
+                })
+                .on('drag', function(event) {
+                    const now = Date.now();
+
+                    // Update rotation
+                    const rotate = projection.rotate();
+                    const k = 75 / projection.scale();
+                    projection.rotate([
+                        rotate[0] + event.dx * k,
+                        rotate[1] - event.dy * k
+                    ]);
+
+                    // Throttle updates on mobile to prevent overwhelming the CPU
+                    if (!isMobile || now - lastUpdate > updateInterval) {
+                        updateGlobe();
+                        lastUpdate = now;
+                    }
+                })
+                .on('end', function(event) {
+                    svg.style('cursor', 'grab');
+                    // Final update to ensure smooth finish
+                    updateGlobe();
+                });
+
+            svg.call(drag);
+        });
+
+        // Handle window resize (debounced to prevent iOS crashes from address bar)
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            // Only reload after user stops resizing for 500ms
+            // Prevents iOS address bar show/hide from triggering reload
+            resizeTimer = setTimeout(() => {
+                // Only reload if width actually changed (not just height from address bar)
+                const newWidth = window.innerWidth;
+                if (Math.abs(newWidth - width) > 50) {
+                    location.reload();
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

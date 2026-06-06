@@ -1,0 +1,16 @@
+<div class="card mt-3 p-3">
+   <h3 class="card-title font-weight-medium">Service</h3>
+   <div id="service-content-placeholder"></div>
+</div>
+<script>
+   // Load core service content
+   fetch('/components/service-content.html')
+      .then(response => response.text())
+      .then(html => {
+         const placeholder = document.getElementById('service-content-placeholder');
+         if (placeholder) {
+            placeholder.innerHTML = html;
+         }
+      });
+</script>
+

@@ -1,0 +1,492 @@
+/**
+ * Modern styles for portfolio.html
+ * Clean, readable design with icon-based cards and modern grid layouts
+ */
+
+/* ==========================================================================
+   Links Section - Icon Cards Grid
+   ========================================================================== */
+.links-section {
+  margin: 48px 0;
+}
+
+.links-section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--global-text-color);
+}
+
+.links-description {
+  font-size: 14px;
+  color: var(--global-text-color-light);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.link-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 16px;
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 10px;
+  text-decoration: none !important;
+  color: var(--global-text-color);
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.link-card i {
+  font-size: 28px;
+  color: var(--global-theme-color);
+  transition: transform 0.2s;
+}
+
+.link-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border-color: var(--global-theme-color);
+  color: var(--global-text-color);
+}
+
+.link-card:hover i {
+  transform: scale(1.1);
+}
+
+.link-title {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   News Section
+   ========================================================================== */
+.news {
+  margin: 48px 0;
+}
+
+.news h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--global-text-color);
+}
+
+.table-responsive {
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.news table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.news table tr {
+  transition: background 0.2s;
+}
+
+.news table tr:hover {
+  background: rgba(0, 116, 219, 0.05);
+}
+
+.news table td {
+  padding: 8px 12px;
+}
+
+.news table td:first-child {
+  font-weight: 500;
+  color: var(--global-text-color-light);
+  white-space: nowrap;
+  padding-right: 20px;
+  min-width: 120px;
+}
+
+/* ==========================================================================
+   Bio Section - Modern Traditional Style
+   ========================================================================== */
+.bio-card {
+  /* Seamless, borderless design */
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.bio-card:hover {
+  /* No hover effects for seamless look */
+}
+
+.bio-card p {
+  margin-bottom: 16px;
+  color: var(--global-text-color);
+  line-height: 1.8;
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Bio Content Structure */
+.bio-content {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.bio-text {
+  font-size: 18px !important;
+  font-weight: 400;
+  color: var(--global-text-color);
+  margin-bottom: 16px !important;
+  line-height: 1.8;
+}
+
+.bio-section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--global-divider-color), transparent);
+  margin: 24px 0;
+}
+
+/* Research Areas Box */
+.research-areas-box {
+  padding: 0;
+  margin: 0;
+}
+
+.research-title {
+  font-size: 13px !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--global-theme-color);
+  margin: 0 0 14px 0 !important;
+}
+
+.research-keywords {
+  line-height: 1.7;
+  font-size: 15px;
+  color: var(--global-text-color);
+  font-weight: 400;
+}
+
+/* Personal & Motto */
+.bio-personal {
+  font-size: 13px !important;
+  color: var(--global-text-color-light);
+  margin-bottom: 10px !important;
+}
+
+.bio-motto {
+  font-size: 18px !important;
+  font-style: normal;
+  color: var(--global-text-color);
+  margin-bottom: 0 !important;
+  padding-top: 0;
+  font-weight: 400;
+}
+
+.bio-section {
+  margin: 40px 0;
+}
+
+.bio-section p {
+  margin-bottom: 18px;
+  color: var(--global-text-color);
+  line-height: 1.8;
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Research Areas - Clean Text Style */
+.keyword {
+  display: inline;
+  font-size: 18px;
+  color: var(--global-text-color);
+  font-weight: 400;
+  position: relative;
+}
+
+.keyword::after {
+  content: " • ";
+  color: var(--global-text-color-light);
+  margin: 0 8px;
+}
+
+.keyword:last-child::after {
+  content: "";
+}
+
+/* Two-Column Block Layout */
+.blocks-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin: 8px 0;
+  align-items: start;
+}
+
+/* First blocks-container after bio content needs more top margin */
+.bio-content > .blocks-container:first-of-type,
+.lang-zh.bio-content > .blocks-container:first-of-type {
+  margin-top: 32px;
+}
+
+.info-block {
+  padding: 24px;
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.info-block h3, .info-block h4 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--global-theme-color);
+  margin: 0 0 16px 0;
+}
+
+.office-block {
+  text-align: center;
+}
+
+.office-block iframe {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.info-block .contact-icons {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.info-block .contact-icons a {
+  font-size: 24px;
+  color: var(--global-theme-color);
+  transition: all 0.2s;
+}
+
+.info-block .contact-icons a:hover {
+  transform: scale(1.1);
+  color: var(--global-hover-color);
+}
+
+.info-block .contact-note {
+  font-size: 13px;
+  color: var(--global-text-color-light);
+  margin-top: 8px;
+  line-height: 1.7;
+}
+
+/* Standard content text for all info blocks */
+.info-block p,
+.info-block .block-content {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--global-text-color);
+  margin-bottom: 12px;
+}
+
+.info-block a {
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Products Showcase */
+.products-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.product-category {
+  background: linear-gradient(135deg, rgba(0, 116, 219, 0.05) 0%, rgba(0, 116, 219, 0.02) 100%);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--global-divider-color);
+}
+
+.product-category a,
+.product-category span {
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.product-category h5 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--global-theme-color);
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-category h5 i {
+  font-size: 13px;
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: var(--global-bg-color);
+  border-radius: 8px;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.product-item:hover {
+  border-color: var(--global-theme-color);
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 116, 219, 0.1);
+}
+
+.product-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.product-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--global-text-color);
+  line-height: 1.4;
+}
+
+.product-name small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--global-text-color-light);
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .blocks-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .products-showcase {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.profile {
+  margin-left: 24px;
+  margin-bottom: 20px;
+}
+
+.profile img {
+  border-radius: 12px;
+  border: 2px solid var(--global-divider-color);
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 768px) {
+  .links-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bio-card {
+    padding: 24px 20px;
+  }
+
+  .news table td:first-child {
+    min-width: 100px;
+    font-size: 13px;
+  }
+
+  .profile {
+    margin-left: 0;
+    margin-bottom: 16px;
+    float: none !important;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .links-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .link-card {
+    padding: 16px 12px;
+  }
+
+  .news h2,
+  .links-section h2 {
+    font-size: 20px;
+  }
+}
+
+/* ==========================================================================
+   Dark Mode Enhancements
+   ========================================================================== */
+html[data-theme=dark] .link-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme=dark] .bio-card {
+  /* Seamless design - no shadows */
+}
+
+html[data-theme=dark] .bio-card:hover {
+  /* Seamless design - no hover effects */
+}
+
+html[data-theme=dark] .keyword {
+  color: var(--global-text-color);
+}
+
+html[data-theme=dark] .research-areas-box {
+  /* Clean, minimal styling - no background */
+}
+
+html[data-theme=dark] .research-title {
+  color: rgba(38, 152, 186, 1);
+}
+
+html[data-theme=dark] .bio-section-divider {
+  background: linear-gradient(to right, transparent, var(--global-divider-color), transparent);
+}
+
+html[data-theme=dark] .news table tr:hover {
+  background: rgba(38, 152, 186, 0.08);
+}

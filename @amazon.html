@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>@amazon</title>
+   <meta name="author" content="Peng, Andy">
+   <meta name="description" content="Amazon Career Timeline">
+   <meta name="keywords" content="Amazon, AWS, Career">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+   <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+   <link rel="canonical" href="https://pengandy.com/@amazon">
+   <script src="/assets/js/theme.js?96d6b3e1c3604aca8b6134c7afdd5db6" type="text/javascript"></script>
+   <script src="/assets/js/dark_mode.js?9b17307bb950ffa2e34be0227f53558f" type="text/javascript"></script>
+   <script src="/assets/js/components.js" defer></script>
+
+   <style>
+      body {
+         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+         -webkit-font-smoothing: antialiased;
+         -moz-osx-font-smoothing: grayscale;
+      }
+
+      .timeline-container {
+         position: relative;
+         padding: 30px 0;
+         max-width: 900px;
+      }
+
+      .timeline-item {
+         position: relative;
+         padding-left: 60px;
+         padding-bottom: 50px;
+         border-left: 2px solid #e2e8f0;
+      }
+
+      .timeline-item:last-child {
+         border-left: 2px solid transparent;
+      }
+
+      .timeline-marker {
+         position: absolute;
+         left: -9px;
+         top: 0;
+         width: 16px;
+         height: 16px;
+         border-radius: 50%;
+         background: #0076df;
+         border: 3px solid white;
+         box-shadow: 0 2px 10px rgba(0, 118, 223, 0.35);
+         transition: all 0.3s ease;
+      }
+
+      .timeline-marker.golden {
+         background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+         box-shadow: 0 2px 12px rgba(245, 158, 11, 0.4);
+      }
+
+      .timeline-marker.red {
+         background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+         box-shadow: 0 2px 12px rgba(239, 68, 68, 0.4);
+      }
+
+      .timeline-marker.current {
+         animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+         0% {
+            transform: scale(1);
+         }
+         50% {
+            transform: scale(1.05);
+         }
+         100% {
+            transform: scale(1);
+         }
+      }
+
+      .timeline-content {
+         background: transparent;
+         padding: 0;
+      }
+
+      .role-header {
+         margin-bottom: 20px;
+         padding-bottom: 16px;
+         border-bottom: 1px solid #f1f5f9;
+      }
+
+      .role-title {
+         font-size: 1.35rem;
+         font-weight: 600;
+         color: #0f172a;
+         margin-bottom: 10px;
+         letter-spacing: -0.02em;
+         line-height: 1.3;
+      }
+
+      .role-team {
+         font-size: 1.05rem;
+         color: #475569;
+         margin-bottom: 8px;
+         font-weight: 500;
+         line-height: 1.4;
+      }
+
+      .role-period {
+         display: inline-flex;
+         align-items: center;
+         gap: 6px;
+         font-size: 0.9rem;
+         color: #64748b;
+         padding: 6px 0;
+         margin-top: 6px;
+         font-weight: 400;
+      }
+
+      .role-period i {
+         opacity: 0.7;
+      }
+
+      .badge-founding {
+         font-weight: 600;
+         color: #1e293b;
+         background: rgba(59, 130, 246, 0.1);
+         padding: 2px 6px;
+         border-radius: 3px;
+      }
+
+      .badge-zero-to-one {
+         font-weight: 600;
+         color: #1e293b;
+         background: rgba(59, 130, 246, 0.1);
+         padding: 2px 6px;
+         border-radius: 3px;
+      }
+
+      .badge-reinvent {
+         font-weight: 600;
+         color: #1e293b;
+         background: linear-gradient(135deg, rgba(255, 153, 0, 0.12) 0%, rgba(230, 126, 34, 0.08) 100%);
+         padding: 2px 6px;
+         border-radius: 3px;
+      }
+
+      .team-tag {
+         display: inline-block;
+         color: #0284c7;
+         font-size: 0.82rem;
+         font-weight: 600;
+         padding: 4px 12px;
+         background: linear-gradient(135deg, rgba(7, 89, 133, 0.08) 0%, rgba(2, 132, 199, 0.06) 100%);
+         border: 1px solid rgba(7, 89, 133, 0.15);
+         border-radius: 5px;
+         margin-right: 8px;
+         letter-spacing: 0.02em;
+      }
+
+      .notes-section {
+         margin-top: 20px;
+         padding: 20px 24px;
+         background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+         border-left: 3px solid #0ea5e9;
+         border-radius: 6px;
+         box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+         line-height: 1.8;
+         color: #334155;
+         font-size: 0.95rem;
+         font-weight: 400;
+      }
+
+      .notes-section p {
+         margin-bottom: 0;
+      }
+
+      .entity-revenue {
+         font-weight: 600;
+         color: #1e293b;
+         background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(239, 68, 68, 0.05) 100%);
+         padding: 2px 6px;
+         border-radius: 3px;
+      }
+
+      .entity-person {
+         font-weight: 600;
+         color: #1e293b;
+         background: rgba(148, 163, 184, 0.12);
+         padding: 2px 6px;
+         border-radius: 3px;
+      }
+
+      .entity-company {
+         font-weight: 600;
+         color: #1e293b;
+         background: rgba(59, 130, 246, 0.08);
+         padding: 2px 6px;
+         border-radius: 3px;
+      }
+
+      .entity-model {
+         font-style: italic;
+         font-weight: 500;
+         color: #1e293b;
+         background: rgba(168, 85, 247, 0.08);
+         padding: 2px 6px;
+         border-radius: 3px;
+      }
+
+      .entity-product {
+         font-weight: 600;
+         color: #1e293b;
+         background: rgba(34, 197, 94, 0.08);
+         padding: 2px 6px;
+         border-radius: 3px;
+      }
+
+      .entity-amzn-product {
+         font-weight: 600;
+         color: #1e293b;
+         background: linear-gradient(135deg, rgba(255, 153, 0, 0.12) 0%, rgba(230, 126, 34, 0.08) 100%);
+         padding: 2px 6px;
+         border-radius: 3px;
+      }
+
+      .highlight-link {
+         color: #0284c7;
+         text-decoration: none;
+         border-bottom: 1px solid rgba(2, 132, 199, 0.3);
+         transition: all 0.2s ease;
+         font-weight: 500;
+      }
+
+      .highlight-link:hover {
+         color: #0369a1;
+         border-bottom-color: #0369a1;
+         background: rgba(2, 132, 199, 0.05);
+      }
+
+      /* Responsive improvements */
+      @media (max-width: 768px) {
+         .timeline-item {
+            padding-left: 40px;
+         }
+
+         .notes-section {
+            padding: 16px 18px;
+            font-size: 0.92rem;
+         }
+
+         .role-title {
+            font-size: 1.2rem;
+         }
+      }
+   </style>
+</head>
+
+<body class="fixed-top-nav" data-page="amazon">
+   <div id="navbar-placeholder"></div>
+
+   <div class="container mt-5">
+      <div class="post">
+         <article>
+            <div style="color: #a0a0a0; font-size: 0.75rem; margin-bottom: 20px;">L6, Amazon = IC6 (Principal), Nvidia = L6 (Staff), Google = 66 (Principal), Microsoft</div>
+            <div class="timeline-container">
+
+               <!-- Bedrock & SageMaker Research -->
+               <div class="timeline-item">
+                  <div class="timeline-marker current red"></div>
+                  <div class="timeline-content">
+                     <div class="role-header">
+                        <div class="role-title">Machine Learning Research Engineer III, Tech Lead (L6)</div>
+                        <div class="role-team"><span class="team-tag">GenAI</span>Bedrock & SageMaker AI</div>
+                        <div class="role-period">
+                           <i class="far fa-calendar-alt"></i> Dec 2023 - Present · Bellevue/Seattle, WA
+                        </div>
+                     </div>
+                     <div class="notes-section">
+                        <p>Manage and scale <span class="entity-revenue">multi-hundreds of millions in ARR</span> products. Model inference optimization, customization integration and benchmark. <span class="badge-founding">Founding Engineer</span> Inference Optimization (<span class="entity-amzn-product">SageMaker AI</span> & <span class="entity-amzn-product">Bedrock</span> Science) <span class="badge-zero-to-one">0→1</span> (<span class="badge-reinvent">re:Invent 2025</span>): Led adaptive inference optimization for open-weight models, enabling customers to optimize models for different use cases and priorities, including throughput (speculative decoding), latency (kernel tuning), and cost efficiency. Architected and built draft model training system: distributed training, hidden states preparation, dataset format conversion, multi-phase training, hyperparameters optimization (HPO), training duration optimization etc. Collaborated with <span class="entity-person">George Karypis</span> (ex-Senior Principal Scientist, AWS; Professor, University of Minnesota; <a href="https://cse.umn.edu/cs/news/george-karypis-received-2025-acm-sigkdd-innovation-award" class="highlight-link">2025 ACM SIGKDD Innovation Award</a> recipient).; <span class="entity-amzn-product">Bedrock</span> <span class="entity-company">Anthropic</span> LLM Inference <span class="badge-zero-to-one">0→1</span>: Designed and built Bedrock’s Anthropic inference engine (Bedrock Forklift), with capabilities disaggregated and multi-node inference, context-aware routing, tokenization, and trust & safety. Led cross-company benchmark methodology setup and production releases of <span class="entity-model">Claude 3 Opus</span>, <span class="entity-model">3.5 Sonnet v2</span>, and <span class="entity-model">Haiku</span>. Partnered with <span class="entity-person">Ben Mann</span> (<span class="entity-company">Anthropic</span> Co-founder); <span class="entity-model">Claude</span> inference on <span class="entity-amzn-product">Trainium</span> chip <span class="badge-zero-to-one">0→1</span> (<span class="badge-reinvent">re:Invent 2024</span>): Delivered the first Claude model release on Trainium (Inferentia) platform and enabled 90% of Bedrock traffic to run on Trainium chips. Partnered with <span class="entity-person">James Bradbury</span>, <span class="entity-company">Anthropic</span> Head of Compute and <span class="entity-person">Ron Diamant</span>, VP & Distinguished Engineer at <span class="entity-amzn-product">Annapurna ML</span>; <span class="entity-company">Anthropic</span>–<span class="entity-company">Palantir</span> Partnership classified environments compute <span class="badge-zero-to-one">0→1</span>. (Featured in Q1 and Q3 2024 earnings reports and publicly underscored by CEOs.) <span style="font-style: italic; color: #64748b;">More Privileged & Confidential initiatives.</span></p>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- S3 -->
+               <div class="timeline-item">
+                  <div class="timeline-marker golden"></div>
+                  <div class="timeline-content">
+                     <div class="role-header">
+                        <div class="role-title">Software Engineer III, Tech Lead (L6)</div>
+                        <div class="role-team"><span class="team-tag">Data</span>Amazon S3</div>
+                        <div class="role-period">
+                           <i class="far fa-calendar-alt"></i> Nov 2022 - Dec 2023 · Seattle, WA
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Serverless & Containers - Manager -->
+               <div class="timeline-item">
+                  <div class="timeline-marker golden"></div>
+                  <div class="timeline-content">
+                     <div class="role-header">
+                        <div class="role-title">Software Engineer III & UTL / Manager (L6)</div>
+                        <div class="role-team"><span class="team-tag">Serverless & Containers</span>AWS App Runner & Fargate</div>
+                        <div class="role-period">
+                           <i class="far fa-calendar-alt"></i> Apr 2022 - Oct 2022 · Seattle, WA
+                        </div>
+                     </div>
+                     <div class="notes-section">
+                        <p>UTL an organization of 70 (4 two-pizza teams) managing two products with <span class="entity-revenue">hundreds of millions in ARR</span>. DockerCon 2022 co-presentation with <span class="entity-person">Inbal Shani</span> (CPO, <span class="entity-company">Twilio</span>; former CPO, <span class="entity-company">GitHub</span>).</p>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Serverless & Containers - Engineer II -->
+               <div class="timeline-item">
+                  <div class="timeline-marker golden"></div>
+                  <div class="timeline-content">
+                     <div class="role-header">
+                        <div class="role-title">Software Engineer II, Tech Lead (L5)</div>
+                        <div class="role-team"><span class="team-tag">Serverless & Containers</span>AWS App Runner & Fargate</div>
+                        <div class="role-period">
+                           <i class="far fa-calendar-alt"></i> Jul 2020 - Apr 2022 · Seattle, WA
+                        </div>
+                     </div>
+                     <div class="notes-section">
+                        <p><span class="badge-founding">Founding Engineer</span> <span class="entity-amzn-product">AWS App Runner</span> <span class="badge-zero-to-one">0→1</span>, serverless compute product incubated from <span class="entity-amzn-product">Fargate</span>. Featured in Q2 2021 earnings report and publicly underscored by CEO. <span class="badge-founding">Founding Engineer</span> <span class="entity-amzn-product">AWS App Runner</span> Observability <span class="badge-zero-to-one">0→1</span>.</p>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Alexa AI Health & Wellness -->
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="role-header">
+                        <div class="role-title">Machine Learning Engineer II (L5)</div>
+                        <div class="role-team"><span class="team-tag">Conversational AI</span>Alexa AI Health & Wellness</div>
+                        <div class="role-period">
+                           <i class="far fa-calendar-alt"></i> Mar 2019 - Jul 2020 · Seattle, WA
+                        </div>
+                     </div>
+                     <div class="notes-section">
+                        <p><span class="badge-founding">Founding Engineer</span> medication management <span class="badge-zero-to-one">0→1</span>, featured in Q4 2019 earnings report, & HIPAA-Eligible Skill <span class="badge-zero-to-one">0→1</span> (2020). Partnered with <span class="entity-person">Rachel Jiang</span>, <span class="entity-person">Yvonne Chou</span> (Chief of Staff, <span class="entity-company">AI2</span>), and <span class="entity-person">Missy Krasner</span> (former VP, <span class="entity-company">Box</span>).</p>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- AWS Payments - Engineer II -->
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="role-header">
+                        <div class="role-title">Software Engineer II (L5)</div>
+                        <div class="role-team"><span class="team-tag">Fintech</span>AWS Payments</div>
+                        <div class="role-period">
+                           <i class="far fa-calendar-alt"></i> Jul 2018 - Mar 2019 · Seattle, WA
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- AWS Payments - Engineer I -->
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="role-header">
+                        <div class="role-title">Software Engineer I (L4)</div>
+                        <div class="role-team"><span class="team-tag">Fintech</span>AWS Payments</div>
+                        <div class="role-period">
+                           <i class="far fa-calendar-alt"></i> Pi Day 2016 - Jun 2018 · Seattle, WA
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Onboarded -->
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="role-header">
+                        <div class="role-title">Onboarded</div>
+                        <div class="role-period">
+                           <i class="far fa-calendar-alt"></i> Pi Day 2016 · Seattle, WA
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </article>
+      </div>
+   </div>
+
+   <div id="footer-placeholder"></div>
+
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

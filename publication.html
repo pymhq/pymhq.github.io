@@ -1,0 +1,324 @@
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Publications</title>
+<meta name="author" content="Peng, Andy">
+<meta name="description" content="Publications.">
+<meta name="keywords" content="Publications.">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+<link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media id="highlight_theme_light">
+<link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+<script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script>
+<script src="/assets/js/components.js" defer></script>
+</head>
+<style>
+	.button {
+	    display: inline-block;
+	    height: 28px;
+	    padding: 0 12px;
+	    color: #555;
+	    text-align: center;
+	    font-size: 11px;
+	    font-weight: 600;
+	    line-height: 26px;
+	    letter-spacing: .1rem;
+	    text-decoration: none;
+	    white-space: nowrap;
+	    background-color: transparent;
+	    border-radius: 4px;
+	    border: 1px solid #bbb;
+	    cursor: pointer;
+	    box-sizing: border-box;
+	}
+
+	.button:hover {
+	    background-color: rgba(0, 0, 0, 0.03);
+	}
+
+	.publication-item {
+	    display: flex;
+	    margin-bottom: 2rem;
+	    padding: 1rem 0;
+	}
+
+	.publication-image {
+	    flex-shrink: 0;
+	    width: 200px;
+	    height: 150px;
+	    margin-right: 1.5rem;
+	    object-fit: cover;
+	    border-radius: 8px;
+	    background-color: #f5f5f5;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    overflow: hidden;
+	}
+
+	.publication-image img {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	}
+
+	.publication-image.no-image {
+	    background: linear-gradient(135deg, #a8b8d8 0%, #8ba4c7 100%);
+	    color: white;
+	    font-size: 14px;
+	    text-align: center;
+	    padding: 1rem;
+	}
+
+	.publication-content {
+	    flex: 1;
+	}
+
+	h2.year {
+	    color: rgba(0,0,0,.1);
+	    border-top: 1px solid rgba(0,0,0,.1);
+	    padding-top: 1rem;
+	    margin-top: 2rem;
+	    margin-bottom: -2rem;
+	    text-align: right;
+	}
+
+	.section-header {
+	    font-size: 1.75rem;
+	    font-weight: 600;
+	    color: var(--global-theme-color);
+	    margin: 2rem 0 1rem 0;
+	    letter-spacing: 0.05rem;
+	}
+
+	.paper .title {
+	    font-size: 1.1rem;
+	    line-height: 1.5;
+	    margin-bottom: 0.5rem;
+	    color: #000;
+	    max-width: 90%;
+	    word-wrap: break-word;
+	}
+
+	.paper .title b {
+	    font-weight: 600;
+	}
+
+	.paper p {
+	    margin-bottom: 0.4rem;
+	    color: var(--global-text-color);
+	}
+
+	.paper .info-line {
+	    margin-bottom: 0.3rem;
+	    color: var(--global-text-color);
+	}
+
+	.paper .venue-line {
+	    font-style: italic;
+	    color: #666;
+	    margin-top: 0.2rem;
+	}
+
+	.paper .category-badge {
+	    display: inline-block;
+	    padding: 2px 8px;
+	    font-size: 0.85em;
+	    font-style: italic;
+	    color: #666;
+	    background-color: #f0f0f0;
+	    border-radius: 3px;
+	    margin-top: 0.3rem;
+	}
+
+	.paper .button {
+	    margin-right: 0.5rem;
+	    margin-top: 0.5rem;
+	    transition: all 0.3s ease;
+	    border-color: var(--global-theme-color);
+	    color: var(--global-theme-color);
+	}
+
+	.paper .button:hover {
+	    background-color: var(--global-theme-color);
+	    color: white;
+	    transform: translateY(-2px);
+	    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+	}
+
+	@media (max-width: 768px) {
+	    .publication-item {
+	        flex-direction: column;
+	    }
+
+	    .publication-image {
+	        width: 100%;
+	        height: 200px;
+	        margin-right: 0;
+	        margin-bottom: 1rem;
+	    }
+	}
+
+	.publication-image img {
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	    -webkit-user-drag: none;
+	    -khtml-user-drag: none;
+	    -moz-user-drag: none;
+	    -o-user-drag: none;
+	    pointer-events: none;
+	}
+
+	.publication-image {
+	    pointer-events: auto;
+	}
+</style>
+
+<body class="fixed-top-nav" data-page="publication">
+      <div id="navbar-placeholder"></div>
+
+<div class="container mt-5">
+<article>
+
+<div class="docs-section" id="papers">
+  <h2 class="section-header">Papers</h2>
+  <p>Upcoming</p>
+</div>
+
+<div class="docs-section" id="writings">
+  <h2 class="section-header">AWS Blogs</h2>
+  <h2 class="year">2025</h2>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/smai_eagle.png" alt="Amazon SageMaker AI introduces EAGLE based adaptive speculative decoding" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>AWS Blog</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Amazon SageMaker AI introduces EAGLE based adaptive speculative decoding to accelerate generative AI inference</b>
+          <a class="button" href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-introduces-eagle-based-adaptive-speculative-decoding-to-accelerate-generative-ai-inference/" target="_blank">HTML</a>
+        </p>
+        <p>Authors: Andy Peng, Kareem Syed-Mohammed, Ram Vegiraju, Vinay Arora, Xu Deng, Siddharth Shah, Johna Liu, Anisha Kolla</p>
+        <p><span class="category-badge">Artificial Intelligence</span></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="year">2022</h2>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/blogpostmedium.png" alt="Horizontal Auto Scaling in Serverless Containers" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Medium</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Horizontal Auto Scaling in Serverless Containers</b>
+          <a class="button" href="https://medium.com/@pymhq/horizontal-auto-scaling-in-serverless-containers-857bb5c6a368" target="_blank">HTML</a>
+        </p>
+        <p>Author: Andy Peng</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/apprunner461_001.png" alt="Enabling AWS X-Ray tracing for AWS App Runner" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>AWS Blog</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Enabling AWS X-Ray tracing for AWS App Runner service using AWS Copilot CLI</b>
+          <a class="button" href="https://aws.amazon.com/cn/blogs/containers/enabling-aws-x-ray-tracing-for-aws-app-runner-service-using-aws-copilot-cli/" target="_blank">HTML</a>
+        </p>
+        <p>Authors: Yang Wanxian and Andy Peng</p>
+        <p><span class="category-badge">Containers</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/apprunner1.jpg" alt="Observability for AWS App Runner VPC networking" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>AWS Blog</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Observability for AWS App Runner VPC networking</b>
+          <a class="button" href="https://aws.amazon.com/blogs/containers/observability-for-aws-app-runner-vpc-networking/" target="_blank">HTML</a>
+        </p>
+        <p>Author: Andy Peng</p>
+        <p><span class="category-badge">Containers</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="publication-item">
+    <div class="publication-image">
+      <img src="assets/invited-talks/app-runner-1.png" alt="Tracing an AWS App Runner service using AWS X-Ray with OpenTelemetry" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>AWS Blog</div>'">
+    </div>
+    <div class="publication-content">
+      <div class="paper">
+        <p class="title"><b>Tracing an AWS App Runner service using AWS X-Ray with OpenTelemetry</b>
+          <a class="button" href="https://aws.amazon.com/blogs/containers/tracing-an-aws-app-runner-service-using-aws-x-ray-with-opentelemetry/" target="_blank">HTML</a>
+        </p>
+        <p>Author: Andy Peng</p>
+        <p><span class="category-badge">Containers</span></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</article>
+</div>
+
+      <!-- Image Protection Script -->
+      <script>
+        document.addEventListener('contextmenu', function(e) {
+          if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+          }
+        });
+
+        document.addEventListener('dragstart', function(e) {
+          if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+          }
+        });
+
+        window.addEventListener('load', function() {
+          const images = document.querySelectorAll('.publication-image img');
+          images.forEach(function(img) {
+            img.setAttribute('oncontextmenu', 'return false;');
+            img.setAttribute('ondragstart', 'return false;');
+          });
+        });
+      </script>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+   </body>
+</html>

@@ -1,0 +1,360 @@
+/**
+ * Modern Code-Style Design for studio.html
+ * Monospace typography, card-based layout, compact spacing
+ * Professional business presentation
+ */
+
+/* ==========================================================================
+   Typography - Code Style
+   ========================================================================== */
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace !important;
+  font-weight: 600 !important;
+}
+
+p, div, span, li {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace !important;
+}
+
+/* ==========================================================================
+   Container & Layout
+   ========================================================================== */
+.container-center {
+  text-align: center;
+  align-items: center;
+  padding: 0 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.container-center {
+  margin-top: 3rem !important;
+  padding-top: 1.5rem;
+}
+
+/* ==========================================================================
+   Studio Header - Simple Text Header (No Logo Background)
+   ========================================================================== */
+.studio-header {
+  text-align: center;
+  padding: 24px 24px 32px;
+  margin-bottom: 24px;
+}
+
+.studio-header h1 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin: 0 0 8px 0 !important;
+  color: var(--global-text-color) !important;
+}
+
+.studio-header .subtitle {
+  font-size: 14px !important;
+  color: var(--global-text-color-light) !important;
+  margin: 0 0 6px 0 !important;
+  font-weight: 400 !important;
+}
+
+.studio-header .credentials {
+  font-size: 13px !important;
+  color: var(--global-text-color-light) !important;
+  margin: 0 !important;
+  font-weight: 400 !important;
+}
+
+/* ==========================================================================
+   Terminal-Style Unified Card
+   ========================================================================== */
+.terminal-unified-card {
+  background: #f8f9fa;
+  border: 2px solid #2c3e50;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Terminal Column */
+.terminal-column {
+  background: #ffffff;
+  border: 1px solid #34495e;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+}
+
+.terminal-header {
+  background: #34495e;
+  color: #2ecc71;
+  padding: 10px 14px;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+  border-bottom: 2px solid #2c3e50;
+}
+
+.terminal-content {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #ffffff;
+  color: #2c3e50;
+}
+
+/* Services Column */
+.service-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.service-item:last-child {
+  margin-bottom: 0;
+}
+
+.service-label {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.service-detail {
+  font-size: 11px !important;
+  color: #555 !important;
+  display: block;
+  padding-left: 8px;
+  line-height: 1.6 !important;
+}
+
+.service-detail::before {
+  content: '→ ';
+  color: #7f8c8d;
+  margin-right: 4px;
+}
+
+/* Action Columns (View All Services & Schedule Call) */
+.terminal-action {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.terminal-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #ecf0f1;
+  border: 1px solid #34495e;
+  border-radius: 4px;
+  color: #2c3e50 !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s;
+}
+
+.terminal-link:hover {
+  background: #2ecc71;
+  color: #ffffff !important;
+  border-color: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3);
+}
+
+.terminal-prompt {
+  color: #e74c3c;
+  font-weight: 700 !important;
+}
+
+.terminal-link:hover .terminal-prompt {
+  color: #ffffff;
+}
+
+.terminal-description {
+  font-size: 10px !important;
+  color: #7f8c8d !important;
+  display: block;
+  margin-top: 8px;
+  line-height: 1.4 !important;
+}
+
+/* Contact Column */
+.terminal-contact {
+  gap: 8px;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #ecf0f1;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  color: #2c3e50 !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s;
+}
+
+.contact-link:hover {
+  background: #3498db;
+  color: #ffffff !important;
+  border-color: #2980b9;
+  transform: translateX(4px);
+}
+
+.contact-link:hover .terminal-prompt {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer.fixed-bottom {
+  font-size: 12px !important;
+  padding: 12px 0;
+}
+
+footer.fixed-bottom .footer-link {
+  color: var(--global-text-color);
+  text-decoration: none;
+}
+
+footer.fixed-bottom .footer-link:hover {
+  color: var(--global-text-color);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .terminal-unified-card {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .terminal-column {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .studio-header h1 {
+    font-size: 24px !important;
+  }
+
+  .studio-header .subtitle {
+    font-size: 13px !important;
+  }
+
+  .studio-header .credentials {
+    font-size: 12px !important;
+  }
+
+  .terminal-unified-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .terminal-column {
+    min-height: auto;
+  }
+
+  .terminal-header {
+    font-size: 11px !important;
+    padding: 8px 12px;
+  }
+
+  .terminal-content {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px !important;
+  }
+
+  .studio-header {
+    padding: 20px 16px 28px;
+  }
+
+  .studio-header h1 {
+    font-size: 20px !important;
+  }
+
+  .studio-header .subtitle {
+    font-size: 12px !important;
+  }
+
+  .studio-header .credentials {
+    font-size: 11px !important;
+  }
+
+  .terminal-unified-card {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .service-label {
+    font-size: 12px !important;
+  }
+
+  .service-detail {
+    font-size: 10px !important;
+  }
+
+  .terminal-link {
+    font-size: 12px !important;
+    padding: 10px 12px;
+  }
+
+  .contact-link {
+    font-size: 11px !important;
+    padding: 7px 10px;
+  }
+}
+
+/* ==========================================================================
+   Terminal Style - Light Mode Only
+   ========================================================================== */
+/* Terminal colors are hardcoded for light mode as requested */
+/* Dark mode support has been removed per user preference */
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+img {
+  pointer-events: none;
+}
+
+.profile-hs {
+  display: none;
+}

@@ -1,0 +1,14 @@
+<h2><a href="/service" style="color: inherit;">Service</a></h2>
+<div class="service" id="service-content-placeholder-default"></div>
+<script>
+   // Load core service content (with cache busting)
+   fetch('/components/service-content.html?v=' + Date.now())
+      .then(response => response.text())
+      .then(html => {
+         const placeholder = document.getElementById('service-content-placeholder-default');
+         if (placeholder) {
+            placeholder.innerHTML = html;
+         }
+      });
+</script>
+

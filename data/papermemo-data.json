@@ -1,0 +1,56 @@
+{
+  "title": "Paper Memo",
+  "subtitle": "Notable papers in distributed systems, cloud computing, and machine learning",
+  "description": "Notable papers and readings",
+  "keywords": "Papers, Research",
+  "url": "papermemo",
+  "pageId": "paperread",
+  "tableType": "custom",
+  "tableClass": "paper-table",
+  "columns": ["Year", "Title", "Venue"],
+  "columnClasses": ["year-col", "title-col", "venue-col"],
+  "items": [
+    {
+      "values": ["2023", "On-demand Container Loading in AWS Lambda", "USENIX Annual Technical Conference (USENIX ATC '23)"]
+    },
+    {
+      "values": ["2023", "Building and operating a pretty big storage system called S3", "USENIX Conference on File and Storage Technologies (USENIX FAST '23)"]
+    },
+    {
+      "values": ["2022", "Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service", "USENIX Annual Technical Conference (USENIX ATC '22)"]
+    },
+    {
+      "values": ["2021", "Using lightweight formal methods to validate a key-value storage node in Amazon S3", "ACM Symposium on Operating Systems Principles (SOSP '21)"]
+    },
+    {
+      "values": ["2020", "Firecracker: Lightweight Virtualization for Serverless Applications", "USENIX Symposium on Networked Systems Design and Implementation (NSDI '20)"]
+    },
+    {
+      "values": ["2017", "Attention Is All You Need", "NeurIPS 2017"]
+    },
+    {
+      "values": ["2016", "Borg, Omega, and Kubernetes: Lessons learned from three container-management systems over a decade", "ACM Queue, Volume 14, Issue 1"]
+    },
+    {
+      "values": ["2015", "Large-scale cluster management at Google with Borg", "Proceedings of the European Conference on Computer Systems (EuroSys '15)"]
+    },
+    {
+      "values": ["2013", "Omega: flexible, scalable schedulers for large compute clusters", "ACM European Conference on Computer Systems (EuroSys '13)"]
+    },
+    {
+      "values": ["2013", "Spanner: Google's Globally Distributed Database", "ACM Transactions on Computer Systems (TOCS), Volume 31, Issue 3"]
+    },
+    {
+      "values": ["2007", "Dynamo: Amazon's Highly Available Key-value Store", "ACM Symposium on Operating Systems Principles (SOSP '07)"]
+    },
+    {
+      "values": ["2006", "Bigtable: A Distributed Storage System for Structured Data", "USENIX Symposium on Operating Systems Design and Implementation (OSDI '06)"]
+    },
+    {
+      "values": ["2004", "MapReduce: Simplified Data Processing on Large Clusters", "USENIX Symposium on Operating Systems Design and Implementation (OSDI '04)"]
+    },
+    {
+      "values": ["2003", "The Google File System", "ACM Symposium on Operating Systems Principles (SOSP '03)"]
+    }
+  ]
+}

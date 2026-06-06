@@ -1,0 +1,141 @@
+<style>
+.recommendations-container {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.recommendation-card {
+  background: var(--global-card-bg-color, #fff);
+  border-left: 4px solid var(--global-theme-color, #0074db);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.recommendation-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.recommendation-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--global-theme-color, #0074db) 0%, #005bb5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+}
+
+.recommendation-info {
+  flex: 1;
+}
+
+.recommendation-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--global-text-color, #333);
+  margin: 0 0 0.25rem 0;
+}
+
+.recommendation-title {
+  font-size: 0.9rem;
+  color: var(--global-text-color-light, #666);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.recommendation-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--global-text-color, #333);
+  font-style: italic;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.recommendation-text::before {
+  content: '"';
+  font-size: 3rem;
+  color: var(--global-theme-color, #0074db);
+  opacity: 0.2;
+  position: absolute;
+  left: -0.5rem;
+  top: -1rem;
+  font-family: Georgia, serif;
+}
+
+@media (max-width: 768px) {
+  .recommendation-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .recommendation-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  .recommendation-text {
+    padding-left: 1rem;
+  }
+}
+</style>
+
+<div class="recommendations-container">
+  <!-- Recommendation 1: Léonard Boussioux -->
+  <div class="recommendation-card">
+    <div class="recommendation-header">
+      <div class="recommendation-avatar">LB</div>
+      <div class="recommendation-info">
+        <h4 class="recommendation-name">Léonard Boussioux</h4>
+        <p class="recommendation-title">Professor at University of Washington (Foster, Allen CSE) | MIT PhD</p>
+      </div>
+    </div>
+    <div class="recommendation-text">
+      I had the pleasure of hosting Andy as a guest lecturer for my "Generative AI in the Era of Cloud Computing" course in Spring 2024. Andy's insider perspective and technical expertise on the latest advancements in Generative AI significantly enriched our classroom experience. His contributions extended beyond lectures; he provided invaluable mentorship to students, offering guidance on job searches and emerging tech priorities. Andy's insightful feedback on course projects and active engagement in class discussions were also instrumental in elevating the learning experience. And he helped everyone become AI champions. Many thanks for your contributions!
+    </div>
+  </div>
+
+  <!-- Recommendation 2: Jennifer Madriaga -->
+  <div class="recommendation-card">
+    <div class="recommendation-header">
+      <div class="recommendation-avatar">JM</div>
+      <div class="recommendation-info">
+        <h4 class="recommendation-name">Jennifer Madriaga</h4>
+        <p class="recommendation-title">Chief of Staff, The Linux Foundation</p>
+      </div>
+    </div>
+    <div class="recommendation-text">
+      I know Andy from his community work with open source events like Open Source Summit and AI_Dev where he has served as program committee member. He is a passionate supporter of open source and has independently promoted open source through his outreach to groups like students at the University of Washington Foster School of Business. Andy is approachable and collaborative, and wonderful to work with. I know I can count on Andy to provide support in community endeavors as well as initiate relationships to make open source even stronger. I love that he is receptive to making new connections, and I was able to connect him to projects like GenAI Commons and PyTorch. Andy is truly an asset to open source communities.
+    </div>
+  </div>
+
+  <!-- Recommendation 3: Yi Zhang -->
+  <div class="recommendation-card">
+    <div class="recommendation-header">
+      <div class="recommendation-avatar">YZ</div>
+      <div class="recommendation-info">
+        <h4 class="recommendation-name">Yi Zhang</h4>
+        <p class="recommendation-title">Principal Engineer at Intuit Mailchimp, ex-Amazon</p>
+      </div>
+    </div>
+    <div class="recommendation-text">
+      For approximately six months, I provided mentoring to Yiming during his tenure as a senior development engineer at Amazon. During our monthly mentoring sessions, Yiming consistently demonstrated a strong grasp of the broader organizational landscape, as well as ability to effectively navigate complex organizational structures. Yiming was cognizant of his organization's overall operations and was proactive in pursuing opportunities that aligned with his career objectives. I am confident that Yiming will successfully attain his goals and aspirations.
+    </div>
+  </div>
+</div>
