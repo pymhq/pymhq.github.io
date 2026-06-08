@@ -1,0 +1,74 @@
+<style>
+  .subscribe-box {
+    max-width: 540px;
+    margin: 36px auto;
+    padding: 26px 28px;
+    border: 1px solid rgba(128, 128, 128, 0.22);
+    border-radius: 14px;
+    background: rgba(128, 128, 128, 0.06);
+    text-align: center;
+  }
+  .subscribe-box .sub-title {
+    font-size: 1.18rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: var(--global-text-color);
+  }
+  .subscribe-box .sub-desc {
+    font-size: 0.9rem;
+    color: var(--global-text-color-light);
+    margin: 0 0 18px 0;
+    line-height: 1.5;
+  }
+  .subscribe-form {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .subscribe-form input[type="email"] {
+    flex: 1 1 240px;
+    min-width: 0;
+    padding: 10px 14px;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: transparent;
+    color: var(--global-text-color);
+  }
+  .subscribe-form input[type="email"]::placeholder { color: var(--global-text-color-light); }
+  .subscribe-form button {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    background: var(--global-theme-color);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .subscribe-form button:hover { opacity: 0.88; }
+  .subscribe-fine {
+    font-size: 0.76rem;
+    color: var(--global-text-color-light);
+    margin: 12px 0 0 0;
+  }
+  .subscribe-fine a { color: var(--global-theme-color); text-decoration: none; }
+</style>
+
+<div class="subscribe-box">
+  <p class="sub-title">Subscribe to Andy Peng's Blog</p>
+  <p class="sub-desc">Get Andy Peng's new posts on research, products, and technical exploration — delivered to your inbox. No spam, unsubscribe anytime.</p>
+  <form
+    class="subscribe-form embeddable-buttondown-form"
+    action="https://buttondown.com/api/emails/embed-subscribe/pengandy"
+    method="post"
+    target="popupwindow"
+    onsubmit="window.open('https://buttondown.com/pengandy', 'popupwindow');"
+  >
+    <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address">
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="subscribe-fine">Powered by <a href="https://buttondown.com/refer/pengandy" target="_blank" rel="noopener noreferrer">Buttondown</a>.</p>
+</div>
