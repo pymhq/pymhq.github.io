@@ -235,6 +235,71 @@
                 font-size: 0.7rem;
             }
         }
+
+        /* PNW footprints inset map (additive; does not affect globe/stats/legend/footer) */
+        #pnw-inset {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            width: 208px;
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 10px 10px 8px;
+            z-index: 1000;
+        }
+
+        #pnw-inset .pnw-title {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #6b7a52;
+            letter-spacing: 0.3px;
+            margin: 0 2px 7px;
+        }
+
+        #pnw-inset .pnw-title .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffc24d;
+            box-shadow: 0 0 6px 2px rgba(255, 194, 77, 0.55);
+            flex: 0 0 auto;
+        }
+
+        #pnw-inset .pnw-count {
+            color: #aab09a;
+            font-weight: 500;
+        }
+
+        #pnw-map {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            background: #eef2ea;
+            overflow: hidden;
+        }
+
+        @keyframes pnwTwinkle {
+            0%, 100% { opacity: 0.30; }
+            50%      { opacity: 0.90; }
+        }
+
+        .pnw-glow {
+            animation: pnwTwinkle 2.8s ease-in-out infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .pnw-glow { animation: none; opacity: 0.75; }
+        }
+
+        @media (max-width: 600px) {
+            #pnw-inset { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -274,6 +339,12 @@
     <footer>
         © 2026 Andy Peng
     </footer>
+
+    <!-- PNW footprints inset map -->
+    <div id="pnw-inset" aria-hidden="true">
+        <div class="pnw-title"><span class="dot"></span>Pacific Northwest<span class="pnw-count" id="pnwCount"></span></div>
+        <svg id="pnw-map" viewBox="0 0 188 158" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
 
     <!-- D3.js for lightweight SVG globe -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -581,6 +652,68 @@
                 }
             }, 500);
         });
+    </script>
+
+    <!-- PNW footprints inset (isolated; reuses cached atlas + CITIES, does not touch globe) -->
+    <script>
+        (function () {
+            if (typeof d3 === 'undefined' || typeof topojson === 'undefined' || typeof CITIES === 'undefined') return;
+            const mapEl = document.getElementById('pnw-map');
+            if (!mapEl) return;
+
+            // PNW bounding box (coastal Pacific Northwest)
+            const box = { lonMin: -125.5, lonMax: -115.5, latMin: 41.5, latMax: 50.8 };
+            const pnw = CITIES.filter(c =>
+                c.longitude >= box.lonMin && c.longitude <= box.lonMax &&
+                c.latitude  >= box.latMin && c.latitude  <= box.latMax);
+
+            const countEl = document.getElementById('pnwCount');
+            if (countEl) countEl.textContent = ' · ' + pnw.length;
+
+            const W = 188, H = 158;
+            const svg = d3.select('#pnw-map');
+            const defs = svg.append('defs');
+            defs.append('filter')
+                .attr('id', 'pnwBlur').attr('x', '-90%').attr('y', '-90%').attr('width', '280%').attr('height', '280%')
+                .append('feGaussianBlur').attr('stdDeviation', 1.7);
+
+            const bbox = { type: 'MultiPoint', coordinates: [
+                [box.lonMin, box.latMin], [box.lonMax, box.latMin],
+                [box.lonMax, box.latMax], [box.lonMin, box.latMax]
+            ] };
+            const proj = d3.geoMercator().fitExtent([[8, 8], [W - 8, H - 8]], bbox);
+            const geoPath = d3.geoPath(proj);
+
+            function drawDots() {
+                const pts = svg.append('g').attr('class', 'pnw-dots');
+                pnw.forEach(c => {
+                    const xy = proj([c.longitude, c.latitude]);
+                    if (!xy) return;
+                    pts.append('circle').attr('class', 'pnw-glow')
+                        .attr('cx', xy[0]).attr('cy', xy[1]).attr('r', 4)
+                        .attr('fill', '#ffc24d').attr('filter', 'url(#pnwBlur)')
+                        .style('animation-delay', (Math.random() * 2.8).toFixed(2) + 's');
+                    pts.append('circle')
+                        .attr('cx', xy[0]).attr('cy', xy[1]).attr('r', 1.6)
+                        .attr('fill', '#fff6d5').attr('stroke', '#ffb02e').attr('stroke-width', 0.4);
+                });
+            }
+
+            // Finer 50m coastline gives a recognizable PNW shape under the footprints
+            d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(world => {
+                const land = topojson.feature(world, world.objects.countries);
+                const feats = land.features.filter(f =>
+                    f.properties && (f.properties.name === 'United States of America' || f.properties.name === 'Canada'));
+                svg.append('g').attr('class', 'pnw-land')
+                    .selectAll('path').data(feats).enter().append('path')
+                    .attr('d', geoPath)
+                    .attr('fill', '#8d9b63')
+                    .attr('stroke', '#6f7e4a')
+                    .attr('stroke-width', 0.5)
+                    .attr('stroke-linejoin', 'round');
+                drawDots();
+            }).catch(() => { drawDots(); });
+        })();
     </script>
 </body>
 </html>
