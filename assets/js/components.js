@@ -61,6 +61,11 @@
       promises.push(loadComponent('/components/footer.html' + cacheBuster, '#footer-placeholder'));
     }
 
+    // Load subscribe form if placeholder exists
+    if (document.getElementById('subscribe-placeholder')) {
+      promises.push(loadComponent('/components/subscribe.html' + cacheBuster, '#subscribe-placeholder'));
+    }
+
     // Run progress bar setup and set active nav after navbar is loaded
     Promise.all(promises).then(() => {
       // Set active nav item based on current page

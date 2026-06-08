@@ -44,35 +44,7 @@
                <h1 style="font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem;">Puget Sound Journal</h1>
                <h2 style="font-size: 1rem; font-weight: 500; color: #6B7280; margin-bottom: 1rem;">Andy's Research & Engineering Notes</h2>
                <p style="font-size: 0.95rem; color: #6B7280; line-height: 1.6; max-width: 48rem; margin: 0 auto;">A builder's experimental space for documenting research (applied scientific), product, and technical exploration.</p>
-               <!--
-               <p>
-                 <form id="subscribe-form">
-                  <form id="subscribe-form">
-                    <input type="email" id="email-input" placeholder="Enter your email" required>
-                    <button type="submit">Subscribe</button>
-                  </form>
-                  <div id="subscribe-msg" style="display:none; color:green;">Thank you for subscribing!</div>
-                  <script>
-                    document.getElementById('subscribe-form').addEventListener('submit', function(e) {
-                      e.preventDefault();
-                      var email = document.getElementById('email-input').value;
-                      fetch('https://script.google.com/macros/s/AKfycbwpEQTvHOiHFx2Zy8Bpc6YA3ODqHPGqxs-0Mz_8rp3Cc8szDz60bsP22XK0f7yzxcMjfQ/exec', {
-                        method: 'POST',
-                        body: JSON.stringify({ email: email }),
-                        headers: { 'Content-Type': 'application/json' }
-                      })
-                      .then(response => response.json())
-                      .then(data => {
-                        document.getElementById('subscribe-form').reset();
-                        document.getElementById('subscribe-msg').style.display = 'block';
-                        setTimeout(function() {
-                          document.getElementById('subscribe-msg').style.display = 'none';
-                        }, 5000);
-                      });
-                    });
-                  </script>
-               </p>
-               -->
+               <div id="subscribe-placeholder"></div>
             </div>
             <div>
             <div class="tag-category-list">
