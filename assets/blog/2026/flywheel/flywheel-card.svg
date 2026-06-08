@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="Roboto, Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1200" height="630" fill="#ffffff"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#f0b429"/>
+
+  <!-- left text panel -->
+  <text x="70" y="92" font-size="22" font-weight="700" fill="#9aa3ad" letter-spacing="2">BLOG &#183; PENGANDY.COM</text>
+
+  <text x="70" y="184" font-size="46" font-weight="800" fill="#232f3e">Flywheel for</text>
+  <text x="70" y="242" font-size="46" font-weight="800" fill="#232f3e">Small Business &amp;</text>
+  <text x="70" y="300" font-size="46" font-weight="800" fill="#232f3e">The Personal Brand</text>
+
+  <text x="70" y="372" font-size="23" fill="#5a6470">Content &#8594; Build &#8594; Show, on a</text>
+  <text x="70" y="404" font-size="23" fill="#5a6470">foundation of real work &#8212; rooted</text>
+  <text x="70" y="436" font-size="23" fill="#5a6470">in interests <tspan fill="#2f7d4f" font-weight="700">(&#20852;&#36259;&#39537;&#21160;)</tspan>.</text>
+
+  <!-- mini stack legend -->
+  <rect x="70" y="486" width="16" height="16" rx="3" fill="#f0b429"/><text x="96" y="499" font-size="18" fill="#444">the spinning wheel</text>
+  <rect x="70" y="514" width="16" height="16" rx="3" fill="#455a64"/><text x="96" y="527" font-size="18" fill="#444">foundation &#183; real work</text>
+  <rect x="70" y="542" width="16" height="16" rx="3" fill="#2f7d4f"/><text x="96" y="555" font-size="18" fill="#444">interests &#183; the bedrock</text>
+
+  <text x="70" y="602" font-size="18" fill="#aaa">pengandy.com/blog/2026/flywheel</text>
+
+  <!-- embedded flywheel diagram -->
+  <svg x="560" y="20" width="612" height="590" viewBox="0 0 1140 952" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                      <marker id="fwArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M0,0 L10,5 L0,10 z" fill="#8c98a8"></path>
+                      </marker>
+                      <marker id="reinvArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M0,0 L10,5 L0,10 z" fill="#d4a017"></path>
+                      </marker>
+                      <marker id="foundArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M0,0 L10,5 L0,10 z" fill="#455a64"></path>
+                      </marker>
+                      <marker id="interArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M0,0 L10,5 L0,10 z" fill="#2f7d4f"></path>
+                      </marker>
+                      <radialGradient id="hubGold" cx="50%" cy="40%" r="65%">
+                        <stop offset="0%" stop-color="#ffe08a"></stop>
+                        <stop offset="100%" stop-color="#f0b429"></stop>
+                      </radialGradient>
+                      <linearGradient id="interestGreen" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#7cc47f"></stop>
+                        <stop offset="100%" stop-color="#2f7d4f"></stop>
+                      </linearGradient>
+                      <style>
+                        .stageT { font: 700 18px 'Roboto', sans-serif; fill:#fff; }
+                        .pillT  { font: 600 13px 'Roboto', sans-serif; fill:#fff; }
+                        .hubT   { font: 800 17px 'Roboto', sans-serif; fill:#232f3e; }
+                        .hubR   { font: 700 10px 'Roboto', sans-serif; fill:#7a5b00; }
+                        .moreT  { font: 700 11px 'Roboto', sans-serif; fill:#232f3e; }
+                        .foundT { font: 800 15px 'Roboto', sans-serif; fill:#fff; }
+                        .foundS { font: 600 11.5px 'Roboto', sans-serif; fill:#fff; opacity:.9; }
+                        .foundN { font: 700 11px 'Roboto', sans-serif; fill:#607d8b; letter-spacing:.3px; }
+                        .interT { font: 800 15px 'Roboto', sans-serif; fill:#fff; }
+                        .interS { font: 600 11.5px 'Roboto', sans-serif; fill:#fff; opacity:.92; }
+                      </style>
+                    </defs>
+
+                    <!-- flywheel rim -->
+                    <circle cx="570" cy="350" r="168" fill="none" stroke="#cfd6de" stroke-width="2" stroke-dasharray="3 7"></circle>
+
+                    <!-- ===== FOUNDATION support arrows (slate) -> Build, More-possibilities, Content ===== -->
+                    <g stroke="#455a64" stroke-width="3.5" fill="none">
+                      <line x1="478" y1="696" x2="420" y2="430" marker-end="url(#foundArrow)"></line>
+                      <line x1="570" y1="696" x2="570" y2="644" marker-end="url(#foundArrow)"></line>
+                      <line x1="662" y1="696" x2="720" y2="430" marker-end="url(#foundArrow)"></line>
+                    </g>
+
+                    <!-- ===== spokes (hub -> outside items) ===== -->
+                    <g stroke-width="2.4" stroke-linecap="round">
+                      <g stroke="#ff9900" opacity="0.55">
+                        <line x1="738" y1="350" x2="930" y2="195"></line>
+                        <line x1="738" y1="350" x2="985" y2="295"></line>
+                        <line x1="738" y1="350" x2="975" y2="392"></line>
+                        <line x1="738" y1="350" x2="935" y2="495"></line>
+                      </g>
+                      <g stroke="#0e8fab" opacity="0.55">
+                        <line x1="402" y1="350" x2="215" y2="180"></line>
+                        <line x1="402" y1="350" x2="165" y2="268"></line>
+                        <line x1="402" y1="350" x2="150" y2="360"></line>
+                        <line x1="402" y1="350" x2="165" y2="452"></line>
+                        <line x1="402" y1="350" x2="215" y2="540"></line>
+                      </g>
+                      <g stroke="#6f42c1" opacity="0.55">
+                        <line x1="570" y1="182" x2="415" y2="88"></line>
+                        <line x1="570" y1="182" x2="715" y2="88"></line>
+                      </g>
+                    </g>
+
+                    <!-- ===== flow arrows (clockwise: Content -> Build -> Show -> Content) ===== -->
+                    <g fill="none" stroke="#8c98a8" stroke-width="5">
+                      <path d="M719,436 A172,172 0 0 1 421,436" marker-end="url(#fwArrow)"></path>
+                      <path d="M421,264 A172,172 0 0 1 484,201" marker-end="url(#fwArrow)"></path>
+                      <path d="M656,201 A172,172 0 0 1 719,264" marker-end="url(#fwArrow)"></path>
+                    </g>
+
+                    <!-- reinvest (Revenue -> Content) -->
+                    <line x1="630" y1="350" x2="662" y2="350" stroke="#d4a017" stroke-width="2.4" stroke-dasharray="3 3" marker-end="url(#reinvArrow)"></line>
+
+                    <!-- more-possibilities feedback: Build -> circle -> Content -->
+                    <line x1="446" y1="412" x2="540" y2="545" stroke="#d4a017" stroke-width="2.4" stroke-dasharray="5 4" marker-end="url(#reinvArrow)"></line>
+                    <line x1="600" y1="545" x2="694" y2="412" stroke="#d4a017" stroke-width="2.4" stroke-dasharray="5 4" marker-end="url(#reinvArrow)"></line>
+
+                    <!-- ===== HUBS ===== -->
+                    <circle cx="570" cy="182" r="76" fill="#6f42c1" stroke="#56329b" stroke-width="3"></circle>
+                    <text class="stageT" x="570" y="176" text-anchor="middle">Show</text>
+                    <text class="stageT" x="570" y="198" text-anchor="middle">Connection</text>
+
+                    <circle cx="738" cy="350" r="76" fill="#ff9900" stroke="#e07b00" stroke-width="3"></circle>
+                    <text class="stageT" x="738" y="344" text-anchor="middle">Content</text>
+                    <text class="stageT" x="738" y="366" text-anchor="middle">Creation</text>
+
+                    <circle cx="402" cy="350" r="76" fill="#0e8fab" stroke="#0a7088" stroke-width="3"></circle>
+                    <text class="stageT" x="402" y="344" text-anchor="middle">Build</text>
+                    <text class="stageT" x="402" y="366" text-anchor="middle">Connection</text>
+
+                    <!-- Revenue axle -->
+                    <circle cx="570" cy="350" r="60" fill="url(#hubGold)" stroke="#d4a017" stroke-width="3"></circle>
+                    <text class="hubT" x="570" y="346" text-anchor="middle">Revenue</text>
+                    <text class="hubR" x="570" y="364" text-anchor="middle">&#8635; reinvest</text>
+
+                    <!-- ===== OUTSIDE ITEMS ===== -->
+                    <!-- Content (orange) -->
+                    <g>
+                      <rect x="832" y="170" width="196" height="50" rx="11" fill="#ffac33"></rect>
+                      <text class="pillT" x="930" y="190" text-anchor="middle">Company-sponsored</text>
+                      <text class="pillT" x="930" y="208" text-anchor="middle">marketing</text>
+                      <rect x="910" y="276" width="150" height="38" rx="11" fill="#ffac33"></rect>
+                      <text class="pillT" x="985" y="300" text-anchor="middle">Personal blog</text>
+                      <rect x="844" y="373" width="262" height="38" rx="11" fill="#ffac33"></rect>
+                      <text class="pillT" x="975" y="397" text-anchor="middle">Social: LinkedIn · X · RedNote</text>
+                      <rect x="825" y="468" width="220" height="54" rx="11" fill="#ffac33"></rect>
+                      <text class="pillT" x="935" y="489" text-anchor="middle">Panelist · interview ·</text>
+                      <text class="pillT" x="935" y="507" text-anchor="middle">guest lecture · book</text>
+                    </g>
+                    <!-- Build (teal) -->
+                    <g>
+                      <rect x="145" y="161" width="140" height="38" rx="11" fill="#1aa6c2"></rect>
+                      <text class="pillT" x="215" y="185" text-anchor="middle">Peers</text>
+                      <rect x="85" y="249" width="160" height="38" rx="11" fill="#1aa6c2"></rect>
+                      <text class="pillT" x="165" y="273" text-anchor="middle">Community</text>
+                      <rect x="52" y="335" width="196" height="50" rx="11" fill="#1aa6c2"></rect>
+                      <text class="pillT" x="150" y="355" text-anchor="middle">Universities &amp;</text>
+                      <text class="pillT" x="150" y="373" text-anchor="middle">companies</text>
+                      <rect x="65" y="427" width="200" height="50" rx="11" fill="#1aa6c2"></rect>
+                      <text class="pillT" x="165" y="447" text-anchor="middle">Sponsors · leaders</text>
+                      <text class="pillT" x="165" y="465" text-anchor="middle">VCs</text>
+                      <rect x="145" y="521" width="140" height="38" rx="11" fill="#1aa6c2"></rect>
+                      <text class="pillT" x="215" y="545" text-anchor="middle">Followers</text>
+                    </g>
+                    <!-- Show (purple) -->
+                    <g>
+                      <rect x="325" y="69" width="180" height="38" rx="11" fill="#8662d6"></rect>
+                      <text class="pillT" x="415" y="93" text-anchor="middle">Photos &amp; posts</text>
+                      <rect x="630" y="69" width="170" height="38" rx="11" fill="#8662d6"></rect>
+                      <text class="pillT" x="715" y="93" text-anchor="middle">Video podcast</text>
+                    </g>
+
+                    <!-- More possibilities & points of view (outcome circle) -->
+                    <g>
+                      <circle cx="570" cy="588" r="52" fill="url(#hubGold)" stroke="#d4a017" stroke-width="2.5" stroke-dasharray="5 4"></circle>
+                      <text class="moreT" x="570" y="574" text-anchor="middle">More</text>
+                      <text class="moreT" x="570" y="590" text-anchor="middle">possibilities &amp;</text>
+                      <text class="moreT" x="570" y="606" text-anchor="middle">points of view</text>
+                    </g>
+
+                    <!-- THE FOUNDATION platform -->
+                    <rect x="190" y="700" width="760" height="96" rx="16" fill="#455a64"></rect>
+                    <text class="foundT" x="570" y="728" text-anchor="middle">THE FOUNDATION &#8212; practice as a craft</text>
+                    <text class="foundS" x="570" y="752" text-anchor="middle">Corporate &#183; product &amp; project delivery &#183; research papers &amp; publications (peer review)</text>
+                    <text class="foundS" x="570" y="772" text-anchor="middle">open-source program contributions &#183; shipping real things</text>
+
+                    <!-- ===== arrows: Interests -> Foundation ===== -->
+                    <g stroke="#2f7d4f" stroke-width="3.5" fill="none">
+                      <line x1="380" y1="824" x2="380" y2="800" marker-end="url(#interArrow)"></line>
+                      <line x1="570" y1="824" x2="570" y2="800" marker-end="url(#interArrow)"></line>
+                      <line x1="760" y1="824" x2="760" y2="800" marker-end="url(#interArrow)"></line>
+                    </g>
+
+                    <!-- ===== INTERESTS bedrock (interests-driven) ===== -->
+                    <rect x="150" y="828" width="840" height="94" rx="16" fill="url(#interestGreen)"></rect>
+                    <g opacity="0.92"><!-- left sprout -->
+                      <path d="M212,896 C212,886 212,878 212,868" stroke="#e8f5e9" stroke-width="2.5" fill="none"></path>
+                      <ellipse cx="205" cy="876" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(-35 205 876)"></ellipse>
+                      <ellipse cx="219" cy="872" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(35 219 872)"></ellipse>
+                    </g>
+                    <g opacity="0.92"><!-- right sprout -->
+                      <path d="M928,896 C928,886 928,878 928,868" stroke="#e8f5e9" stroke-width="2.5" fill="none"></path>
+                      <ellipse cx="921" cy="876" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(-35 921 876)"></ellipse>
+                      <ellipse cx="935" cy="872" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(35 935 872)"></ellipse>
+                    </g>
+                    <text class="interT" x="570" y="862" text-anchor="middle">INTERESTS &#8212; interests-driven (&#20852;&#36259;&#39537;&#21160;)</text>
+                    <text class="interS" x="570" y="884" text-anchor="middle">curiosity &#183; taste &#183; what you genuinely love</text>
+                    <text class="interS" x="570" y="904" text-anchor="middle">the natural source the whole stack grows from</text>
+                  </svg>
+</svg>
