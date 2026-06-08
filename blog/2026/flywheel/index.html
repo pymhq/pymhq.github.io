@@ -132,7 +132,7 @@
 
                   <!-- ===================== FLYWHEEL SVG ===================== -->
                   <div class="flywheel-wrap">
-                  <svg viewBox="0 0 1140 840" role="img" aria-label="Personal brand flywheel diagram">
+                  <svg viewBox="0 0 1140 952" role="img" aria-label="Personal brand flywheel diagram">
                     <defs>
                       <marker id="fwArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                         <path d="M0,0 L10,5 L0,10 z" fill="#8c98a8"></path>
@@ -143,10 +143,17 @@
                       <marker id="foundArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                         <path d="M0,0 L10,5 L0,10 z" fill="#455a64"></path>
                       </marker>
+                      <marker id="interArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M0,0 L10,5 L0,10 z" fill="#2f7d4f"></path>
+                      </marker>
                       <radialGradient id="hubGold" cx="50%" cy="40%" r="65%">
                         <stop offset="0%" stop-color="#ffe08a"></stop>
                         <stop offset="100%" stop-color="#f0b429"></stop>
                       </radialGradient>
+                      <linearGradient id="interestGreen" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#7cc47f"></stop>
+                        <stop offset="100%" stop-color="#2f7d4f"></stop>
+                      </linearGradient>
                       <style>
                         .stageT { font: 700 18px 'Roboto', sans-serif; fill:#fff; }
                         .pillT  { font: 600 13px 'Roboto', sans-serif; fill:#fff; }
@@ -156,6 +163,8 @@
                         .foundT { font: 800 15px 'Roboto', sans-serif; fill:#fff; }
                         .foundS { font: 600 11.5px 'Roboto', sans-serif; fill:#fff; opacity:.9; }
                         .foundN { font: 700 11px 'Roboto', sans-serif; fill:#607d8b; letter-spacing:.3px; }
+                        .interT { font: 800 15px 'Roboto', sans-serif; fill:#fff; }
+                        .interS { font: 600 11.5px 'Roboto', sans-serif; fill:#fff; opacity:.92; }
                       </style>
                     </defs>
 
@@ -272,6 +281,29 @@
                     <text class="foundT" x="570" y="728" text-anchor="middle">THE FOUNDATION &#8212; practice as a craft</text>
                     <text class="foundS" x="570" y="752" text-anchor="middle">Corporate &#183; product &amp; project delivery &#183; research papers &amp; publications (peer review)</text>
                     <text class="foundS" x="570" y="772" text-anchor="middle">open-source program contributions &#183; shipping real things</text>
+
+                    <!-- ===== arrows: Interests -> Foundation ===== -->
+                    <g stroke="#2f7d4f" stroke-width="3.5" fill="none">
+                      <line x1="380" y1="824" x2="380" y2="800" marker-end="url(#interArrow)"></line>
+                      <line x1="570" y1="824" x2="570" y2="800" marker-end="url(#interArrow)"></line>
+                      <line x1="760" y1="824" x2="760" y2="800" marker-end="url(#interArrow)"></line>
+                    </g>
+
+                    <!-- ===== INTERESTS bedrock (interests-driven) ===== -->
+                    <rect x="150" y="828" width="840" height="94" rx="16" fill="url(#interestGreen)"></rect>
+                    <g opacity="0.92"><!-- left sprout -->
+                      <path d="M212,896 C212,886 212,878 212,868" stroke="#e8f5e9" stroke-width="2.5" fill="none"></path>
+                      <ellipse cx="205" cy="876" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(-35 205 876)"></ellipse>
+                      <ellipse cx="219" cy="872" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(35 219 872)"></ellipse>
+                    </g>
+                    <g opacity="0.92"><!-- right sprout -->
+                      <path d="M928,896 C928,886 928,878 928,868" stroke="#e8f5e9" stroke-width="2.5" fill="none"></path>
+                      <ellipse cx="921" cy="876" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(-35 921 876)"></ellipse>
+                      <ellipse cx="935" cy="872" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(35 935 872)"></ellipse>
+                    </g>
+                    <text class="interT" x="570" y="862" text-anchor="middle">INTERESTS &#8212; interests-driven (&#20852;&#36259;&#39537;&#21160;)</text>
+                    <text class="interS" x="570" y="884" text-anchor="middle">curiosity &#183; taste &#183; what you genuinely love</text>
+                    <text class="interS" x="570" y="904" text-anchor="middle">the natural source the whole stack grows from</text>
                   </svg>
                   </div>
                   <p class="fw-cap">
@@ -279,11 +311,29 @@
                     back to more content. At the center sits the <strong>axle: Revenue</strong>, reinvested to spin the wheel faster.
                     The gold circle is the wheel's other output — <strong>Build Connection</strong> opens
                     <em>more possibilities and points of view</em> that feed back into <strong>Content Creation</strong>. And the whole wheel rests on a
-                    <strong>foundation of real building work</strong>.
+                    <strong>foundation of real building work</strong> — which in turn grows from a deeper, green
+                    <strong>bedrock of genuine interests</strong> (兴趣驱动).
                   </p>
                   <!-- =================== END FLYWHEEL SVG =================== -->
 
                   <hr>
+
+                  <h3>🌱 &middot; <span style="color:#2f7d4f;">Interests</span> — interests-driven (兴趣驱动)</h3>
+                  <p>
+                    Look one layer deeper than the foundation and you reach the bedrock the whole stack grows from:
+                    <strong>genuine interest</strong>. You don't sustain years of real work on discipline alone — you sustain it
+                    because you are honestly curious about the thing itself. That's <strong>兴趣驱动 — interest-driven</strong>:
+                    you build what you'd want to build anyway.
+                  </p>
+                  <p>
+                    This is the layer that makes everything above it feel <em>natural</em> rather than forced, and
+                    <em>beautiful</em> rather than mechanical. When the work grows out of what you genuinely love, the
+                    foundation lays itself, the wheel is easier to push, and the brand sounds like a real person instead of a
+                    marketing exercise. I drew it as the green bedrock beneath the foundation — soil, not scaffolding —
+                    because interests are alive: they grow, branch, and quietly decide which direction the whole wheel will
+                    eventually turn. Get this layer right and everything above it compounds; get it wrong and no amount of
+                    pushing makes the wheel feel light.
+                  </p>
 
                   <h3>0 &middot; <span style="color:#455a64;">The Foundation</span> — practice as a craft</h3>
                   <p>
@@ -409,12 +459,14 @@
                   </p>
 
                   <div class="flywheel-wrap">
-                  <svg viewBox="0 0 1140 840" role="img" aria-label="个人品牌飞轮图">
+                  <svg viewBox="0 0 1140 952" role="img" aria-label="个人品牌飞轮图">
                     <defs>
                       <marker id="fwArrowZ" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8c98a8"></path></marker>
                       <marker id="reinvArrowZ" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4a017"></path></marker>
                       <marker id="foundArrowZ" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#455a64"></path></marker>
+                      <marker id="interArrowZ" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f7d4f"></path></marker>
                       <radialGradient id="hubGoldZ" cx="50%" cy="40%" r="65%"><stop offset="0%" stop-color="#ffe08a"></stop><stop offset="100%" stop-color="#f0b429"></stop></radialGradient>
+                      <linearGradient id="interestGreenZ" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7cc47f"></stop><stop offset="100%" stop-color="#2f7d4f"></stop></linearGradient>
                       <style>
                         .stageTz { font: 700 19px 'Roboto', sans-serif; fill:#fff; }
                         .pillTz  { font: 600 13px 'Roboto', sans-serif; fill:#fff; }
@@ -423,6 +475,8 @@
                         .moreTz  { font: 700 12px 'Roboto', sans-serif; fill:#232f3e; }
                         .foundTz { font: 800 16px 'Roboto', sans-serif; fill:#fff; }
                         .foundSz { font: 600 12px 'Roboto', sans-serif; fill:#fff; opacity:.9; }
+                        .interTz { font: 800 16px 'Roboto', sans-serif; fill:#fff; }
+                        .interSz { font: 600 12px 'Roboto', sans-serif; fill:#fff; opacity:.92; }
                       </style>
                     </defs>
                     <circle cx="570" cy="350" r="168" fill="none" stroke="#cfd6de" stroke-width="2" stroke-dasharray="3 7"></circle>
@@ -506,13 +560,40 @@
                     <text class="foundTz" x="570" y="728" text-anchor="middle">基础 — 把实践当作一门手艺</text>
                     <text class="foundSz" x="570" y="752" text-anchor="middle">企业 · 产品与项目交付 · 同行评审论文与出版物</text>
                     <text class="foundSz" x="570" y="772" text-anchor="middle">开源项目贡献 · 交付价值产出</text>
+                    <g stroke="#2f7d4f" stroke-width="3.5" fill="none">
+                      <line x1="380" y1="824" x2="380" y2="800" marker-end="url(#interArrowZ)"></line>
+                      <line x1="570" y1="824" x2="570" y2="800" marker-end="url(#interArrowZ)"></line>
+                      <line x1="760" y1="824" x2="760" y2="800" marker-end="url(#interArrowZ)"></line>
+                    </g>
+                    <rect x="150" y="828" width="840" height="94" rx="16" fill="url(#interestGreenZ)"></rect>
+                    <g opacity="0.92">
+                      <path d="M212,896 C212,886 212,878 212,868" stroke="#e8f5e9" stroke-width="2.5" fill="none"></path>
+                      <ellipse cx="205" cy="876" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(-35 205 876)"></ellipse>
+                      <ellipse cx="219" cy="872" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(35 219 872)"></ellipse>
+                    </g>
+                    <g opacity="0.92">
+                      <path d="M928,896 C928,886 928,878 928,868" stroke="#e8f5e9" stroke-width="2.5" fill="none"></path>
+                      <ellipse cx="921" cy="876" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(-35 921 876)"></ellipse>
+                      <ellipse cx="935" cy="872" rx="8" ry="4.5" fill="#cdebd0" transform="rotate(35 935 872)"></ellipse>
+                    </g>
+                    <text class="interTz" x="570" y="862" text-anchor="middle">兴趣 — 兴趣驱动（interests-driven）</text>
+                    <text class="interSz" x="570" y="884" text-anchor="middle">好奇 · 品味 · 你真心热爱的东西</text>
+                    <text class="interSz" x="570" y="904" text-anchor="middle">整个栈自然生长的源头</text>
                   </svg>
                   </div>
                   <p class="fw-cap">
-                    三段弧顺时针转动——<strong>内容创作 &rarr; 建立连接 &rarr; 展示连接 &rarr;</strong> 回到更多内容。轮子中心是轴：<strong>收入</strong>，再投入以让轮子转得更快。金色圆圈是轮子的另一项产出——<strong>建立连接</strong>带来<em>更多可能性与视角</em>，反哺<strong>内容创作</strong>。而整个轮子，都立于<strong>真实实践的基础</strong>之上。
+                    三段弧顺时针转动——<strong>内容创作 &rarr; 建立连接 &rarr; 展示连接 &rarr;</strong> 回到更多内容。轮子中心是轴：<strong>收入</strong>，再投入以让轮子转得更快。金色圆圈是轮子的另一项产出——<strong>建立连接</strong>带来<em>更多可能性与视角</em>，反哺<strong>内容创作</strong>。而整个轮子，都立于<strong>真实实践的基础</strong>之上——而这基础本身，又生长自更深一层的绿色<strong>兴趣基岩</strong>（兴趣驱动）。
                   </p>
 
                   <hr>
+
+                  <h3>🌱 &middot; <span style="color:#2f7d4f;">兴趣</span> — 兴趣驱动（interests-driven）</h3>
+                  <p>
+                    比基础再往下看一层，你会触到整个栈赖以生长的基岩：<strong>真正的兴趣</strong>。多年的真实工作，光靠自律是撑不住的——你能坚持下来，是因为你对这件事本身怀有诚实的好奇。这就是<strong>兴趣驱动</strong>：你去做的，本就是你无论如何都想做的事。
+                  </p>
+                  <p>
+                    正是这一层，让它上面的一切显得<em>自然</em>而非勉强，<em>美</em>而非机械。当工作从你真心热爱的东西里生长出来，基础会自己铺就，轮子更省力，品牌听起来也像一个真实的人，而不是一场营销操练。我把它画成基础之下的绿色基岩——是土壤，而非脚手架——因为兴趣是活的：它会生长、分枝，并悄悄决定整个轮子最终会朝哪个方向转。把这一层做对，它上面的一切都会复利；做错，再怎么推，轮子也不会变轻。
+                  </p>
 
                   <h3>0 &middot; <span style="color:#455a64;">基础</span> — 把实践当作一门手艺</h3>
                   <p>
