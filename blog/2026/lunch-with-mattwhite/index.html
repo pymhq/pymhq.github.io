@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> Lunch with CTO of The Linux Foundation &amp; PyTorch Foundation Matt White </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="A lunch at MLSys 2026 with Matt White — Global CTO of AI at the Linux Foundation and CTO of the PyTorch Foundation — on open-source AI, anchor projects, world models, open-weights frontier models, and his field report from China.">
+      <meta name="keywords" content="Matt White, Linux Foundation, PyTorch Foundation, open source AI, MLSys 2026, agentic AI, world models, open weights">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/lunch-with-mattwhite/">
+      <meta property="og:title" content="Lunch with CTO of The Linux Foundation & PyTorch Foundation Matt White">
+      <meta property="og:description" content="A lunch at MLSys 2026 with Matt White on open-source AI, anchor projects, world models, open-weights frontier models, and his field report from China.">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/lunch-with-mattwhite/lunch-with-matt.png">
+      <meta property="og:image:width" content="896">
+      <meta property="og:image:height" content="1195">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="Lunch with CTO of The Linux Foundation & PyTorch Foundation Matt White">
+      <meta name="twitter:description" content="A lunch at MLSys 2026 with Matt White on open-source AI, anchor projects, world models, open-weights frontier models, and his field report from China.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/lunch-with-mattwhite/lunch-with-matt.png">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="shortcut icon" href="/assets/projects/Peng Andys Logo Symbol.png">
+      <link rel="stylesheet" href="/assets/css/main.css">
+      <link rel="canonical" href="https://pengandy.com/blog/2026/lunch-with-mattwhite/">
+      <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+      <script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+         <script src="/assets/js/components.js" defer></script>
+   </head>
+   <style>
+     img { pointer-events: none; }
+     .center { display: block; margin-left: auto; margin-right: auto; width: 50%; }
+
+     /* anchor-project diagram */
+     .anchor-wrap { max-width: 560px; margin: 26px auto 8px auto; }
+     .anchor-row {
+       display: flex;
+       align-items: center;
+       gap: 14px;
+       padding: 10px 4px;
+       border-bottom: 1px solid rgba(128,128,128,0.15);
+     }
+     .anchor-row:last-child { border-bottom: none; }
+     .anchor-eco {
+       flex: 1 1 0;
+       text-align: right;
+       font-weight: 600;
+       color: #555;
+       font-size: 0.98em;
+     }
+     .anchor-arrow { color: #aaa; flex: 0 0 auto; }
+     .anchor-proj {
+       flex: 0 0 168px;
+       text-align: center;
+       color: #fff;
+       font-weight: 700;
+       padding: 8px 10px;
+       border-radius: 8px;
+       font-size: 0.95em;
+     }
+     .anchor-cap { text-align: center; font-size: 0.84em; color: #888; margin: 4px auto 28px auto; max-width: 560px; }
+     @media (max-width: 576px) {
+       .anchor-eco { font-size: 0.86em; }
+       .anchor-proj { flex-basis: 130px; font-size: 0.85em; }
+     }
+
+     /* language toggle */
+     .lang-toggle { display:flex; justify-content:flex-end; gap:0; margin:0 0 18px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
+     body.zh .lang-en { display:none; }
+     body.zh .lang-zh { display:block; }
+   </style>
+   <body class="fixed-top-nav" data-page="blog">
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title"><span class="lang-en">Lunch with CTO of The Linux Foundation &amp; PyTorch Foundation Matt White</span><span class="lang-zh">与 Linux 基金会及 PyTorch 基金会 CTO Matt White 的午餐</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in May 19, 2026 </span><span class="lang-zh"> 创建于 2026 年 5 月 19 日 </span></p>
+               <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a>   ·   <a href="/blog/category/community"> <i class="fa-solid fa-tag fa-sm"></i> community</a> </p>
+            </header>
+            <article class="post-content">
+               <div id="markdown-content">
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" class="active" onclick="__setMWLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setMWLang('zh')">中文</button>
+                  </div>
+                  <div class="lang-en">
+
+                  <div style="margin: 8px 0 32px 0; padding: 22px 26px; background: rgba(128,128,128,0.07); border-radius: 6px;">
+                    <p style="font-size: 1.12em; font-style: italic; line-height: 1.7; margin-bottom: 10px;">
+                      "Open source is not a license — it's a supply chain and a community."
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      — a paraphrase of the afternoon
+                    </p>
+                  </div>
+
+                  <p>
+                    Last month at <a href="/blog/2026/mlsys/">MLSys 2026</a> in Bellevue, I had lunch with
+                    <a href="https://www.matt-white.com/" target="_blank" rel="noopener noreferrer">Matt White</a> —
+                    Global CTO of AI at the <strong>Linux Foundation</strong>, CTO of the <strong>PyTorch Foundation</strong>,
+                    and CTO of the newer <strong>Agentic AI Foundation</strong> (among a long list of open-source roles, from
+                    LF AI &amp; Data to the Generative AI Commons). It was the kind of conversation that only happens in person,
+                    and it had been a couple of years in the making.
+                  </p>
+
+                  <div style="text-align: center; margin: 10px auto 30px auto;">
+                    <img src="/assets/blog/lunch-with-mattwhite/lunch-with-matt.png"
+                         alt="Andy Peng and Matt White at MLSys 2026, both wearing MLSys lanyards"
+                         style="max-width: 340px; width: 100%; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"
+                         draggable="false">
+                    <div style="font-size: 0.82em; color: #888; margin-top: 8px;">With Matt White at MLSys 2026, Bellevue, WA.</div>
+                  </div>
+
+                  <h3>How we (finally) met</h3>
+
+                  <p>
+                    Matt and I first connected on LinkedIn back in <strong>2024</strong>, when he was CTO of LF AI &amp; Data and
+                    the large-model era was just beginning (<a href="https://openai.com/blog/chatgpt" target="_blank" rel="noopener noreferrer">ChatGPT</a>
+                    had only launched in November 2022). That year we were both at the PyTorch Conference in San Francisco and
+                    somehow <em>missed each other</em>. So I kept up the other way: reading what Matt writes and shares, most
+                    recently his excellent field report,
+                    <a href="https://matthewdwhite.medium.com/eight-days-in-china-a-field-report-from-inside-the-labs-523c53e79dfc" target="_blank" rel="noopener noreferrer"><em>"Eight Days in China: A Field Report from Inside the Labs."</em></a>
+                  </p>
+
+                  <p>
+                    Because I've spent the last few years contributing to the Linux Foundation community, and we already
+                    knew each other, lining up a meeting during MLSys week came together naturally. We bumped into each other
+                    at the venue on <strong>5/18</strong>, and set a lunch for <strong>5/19</strong>.
+                  </p>
+
+                  <h3>The booth and the brunch</h3>
+
+                  <p>
+                    When I found Matt on the 19th, he was still at the <strong>PyTorch booth</strong> — hands-on, debugging a
+                    stubborn USB connection on the demo screen. Very on-brand for someone who runs foundations and still fixes
+                    the hardware. I pulled him away and we walked over to <strong>Cafe Hagen</strong>, a cozy
+                    brunch spot nearby (avocado toast included), where we traded notes on what each of us has been building lately.
+                  </p>
+
+                  <h3>Every foundation needs an "anchor project"</h3>
+
+                  <p>
+                    Matt talked about his work at the Agentic AI Foundation and his earlier years at <strong>IBM</strong>. I
+                    asked the question I'd been saving: how does he see the Silicon-Valley-hot space of <strong>world models and
+                    robotics</strong> — the kind of work <a href="https://www.worldlabs.ai/" target="_blank" rel="noopener noreferrer">Fei-Fei Li</a>
+                    and others are pushing into multimodal, spatial intelligence — and does the Linux Foundation have plans there?
+                  </p>
+
+                  <p>
+                    He's studying it, he said, but the honest answer is that a credible open movement needs an
+                    <strong>anchor project</strong> to rally around first. The pattern repeats across the open ecosystem:
+                  </p>
+
+                  <div class="anchor-wrap">
+                    <div class="anchor-row">
+                      <span class="anchor-eco">CNCF</span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="background:#326ce5;">Kubernetes</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">PyTorch Foundation</span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="background:#ee4c2c;">PyTorch</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">Agentic AI Foundation</span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="background:#6f42c1;">MCP</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">World models &amp; robotics</span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="background:#fff; color:#6c757d; border:2px dashed #adb5bd;">anchor TBD</span>
+                    </div>
+                  </div>
+                  <p class="anchor-cap">
+                    A movement coalesces around one indispensable project. World models and robotics don't have their open
+                    anchor yet — finding (or seeding) it is the hard part.
+                  </p>
+
+                  <p>
+                    He shared sharp observations about which companies are quietly building these capabilities in-house versus
+                    leaning on open foundations — and where the gaps are.
+                  </p>
+
+                  <h3>Open-weights frontier models &amp; the supply chain</h3>
+
+                  <p>
+                    That led us into <strong>open-weights frontier models</strong>. Matt's read: the U.S. doesn't really have an
+                    open-weights frontier model right now — Google's open releases being the notable exception — and the country
+                    still needs to build up the <em>supply chain</em> around open models (data, weights, tooling, evals,
+                    distribution). His point was that <strong>China is doing this remarkably well</strong>: a dense, fast-moving
+                    open-weights ecosystem. It reframed "open source AI" for me as less of a licensing question and more of an
+                    industrial one — a supply chain and a community, not just a repo.
+                  </p>
+
+                  <h3>Eight days in China</h3>
+
+                  <p>
+                    Naturally I asked about his <a href="https://matthewdwhite.medium.com/eight-days-in-china-a-field-report-from-inside-the-labs-523c53e79dfc" target="_blank" rel="noopener noreferrer">China trip</a>.
+                    He lit up — visiting labs and companies across <strong>Hangzhou, Shenzhen</strong>, and beyond, and (of course)
+                    the food. If you haven't read his field reports, they're the most grounded "inside the labs" accounts I've seen
+                    this year — see also <a href="https://matthewdwhite.substack.com/p/from-code-to-cognition-how-llms-vlas" target="_blank" rel="noopener noreferrer"><em>"From Code to Cognition: How LLMs &amp; VLAs…"</em></a>.
+                    He also mentioned he'd be heading back to China soon after MLSys, for
+                    <a href="https://www.beyondexpo.com/" target="_blank" rel="noopener noreferrer">BEYOND Expo</a>.
+                    Afterward we walked to the Starbucks near the conference hotel and grabbed drinks.
+                  </p>
+
+                  <h3>A French grandmother, a phone, and Gemini</h3>
+
+                  <p>
+                    The best moment wasn't on the agenda. On our way to lunch, an elderly French lady stopped us — her English
+                    wasn't fluent — holding up her phone with <strong>Gemini</strong> open, asking how to get to the
+                    <em>Old Navy at Factoria</em>. The mall turned out to be far from where we were standing. I don't speak French;
+                    Matt did, and helped her sort it out.
+                  </p>
+
+                  <p>
+                    We laughed about it afterward: AI has genuinely reached <em>every</em> generation and woven itself into daily
+                    life — a French grandmother navigating a foreign city with a model in her pocket. That's the adoption curve
+                    no benchmark captures.
+                  </p>
+
+                  <h3>Again, at the Together AI meetup</h3>
+
+                  <p>
+                    That evening I ran into Matt once more — at the <strong>Together AI</strong> meetup. We picked the thread back
+                    up on <strong>open-source AI community building</strong>: how to grow contributors, how to keep neutral
+                    governance, and how to give a new direction its anchor.
+                  </p>
+
+                  <hr>
+
+                  <p>
+                    Two takeaways I'm still chewing on: open source AI is a <em>supply chain</em>, not a checkbox; and every new
+                    direction — world models included — waits on someone willing to build its anchor. Grateful to Matt for the
+                    time, the French translation, and the perspective.
+                  </p>
+
+                  <p style="font-size: 1.1em; font-weight: bold; margin-top: 28px;">
+                    Build in the open. Then bring people along.
+                  </p>
+               </div><!-- /lang-en -->
+                  <div class="lang-zh">
+                  <div style="margin: 8px 0 32px 0; padding: 22px 26px; background: rgba(128,128,128,0.07); border-radius: 6px;">
+                    <p style="font-size: 1.12em; font-style: italic; line-height: 1.7; margin-bottom: 10px;">
+                      “开源不是一纸许可证——它是一条供应链，也是一个社区。”
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      —— 当天午后的一句概括
+                    </p>
+                  </div>
+
+                  <p>
+                    上个月，在 Bellevue 举办的 <a href="/blog/2026/mlsys/">MLSys 2026</a> 上，我和
+                    <a href="https://www.matt-white.com/" target="_blank" rel="noopener noreferrer">Matt White</a> 一起吃了顿午饭——
+                    他是 <strong>Linux 基金会</strong>的全球 AI CTO、<strong>PyTorch 基金会</strong>的 CTO，也是新近成立的
+                    <strong>Agentic AI 基金会</strong>的 CTO（此外还有一长串开源相关的身份，从 LF AI &amp; Data 到 Generative AI Commons）。
+                    这是那种只有当面才聊得开的对话，而这次见面也酝酿了好几年。
+                  </p>
+
+                  <div style="text-align: center; margin: 10px auto 30px auto;">
+                    <img src="/assets/blog/lunch-with-mattwhite/lunch-with-matt.png"
+                         alt="Andy Peng 与 Matt White 摄于 MLSys 2026，两人都戴着 MLSys 的挂绳"
+                         style="max-width: 340px; width: 100%; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"
+                         draggable="false">
+                    <div style="font-size: 0.82em; color: #888; margin-top: 8px;">与 Matt White 摄于 MLSys 2026，华盛顿州 Bellevue。</div>
+                  </div>
+
+                  <h3>我们是怎么（终于）见上面的</h3>
+
+                  <p>
+                    我和 Matt 最早是在 <strong>2024 年</strong>通过 LinkedIn 连接上的，那时他是 LF AI &amp; Data 的 CTO，大模型时代才刚刚拉开序幕
+                    （<a href="https://openai.com/blog/chatgpt" target="_blank" rel="noopener noreferrer">ChatGPT</a> 直到 2022 年 11 月才发布）。
+                    那一年我们都在旧金山的 PyTorch 大会现场，却<em>擦肩而过</em>没能见上。于是我换了种方式保持关注：一直读 Matt 写的东西和分享，
+                    最近的就是他那篇出色的一线报告，
+                    <a href="https://matthewdwhite.medium.com/eight-days-in-china-a-field-report-from-inside-the-labs-523c53e79dfc" target="_blank" rel="noopener noreferrer"><em>《在中国的八天：来自实验室内部的一线报告》</em></a>。
+                  </p>
+
+                  <p>
+                    因为过去几年我一直在为 Linux 基金会社区做贡献，加上我们本就相识，要在 MLSys 这一周约个见面便水到渠成。
+                    我们 <strong>5/18</strong> 在会场偶遇，约好 <strong>5/19</strong> 一起午餐。
+                  </p>
+
+                  <h3>展台与早午餐</h3>
+
+                  <p>
+                    5 月 19 日我找到 Matt 时，他还守在 <strong>PyTorch 展台</strong>——亲力亲为，正在修一个怎么都不听话的 demo 屏幕 USB 连接。
+                    对一个既掌管着基金会、又还在亲手修硬件的人来说，这画面太贴切了。我把他拉了出来，我们步行去了附近一家温馨的早午餐店
+                    <strong>Cafe Hagen</strong>（当然少不了牛油果吐司），边吃边交换彼此近来的进展。
+                  </p>
+
+                  <h3>每个基金会都需要一个“锚点项目”</h3>
+
+                  <p>
+                    Matt 聊到了他在 Agentic AI 基金会的工作，以及更早年在 <strong>IBM</strong> 的经历。我抛出了憋了很久的问题：他怎么看硅谷当下正热的
+                    <strong>世界模型与机器人</strong>方向——也就是 <a href="https://www.worldlabs.ai/" target="_blank" rel="noopener noreferrer">李飞飞</a>
+                    等人正在推进的多模态、空间智能那一类工作——Linux 基金会在这个方向上有没有计划？
+                  </p>
+
+                  <p>
+                    他说他也在研究，但坦率讲，一个可信的开源运动首先需要一个<strong>锚点项目</strong>来把大家凝聚起来。这个规律在整个开源生态里反复出现：
+                  </p>
+
+                  <div class="anchor-wrap">
+                    <div class="anchor-row">
+                      <span class="anchor-eco">CNCF</span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="background:#326ce5;">Kubernetes</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">PyTorch 基金会</span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="background:#ee4c2c;">PyTorch</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">Agentic AI 基金会</span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="background:#6f42c1;">MCP</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">世界模型与机器人</span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="background:#fff; color:#6c757d; border:2px dashed #adb5bd;">锚点待定</span>
+                    </div>
+                  </div>
+                  <p class="anchor-cap">
+                    一场运动会围绕某一个不可或缺的项目凝聚成形。世界模型与机器人还没有属于自己的开源锚点——找到（或培育出）它，才是最难的部分。
+                  </p>
+
+                  <p>
+                    他还分享了一些犀利的观察：哪些公司在悄悄自研这些能力，哪些则依托开源基金会——以及缺口究竟在哪里。
+                  </p>
+
+                  <h3>开放权重的前沿模型，与那条供应链</h3>
+
+                  <p>
+                    这把我们带到了<strong>开放权重的前沿模型</strong>上。Matt 的判断是：美国眼下其实还没有真正的开放权重前沿模型——谷歌的开源发布算是个显著例外——
+                    而且整个国家还需要把围绕开放模型的<em>供应链</em>（数据、权重、工具链、评测、分发）搭建起来。他的观点是<strong>中国在这方面做得相当出色</strong>：
+                    一个密集而快速迭代的开放权重生态。这让我重新理解了“开源 AI”——它与其说是一个许可证问题，不如说是一个产业问题：一条供应链加一个社区，而不只是一个代码仓库。
+                  </p>
+
+                  <h3>在中国的八天</h3>
+
+                  <p>
+                    我自然问起了他的<a href="https://matthewdwhite.medium.com/eight-days-in-china-a-field-report-from-inside-the-labs-523c53e79dfc" target="_blank" rel="noopener noreferrer">中国行</a>。
+                    他一下子来了兴致——走访了 <strong>杭州、深圳</strong>等地的实验室和公司，当然还有美食。如果你还没读过他的一线报告，那是我今年看到的最接地气的“深入实验室内部”的记录——
+                    也可以再看看 <a href="https://matthewdwhite.substack.com/p/from-code-to-cognition-how-llms-vlas" target="_blank" rel="noopener noreferrer"><em>《从代码到认知：LLM 与 VLA 如何……》</em></a>。
+                    他还提到，MLSys 之后不久他会再去一趟中国，参加 <a href="https://www.beyondexpo.com/" target="_blank" rel="noopener noreferrer">BEYOND Expo</a>。
+                    之后我们走到会场酒店附近的星巴克，买了点喝的。
+                  </p>
+
+                  <h3>一位法国老奶奶、一部手机和 Gemini</h3>
+
+                  <p>
+                    最妙的一幕并不在计划之内。去吃午饭的路上，一位法国老太太把我们叫住——她英语不太流利——举着手机，屏幕上开着 <strong>Gemini</strong>，
+                    问我们怎么去 <em>Factoria 的 Old Navy</em>。结果那家商场离我们所在的地方相当远。我不会说法语；Matt 会，于是帮她把事情说清楚了。
+                  </p>
+
+                  <p>
+                    事后我们都笑了：AI 真的已经触达了<em>每一个</em>年龄层，渗进了日常生活——一位法国老奶奶，靠口袋里的一个模型在异国他乡找路。
+                    这条普及曲线，是任何基准测试都刻画不出来的。
+                  </p>
+
+                  <h3>再一次，在 Together AI 的 meetup 上</h3>
+
+                  <p>
+                    那天晚上我又碰到了 Matt——在 <strong>Together AI</strong> 的 meetup 上。我们接着白天的话题，聊起了<strong>开源 AI 的社区建设</strong>：
+                    如何吸引更多贡献者、如何保持中立的治理，以及如何为一个新方向找到它的锚点。
+                  </p>
+
+                  <hr>
+
+                  <p>
+                    还有两点我仍在回味：开源 AI 是一条<em>供应链</em>，而不是一个打勾项；每一个新方向——包括世界模型——都在等一个愿意去搭建其锚点的人。
+                    感谢 Matt 的时间、那段法语翻译，以及他的视角。
+                  </p>
+
+                  <p style="font-size: 1.1em; font-weight: bold; margin-top: 28px;">
+                    在开放中构建，然后带着大家一起走。
+                  </p>
+                  </div><!-- /lang-zh -->
+               </div>
+            </article>
+            <br>
+            <hr>
+            <br>
+            <p></p>
+         </div>
+         <div>
+           <a href="https://hits.sh/pengandy.com/blog/2026/lunch-with-mattwhite/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/lunch-with-mattwhite.svg?label=page%20views&color=007ec6"/></a>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script>
+      <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
+      <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+      <script>
+      (function(){
+        function setLang(l){
+          var zh = l==='zh';
+          document.body.classList.toggle('zh', zh);
+          var be=document.getElementById('lang-en-btn'), bz=document.getElementById('lang-zh-btn');
+          if(be) be.classList.toggle('active', !zh);
+          if(bz) bz.classList.toggle('active', zh);
+          try{ localStorage.setItem('mw-lang', l); }catch(e){}
+        }
+        window.__setMWLang=setLang;
+        function init(){ var v='en'; try{ v=localStorage.getItem('mw-lang')||'en'; }catch(e){} setLang(v); }
+        if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
+      })();
+      </script>
+   </body>
+</html>
