@@ -158,6 +158,7 @@
      .lang-zh { display:none; }
      body.zh .lang-en { display:none; }
      body.zh .lang-zh { display:block; }
+     h2[id], h3[id] { scroll-margin-top: 90px; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
@@ -235,7 +236,21 @@
                     No single move scores well on every axis. The interesting part is which ones you're willing to trade — and that changes as you grow. This first chapter is where I learned the lens existed at all.
                   </p>
 
-                  <h3 style="margin-top: 8px;">A Snapshot of My Work at Amazon</h3>
+                  <nav style="max-width: 640px; margin: 26px auto; border: 1px solid rgba(128,128,128,0.25); border-radius: 8px; padding: 16px 22px; background: rgba(128,128,128,0.04);">
+                    <div style="font-weight: 700; font-size: 0.82em; letter-spacing: 0.05em; text-transform: uppercase; color: #888; margin-bottom: 10px;">Contents</div>
+                    <ol style="margin: 0; padding-left: 20px; line-height: 1.95; font-size: 0.95em;">
+                      <li><a href="#snap-en">A Snapshot of My Work at Amazon</a></li>
+                      <li><a href="#c1-en">Ch 1 &middot; Fintech — AWS Payments</a></li>
+                      <li><a href="#c2-en">Ch 2 &middot; Conversational AI — Alexa Health &amp; Wellness</a></li>
+                      <li><a href="#c3-en">Ch 3 &middot; Virtualization &amp; Cloud Native — App Runner &amp; Fargate</a></li>
+                      <li><a href="#c4-en">Ch 4 &middot; Foundational Data — Amazon S3</a></li>
+                      <li><a href="#c5-en">Ch 5 &middot; GenAI — Bedrock &amp; SageMaker AI</a></li>
+                      <li><a href="#career-en">Career Priority</a></li>
+                      <li><a href="#farewell-en">Farewell Notes</a></li>
+                    </ol>
+                  </nav>
+
+                  <h3 id="snap-en" style="margin-top: 8px;">A Snapshot of My Work at Amazon</h3>
 
                   <p>The journey so far, at a glance — each row is a chapter in this series:</p>
 
@@ -289,7 +304,7 @@
                   <!-- ===== GROUP 1: FINTECH ===== -->
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #ff9900; font-weight: 700;">Chapter 1 &nbsp;·&nbsp; 2016&ndash;2019</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #ff9900;">Fintech <span style="font-weight: 300; color: #888;">&mdash; AWS Payments</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #ff9900;" id="c1-en">Fintech <span style="font-weight: 300; color: #888;">&mdash; AWS Payments</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -455,7 +470,7 @@
                   <!-- ===== GROUP 2: CONVERSATIONAL AI ===== -->
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #1a73e8; font-weight: 700;">Chapter 2 &nbsp;·&nbsp; 2019&ndash;2020</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #1a73e8;">Conversational AI <span style="font-weight: 300; color: #888;">&mdash; Alexa Health &amp; Wellness</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #1a73e8;" id="c2-en">Conversational AI <span style="font-weight: 300; color: #888;">&mdash; Alexa Health &amp; Wellness</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -646,7 +661,7 @@
                   <!-- ===== GROUP 3: VIRTUALIZATION & CLOUD NATIVE ===== -->
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #00a1c9; font-weight: 700;">Chapter 3 &nbsp;·&nbsp; 2020&ndash;2022</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #00a1c9;">Virtualization &amp; Cloud Native <span style="font-weight: 300; color: #888;">&mdash; AWS App Runner &amp; Fargate</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #00a1c9;" id="c3-en">Virtualization &amp; Cloud Native <span style="font-weight: 300; color: #888;">&mdash; AWS App Runner &amp; Fargate</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -910,7 +925,7 @@
                   <!-- ===== GROUP 4: FOUNDATIONAL DATA ===== -->
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #3f8624; font-weight: 700;">Chapter 4 &nbsp;·&nbsp; 2023</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #3f8624;">Foundational Data <span style="font-weight: 300; color: #888;">&mdash; Amazon S3</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #3f8624;" id="c4-en">Foundational Data <span style="font-weight: 300; color: #888;">&mdash; Amazon S3</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -1067,7 +1082,7 @@
                   <!-- ===== GROUP 5: GENAI ===== -->
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #6f42c1; font-weight: 700;">Chapter 5 &nbsp;·&nbsp; 2023&ndash;present</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #6f42c1;">GenAI <span style="font-weight: 300; color: #888;">&mdash; Amazon Bedrock &amp; SageMaker AI</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #6f42c1;" id="c5-en">GenAI <span style="font-weight: 300; color: #888;">&mdash; Amazon Bedrock &amp; SageMaker AI</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -1163,7 +1178,7 @@
 
                   <hr>
 
-                  <h3>Career Priority</h3>
+                  <h3 id="career-en">Career Priority</h3>
 
                   <p>
                     If I compress a decade of these decisions into one picture, a few forces explain almost every move. They aren't a single ladder — they form a <strong>flywheel</strong>, plus two independent axes (<em>role</em> and <em>domain</em>), all riding on top of the technology cycles above. And in the AI era the ground under all of them is shifting, so it's worth asking what still holds value and what doesn't.
@@ -1293,7 +1308,7 @@
 
                   <hr>
 
-                  <h3>Farewell Notes</h3>
+                  <h3 id="farewell-en">Farewell Notes</h3>
 
                   <p>
                     A small personal archive — the goodbye note I sent each team as I moved on.
@@ -1418,7 +1433,21 @@
                     没有哪次选择能在每一个维度上都得高分。有意思的是你愿意拿什么去换——而这会随着成长而改变。正是第一章，让我意识到这套透镜原来一直存在。
                   </p>
 
-                  <h3 style="margin-top: 8px;">我在亚马逊工作的全景速览</h3>
+                  <nav style="max-width: 640px; margin: 26px auto; border: 1px solid rgba(128,128,128,0.25); border-radius: 8px; padding: 16px 22px; background: rgba(128,128,128,0.04);">
+                    <div style="font-weight: 700; font-size: 0.82em; letter-spacing: 0.05em; text-transform: uppercase; color: #888; margin-bottom: 10px;">目录</div>
+                    <ol style="margin: 0; padding-left: 20px; line-height: 1.95; font-size: 0.95em;">
+                      <li><a href="#snap-zh">我在亚马逊工作的全景速览</a></li>
+                      <li><a href="#c1-zh">第 1 章 &middot; 金融科技 — AWS Payments</a></li>
+                      <li><a href="#c2-zh">第 2 章 &middot; 对话式 AI — Alexa Health &amp; Wellness</a></li>
+                      <li><a href="#c3-zh">第 3 章 &middot; 虚拟化 &amp; 云原生 — App Runner &amp; Fargate</a></li>
+                      <li><a href="#c4-zh">第 4 章 &middot; 基础数据服务 — Amazon S3</a></li>
+                      <li><a href="#c5-zh">第 5 章 &middot; 生成式 AI — Bedrock &amp; SageMaker AI</a></li>
+                      <li><a href="#career-zh">职业优先级</a></li>
+                      <li><a href="#farewell-zh">告别信</a></li>
+                    </ol>
+                  </nav>
+
+                  <h3 id="snap-zh" style="margin-top: 8px;">我在亚马逊工作的全景速览</h3>
 
                   <p>到目前为止的旅程，一图概览——每一行都是本系列中的一章：</p>
 
@@ -1471,7 +1500,7 @@
 
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #ff9900; font-weight: 700;">第 1 章 &nbsp;·&nbsp; 2016&ndash;2019</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #ff9900;">金融科技 Fintech <span style="font-weight: 300; color: #888;">&mdash; AWS Payments</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #ff9900;" id="c1-zh">金融科技 Fintech <span style="font-weight: 300; color: #888;">&mdash; AWS Payments</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -1636,7 +1665,7 @@
 
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #1a73e8; font-weight: 700;">第 2 章 &nbsp;·&nbsp; 2019&ndash;2020</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #1a73e8;">对话式 AI <span style="font-weight: 300; color: #888;">&mdash; Alexa Health &amp; Wellness</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #1a73e8;" id="c2-zh">对话式 AI <span style="font-weight: 300; color: #888;">&mdash; Alexa Health &amp; Wellness</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -1804,7 +1833,7 @@
 
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #00a1c9; font-weight: 700;">第 3 章 &nbsp;·&nbsp; 2020&ndash;2022</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #00a1c9;">虚拟化 &amp; 云原生 <span style="font-weight: 300; color: #888;">&mdash; AWS App Runner &amp; Fargate</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #00a1c9;" id="c3-zh">虚拟化 &amp; 云原生 <span style="font-weight: 300; color: #888;">&mdash; AWS App Runner &amp; Fargate</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -2067,7 +2096,7 @@
 
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #3f8624; font-weight: 700;">第 4 章 &nbsp;·&nbsp; 2023</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #3f8624;">基础数据服务 <span style="font-weight: 300; color: #888;">&mdash; Amazon S3</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #3f8624;" id="c4-zh">基础数据服务 <span style="font-weight: 300; color: #888;">&mdash; Amazon S3</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -2223,7 +2252,7 @@
 
                   <div style="margin: 52px 0 12px 0;">
                     <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #6f42c1; font-weight: 700;">第 5 章 &nbsp;·&nbsp; 2023&ndash;至今</div>
-                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #6f42c1;">生成式 AI <span style="font-weight: 300; color: #888;">&mdash; Amazon Bedrock &amp; SageMaker AI</span></h2>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #6f42c1;" id="c5-zh">生成式 AI <span style="font-weight: 300; color: #888;">&mdash; Amazon Bedrock &amp; SageMaker AI</span></h2>
                   </div>
 
                   <div class="tl-wrap">
@@ -2318,7 +2347,7 @@
 
                   <hr>
 
-                  <h3>职业优先级</h3>
+                  <h3 id="career-zh">职业优先级</h3>
 
                   <p>
                     如果把十年的这些决定压缩成一张图，几股力量几乎能解释每一次转身。它们不是单一的一架梯子——而是构成一只<strong>飞轮</strong>，外加两条彼此独立的轴（<em>角色</em>与<em>领域</em>），全都骑在上面那些技术周期之上。而在 AI 时代，它们脚下的地面正在移动，所以值得一问：什么仍然有价值，什么不再有。
@@ -2431,7 +2460,7 @@
 
                   <hr>
 
-                  <h3>告别信</h3>
+                  <h3 id="farewell-zh">告别信</h3>
 
                   <p>
                     一个小小的私人存档——我离开每个团队时发出的告别信。<em>（原文均为英文。）</em>
