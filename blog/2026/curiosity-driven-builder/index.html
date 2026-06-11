@@ -26,13 +26,15 @@
       <meta property="og:url" content="https://pengandy.com/blog/2026/curiosity-driven-builder/">
       <meta property="og:title" content="Curiosity-Driven Builder's Journey">
       <meta property="og:description" content="A curiosity-driven builder's journey across a decade at Amazon — five domains, the decision lens, and what still holds value in the AI era.">
-      <meta property="og:image" content="https://pengandy.com/assets/img/cloudlogo.PNG">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/curiosity-driven-builder/flywheel-card.png">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="1200">
 
       <!-- Twitter -->
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:title" content="Curiosity-Driven Builder's Journey">
       <meta name="twitter:description" content="A curiosity-driven builder's journey across a decade at Amazon — five domains, the decision lens, and what still holds value in the AI era.">
-      <meta name="twitter:image" content="https://pengandy.com/assets/img/cloudlogo.PNG">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/curiosity-driven-builder/flywheel-card.png">
       <meta name="twitter:site" content="@pymhq">
       <meta name="twitter:creator" content="@pymhq">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
@@ -146,6 +148,16 @@
      .cp-flywheel { max-width: 460px; margin: 8px auto 2px; }
      .cp-engine { max-width: 720px; margin: 8px auto 2px; }
      .cp-flywheel svg, .cp-engine svg { width: 100%; height: auto; display: block; }
+
+     /* language toggle */
+     .lang-toggle { display:flex; justify-content:flex-end; gap:0; margin:0 0 18px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color); font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
+     body.zh .lang-en { display:none; }
+     body.zh .lang-zh { display:block; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
@@ -158,6 +170,11 @@
             </header>
             <article class="post-content">
                <div id="markdown-content">
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" class="active" onclick="__setCDBLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setCDBLang('zh')">中文</button>
+                  </div>
+                  <div class="lang-en">
 
                   <div style="margin: 8px 0 36px 0; padding: 24px 28px; border-left: none; background: rgba(128,128,128,0.07); border-radius: 6px;">
                     <p style="font-size: 1.15em; font-style: italic; line-height: 1.7; margin-bottom: 12px;">
@@ -169,7 +186,7 @@
                   </div>
 
                   <p>
-                    People change teams for many reasons — reorgs, managers, money, promotion, location, burnout. Mine has almost always been the same one: <strong>curiosity</strong>. Where is the most interesting problem I haven't touched yet, and what would I have to become in order to work on it?
+                    People change teams for many reasons — reorgs, managers, money, promotion, location. Mine has almost always been the same one: <strong>curiosity</strong>. Where is the most interesting problem I haven't touched yet, and what would I have to become in order to work on it?
                   </p>
 
                   <p>
@@ -198,10 +215,12 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <tr><td><strong>Domain</strong></td><td>Is this a domain I'm genuinely interested in — is the interest strong enough?</td></tr>
                         <tr><td><strong>Learning curve</strong></td><td>How much of this is genuinely new to me? Will I be a beginner again?</td></tr>
                         <tr><td><strong>Scope</strong></td><td>How large is the surface area I'd own — a component, a system, a business?</td></tr>
                         <tr><td><strong>Leverage</strong></td><td>Does my work compound? Who else benefits when I ship?</td></tr>
-                        <tr><td><strong>Community</strong></td><td>Who would I be surrounded by, and would they pull me upward?</td></tr>
+                        <tr><td><strong>Impact</strong></td><td>Does the work move a real needle — for customers, the business, or the field?</td></tr>
+                        <tr><td><strong>Environment</strong></td><td>Who would I be surrounded by — the managers and colleagues?</td></tr>
                         <tr><td><strong>Research vs engineering</strong></td><td>Am I discovering what's possible, or hardening what's known?</td></tr>
                         <tr><td><strong>IC vs manager</strong></td><td>Do I want to scale through my own hands, or through other people?</td></tr>
                         <tr><td><strong>Short vs long term</strong></td><td>Is this an optimization for now, or a bet on who I want to be in ten years?</td></tr>
@@ -233,21 +252,21 @@
                           <td><span style="color:#ff9900;font-weight:700;">Fintech</span></td>
                           <td>AWS Payments &middot; Commerce Platform</td>
                           <td>SDE I &rarr; SDE II</td>
-                          <td>Zero-downtime relational&rarr;DynamoDB migration (~$8.5M/yr saved)</td>
+                          <td>10x scaling, GDPR, EMEA; zero-downtime relational&rarr;NoSQL migration (~$8.5M/yr saved)</td>
                         </tr>
                         <tr>
                           <td>2019&ndash;2020</td>
                           <td><span style="color:#1a73e8;font-weight:700;">Conversational AI</span></td>
                           <td>Alexa AI &middot; Health &amp; Wellness</td>
                           <td>L5 ML Engineer</td>
-                          <td>Voice medication management + HIPAA skills (launched Nov 2019)</td>
+                          <td>Founding engineer; voice medication management (Nov 2019) + HIPAA skills (2020)</td>
                         </tr>
                         <tr>
                           <td>2020&ndash;2023</td>
                           <td><span style="color:#00a1c9;font-weight:700;">Virtualization &amp; Cloud Native</span></td>
                           <td>AWS App Runner / Fargate &middot; Containers</td>
                           <td>SDE II &rarr; SDE III</td>
-                          <td>App Runner 0&rarr;1 launch (2021); observability/tracing launch (2022)</td>
+                          <td>Founding engineer &amp; Uber Tech Lead (UTL); App Runner 0&rarr;1 launch (2021); observability/tracing launch (2022)</td>
                         </tr>
                         <tr>
                           <td>2023</td>
@@ -261,7 +280,7 @@
                           <td><span style="color:#6f42c1;font-weight:700;">GenAI</span></td>
                           <td>Amazon Bedrock &amp; SageMaker AI</td>
                           <td>L6 / SDE III</td>
-                          <td>Founding engineer; Claude Day-0 launches, Trainium, speculative decoding</td>
+                          <td>Founding engineer; Claude Day-0 launches, Trainium; model optimization (speculative decoding), customization, evaluation &amp; benchmark</td>
                         </tr>
                       </tbody>
                     </table>
@@ -308,11 +327,20 @@
                   </p>
 
                   <p>
+                    If you're curious what the org is really about, VP <em>James Greenfield</em> gave a great public overview of the AWS Commerce Platform in a
+                    <a href="https://www.lastweekinaws.com/podcast/screaming-in-the-cloud/stepping-onto-the-aws-commerce-platform-with-james-greenfield/" target="_blank" rel="noopener">2022 <em>Screaming in the Cloud</em> interview</a>.
+                  </p>
+
+                  <p>
                     On the lens above, Payments scored high on <em>scope</em> and <em>leverage</em> in a way I didn't appreciate at first. The learning curve wasn't a new domain so much as a new bar: correctness, idempotency, reconciliation, the discipline of systems where "mostly right" is simply wrong. That bar shaped how I build to this day.
                   </p>
 
                   <p>
-                    In <strong>Q3 2018</strong> I was promoted from SDE I to SDE II — the first real validation that I could own ambiguity, not just close tickets.
+                    Years later — after I'd left the team — I finally read the popular book <em>Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems</em> (DDIA). I recognized, almost page by page, that the problems it describes were exactly the ones I'd been wrestling with day to day in the Payments invoicing domain. I'd been living the textbook before I read it.
+                  </p>
+
+                  <p>
+                    In <strong>Q2 2018</strong> I was promoted from SDE I to SDE II — the first real validation that I could own ambiguity, not just close tickets.
                   </p>
 
                   <hr>
@@ -465,7 +493,7 @@
                   <p>
                     The team had formed quietly in 2018 within the Alexa organization (under a group called Alexa Domains), with a mandate to make the voice assistant genuinely useful in healthcare — diabetes management, care for new mothers and infants, and aging — all of it under the constraints of <strong>HIPAA</strong>
                     (<a href="https://www.cnbc.com/2018/05/10/amazon-is-building-a-health-and-wellness-team-within-alexa.html" target="_blank" rel="noopener">CNBC, May 2018</a>).
-                    Its founding cast included <a href="https://www.cnbc.com/2017/07/20/amazon-hires-box-vp-missy-krasner-to-beef-up-health-division.html" target="_blank" rel="noopener">Missy Krasner</a> — who had built the healthcare business at Box and earlier worked on Google's first foray into health records — and a sharp product manager, Yvonne Chou, who would become a close colleague.
+                    The team was led by <em>Rachel Jiang</em>, our org's leader. Its founding cast included <a href="https://www.cnbc.com/2017/07/20/amazon-hires-box-vp-missy-krasner-to-beef-up-health-division.html" target="_blank" rel="noopener"><em>Missy Krasner</em></a> — who had built the healthcare business at Box and earlier worked on Google's first foray into health records — and a sharp product manager, <em>Yvonne Chou</em>, who would become a close colleague.
                   </p>
 
                   <p>
@@ -501,17 +529,22 @@
                   </p>
 
                   <p>
-                    In <strong>November 2019</strong> we launched to the public — the same month Alexa itself <a href="https://www.aboutamazon.com/news/devices/alexa-happy-birthday" target="_blank" rel="noopener">celebrated its fifth birthday</a> (November 6, 2019). The work was highlighted in Amazon's earnings results and picked up by media like <em>Forbes</em>. It was a genuinely fulfilling stretch.
+                    In <strong>November 2019</strong> we launched
+                    <a href="https://www.aboutamazon.com/news/devices/new-ways-to-manage-your-medications-at-home-using-alexa" target="_blank" rel="noopener">to the public</a>
+                    — the same month Alexa itself <a href="https://www.aboutamazon.com/news/devices/alexa-happy-birthday" target="_blank" rel="noopener">celebrated its fifth birthday</a> (November 6, 2019). The work was highlighted in Amazon's earnings results and picked up by media like
+                    <a href="https://www.forbes.com/sites/krisholt/2019/11/26/amazons-alexa-can-now-remind-you-when-to-take-your-medications/" target="_blank" rel="noopener"><em>Forbes</em></a>
+                    and <a href="https://www.cnbc.com/2019/11/26/amazon-alexa-will-now-remind-you-when-to-take-your-pills.html" target="_blank" rel="noopener"><em>CNBC</em></a>.
+                    It was a genuinely fulfilling stretch.
                   </p>
 
                   <p>
-                    The most touching proof that any of it mattered came much later. In December 2020, long after I'd moved on, I was messaging with my former colleague — PM <strong>Yvonne Chou</strong>, by then a Director of Product and later Chief of Staff at <a href="https://allenai.org/" target="_blank" rel="noopener">AI2</a>. She wrote (original, unedited):
+                    The most touching proof that any of it mattered came much later. In December 2020, long after I'd moved on, I was messaging with my former colleague — PM <em>Yvonne Chou</em>, by then a Director of Product and later Chief of Staff at <a href="https://allenai.org/" target="_blank" rel="noopener">AI2</a>. She wrote (original, unedited):
                   </p>
 
                   <blockquote style="border-left: 4px solid #1a73e8; padding: 14px 22px; margin: 22px 0; background: rgba(26,115,232,0.05); font-style: italic;">
                     <p>"I am in Los Angeles for the holidays and my brother got my parents a new Echo Show earlier this month. When I got to my parents house, I noticed my brother was logging dirty diaper changes and my dad had medication reminders set up all on his own :) they obviously wasn't our MM ones, but it was fun to see them use the features the team built and I didn't even have to tell them about it.</p>
                     <p>Happy new year!</p>
-                    <p>-Yvonne"</p>
+                    <p>-<em>Yvonne</em>"</p>
                   </blockquote>
 
                   <p>
@@ -564,7 +597,7 @@
                   </p>
 
                   <p>
-                    The wider weather was turning too. Big Tech's grand healthcare bets were cooling: <strong>Haven</strong> — the much-watched alliance of Amazon, Berkshire Hathaway, and JPMorgan, given its name in 2019 — <a href="https://www.businessinsider.com/google-health-shutting-down-david-feinberg-leaves-2021-8" target="_blank" rel="noopener">disbanded in 2021</a>, the same year <strong>Google dismantled its own health division</strong>. Closer to home, leaders began to depart — Missy Krasner <a href="https://www.businessinsider.com/missy-krasner-leaves-amazon-for-venture-firm-redesign-health-2020-10" target="_blank" rel="noopener">left Amazon in October 2020</a> for a venture firm. I read the signal: my time in this particular space was coming to an end.
+                    The wider weather was turning too. Big Tech's grand healthcare bets were cooling: <strong>Haven</strong> — the much-watched alliance of Amazon, Berkshire Hathaway, and JPMorgan, given its name in 2019 — <a href="https://www.businessinsider.com/google-health-shutting-down-david-feinberg-leaves-2021-8" target="_blank" rel="noopener">disbanded in 2021</a>, the same year <strong>Google dismantled its own health division</strong>. Closer to home, leaders began to depart — <em>Missy Krasner</em> <a href="https://www.businessinsider.com/missy-krasner-leaves-amazon-for-venture-firm-redesign-health-2020-10" target="_blank" rel="noopener">left Amazon in October 2020</a> for a venture firm. I read the signal: my time in this particular space was coming to an end.
                   </p>
 
                   <p>
@@ -589,7 +622,7 @@
                   </ul>
 
                   <p>
-                    I was in Vancouver partly for a more mundane reason — <strong>H1B visa stamping</strong> — and I spent the trip happily planning my 2020 travels. Such is life: about two months later, the global pandemic began, and every one of those plans dissolved. But the two seeds those conferences planted — cloud native, and the pulse of AI research — would germinate anyway.
+                    I was in Vancouver partly for a more mundane reason — H1B visa stamping — and I spent the trip happily planning my 2020 travels. Such is life: about two months later, the global pandemic began, and every one of those plans dissolved. But the two seeds those conferences planted — cloud native, and the pulse of AI research — would germinate anyway.
                   </p>
 
                   <hr>
@@ -598,6 +631,7 @@
 
                   <ul>
                     <li><strong>Zero-to-one teaches you what no mature system can.</strong> Building the first version of something forces every assumption into the open.</li>
+                    <li><strong>Internal platform &rarr; public product.</strong> Shifting from an internal platform team to a public product team rewired how I think about users — from SLAs and invoices to delight, trust, and a name customers actually know.</li>
                     <li><strong>Be early, but read the weather.</strong> Being right too soon — before the technology catches up — feels a lot like being wrong. Knowing when to stay and when to move is its own skill.</li>
                     <li><strong>Say yes to the conference, the talk, the detour.</strong> The highest-leverage moments rarely announce themselves; two sponsored trips reset my trajectory.</li>
                     <li><strong>The interest you kept alive becomes the path you take next.</strong> Curiosity compounds quietly, then pays out all at once.</li>
@@ -651,11 +685,11 @@
                   </p>
 
                   <p>
-                    That pointed me straight at containers. I reached out to a manager I'd known, <strong>Mats Lanner</strong>, who led <strong>AWS Fargate</strong> — a flagship product of AWS, <a href="https://aws.amazon.com/blogs/aws/aws-fargate/" target="_blank" rel="noopener">launched at re:Invent on November 29, 2017</a>. Fargate was on a strong growth trajectory as a serverless container compute platform.
+                    That pointed me straight at containers. I reached out to a manager I'd known, <em>Mats Lanner</em>, who led <strong>AWS Fargate</strong> — a flagship product of AWS, <a href="https://aws.amazon.com/blogs/aws/aws-fargate/" target="_blank" rel="noopener">launched at re:Invent on November 29, 2017</a>. Fargate was on a strong growth trajectory as a serverless container compute platform.
                   </p>
 
                   <p>
-                    When I reconnected with Mats around <strong>July 2020</strong>, his reply was more exciting than I'd expected — it was the first time I heard about project <strong>"Fusion,"</strong> the code name for what would become AWS App Runner:
+                    When I reconnected with <em>Mats</em> around <strong>July 2020</strong>, his reply was more exciting than I'd expected — it was the first time I heard about project <strong>"Fusion,"</strong> the code name for what would become AWS App Runner:
                   </p>
 
                   <blockquote style="border-left: 4px solid #00a1c9; padding: 14px 22px; margin: 22px 0; background: rgba(0,161,201,0.06); font-style: italic;">
@@ -664,7 +698,7 @@
                   </blockquote>
 
                   <p>
-                    He also recommended I talk to <strong>Archana Srikanta</strong>, a senior engineering leader and one of Fargate's founding engineers — someone I already admired (she'd be promoted to <strong>Principal Engineer in 2021</strong>). I'd watched her YouTube talks on Fargate before I ever joined. We spoke over Chime; she sketched the project at a high level, and we ended up geeking out about <strong>Rust</strong>. All of it sounded cool. So I joined.
+                    He also recommended I talk to <em>Archana Srikanta</em>, a senior engineering leader and one of Fargate's founding engineers — someone I already admired (she'd be promoted to <strong>Principal Engineer in 2021</strong>). I'd watched her YouTube talks on Fargate before I ever joined. We spoke over Chime; she sketched the project at a high level, and we ended up geeking out about Rust. All of it sounded cool. So I joined.
                   </p>
 
                   <hr>
@@ -672,7 +706,7 @@
                   <h3>Joining the Away Team: Project Fusion</h3>
 
                   <p>
-                    I came on as a direct report to <strong>Mats</strong> (my L7 manager) on the cross-organization project "Fusion" — later launched publicly as <strong>AWS App Runner</strong>.
+                    I came on as a direct report to <em>Mats</em> (my L7 manager) on the cross-organization project "Fusion" — later launched publicly as <strong>AWS App Runner</strong>.
                   </p>
 
                   <p>
@@ -680,7 +714,7 @@
                   </p>
 
                   <p>
-                    I mainly designed and authored the <strong>dataplane</strong>, partnered with <strong>Amit Gupta</strong>, a strong senior engineer from Elastic Beanstalk (he'd go on to make <strong>Principal Engineer in Q2 2022</strong>). Together we worked through a stack of hard problems:
+                    I mainly designed and authored the <strong>dataplane</strong>, partnered with <em>Amit Gupta</em>, a strong senior engineer from Elastic Beanstalk (he'd go on to make <strong>Principal Engineer in Q2 2022</strong>). Together we worked through a stack of hard problems:
                   </p>
 
                   <ul>
@@ -688,10 +722,12 @@
                     <li>Multi-tenant request routing</li>
                     <li>Cellular architecture</li>
                     <li>Capacity management</li>
+                    <li>Load balancing</li>
+                    <li>Networking</li>
                   </ul>
 
                   <p>
-                    App Runner also put me in close, daily orbit of <strong>three Principal Engineers</strong> — <strong>Archana Srikanta</strong>, <strong>Onur Filiz</strong> (later a Principal Software Engineer at Microsoft), and Amit — a technical bar higher than any I'd worked under before, and one that pulled my own engineering up fast.
+                    App Runner also put me in close, daily orbit of <strong>three Principal Engineers</strong> — <em>Archana Srikanta</em>, <em>Onur Filiz</em> (later a Principal Software Engineer at Microsoft), and <em>Amit</em> — a technical bar higher than any I'd worked under before, and one that pulled my own engineering up fast.
                   </p>
 
                   <p>
@@ -708,9 +744,9 @@
                   </p>
 
                   <p>
-                    Our VP, <strong>Deepak Singh</strong>, also
+                    Our VP, <em>Deepak Singh</em>, also
                     <a href="https://www.infoq.com/news/2021/06/deepak-singh-aws/" target="_blank" rel="noopener">spoke publicly about App Runner</a>
-                    around the launch. Deepak was a leader I followed closely during my containers years — every Friday, end of day, he sent out weekly notes with his thoughts and observations, and I genuinely enjoyed reading them.
+                    around the launch. <em>Deepak</em> was a leader I followed closely during my containers years — every Friday, end of day, he sent out weekly notes with his thoughts and observations, and I genuinely enjoyed reading them.
                   </p>
 
                   <hr>
@@ -718,11 +754,11 @@
                   <h3>A Fork: Stay With the Product, or Return?</h3>
 
                   <p>
-                    As an away-team contributor, I eventually hit the obvious question: where do I belong? Mats initially assigned me to help with <strong>AWS Fargate's dataplane and Firecracker microVM</strong> work, while I kept closing out post-launch items on App Runner.
+                    As an away-team contributor, I eventually hit the obvious question: where do I belong? <em>Mats</em> initially assigned me to help with <strong>AWS Fargate's dataplane and Firecracker microVM</strong> work, while I kept closing out post-launch items on App Runner.
                   </p>
 
                   <p>
-                    Then, in a regular 1:1, App Runner's General Manager — L7 leader <strong>Prashant Prahlad</strong> (now a VP at Datadog) — extended an offer: stay in App Runner as a <strong>founding member and core builder</strong>.
+                    Then, in a regular 1:1, App Runner's General Manager — L7 leader <em>Prashant Prahlad</em> (now a VP at Datadog) — extended an offer: stay in App Runner as a <strong>founding member and core builder</strong>.
                   </p>
 
                   <div class="anchor-wrap">
@@ -740,7 +776,7 @@
                   <p class="anchor-cap">The same shape of fork as before: the new product I'd built, or the team I'd originally joined.</p>
 
                   <p>
-                    I chose to <strong>stay</strong>: I <strong>formally joined App Runner</strong> as a core member of the team and moved to report to Prashant.
+                    I chose to <strong>stay</strong>: I <strong>formally joined App Runner</strong> as a core member of the team and moved to report to <em>Prashant</em>.
                   </p>
 
                   <hr>
@@ -748,7 +784,7 @@
                   <h3>The Path to L6: Into Observability</h3>
 
                   <p>
-                    The unavoidable next topic was my own growth. I'd been SDE II since 2018 — nearly three years. Prashant offered me a few projects from the <strong>2021 OP1 roadmap</strong>, and I picked a public feature release in <strong>Observability</strong>. I chose it because I wanted to ship public features; I had no idea how far that single choice would carry me into industry exposure.
+                    The unavoidable next topic was my own growth. I'd been SDE II since 2018 — nearly three years. <em>Prashant</em> offered me a few projects from the <strong>2021 OP1 roadmap</strong>, and I picked a public feature release in <strong>Observability</strong>. I chose it because I wanted to ship public features; I had no idea how far that single choice would carry me into industry exposure.
                   </p>
 
                   <p>
@@ -756,7 +792,7 @@
                   </p>
 
                   <p>
-                    It pulled me into a remarkable orbit of people: Principal Engineer <strong>Jaana Dogan</strong> (who later returned to Google as a Principal Engineer), <strong>Michael Hausenblas</strong>, and <strong>Alolita Sharma</strong> — genuine experts and leaders in the space — and deeper into the <strong>CNCF community</strong>. My mentor at the time, <strong>Phil Estes</strong> (Principal Engineer on the containerd team), knew them all — and it was Phil who later recommended me for the <strong>CNCF Ambassador</strong> community. Late at night, I worked through the PRFAQ and the customer experience with our PM <strong>Akshay Ram</strong>.
+                    It pulled me into a remarkable orbit of people: Principal Engineer <em>Jaana Dogan</em> (who later returned to Google as a Principal Engineer), <em>Michael Hausenblas</em>, and <em>Alolita Sharma</em> — genuine experts and leaders in the space — and deeper into the <strong>CNCF community</strong>. My mentor at the time, <em>Phil Estes</em> (Principal Engineer on the containerd team), knew them all — and it was Phil who later recommended me for the <strong>CNCF Ambassador</strong> community. Late at night, I worked through the PRFAQ and the customer experience with our PM <em>Akshay Ram</em>.
                   </p>
 
                   <p>
@@ -768,25 +804,25 @@
                   <h3>Stepping Into the Spotlight</h3>
 
                   <p>
-                    Then something I didn't expect. <strong>Adam Keller</strong> invited me onto the AWS Containers YouTube show <em>"Containers from the Couch"</em> to talk about the feature, and the work was highlighted in
+                    Then something I didn't expect. <em>Adam Keller</em> invited me onto the AWS Containers YouTube show <a href="https://youtu.be/cVr8N7enCMM" target="_blank" rel="noopener"><em>"Containers from the Couch"</em></a> to talk about the feature, and the work was highlighted in
                     <a href="https://dev.to/aws/aws-open-source-news-and-updates-113-16a4" target="_blank" rel="noopener">AWS Open Source News and Updates, #113</a>
-                    that May. It was the first time I was visible to a public audience <em>because of a product I'd built</em>.
+                    that May, and championed publicly by our L7 product leader <em>Shubha Rao</em> (who later joined Google as Director of Product Management, AI/ML). It was the first time I was visible to a public audience <em>because of a product I'd built</em>.
                   </p>
 
                   <p>
-                    A small side episode: on the day of the podcast, my laptop died. I was anxious and messaged Adam; he Slacked back that he'd open the show solo for the first few minutes and could wait for me to restart. To my relief, the laptop came back, I jumped on, rescued Adam from a solo show, and started sharing what we'd built.
+                    A small side episode: on the day of the podcast, my laptop died. I was anxious and messaged <em>Adam</em>; he messaged back that he'd open the show solo for the first few minutes and could wait for me to restart. To my relief, the laptop came back, I jumped on, rescued <em>Adam</em> from a solo show, and started sharing what we'd built.
                   </p>
 
                   <p>
-                    From there it snowballed. Public exposure brought visibility — and responsibility. I worked with our <strong>GTM, Sales, and Product</strong> teams to bring the product to customers and users, <strong>co-presented at DockerCon</strong> with <strong>Inbal Shani</strong> (now CPO at Twilio; former CPO at GitHub; our former GM at AWS), and wrote AWS blog posts. I took an internal course and earned a <strong>public-speaking certification</strong> to represent and support Amazon at top-tier external conferences and events. It felt a little like being on a press tour. I even began getting <strong>book-authoring invitations</strong> from publishers like <strong>Packt</strong>, more than once. I summarized that year's work in a
+                    From there it snowballed. Public exposure brought visibility — and responsibility. I worked with our <strong>GTM, Sales, and Product</strong> teams to bring the product to customers and users, <strong>co-presented at DockerCon</strong> with <em>Inbal Shani</em> (now CPO at Twilio; former CPO at GitHub; our former GM at AWS), and wrote AWS blog posts. I took an internal course and earned a <strong>public-speaking certification</strong> to represent and support Amazon at top-tier external conferences and events. It felt a little like being on a press tour. I even began getting <strong>book-authoring invitations</strong> from publishers like <strong>Packt</strong>, more than once. I summarized that year's work in a
                     <a href="https://medium.com/@pymhq/andy-at-containers-serverless-2022-4ea4d0d1c78e" target="_blank" rel="noopener">Medium post</a>,
-                    in list form. It was, without question, a major boost to my career.
+                    in list form. It was, without question, a major boost to my career. I gained external connections through it, too.
                   </p>
 
                   <p>
                     That community recognition culminated in something I'm still proud of: in <strong>late 2022</strong> the <strong>Linux Foundation</strong> appointed me a
                     <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank" rel="noopener">CNCF Ambassador</a>.
-                    I was invited to the New Ambassador announcement at <strong>KubeCon Amsterdam 2023</strong>, where I finally met — in person — many of the big-profile builders I'd only ever watched on YouTube and podcasts in the open-source and cloud-native world.
+                    I was invited to the New Ambassador announcement at <strong>KubeCon Amsterdam 2023</strong>, where I finally met — in person — many of the high-profile builders I'd only ever watched on YouTube and podcasts in the open-source and cloud-native world.
                   </p>
 
                   <hr>
@@ -794,11 +830,43 @@
                   <h3>Overwhelmed — and a Cooling-Off Period</h3>
 
                   <p>
-                    Visibility has a gravity of its own, and for a while I let it pull me. After my L6 promotion I became a core engineer and a cross-cutting "uber" tech lead across the App Runner organization (~70 people). At the peak I was overseeing the execution of <strong>more than ten project lines</strong> as tech lead, and mid-year I also picked up <strong>direct reports</strong> — both interns and full-time engineers. I literally kept a weekly breakdown of where my hours went. The role stretched well beyond code: I authored <strong>PRFAQs</strong>, worked with <strong>sales and GTM</strong>, and ran a <strong>WBR / MBR (Weekly / Monthly Business Review)</strong> with the product team. Big scope, big visibility, the energy of an early-stage startup — and, honestly, overwhelming.
+                    Visibility has a gravity of its own, and for a while I let it pull me. After my L6 promotion I became a core engineer and a cross-cutting &ldquo;uber&rdquo; tech lead — a <strong>force multiplier</strong> across the App Runner organization (~70 people). At the peak I was overseeing the execution of <strong>more than ten project lines</strong> as tech lead, and mid-year I also picked up <strong>direct reports</strong> — both interns and full-time engineers. I literally kept a weekly breakdown of where my hours went. The role stretched well beyond code into deep <strong>cross-functional partnership</strong>: I authored <strong>PRFAQs</strong>, worked with <strong>sales and GTM</strong>, and ran a <strong>WBR / MBR (Weekly / Monthly Business Review)</strong> with the product team. Big scope, big visibility, the energy of an early-stage startup — and, honestly, overwhelming.
+                  </p>
+
+                  <div style="max-width: 520px; margin: 16px auto 4px;">
+                    <svg viewBox="0 0 470 250" role="img" aria-label="Time allocation at the peak as Uber Tech Lead" style="width:100%;height:auto;display:block;">
+                      <path d="M115 115 L115 15 A100 100 0 0 1 204.02 69.45 Z" fill="#00a1c9"/>
+                      <path d="M115 115 L204.02 69.45 A100 100 0 0 1 196.08 173.53 Z" fill="#6f42c1"/>
+                      <path d="M115 115 L196.08 173.53 A100 100 0 0 1 136.19 212.73 Z" fill="#ff9900"/>
+                      <path d="M115 115 L136.19 212.73 A100 100 0 0 1 82.11 209.43 Z" fill="#1a73e8"/>
+                      <path d="M115 115 L82.11 209.43 A100 100 0 0 1 27.42 163.27 Z" fill="#3f8624"/>
+                      <path d="M115 115 L27.42 163.27 A100 100 0 0 1 15.11 110.43 Z" fill="#e06aa8"/>
+                      <path d="M115 115 L15.11 110.43 A100 100 0 0 1 23.35 75.00 Z" fill="#f2b705"/>
+                      <path d="M115 115 L23.35 75.00 A100 100 0 0 1 57.64 33.09 Z" fill="#d6455d"/>
+                      <path d="M115 115 L57.64 33.09 A100 100 0 0 1 84.93 19.63 Z" fill="#8a8d91"/>
+                      <path d="M115 115 L84.93 19.63 A100 100 0 0 1 115 15 Z" fill="#c3c9cf"/>
+                      <g font-size="11" fill="#777">
+                        <rect x="240" y="10" width="12" height="12" rx="2" fill="#00a1c9"/><text x="258" y="20">Uber Tech Lead &mdash; 18%</text>
+                        <rect x="240" y="32" width="12" height="12" rx="2" fill="#6f42c1"/><text x="258" y="42">People &amp; Team Management &mdash; 18%</text>
+                        <rect x="240" y="54" width="12" height="12" rx="2" fill="#ff9900"/><text x="258" y="64">Product &mdash; 12%</text>
+                        <rect x="240" y="76" width="12" height="12" rx="2" fill="#1a73e8"/><text x="258" y="86">TPM &mdash; 9%</text>
+                        <rect x="240" y="98" width="12" height="12" rx="2" fill="#3f8624"/><text x="258" y="108">Recruiting &mdash; 12%</text>
+                        <rect x="240" y="120" width="12" height="12" rx="2" fill="#e06aa8"/><text x="258" y="130">Mentoring &mdash; 9%</text>
+                        <rect x="240" y="142" width="12" height="12" rx="2" fill="#f2b705"/><text x="258" y="152">PMM / BD / GTM &mdash; 6%</text>
+                        <rect x="240" y="164" width="12" height="12" rx="2" fill="#d6455d"/><text x="258" y="174">IC coding &mdash; 9%</text>
+                        <rect x="240" y="186" width="12" height="12" rx="2" fill="#8a8d91"/><text x="258" y="196">Bar Raiser &mdash; 5%</text>
+                        <rect x="240" y="208" width="12" height="12" rx="2" fill="#c3c9cf"/><text x="258" y="218">Miscellaneous &mdash; 5%</text>
+                      </g>
+                    </svg>
+                    <p class="tl-cap">Where my weeks actually went, at the peak.</p>
+                  </div>
+
+                  <p>
+                    My calendar was &ldquo;quadruple-booked&rdquo; more often than not, and bandwidth — not effort — was the real constraint. So when Jason later asked whether I'd take on the <em>Bar Raiser</em> program to support more interviews, I said <strong>no</strong>. Protecting a reasonable time distribution had quietly become more important than adding another hat.
                   </p>
 
                   <p>
-                    The org around me was shifting too. Several leaders I'd grown with departed — <strong>Prashant, Akshay, Onur, Inbal</strong> — and a reorg landed. By then Compute Services had grown into the larger <strong>DECS</strong> org (Developers, Events, Containers, and Serverless), and App Runner was folded into <strong>AWS Lambda</strong>. We got a new L7 manager, <strong>Jason Woodlee</strong>, who'd spent years as a CTO at an East Coast startup. He brought a different culture, and it felt refreshing.
+                    The org around me was shifting too. Several leaders I'd grown with departed — <em>Inbal, Shubha, Onur, Akshay, Prashant</em> — and a reorg landed. By then Compute Services had grown into the larger <strong>DECS</strong> org (Developers, Events, Containers, and Serverless), and App Runner was folded into <strong>AWS Lambda</strong>. We got a new L7 manager, <em>Jason Woodlee</em>, who'd spent years as a CTO at an East Coast startup. He brought a different culture, and it felt refreshing.
                   </p>
 
                   <p>
@@ -829,6 +897,7 @@
                     <li><strong>Adopt the tech the rest of the org hasn't yet.</strong> Envoy, gRPC, OpenTelemetry — being early <em>inside</em> a big company is its own kind of edge, and its own community.</li>
                     <li><strong>Build the product, then tell its story.</strong> Visibility followed the work, not the other way around — and the storytelling became a second skill.</li>
                     <li><strong>Know when to stop.</strong> Scope and visibility can outgrow the value they create; walking away at the right time is a skill of its own.</li>
+                    <li><strong>&hellip; but don't stop too early.</strong> Honestly, I think I left App Runner a little too soon. Even as a founding member, there was still room to grow — and staying through my L6 promotion would have made building a solid L6 profile smoother. My early exit, plus an end-of-year team change, quietly dented my rating, and I didn't appreciate at the time how much that mattered. If I could choose again, I'd lean on the leverage I'd already built and let good momentum run until a real hard stop forced the move.</li>
                     <li><strong>Positioning is half the product.</strong> The best engineering still needs the right place in the lineup to win adoption.</li>
                   </ul>
 
@@ -881,23 +950,23 @@
                   </p>
 
                   <p>
-                    If you use AWS at all, you know S3. It was the very first AWS product, <strong>launched on Pi Day in 2006</strong> — the same calendar date I would later join Amazon — and it is still the foundational data service of the cloud. At the time it was led by VP <strong>Mai-Lan Tomsen Bukovec</strong>, and long before I joined I'd read a great deal of her writing, internal and external. She is a passionate and deeply capable senior leader — and one of the most prominent female and Asian leaders at AWS.
+                    If you use AWS at all, you know S3. It was the very first AWS product, <a href="https://aws.amazon.com/blogs/aws/twenty-years-of-amazon-s3-and-building-whats-next/" target="_blank" rel="noopener"><strong>launched on Pi Day in 2006</strong></a> — the same calendar date I would later join Amazon — and it is still the foundational data service of the cloud, the largest-scale data service on Earth (500T+ objects, 200M+ requests/sec, exabytes of data, 123 AZs, 39 Regions — at its 20th birthday). At the time — and still today — it is led by VP <em>Mai-Lan Tomsen Bukovec</em>, and long before I joined I'd read a great deal of her writing, internal and external. She is a passionate and deeply capable senior leader — and one of the most prominent female and Asian leaders at AWS.
                   </p>
 
-                  <h3>Learning From Mai-Lan</h3>
+                  <h3>Learning From <em>Mai-Lan</em></h3>
 
                   <p>
-                    Mai-Lan has a famously well-formed body of <strong>theory and practice for running a mature organization</strong> — including a crisp, widely-circulated definition of the roles of Principal and senior IC leaders. Where Deepak Singh's much-loved <em>Friday notes</em> were a stream of informal thoughts and observations, Mai-Lan's was a fully shaped system.
+                    <em>Mai-Lan</em> has a famously well-formed body of <strong>theory and practice for running a mature organization</strong> — including a crisp, widely-circulated definition of the roles of Principal and senior IC leaders. Where <em>Deepak Singh</em>'s much-loved <em>Friday notes</em> were a stream of informal thoughts and observations, <em>Mai-Lan</em>'s was a fully shaped system.
                   </p>
 
                   <p>
-                    She hosted <strong>monthly leadership learning sessions</strong> across the S3 org and encouraged every L6+ leader to attend and discuss. Her TA would prepare each session's topic — usually one of the Leadership Principles — along with documentation and a practice doc shared ahead of a genuinely formal discussion. Watching a mature, VP-level leader articulate her point of view and deliberately grow younger leaders was enormously valuable to me.
+                    She hosted <strong>monthly leadership learning sessions</strong> across the S3 org and encouraged every L6+ leader to attend and discuss. Her TA would prepare each session's topic — usually one of the Leadership Principles — along with supporting docs shared ahead of a genuinely formal discussion. I attended most of them, and spoke once myself — the topic that session was <em>&ldquo;Recognizing Critical Moments.&rdquo;</em> By coincidence, one of the other speakers that day was <em>Bryan Liles</em> — the Senior Principal Engineer (L8) at AWS, and previously a high-profile figure in the CNCF community — who had joined S3 the very same week I did. Watching a mature, VP-level leader articulate her point of view and deliberately grow younger leaders was enormously valuable to me.
                   </p>
 
                   <h3>The Mistake Underneath</h3>
 
                   <p>
-                    For all that organizational polish, you still can't escape the fact that <strong>line managers vary in caliber</strong>. When I was choosing my new team and talking with the hiring manager, I failed to do the <strong>expectation-setting I should have done</strong>. I went from reporting to an L7 manager as a tech lead to a new team reporting to a <strong>junior line manager</strong> — a serious downgrade in both scope and position.
+                    For all that organizational polish, you still can't escape the fact that <strong>line managers vary in caliber</strong>. When I was choosing my new team and talking with the hiring manager, I failed to do the <strong>expectation-setting I should have done</strong>. I went from reporting to an L7 manager as a tech lead to a new team reporting to a <strong>junior line manager</strong> — a serious downgrade in both scope and position. At the same time, I <strong>overestimated the career maturity</strong> of that junior manager, who had just transitioned from an IC into a management role.
                   </p>
 
                   <p>
@@ -915,7 +984,7 @@
                   <h3>Landing in S3 Index</h3>
 
                   <p>
-                    The team I landed in was <strong>S3 Index</strong>. Our Director, <strong>Amy Therrien</strong>, laid the business out clearly in a
+                    The team I landed in was <strong>S3 Index</strong>. Our Director, <em>Amy Therrien</em>, laid the business out clearly in a
                     <a href="https://youtu.be/sYDJYqvNeXU" target="_blank" rel="noopener">re:Invent talk</a>;
                     in short, we work on <strong>reducing 503s</strong> — the slow-down and throttling errors customers can hit at scale. Worth noting: viewed as a standalone product, <strong>S3 Apex (API + Index)</strong> would rank among the <strong>top-20 revenue businesses at Amazon</strong> — and it is, of course, a tier-1 business for S3.
                   </p>
@@ -943,13 +1012,13 @@
                   </p>
 
                   <p>
-                    What changed my mind was a signal from inside, not the headlines. <strong>Deepak Singh</strong> — by then VP of the broad <strong>DECS</strong> org (Developers, Events, Containers, and Serverless) — moved to report into <strong>Swami Sivasubramanian</strong>, VP of <strong>AI &amp; Data</strong>, to take charge of <strong>AWS CodeWhisperer</strong>. (Swami did his PhD at Vrije Universiteit Amsterdam, mentored by AWS CTO <strong>Werner Vogels</strong>; one of Amazon's youngest VPs, he joined the company's <strong>S-team</strong> in September 2023.) When a leader of that scope re-points his own career at generative AI, it stops looking like hype. That was when I realized this wave was real — and that it was time to pay serious attention.
+                    What changed my mind was a signal from inside, not the headlines. <em>Deepak Singh</em> — by then VP of the broad <strong>DECS</strong> org (Developers, Events, Containers, and Serverless) — moved to report into <em>Swami Sivasubramanian</em>, VP of <strong>AI &amp; Data</strong>, to take charge of <strong>AWS CodeWhisperer</strong>. (<em>Swami</em> did his PhD at Vrije Universiteit Amsterdam, mentored by AWS CTO <em>Werner Vogels</em>; one of Amazon's youngest VPs, he joined the company's <strong>S-team</strong> in September 2023.) When a leader of that scope re-points his own career at generative AI, it stops looking like hype. That was when I realized this wave was real — and that it was time to pay serious attention.
                   </p>
 
                   <h3>The Goal: Find a GenAI Team</h3>
 
                   <p>
-                    From there the goal was clear: <strong>find a GenAI team to join</strong>. As always, it was a bet — and this one didn't go smoothly. Because the rise of GenAI was <strong>unplanned for everyone</strong>, the company included, <strong>Swami's org was in continuous reorg and resource-shifting mode</strong>. Most teams had <strong>frozen hiring</strong> until the dust settled, and when a team was short on people, the usual move was simply to <strong>shift engineers over from another product</strong> — early Bedrock, for instance, was staffed largely with engineers from <strong>Lex</strong>.
+                    From there the goal was clear: <strong>find a GenAI team to join</strong>. As always, it was a bet — and this one didn't go smoothly. Because the rise of GenAI was <strong>unplanned for everyone</strong>, the company included, <em>Swami</em>'s org was in continuous reorg and resource-shifting mode. Most teams had frozen hiring until the dust settled, and when a team was short on people, the usual move was simply to shift engineers over from another product — early Bedrock, for instance, was staffed largely with engineers from Lex. And there was a long queue from outside the org, too: everyone wanted into this frontier domain.
                   </p>
 
                   <p>
@@ -986,11 +1055,11 @@
                   </p>
 
                   <p>
-                    And so the tradeoffs lined up again — three different GenAI bets, each with its own focus and its own hiring manager (an <strong>L6 (M2)</strong> at SageMaker AI Optimization, an <strong>L7</strong> at Bedrock Agent, and an <strong>L6 (M1)</strong> at Bedrock Inference). After the scope lesson S3 had just taught me, reporting level was no longer an abstraction — it was one of the things I now weighed carefully.
+                    And so the tradeoffs lined up again — three different GenAI bets, each with its own emphasis and its own hiring manager (an <strong>L6 (M2)</strong> at SageMaker AI Optimization, an <strong>L7</strong> at Bedrock Agent, and an <strong>L6 (M1)</strong> at Bedrock Inference). After the scope lesson S3 had just taught me, reporting level was no longer an abstraction — it was one of the things I now weighed carefully.
                   </p>
 
                   <p>
-                    I chose <strong>Bedrock Inference</strong>. My thinking was to enter at the <strong>bottom of the stack</strong> — start from the most foundational layer and build up. Looking back today, I'll be honest: I <strong>lacked prescience</strong>. I walked right past <strong>Bedrock Agent</strong>, which in 2025 was reformed into Swami's new <strong>Agentic AI</strong> org — and three years on, agentic AI has become one of the hottest practices in the entire LLM field. The fundamentals were the right <em>instinct</em>; I just didn't see how fast the frontier above them would move.
+                    I chose <strong>Bedrock Inference</strong>. My thinking was to enter at the <strong>bottom of the stack</strong> — start from the most foundational layer and build up. Looking back today, I'll be honest: I <strong>lacked prescience</strong>. I walked right past <strong>Bedrock Agent</strong>, which in 2025 was reformed into <em>Swami</em>'s new <strong>Agentic AI</strong> org — and three years on, agentic AI has become one of the hottest practices in the entire LLM field. The fundamentals were the right <em>instinct</em>; I just didn't see how fast the frontier above them would move.
                   </p>
 
                   <hr>
@@ -1040,47 +1109,40 @@
                   </p>
 
                   <p>
-                    So, once again, I was a <strong>core founding engineer</strong> building from scratch — clean code, high visibility, fast pace. Another startup, this time inside the most important business at the company. And it grew like one: from <strong>2 people to 40+ in a single year</strong>. (I wrote up that first year in more detail
+                    So, once again, I was a <strong>core founding engineer</strong> building from scratch — clean code, high visibility, fast pace. Another startup, this time inside the most important business at the company. And it grew like one: from <strong>2 people to 50+ in a single year</strong>. (I wrote up that first year in more detail
                     <a href="https://pengandy.com/blog/2024/bdrk1yo/" target="_blank" rel="noopener">here</a>.)
                   </p>
 
                   <h3>Building With Anthropic</h3>
 
                   <p>
-                    We partnered <strong>directly with Anthropic</strong> — including co-founder <strong>Ben Mann</strong> — with 2+ working sessions a week and a monthly happy hour for each new model release. That work touched a number of ideas that have since become well-known standards across today's open-source inference community:
+                    We partnered <strong>directly with Anthropic</strong> — including co-founder <em>Ben Mann</em> — with 2+ working sessions a week and a monthly happy hour for each new model release. That work touched a number of ideas that have since become well-known standards across today's open-source inference community — <a href="https://pengandy.com/blog/2025/llmnative/" target="_blank" rel="noopener">disaggregated inference, multi-node inference, context-aware routing, and prompt caching</a>.
                   </p>
-
-                  <ul>
-                    <li><strong>Disaggregated inference</strong></li>
-                    <li><strong>Multi-node inference</strong></li>
-                    <li><strong>Context-aware routing</strong></li>
-                    <li><strong>Prompt caching</strong></li>
-                  </ul>
 
                   <h3>Day-0 Launches &amp; Trainium</h3>
 
                   <p>
-                    Through 2024 I led almost all of Claude's <strong>Day-0 public releases</strong> on Bedrock — including <strong>Computer Use</strong>, Anthropic's first agentic-AI feature, on <strong>Claude 3.5 v2</strong>. I also delivered the <strong>first Claude model release on AWS Trainium/Inferentia</strong>, and grew it to carry roughly <strong>90% of Bedrock's Claude traffic on Trainium chips</strong> — partnering with <strong>James Bradbury</strong> (Anthropic's Head of Compute) and the <strong>Annapurna</strong> teams. All told, our team serves <strong>95%+ of Bedrock's LLM traffic</strong>.
+                    Through 2024 I led almost all of Claude's <strong>Day-0 public releases</strong> on Bedrock — including <strong>Computer Use</strong>, Anthropic's first agentic-AI feature, on <strong>Claude 3.5 v2</strong>. I also delivered the <strong>first Claude model release on AWS Trainium/Inferentia</strong> — partnering with <em>James Bradbury</em> (Anthropic's Head of Compute) and the <strong>Annapurna</strong> teams. All told, our team serves <a href="https://newsletter.semianalysis.com/p/anthropic-growth-and-bedrock-mix" target="_blank" rel="noopener"><strong>95%+ of Bedrock's LLM traffic</strong></a>.
                   </p>
 
                   <h3>Senior Leadership, Up Close</h3>
 
                   <p>
-                    This was also the first time I truly felt how much Amazon's <strong>most senior leadership</strong> cares about a business. Every Sev-2 review pulled in at least two <strong>L10-level</strong> leaders — our VP and our Distinguished Engineer — and I worked directly with <strong>L8 Senior Principal Engineers</strong>. It was my first time collaborating that closely with leaders at that altitude. <strong>High visibility, high pressure.</strong>
+                    This was also the first time I truly felt how much Amazon's <strong>most senior leadership</strong> cares about a business. We received tickets directly from the CEOs of customer companies. Every Sev-2 review pulled in at least two <strong>L10-level</strong> leaders — our VP and our Distinguished Engineer — and I worked directly with <strong>L8 Senior Principal Engineers</strong>. It was my first time collaborating that closely with leaders at that altitude. <strong>High visibility, high pressure.</strong>
                   </p>
 
                   <p>
-                    Because the work was so early and so rare, very few people anywhere had real, hands-on experience with <strong>frontier-model inference</strong>. Anthropic wasn't yet a household name, and the company guarded the program tightly — for <strong>P&amp;C</strong> and <strong>IP-protection</strong> reasons (on Anthropic's behalf), even other Bedrock teammates couldn't access our codebase or documents. Every so often, <strong>investors and reporters</strong> would somehow track down my email and message me out of the blue, fishing for a glimpse of what we were building.
+                    Because the work was so early and so rare, very few people anywhere had real, hands-on experience with <strong>frontier-model inference</strong>. Anthropic wasn't yet a household name, and the company guarded the program tightly — for <strong>P&amp;C</strong> and <strong>IP-protection</strong> reasons (on Anthropic's behalf), even other Bedrock teammates couldn't access our codebase or documents.
                   </p>
 
                   <p>
-                    I learned to treat that attention not as noise but as a chance to <strong>build connections</strong>. Over time, a number of those cold outreaches turned into genuine relationships — <strong>investors who became friends</strong>, founders, and researchers I now count as part of my network. Some of the most valuable parts of this chapter weren't in the codebase at all; they were the people the work put me next to.
+                    I also got the chance to know the folks at Anthropic I worked with day to day, and to <strong>build connections</strong> with others in the same domain. Over time, a number of those connections turned into genuine relationships — investors, founders, and researchers I now count as part of my network. Some of the most valuable parts of this chapter weren't in the codebase at all; they were the people the work put me next to.
                   </p>
 
                   <h3>Choosing to Step Sideways</h3>
 
                   <p>
-                    After shipping my last task at the end of <strong>2024</strong>, I knew I wanted to stop. In early <strong>2026</strong>, back from a vacation, I booked a meeting and sat down with the two Senior Principal Engineers to tell them I wanted to try a different direction. They were understanding, and offered me a few options.
+                    After shipping my last task at the end of <strong>2024</strong>, I knew I wanted to stop. In early <strong>2025</strong>, back from a vacation, I booked a meeting and sat down with the two Senior Principal Engineers to tell them I wanted to try a different direction. They were understanding, and offered me a few options.
                   </p>
 
                   <p>
@@ -1117,24 +1179,26 @@
                       </defs>
                       <path d="M220 47 A115 115 0 1 1 260 47" fill="none" stroke="#6f42c1" stroke-width="2" opacity="0.55" marker-end="url(#fwarr)"/>
                       <circle cx="240" cy="45" r="4" fill="#6f42c1"/>
-                      <circle cx="330" cy="88" r="4" fill="#6f42c1"/>
-                      <circle cx="352" cy="186" r="4" fill="#6f42c1"/>
-                      <circle cx="290" cy="264" r="4" fill="#6f42c1"/>
-                      <circle cx="190" cy="264" r="4" fill="#6f42c1"/>
-                      <circle cx="128" cy="186" r="4" fill="#6f42c1"/>
-                      <circle cx="150" cy="88" r="4" fill="#6f42c1"/>
+                      <circle cx="321" cy="79" r="4" fill="#6f42c1"/>
+                      <circle cx="355" cy="160" r="4" fill="#6f42c1"/>
+                      <circle cx="321" cy="241" r="4" fill="#6f42c1"/>
+                      <circle cx="240" cy="275" r="4" fill="#6f42c1"/>
+                      <circle cx="159" cy="241" r="4" fill="#6f42c1"/>
+                      <circle cx="125" cy="160" r="4" fill="#6f42c1"/>
+                      <circle cx="159" cy="79" r="4" fill="#6f42c1"/>
                       <text x="240" y="30" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6f42c1">Leverage</text>
-                      <text x="342" y="84" text-anchor="start" font-size="12" fill="#777">Scope</text>
-                      <text x="364" y="190" text-anchor="start" font-size="12" fill="#777">Impact</text>
-                      <text x="300" y="285" text-anchor="start" font-size="12" fill="#777">Rating</text>
-                      <text x="180" y="285" text-anchor="end" font-size="12" fill="#777">Job security</text>
-                      <text x="114" y="190" text-anchor="end" font-size="12" fill="#777">Level &uarr;</text>
-                      <text x="138" y="84" text-anchor="end" font-size="12" fill="#777">Role &uarr;</text>
+                      <text x="332" y="74" text-anchor="start" font-size="12" fill="#777">Scope</text>
+                      <text x="366" y="164" text-anchor="start" font-size="12" fill="#777">Impact</text>
+                      <text x="332" y="247" text-anchor="start" font-size="12" fill="#777">Visibility</text>
+                      <text x="240" y="296" text-anchor="middle" font-size="12" fill="#777">Rating</text>
+                      <text x="148" y="247" text-anchor="end" font-size="12" fill="#777">Job security</text>
+                      <text x="114" y="164" text-anchor="end" font-size="12" fill="#777">Level</text>
+                      <text x="148" y="74" text-anchor="end" font-size="12" fill="#777">Role</text>
                       <text x="240" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#555">THE FLYWHEEL</text>
                       <text x="240" y="176" text-anchor="middle" font-size="10.5" fill="#999">it compounds, then loops</text>
                     </svg>
                   </div>
-                  <p class="cp-cycle-note">The unit of the whole thing: more <strong>leverage</strong> wins <strong>scope</strong> and <strong>impact</strong>, which earns <strong>rating</strong>, <strong>job security</strong>, and a higher <strong>level &amp; role</strong> &mdash; and a bigger role hands you <em>more leverage</em> to spend. The wheel turns.</p>
+                  <p class="cp-cycle-note">The unit of the whole thing: more <strong>leverage</strong> wins <strong>scope</strong> and <strong>impact</strong>, which earns <strong>visibility</strong>, <strong>rating</strong>, <strong>job security</strong>, and a higher <strong>level &amp; role</strong> &mdash; and a bigger role hands you <em>more leverage</em> to spend. The wheel turns.</p>
 
                   <div class="cp-axis">2 &middot; The whole engine &mdash; domains &times; tech cycles &times; role &times; knowledge</div>
                   <div class="cp-engine">
@@ -1194,20 +1258,20 @@
                       <line x1="552" y1="369" x2="586" y2="423" stroke="#888" stroke-width="1.5" marker-end="url(#cearr)"/>
 
                       <rect x="588" y="322" width="154" height="30" rx="7" fill="none" stroke="#888" stroke-width="1.2"/>
-                      <text x="598" y="341" font-size="10.5" fill="#666">Level &uarr; &nbsp;(L5&rarr;L6&rarr;L7)</text>
+                      <text x="598" y="341" font-size="10.5" fill="#666">Level &uarr; &nbsp;(L5&rarr;L6&rarr;L7+)</text>
                       <rect x="588" y="364" width="154" height="30" rx="7" fill="none" stroke="#888" stroke-width="1.2"/>
                       <text x="598" y="383" font-size="10.5" fill="#666">Stance: IC &harr; Manager</text>
                       <rect x="588" y="406" width="154" height="42" rx="7" fill="none" stroke="#888" stroke-width="1.2"/>
-                      <text x="598" y="423" font-size="10.5" fill="#666">Job family:</text>
-                      <text x="598" y="438" font-size="10.5" fill="#666">SDE &rarr; PM / Applied Sci.</text>
+                      <text x="598" y="422" font-size="10.5" fill="#666">Job family change</text>
+                      <text x="598" y="437" font-size="10" fill="#6f42c1">&rarr; unlocks more possibilities</text>
                     </svg>
                   </div>
                   <p class="cp-cycle-note">
-                    One connected engine: <strong>technology cycles</strong> (x&#8209;axis) decide which <strong>domain</strong> is hot, and a hotter domain sits higher &mdash; more <strong>leverage, opportunities, and possibilities</strong>. Inside every domain spins the <strong>flywheel</strong> above. You climb by <strong>jumping</strong> to the next hot domain, and those jumps are powered by <strong>transferable knowledge</strong> (fundamentals, systems thinking, taste, learning velocity) &mdash; while <strong>AI&#8209;commoditized, domain&#8209;locked skills</strong> (rote syntax, memorized APIs, single tools, gatekeeping titles) stay behind. At any rung, your <strong>role</strong> can move three independent ways: up a <em>level</em>, across a <em>stance</em> (IC &harr; Manager), or into a different <em>job family</em> (SDE &rarr; PM / Applied Scientist &mdash; increasingly one <a href="https://pengandy.com/blog/2025/RSRCHORENG/" target="_blank">&ldquo;Builder / MTS&rdquo;</a> in the AI era).
+                    One connected engine: <strong>technology cycles</strong> (x&#8209;axis) decide which <strong>domain</strong> is hot, and a hotter domain sits higher &mdash; more <strong>leverage, opportunities, and possibilities</strong>. Inside every domain spins the <strong>flywheel</strong> above. You climb by <strong>jumping</strong> to the next hot domain, and those jumps are powered by <strong>transferable knowledge</strong> (fundamentals, systems thinking, taste, learning velocity) &mdash; while <strong>AI&#8209;commoditized, domain&#8209;locked skills</strong> (rote syntax, memorized APIs, single tools, gatekeeping titles) stay behind. At any rung, your <strong>role</strong> can move three independent ways: up a <em>level</em>, across a <em>stance</em> (IC &harr; Manager), or into a different <em>job family</em> (increasingly one <a href="https://pengandy.com/blog/2025/RSRCHORENG/" target="_blank">&ldquo;Builder / MTS&rdquo;</a> in the AI era).
                   </p>
 
                   <p>
-                    The honest tension: optimizing purely for the flywheel keeps you safe but narrow; following interest across domains widens the map but resets the loop a little each time you jump. My whole career has been a bet on the <em>domain</em> axis and the <em>left column</em> above &mdash; and, as the next note shows, the flywheel mostly caught up anyway.
+                    The honest tension: optimizing purely for the flywheel keeps you safe but narrow; following interest across domains widens the map but resets the loop a little each time you jump. Changing domains carries a real cost — and because everything is in motion, the tradeoff never sits still; striking that dynamic balance is an art of its own. My whole career has been a bet on the <em>domain</em> axis and the <em>left column</em> above &mdash; and, as the next note shows, the flywheel mostly caught up anyway.
                   </p>
 
                   <hr>
@@ -1219,7 +1283,7 @@
                   </p>
 
                   <ul>
-                    <li><strong>SDE I &rarr; SDE II</strong> — failed once in <strong>2017</strong>, then succeeded in <strong>Q3 2018</strong> (AWS Payments).</li>
+                    <li><strong>SDE I &rarr; SDE II</strong> — failed once in <strong>2017</strong>, then succeeded in <strong>Q2 2018</strong> (AWS Payments).</li>
                     <li><strong>SDE II &rarr; SDE III</strong> — failed once in <strong>Q4 2021</strong>, then succeeded in <strong>Q1 2022</strong> (AWS App Runner).</li>
                   </ul>
 
@@ -1232,7 +1296,7 @@
                   <h3>Farewell Notes</h3>
 
                   <p>
-                    A small personal archive — the goodbye note I sent each team as I moved on. <em>(Placeholders for now; I'll add the real emails here.)</em>
+                    A small personal archive — the goodbye note I sent each team as I moved on.
                   </p>
 
                   <div class="farewell-scroll">
@@ -1244,9 +1308,9 @@
                         <p>Dear Bill Runners,</p>
                         <p>What a long time! It have been 3 years. As part of you already know, I am going to explore an unknown journey outside of aws in 2019. I joined CP right after my master graduation. And it is time for me to graduate from CP. I would like to thank you for your help and support along the way. You will be missed!</p>
                         <p>Grateful for all of lovely peers I worked with, you gave me a plenitude and meaningful three years. We have accomplished a lot together. Lots of incredible things happen: MDB Disaggregation, Consolidated Invoicing, EMEA CSOR, 10x, CICD.. It is an unforgettable experience working with such a talented group of people. I do enjoy it and learnt a lot.</p>
-                        <p>I want to take the opportunity to say thank you to Martin Larricart, Jeff Zhang, Richard Rothstein and Weiyan Zhong for their continue support and coaching. You like lighthouse oversea that guide me correct direction on my career growth.</p>
+                        <p>I want to take the opportunity to say thank you to <em>Martin Larricart</em>, <em>Jeff Zhang</em>, <em>Richard Rothstein</em> and <em>Weiyan Zhong</em> for their continue support and coaching. You like lighthouse oversea that guide me correct direction on my career growth.</p>
                         <p>I will still be in Amazon. I wish you all the best in your future endeavors and hope to stay in touch.</p>
-                        <p>Best Regards,<br>Yiming</p>
+                        <p>Best Regards,<br><em>Yiming</em></p>
                       </div>
                     </div>
                     <div class="farewell-card" style="border-top: 3px solid #1a73e8;">
@@ -1258,11 +1322,11 @@
                         <p>Today is my last day on Alexa health team. As part of you already know, I am going to back to aws for a new track in container and serverless area. Time flies, I joined Alexa health on 2019-3. And I have been in Amazon 4yr3mons. I always ask myself what things will look like if having chance to be a 5-year Amazonian one day. It is the hardest decision this tough year. Hope it will work out in the end.</p>
                         <p>Begin with the date I joined amazon, I start hearing alexa news. 2016, might be the fastest growth period of alexa. Voice assistant is such a cool product and unknown domain for me at that moment. I felt grateful meeting such an opportunity in 2019 unboxing it, joining it and participating in building it. I learnt a lot.</p>
                         <p>I would like to thank all of lovely peers I worked with. I still have a fresh memory how we launched medication management system from scratch in 2019. We have accomplished a lot together in this one half year: medication management, refill, hipaa self-service, a4hc, ehr auth session.. Team's energy and cohesion impressed me. I might never ever be able to find a team with such good atmosphere. I am so proud of being part of it. I will miss all of you guys.</p>
-                        <p>I want to take the opportunity to say thank you to Litao, Haiyang. Appreciate for trust and all of opportunities. I did feel being valued. I also want to thanks all of leaderships in Alexa health org. Appreciate for constructing such a transparent, connected work space.</p>
+                        <p>I want to take the opportunity to say thank you to <em>Litao</em>, <em>Haiyang</em>. Appreciate for trust and all of opportunities. I did feel being valued. I also want to thanks all of leaderships in Alexa health org. Appreciate for constructing such a transparent, connected work space.</p>
                         <p>Again, thanks for having me on the team. I wish you all the best in your future endeavors.</p>
                         <p>I will still be in Amazon. My new office is couple blocks away from blueshift. Don't be a stranger, it is a small industry and let's keep in touch.</p>
                         <p>Linkedin: <a href="https://www.linkedin.com/in/pengyiming/" target="_blank" rel="noopener">linkedin.com/in/pengyiming</a></p>
-                        <p>Best regards,<br>Yiming</p>
+                        <p>Best regards,<br><em>Yiming</em></p>
                       </div>
                     </div>
                     <div class="farewell-card" style="border-top: 3px solid #00a1c9;">
@@ -1273,14 +1337,14 @@
                         <p>Dear friends,</p>
                         <p>Appreciate your time. Reach out here to share some recent updates. (Excuse me, I know, this is the &ldquo;season&rdquo;..&#128577;)</p>
                         <p>I will join another product team under Storage org in next week. It is the hardest decision to make. Especially leaving a product babysitting from 0 to 1 since its stealth mode. I love our teams, products and people here.</p>
-                        <p>Back to Day1 when I was at Fargate, Mats reached out to me and we first-time talked about project &ldquo;Fusion&rdquo; (App Runner's code name):</p>
+                        <p>Back to Day1 when I was at Fargate, <em>Mats</em> reached out to me and we first-time talked about project &ldquo;Fusion&rdquo; (App Runner's code name):</p>
                         <p style="border-left:3px solid #00a1c9;padding-left:10px;color:#888;">&ldquo;It's all goodness for us, as Elastic Beanstalk has joined our org and we are doing an exciting project with them this year. This is a S-team goal for us, targeting a re:Invent launch and we think it will change how customers think about running applications on AWS. The project is code named Fusion and builds on top of Fargate.. Sound interesting?&rdquo;</p>
                         <p>It has been almost 3 years for me being in Elastic Containers org. Fargate on Firecracker, RoadRunner (now it is &ldquo;Seekable OCI&rdquo;), Fusion&rarr;App Runner GA, VPC, X-Ray, Route53, Private Service, WAF etc. It has been such a long non-stopped running. Now it is the time I plan to slow down a little bit and revisit next step in life as a new mid-age young man.</p>
                         <p>I am gratitude on all the journey and lovely people I have met and worked with in past few years.</p>
                         <p>Sincerely best wishes to all of my dear teammates and friends here. See you around, I will be around.. &ldquo;Thanks&rdquo; to Pandemic, I still haven't got chance yet meet with part of you in person. New office location is across the street away. Happy to grab a coffee together if there is an opportunity. Let's keep connection.</p>
                         <p>I am still passionate in Cloud-Native, Containers, Serverless and Open-Source. No plan to stop invest energy in these technical fields. Part of you might know, I am hosting an open-source community &ldquo;CloudNative-Serverless-Meetup&rdquo; on GitHub. Happy to keep in touch from there if you like it. Seats offered on the couch.&#128521;</p>
                         <p>Never say never, it is a small world. Containers &ldquo;Days&rdquo; is enjoyable. GO ECS! GO App Runner! GO Beanstalk!</p>
-                        <p>Best and sincerely,<br>Yiming<br><a href="https://www.linkedin.com/in/pengyiming" target="_blank" rel="noopener">linkedin.com/in/pengyiming</a></p>
+                        <p>Best and sincerely,<br><em>Yiming</em><br><a href="https://www.linkedin.com/in/pengyiming" target="_blank" rel="noopener">linkedin.com/in/pengyiming</a></p>
                       </div>
                     </div>
                     <div class="farewell-card" style="border-top: 3px solid #3f8624;">
@@ -1293,6 +1357,1146 @@
                   <p style="font-size: 1.1em; font-weight: bold; margin-top: 36px;">
                     Follow the curiosity. The career follows.
                   </p>
+                  </div><!-- /lang-en -->
+
+                  <div class="lang-zh">
+                  <div style="margin: 8px 0 36px 0; padding: 24px 28px; border-left: none; background: rgba(128,128,128,0.07); border-radius: 6px;">
+                    <p style="font-size: 1.15em; font-style: italic; line-height: 1.7; margin-bottom: 12px;">
+                      “你的工作会占据生命中很大一部分，真正让人满足的唯一方式，是去做你认为伟大的工作；而做出伟大工作的唯一方式，是热爱你所做的事。”
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      —— 史蒂夫·乔布斯（Steve Jobs）
+                    </p>
+                  </div>
+
+                  <p>
+                    人们换团队的理由有很多——重组、经理、薪酬、晋升、地点。而我的理由几乎始终只有一个：<strong>好奇心</strong>。我还没碰过的最有意思的问题在哪里？为了去做它，我又需要把自己变成什么样的人？
+                  </p>
+
+                  <p>
+                    最近我回顾了自己在亚马逊的<a href="https://pengandy.com/blog/2026/decade/" target="_blank">十年</a>。每当有人得知我在同一家公司待了十年，总会跟着两个问题。第一个：<em>“那到底是种什么体验？”</em> 第二个，通常先轻咳一声作铺垫：<em>“无意冒犯——可你为什么换了这么多领域和团队？”</em>
+                  </p>
+
+                  <p>
+                    我半开玩笑的回答是：我的<strong>工作密度</strong>就是比同期的人更高——整整十年我都在以<em>创业模式</em>奔跑，作为一名<strong>内部创业者（intrapreneur）</strong>持续交付<strong>从 0 到 1</strong> 的产品（我的<a href="https://pengandy.com/projects" target="_blank">作品集</a>比我自己更会讲这个故事）。五个团队，五个领域——但只有一条主线。
+                  </p>
+
+                  <p>
+                    我现在写下这些是有原因的。这个行业正被 AI 飞快地重塑；一些昨天还有价值的东西，正在悄悄失去它的价值与意义。趁它还没发生，我想把这十年在职级阶梯上真正学到的东西记录下来——希望对刚入行的人，或正走在相似路上的同行有用。
+                  </p>
+
+                  <p>
+                    所以这是一次对每一次换组的诚实回溯——不是高光集锦，而是看清这些决定究竟是怎么做出来的：我权衡了什么、哪些做对了、哪些是很久以后才想明白的。我反复回到、也最想分享的那套“透镜”，是这样的：
+                  </p>
+
+                  <div style="max-width: 640px; margin: 28px auto;">
+                    <table class="table" style="font-size: 0.95em;">
+                      <thead>
+                        <tr>
+                          <th style="width: 32%;">维度</th>
+                          <th>我会问自己的问题</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><strong>领域 Domain</strong></td><td>这是我真正感兴趣的领域吗——兴趣足够强吗？</td></tr>
+                        <tr><td><strong>学习曲线 Learning curve</strong></td><td>这里有多少东西对我是全新的？我会重新变回一个新手吗？</td></tr>
+                        <tr><td><strong>范围 Scope</strong></td><td>我能拥有的“面”有多大——一个组件、一个系统，还是一项业务？</td></tr>
+                        <tr><td><strong>杠杆 Leverage</strong></td><td>我的工作会复利吗？我交付时，还有谁会因此受益？</td></tr>
+                        <tr><td><strong>影响力 Impact</strong></td><td>这份工作能真正撬动什么吗——对客户、业务，还是这个领域？</td></tr>
+                        <tr><td><strong>环境 Environment</strong></td><td>我会被怎样的人包围——经理与同事？</td></tr>
+                        <tr><td><strong>研究 vs 工程</strong></td><td>我是在探索“可能性”，还是在把“已知”做扎实？</td></tr>
+                        <tr><td><strong>IC vs 管理</strong></td><td>我想靠自己的双手扩展影响，还是通过他人？</td></tr>
+                        <tr><td><strong>短期 vs 长期</strong></td><td>这是对当下的优化，还是对“十年后我想成为谁”的下注？</td></tr>
+                      </tbody>
+                    </table>
+                    <p style="font-size: 0.85em; color: #888; text-align: center; margin-top: 6px;">
+                      所有维度之下的那只指南针：好奇心与兴趣。
+                    </p>
+                  </div>
+
+                  <p>
+                    没有哪次选择能在每一个维度上都得高分。有意思的是你愿意拿什么去换——而这会随着成长而改变。正是第一章，让我意识到这套透镜原来一直存在。
+                  </p>
+
+                  <h3 style="margin-top: 8px;">我在亚马逊工作的全景速览</h3>
+
+                  <p>到目前为止的旅程，一图概览——每一行都是本系列中的一章：</p>
+
+                  <div style="max-width: 760px; margin: 20px auto 8px auto; overflow-x: auto;">
+                    <table class="table table-sm" style="font-size: 0.9em;">
+                      <thead>
+                        <tr>
+                          <th>年份</th><th>领域</th><th>团队 &amp; 组织</th><th>角色</th><th>代表性工作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>2016&ndash;2019</td>
+                          <td><span style="color:#ff9900;font-weight:700;">金融科技 Fintech</span></td>
+                          <td>AWS Payments &middot; Commerce Platform</td>
+                          <td>SDE I &rarr; SDE II</td>
+                          <td>10 倍扩展、GDPR、EMEA；零停机的关系型&rarr;NoSQL 迁移（约每年节省 850 万美元）</td>
+                        </tr>
+                        <tr>
+                          <td>2019&ndash;2020</td>
+                          <td><span style="color:#1a73e8;font-weight:700;">对话式 AI</span></td>
+                          <td>Alexa AI &middot; Health &amp; Wellness</td>
+                          <td>L5 机器学习工程师</td>
+                          <td>创始工程师；语音用药管理（2019/11）+ HIPAA 技能（2020）</td>
+                        </tr>
+                        <tr>
+                          <td>2020&ndash;2023</td>
+                          <td><span style="color:#00a1c9;font-weight:700;">虚拟化 &amp; 云原生</span></td>
+                          <td>AWS App Runner / Fargate &middot; Containers</td>
+                          <td>SDE II &rarr; SDE III</td>
+                          <td>创始工程师 &amp; Uber Tech Lead（UTL）；App Runner 0&rarr;1 发布（2021）；可观测性/链路追踪发布（2022）</td>
+                        </tr>
+                        <tr>
+                          <td>2023</td>
+                          <td><span style="color:#3f8624;font-weight:700;">基础数据服务</span></td>
+                          <td>Amazon S3 &middot; AWS Storage</td>
+                          <td>L6 / SDE III</td>
+                          <td>学习如何在一个超大规模、成熟的组织里运转</td>
+                        </tr>
+                        <tr>
+                          <td>2023&ndash;至今</td>
+                          <td><span style="color:#6f42c1;font-weight:700;">生成式 AI</span></td>
+                          <td>Amazon Bedrock &amp; SageMaker AI</td>
+                          <td>L6 / SDE III</td>
+                          <td>创始工程师；Claude Day-0 首发、Trainium；模型优化（投机解码）、定制化、评测与基准</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div style="margin: 52px 0 12px 0;">
+                    <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #ff9900; font-weight: 700;">第 1 章 &nbsp;·&nbsp; 2016&ndash;2019</div>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #ff9900;">金融科技 Fintech <span style="font-weight: 300; color: #888;">&mdash; AWS Payments</span></h2>
+                  </div>
+
+                  <div class="tl-wrap">
+                    <div class="tl-track">
+                      <div class="tl-seg" style="flex: 3 1 0; background:#ff9900; color:#232f3e;">Fintech<br>'16&ndash;'19</div>
+                      <div class="tl-empty" style="flex: 7.4 1 0;"></div>
+                    </div>
+                    <div class="tl-years"><span>2016</span><span>2021</span><span>2026</span></div>
+                  </div>
+                  <p class="tl-cap">我的职业时间线——每一章都加入一个新领域；斜纹部分是尚未走过的未来。</p>
+
+                  <div class="tc-wrap">
+                    <svg viewBox="0 0 680 178" role="img" aria-label="技术热度周期">
+                      <line x1="50" y1="150" x2="670" y2="150" stroke="rgba(128,128,128,0.35)" stroke-width="1"/>
+                      <text x="50" y="167" font-size="9" fill="#999">2010</text>
+                      <text x="360" y="167" font-size="9" fill="#999" text-anchor="middle">2018</text>
+                      <text x="515" y="167" font-size="9" fill="#999" text-anchor="middle">2022</text>
+                      <text x="670" y="167" font-size="9" fill="#999" text-anchor="end">2026</text>
+                      <path d="M50 140 C140 135 175 62 283 50 C420 42 540 48 670 50" fill="none" stroke="#ff9900" stroke-width="3"/>
+                    </svg>
+                    <div class="tc-legend">
+                      <span><i style="background:#ff9900;"></i>云计算 Cloud computing</span>
+                    </div>
+                    <p class="tc-cap">我亲历的技术周期——第 1 章正处在逐渐成熟的<strong>云计算</strong>浪潮上。</p>
+                  </div>
+
+                  <h3>第一天：AWS Payments</h3>
+
+                  <p>
+                    我于 <strong>2016 年 3 月 14 日</strong>加入亚马逊——那天是圆周率日（Pi Day），也恰好是 AWS 满十周年的日子。刚从学校毕业，我被分配到第一个团队：<strong>AWS Payments</strong>，隶属更大的 <strong>Commerce Platform（商务平台）</strong> 组织。
+                  </p>
+
+                  <p>
+                    如果你从没想过 AWS 究竟是怎么向客户收费的——那套机器正是 Commerce Platform 在搭建。简单说：它就是给 AWS 客户开账单的平台，核心是每月一次、必须准确、准时、且在巨大规模下运行的“账单运行（bill run）”。这是个非常典型的内部平台团队——外表平淡，内里却极其承重。这里的错误是以真实账单上的真金白银来计量的。我以软件工程师（SDE I）的身份加入，待了三年。
+                  </p>
+
+                  <p>
+                    如果你好奇这个组织究竟在做什么，副总裁 <em>James Greenfield</em> 在一期
+                    <a href="https://www.lastweekinaws.com/podcast/screaming-in-the-cloud/stepping-onto-the-aws-commerce-platform-with-james-greenfield/" target="_blank" rel="noopener">2022 年的 <em>Screaming in the Cloud</em> 播客</a>里，对 AWS Commerce Platform 做过很好的公开介绍。
+                  </p>
+
+                  <p>
+                    用上面那套透镜看，Payments 在<em>范围</em>和<em>杠杆</em>上的得分很高，只是我当时没意识到。它的学习曲线与其说是一个新领域，不如说是一条新的标准线：正确性、幂等性、对账，以及那种“大致正确”就等于“错误”的系统纪律。这条标准线塑造了我至今的构建方式。
+                  </p>
+
+                  <p>
+                    在我离开这个团队之后，我终于读了那本广受欢迎的书《设计数据密集型应用》（<em>Designing Data-Intensive Applications</em>，简称 DDIA）。我几乎逐页地认出：书中描述的那些问题，正是我当年在 Payments 开票领域里日复一日搏斗的东西。原来在读到这本“教科书”之前，我早已活在其中。
+                  </p>
+
+                  <p>
+                    <strong>2018 年 Q2</strong>，我从 SDE I 晋升到 SDE II——第一次真正被证明：我能驾驭模糊性，而不只是关掉工单。
+                  </p>
+
+                  <hr>
+
+                  <h3>为这一章画下句号的项目</h3>
+
+                  <p>
+                    我在 Payments 主导的最后一个项目，也是我至今最自豪的：<strong>下线那套支撑着 Commerce Platform <em>全部</em>业务的遗留关系型数据库</strong>，并把它的数据——以<strong>零停机</strong>的方式——迁移到一个非关系型存储 <strong>Amazon DynamoDB</strong> 上。
+                  </p>
+
+                  <p>
+                    这不是一个干净利落的项目。它是一个横跨组织内众多团队、历时数年的大型计划，在我们之前已有过几次<em>失败的尝试</em>。在资金流经的“记录系统”仍在承载线上流量时去迁移它——这类工作里，最有意思的工程和最令人胆寒的工程，往往是同一件事。
+                  </p>
+
+                  <p>
+                    我们团队成为<strong>组织里第一个迁出那套数据库的团队</strong>。成果是具体的：
+                  </p>
+
+                  <ul>
+                    <li>拆除遗留关系型数据库（MDB）后，预计<strong>每年节省约 850 万美元</strong>成本。</li>
+                    <li>把开票（invoice creation）的 <strong>P99 时延方差降低了约 10%</strong>。</li>
+                  </ul>
+
+                  <p>
+                    “第一个”的意义超出了指标本身——它把一个卡住的、“人人都知道该做却没人做”的计划，变成了组织其他团队可以跟随的路径。这就是杠杆：工作的影响超越了我个人的参与时长。
+                  </p>
+
+                  <p>
+                    在 Q1 末，发布公告邮件发出之后，我做了一件连自己都意外的事：我告诉我的经理，我决定换团队。
+                  </p>
+
+                  <hr>
+
+                  <h3>为什么要在高光时刻离开？</h3>
+
+                  <p>
+                    这是个合理的问题——为什么在最大的胜利之后就抽身？但这恰恰是“好奇心指南针”的逻辑。我刚用三年时间，从一个新手变成了能主导一次旗舰级迁移的人。学习曲线已经变平。我能看见接下来三年在 Payments 的大致形状——它仍然有价值，但不会再让我重新成为一个新手。而我，想再做一次新手。
+                  </p>
+
+                  <p>
+                    这是我<strong>第一次换团队</strong>，我并不完全知道该怎么做。于是我用工程师的方式来做：我跑了个实验。作为 SDE II，我面试了几个内部团队，并幸运地拿到了几个 offer：
+                  </p>
+
+                  <div class="anchor-wrap">
+                    <div class="anchor-row">
+                      <span class="anchor-eco">ECS（Elastic Container Service） <span class="anchor-tag" style="color:#1a73e8;">基础设施</span></span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="color:#1a73e8;">核心 AWS 计算与容器编排；底层虚拟化</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">Alexa AI — Health &amp; Wellness <span class="anchor-tag" style="color:#1a73e8;">对话式 AI</span></span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="color:#1a73e8;">一个全新的领域，一个全新的团队</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">IoT <span class="anchor-tag" style="color:#1a73e8;">边缘</span></span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="color:#1a73e8;">边缘的互联设备</span>
+                    </div>
+                  </div>
+                  <p class="anchor-cap">三个 offer，收敛成一个真正的岔路口——基础设施 vs. 人工智能。</p>
+
+                  <hr>
+
+                  <h3>真正的抉择：ECS vs. Alexa</h3>
+
+                  <p>
+                    IoT 很有意思，但抉择很快收敛为两种截然不同的未来。
+                  </p>
+
+                  <p>
+                    <strong>ECS</strong> 牵动着我热爱<em>真正的基础设施 primitive（底层构件）</em>的那一面。它给我一条通往底层虚拟化的路，以及在容器生态里为<strong>开源项目</strong>做贡献的机会。在透镜上，它在学习曲线（我从未构建过的栈底系统）和环境/社区（开源是一种能远超单一公司、不断复利的杠杆）上都极其出色。这是“把根基扎得更深”的下注。
+                  </p>
+
+                  <p>
+                    <strong>Alexa AI Health &amp; Wellness</strong> 牵动的则完全是另一面。它是一个<em>全新（greenfield）</em>的领域和团队。当我和招聘经理、工程师们交谈时，最打动我的是他们对将要构建之物那份发自内心的<strong>兴奋</strong>。它在 AWS <em>之外</em>——一个探索全新空间的机会——并且正搭乘当时最激动人心的技术浪潮：<strong>NLU、应用型 AI，以及那些让科幻照进产品的消费级应用</strong>。这是“去探索新前沿”的下注。
+                  </p>
+
+                  <p>
+                    基础设施 vs. 人工智能。深度 vs. 广度。把已知做扎实 vs. 探索可能性。透镜没有直接给我答案——它让问题更锋利。
+                  </p>
+
+                  <p>
+                    于是我做了我会推荐给任何面临这种岔路口的人去做的事：我找了那些见过许多此类岔路的<strong>资深前辈</strong>，认真听他们说。
+                  </p>
+
+                  <p>
+                    最终，我选择了 <strong>Alexa AI — Health &amp; Wellness</strong>。我想走出 AWS、探索一个全新的空间，也确实被 NLU、AI 应用，以及那波浪潮即将催生的产品深深点燃。
+                  </p>
+
+                  <p>
+                    但我想诚实地讲清楚一点：选择一条路，并没有熄灭另一条。我把对<strong>开源贡献</strong>和<strong>底层虚拟化基础设施</strong>的好奇心一直留着。当时我还不知道，正是这簇火苗，会在这个故事后面的章节里再次发光。一个选择很少是“关上一扇门”——更多时候，是你留了一扇虚掩的门。
+                  </p>
+
+                  <hr>
+
+                  <h3>第一个岔路口的收获</h3>
+
+                  <ul>
+                    <li><strong>在曲线变平时离开，而不是在活干完时。</strong> 活永远干不完；可学的东西却未必一直有。</li>
+                    <li><strong>先收尾，再离开。</strong> 把东西交付掉、把邮件发出去，然后再换组。漂亮的收尾，会为你挣来下一个开端。</li>
+                    <li><strong>去找走过这个岔路的人聊。</strong> 阅历，是借用“后见之明”的高效方式。</li>
+                    <li><strong>一个决定不是一次删除。</strong> 你没选的那些兴趣，可以等你。</li>
+                  </ul>
+
+                  <p style="margin-top: 28px;">
+                    从金融科技那种铁一般的纪律，到对话式 AI 那片开阔的前沿——这是我能找到的、最陡峭的学习曲线，且是我有意为之。
+                  </p>
+
+                  <hr>
+
+                  <div style="margin: 52px 0 12px 0;">
+                    <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #1a73e8; font-weight: 700;">第 2 章 &nbsp;·&nbsp; 2019&ndash;2020</div>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #1a73e8;">对话式 AI <span style="font-weight: 300; color: #888;">&mdash; Alexa Health &amp; Wellness</span></h2>
+                  </div>
+
+                  <div class="tl-wrap">
+                    <div class="tl-track">
+                      <div class="tl-seg" style="flex: 3 1 0; background:#ff9900; color:#232f3e;">Fintech<br>'16&ndash;'19</div>
+                      <div class="tl-seg" style="flex: 1 1 0; background:#1a73e8;">Conv. AI<br>'19&ndash;'20</div>
+                      <div class="tl-empty" style="flex: 6.4 1 0;"></div>
+                    </div>
+                    <div class="tl-years"><span>2016</span><span>2021</span><span>2026</span></div>
+                  </div>
+
+                  <div class="tc-wrap">
+                    <svg viewBox="0 0 680 178" role="img" aria-label="技术热度周期">
+                      <line x1="50" y1="150" x2="670" y2="150" stroke="rgba(128,128,128,0.35)" stroke-width="1"/>
+                      <text x="50" y="167" font-size="9" fill="#999">2010</text>
+                      <text x="360" y="167" font-size="9" fill="#999" text-anchor="middle">2018</text>
+                      <text x="515" y="167" font-size="9" fill="#999" text-anchor="middle">2022</text>
+                      <text x="670" y="167" font-size="9" fill="#999" text-anchor="end">2026</text>
+                      <path d="M50 140 C140 135 175 62 283 50 C420 42 540 48 670 50" fill="none" stroke="#ff9900" stroke-width="2" opacity="0.3"/>
+                      <path d="M205 148 C320 145 362 72 410 56 C470 74 560 120 670 138" fill="none" stroke="#1a73e8" stroke-width="3"/>
+                    </svg>
+                    <div class="tc-legend">
+                      <span><i style="background:#ff9900;opacity:0.4;"></i>云计算 Cloud computing</span>
+                      <span><i style="background:#1a73e8;"></i>NLP / 对话式 AI</span>
+                    </div>
+                    <p class="tc-cap">+ <strong>NLP / 对话式 AI</strong> 浪潮——大约在 2019&ndash;2020 年达到顶峰，恰好是我加入 Alexa 的时候。</p>
+                  </div>
+
+                  <h3>从 0 到 1，在一家巨头内部</h3>
+
+                  <p>
+                    Alexa Health &amp; Wellness 是我第一次从 <strong>0 到 1</strong> 构建一个全新产品。它是一个小而精、像创业公司一样的团队，却长在地球上最大的公司之一里面——这本身就是一种奇特的馈赠：车库般的能量，配上全球平台的触达。
+                  </p>
+
+                  <p>
+                    这个团队在 2018 年于 Alexa 组织内悄然成立（隶属一个叫 Alexa Domains 的小组），使命是让语音助手在医疗健康领域真正有用——糖尿病管理、对新生儿母婴的照护、以及养老——并且全部要在 <strong>HIPAA</strong> 的约束之下
+                    （<a href="https://www.cnbc.com/2018/05/10/amazon-is-building-a-health-and-wellness-team-within-alexa.html" target="_blank" rel="noopener">CNBC，2018 年 5 月</a>）。
+                    我们的部门由 <em>Rachel Jiang</em> 领导。其创始阵容里有 <a href="https://www.cnbc.com/2017/07/20/amazon-hires-box-vp-missy-krasner-to-beef-up-health-division.html" target="_blank" rel="noopener"><em>Missy Krasner</em></a>——她在 Box 一手建起医疗业务，更早还参与过谷歌最初的健康病历尝试——以及一位敏锐的产品经理 <em>Yvonne Chou</em>，后来成了我亲密的同事。
+                  </p>
+
+                  <p>
+                    我以 <strong>L5 机器学习工程师</strong>的身份加入，与 <strong>L7 产品负责人</strong>并肩，并与<strong>应用科学家团队</strong>紧密协作。这是我第一次真正尝到<em>研究与工程交汇</em>的那道缝：科学家在探究 NLU <em>能</em>做到什么，而像我这样的工程师，把这些想法打磨成一个受监管的、能真正上线的现实产品。后来我专门写过一篇讲这种张力的文章——而在这里，它只是日常。
+                  </p>
+
+                  <p>
+                    我待了大约 <strong>1.5 年</strong>，在这段时间里我们交付了<strong>两次公开发布</strong>：
+                  </p>
+
+                  <div style="display: flex; flex-wrap: wrap; gap: 16px; max-width: 640px; margin: 24px auto;">
+                    <div style="flex: 1 1 260px; background: rgba(26,115,232,0.07); border-radius: 8px; padding: 18px 20px;">
+                      <div style="font-weight: bold; color: #1a73e8; margin-bottom: 6px;">发布 1</div>
+                      语音 AI <strong>用药管理</strong>——多轮的提醒与续药，与药房合作。
+                    </div>
+                    <div style="flex: 1 1 260px; background: rgba(63,134,36,0.07); border-radius: 8px; padding: 18px 20px;">
+                      <div style="font-weight: bold; color: #3f8624; margin-bottom: 6px;">发布 2</div>
+                      <strong>HIPAA 合规技能</strong>——把受保护的健康信息安全地带入语音领域。
+                    </div>
+                  </div>
+
+                  <p>
+                    我负责的部分是<strong>用药管理的多轮 speechlet</strong>，构建在 NLU 之上——也就是那套来回往复的对话逻辑，让人能真正<em>与</em> Alexa 谈论自己的用药，而不是只会发单条命令。我们与一家药房和一家医院合作。这个项目机密到我们办公楼层需要<strong>特殊门禁</strong>才能进入——当大楼本身都把它当作秘密对待时，你就知道它有多重要。
+                  </p>
+
+                  <hr>
+
+                  <h3>当你的代码开口回话</h3>
+
+                  <p>
+                    这份工作里有一种我几乎在别处都找不到的特别快乐：你接上一台 Echo 设备，跑起你的构建，然后你自己的代码就<em>开口和你说话</em>了——回答、提问、澄清——就在你测试和调试的当下。调试一段对话是件既奇怪又奇妙的事。系统不再像软件，而开始像房间里的一个“存在”。
+                  </p>
+
+                  <p>
+                    <strong>2019 年 11 月</strong>，我们<a href="https://www.aboutamazon.com/news/devices/new-ways-to-manage-your-medications-at-home-using-alexa" target="_blank" rel="noopener">向公众发布</a>——同一个月，Alexa 本身也<a href="https://www.aboutamazon.com/news/devices/alexa-happy-birthday" target="_blank" rel="noopener">迎来了五岁生日</a>（2019 年 11 月 6 日）。这项工作出现在亚马逊的财报里，也被
+                    <a href="https://www.forbes.com/sites/krisholt/2019/11/26/amazons-alexa-can-now-remind-you-when-to-take-your-medications/" target="_blank" rel="noopener"><em>Forbes</em></a>、<a href="https://www.cnbc.com/2019/11/26/amazon-alexa-will-now-remind-you-when-to-take-your-pills.html" target="_blank" rel="noopener"><em>CNBC</em></a> 等媒体报道。那是一段真正有成就感的时光。
+                  </p>
+
+                  <p>
+                    而这一切是否有意义，最动人的证据来得要晚得多。2020 年 12 月，在我早已离开很久之后，我和昔日同事——产品经理 <em>Yvonne Chou</em>（当时已是产品总监，后来成为 <a href="https://allenai.org/" target="_blank" rel="noopener">AI2</a> 的 Chief of Staff）发消息时，她写道（原文，未作修改）：
+                  </p>
+
+                  <blockquote style="border-left: 4px solid #1a73e8; padding: 14px 22px; margin: 22px 0; background: rgba(26,115,232,0.05); font-style: italic;">
+                    <p>"I am in Los Angeles for the holidays and my brother got my parents a new Echo Show earlier this month. When I got to my parents house, I noticed my brother was logging dirty diaper changes and my dad had medication reminders set up all on his own :) they obviously wasn't our MM ones, but it was fun to see them use the features the team built and I didn't even have to tell them about it.</p>
+                    <p>Happy new year!</p>
+                    <p>-<em>Yvonne</em>"</p>
+                  </blockquote>
+
+                  <p>
+                    陌生人，在他们自己的家里，悄悄地用着你参与发明的那一类东西——没有任何人去告诉他们。这，其实就是这份工作的全部意义。
+                  </p>
+
+                  <hr>
+
+                  <h3>顺着技术周期而行</h3>
+
+                  <p>
+                    回头看，这一章真正的教训其实根本不是关于医疗的——而是关于<strong>你站在技术周期的哪个位置</strong>。每一项变革性能力都是一波一波到来的。“能和机器直接说话”的梦想已有几十年；不断变化的，是它底下的那台引擎。2019 年，那台引擎还是“意图+槽位”的 NLU，而我们在做的，是下一波浪潮会悄悄抽象掉的那些重活、那些脚手架。
+                  </p>
+
+                  <div style="max-width: 720px; margin: 24px auto; overflow-x: auto;">
+                    <div style="display: flex; flex-wrap: nowrap; gap: 6px; min-width: 580px; text-align: center; font-size: 0.82em;">
+                      <div style="flex: 1; padding: 12px 8px; background: rgba(128,128,128,0.08); border-radius: 8px;">
+                        <div style="font-weight: 700;">基于规则的脚本</div>
+                        <div style="color: #888;">1960s&ndash;2000s</div>
+                      </div>
+                      <div style="flex: 1; padding: 12px 8px; background: rgba(26,115,232,0.16); border: 2px solid #1a73e8; border-radius: 8px;">
+                        <div style="font-weight: 700; color: #1a73e8;">意图 &amp; 槽位 NLU</div>
+                        <div style="color: #1a73e8; font-weight: 600;">&#9733; 我在这里 &middot; 2019</div>
+                      </div>
+                      <div style="flex: 1; padding: 12px 8px; background: rgba(128,128,128,0.08); border-radius: 8px;">
+                        <div style="font-weight: 700;">深度学习（seq2seq）</div>
+                        <div style="color: #888;">~2017&ndash;2021</div>
+                      </div>
+                      <div style="flex: 1; padding: 12px 8px; background: rgba(63,134,36,0.14); border-radius: 8px;">
+                        <div style="font-weight: 700; color: #3f8624;">大语言模型 LLM</div>
+                        <div style="color: #888;">2022&ndash;至今</div>
+                      </div>
+                    </div>
+                    <p style="font-size: 0.82em; color: #888; text-align: center; margin-top: 10px;">
+                      对话式 AI 的周期。我交付在第二级台阶上；两级之后，LLM 让同样的体验变得轻而易举。
+                    </p>
+                  </div>
+
+                  <p>
+                    站在曲线的过早处，感觉很像“做错了”：产品更难做、体验更糙、采用更慢。但早期的工作很少是白费的——它让你把问题理解得足够深，以至于下一波浪潮到来时，你已经清楚它到底擅长什么。对话式 AI 的梦想并没有失败。它只是<em>来早了</em>，在等 LLM 那波浪潮让它变得轻松。
+                  </p>
+
+                  <hr>
+
+                  <h3>前沿为何降温</h3>
+
+                  <p>
+                    然而。那还是 LLM 之前的世界，梦想与技术之间的鸿沟是真实存在的。当时的 NLU 仍然依赖<strong>槽位与基于规则的设计</strong>——传统对话式 AI 的脚手架。要支撑真正<em>重上下文</em>的多轮对话，需要海量工程投入，而即便如此，体验也不像今天的 LLM 助手那样顺滑、那样宽容。说实话，产品的采用和营收，还远谈不上理想。
+                  </p>
+
+                  <p>
+                    更大的气候也在转变。大厂在医疗上的宏大押注正在降温：<strong>Haven</strong>——亚马逊、伯克希尔·哈撒韦与摩根大通备受瞩目的联盟，2019 年才正式命名——在<a href="https://www.businessinsider.com/google-health-shutting-down-david-feinberg-leaves-2021-8" target="_blank" rel="noopener">2021 年解散</a>，同年<strong>谷歌也拆掉了自己的健康部门</strong>。离我更近的，是领导者们开始离开——<em>Missy Krasner</em> 于 <a href="https://www.businessinsider.com/missy-krasner-leaves-amazon-for-venture-firm-redesign-health-2020-10" target="_blank" rel="noopener">2020 年 10 月离开亚马逊</a>，加入一家风投。我读懂了这个信号：我在这个特定空间里的时间，正走向尾声。
+                  </p>
+
+                  <p>
+                    于是我伸手去够那个一年半前被我有意虚掩着的兴趣——<strong>虚拟化与基础设施</strong>——把它作为下一站。那扇我没关上的门，恰好就是我接下来走进的那一扇。
+                  </p>
+
+                  <hr>
+
+                  <h3>两张改写了职业生涯的门票</h3>
+
+                  <p>
+                    值得一提的是——2019 年，Alexa AI 很慷慨地<strong>资助我参加了两场会议</strong>，而当时谁都没想到，这两张票会把我接下来几年的职业生涯掰弯多少：
+                  </p>
+
+                  <ul>
+                    <li>
+                      <strong>KubeCon + CloudNativeCon 2019，圣地亚哥</strong>——我第一次线下沉浸进容器与云原生的世界。我近距离感受到云原生社区那种纯粹的冲击力与旺盛的生命力，内心某处认出了：这就是家。
+                    </li>
+                    <li>
+                      <strong>NeurIPS 2019，温哥华（YVR）</strong>——临近年末，一个置身学术研究者之中、直接感受 AI 下一步走向的机会。
+                    </li>
+                  </ul>
+
+                  <p>
+                    我在温哥华，还有一个更平淡的原因——H1B 签证——我在那趟旅程里愉快地规划着 2020 年的出行。生活就是这样：大约两个月后，全球疫情开始，那些计划无一幸免地化为泡影。但那两场会议种下的两颗种子——云原生，以及 AI 研究的脉搏——终究还是发了芽。
+                  </p>
+
+                  <hr>
+
+                  <div style="margin: 52px 0 12px 0;">
+                    <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #00a1c9; font-weight: 700;">第 3 章 &nbsp;·&nbsp; 2020&ndash;2022</div>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #00a1c9;">虚拟化 &amp; 云原生 <span style="font-weight: 300; color: #888;">&mdash; AWS App Runner &amp; Fargate</span></h2>
+                  </div>
+
+                  <div class="tl-wrap">
+                    <div class="tl-track">
+                      <div class="tl-seg" style="flex: 3 1 0; background:#ff9900; color:#232f3e;">Fintech<br>'16&ndash;'19</div>
+                      <div class="tl-seg" style="flex: 1 1 0; background:#1a73e8;">Conv. AI<br>'19&ndash;'20</div>
+                      <div class="tl-seg" style="flex: 3 1 0; background:#00a1c9;">Virtualization<br>'20&ndash;'23</div>
+                      <div class="tl-empty" style="flex: 3.4 1 0;"></div>
+                    </div>
+                    <div class="tl-years"><span>2016</span><span>2021</span><span>2026</span></div>
+                  </div>
+
+                  <div class="tc-wrap">
+                    <svg viewBox="0 0 680 178" role="img" aria-label="技术热度周期">
+                      <line x1="50" y1="150" x2="670" y2="150" stroke="rgba(128,128,128,0.35)" stroke-width="1"/>
+                      <text x="50" y="167" font-size="9" fill="#999">2010</text>
+                      <text x="360" y="167" font-size="9" fill="#999" text-anchor="middle">2018</text>
+                      <text x="515" y="167" font-size="9" fill="#999" text-anchor="middle">2022</text>
+                      <text x="670" y="167" font-size="9" fill="#999" text-anchor="end">2026</text>
+                      <path d="M50 140 C140 135 175 62 283 50 C420 42 540 48 670 50" fill="none" stroke="#ff9900" stroke-width="2" opacity="0.3"/>
+                      <path d="M205 148 C320 145 362 72 410 56 C470 74 560 120 670 138" fill="none" stroke="#1a73e8" stroke-width="2" opacity="0.3"/>
+                      <path d="M190 146 C300 140 352 74 399 60 C480 52 540 80 670 90" fill="none" stroke="#00a1c9" stroke-width="3"/>
+                    </svg>
+                    <div class="tc-legend">
+                      <span><i style="background:#ff9900;opacity:0.4;"></i>云计算 Cloud computing</span>
+                      <span><i style="background:#1a73e8;opacity:0.4;"></i>NLP / 对话式 AI</span>
+                      <span><i style="background:#00a1c9;"></i>云原生 Cloud Native</span>
+                    </div>
+                    <p class="tc-cap">+ <strong>云原生</strong>浪潮——Kubernetes 时代的基础设施，我的容器岁月。</p>
+                  </div>
+
+                  <h3>选择“刚需”基础设施</h3>
+
+                  <p>
+                    随着对话式 AI 这一章落幕，我终于追上了那个从第一个岔路口起就一直留着的兴趣：<strong>虚拟化</strong>。但我对<em>去哪里</em>也很有讲究。我想落在一个属于<strong>刚需、不可或缺的基础设施</strong>的地方——有稳定的盈利和强劲的现金流。无论行业是冷是热，那一层“不光鲜但不可或缺”的东西，是做雄心勃勃工作的最安全之处。
+                  </p>
+
+                  <p>
+                    这把我直接指向了容器。我联系了一位我认识的经理 <em>Mats Lanner</em>，他领导着 <strong>AWS Fargate</strong>——AWS 的一款明星产品，<a href="https://aws.amazon.com/blogs/aws/aws-fargate/" target="_blank" rel="noopener">于 2017 年 11 月 29 日的 re:Invent 上发布</a>。当时 Fargate 作为无服务器容器计算平台，正处在强劲的增长轨道上。
+                  </p>
+
+                  <p>
+                    当我在 <strong>2020 年 7 月</strong>左右重新联系上 <em>Mats</em> 时，他的回复比我预期的更令人兴奋——那是我第一次听说代号 <strong>“Fusion”</strong> 的项目，也就是后来的 AWS App Runner：
+                  </p>
+
+                  <blockquote style="border-left: 4px solid #00a1c9; padding: 14px 22px; margin: 22px 0; background: rgba(0,161,201,0.06); font-style: italic;">
+                    <p>"It's all goodness for us, as Elastic Beanstalk has joined our org and we are doing an exciting project with them this year. This is a S-team goal for us, targeting a re:Invent launch and we think it will change how customers think about running applications on AWS. The project is code named Fusion and builds on top of Fargate..</p>
+                    <p>Sound interesting?"</p>
+                  </blockquote>
+
+                  <p>
+                    他还推荐我去找 <em>Archana Srikanta</em> 聊——一位资深工程负责人、Fargate 的创始工程师之一，也是我早已敬佩的人（她将在 <strong>2021 年晋升为 Principal Engineer</strong>）。在加入之前，我就看过她讲 Fargate 的 YouTube 演讲。我们用 Chime 通了话；她高层次地勾勒了这个项目，最后我们还聊起了 Rust。一切听上去都很酷。于是我加入了。
+                  </p>
+
+                  <hr>
+
+                  <h3>加入“客场团队”：Fusion 项目</h3>
+
+                  <p>
+                    我作为 <em>Mats</em>（我的 L7 经理）的直接下属，加入了跨组织项目 “Fusion”——后来以 <strong>AWS App Runner</strong> 之名公开发布。
+                  </p>
+
+                  <p>
+                    很多人会担心被指派为嵌入另一个组织的“客场团队（away team）”成员——尤其是第一天。作为一名初级工程师，我也有同样的不确定感。但那份担忧，被新的知识、新的技术、新的讨论慢慢取代了。<em>把眼前的任务做好，是消解不确定性最确定的那条路。</em> 到头来，这支客场团队成了我职业生涯中最<strong>有回报</strong>的押注之一。
+                  </p>
+
+                  <p>
+                    我主要负责设计和编写<strong>数据面（dataplane）</strong>，搭档是来自 Elastic Beanstalk 的资深工程师 <em>Amit Gupta</em>（他后来在 <strong>2022 年 Q2 晋升为 Principal Engineer</strong>）。我们一起啃下了一摞硬骨头：
+                  </p>
+
+                  <ul>
+                    <li>个位数秒级的自动扩缩容</li>
+                    <li>多租户请求路由</li>
+                    <li>蜂窝式架构（cellular architecture）</li>
+                    <li>容量管理</li>
+                    <li>负载均衡</li>
+                    <li>网络</li>
+                  </ul>
+
+                  <p>
+                    App Runner 还让我每天近距离处在<strong>三位 Principal Engineer</strong> 的轨道上——<em>Archana Srikanta</em>、<em>Onur Filiz</em>（后来成为微软的 Principal Software Engineer），以及 <em>Amit</em>——那是一条比我以往共事过的都更高的技术标准线，也把我自己的工程能力迅速往上拽。
+                  </p>
+
+                  <p>
+                    与 Devices 或 Commerce Platform 这样的巨型组织相比，容器组织也相对小。很长一段时间我都听说，它干脆<strong>不招 L4</strong>——一种刻意保持高门槛的方式，因为我们做的确实是底层系统。
+                  </p>
+
+                  <p>
+                    一路上我得以探索了大量新技术与开源项目——<strong>Kafka、Envoy Proxy、Protobuf、gRPC</strong>——这些在亚马逊当时还没被广泛使用的技术栈；Envoy 的工作还让我写起了 <strong>C++</strong>。（我后来在亚马逊内部发起了<strong>第一个 Envoy Proxy 社区</strong>。）
+                  </p>
+
+                  <p>
+                    我们在 <strong>2021 年 5 月 18 日发布了 AWS App Runner</strong>
+                    （<a href="https://aws.amazon.com/blogs/aws/app-runner-from-code-to-scalable-secure-web-apps" target="_blank" rel="noopener">AWS News</a>）。
+                    这是我第一次把一款 AWS 公开产品从 <strong>0 孵化到 1</strong> 并发布——全世界的用户都能在 AWS 控制台里发现并使用它。
+                  </p>
+
+                  <p>
+                    我们的副总裁 <em>Deepak Singh</em> 也在发布前后
+                    <a href="https://www.infoq.com/news/2021/06/deepak-singh-aws/" target="_blank" rel="noopener">公开谈到了 App Runner</a>。
+                    在我的容器岁月里，<em>Deepak</em> 是我一直关注的一位领导者——每周五下班时，他都会发出一封周记，分享他的想法与观察，我是真心喜欢读。
+                  </p>
+
+                  <hr>
+
+                  <h3>一个岔路口：留在产品，还是回去？</h3>
+
+                  <p>
+                    作为客场团队的贡献者，我最终撞上了那个绕不开的问题：我究竟属于哪里？<em>Mats</em> 最初安排我去帮 <strong>AWS Fargate 的数据面和 Firecracker microVM</strong> 工作，同时我也在继续收尾 App Runner 的发布后事项。
+                  </p>
+
+                  <p>
+                    然后，在一次例行 1:1 上，App Runner 的总经理——L7 领导 <em>Prashant Prahlad</em>（现为 Datadog 的副总裁）——向我抛出了橄榄枝：留在 App Runner，做<strong>创始成员与核心构建者</strong>。
+                  </p>
+
+                  <div class="anchor-wrap">
+                    <div class="anchor-row">
+                      <span class="anchor-eco">留在 App Runner <span class="anchor-tag" style="color:#00a1c9;">新产品</span></span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="color:#00a1c9;">我亲手参与发布的产品的创始成员与核心构建者</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">回到 Fargate <span class="anchor-tag" style="color:#00a1c9;">原团队</span></span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="color:#00a1c9;">我最初加入的团队——数据面 &amp; Firecracker microVM</span>
+                    </div>
+                  </div>
+                  <p class="anchor-cap">与之前同样形状的岔路口：我亲手建起的新产品，还是我最初加入的团队。</p>
+
+                  <p>
+                    我选择<strong>留下</strong>：我<strong>正式加入 App Runner</strong>，成为团队的核心成员，并转去向 <em>Prashant</em> 汇报。
+                  </p>
+
+                  <hr>
+
+                  <h3>通往 L6 之路：走进可观测性</h3>
+
+                  <p>
+                    绕不开的下一个话题，是我自己的成长。我从 2018 年起就是 SDE II——已经快三年。<em>Prashant</em> 从 <strong>2021 年 OP1 路线图</strong>里给了我几个项目可选，我挑了一个关于<strong>可观测性（Observability）</strong>的公开功能发布。我选它，是因为我想做面向公众的功能；当时我完全没想到，这一个选择会把我带进多深的行业曝光里。
+                  </p>
+
+                  <p>
+                    任务是：给 App Runner 真正的可观测性。我们已经有了<strong>指标</strong>和<strong>日志</strong>；作为一站式容器计算平台，我们还想要<strong>链路追踪（tracing）</strong>。这对我是个相对新的领域，我几乎是单枪匹马地花了大量时间做研究和初期构建——<strong>OpenTelemetry、AWS X-Ray、Grafana</strong>。
+                  </p>
+
+                  <p>
+                    它把我带进了一群了不起的人的轨道：Principal Engineer <em>Jaana Dogan</em>（后来回到谷歌任 Principal Engineer）、<em>Michael Hausenblas</em>、<em>Alolita Sharma</em>——这个领域里真正的专家和领袖——也让我更深地进入了 <strong>CNCF 社区</strong>。我当时的导师 <em>Phil Estes</em>（containerd 团队的 Principal Engineer）和他们都熟——也正是 Phil 后来推荐我加入了 <strong>CNCF Ambassador</strong> 社区。深夜里，我和我们的产品经理 <em>Akshay Ram</em> 一起打磨 PRFAQ 和客户体验。
+                  </p>
+
+                  <p>
+                    我在 <strong>2022 年 Q1</strong> 主导了这个功能的发布——并在同一时间<strong>晋升为 SDE III（L6）</strong>。
+                  </p>
+
+                  <hr>
+
+                  <h3>走入聚光灯</h3>
+
+                  <p>
+                    接着发生了一件我没预料到的事。<em>Adam Keller</em> 邀请我上 AWS Containers 的 YouTube 节目 <a href="https://youtu.be/cVr8N7enCMM" target="_blank" rel="noopener"><em>“Containers from the Couch”</em></a> 聊这个功能，这项工作还被
+                    <a href="https://dev.to/aws/aws-open-source-news-and-updates-113-16a4" target="_blank" rel="noopener">AWS Open Source News and Updates 第 #113 期</a>
+                    在那年 5 月收录，并由我们的 L7 产品负责人 <em>Shubha Rao</em>（后来加入谷歌任 Director of Product Management, AI/ML）在公开场合力荐。这是我第一次<em>因为自己构建的产品</em>而被公众看见。
+                  </p>
+
+                  <p>
+                    一个小插曲：录播客那天，我的笔记本电脑罢工了。我很慌，给 <em>Adam</em> 发消息；他回我说，他会先独自开场几分钟，可以等我重启。有惊无险的是，电脑恢复了，我赶上线，把 <em>Adam</em> 从“独角戏”里解救出来，开始分享我们做的东西。
+                  </p>
+
+                  <p>
+                    从那以后就一发不可收拾。公开曝光带来了能见度——也带来了责任。我和我们的 <strong>GTM、销售、产品</strong>团队合作，把产品带给客户和用户，在 <strong>DockerCon</strong> 上与 <em>Inbal Shani</em>（现为 Twilio 的 CPO；曾任 GitHub 的 CPO；曾是我们在 AWS 的总经理）<strong>同台演讲</strong>，还写了 AWS 博客。我上了一门内部课程并拿到了<strong>公开演讲认证</strong>，去代表并支持亚马逊出席顶级的外部会议和活动。那感觉有点像在“出通告”。我甚至开始收到出版社（比如 <strong>Packt</strong>）的<strong>写书邀约</strong>，还不止一次。我把那一年的工作总结写进了一篇
+                    <a href="https://medium.com/@pymhq/andy-at-containers-serverless-2022-4ea4d0d1c78e" target="_blank" rel="noopener">Medium 文章</a>，用清单的形式记下。毫无疑问，这对我的职业生涯是一次巨大的助推。我也借此收获了不少外部连接。
+                  </p>
+
+                  <p>
+                    那份社区认可，最终化作了一件我至今仍引以为豪的事：<strong>2022 年末</strong>，<strong>Linux 基金会</strong>任命我为
+                    <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank" rel="noopener">CNCF Ambassador</a>。
+                    我受邀参加了 <strong>KubeCon 阿姆斯特丹 2023</strong> 上的新任 Ambassador 公布活动，在那里，我第一次当面见到许多此前只在 YouTube 和播客上看过的、开源与云原生世界里的高知名度构建者。
+                  </p>
+
+                  <hr>
+
+                  <h3>不堪重负——以及一段冷静期</h3>
+
+                  <p>
+                    能见度本身有一种引力，有一阵子我任由它把我拽着走。L6 晋升之后，我成了核心工程师，也成了横跨整个 App Runner 组织（约 70 人）的“uber” tech lead——一个<strong>力量倍增器（force multiplier）</strong>。高峰时，我作为 tech lead 同时盯着<strong>十多条项目线</strong>的推进，年中我还开始带<strong>直接下属</strong>——既有实习生，也有正式员工。我真的逐周记录了自己的时间都花在哪。这个角色远远超出了写代码，深入到<strong>跨职能协作</strong>：我写 <strong>PRFAQ</strong>、和<strong>销售与 GTM</strong> 合作、还和产品团队一起开 <strong>WBR / MBR（周度 / 月度业务回顾）</strong>。大范围、大能见度、早期创业公司般的能量——而说实话，也让人不堪重负。
+                  </p>
+
+                  <div style="max-width: 520px; margin: 16px auto 4px;">
+                    <svg viewBox="0 0 470 250" role="img" aria-label="作为 Uber Tech Lead 在高峰期的时间分配" style="width:100%;height:auto;display:block;">
+                      <path d="M115 115 L115 15 A100 100 0 0 1 204.02 69.45 Z" fill="#00a1c9"/>
+                      <path d="M115 115 L204.02 69.45 A100 100 0 0 1 196.08 173.53 Z" fill="#6f42c1"/>
+                      <path d="M115 115 L196.08 173.53 A100 100 0 0 1 136.19 212.73 Z" fill="#ff9900"/>
+                      <path d="M115 115 L136.19 212.73 A100 100 0 0 1 82.11 209.43 Z" fill="#1a73e8"/>
+                      <path d="M115 115 L82.11 209.43 A100 100 0 0 1 27.42 163.27 Z" fill="#3f8624"/>
+                      <path d="M115 115 L27.42 163.27 A100 100 0 0 1 15.11 110.43 Z" fill="#e06aa8"/>
+                      <path d="M115 115 L15.11 110.43 A100 100 0 0 1 23.35 75.00 Z" fill="#f2b705"/>
+                      <path d="M115 115 L23.35 75.00 A100 100 0 0 1 57.64 33.09 Z" fill="#d6455d"/>
+                      <path d="M115 115 L57.64 33.09 A100 100 0 0 1 84.93 19.63 Z" fill="#8a8d91"/>
+                      <path d="M115 115 L84.93 19.63 A100 100 0 0 1 115 15 Z" fill="#c3c9cf"/>
+                      <g font-size="11" fill="#777">
+                        <rect x="240" y="10" width="12" height="12" rx="2" fill="#00a1c9"/><text x="258" y="20">Uber Tech Lead &mdash; 18%</text>
+                        <rect x="240" y="32" width="12" height="12" rx="2" fill="#6f42c1"/><text x="258" y="42">团队与人员管理 &mdash; 18%</text>
+                        <rect x="240" y="54" width="12" height="12" rx="2" fill="#ff9900"/><text x="258" y="64">产品 &mdash; 12%</text>
+                        <rect x="240" y="76" width="12" height="12" rx="2" fill="#1a73e8"/><text x="258" y="86">TPM &mdash; 9%</text>
+                        <rect x="240" y="98" width="12" height="12" rx="2" fill="#3f8624"/><text x="258" y="108">招聘 &mdash; 12%</text>
+                        <rect x="240" y="120" width="12" height="12" rx="2" fill="#e06aa8"/><text x="258" y="130">带人 / 辅导 &mdash; 9%</text>
+                        <rect x="240" y="142" width="12" height="12" rx="2" fill="#f2b705"/><text x="258" y="152">PMM / BD / GTM &mdash; 6%</text>
+                        <rect x="240" y="164" width="12" height="12" rx="2" fill="#d6455d"/><text x="258" y="174">IC 写代码 &mdash; 9%</text>
+                        <rect x="240" y="186" width="12" height="12" rx="2" fill="#8a8d91"/><text x="258" y="196">Bar Raiser &mdash; 5%</text>
+                        <rect x="240" y="208" width="12" height="12" rx="2" fill="#c3c9cf"/><text x="258" y="218">其他 &mdash; 5%</text>
+                      </g>
+                    </svg>
+                    <p class="tl-cap">高峰期，我的每一周实际去了哪里。</p>
+                  </div>
+
+                  <p>
+                    我的日程常常是“四重预订（quadruple-booked）”，真正的约束是带宽——而不是努力程度。所以当 <em>Jason</em> 后来问我，要不要加入 <em>Bar Raiser</em> 项目去支持更多面试时，我说了<strong>不</strong>。守住一个合理的时间分配，已经悄然变得比再多戴一顶帽子更重要。
+                  </p>
+
+                  <p>
+                    我周围的组织也在变动。几位与我一同成长的领导者相继离开——<em>Inbal、Shubha、Onur、Akshay、Prashant</em>——一次重组落地了。那时 Compute Services 已经扩张成更大的 <strong>DECS</strong> 组织（Developers、Events、Containers、Serverless），App Runner 被并入了 <strong>AWS Lambda</strong>。我们来了一位新的 L7 经理 <em>Jason Woodlee</em>，他此前多年在一家东海岸创业公司担任 CTO。他带来了一种不同的文化，让我觉得耳目一新。
+                  </p>
+
+                  <p>
+                    我们发出的 return offer 被实习生们接受了，我也招进了一名新的正式员工——从外部的任何指标看，一切都很顺。但我隐约觉得，也许是时候停下来了。我把离开的决定告诉了 Jason。他希望我留下，并很慷慨地提出要和我一起规划我的 <strong>Principal Engineer 之路</strong>，连文档都帮我准备。我婉拒了。
+                  </p>
+
+                  <p>
+                    诚实的原因是：<em>业务价值</em>已不再与我投入的时间成正比。我需要一种平衡，或者一段休整。（App Runner 后来进入 KTLO——“维持运转（keep-the-lights-on）”——模式，更印证了这种直觉。）
+                  </p>
+
+                  <h3>关于产品定位的一点话</h3>
+
+                  <p>
+                    有个流传很广的玩笑：AWS 有 <em>“17 种运行容器的方式”</em>。它好笑，是因为它是真的——而它指向了一个真实的道理：<strong>为产品找到正确的定位，和构建产品本身同样重要</strong>。App Runner，尽管我们为其中的工程感到骄傲，却始终没能走出它最接近的对标产品——<strong>Google Cloud Run</strong>——那样的采用曲线。
+                  </p>
+
+                  <p>
+                    这有点刺痛，因为 App Runner 是我参与从 <strong>0 到 1</strong> 构建的第一款 AWS 产品。但失败是成功之母——只有你真的相信这句话，才收得到那份教训。不过，当我离开时，我确实<strong>对接下来该去哪里感到迷茫</strong>。
+                  </p>
+
+                  <hr>
+
+                  <h3>第三个岔路口的收获</h3>
+
+                  <ul>
+                    <li><strong>押注不可或缺的基础设施。</strong> 刚需、盈利、能产生现金流的那几层，是雄心勃勃的工作最安全、也复利最久的地方。</li>
+                    <li><strong>客场团队的焦虑会在工作中消散。</strong> 每当你把眼前的任务交付掉，不确定性就缩小一分。</li>
+                    <li><strong>采用组织里其他人还没用的技术。</strong> Envoy、gRPC、OpenTelemetry——在一家大公司<em>内部</em>做先行者，本身就是一种优势，也是一种社区。</li>
+                    <li><strong>先把产品做出来，再去讲它的故事。</strong> 能见度是跟在工作后面来的，而不是反过来——讲故事，成了我的第二项技能。</li>
+                    <li><strong>知道何时停下。</strong> 范围和能见度，可能会超出它们所创造的价值；在对的时间抽身，本身就是一种技能。</li>
+                    <li><strong>……但也别停得太早。</strong> 说实话，我觉得自己离开 App Runner 离得有点早。即便作为创始成员，仍有成长空间——若能熬过 L6 晋升再走，构建一个扎实的 L6 履历会更顺。我的提前退出，加上年末换组，悄悄拉低了我的评级，而当时我并没意识到这有多重要。如果能重来，我会更多地依靠自己已经攒下的杠杆，让好的势头继续跑，直到一个真正的“硬停”逼我必须动为止。</li>
+                    <li><strong>定位是产品的一半。</strong> 再好的工程，也仍需要在产品矩阵里占到正确的位置，才能赢得采用。</li>
+                  </ul>
+
+                  <p style="margin-top: 28px;">
+                    三章过去，我的职业生涯不再像一架梯子，而更像一连串刻意选择的岔路口——每一次都是更陡的攀登，且都是有意为之。
+                  </p>
+
+                  <hr>
+
+                  <div style="margin: 52px 0 12px 0;">
+                    <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #3f8624; font-weight: 700;">第 4 章 &nbsp;·&nbsp; 2023</div>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #3f8624;">基础数据服务 <span style="font-weight: 300; color: #888;">&mdash; Amazon S3</span></h2>
+                  </div>
+
+                  <div class="tl-wrap">
+                    <div class="tl-track">
+                      <div class="tl-seg" style="flex: 3 1 0; background:#ff9900; color:#232f3e;">Fintech<br>'16&ndash;'19</div>
+                      <div class="tl-seg" style="flex: 1 1 0; background:#1a73e8;">Conv. AI<br>'19&ndash;'20</div>
+                      <div class="tl-seg" style="flex: 3 1 0; background:#00a1c9;">Virtualization<br>'20&ndash;'23</div>
+                      <div class="tl-seg" style="flex: 1 1 0; background:#3f8624;">Data<br>'23</div>
+                      <div class="tl-empty" style="flex: 2.4 1 0;"></div>
+                    </div>
+                    <div class="tl-years"><span>2016</span><span>2021</span><span>2026</span></div>
+                  </div>
+
+                  <div class="tc-wrap">
+                    <svg viewBox="0 0 680 178" role="img" aria-label="技术热度周期">
+                      <line x1="50" y1="150" x2="670" y2="150" stroke="rgba(128,128,128,0.35)" stroke-width="1"/>
+                      <text x="50" y="167" font-size="9" fill="#999">2010</text>
+                      <text x="360" y="167" font-size="9" fill="#999" text-anchor="middle">2018</text>
+                      <text x="515" y="167" font-size="9" fill="#999" text-anchor="middle">2022</text>
+                      <text x="670" y="167" font-size="9" fill="#999" text-anchor="end">2026</text>
+                      <path d="M205 148 C320 145 362 72 410 56 C470 74 560 120 670 138" fill="none" stroke="#1a73e8" stroke-width="2" opacity="0.3"/>
+                      <path d="M190 146 C300 140 352 74 399 60 C480 52 540 80 670 90" fill="none" stroke="#00a1c9" stroke-width="2" opacity="0.3"/>
+                      <path d="M50 140 C140 135 175 62 283 50 C420 42 540 48 670 50" fill="none" stroke="#ff9900" stroke-width="3"/>
+                    </svg>
+                    <div class="tc-legend">
+                      <span><i style="background:#ff9900;"></i>云计算 Cloud computing</span>
+                      <span><i style="background:#1a73e8;opacity:0.4;"></i>NLP / 对话式 AI</span>
+                      <span><i style="background:#00a1c9;opacity:0.4;"></i>云原生 Cloud Native</span>
+                    </div>
+                    <p class="tc-cap">这里没有新曲线——S3 坐落在<strong>云计算</strong>浪潮最底层的地基上：一条旧浪潮里最深的那一层。</p>
+                  </div>
+
+                  <h3>一个我必须犯的错</h3>
+
+                  <p>
+                    迷茫，又有些耗竭，我做了一件我如今视为<strong>职业生涯错误</strong>的事——可若重来，我会谨慎处理。我加入了 <strong>Amazon S3</strong>。
+                  </p>
+
+                  <p>
+                    只要你用过 AWS，你就认识 S3。它是 AWS 的第一款产品，<a href="https://aws.amazon.com/blogs/aws/twenty-years-of-amazon-s3-and-building-whats-next/" target="_blank" rel="noopener"><strong>发布于 2006 年的圆周率日（Pi Day）</strong></a>——和我后来加入亚马逊是同一个日子——并且它至今仍是云的基础数据服务，地球上规模最大的数据服务（5000 亿+ 对象、2 亿+ 请求/秒、数 EB 级数据、123 个可用区、39 个区域——在它 20 岁生日时）。当时——直到今天——它都由副总裁 <em>Mai-Lan Tomsen Bukovec</em> 领导，早在我加入之前，我就读了大量她对内对外的文字。她是一位充满热情、能力极强的资深领导者——也是 AWS 最杰出的女性与亚裔领导者之一。
+                  </p>
+
+                  <h3>向 <em>Mai-Lan</em> 学习</h3>
+
+                  <p>
+                    <em>Mai-Lan</em> 拥有一套出了名成型的<strong>关于如何运转一个成熟组织的理论与实践</strong>——包括对 Principal 与资深 IC 领导者角色的一份清晰、广为流传的定义。如果说 <em>Deepak Singh</em> 那些深受喜爱的<em>周五周记</em>是一股非正式的想法与观察之流，那么 <em>Mai-Lan</em> 的则是一套完全成型的体系。
+                  </p>
+
+                  <p>
+                    她在 S3 组织里主持<strong>每月一次的领导力学习会</strong>，并鼓励每一位 L6+ 的领导者来参加、来讨论。她的 TA 会为每一期准备主题——通常是某条领导力准则（Leadership Principle）——连同事先分发的配套文档，再进入一场真正正式的讨论。我几乎每场都参加，还亲自讲过一次——那期主题是 <em>“识别关键时刻（Recognizing Critical Moments）”</em>。巧合的是，那天另一位分享者是 <em>Bryan Liles</em>——AWS 的 Senior Principal Engineer（L8），此前是 CNCF 社区里的高知名度人物——他和我是同一周加入 S3 的。亲眼看到一位成熟的 VP 级领导者如何阐述自己的观点、并刻意培养更年轻的领导者，对我极其宝贵。
+                  </p>
+
+                  <h3>底下那个错</h3>
+
+                  <p>
+                    尽管组织如此精良，你仍然逃不开一个事实：<strong>一线经理的水平参差不齐</strong>。在我挑选新团队、和招聘经理沟通时，我没有做好<strong>本应做的预期管理</strong>。我从作为 tech lead 向一位 L7 经理汇报，变成在新团队里向一位<strong>初级一线经理</strong>汇报——在范围和位置上都是严重的降级。与此同时，我<strong>高估了那位初级经理的职业成熟度</strong>——他才刚从 IC 转为管理角色。
+                  </p>
+
+                  <p>
+                    而我谁也怪不了，只能怪自己。我在 App Runner 拥有的杠杆与地位，是我<em>在那里挣来的</em>，而这次转岗是我自己的决定。从新经理的视角看，我不过是一名刚晋升的 L6 IC——他没有理由去考虑我习以为常的那种工作与交付密度。这个组合，从一开始就注定不合拍。
+                  </p>
+
+                  <h3>一次快速的纠偏</h3>
+
+                  <p>
+                    几乎一到岗，我就认出了这种错配，于是迅速行动。我在 App Runner 时的前经理，恰好也在相近的时间转去了 S3 的另一个部门——于是我又转去向她汇报。正是从那里开始，我才真正<strong>理解一个超大规模的产品组织是怎么运转的</strong>——与 App Runner 那个更小、更像创业公司的世界形成鲜明对照。
+                  </p>
+
+                  <hr>
+
+                  <h3>落地 S3 Index</h3>
+
+                  <p>
+                    我最终落脚的团队是 <strong>S3 Index</strong>。我们的总监 <em>Amy Therrien</em> 在一场
+                    <a href="https://youtu.be/sYDJYqvNeXU" target="_blank" rel="noopener">re:Invent 演讲</a>里把业务讲得很清楚；
+                    简单说，我们做的是<strong>降低 503</strong>——也就是客户在大规模下会遇到的限速与节流错误。值得一提的是：若把它视为一个独立产品，<strong>S3 Apex（API + Index）</strong>会跻身<strong>亚马逊营收前 20 的业务</strong>之列——它当然也是 S3 的 tier-1 业务。
+                  </p>
+
+                  <h3>RocksDB、Meta，与一个十岁的数据库</h3>
+
+                  <p>
+                    因为我的背景——以及一位了解我背景的经理的推荐——我接到了一个真正独特的任务：一项<strong>与 Meta 的跨公司协作</strong>，深入研究开源的 LSM-Tree 数据库 <strong>RocksDB</strong>（恰好那一年它满十岁）。我们每周<strong>与 Meta / RocksDB 的工程师同步</strong>，用 <strong>C++</strong> 工作——和我 Envoy 时期是同一门语言。数据库引擎并非我的主场，但这恰恰是重点：它是个很值得学的东西。
+                  </p>
+
+                  <p>
+                    我们<strong>在伦敦的兄弟团队</strong>把这部分业务移交给了西雅图这边，所以我们也定期与伦敦及欧洲的同事开会——一种相当有意思的跨时区协作。
+                  </p>
+
+                  <p>
+                    一个小小的注脚，能说明这个行业角落有多鲜活：RocksDB 团队所在的公司 Rockset，于 <strong>2024 年 6 月 21 日被 OpenAI 收购</strong>。
+                  </p>
+
+                  <hr>
+
+                  <h3>2023：读懂这波 AI 浪潮</h3>
+
+                  <p>
+                    2023 年是特别的一年。<strong>ChatGPT</strong> 于 <strong>2022 年 11 月 30 日</strong>问世，整个世界开始躁动。因为已经亲历过一次对话式 AI 的炒作，我刻意选择了一种<strong>观望、保守的态度</strong>——我想，这也许只是又一个过早见顶的周期，就像当年的语音 AI。
+                  </p>
+
+                  <p>
+                    真正改变我看法的，是来自内部、而非头条的一个信号。<em>Deepak Singh</em>——彼时是庞大的 <strong>DECS</strong> 组织（Developers、Events、Containers、Serverless）的副总裁——转去向 <strong>AI &amp; Data</strong> 副总裁 <em>Swami Sivasubramanian</em> 汇报，接手 <strong>AWS CodeWhisperer</strong>。（<em>Swami</em> 在阿姆斯特丹自由大学读的博士，导师是 AWS CTO <em>Werner Vogels</em>；他是亚马逊最年轻的副总裁之一，并于 2023 年 9 月加入公司的 <strong>S-team</strong>。）当一位这种量级的领导者把自己的职业重心重新指向生成式 AI 时，它就不再像是炒作了。那一刻我意识到：这波浪潮是真的——是时候认真对待了。
+                  </p>
+
+                  <h3>目标：找到一个 GenAI 团队</h3>
+
+                  <p>
+                    从那时起，目标很明确：<strong>找到一个 GenAI 团队加入</strong>。一如既往，这是一次下注——而这次并不顺利。因为 GenAI 的崛起对所有人——包括公司——都是<strong>计划之外的</strong>，<em>Swami</em> 的组织一直处在持续重组与资源调配的状态。大多数团队都冻结了招聘，等尘埃落定；而当一个团队缺人时，惯常做法就是直接从另一个产品调工程师过来——比如早期的 Bedrock，很大程度上是由来自 Lex 的工程师组成的。与此同时，组织外面也排着长队：人人都想挤进这个前沿领域。
+                  </p>
+
+                  <p>
+                    有一阵子，对一个组织外的人来说，仿佛<strong>根本没有入口</strong>，我几乎要放弃了。但随后，转机出现了。（我一直信奉一条原则：当你打算放弃某件事时，先<strong>再给自己三个月</strong>。）
+                  </p>
+
+                  <h3>三个 Offer</h3>
+
+                  <p>
+                    转机以<strong>三个 offer</strong> 的形式到来，全都在 GenAI：
+                  </p>
+
+                  <div class="anchor-wrap">
+                    <div class="anchor-row">
+                      <span class="anchor-eco">SageMaker AI — Optimization <span class="anchor-tag" style="color:#6f42c1;">HM · L6 (M2)</span></span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="color:#6f42c1;">模型评测与基准</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">Bedrock — Agent <span class="anchor-tag" style="color:#6f42c1;">HM · L7</span></span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="color:#6f42c1;">一条全新的、未经验证的 GenAI 路径</span>
+                    </div>
+                    <div class="anchor-row">
+                      <span class="anchor-eco">Bedrock — Inference <span class="anchor-tag" style="color:#6f42c1;">HM · L6 (M1)</span></span>
+                      <span class="anchor-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                      <span class="anchor-proj" style="color:#6f42c1;">基础——GenAI 推理的核心</span>
+                    </div>
+                  </div>
+                  <p class="anchor-cap">三个 offer，全在 GenAI。</p>
+
+                  <p>
+                    抵达的路径有点不寻常。我面试的是 <strong>Bedrock Fine-tuning</strong>，走完了非正式的面试 loop，但招聘经理回来说 headcount 已经被填满了。他没有就此作罢，而是<strong>把我推荐给了两个还有空缺 headcount 的兄弟团队</strong>——<strong>Bedrock Agent</strong> 和 <strong>Bedrock Inference</strong>——而且因为我已经走完了非正式 loop，这两个我都不必再面一次。
+                  </p>
+
+                  <p>
+                    于是，权衡再一次摆上台面——三个不同的 GenAI 押注，各有侧重、也各有自己的招聘经理（SageMaker AI Optimization 是 <strong>L6 (M2)</strong>，Bedrock Agent 是 <strong>L7</strong>，Bedrock Inference 是 <strong>L6 (M1)</strong>）。在 S3 刚给我上过那堂“范围”的课之后，汇报层级不再是一个抽象概念——它成了我如今会认真权衡的因素之一。
+                  </p>
+
+                  <p>
+                    我选择了 <strong>Bedrock Inference</strong>。我的想法是从<strong>栈的最底层</strong>切入——从最基础的那一层开始，自下而上地搭。今天回头看，我得诚实地说：我<strong>缺乏前瞻（prescience）</strong>。我与 <strong>Bedrock Agent</strong> 擦肩而过——它在 2025 年被重组进 <em>Swami</em> 全新的 <strong>Agentic AI</strong> 组织——而三年之后，智能体（agentic AI）已成为整个 LLM 领域最火的实践之一。押注基础设施，<em>直觉</em>是对的；我只是没看清它上方的前沿会移动得多快。
+                  </p>
+
+                  <hr>
+
+                  <div style="margin: 52px 0 12px 0;">
+                    <div style="font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: #6f42c1; font-weight: 700;">第 5 章 &nbsp;·&nbsp; 2023&ndash;至今</div>
+                    <h2 style="margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid #6f42c1;">生成式 AI <span style="font-weight: 300; color: #888;">&mdash; Amazon Bedrock &amp; SageMaker AI</span></h2>
+                  </div>
+
+                  <div class="tl-wrap">
+                    <div class="tl-track">
+                      <div class="tl-seg" style="flex: 3 1 0; background:#ff9900; color:#232f3e;">Fintech<br>'16&ndash;'19</div>
+                      <div class="tl-seg" style="flex: 1 1 0; background:#1a73e8;">Conv. AI<br>'19&ndash;'20</div>
+                      <div class="tl-seg" style="flex: 3 1 0; background:#00a1c9;">Virtualization<br>'20&ndash;'23</div>
+                      <div class="tl-seg" style="flex: 1 1 0; background:#3f8624;">Data<br>'23</div>
+                      <div class="tl-seg" style="flex: 3 1 0; background:#6f42c1;">GenAI<br>'23&ndash;</div>
+                    </div>
+                    <div class="tl-years"><span>2016</span><span>2021</span><span>2026</span></div>
+                  </div>
+
+                  <div class="tc-wrap">
+                    <svg viewBox="0 0 680 178" role="img" aria-label="技术热度周期">
+                      <line x1="50" y1="150" x2="670" y2="150" stroke="rgba(128,128,128,0.35)" stroke-width="1"/>
+                      <text x="50" y="167" font-size="9" fill="#999">2010</text>
+                      <text x="360" y="167" font-size="9" fill="#999" text-anchor="middle">2018</text>
+                      <text x="515" y="167" font-size="9" fill="#999" text-anchor="middle">2022</text>
+                      <text x="670" y="167" font-size="9" fill="#999" text-anchor="end">2026</text>
+                      <path d="M50 140 C140 135 175 62 283 50 C420 42 540 48 670 50" fill="none" stroke="#ff9900" stroke-width="2" opacity="0.3"/>
+                      <path d="M205 148 C320 145 362 72 410 56 C470 74 560 120 670 138" fill="none" stroke="#1a73e8" stroke-width="2" opacity="0.3"/>
+                      <path d="M190 146 C300 140 352 74 399 60 C480 52 540 80 670 90" fill="none" stroke="#00a1c9" stroke-width="2" opacity="0.3"/>
+                      <path d="M50 150 C250 149 430 149 515 146 C552 140 576 82 610 54 C636 38 656 28 670 24" fill="none" stroke="#6f42c1" stroke-width="3"/>
+                    </svg>
+                    <div class="tc-legend">
+                      <span><i style="background:#ff9900;opacity:0.4;"></i>云计算 Cloud computing</span>
+                      <span><i style="background:#1a73e8;opacity:0.4;"></i>NLP / 对话式 AI</span>
+                      <span><i style="background:#00a1c9;opacity:0.4;"></i>云原生 Cloud Native</span>
+                      <span><i style="background:#6f42c1;"></i>LLM</span>
+                    </div>
+                    <p class="tc-cap">+ <strong>LLM</strong> 浪潮——直到 2022 年底前几乎为零，随后垂直起飞，到 2026 年仍在攀升。</p>
+                  </div>
+
+                  <h3>第 2 号工程师</h3>
+
+                  <p>
+                    我加入时，这支推理（Inference）团队<strong>刚刚立项</strong>。我是<strong>招进来的第一名工程师</strong>，另有一位从 Lex 调来的 L6 工程师——这让我实际上成了<strong>第 2 号工程师</strong>。这是一个享有特权、且高度机密的项目：在 Bedrock 上为 <strong>Anthropic 的模型构建推理引擎</strong>。
+                  </p>
+
+                  <p>
+                    于是，我又一次成了<strong>核心创始工程师</strong>，从零开始构建——干净的代码、高能见度、快节奏。又一个创业公司，只是这一次，它在公司最重要的业务内部。而它的成长也像创业公司：<strong>一年之内从 2 人长到 50+ 人</strong>。（我把第一年更详细地写在了<a href="https://pengandy.com/blog/2024/bdrk1yo/" target="_blank" rel="noopener">这里</a>。）
+                  </p>
+
+                  <h3>与 Anthropic 一起构建</h3>
+
+                  <p>
+                    我们<strong>直接与 Anthropic 合作</strong>——包括联合创始人 <em>Ben Mann</em>——每周 2 次以上的工作会，每次新模型发布还有一场月度 happy hour。那段工作触及了一些如今已成为开源推理社区公认标准的想法——<a href="https://pengandy.com/blog/2025/llmnative/" target="_blank" rel="noopener">分离式推理（disaggregated inference）、多节点推理、上下文感知路由（context-aware routing）、以及提示缓存（prompt caching）</a>。
+                  </p>
+
+                  <h3>Day-0 首发 &amp; Trainium</h3>
+
+                  <p>
+                    整个 2024 年，我主导了 Claude 几乎所有在 Bedrock 上的 <strong>Day-0 公开发布</strong>——包括 <strong>Computer Use</strong>，Anthropic 第一个智能体（agentic AI）特性，搭载在 <strong>Claude 3.5 v2</strong> 上。我还交付了 <strong>Claude 在 AWS Trainium/Inferentia 平台上的首次发布</strong>——与 <em>James Bradbury</em>（Anthropic 的算力负责人）以及 <strong>Annapurna</strong> 团队合作。总体而言，我们团队承载了 <a href="https://newsletter.semianalysis.com/p/anthropic-growth-and-bedrock-mix" target="_blank" rel="noopener"><strong>Bedrock 95%+ 的 LLM 流量</strong></a>。
+                  </p>
+
+                  <h3>近距离看最高层领导</h3>
+
+                  <p>
+                    这也是我第一次真正感受到，亚马逊<strong>最高层的领导</strong>有多在意一项业务。我们会直接收到来自客户公司 CEO 的工单。每一次 Sev-2 复盘，都至少有两位 <strong>L10 级别</strong>的领导参加——我们的副总裁和我们的 Distinguished Engineer——而我直接与 <strong>L8 Senior Principal Engineer</strong> 共事。这是我第一次与那种高度的领导者如此近距离协作。<strong>高能见度，高压力。</strong>
+                  </p>
+
+                  <p>
+                    因为这项工作太早、太稀缺，全世界真正动手做过<strong>前沿模型推理</strong>的人寥寥无几。Anthropic 当时还不是家喻户晓的名字，公司也把这个项目守得很紧——出于<strong>P&amp;C</strong>与<strong>知识产权保护</strong>（替 Anthropic 着想）的原因，连其他 Bedrock 的同事都无法访问我们的代码库或文档。
+                  </p>
+
+                  <p>
+                    我也得以认识了那些日常一起工作的 Anthropic 同事，并与同领域的其他人<strong>建立连接</strong>。随着时间推移，其中一些连接变成了真正的关系——投资人、创始人、研究者，如今都是我人脉的一部分。这一章里最有价值的部分，有些根本不在代码库里；而是这份工作把我放在了哪些人身边。
+                  </p>
+
+                  <h3>选择横向一步</h3>
+
+                  <p>
+                    在 <strong>2024 年</strong>底交付完最后一个任务后，我知道自己想停一停了。<strong>2025 年</strong>初，休假回来，我约了个会，和两位 Senior Principal Engineer 坐下来，告诉他们我想试试一个不同的方向。他们表示理解，并给了我几个选择。
+                  </p>
+
+                  <p>
+                    当时 Bedrock Inference 分为三个部门：<strong>3P</strong>（Claude 及其他闭源模型）、<strong>2P</strong>（Llama、DeepSeek、Qwen 等开放权重模型）、<strong>1P</strong>（亚马逊自家的 Nova 与 Titan 模型）。我从 <strong>3P 转到了 2P</strong>，深入开放权重的世界，开始了我在<strong>模型优化（投机解码 speculative decoding）</strong>与<strong>定制化</strong>方向的研究——这条线我一直做到今天。
+                  </p>
+
+                  <p>
+                    这些年里，我还<strong>在两家公司、跨多轮新模型公开发布中，主导了基准测试方法论的搭建</strong>。通过这项工作，我获得了<strong>同时优化和评测开放权重模型与闭源基础模型</strong>的深入经验。
+                  </p>
+
+                  <hr>
+
+                  <h3>我现在在哪</h3>
+
+                  <p>
+                    十年，五章，一只指南针。从金融科技到对话式 AI，从容器到云的地基，再到如今生成式 AI 的前沿——每一次转身，都是拿舒适去换一条更陡的学习曲线；而每一次，我都拒绝放弃的那点好奇心，照亮了通往下一扇门的路。决策的透镜越来越锋利；而下注，从未改变。
+                  </p>
+
+                  <hr>
+
+                  <h3>职业优先级</h3>
+
+                  <p>
+                    如果把十年的这些决定压缩成一张图，几股力量几乎能解释每一次转身。它们不是单一的一架梯子——而是构成一只<strong>飞轮</strong>，外加两条彼此独立的轴（<em>角色</em>与<em>领域</em>），全都骑在上面那些技术周期之上。而在 AI 时代，它们脚下的地面正在移动，所以值得一问：什么仍然有价值，什么不再有。
+                  </p>
+
+                  <div class="cp-axis">1 &middot; 每个领域内部都转着的那只飞轮</div>
+                  <div class="cp-flywheel">
+                    <svg viewBox="0 0 480 320" role="img" aria-label="复利型职业飞轮">
+                      <defs>
+                        <marker id="fwarrz" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#6f42c1"/>
+                        </marker>
+                      </defs>
+                      <path d="M220 47 A115 115 0 1 1 260 47" fill="none" stroke="#6f42c1" stroke-width="2" opacity="0.55" marker-end="url(#fwarrz)"/>
+                      <circle cx="240" cy="45" r="4" fill="#6f42c1"/>
+                      <circle cx="321" cy="79" r="4" fill="#6f42c1"/>
+                      <circle cx="355" cy="160" r="4" fill="#6f42c1"/>
+                      <circle cx="321" cy="241" r="4" fill="#6f42c1"/>
+                      <circle cx="240" cy="275" r="4" fill="#6f42c1"/>
+                      <circle cx="159" cy="241" r="4" fill="#6f42c1"/>
+                      <circle cx="125" cy="160" r="4" fill="#6f42c1"/>
+                      <circle cx="159" cy="79" r="4" fill="#6f42c1"/>
+                      <text x="240" y="30" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6f42c1">杠杆</text>
+                      <text x="332" y="74" text-anchor="start" font-size="12" fill="#777">范围</text>
+                      <text x="366" y="164" text-anchor="start" font-size="12" fill="#777">影响力</text>
+                      <text x="332" y="247" text-anchor="start" font-size="12" fill="#777">能见度</text>
+                      <text x="240" y="296" text-anchor="middle" font-size="12" fill="#777">评级</text>
+                      <text x="148" y="247" text-anchor="end" font-size="12" fill="#777">工作稳定性</text>
+                      <text x="114" y="164" text-anchor="end" font-size="12" fill="#777">职级</text>
+                      <text x="148" y="74" text-anchor="end" font-size="12" fill="#777">角色</text>
+                      <text x="240" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#555">飞轮</text>
+                      <text x="240" y="176" text-anchor="middle" font-size="10.5" fill="#999">先复利，再循环</text>
+                    </svg>
+                  </div>
+                  <p class="cp-cycle-note">这一切的基本单元：更多的<strong>杠杆</strong>赢得<strong>范围</strong>与<strong>影响力</strong>，进而换来<strong>能见度</strong>、<strong>评级</strong>、<strong>工作稳定性</strong>，以及更高的<strong>职级与角色</strong>——而更大的角色又会交给你<em>更多杠杆</em>去花。轮子就这样转起来。</p>
+
+                  <div class="cp-axis">2 &middot; 整台引擎 &mdash; 领域 &times; 技术周期 &times; 角色 &times; 知识</div>
+                  <div class="cp-engine">
+                    <svg viewBox="0 0 760 540" role="img" aria-label="把领域、技术周期、角色与知识连起来的职业引擎">
+                      <defs>
+                        <marker id="cearrz" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#888"/>
+                        </marker>
+                        <marker id="cepurpz" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#6f42c1"/>
+                        </marker>
+                      </defs>
+                      <line x1="60" y1="470" x2="60" y2="58" stroke="#bbb" stroke-width="1.5" marker-end="url(#cearrz)"/>
+                      <line x1="60" y1="470" x2="714" y2="470" stroke="#bbb" stroke-width="1.5" marker-end="url(#cearrz)"/>
+                      <text transform="translate(26,300) rotate(-90)" text-anchor="middle" font-size="11" font-weight="700" fill="#999">杠杆 &middot; 机会 &middot; 可能性 &uarr;</text>
+                      <text x="388" y="500" text-anchor="middle" font-size="11" font-weight="700" fill="#999">由技术周期驱动 &middot; 时间 &rarr;</text>
+                      <line x1="268" y1="356" x2="300" y2="320" stroke="#6f42c1" stroke-width="2" marker-end="url(#cepurpz)"/>
+                      <line x1="474" y1="258" x2="505" y2="222" stroke="#6f42c1" stroke-width="2" marker-end="url(#cepurpz)"/>
+                      <text x="276" y="345" font-size="9" font-weight="700" fill="#6f42c1">跳</text>
+                      <text x="482" y="247" font-size="9" font-weight="700" fill="#6f42c1">跳</text>
+                      <rect x="92" y="352" width="176" height="74" rx="10" fill="rgba(26,115,232,0.06)" stroke="#1a73e8" stroke-width="1.5"/>
+                      <text x="116" y="382" font-size="17" fill="#1a73e8">&#8635;</text>
+                      <text x="140" y="380" font-size="12" font-weight="700" fill="#333">对话式 AI</text>
+                      <text x="140" y="397" font-size="9.5" fill="#999">内部转着一只飞轮</text>
+                      <text x="140" y="413" font-size="9" fill="#b3b3b3">周期降温 &rarr; 该跳了</text>
+                      <rect x="298" y="254" width="176" height="74" rx="10" fill="rgba(0,161,201,0.06)" stroke="#00a1c9" stroke-width="1.5"/>
+                      <text x="322" y="284" font-size="17" fill="#00a1c9">&#8635;</text>
+                      <text x="346" y="282" font-size="12" font-weight="700" fill="#333">云原生</text>
+                      <text x="346" y="299" font-size="9.5" fill="#999">内部转着一只飞轮</text>
+                      <rect x="504" y="150" width="186" height="78" rx="10" fill="rgba(111,66,193,0.08)" stroke="#6f42c1" stroke-width="2.5"/>
+                      <text x="528" y="182" font-size="17" fill="#6f42c1">&#8635;</text>
+                      <text x="552" y="178" font-size="12" font-weight="700" fill="#333">生成式 AI &#128293;</text>
+                      <text x="552" y="195" font-size="9.5" fill="#999">最热的周期 &rarr; 最大的杠杆</text>
+                      <text x="552" y="212" font-size="9.5" fill="#6f42c1">最多可能性在此解锁</text>
+                      <path d="M560 228 C516 274 506 306 510 344" fill="none" stroke="#6f42c1" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#cepurpz)"/>
+                      <text x="436" y="306" font-size="10" font-weight="700" fill="#6f42c1">一个角色可朝三个方向移动</text>
+                      <rect x="468" y="346" width="84" height="30" rx="8" fill="#6f42c1"/>
+                      <text x="510" y="365" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">角色</text>
+                      <line x1="552" y1="353" x2="586" y2="338" stroke="#888" stroke-width="1.5" marker-end="url(#cearrz)"/>
+                      <line x1="552" y1="361" x2="586" y2="379" stroke="#888" stroke-width="1.5" marker-end="url(#cearrz)"/>
+                      <line x1="552" y1="369" x2="586" y2="423" stroke="#888" stroke-width="1.5" marker-end="url(#cearrz)"/>
+                      <rect x="588" y="322" width="154" height="30" rx="7" fill="none" stroke="#888" stroke-width="1.2"/>
+                      <text x="598" y="341" font-size="10.5" fill="#666">职级 &uarr; &nbsp;(L5&rarr;L6&rarr;L7+)</text>
+                      <rect x="588" y="364" width="154" height="30" rx="7" fill="none" stroke="#888" stroke-width="1.2"/>
+                      <text x="598" y="383" font-size="10.5" fill="#666">立场：IC &harr; 管理</text>
+                      <rect x="588" y="406" width="154" height="42" rx="7" fill="none" stroke="#888" stroke-width="1.2"/>
+                      <text x="598" y="422" font-size="10.5" fill="#666">转换职能族</text>
+                      <text x="598" y="437" font-size="10" fill="#6f42c1">&rarr; 解锁更多可能性</text>
+                    </svg>
+                  </div>
+                  <p class="cp-cycle-note">
+                    一台连通的引擎：<strong>技术周期</strong>（横轴）决定哪个<strong>领域</strong>是热的，而越热的领域位置越高——意味着更多的<strong>杠杆、机会与可能性</strong>。每个领域内部，都转着上面那只<strong>飞轮</strong>。你靠<strong>跳</strong>到下一个热门领域往上爬，而这些跳跃，是由<strong>可迁移的知识</strong>（基础设施、系统思维、品味、学习速度）驱动的——而那些<strong>被 AI 商品化、且被领域锁死的技能</strong>（死记的语法、背下来的 API、单一工具、把守门槛的头衔）则留在了原地。在任何一级台阶上，你的<strong>角色</strong>都可以朝三个彼此独立的方向移动：升一级<em>职级</em>、换一种<em>立场</em>（IC &harr; 管理），或转入一个不同的<em>职能族</em>（在 AI 时代，越来越融为一个 <a href="https://pengandy.com/blog/2025/RSRCHORENG/" target="_blank">“Builder / MTS”</a>）。
+                  </p>
+
+                  <p>
+                    诚实的张力在于：纯粹为飞轮做优化，会让你安全但狭窄；而跨领域追随兴趣，会拓宽地图，却在每次跳跃时把循环重置一点点。换领域是有成本的——而事物又都是动态的，这种权衡从不静止；如何在其中做 tradeoff、保持动态平衡，本身就是一门艺术。我的整个职业生涯，都押在了<em>领域</em>这条轴、以及上面那张图的<em>左栏</em>上——而正如下一节所示，飞轮大体上还是追了上来。
+                  </p>
+
+                  <hr>
+
+                  <h3>关于晋升——以及评级——的一点话</h3>
+
+                  <p>
+                    给在意这些的人看：我两次晋升，都不是第一次就过的：
+                  </p>
+
+                  <ul>
+                    <li><strong>SDE I &rarr; SDE II</strong>——<strong>2017</strong> 年失败过一次，随后在 <strong>2018 年 Q2</strong> 成功（AWS Payments）。</li>
+                    <li><strong>SDE II &rarr; SDE III</strong>——<strong>2021 年 Q4</strong> 失败过一次，随后在 <strong>2022 年 Q1</strong> 成功（AWS App Runner）。</li>
+                  </ul>
+
+                  <p>
+                    还有一点，我想告诉每一位更早期的人：即便有两次晋升，我在内部也从没拿到过 <em>“Exceeds”</em> 或顶级的年度评级。到了某个时刻你会意识到，评级其实没那么重要——真正重要的，是工作本身，以及你在做它的过程中成为了谁。
+                  </p>
+
+                  <hr>
+
+                  <h3>告别信</h3>
+
+                  <p>
+                    一个小小的私人存档——我离开每个团队时发出的告别信。<em>（原文均为英文。）</em>
+                  </p>
+
+                  <div class="farewell-scroll">
+                    <div class="farewell-card" style="border-top: 3px solid #ff9900;">
+                      <h4>AWS Payments</h4>
+                      <div class="fw-meta">金融科技 &middot; 2016&ndash;2019</div>
+                      <div class="fw-body fw-email">
+                        <div class="fw-head">Date: Wednesday, March 13, 2019 at 11:30 AM<br>Subject: Farewell CP &amp; AWS!</div>
+                        <p>Dear Bill Runners,</p>
+                        <p>What a long time! It have been 3 years. As part of you already know, I am going to explore an unknown journey outside of aws in 2019. I joined CP right after my master graduation. And it is time for me to graduate from CP. I would like to thank you for your help and support along the way. You will be missed!</p>
+                        <p>Grateful for all of lovely peers I worked with, you gave me a plenitude and meaningful three years. We have accomplished a lot together. Lots of incredible things happen: MDB Disaggregation, Consolidated Invoicing, EMEA CSOR, 10x, CICD.. It is an unforgettable experience working with such a talented group of people. I do enjoy it and learnt a lot.</p>
+                        <p>I want to take the opportunity to say thank you to <em>Martin Larricart</em>, <em>Jeff Zhang</em>, <em>Richard Rothstein</em> and <em>Weiyan Zhong</em> for their continue support and coaching. You like lighthouse oversea that guide me correct direction on my career growth.</p>
+                        <p>I will still be in Amazon. I wish you all the best in your future endeavors and hope to stay in touch.</p>
+                        <p>Best Regards,<br><em>Yiming</em></p>
+                      </div>
+                    </div>
+                    <div class="farewell-card" style="border-top: 3px solid #1a73e8;">
+                      <h4>Alexa Health &amp; Wellness</h4>
+                      <div class="fw-meta">对话式 AI &middot; 2019&ndash;2020</div>
+                      <div class="fw-body fw-email">
+                        <div class="fw-head">Sent: Thursday, July 2, 2020 10:27 AM<br>Subject: Farewell Alexa health</div>
+                        <p>Hi Team,</p>
+                        <p>Today is my last day on Alexa health team. As part of you already know, I am going to back to aws for a new track in container and serverless area. Time flies, I joined Alexa health on 2019-3. And I have been in Amazon 4yr3mons. I always ask myself what things will look like if having chance to be a 5-year Amazonian one day. It is the hardest decision this tough year. Hope it will work out in the end.</p>
+                        <p>Begin with the date I joined amazon, I start hearing alexa news. 2016, might be the fastest growth period of alexa. Voice assistant is such a cool product and unknown domain for me at that moment. I felt grateful meeting such an opportunity in 2019 unboxing it, joining it and participating in building it. I learnt a lot.</p>
+                        <p>I would like to thank all of lovely peers I worked with. I still have a fresh memory how we launched medication management system from scratch in 2019. We have accomplished a lot together in this one half year: medication management, refill, hipaa self-service, a4hc, ehr auth session.. Team's energy and cohesion impressed me. I might never ever be able to find a team with such good atmosphere. I am so proud of being part of it. I will miss all of you guys.</p>
+                        <p>I want to take the opportunity to say thank you to <em>Litao</em>, <em>Haiyang</em>. Appreciate for trust and all of opportunities. I did feel being valued. I also want to thanks all of leaderships in Alexa health org. Appreciate for constructing such a transparent, connected work space.</p>
+                        <p>Again, thanks for having me on the team. I wish you all the best in your future endeavors.</p>
+                        <p>I will still be in Amazon. My new office is couple blocks away from blueshift. Don't be a stranger, it is a small industry and let's keep in touch.</p>
+                        <p>Linkedin: <a href="https://www.linkedin.com/in/pengyiming/" target="_blank" rel="noopener">linkedin.com/in/pengyiming</a></p>
+                        <p>Best regards,<br><em>Yiming</em></p>
+                      </div>
+                    </div>
+                    <div class="farewell-card" style="border-top: 3px solid #00a1c9;">
+                      <h4>AWS App Runner / Containers</h4>
+                      <div class="fw-meta">虚拟化 &amp; 云原生 &middot; 2020&ndash;2023</div>
+                      <div class="fw-body fw-email">
+                        <div class="fw-head">Subject: See you around.. Containers</div>
+                        <p>Dear friends,</p>
+                        <p>Appreciate your time. Reach out here to share some recent updates. (Excuse me, I know, this is the &ldquo;season&rdquo;..&#128577;)</p>
+                        <p>I will join another product team under Storage org in next week. It is the hardest decision to make. Especially leaving a product babysitting from 0 to 1 since its stealth mode. I love our teams, products and people here.</p>
+                        <p>Back to Day1 when I was at Fargate, <em>Mats</em> reached out to me and we first-time talked about project &ldquo;Fusion&rdquo; (App Runner's code name):</p>
+                        <p style="border-left:3px solid #00a1c9;padding-left:10px;color:#888;">&ldquo;It's all goodness for us, as Elastic Beanstalk has joined our org and we are doing an exciting project with them this year. This is a S-team goal for us, targeting a re:Invent launch and we think it will change how customers think about running applications on AWS. The project is code named Fusion and builds on top of Fargate.. Sound interesting?&rdquo;</p>
+                        <p>It has been almost 3 years for me being in Elastic Containers org. Fargate on Firecracker, RoadRunner (now it is &ldquo;Seekable OCI&rdquo;), Fusion&rarr;App Runner GA, VPC, X-Ray, Route53, Private Service, WAF etc. It has been such a long non-stopped running. Now it is the time I plan to slow down a little bit and revisit next step in life as a new mid-age young man.</p>
+                        <p>I am gratitude on all the journey and lovely people I have met and worked with in past few years.</p>
+                        <p>Sincerely best wishes to all of my dear teammates and friends here. See you around, I will be around.. &ldquo;Thanks&rdquo; to Pandemic, I still haven't got chance yet meet with part of you in person. New office location is across the street away. Happy to grab a coffee together if there is an opportunity. Let's keep connection.</p>
+                        <p>I am still passionate in Cloud-Native, Containers, Serverless and Open-Source. No plan to stop invest energy in these technical fields. Part of you might know, I am hosting an open-source community &ldquo;CloudNative-Serverless-Meetup&rdquo; on GitHub. Happy to keep in touch from there if you like it. Seats offered on the couch.&#128521;</p>
+                        <p>Never say never, it is a small world. Containers &ldquo;Days&rdquo; is enjoyable. GO ECS! GO App Runner! GO Beanstalk!</p>
+                        <p>Best and sincerely,<br><em>Yiming</em><br><a href="https://www.linkedin.com/in/pengyiming" target="_blank" rel="noopener">linkedin.com/in/pengyiming</a></p>
+                      </div>
+                    </div>
+                    <div class="farewell-card" style="border-top: 3px solid #3f8624;">
+                      <h4>Amazon S3</h4>
+                      <div class="fw-meta">基础数据服务 &middot; 2023</div>
+                      <div class="fw-body"></div>
+                    </div>
+                  </div>
+
+                  <p style="font-size: 1.1em; font-weight: bold; margin-top: 36px;">
+                    跟随好奇心，职业自会随之而来。
+                  </p>
+                  
+                  </div><!-- /lang-zh -->
 
                </div>
             </article>
@@ -1311,5 +2515,20 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script>
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+      <script>
+      (function(){
+        function setLang(l){
+          var zh = l==='zh';
+          document.body.classList.toggle('zh', zh);
+          var be=document.getElementById('lang-en-btn'), bz=document.getElementById('lang-zh-btn');
+          if(be) be.classList.toggle('active', !zh);
+          if(bz) bz.classList.toggle('active', zh);
+          try{ localStorage.setItem('cdb-lang', l); }catch(e){}
+        }
+        window.__setCDBLang=setLang;
+        function init(){ var v='en'; try{ v=localStorage.getItem('cdb-lang')||'en'; }catch(e){} setLang(v); }
+        if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
+      })();
+      </script>
    </body>
 </html>
