@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" font-family="Roboto, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="1200" fill="#ffffff"/>
+  <rect x="0" y="0" width="16" height="1200" fill="#6f42c1"/>
+
+  <text x="80" y="225" font-size="70" font-weight="800" fill="#232f3e">Curiosity-Driven</text>
+  <text x="80" y="305" font-size="70" font-weight="800" fill="#232f3e">Builder's Journey</text>
+  <text x="82" y="372" font-size="32" font-weight="700" fill="#6f42c1">The Career Flywheel</text>
+  <text x="84" y="415" font-size="24" fill="#888">It compounds, then loops.</text>
+  <text x="84" y="1150" font-size="24" fill="#aaa">pengandy.com</text>
+
+  <g transform="translate(116,470) scale(2.0)">
+    <defs>
+      <marker id="fwarr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#6f42c1"/>
+      </marker>
+    </defs>
+    <circle cx="240" cy="160" r="115" fill="none" stroke="#6f42c1" stroke-width="2" opacity="0.55"/>
+    <path d="M249 38 L264 46 L249 54 Z" fill="#6f42c1" opacity="0.75"/>
+    <circle cx="240" cy="45" r="4" fill="#6f42c1"/>
+    <circle cx="321" cy="79" r="4" fill="#6f42c1"/>
+    <circle cx="355" cy="160" r="4" fill="#6f42c1"/>
+    <circle cx="321" cy="241" r="4" fill="#6f42c1"/>
+    <circle cx="240" cy="275" r="4" fill="#6f42c1"/>
+    <circle cx="159" cy="241" r="4" fill="#6f42c1"/>
+    <circle cx="125" cy="160" r="4" fill="#6f42c1"/>
+    <circle cx="159" cy="79" r="4" fill="#6f42c1"/>
+    <text x="240" y="30" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6f42c1">Leverage</text>
+    <text x="332" y="74" text-anchor="start" font-size="12" fill="#777">Scope</text>
+    <text x="366" y="164" text-anchor="start" font-size="12" fill="#777">Impact</text>
+    <text x="332" y="247" text-anchor="start" font-size="12" fill="#777">Visibility</text>
+    <text x="240" y="296" text-anchor="middle" font-size="12" fill="#777">Rating</text>
+    <text x="148" y="247" text-anchor="end" font-size="12" fill="#777">Job security</text>
+    <text x="114" y="164" text-anchor="end" font-size="12" fill="#777">Level</text>
+    <text x="148" y="74" text-anchor="end" font-size="12" fill="#777">Role</text>
+    <text x="240" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#555">THE FLYWHEEL</text>
+    <text x="240" y="176" text-anchor="middle" font-size="10.5" fill="#999">it compounds, then loops</text>
+  </g>
+</svg>
