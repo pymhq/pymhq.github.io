@@ -1,0 +1,48 @@
+name: Generate RSS feed
+
+# Regenerates feed.xml whenever a blog post (or the generator itself) changes.
+# Because the trigger is scoped to blog/** and the script, a commit that only
+# touches feed.xml will NOT retrigger this workflow, so there is no loop.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "blog/**"
+      - "scripts/generate_feed.py"
+      - ".github/workflows/feed.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-feed
+  cancel-in-progress: false
+
+jobs:
+  build-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Generate feed.xml
+        run: python3 scripts/generate_feed.py
+
+      - name: Commit feed.xml if changed
+        run: |
+          if [[ -n "$(git status --porcelain feed.xml)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add feed.xml
+            git commit -m "chore: regenerate feed.xml [skip ci]"
+            git push
+          else
+            echo "feed.xml already up to date; nothing to commit."
+          fi
