@@ -588,7 +588,7 @@
              `;
              
              // Load the actual content
-             fetch('/components/service-content.html')
+             fetch('/components/service-content.html?v=' + Date.now())
                .then(response => response.text())
                .then(html => {
                  const contentPlaceholder = document.getElementById('service-content-placeholder-cv');
