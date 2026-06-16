@@ -5,34 +5,48 @@
   <text x="80" y="225" font-size="70" font-weight="800" fill="#232f3e">Curiosity-Driven</text>
   <text x="80" y="305" font-size="70" font-weight="800" fill="#232f3e">Builder's Journey</text>
   <text x="82" y="372" font-size="32" font-weight="700" fill="#6f42c1">The Career Flywheel</text>
-  <text x="84" y="415" font-size="24" fill="#888">It compounds, then loops.</text>
+  <text x="84" y="415" font-size="24" fill="#888">Trust is the axle. Motivation &#215; productivity spins it.</text>
   <text x="84" y="1150" font-size="24" fill="#aaa">pengandy.com</text>
 
-  <g transform="translate(116,470) scale(2.0)">
+  <g transform="translate(158,438) scale(1.7)">
     <defs>
-      <marker id="fwarr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
-        <path d="M0,0 L6,3 L0,6 Z" fill="#6f42c1"/>
+      <marker id="fwdrvcard" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#ff9900"/>
       </marker>
     </defs>
-    <circle cx="240" cy="160" r="115" fill="none" stroke="#6f42c1" stroke-width="2" opacity="0.55"/>
-    <path d="M249 38 L264 46 L249 54 Z" fill="#6f42c1" opacity="0.75"/>
-    <circle cx="240" cy="45" r="4" fill="#6f42c1"/>
-    <circle cx="321" cy="79" r="4" fill="#6f42c1"/>
-    <circle cx="355" cy="160" r="4" fill="#6f42c1"/>
-    <circle cx="321" cy="241" r="4" fill="#6f42c1"/>
-    <circle cx="240" cy="275" r="4" fill="#6f42c1"/>
-    <circle cx="159" cy="241" r="4" fill="#6f42c1"/>
-    <circle cx="125" cy="160" r="4" fill="#6f42c1"/>
-    <circle cx="159" cy="79" r="4" fill="#6f42c1"/>
-    <text x="240" y="30" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6f42c1">Leverage</text>
-    <text x="332" y="74" text-anchor="start" font-size="12" fill="#777">Scope</text>
-    <text x="366" y="164" text-anchor="start" font-size="12" fill="#777">Impact</text>
-    <text x="332" y="247" text-anchor="start" font-size="12" fill="#777">Visibility</text>
-    <text x="240" y="296" text-anchor="middle" font-size="12" fill="#777">Rating</text>
-    <text x="148" y="247" text-anchor="end" font-size="12" fill="#777">Job security</text>
-    <text x="114" y="164" text-anchor="end" font-size="12" fill="#777">Level</text>
-    <text x="148" y="74" text-anchor="end" font-size="12" fill="#777">Role</text>
-    <text x="240" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#555">THE FLYWHEEL</text>
-    <text x="240" y="176" text-anchor="middle" font-size="10.5" fill="#999">it compounds, then loops</text>
+
+    <!-- OUTER DRIVE RING -->
+    <path d="M221.2 329.9 A150 150 0 1 1 298.8 329.9" fill="none" stroke="#ff9900" stroke-width="7" opacity="0.12"/>
+    <path d="M221.2 329.9 A150 150 0 1 1 298.8 329.9" fill="none" stroke="#ff9900" stroke-width="2.4" opacity="0.9" marker-end="url(#fwdrvcard)"/>
+    <path d="M256 35 L270 35.6" fill="none" stroke="#ff9900" stroke-width="2.4"/>
+    <path d="M268 31 L276 35.8 L268 40 Z" fill="#ff9900"/>
+    <text x="260" y="346" text-anchor="middle" font-size="12.5" font-weight="700" fill="#ff9900">DRIVE</text>
+    <text x="260" y="360" text-anchor="middle" font-size="9" fill="#999">motivation &#215; productivity &#8212; what spins it</text>
+
+    <!-- RIM -->
+    <circle cx="260" cy="185" r="112" fill="none" stroke="#6f42c1" stroke-width="1" opacity="0.28"/>
+    <circle cx="260" cy="73" r="4" fill="#6f42c1"/>
+    <circle cx="339.2" cy="105.8" r="4" fill="#6f42c1"/>
+    <circle cx="372" cy="185" r="4" fill="#6f42c1"/>
+    <circle cx="339.2" cy="264.2" r="4" fill="#6f42c1"/>
+    <circle cx="260" cy="297" r="4" fill="#6f42c1"/>
+    <circle cx="180.8" cy="264.2" r="4" fill="#6f42c1"/>
+    <circle cx="148" cy="185" r="4" fill="#6f42c1"/>
+    <circle cx="180.8" cy="105.8" r="4" fill="#6f42c1"/>
+    <text x="260" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="#6f42c1">Leverage</text>
+    <text x="321" y="127" text-anchor="middle" font-size="10" fill="#777">Scope</text>
+    <text x="346" y="189" text-anchor="middle" font-size="10" fill="#777">Impact</text>
+    <text x="321" y="249" text-anchor="middle" font-size="10" fill="#777">Visibility</text>
+    <text x="260" y="276" text-anchor="middle" font-size="10" fill="#777">Rating</text>
+    <text x="199" y="249" text-anchor="middle" font-size="10" fill="#777">Job security</text>
+    <text x="174" y="189" text-anchor="middle" font-size="10" fill="#777">Level</text>
+    <text x="199" y="127" text-anchor="middle" font-size="10" fill="#777">Role</text>
+
+    <!-- HUB / AXLE -->
+    <circle cx="260" cy="185" r="52" fill="rgba(111,66,193,0.07)" stroke="#6f42c1" stroke-width="1.5"/>
+    <circle cx="260" cy="185" r="52" fill="none" stroke="#6f42c1" stroke-width="1" stroke-dasharray="2 4" opacity="0.5"/>
+    <text x="260" y="180" text-anchor="middle" font-size="15" font-weight="700" fill="#6f42c1">TRUST</text>
+    <text x="260" y="196" text-anchor="middle" font-size="8" fill="#999">the axle it all turns on</text>
+    <text x="260" y="208" text-anchor="middle" font-size="8" fill="#bbb">compounds, then loops</text>
   </g>
 </svg>
