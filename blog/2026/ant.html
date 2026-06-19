@@ -1,0 +1,296 @@
+<!DOCTYPE html> 
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> My Story with Anthropic </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="A storytelling timeline of my observation of, and collaboration with, Anthropic — from engineer No. 2 building Claude's inference engine on Bedrock to watching it become the world's most valuable startup.">
+      <meta name="keywords" content="Anthropic, Claude, Bedrock, AWS, LLM, inference">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/ant/">
+      <meta property="og:title" content="My Story with Anthropic">
+      <meta property="og:description" content="A storytelling timeline of my observation of, and collaboration with, Anthropic.">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/br.png">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="My Story with Anthropic">
+      <meta name="twitter:description" content="A storytelling timeline of my observation of, and collaboration with, Anthropic.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/br.png">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="shortcut icon" href="/assets/projects/Peng Andys Logo Symbol.png">
+      <link rel="stylesheet" href="/assets/css/main.css">
+      <link rel="canonical" href="https://pengandy.com/blog/2026/ant/">
+      <link rel="alternate" type="application/rss+xml" title="Puget Sound Journal" href="https://pengandy.com/feed.xml">
+      <script src="/assets/js/theme.js"></script>
+      <script src="/assets/js/dark_mode.js"></script>
+      <script src="/assets/js/components.js" defer></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+   </head>
+   <style>
+     img { pointer-events: none; }
+
+     /* ── Anthropic story timeline ── */
+     :root { --ant-clay: #cc785c; --ant-tan: #d4a27f; }
+
+     /* opening quote */
+     .ant-quote { margin: 8px 0 36px 0; padding: 24px 28px; background: rgba(204,120,92,0.08); border-left: 4px solid var(--ant-clay); border-radius: 6px; }
+     .ant-quote p.q { font-size: 1.12em; font-style: italic; line-height: 1.7; margin-bottom: 12px; }
+     .ant-quote p.a { font-size: 0.88em; color: #888; margin: 0; }
+
+     /* chapter heading band */
+     .ant-band { margin: 52px 0 16px 0; }
+     .ant-band .yr { font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ant-clay); font-weight: 700; }
+     .ant-band h2 { margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid var(--ant-clay); }
+     .ant-band h2 span { font-weight: 300; color: #888; }
+
+     /* vertical story timeline rail */
+     .ant-rail { max-width: 700px; margin: 24px auto 10px; position: relative; padding-left: 26px; }
+     .ant-rail::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--ant-tan), var(--ant-clay)); }
+     .ant-stop { position: relative; padding: 0 0 22px 18px; }
+     .ant-stop::before { content: ""; position: absolute; left: -26px; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--ant-clay); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--ant-clay); }
+     .ant-stop.future::before { background: transparent; border: 3px dashed var(--ant-clay); box-shadow: none; }
+     .ant-stop .when { font-weight: 700; font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ant-clay); }
+     .ant-stop .what { font-size: 0.95em; margin: 2px 0 0; }
+     .ant-rail-cap { text-align: center; font-size: 0.8em; color: #888; margin: 4px auto 6px; max-width: 700px; }
+
+     /* valuation curve */
+     .ant-val { max-width: 640px; margin: 14px auto 4px; }
+     .ant-val svg { width: 100%; height: auto; display: block; }
+     .ant-val-cap { text-align: center; font-size: 0.8em; color: #888; margin: 4px auto 6px; max-width: 640px; }
+
+     /* IPO placeholder callout */
+     .ant-ipo { max-width: 680px; margin: 26px auto; padding: 16px 22px; border: 2px dashed var(--ant-clay); border-radius: 10px; background: rgba(204,120,92,0.05); text-align: center; }
+     .ant-ipo .tag { font-size: 0.74em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ant-clay); }
+     .ant-ipo .date { font-size: 1.05em; font-weight: 700; margin-top: 4px; }
+     .ant-ipo .note { font-size: 0.82em; color: #888; margin-top: 4px; }
+
+     /* pull-quote from collaboration */
+     blockquote.ant-pq { border-left: 3px solid var(--ant-tan); margin: 18px auto; padding: 6px 18px; color: #777; font-style: italic; max-width: 680px; }
+     h2[id], h3[id] { scroll-margin-top: 90px; }
+   </style>
+   <body class="fixed-top-nav" data-page="blog">
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title">My Story with Anthropic</h1>
+               <p class="post-meta"> Created in June 2026 </p>
+               <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/anthropic"> <i class="fa-solid fa-hashtag fa-sm"></i> anthropic</a>   <a href="/blog/tag/claude"> <i class="fa-solid fa-hashtag fa-sm"></i> claude</a>   <a href="/blog/tag/bedrock"> <i class="fa-solid fa-hashtag fa-sm"></i> bedrock</a>   ·   <a href="/blog/category/corporate"> <i class="fa-solid fa-tag fa-sm"></i> corporate</a> </p>
+            </header>
+            <article class="post-content">
+
+               <div class="ant-quote">
+                  <p class="q">"The thing I'm most proud of is that we got to build something at the frontier — and a few of us got to watch it become the thing everyone now takes for granted."</p>
+                  <p class="a">— a feeling I kept coming back to, writing this</p>
+               </div>
+
+               <p>
+                  Some stories you only notice you were living once they've already become history. Mine with <strong>Anthropic</strong> is one of those. I didn't set out to have a "story with Anthropic" — I set out to build an inference engine. But across three and a half years I had the rare seat of both <em>collaborator</em> and <em>observer</em>: close enough to debug a launch at 3 a.m. with their engineers, and far enough back to watch a company go from "Claude? what's that?" to a household name worth nearly a trillion dollars.
+               </p>
+
+               <p>
+                  This post is that story, told along its timeline. I've drawn the arc as a diagram first, then walked through it chapter by chapter — partly a record of the collaboration, partly an honest log of what I observed from the inside as the frontier moved.
+               </p>
+
+               <h2 id="timeline">The Arc, at a Glance</h2>
+
+               <p>The whole story compresses into a single rail — from the day I became engineer No.&nbsp;2 on a confidential project, to a future milestone I've left blank on purpose:</p>
+
+               <div class="ant-rail">
+                  <div class="ant-stop">
+                     <div class="when">2023 &middot; Q4 — Engineer No. 2</div>
+                     <p class="what">Joined a newly funded Bedrock Inference team — the <em>only</em> team building serverless inference for Anthropic's Claude models on AWS. Secured codebase, confidential program.</p>
+                  </div>
+                  <div class="ant-stop">
+                     <div class="when">2024 — Day-0 Launches &amp; Trainium</div>
+                     <p class="what">Led nearly all of Claude's Day-0 releases on Bedrock — Claude 3 Opus, 3.5 Sonnet, <strong>Computer Use</strong> (Anthropic's first agentic feature), and the first Claude on AWS Trainium/Inferentia. At CVPR 2024, most people still didn't know what Claude was.</p>
+                  </div>
+                  <div class="ant-stop">
+                     <div class="when">2025 — Recognition &amp; Claude Code</div>
+                     <p class="what">Anthropic became widely recognized across the industry. <strong>Claude Code</strong> shipped in May 2025. I stepped sideways from 3P (Claude) into open-weights and speculative-decoding research — but kept watching.</p>
+                  </div>
+                  <div class="ant-stop">
+                     <div class="when">2026 — Everyone Uses Claude</div>
+                     <p class="what">Regular users worldwide — including in China — became fluent in Claude. Anthropic's valuation reached <strong>~$965B by mid-2026</strong>: a 50&times;+ jump in two years, the world's most valuable startup.</p>
+                  </div>
+                  <div class="ant-stop future">
+                     <div class="when">??? — Anthropic IPO</div>
+                     <p class="what">The chapter not yet written. <em>Placeholder &mdash; date TBD.</em></p>
+                  </div>
+               </div>
+               <p class="ant-rail-cap">My Anthropic timeline — the hollow, dashed node is the future, not yet lived.</p>
+
+               <div class="ant-val">
+                  <svg viewBox="0 0 660 210" role="img" aria-label="Anthropic valuation growth, 2024 to IPO">
+                     <line x1="50" y1="175" x2="640" y2="175" stroke="rgba(128,128,128,0.35)" stroke-width="1"/>
+                     <!-- x labels -->
+                     <text x="60" y="192" font-size="10" fill="#999">2024</text>
+                     <text x="300" y="192" font-size="10" fill="#999" text-anchor="middle">2025</text>
+                     <text x="520" y="192" font-size="10" fill="#999" text-anchor="middle">mid-2026</text>
+                     <text x="630" y="192" font-size="10" fill="#999" text-anchor="end">IPO?</text>
+                     <!-- valuation curve -->
+                     <path d="M60 168 C200 162 300 150 430 110 C490 88 510 60 520 40" fill="none" stroke="#cc785c" stroke-width="3"/>
+                     <!-- dashed continuation to IPO -->
+                     <path d="M520 40 C560 28 600 22 630 18" fill="none" stroke="#cc785c" stroke-width="2.5" stroke-dasharray="5 5"/>
+                     <!-- markers -->
+                     <circle cx="60" cy="168" r="4" fill="#cc785c"/>
+                     <text x="60" y="158" font-size="10" fill="#cc785c" text-anchor="start">~$18B</text>
+                     <circle cx="520" cy="40" r="4" fill="#cc785c"/>
+                     <text x="520" y="32" font-size="10" fill="#cc785c" text-anchor="middle">~$965B</text>
+                     <circle cx="630" cy="18" r="4.5" fill="none" stroke="#cc785c" stroke-width="2" stroke-dasharray="3 2"/>
+                     <text x="628" y="12" font-size="9.5" fill="#999" text-anchor="end">IPO (TBD)</text>
+                  </svg>
+                  <p class="ant-val-cap">Anthropic's valuation over the same window — from roughly <strong>$18B (2024)</strong> to <strong>~$965B (mid-2026)</strong>, with the IPO still a dashed line into the unknown.</p>
+               </div>
+
+               <hr>
+
+               <!-- ===== 2023 ===== -->
+               <div class="ant-band">
+                  <div class="yr">Chapter 1 &nbsp;·&nbsp; 2023</div>
+                  <h2 id="c2023">Engineer No. 2 <span>&mdash; a confidential beginning</span></h2>
+               </div>
+
+               <p>
+                  The Inference team was newly funded when I joined in late 2023. I was the first engineer hired, alongside one L6 engineer who'd come over from Lex — which made me, in effect, <strong>engineer No.&nbsp;2</strong>. The mandate was privileged and confidential: build the <strong>inference engine for Anthropic's models</strong> on Amazon Bedrock. For nearly a year our work was shrouded in secrecy — for partner-protection and IP reasons (on Anthropic's behalf), even other Bedrock teammates couldn't access our codebase, documents, or channels.
+               </p>
+
+               <p>
+                  From the very start, ours was the <em>only</em> team working directly with Anthropic. I still remember an L7 colleague Slack-messaging me early on: <em>"Andy, good to meet you. I've heard your name mentioned even by [the co-founder of Anthropic], when we were working on this project."</em> It's a humbling thing, to learn your name is being said in rooms you've never been in.
+               </p>
+
+               <p>
+                  This was, once again, a 0&rarr;1 startup — clean code, high visibility, fast pace — except this one sat inside what would become the most important business at the company.
+               </p>
+
+               <!-- ===== 2024 ===== -->
+               <div class="ant-band">
+                  <div class="yr">Chapter 2 &nbsp;·&nbsp; 2024</div>
+                  <h2 id="c2024">Building Together <span>&mdash; Day-0 launches, late nights, and Trainium</span></h2>
+               </div>
+
+               <p>
+                  We partnered <strong>directly with Anthropic</strong> — including co-founder <em>Ben Mann</em> — with two-plus working sessions a week and a monthly happy hour to celebrate each new model release. That work touched ideas that have since become standards across the open-source inference community: <a href="https://pengandy.com/blog/2025/llmnative/" target="_blank" rel="noopener">disaggregated inference, multi-node inference, context-aware routing, and prompt caching</a>.
+               </p>
+
+               <p>
+                  Through 2024 I led almost all of Claude's <strong>Day-0 public releases</strong> on Bedrock. The cadence was relentless — roughly one or two major launches a month:
+               </p>
+
+               <ul>
+                  <li><strong>April</strong> — Claude 3 Opus on Amazon Bedrock.</li>
+                  <li><strong>May</strong> — Claude 3 Sonnet and Haiku in Frankfurt.</li>
+                  <li><strong>July</strong> — Claude 3.5 Sonnet.</li>
+                  <li><strong>October</strong> — upgraded Claude 3.5 Sonnet v2 with <strong>Computer Use</strong>, Anthropic's first agentic-AI feature.</li>
+                  <li><strong>November</strong> — Claude 3.5 Haiku GA; Anthropic + Palantir bringing Claude to the U.S. government cloud.</li>
+                  <li><strong>December</strong> — prompt caching, latency-optimized inference, and Claude 3.5 Sonnet in the AWS Top Secret cloud (re:Invent).</li>
+               </ul>
+
+               <p>
+                  I also delivered the <strong>first Claude model on AWS Trainium/Inferentia</strong>, partnering with <em>James Bradbury</em> (Anthropic's Head of Compute) and the Annapurna teams. There's a serendipity I still smile at: through my Linux Foundation community work I'd been invited to San Francisco on the PyTorchCon Program Committee, where I sat on a panel alongside James. The following week, back in Seattle, I found myself working with him full-time on Claude on Trainium. You meet someone outside of work, and a week later you're shipping a frontier launch together.
+               </p>
+
+               <p>
+                  I vividly recall several late nights where both teams worked until sunrise to debug a launch — and the happy hours afterward in Seattle's South Lake Union that made the exhaustion worth it. This was also the first time I felt how intensely Amazon's <strong>most senior leadership</strong> cares about a business: we took tickets directly from customer CEOs, and every Sev-2 review pulled in L10 leaders — our VP and a Distinguished Engineer — alongside L8 Senior Principal Engineers.
+               </p>
+
+               <p>
+                  And here is the part that dates this chapter most precisely: when I told people at <strong>CVPR 2024</strong> that I worked on the Claude model, I'd often get a blank look. They didn't know what it was. Anthropic was, at that point, a frontier lab valued at roughly <strong>$18 billion</strong> — serious money, but not yet a name your family would recognize.
+               </p>
+
+               <!-- ===== 2025 ===== -->
+               <div class="ant-band">
+                  <div class="yr">Chapter 3 &nbsp;·&nbsp; 2025</div>
+                  <h2 id="c2025">The Year It Clicked <span>&mdash; industry recognition &amp; Claude Code</span></h2>
+               </div>
+
+               <p>
+                  2025 was the year the wider industry caught up to what we'd been living. Anthropic became <strong>widely recognized across the field</strong>, and in <strong>May 2025</strong> the company released <strong>Claude Code</strong> — the tool that, more than any single model, made developers everywhere fluent in the name "Claude." SemiAnalysis would later estimate Bedrock as a multi-billion-dollar run-rate business with the vast majority of its customers (80&ndash;90%+) on Anthropic models.
+               </p>
+
+               <blockquote class="ant-pq">
+                  "SemiAnalysis believes Bedrock is a $5.5B run rate business today with the vast majority of customers (80-90%+) using Anthropic models."
+               </blockquote>
+
+               <p>
+                  After shipping my last 3P task in Q1 2025, I chose to step sideways. Bedrock Inference was organized into <strong>3P</strong> (Claude and other closed models), <strong>2P</strong> (open-weights — Llama, DeepSeek, Qwen), and <strong>1P</strong> (Amazon's own Nova and Titan). I moved from 3P into 2P, beginning my research line in <strong>model optimization (speculative decoding)</strong> and customization — the work I still lead today. I left the Claude program, but I never stopped watching it.
+               </p>
+
+               <!-- ===== 2026 ===== -->
+               <div class="ant-band">
+                  <div class="yr">Chapter 4 &nbsp;·&nbsp; 2026</div>
+                  <h2 id="c2026">Everyone Uses Claude <span>&mdash; from frontier to household name</span></h2>
+               </div>
+
+               <p>
+                  By 2026 the blank looks were gone. Regular users worldwide — including people in China — had become familiar with Claude and were learning, on their own, how to use it well. The thing a handful of us had built behind a badge-locked door had quietly become part of everyday life.
+               </p>
+
+               <p>
+                  I watched Anthropic itself grow up close — from a team of fewer than 200 people to what it is today, its valuation climbing from roughly <strong>$18B in 2024</strong> to <strong>~$965B by mid-2026</strong>. More than a <strong>50&times;</strong> jump in two years, making it the world's most valuable startup. Some of the most valuable parts of this chapter weren't in any codebase at all — they were the people the work put me next to: engineers, founders, researchers, and investors I now count as part of my network.
+               </p>
+
+               <!-- ===== IPO placeholder ===== -->
+               <div class="ant-band">
+                  <div class="yr">Chapter 5 &nbsp;·&nbsp; ???</div>
+                  <h2 id="cipo">The Chapter Not Yet Written <span>&mdash; the IPO</span></h2>
+               </div>
+
+               <p>
+                  Every arc this steep eventually reaches a public-market milestone. As I write this, Anthropic's IPO is still ahead of us — a date I genuinely don't know yet, and so one I'm deliberately leaving blank. When it lands, this is where I'll mark it.
+               </p>
+
+               <div class="ant-ipo">
+                  <div class="tag">Anthropic IPO</div>
+                  <!-- TODO: fill in the IPO date once it is announced -->
+                  <div class="date">[ IPO date &mdash; TBD ]</div>
+                  <div class="note">Placeholder. To be updated when the date is public.</div>
+               </div>
+
+               <p>
+                  When I think back over this whole timeline, what stays with me isn't any single launch. It's the strange privilege of the double seat — building the thing and watching it become history at the same time. In 2024 I had to explain what Claude was; in 2026 I no longer have to explain anything. The rest of that story, Anthropic gets to write. I just got to be there for the beginning.
+               </p>
+
+            </article>
+            <br> 
+            <hr>
+            <br> 
+            <div id="subscribe-placeholder"></div>
+         </div>
+         <div>
+           <a href="https://hits.sh/pengandy.com/blog/2026/ant/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/ant.svg?label=page%20views&color=cc785c"/></a>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+
+      <!-- Scripts -->
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+   </body>
+</html>
