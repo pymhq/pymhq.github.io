@@ -146,26 +146,38 @@
                <p class="ant-rail-cap">My Anthropic timeline — the hollow, dashed node is the future, not yet lived.</p>
 
                <div class="ant-val">
-                  <svg viewBox="0 0 660 210" role="img" aria-label="Anthropic valuation growth, 2024 to IPO">
-                     <line x1="50" y1="175" x2="640" y2="175" stroke="rgba(128,128,128,0.35)" stroke-width="1"/>
-                     <!-- x labels -->
-                     <text x="60" y="192" font-size="10" fill="#999">2024</text>
-                     <text x="300" y="192" font-size="10" fill="#999" text-anchor="middle">2025</text>
-                     <text x="520" y="192" font-size="10" fill="#999" text-anchor="middle">mid-2026</text>
-                     <text x="630" y="192" font-size="10" fill="#999" text-anchor="end">IPO?</text>
-                     <!-- valuation curve -->
-                     <path d="M60 168 C200 162 300 150 430 110 C490 88 510 60 520 40" fill="none" stroke="#cc785c" stroke-width="3"/>
+                  <svg viewBox="0 0 680 230" role="img" aria-label="Anthropic valuation growth from its 2021 founding to its 2026 valuation and a future IPO">
+                     <!-- baseline -->
+                     <line x1="55" y1="205" x2="660" y2="205" stroke="rgba(128,128,128,0.35)" stroke-width="1"/>
+                     <!-- x-axis year labels -->
+                     <text x="70" y="221" font-size="10" fill="#999" text-anchor="middle">2021</text>
+                     <text x="158" y="221" font-size="10" fill="#999" text-anchor="middle">2022</text>
+                     <text x="246" y="221" font-size="10" fill="#999" text-anchor="middle">2023</text>
+                     <text x="334" y="221" font-size="10" fill="#999" text-anchor="middle">2024</text>
+                     <text x="422" y="221" font-size="10" fill="#999" text-anchor="middle">2025</text>
+                     <text x="540" y="221" font-size="10" fill="#999" text-anchor="middle">mid-2026</text>
+                     <text x="650" y="221" font-size="10" fill="#999" text-anchor="end">IPO?</text>
+                     <!-- log-scaled valuation curve, 2021 founding -> mid-2026 -->
+                     <path d="M70 202 Q114 184 158 170 Q202 167 246 164 Q283 150 320 134 Q350 123 380 112 Q415 96 450 80 Q478 69 505 58 Q523 47 540 35" fill="none" stroke="#cc785c" stroke-width="3"/>
                      <!-- dashed continuation to IPO -->
-                     <path d="M520 40 C560 28 600 22 630 18" fill="none" stroke="#cc785c" stroke-width="2.5" stroke-dasharray="5 5"/>
-                     <!-- markers -->
-                     <circle cx="60" cy="168" r="4" fill="#cc785c"/>
-                     <text x="60" y="158" font-size="10" fill="#cc785c" text-anchor="start">~$18B</text>
-                     <circle cx="520" cy="40" r="4" fill="#cc785c"/>
-                     <text x="520" y="32" font-size="10" fill="#cc785c" text-anchor="middle">~$965B</text>
-                     <circle cx="630" cy="18" r="4.5" fill="none" stroke="#cc785c" stroke-width="2" stroke-dasharray="3 2"/>
-                     <text x="628" y="12" font-size="9.5" fill="#999" text-anchor="end">IPO (TBD)</text>
+                     <path d="M540 35 Q600 26 650 20" fill="none" stroke="#cc785c" stroke-width="2.5" stroke-dasharray="5 5"/>
+                     <!-- minor unlabeled milestones (Series B ~$4B, late-2024 ~$60B, Feb-2026 ~$380B) -->
+                     <circle cx="158" cy="170" r="2.5" fill="#cc785c"/>
+                     <circle cx="380" cy="112" r="2.5" fill="#cc785c"/>
+                     <circle cx="505" cy="58" r="2.5" fill="#cc785c"/>
+                     <!-- labeled milestones -->
+                     <circle cx="70" cy="202" r="4" fill="#cc785c"/>
+                     <text x="78" y="196" font-size="10" fill="#cc785c" text-anchor="start">~$0.55B &middot; founded</text>
+                     <circle cx="320" cy="134" r="4" fill="#cc785c"/>
+                     <text x="320" y="126" font-size="10" fill="#cc785c" text-anchor="middle">~$18B</text>
+                     <circle cx="450" cy="80" r="4" fill="#cc785c"/>
+                     <text x="450" y="72" font-size="10" fill="#cc785c" text-anchor="middle">~$183B</text>
+                     <circle cx="540" cy="35" r="4" fill="#cc785c"/>
+                     <text x="540" y="28" font-size="10" fill="#cc785c" text-anchor="middle">~$965B</text>
+                     <circle cx="650" cy="20" r="4.5" fill="none" stroke="#cc785c" stroke-width="2" stroke-dasharray="3 2"/>
+                     <text x="648" y="13" font-size="9.5" fill="#999" text-anchor="end">IPO (TBD)</text>
                   </svg>
-                  <p class="ant-val-cap">Anthropic's valuation over the same window — from roughly <strong>$18B (2024)</strong> to <strong>~$965B (mid-2026)</strong>, with the IPO still a dashed line into the unknown.</p>
+                  <p class="ant-val-cap">Anthropic's valuation across its whole life — from its <strong>2021 founding (~$550M)</strong>, through the quiet years and the <strong>~$18B</strong> mark when Amazon invested (2024), to <strong>~$183B (2025)</strong> and <strong>~$965B (mid-2026)</strong> — with the IPO still a dashed line into the unknown. <em>(Vertical axis is log-scaled so the early years stay visible.)</em></p>
                </div>
 
                <hr>
