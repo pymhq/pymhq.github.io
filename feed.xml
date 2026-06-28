@@ -6,13 +6,13 @@
     <description>Andy Peng&#x27;s notes on research, products, and technical exploration.</description>
     <language>en-us</language>
     <managingEditor>Andy Peng</managingEditor>
-    <lastBuildDate>Sun, 28 Jun 2026 20:57:53 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jun 2026 21:08:48 +0000</lastBuildDate>
     <atom:link href="https://pengandy.com/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Curiosity-Driven Builder&#x27;s Journey</title>
       <link>https://pengandy.com/blog/2026/curiosity-driven-builder/</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2026/curiosity-driven-builder/</guid>
-      <pubDate>Sun, 28 Jun 2026 20:57:53 +0000</pubDate>
+      <pubDate>Sun, 28 Jun 2026 21:08:48 +0000</pubDate>
       <description>A curiosity-driven builder&#x27;s journey across a decade at Amazon — five domains, the decision lens, and what still holds value in the AI era.</description>
       <enclosure url="https://pengandy.com/assets/blog/curiosity-driven-builder/flywheel-card.png" type="image/png" length="0" />
     </item>
@@ -23,6 +23,22 @@
       <pubDate>Sun, 07 Jun 2026 00:00:00 +0000</pubDate>
       <description>An Amazon-style flywheel for building a small-business personal brand: content creation, building connection, and showing connection — and where revenue fits.</description>
       <enclosure url="https://pengandy.com/assets/blog/2026/flywheel/flywheel-card.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>My Story with Anthropic</title>
+      <link>https://pengandy.com/blog/2026/ant/</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2026/ant/</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <description>A storytelling timeline of my observation of, and collaboration with, Anthropic.</description>
+      <enclosure url="https://pengandy.com/assets/blog/br.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Trendings on Speculative Decoding</title>
+      <link>https://pengandy.com/blog/2026/speculativedecoding/</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2026/speculativedecoding/</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <description>A 2026 timeline of speculative decoding: Gemma 4 Assistant drafters, Gemini Nano frozen MTP, and DeepSeek DSpark — summarized and compared.</description>
+      <enclosure url="https://pengandy.com/assets/blog/2026/speculativedecoding/idea2.jpg" type="image/png" length="0" />
     </item>
     <item>
       <title>Lunch with CTO of The Linux Foundation &amp; PyTorch Foundation Matt White</title>
