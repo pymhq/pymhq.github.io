@@ -1,0 +1,1577 @@
+<!DOCTYPE html> 
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> Trendings on Speculative Decoding </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="A timeline of 2026's speculative decoding wave — Gemma 4 Assistant drafters, Gemini Nano's frozen Multi-Token Prediction on Pixel, and DeepSeek's DSpark — with summaries, a side-by-side comparison table, and the papers behind them.">
+      <meta name="keywords" content="speculative decoding, multi-token prediction, MTP, DeepSeek DSpark, Gemini Nano, Gemma 4, Gemma 4 Assistant, EAGLE, LLM inference, drafter">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/speculativedecoding/">
+      <meta property="og:title" content="Trendings on Speculative Decoding">
+      <meta property="og:description" content="A 2026 timeline of speculative decoding: Gemma 4 Assistant drafters, Gemini Nano frozen MTP, and DeepSeek DSpark — summarized and compared.">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/pd.png">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="Trendings on Speculative Decoding">
+      <meta name="twitter:description" content="A 2026 timeline of speculative decoding: Gemma 4 Assistant drafters, Gemini Nano frozen MTP, and DeepSeek DSpark — summarized and compared.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/pd.png">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="shortcut icon" href="/assets/projects/Peng Andys Logo Symbol.png">
+      <link rel="stylesheet" href="/assets/css/main.css">
+      <link rel="canonical" href="https://pengandy.com/blog/2026/speculativedecoding/">
+      <link rel="alternate" type="application/rss+xml" title="Puget Sound Journal" href="https://pengandy.com/feed.xml">
+      <script src="/assets/js/theme.js"></script>
+      <script src="/assets/js/dark_mode.js"></script>
+      <script src="/assets/js/components.js" defer></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+   </head>
+   <style>
+     img { pointer-events: none; }
+
+     /* ── Speculative decoding theme ── */
+     :root { --sd-indigo: #4f46e5; --sd-cyan: #06b6d4; --sd-mute: #888; }
+
+     /* opening quote */
+     .sd-quote { margin: 8px 0 36px 0; padding: 24px 28px; background: rgba(79,70,229,0.07); border-left: 4px solid var(--sd-indigo); border-radius: 6px; }
+     .sd-quote p.q { font-size: 1.12em; font-style: italic; line-height: 1.7; margin-bottom: 12px; }
+     .sd-quote p.a { font-size: 0.88em; color: var(--sd-mute); margin: 0; }
+
+     /* chapter heading band */
+     .sd-band { margin: 52px 0 16px 0; }
+     .sd-band .yr { font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sd-indigo); font-weight: 700; }
+     .sd-band h2 { margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid var(--sd-indigo); }
+     .sd-band h2 span { font-weight: 300; color: var(--sd-mute); }
+
+     /* vertical timeline rail */
+     .sd-rail { max-width: 720px; margin: 24px auto 10px; position: relative; padding-left: 26px; }
+     .sd-rail::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--sd-cyan), var(--sd-indigo)); }
+     .sd-stop { position: relative; padding: 0 0 22px 18px; }
+     .sd-stop::before { content: ""; position: absolute; left: -26px; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--sd-indigo); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--sd-indigo); }
+     .sd-stop.future::before { background: transparent; border: 3px dashed var(--sd-indigo); box-shadow: none; }
+     .sd-stop .when { font-weight: 700; font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.04em; color: var(--sd-indigo); }
+     .sd-stop .what { font-size: 0.95em; margin: 2px 0 0; }
+     .sd-rail-cap { text-align: center; font-size: 0.8em; color: var(--sd-mute); margin: 4px auto 6px; max-width: 720px; }
+
+     /* source cards */
+     .sd-srcs { max-width: 760px; margin: 14px auto 6px; display: grid; grid-template-columns: 1fr; gap: 10px; }
+     .sd-src { padding: 12px 16px; border: 1px solid rgba(79,70,229,0.25); border-left: 4px solid var(--sd-indigo); border-radius: 8px; background: rgba(79,70,229,0.03); }
+     .sd-src .lab { font-size: 0.72em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sd-indigo); }
+     .sd-src a { word-break: break-word; }
+
+     /* comparison table */
+     .sd-table-wrap { overflow-x: auto; margin: 18px 0; }
+     table.sd-table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+     table.sd-table th, table.sd-table td { border: 1px solid rgba(128,128,128,0.3); padding: 9px 12px; vertical-align: top; text-align: left; }
+     table.sd-table thead th { background: var(--sd-indigo); color: #fff; font-weight: 600; }
+     table.sd-table tbody th { background: rgba(79,70,229,0.06); font-weight: 600; white-space: nowrap; }
+     table.sd-table tbody tr:nth-child(even) td { background: rgba(128,128,128,0.04); }
+
+     /* note callout */
+     .sd-note { max-width: 760px; margin: 18px auto; padding: 12px 18px; border: 1px dashed var(--sd-cyan); border-radius: 8px; background: rgba(6,182,212,0.05); font-size: 0.9em; color: #555; }
+
+     blockquote.sd-pq { border-left: 3px solid var(--sd-cyan); margin: 18px auto; padding: 6px 18px; color: #777; font-style: italic; max-width: 720px; }
+
+     /* thread walkthrough cards */
+     .sd-thread { max-width: 760px; margin: 18px auto; }
+     .sd-tw { position: relative; border: 1px solid rgba(79,70,229,0.22); border-radius: 12px; padding: 16px 18px 16px 58px; margin: 0 0 16px; background: rgba(79,70,229,0.03); }
+     .sd-tw .num { position: absolute; left: 14px; top: 16px; width: 32px; height: 32px; border-radius: 50%; background: var(--sd-indigo); color: #fff; font-weight: 700; font-size: 0.8em; display: flex; align-items: center; justify-content: center; }
+     .sd-tw .hd { font-size: 0.8em; color: var(--sd-mute); margin-bottom: 8px; }
+     .sd-tw .hd b { color: #444; }
+     .sd-tw .ttl { font-weight: 700; margin: 0 0 4px; }
+     .sd-tw .bd { font-size: 0.95em; white-space: pre-line; margin: 0; }
+     .sd-tw .bd code { font-size: 0.84em; background: rgba(128,128,128,0.12); padding: 1px 4px; border-radius: 4px; }
+     .sd-tw .imgs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+     .sd-tw .imgs img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(128,128,128,0.2); }
+     .sd-tw .imgs.two img { max-width: 48%; }
+     .sd-tw .lnk { font-size: 0.78em; margin-top: 10px; }
+     .sd-tw.future { border-style: dashed; border-color: var(--sd-cyan); background: rgba(6,182,212,0.04); }
+     .sd-tw.future .num { background: transparent; color: var(--sd-cyan); border: 2px dashed var(--sd-cyan); }
+
+     /* paper cards (matching /blog/2026/mlsys/) */
+     .group-label { font-weight: 700; color: var(--sd-indigo); margin: 26px 0 6px 0; }
+     .paper { border-left: 3px solid #6c757d; background: #f8f9fa; padding: 12px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+     .paper .ptitle { font-weight: 600; color: #222; font-size: 0.98em; line-height: 1.4; }
+     .paper .pauthors { font-size: 0.85em; color: #666; margin: 4px 0 6px 0; }
+     .paper .psum { font-size: 0.9em; color: #444; margin: 0; }
+     .paper .plinks { font-size: 0.82em; margin-top: 6px; }
+     .badge { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 0.74em; font-weight: 700; letter-spacing: 0.02em; vertical-align: middle; margin-left: 6px; }
+     .badge-research { background: #eef0f2; border: 1px solid #cfd4da; color: #4b5563; }
+     .badge-train  { background: #f3e8fd; border: 1px solid #d6b4fb; color: #7c3aed; }
+     .badge-serve  { background: #e6f7f4; border: 1px solid #9fe0d4; color: #0d9488; }
+     .badge-foundation { background: #e8f0fe; border: 1px solid #adc6ff; color: #1a56db; }
+     .metric { display: inline-block; background: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; border-radius: 4px; padding: 1px 7px; font-size: 0.82em; font-weight: 600; margin-top: 6px; }
+
+     /* language toggle (matches /blog/2026/flywheel/) */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border: 1px solid var(--sd-indigo); background: transparent; color: var(--sd-indigo); font: 600 0.82em 'Roboto', sans-serif; padding: 5px 16px; cursor: pointer; line-height: 1.4; }
+     .lang-toggle button:first-child { border-radius: 16px 0 0 16px; border-right: none; }
+     .lang-toggle button:last-child { border-radius: 0 16px 16px 0; }
+     .lang-toggle button.active { background: var(--sd-indigo); color: #fff; }
+     .lang-zh { display: none; }
+     body.zh .lang-en { display: none; }
+     body.zh .lang-zh { display: block; }
+     h2[id], h3[id] { scroll-margin-top: 90px; }
+   </style>
+   <body class="fixed-top-nav" data-page="blog">
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title"><span class="lang-en">Trendings on Speculative Decoding</span><span class="lang-zh">投机解码的趋势</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in June 2026 </span><span class="lang-zh"> 创建于 2026 年 6 月 </span></p>
+               <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>   <a href="/blog/tag/mtp"> <i class="fa-solid fa-hashtag fa-sm"></i> mtp</a>   <a href="/blog/tag/inference"> <i class="fa-solid fa-hashtag fa-sm"></i> inference</a>   <a href="/blog/tag/eagle"> <i class="fa-solid fa-hashtag fa-sm"></i> eagle</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
+            </header>
+            <article class="post-content">
+
+               <div class="lang-toggle">
+                  <button id="lang-en-btn" type="button" class="active" onclick="__setSpecLang('en')">EN</button>
+                  <button id="lang-zh-btn" type="button" onclick="__setSpecLang('zh')">中文</button>
+               </div>
+
+               <div class="lang-en">
+
+               <div class="sd-quote">
+                  <p class="q">"The fastest token is the one you never have to generate twice."</p>
+                  <p class="a">— the idea at the heart of every speculative-decoding system</p>
+               </div>
+
+               <p>
+                  Speculative decoding has quietly become the default way to make large language models fast. The premise is simple: a small, cheap <em>drafter</em> guesses several tokens ahead, and the big <em>target</em> model verifies them in a single parallel forward pass — accepting the guesses it agrees with and correcting the first one it doesn't. Because rejected drafts are thrown away, the output stays <strong>bit-for-bit identical</strong> to plain autoregressive decoding. It's a pure efficiency win, not a quality trade.
+               </p>
+
+               <p>
+                  In my own writing on the LLM space (see my <a href="https://pengandy.com/blog/2025/llm/" target="_blank" rel="noopener">LLM Year in Review</a>) I've watched this technique go from a clever trick to a production necessity. What's striking about <strong>2026</strong> is how the whole field converged on the same answer in the span of two months — and from three very different angles: Google's open <strong>Gemma 4</strong> drafters, Google's on-device <strong>Gemini Nano</strong> frozen Multi-Token Prediction, and DeepSeek's server-scale <strong>DSpark</strong>. This post walks that timeline, summarizes each, and lays them side by side.
+               </p>
+
+               <div class="sd-note">
+                  <strong>A note on sources.</strong> This write-up links every original announcement below. The two X/Twitter threads (DeepSeek's DSpark thread by Dmytro Dzhulgakov and the Gemma 4 drafter post) are gated behind X's login wall, so their full <em>reply threads</em> could not be scraped programmatically — the summaries here are built from the top-level posts plus the public blogs, docs, model cards, and papers they point to. Where a number comes from secondary reporting rather than a primary doc, I say so.
+               </div>
+
+               <h2 id="timeline">The 2026 Wave, at a Glance</h2>
+
+               <p>Three releases, eight weeks, one idea. The rail below is the trend in miniature — from the open-weights drafters that put speculative decoding in everyone's hands, to the edge, to hyperscale serving:</p>
+
+               <div class="sd-rail">
+                  <div class="sd-stop">
+                     <div class="when">May 5, 2026 &mdash; Gemma 4 Assistant (open weights)</div>
+                     <p class="what">Google ships a companion line of autoregressive <strong>drafter</strong> models — officially the <strong>"Gemma 4 Assistant"</strong> (the <code>-assistant</code> checkpoints) — plus an <strong>MTP</strong> head for the Gemma 4 family. Up to <strong>3&times;</strong> faster inference, lossless, Apache-2.0, and supported in Transformers, MLX, vLLM, SGLang and Ollama from day one.</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">June 26, 2026 &mdash; Gemini Nano Frozen MTP (on-device)</div>
+                     <p class="what">Google Research retrofits MTP onto <strong>frozen</strong> Gemini Nano v3 on Pixel 9/10. A "late-exit" head cross-attends to the main model's KV cache (zero-copy), saving <strong>~130&nbsp;MB</strong> and delivering <strong>50%+</strong> speedups with ~2 extra accepted tokens per pass.</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">June 27, 2026 &mdash; DeepSeek DSpark (server-scale)</div>
+                     <p class="what">DeepSeek layers a "semi-parallel" speculative framework with <strong>confidence-scheduled verification</strong> on top of DeepSeek-V4's built-in MTP-1. Per-user speedups of <strong>57&ndash;85%</strong> and throughput gains of <strong>1.5&times;&ndash;5&times;</strong> in real production traffic.</p>
+                  </div>
+                  <div class="sd-stop future">
+                     <div class="when">Next &mdash; Branching &amp; Lenient Verification</div>
+                     <p class="what">Everyone is converging on the same frontier: parallel/branching drafts, auxiliary-head-free designs, and <em>relaxed</em> (non-exact-match) verification to push acceptance even higher. The chapter still being written.</p>
+                  </div>
+               </div>
+               <p class="sd-rail-cap">The 2026 speculative-decoding wave — the hollow, dashed node is where the research is heading next.</p>
+
+               <h2 id="sources">Original Sources</h2>
+               <div class="sd-srcs">
+                  <div class="sd-src">
+                     <div class="lab">DeepSeek DSpark — 10-part X thread (Dmytro Dzhulgakov, Fireworks AI)</div>
+                     <a href="https://x.com/dzhulgakov/status/2070922887595499930" target="_blank" rel="noopener">x.com/dzhulgakov/status/2070922887595499930</a> &nbsp;·&nbsp;
+                     <a href="https://x.com/dzhulgakov/status/2070922896588087753" target="_blank" rel="noopener">part 4 — "speculation is not free"</a> &nbsp;·&nbsp;
+                     <a href="https://x.com/dzhulgakov/status/2070922902376198579" target="_blank" rel="noopener">part 7 — "DSpark &asymp; EAGLE + MTP"</a>
+                  </div>
+                  <div class="sd-src">
+                     <div class="lab">DeepSeek-V4-Flash-DSpark — model card</div>
+                     <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark" target="_blank" rel="noopener">huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark</a>
+                  </div>
+                  <div class="sd-src">
+                     <div class="lab">Gemini Nano frozen MTP — Google Research blog</div>
+                     <a href="https://research.google/blog/accelerating-gemini-nano-models-on-pixel-with-frozen-multi-token-prediction/" target="_blank" rel="noopener">research.google/blog/accelerating-gemini-nano-models-on-pixel-with-frozen-multi-token-prediction</a>
+                  </div>
+                  <div class="sd-src">
+                     <div class="lab">Gemma 4 drafter — X post (Google Gemma)</div>
+                     <a href="https://x.com/googlegemma/status/2051694045869879749" target="_blank" rel="noopener">x.com/googlegemma/status/2051694045869879749</a>
+                  </div>
+                  <div class="sd-src">
+                     <div class="lab">Gemma 4 MTP — official docs &amp; Keyword blog</div>
+                     <a href="https://ai.google.dev/gemma/docs/mtp/overview" target="_blank" rel="noopener">ai.google.dev/gemma/docs/mtp/overview</a> &nbsp;·&nbsp;
+                     <a href="https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/" target="_blank" rel="noopener">blog.google &mdash; multi-token-prediction-gemma-4</a>
+                  </div>
+               </div>
+
+               <!-- ===== Glossary ===== -->
+               <div class="sd-band">
+                  <div class="yr">First, the Vocabulary</div>
+                  <h2 id="terms">Key Terms in Plain English <span>&mdash; EAGLE, MTP, DFlash</span></h2>
+               </div>
+
+               <p>Three names show up everywhere in these announcements. Here's all three explained side by side — plain English first, then the technical details — using the linked sources:</p>
+
+               <div class="sd-table-wrap">
+                  <table class="sd-table">
+                     <thead>
+                        <tr>
+                           <th>&nbsp;</th>
+                           <th>EAGLE</th>
+                           <th>MTP <span style="font-weight:400">(Multi-Token Prediction)</span></th>
+                           <th>DFlash <span style="font-weight:400">(block-diffusion drafter)</span></th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th>In one line</th>
+                           <td>A <em>smarter way</em> to draft guesses (a tiny extra layer conditioned on target features).</td>
+                           <td>Teach one model to say <em>several</em> words at once (extra prediction heads).</td>
+                           <td>Draft a <em>whole block</em> at once, by diffusion.</td>
+                        </tr>
+                        <tr>
+                           <th>In plain English</th>
+                           <td>A normal drafter guesses the next word from the words so far. EAGLE instead predicts the big model's internal "thought vector" (its hidden <em>features</em>) one step ahead and drafts from <em>that</em>, so more guesses get accepted — and more acceptances means more speed.</td>
+                           <td>Normally a model writes one token, feeds it back, writes the next — slow and serial. MTP bolts on lightweight extra "heads" that predict the next 2&ndash;4 tokens, piggybacking on the model's own embeddings/activations. The big model verifies them in parallel and keeps only the correct ones, so quality is unchanged.</td>
+                           <td>Instead of guessing one token at a time, DFlash uses a block-diffusion model to "paint" all N draft tokens in a single forward pass, still conditioning on the target's hidden features for quality. Drafting latency becomes nearly free, so the bottleneck shifts to <em>draft quality</em>.</td>
+                        </tr>
+                        <tr>
+                           <th>Drafting style</th>
+                           <td><strong style="color:#b00020">Autoregressive</strong></td>
+                           <td><strong style="color:#b00020">Autoregressive</strong></td>
+                           <td><strong style="color:#2e7d32">Parallel (non-autoregressive)</strong></td>
+                        </tr>
+                        <tr>
+                           <th>Passes for K tokens</th>
+                           <td>K sequential</td>
+                           <td>K sequential</td>
+                           <td><strong>1</strong> &mdash; O(1)</td>
+                        </tr>
+                        <tr>
+                           <th>Conditioning</th>
+                           <td>Target's last-layer feature + previous token (EAGLE-3: multi-layer fusion)</td>
+                           <td>Shares the target's trunk &amp; embeddings</td>
+                           <td>Target hidden features (target-conditioned), bidirectional within the block</td>
+                        </tr>
+                        <tr>
+                           <th>How it's trained</th>
+                           <td>Train a 1&ndash;2-layer draft head on the target's hidden states (cheap)</td>
+                           <td>MTP heads trained with / onto the backbone to predict the next k tokens</td>
+                           <td>Train a lightweight block-diffusion drafter to denoise a K-token block, conditioned on target features</td>
+                        </tr>
+                        <tr>
+                           <th>Separate drafter model, or model-free?</th>
+                           <td><strong>~ A small draft head</strong> &mdash; 1&ndash;2 extra trained layers riding on the target (not a full standalone model)</td>
+                           <td><strong style="color:#2e7d32">Model-free / integrated</strong> &mdash; extra heads built into the target itself; no separate model to load</td>
+                           <td><strong style="color:#b00020">Separate drafter</strong> &mdash; a lightweight block-diffusion model, trained &amp; shipped per target</td>
+                        </tr>
+                        <tr>
+                           <th>Strength</th>
+                           <td>High acceptance; coherent on long drafts</td>
+                           <td>Cheap, integrated; rides the model's own compute</td>
+                           <td>Drafting latency ~free; strong at the start of a block; wider blocks ~free on big accelerators</td>
+                        </tr>
+                        <tr>
+                           <th>Weakness</th>
+                           <td>Serial: latency grows with depth</td>
+                           <td>Serial: K passes for K tokens</td>
+                           <td>Quality can decay deep in the block; needs a diffusion drafter trained per target</td>
+                        </tr>
+                        <tr>
+                           <th>Where it shows up</th>
+                           <td>The foundation Gemini Nano "builds on." Family: EAGLE-2 (draft trees), EAGLE-3 (training-time test), EAGLE-3.1, P-EAGLE. <a href="https://arxiv.org/abs/2401.15077" target="_blank" rel="noopener">arXiv:2401.15077</a>.</td>
+                           <td>The shared idea across all three releases: Gemma 4 ships MTP heads; Gemini Nano retrofits one onto a frozen model; DeepSeek-V4 bakes one in (see MTP-1 below). <a href="https://ai.google.dev/gemma/docs/mtp/overview" target="_blank" rel="noopener">Gemma docs</a> · <a href="https://arxiv.org/abs/2404.19737" target="_blank" rel="noopener">arXiv:2404.19737</a>.</td>
+                           <td>UCSD Z-Lab, ICML 2026 (<a href="https://arxiv.org/abs/2602.06036" target="_blank" rel="noopener">arXiv:2602.06036</a>); the "parallel block" half of DeepSeek's DSpark. <em>Distinct from the</em> DeepSeek-V4-<strong>Flash</strong> <em>model.</em></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+
+               <p>
+                  So the clean mental model: <strong>EAGLE and MTP are both autoregressive</strong> drafters (they differ in <em>where</em> the drafter lives — an extra feature-conditioned layer vs. extra heads), while <strong>DFlash is the odd one out: it's parallel</strong>, generating the whole block in one shot via diffusion. That single difference — serial vs. one-pass drafting — is the axis the rest of this post turns on.
+               </p>
+
+               <p style="font-size:0.9em; color:#777;">
+                  <strong>Bonus term — MTP-1:</strong> just "MTP with a single extra head," i.e. one predicted-token-ahead. DeepSeek-V4 ships with MTP-1 built in (2 tokens per forward pass); DSpark then stacks its semi-parallel, confidence-scheduled verification on top of that baseline.
+               </p>
+
+               <div class="sd-note">
+                  <strong>General DFlash — what it is, how it's trained, how it's used.</strong>
+                  <br><br>
+                  <strong>What it is:</strong> DFlash (<em>"Block Diffusion for Flash Speculative Decoding"</em>, UCSD Z-Lab — Jian Chen, Yesheng Liang, Zhijian Liu; ICML 2026) replaces the autoregressive drafter with a <strong>lightweight block-diffusion model</strong>. Instead of guessing one token at a time, it "paints" a whole block of K candidate tokens in a single forward pass — turning O(K) serial drafting into O(1).
+                  <br><br>
+                  <strong>How it's trained:</strong> a small block-diffusion drafter is trained to denoise/produce a block of future tokens, <em>conditioned on context features (hidden states) extracted from the target model</em> — the same EAGLE-style trick that keeps drafts accurate. Drafters are trained per target model on instruction data and published as checkpoints (e.g. <code>z-lab/LLaMA3.1-8B-Instruct-DFlash-UltraChat</code>, <code>z-lab/Qwen3-4B-DFlash-b16</code>), with a fixed block size K (e.g. 10&ndash;16).
+                  <br><br>
+                  <strong>How it's used:</strong> drop it in as the <em>proposer</em> in a speculative-decoding pipeline; the target verifies the whole block in parallel and keeps the correct prefix (lossless). It's integrated into vLLM (GPU/PyTorch) and vLLM-TPU/JAX (PRs #1868&ndash;1870), keeping a context buffer of target hidden states across steps. On TPU v5p a "K-flat" effect makes verifying 16 vs. 1024 tokens cost nearly the same, so wider blocks are ~free and the real lever becomes <em>draft quality</em>. Reported: <strong>3.13&times;</strong> avg (≈6&times; peak on math) on TPU v5p; <strong>2.29&times;</strong> vs. EAGLE-3's 1.30&times; head-to-head.
+                  <br><br>
+                  <strong>In DSpark:</strong> DeepSeek's DSpark blends DFlash's <em>parallel block</em> (strong at the start of a block) with an <em>autoregressive</em> EAGLE-3/MTP step (coherent deep into long drafts) — beating either alone. So DFlash is a general, model-agnostic drafting method; DSpark is one production system that uses it as one of its two halves.
+               </div>
+
+               <!-- ===== Autoregressive vs Parallel ===== -->
+               <div class="sd-band">
+                  <div class="yr">The Core Trade-off</div>
+                  <h2 id="ar-vs-parallel">Autoregressive Decoding vs. Parallel Drafting <span>&mdash; the axis every method lives on</span></h2>
+               </div>
+
+               <p>
+                  Underneath all three releases is a single tension. A drafter can produce its guesses <strong>autoregressively</strong> (one token at a time, each guess conditioned on the last) or by <strong>parallel drafting</strong> (predicting a whole block of tokens in one shot). They fail in opposite ways — and the 2026 systems are essentially different bets on how to combine them.
+               </p>
+
+               <div class="sd-table-wrap">
+                  <table class="sd-table">
+                     <thead>
+                        <tr>
+                           <th>&nbsp;</th>
+                           <th>Autoregressive drafting</th>
+                           <th>Parallel drafting</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th>How it drafts</th>
+                           <td>Generates draft tokens <em>serially</em> — each draft token is fed back in to produce the next.</td>
+                           <td>Predicts several draft tokens <em>at once</em> in a single forward pass (a "parallel block").</td>
+                        </tr>
+                        <tr>
+                           <th>Cost of K draft tokens</th>
+                           <td><strong>K sequential</strong> drafter passes — latency grows linearly with speculation depth (a "hidden architectural ceiling").</td>
+                           <td><strong>One</strong> pass for the whole block — depth is nearly free.</td>
+                        </tr>
+                        <tr>
+                           <th>Strength</th>
+                           <td>Later tokens see earlier guesses, so long drafts stay <em>coherent</em> ("EAGLE-3 is more coherent on long drafting").</td>
+                           <td>Very strong on the <em>first</em> positions, where no context between drafts is needed ("DFlash is stronger at initial positions").</td>
+                        </tr>
+                        <tr>
+                           <th>Weakness</th>
+                           <td>Slow drafter or too-deep drafting with a low accept rate can <em>hurt</em> net speed.</td>
+                           <td>Later draft tokens can't see earlier ones, so quality degrades as the block lengthens.</td>
+                        </tr>
+                        <tr>
+                           <th>Representative</th>
+                           <td>The <strong>EAGLE</strong> family (EAGLE-1/2/3/3.1).</td>
+                           <td><strong>MTP</strong> heads; <strong>P-EAGLE</strong> (parallel-drafting EAGLE).</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+
+               <p>
+                  This is exactly the gap <strong>P-EAGLE</strong> ("Parallel-Drafting EAGLE") was built to close: it transforms EAGLE from autoregressive into <em>parallel multi-token prediction</em> via a learnable shared hidden state, removing the serial-pass bottleneck while keeping EAGLE's feature-grounded accuracy (<a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a>; see also the <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM</a> and <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">Amazon SageMaker</a> write-ups).
+               </p>
+
+               <p>
+                  And it's why DSpark's author, <strong>Dmytro Dzhulgakov</strong> (Fireworks AI), frames DSpark as the <em>fusion</em> of both styles:
+               </p>
+
+               <blockquote class="sd-pq">
+                  "DSpark &asymp; EAGLE + MTP. DFlash is stronger at initial positions; EAGLE-3 is more coherent on long drafting but has lower-quality guesses in the beginning. DSpark combines both parallel-block and autoregressive ideas, beating either approach." — @dzhulgakov
+               </blockquote>
+
+               <div class="sd-note">
+                  <strong>Speculation is not free.</strong> The same thread spells out the governing equation:
+                  <br><br>
+                  <code>time_per_token = (num_tokens_drafted &times; drafter_time + verify_time(num_tokens_drafted)) / num_tokens_accepted</code>
+                  <br><br>
+                  A drafter that's too slow, or that drafts too many tokens with a low acceptance rate, can actually <em>hurt</em> throughput. Every system above is really just tuning the numerator and denominator of this fraction. — @dzhulgakov (Fireworks AI)
+               </div>
+
+               <!-- ===== DeepSeek ===== -->
+               <div class="sd-band">
+                  <div class="yr">Summary 1 &nbsp;·&nbsp; June 27, 2026</div>
+                  <h2 id="deepseek">DeepSeek DSpark <span>&mdash; speculative decoding at hyperscale</span></h2>
+               </div>
+
+               <p>
+                  <strong>DSpark</strong> is not a new model — it's an inference-time optimization layered on top of existing <strong>DeepSeek-V4</strong> checkpoints. As Dmytro Dzhulgakov put it in his thread, it "ingeniously integrates many speculative decoding ideas to achieve 1.5&times; to 5&times; higher throughput in a real production system." The key word is <em>integrates</em>: DSpark is less a single trick than a careful assembly of the field's best ideas, tuned for serving traffic.
+               </p>
+
+               <p>
+                  V4 already ships with one built-in <strong>MTP-1</strong> head, so the base model emits <em>two</em> tokens per forward pass before DSpark even enters the picture. DSpark builds on that with what DeepSeek calls a <strong>"semi-parallel"</strong> method: it speculatively generates multiple candidate tokens, then applies <strong>adaptive / confidence-scheduled verification</strong> — only spending verifier compute on the promising guesses instead of rigidly checking one token at a time. The reported effect is the elimination of "computational waste from invalid checks."
+               </p>
+
+               <ul>
+                  <li><strong>Per-user speed:</strong> ~60&ndash;85% faster on DeepSeek-V4 <em>Flash</em>; ~57&ndash;78% on the <em>Pro</em> variant (secondary reporting).</li>
+                  <li><strong>Throughput:</strong> 1.5&times;&ndash;5&times; higher depending on concurrency (the thread's headline; reporting cites 51%&ndash;400%).</li>
+                  <li><strong>No retraining of the base model</strong> — it reuses deployed V4 weights, so the gain is essentially free engineering on top of MTP-1.</li>
+                  <li>Released as a full paper (33 authors from <strong>Peking University &amp; DeepSeek-AI</strong>, led by Xin Cheng et al., with <strong>Wenfeng Liang</strong> as senior author) plus the open <a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">DeepSpec</a> training repo and public checkpoints (<code>deepseek-ai/dspark_qwen3_4b_block7</code>, etc.).</li>
+               </ul>
+
+               <blockquote class="sd-pq">
+                  "DSpark ... ingeniously integrates many speculative decoding ideas to achieve 1.5x to 5x higher throughput in a real production system." — @dzhulgakov
+               </blockquote>
+
+               <!-- ===== Thread walkthrough ===== -->
+               <div class="sd-band">
+                  <div class="yr">Deep Dive</div>
+                  <h2 id="thread">Dmytro's Thread, Idea by Idea <span>&mdash; the 10-step walkthrough</span></h2>
+               </div>
+
+               <p>
+                  Dmytro Dzhulgakov (Fireworks AI) explained DSpark as a <strong>"10 ideas"</strong> thread that builds up from the very basics of LLM decoding to the full DSpark design. Here is that thread walked through step by step, each with its original diagram. Every card links back to the source tweet.
+               </p>
+
+               <div class="sd-thread">
+
+                  <div class="sd-tw">
+                     <div class="num">🧵</div>
+                     <div class="hd"><b>Dmytro Dzhulgakov</b> · @dzhulgakov · Jun 27, 2026</div>
+                     <p class="bd">DSpark from @deepseek_ai ingeniously integrates many speculative decoding ideas to achieve 1.5x to 5x higher throughput in a real production system. Let's understand it with 10 ideas, starting from the very basics 🧵</p>
+                     <div class="imgs two">
+                        <img src="/assets/blog/2026/speculativedecoding/head_1.jpg" alt="DSpark thread header diagram 1" loading="lazy">
+                        <img src="/assets/blog/2026/speculativedecoding/head_2.jpg" alt="DSpark thread header diagram 2" loading="lazy">
+                     </div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922887595499930" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">1</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">Batching in LLM decoding</p>
+                     <p class="bd">Generating tokens is bound on reading weights from memory. So decoding 10 tokens in parallel is only slightly slower than generating 1. Continuous batching leverages this insight.</p>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922889868779707" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">2</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">Speculative decoding</p>
+                     <p class="bd">For the same request, token N+1 depends on token N, so we can't decode them in parallel. But if we can guess what the tokens are ("speculate"), we can quickly verify which prefix of them is correct from the main model perspective.</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea2.jpg" alt="Speculative decoding diagram" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922892142104962" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">3</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">Draft model</p>
+                     <p class="bd">How to speculate? With a model, of course. The simplest is to run a smaller model trained on the same distribution, e.g. Qwen 0.8B for Qwen 397B.</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea3.png" alt="Draft model diagram" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922894293749774" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">4</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">Speculation is not free</p>
+                     <p class="bd"><code>time_per_token = (num_tokens_drafted * drafter_time + verify_time(num_tokens_drafted)) / num_tokens_accepted</code>
+
+Slow to run speculator or drafting too many tokens with a low guess rate can be hurtful. The right balance is needed.</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea4.jpg" alt="Speculation cost equation diagram" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922896588087753" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">5</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">EAGLE and MTP</p>
+                     <p class="bd">Make drafter an extra transformer layer of the main model, i.e. it consumes rich latent representation (last activation) in addition to the previous token. Allows to get away with 1-2 layers instead of the full model. Much faster and more accurate speculator.</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea5.png" alt="EAGLE and MTP diagram" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922898425176293" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">6</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">DFlash</p>
+                     <p class="bd">MTP needs to take N steps to generate N draft tokens. DFlash uses diffusion ideas to produce all N tokens in one forward pass. Much faster speculation, but draft quality sometimes better, sometimes worse than MTP/Eagle.</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea6.png" alt="DFlash diffusion drafting diagram" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922900400640398" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">7</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">DSpark &asymp; EAGLE + MTP</p>
+                     <p class="bd">DFlash is stronger at initial positions. Eagle3 is more coherent on long drafting but has lower quality guess in the beginning. DSpark combines both parallel block and autoregressive ideas, beating either approach.</p>
+                     <div class="imgs two">
+                        <img src="/assets/blog/2026/speculativedecoding/idea7_1.png" alt="DSpark = EAGLE + MTP diagram" loading="lazy">
+                        <img src="/assets/blog/2026/speculativedecoding/idea7_2.jpg" alt="DSpark performance chart" loading="lazy">
+                     </div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922902376198579" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">8</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">Cheaper sequential block</p>
+                     <p class="bd">Eagle3/MTP run full attention at each drafting position. Since DFlash has parallel block to capture previous context, sequential step can be much cheaper with RNN or even Markov model. All leads to an even faster but still accurate drafter!</p>
+                     <div class="imgs two">
+                        <img src="/assets/blog/2026/speculativedecoding/idea8_1.jpg" alt="Cheaper sequential block diagram 1" loading="lazy">
+                        <img src="/assets/blog/2026/speculativedecoding/idea8_2.jpg" alt="Cheaper sequential block diagram 2" loading="lazy">
+                     </div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922904217543082" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">9</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">Variable length drafting and hardware-aware scheduler</p>
+                     <p class="bd">What num_draft_tokens should be? It varies:
+* some requests (e.g. coding) are easier to predict than others
+* optimal length depends on server load (batch size). Speculate more with low load when GPU compute is free.</p>
+                     <div class="imgs two">
+                        <img src="/assets/blog/2026/speculativedecoding/idea9_1.jpg" alt="Variable length drafting diagram 1" loading="lazy">
+                        <img src="/assets/blog/2026/speculativedecoding/idea9_2.jpg" alt="Hardware-aware scheduler diagram 2" loading="lazy">
+                     </div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922906339770683" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">10</div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">Online drafter calibration</p>
+                     <p class="bd">Models tend to be overconfident in predicting the next token making it hard to get threshold for stopping drafting. But we can look at the runtime drafter performance and adjust ("calibrate") thresholds on the fly.</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea10.jpg" alt="Online drafter calibration diagram" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922908550209571" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num"><i class="fa-solid fa-flag-checkered"></i></div>
+                     <div class="hd">@dzhulgakov · Jun 27, 2026</div>
+                     <p class="ttl">Putting it together</p>
+                     <p class="bd">The magic of DeepSeek is in excellent system engineering with close model co-design. Many of these ideas were published before. It's very impressive how they integrate them together to deliver huge e2e improvements with auto-adapting system.</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/closing.jpg" alt="Putting it together summary diagram" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922910148251685" target="_blank" rel="noopener">View on X &rarr;</a></div>
+                  </div>
+
+               </div>
+
+               <!-- ===== Gemini ===== -->
+               <div class="sd-band">
+                  <div class="yr">Summary 2 &nbsp;·&nbsp; June 26, 2026</div>
+                  <h2 id="gemini">Gemini Nano Frozen MTP <span>&mdash; speculative decoding at the edge</span></h2>
+               </div>
+
+               <p>
+                  Google Research tackled the opposite extreme from DeepSeek: not a datacenter, but a phone. Mobile inference lives under hard RAM and energy budgets, and a standard speculative-decoding setup wants a <em>separate</em> drafter model (e.g. 128M params) that competes for memory and is "blind" to the main model's internal state. Their answer is to retrofit <strong>Multi-Token Prediction onto a frozen Gemini Nano v3</strong> — already deployed on Pixel 9 and 10.
+               </p>
+
+               <p>The design rests on three moves:</p>
+               <ul>
+                  <li><strong>Late-exit MTP head.</strong> Instead of a standalone drafter, a lightweight Transformer head is appended to the final layers of the main model and predicts future tokens from the backbone's high-dimensional hidden states.</li>
+                  <li><strong>Frozen backbone.</strong> The base model's weights are frozen; only the head is trained. This guarantees <strong>zero degradation</strong> in capability or safety alignment, and lets efficiency updates roll out with full backward compatibility — output stays bit-for-bit identical.</li>
+                  <li><strong>Zero-copy architecture.</strong> The head <em>cross-attends directly to the main model's frozen KV cache</em> instead of maintaining its own. This eliminates drafter prefill latency and saves <strong>~130&nbsp;MB</strong> per instance versus a standalone drafter.</li>
+               </ul>
+
+               <p>
+                  In production workloads like AI Notification Summaries and Proofread, MTP correctly predicts <strong>nearly two additional tokens per pass</strong>, yielding <strong>50%+ speedups</strong> on Pixel 9 and up to <strong>55% better token acceptance</strong> on highly structured tasks (e.g. smart replies) — while cutting energy use by waking heavy processors less often. The work explicitly builds on the <strong>EAGLE</strong> framework and <strong>CALM</strong> (Confident Adaptive Language Modeling), and points ahead to branching/parallel decoding and "verification leniency."
+               </p>
+
+               <!-- ===== Gemma 4 ===== -->
+               <div class="sd-band">
+                  <div class="yr">Summary 3 &nbsp;·&nbsp; May 5, 2026</div>
+                  <h2 id="gemma4">Gemma 4 Assistant <span>&mdash; speculative decoding for everyone</span></h2>
+               </div>
+
+               <p>
+                  Gemma 4 is where this trend went <strong>open</strong>. Alongside the main lineup, Google released a companion line of autoregressive <strong>drafter</strong> models plus an <strong>MTP</strong> head — officially branded the <strong>"Gemma 4 Assistant"</strong> and published as the <code>-assistant</code> checkpoints (e.g. <code>google/gemma-4-E4B-it-assistant</code>; the Transformers model type is <code>gemma4_assistant</code>, loaded as the <code>assistant_model</code>). Under the same Apache-2.0 license, it delivers up to <strong>3&times;</strong> faster inference "with zero degradation in output quality or reasoning accuracy." Crucially, it shipped with day-one support across <strong>Transformers, MLX, vLLM, SGLang, and Ollama</strong>, so the speedup was usable immediately rather than a research artifact.
+               </p>
+
+               <p>Per the official docs, Gemma 4's MTP is more than a bolt-on drafter. Three enhancements make the draft tokens cheaper and more accurate:</p>
+               <ul>
+                  <li><strong>Shared input embeddings.</strong> The draft model reuses the target's embedding table rather than carrying its own.</li>
+                  <li><strong>Target activations.</strong> The drafter takes the target's <em>last-layer activations</em>, concatenates them with token embeddings, and down-projects to the drafter's dimension — so it isn't blind to the backbone's state.</li>
+                  <li><strong>Efficient embedder.</strong> To avoid scoring the whole vocabulary, tokens are grouped into clusters; the head first picks likely clusters, then restricts final calculations to those (E2B/E4B variants).</li>
+               </ul>
+
+               <p>
+                  One honest caveat from the docs: for the <strong>MoE</strong> model (Gemma 4 26B A4B), verifying drafted tokens can require loading additional expert weights, which can offset the gains at <strong>batch size 1</strong> on hardware without good parallelism. Higher batch sizes recover the win as expert activations overlap. This Gemma 4 release is the direct ancestor of the Gemini Nano work — the blog explicitly notes the frozen-MTP effort builds on "accelerating Gemma 4 with MTP."
+               </p>
+
+               <!-- ===== Comparison ===== -->
+               <div class="sd-band">
+                  <div class="yr">Side by Side</div>
+                  <h2 id="comparison">Comparison <span>&mdash; three angles on one idea</span></h2>
+               </div>
+
+               <div class="sd-table-wrap">
+                  <table class="sd-table">
+                     <thead>
+                        <tr>
+                           <th>Dimension</th>
+                           <th>Gemma 4 Assistant</th>
+                           <th>Gemini Nano Frozen MTP</th>
+                           <th>DeepSeek DSpark</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th>Announced</th>
+                           <td>May 5, 2026</td>
+                           <td>June 26, 2026</td>
+                           <td>June 27, 2026</td>
+                        </tr>
+                        <tr>
+                           <th>Target setting</th>
+                           <td>Open-weights, general / on-device</td>
+                           <td>On-device (Pixel 9 &amp; 10)</td>
+                           <td>Server-scale production serving</td>
+                        </tr>
+                        <tr>
+                           <th>Base model</th>
+                           <td>Gemma 4 family (incl. 26B A4B MoE)</td>
+                           <td>Gemini Nano v3</td>
+                           <td>DeepSeek-V4 (Flash &amp; Pro)</td>
+                        </tr>
+                        <tr>
+                           <th>Open source?</th>
+                           <td><strong style="color:#2e7d32">✔ Yes</strong> &mdash; Apache-2.0 weights (HF, Kaggle)</td>
+                           <td><strong style="color:#b00020">✗ No</strong> &mdash; proprietary; ships inside Pixel updates</td>
+                           <td><strong style="color:#2e7d32">✔ Yes</strong> &mdash; MIT: paper + code + checkpoints via the DeepSpec repo</td>
+                        </tr>
+                        <tr>
+                           <th>Drafter design</th>
+                           <td>Autoregressive drafter + MTP head; shared embeddings, target activations, clustered embedder</td>
+                           <td>"Late-exit" MTP head on frozen backbone; cross-attends to main KV cache (zero-copy)</td>
+                           <td>Built on V4's MTP-1 head + "semi-parallel" candidate generation</td>
+                        </tr>
+                        <tr>
+                           <th>EAGLE-based?</th>
+                           <td><strong style="color:#b25e09">~ Partial</strong> &mdash; EAGLE-<em>style</em> feature conditioning (consumes the target's last-layer activations), but an MTP "assistant" head rather than the EAGLE algorithm itself</td>
+                           <td><strong style="color:#2e7d32">✔ Yes</strong> &mdash; explicitly builds on the <strong>EAGLE</strong> framework (plus CALM late-exit)</td>
+                           <td><strong style="color:#2e7d32">✔ Yes</strong> &mdash; an <strong>EAGLE-3 + MTP</strong> hybrid ("DSpark &asymp; EAGLE + MTP")</td>
+                        </tr>
+                        <tr>
+                           <th>Parallel drafting?</th>
+                           <td><strong style="color:#b00020">✗ No</strong> &mdash; the assistant drafts <em>autoregressively</em> (one token at a time)</td>
+                           <td><strong style="color:#b00020">✗ No</strong> &mdash; autoregressive MTP head (parallel/branching decoding is stated future work)</td>
+                           <td><strong style="color:#2e7d32">✔ Yes</strong> &mdash; <em>hybrid</em>: DFlash parallel block (all N tokens in one pass) + an autoregressive EAGLE-style step</td>
+                        </tr>
+                        <tr>
+                           <th>Uses DFlash (block-diffusion drafter)?</th>
+                           <td><strong style="color:#b00020">✗ No</strong> &mdash; autoregressive MTP "assistant" head, no diffusion</td>
+                           <td><strong style="color:#b00020">✗ No</strong> &mdash; autoregressive late-exit MTP head, no diffusion</td>
+                           <td><strong style="color:#2e7d32">✔ Yes</strong> &mdash; the DFlash block-diffusion drafter <em>is</em> the parallel half of DSpark (paired with an autoregressive EAGLE-3/MTP step)</td>
+                        </tr>
+                        <tr>
+                           <th>Integrated, or separate drafter model?</th>
+                           <td><strong style="color:#b25e09">~ Separate companion</strong> &mdash; a small "assistant" checkpoint loaded alongside, but it shares the target's embeddings &amp; activations</td>
+                           <td><strong style="color:#2e7d32">✔ Integrated</strong> &mdash; a late-exit head on the frozen backbone; no standalone model, near-zero extra footprint (zero-copy)</td>
+                           <td><strong style="color:#2e7d32">✔ Integrated</strong> &mdash; MTP-1 head + DFlash block ride the deployed V4 weights; no separate standalone LM</td>
+                        </tr>
+                        <tr>
+                           <th>Shares target KV cache?</th>
+                           <td><strong style="color:#b25e09">~ Partial</strong> &mdash; shares input embeddings &amp; consumes target activations, but not full KV-cache cross-attention</td>
+                           <td><strong style="color:#2e7d32">✔ Yes</strong> &mdash; <strong>zero-copy</strong> cross-attention directly to the frozen KV cache (no own cache; ~130&nbsp;MB saved)</td>
+                           <td><strong style="color:#2e7d32">✔ Yes</strong> &mdash; integrated MTP head rides the model's own trunk/KV (no separate drafter cache)</td>
+                        </tr>
+                        <tr>
+                           <th>Verification</th>
+                           <td>Standard parallel verify (lossless)</td>
+                           <td>Standard parallel verify; bit-for-bit identical</td>
+                           <td>Adaptive / <strong>confidence-scheduled</strong> verification</td>
+                        </tr>
+                        <tr>
+                           <th>Backbone training</th>
+                           <td>MTP heads pre-trained in tandem with backbone</td>
+                           <td><strong>Frozen</strong> backbone; only head trained (retrofit)</td>
+                           <td>No base retraining; optimization over deployed weights</td>
+                        </tr>
+                        <tr>
+                           <th>Headline speedup</th>
+                           <td>Up to <strong>3&times;</strong> inference</td>
+                           <td><strong>50%+</strong> on Pixel 9; ~2 extra tokens/pass</td>
+                           <td><strong>1.5&times;&ndash;5&times;</strong> throughput; 57&ndash;85% per-user</td>
+                        </tr>
+                        <tr>
+                           <th>Quality impact</th>
+                           <td>Lossless</td>
+                           <td>Lossless (frozen backbone)</td>
+                           <td>Lossless (drafts discarded on reject)</td>
+                        </tr>
+                        <tr>
+                           <th>Headline win</th>
+                           <td>Ecosystem reach + day-1 framework support</td>
+                           <td>~130&nbsp;MB memory saved; lower energy / battery</td>
+                           <td>Real-traffic throughput; no waste on bad checks</td>
+                        </tr>
+                        <tr>
+                           <th>License / access</th>
+                           <td>Open, Apache 2.0 (HF, Kaggle)</td>
+                           <td>Proprietary, shipped in Pixel updates</td>
+                           <td>Open checkpoint on Hugging Face + paper</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+
+               <p>
+                  The throughline: all three keep output <strong>lossless</strong>, all three move <em>away</em> from standalone drafters toward heads that reuse the backbone's own state (embeddings, activations, or KV cache), and all three are converging on the same next frontier — branching drafts and relaxed verification. The difference is purely environmental: Gemma 4 optimizes for <em>reach</em>, Gemini Nano for <em>memory and energy</em>, and DSpark for <em>throughput under load</em>.
+               </p>
+
+               <!-- ===== Papers ===== -->
+               <div class="sd-band">
+                  <div class="yr">References</div>
+                  <h2 id="papers">Papers <span>&mdash; the lineage behind the wave</span></h2>
+               </div>
+
+               <p>The 2026 releases stand on a well-defined chain of research. The foundational and directly-cited papers, grouped by theme:</p>
+
+               <p class="group-label">1 &middot; Foundations</p>
+
+               <div class="paper">
+                  <div class="ptitle">Fast Inference from Transformers via Speculative Decoding <span class="badge badge-foundation">FOUNDATION</span></div>
+                  <div class="pauthors">Yaniv Leviathan, Matan Kalman, Yossi Matias &mdash; <em>Google Research</em></div>
+                  <p class="psum">The paper that named speculative decoding: decode K tokens with a cheap drafter, verify in parallel with the target, and accept the correct prefix &mdash; faster, with no change to the output distribution.</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2211.17192" target="_blank" rel="noopener">arXiv:2211.17192</a> &middot; <a href="https://arxiv.org/pdf/2211.17192" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">Accelerating Large Language Model Decoding with Speculative Sampling <span class="badge badge-foundation">FOUNDATION</span></div>
+                  <div class="pauthors">Charlie Chen, Sebastian Borgeaud, Geoffrey Irving, Jean-Baptiste Lespiau, Laurent Sifre, John Jumper &mdash; <em>Google DeepMind</em></div>
+                  <p class="psum">The contemporaneous speculative-sampling formulation, with the rejection-sampling correctness proof that guarantees the accelerated output matches the target model's distribution.</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2302.01318" target="_blank" rel="noopener">arXiv:2302.01318</a> &middot; <a href="https://arxiv.org/pdf/2302.01318" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">Better &amp; Faster Large Language Models via Multi-token Prediction <span class="badge badge-research">MTP</span></div>
+                  <div class="pauthors">Fabian Gloeckle, Badr Youbi Idrissi, Baptiste Rozière, David Lopez-Paz, Gabriel Synnaeve &mdash; <em>Meta AI / FAIR</em></div>
+                  <p class="psum">The MTP training objective &mdash; predict several future tokens at once with extra heads. Cited by both Google docs as the "standard MTP implementation" the 2026 drafters build on.</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2404.19737" target="_blank" rel="noopener">arXiv:2404.19737</a> &middot; <a href="https://arxiv.org/pdf/2404.19737" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">Confident Adaptive Language Modeling (CALM) <span class="badge badge-research">EARLY-EXIT</span></div>
+                  <div class="pauthors">Tal Schuster, Adam Fisch, Jai Gupta, Mostafa Dehghani, Dara Bahri, Vinh Q. Tran, Yi Tay, Donald Metzler &mdash; <em>Google Research</em></div>
+                  <p class="psum">The "late-exit"/early-exit lineage the Gemini Nano work draws on: dynamically allocate less compute to easy tokens. Foundation for the late-exit MTP head on a frozen backbone.</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2207.07061" target="_blank" rel="noopener">arXiv:2207.07061</a> &middot; <a href="https://arxiv.org/pdf/2207.07061" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://research.google/blog/accelerating-text-generation-with-confident-adaptive-language-modeling-calm/" target="_blank" rel="noopener">CALM blog</a></div>
+               </div>
+
+               <p class="group-label">2 &middot; EAGLE family</p>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty <span class="badge badge-research">DRAFTER</span></div>
+                  <div class="pauthors">Yuhui Li, Fangyun Wei, Chao Zhang, Hongyang Zhang &mdash; <em>Peking University &amp; Microsoft Research</em></div>
+                  <p class="psum">Drafts at the <em>feature</em> level: the drafter is an extra layer that consumes the target's last activation plus the previous token, making guesses that the target is far more likely to accept.</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2401.15077" target="_blank" rel="noopener">arXiv:2401.15077</a> &middot; <a href="https://arxiv.org/pdf/2401.15077" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE-2: Faster Inference of Language Models with Dynamic Draft Trees <span class="badge badge-research">DRAFTER</span></div>
+                  <div class="pauthors">Yuhui Li, Fangyun Wei, Chao Zhang, Hongyang Zhang &mdash; <em>Peking University &amp; Microsoft Research</em></div>
+                  <p class="psum">Adds context-aware dynamic draft trees, expanding the most promising draft branches. 3.05&ndash;4.26&times; speedups, 20&ndash;40% over EAGLE-1, still lossless.</p>
+                  <div class="metric">3.05&ndash;4.26&times; speedup</div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2406.16858" target="_blank" rel="noopener">arXiv:2406.16858</a> &middot; <a href="https://arxiv.org/pdf/2406.16858" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE-3: Scaling up Inference Acceleration via Training-Time Test <span class="badge badge-research">DRAFTER</span></div>
+                  <div class="pauthors">Yuhui Li, Fangyun Wei, Chao Zhang, Hongyang Zhang &mdash; <em>Peking University &amp; Microsoft Research</em></div>
+                  <p class="psum">Abandons feature prediction for direct token prediction and fuses multi-layer features via a "training-time test", so the drafter keeps improving with more training data. Up to 6.5&times; speedup (~1.4&times; over EAGLE-2); the variant DSpark's author compares against for long drafting.</p>
+                  <div class="metric">up to 6.5&times; speedup</div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2503.01840" target="_blank" rel="noopener">arXiv:2503.01840</a> &middot; <a href="https://arxiv.org/pdf/2503.01840" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE-3.1: Stabilizing Deeper Speculation <span class="badge badge-serve">RELEASE</span></div>
+                  <div class="pauthors">EAGLE Team (Yuhui Li, Fangyun Wei, Chao Zhang, Hongyang Zhang) &times; <em>vLLM Team</em> &times; <em>TorchSpec Team</em>, with NVIDIA GPU support &mdash; team-bylined engineering release (no standalone arXiv preprint; vLLM/TorchSpec contributors credited collectively)</div>
+                  <p class="psum">An incremental refinement of EAGLE-3: adds FC normalization after each target hidden state and feeds the post-norm hidden states into the next decoding step. This fixes two instabilities at deeper speculation depths &mdash; the fused input getting dominated by higher-layer hidden states, and hidden-state magnitude growing along the unnormalized residual path &mdash; making the drafter stable for longer drafts.</p>
+                  <div class="plinks"><a href="https://vllm.ai/blog/2026-05-26-eagle-3-1" target="_blank" rel="noopener">vLLM blog (2026-05-26)</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">P-EAGLE: Parallel-Drafting EAGLE with Scalable Training <span class="badge badge-serve">PARALLEL</span></div>
+                  <div class="pauthors"><em>Amazon (AWS AI)</em></div>
+                  <p class="psum">Transforms EAGLE from autoregressive into parallel multi-token prediction via a learnable shared hidden state, removing the serial K-passes bottleneck while keeping feature-grounded accuracy. Checkpoints under <code>amazon/…-p-eagle</code>.</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a> &middot; <a href="https://arxiv.org/pdf/2602.01469" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM blog</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">SageMaker blog</a></div>
+               </div>
+
+               <p class="group-label">3 &middot; Parallel &amp; diffusion drafting</p>
+
+               <div class="paper">
+                  <div class="ptitle">DFlash: Block Diffusion for Flash Speculative Decoding <span class="badge badge-serve">DIFFUSION</span> <span class="badge badge-foundation">ICML 2026</span></div>
+                  <div class="pauthors">Jian Chen, Yesheng Liang, Zhijian Liu &mdash; <em>Z Lab, UCSD</em> (Hao Zhang's group)</div>
+                  <p class="psum">Replaces the autoregressive drafter with a lightweight <strong>block-diffusion</strong> model that produces a whole K-token block in a <strong>single</strong> forward pass (O(K)&rarr;O(1) drafting), conditioned on the target's hidden features for accuracy. Drafting latency becomes nearly free, shifting the bottleneck to draft quality. It is the "parallel block" half of DeepSeek's DSpark; deployed in vLLM &amp; vLLM-TPU.</p>
+                  <div class="metric">&gt;6&times; lossless; up to 2.5&times; over EAGLE-3</div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2602.06036" target="_blank" rel="noopener">arXiv:2602.06036</a> &middot; <a href="https://arxiv.org/pdf/2602.06036" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://z-lab.ai/" target="_blank" rel="noopener">Z-Lab</a> &middot; <a href="https://developers.googleblog.com/supercharging-llm-inference-on-google-tpus-achieving-3x-speedups-with-diffusion-style-speculative-decoding/" target="_blank" rel="noopener">Google TPU blog</a></div>
+               </div>
+
+               <p class="group-label">4 &middot; DeepSeek &amp; DSpark</p>
+
+               <div class="paper">
+                  <div class="ptitle">DeepSeek-V3 Technical Report <span class="badge badge-train">MODEL</span></div>
+                  <div class="pauthors">DeepSeek-AI &mdash; <em>DeepSeek</em></div>
+                  <p class="psum">The source of DeepSeek's built-in MTP design (shared embedding/output head for MTP) that the V4 line inherits and DSpark accelerates.</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">arXiv:2412.19437</a> &middot; <a href="https://arxiv.org/pdf/2412.19437" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">DSpark: Confidence-Scheduled Speculative Decoding with Semi-Autoregressive Generation <span class="badge badge-serve">SERVING</span></div>
+                  <div class="pauthors">Xin Cheng*, Xingkai Yu*, Chenze Shao*, Jiashi Li*, Yunfan Xiong*, Yi Qian, Jiaqi Zhu, Shirong Ma, Xiaokang Zhang, Jiasheng Ye, Qinyu Chen, Chengqi Deng, Jiping Yu, Damai Dai, Zhengyan Zhang, Yixuan Wei, Yixuan Tan, Wenkai Yang, Runxin Xu, Yu Wu, Zhean Xu, Xuanyu Wang, Muyang Chen, Rui Tian, Xiao Bi, Zhewen Hao, Shaoyuan Chen, Huanqi Cao, Wentao Zhang, Anyi Xu, Huishuai Zhang, Dongyan Zhao, Wenfeng Liang &mdash; <em>Peking University &amp; DeepSeek-AI</em> (* equal contribution; Wenfeng Liang is the senior/last author)</div>
+                  <p class="psum">The framework itself. A <strong>semi-autoregressive</strong> drafter — a parallel backbone coupled with a lightweight sequential module — adds intra-block dependency to fix the acceptance decay that pure parallel drafters suffer, while <strong>confidence-scheduled, load-aware verification</strong> tailors the verification length per request from estimated prefix-survival probabilities and engine throughput. In the DeepSeek-V4 serving system under live traffic it beats the MTP-1 production baseline by 60&ndash;85% per-user at matched throughput. Open-sourced with the <strong>DeepSpec</strong> training repo (which also ships DeepSeek's own DFlash &amp; EAGLE-3 drafters).</p>
+                  <div class="metric">60&ndash;85% per-user vs MTP-1</div>
+                  <div class="plinks"><a href="https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf" target="_blank" rel="noopener">paper (PDF)</a> &middot; <a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">DeepSpec repo</a> &middot; <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark" target="_blank" rel="noopener">HF: V4-Flash-DSpark</a> &middot; <a href="https://x.com/dzhulgakov/status/2070922887595499930" target="_blank" rel="noopener">10-idea thread</a></div>
+               </div>
+
+               <p class="group-label">5 &middot; MTP for speculative decoding</p>
+
+               <div class="paper">
+                  <div class="ptitle">FastMTP: Accelerating LLM Inference with Enhanced Multi-Token Prediction <span class="badge badge-research">MTP</span></div>
+                  <div class="pauthors">Jinwen Luo et al. &mdash; <em>Tencent</em></div>
+                  <p class="psum">Aligns MTP training with its inference pattern to improve multi-step draft quality. ~2.03&times; speedup with lossless output, outperforming vanilla MTP by 82%. Weights at <code>TencentBAC/FastMTP</code>.</p>
+                  <div class="metric">~2.03&times; speedup</div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2509.18362" target="_blank" rel="noopener">arXiv:2509.18362</a> &middot; <a href="https://arxiv.org/pdf/2509.18362" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <p class="group-label">6 &middot; Retrospective</p>
+
+               <div class="paper">
+                  <div class="ptitle">Looking back at speculative decoding <span class="badge badge-foundation">BLOG</span></div>
+                  <div class="pauthors"><em>Google Research</em></div>
+                  <p class="psum">Google Research's own retrospective on the technique, linked directly from the Gemini Nano frozen-MTP post.</p>
+                  <div class="plinks"><a href="https://research.google/blog/looking-back-at-speculative-decoding/" target="_blank" rel="noopener">research.google/blog/looking-back-at-speculative-decoding</a></div>
+               </div>
+
+               <p style="font-size:0.9em; color:#777;">
+                  <strong>Model checkpoints.</strong> The systems above are not just papers — they ship weights you can run: DSpark on DeepSeek-V4-Flash (<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark" target="_blank" rel="noopener">deepseek-ai/DeepSeek-V4-Flash-DSpark</a>), the open Gemma 4 Assistant MTP drafters (<a href="https://huggingface.co/google/gemma-4-E4B-it-assistant" target="_blank" rel="noopener">google/gemma-4-E4B-it-assistant</a>), and the EAGLE/EAGLE-3 drafter checkpoints used across vLLM and SGLang. DSpark's thread author and explainer is <strong>Dmytro Dzhulgakov</strong> of <strong>Fireworks AI</strong> (<a href="https://x.com/dzhulgakov" target="_blank" rel="noopener">@dzhulgakov</a>).
+               </p>
+
+               <p>
+                  Two months, three labs, one converging idea. If 2024&ndash;2025 was about <em>training</em> bigger and cheaper models, 2026 is shaping up to be the year speculative decoding became the standard way to <em>serve</em> them — on a phone, in a datacenter, and everywhere in between.
+               </p>
+
+               </div><!-- /lang-en -->
+
+               <div class="lang-zh">
+
+               <div class="sd-quote">
+                  <p class="q">"最快的 token，是你永远不必生成第二次的那个。"</p>
+                  <p class="a">— 每一套投机解码（speculative decoding）系统的核心思想</p>
+               </div>
+
+               <p>
+                  投机解码已经悄然成为让大语言模型变快的默认方式。原理很简单：一个小而便宜的<em>草稿模型（drafter）</em>一次性向前猜测若干个 token，大的<em>目标模型（target）</em>在一次并行前向中验证它们 —— 同意的就采纳，遇到第一个不同意的就纠正。由于被拒绝的草稿会被丢弃，输出与普通自回归解码<strong>逐比特完全一致</strong>。这是纯粹的效率收益，而非质量的取舍。
+               </p>
+
+               <p>
+                  在我自己关于 LLM 领域的写作中（见我的 <a href="https://pengandy.com/blog/2025/llm/" target="_blank" rel="noopener">LLM 年度回顾</a>），我看着这项技术从一个巧妙的小技巧变成了生产环境的刚需。<strong>2026 年</strong>引人注目之处，在于整个领域在短短两个月内、从三个截然不同的角度收敛到了同一个答案：谷歌开源的 <strong>Gemma 4 Assistant</strong>、谷歌端侧的 <strong>Gemini Nano</strong> 冻结式 Multi-Token Prediction，以及 DeepSeek 服务器规模的 <strong>DSpark</strong>。本文沿着时间线梳理，逐一总结，并把它们并排对比。
+               </p>
+
+               <div class="sd-note">
+                  <strong>关于来源的说明。</strong> 本文在下方链接了每一条原始公告。两条 X/Twitter 长帖（Dmytro Dzhulgakov 的 DSpark 长帖、以及 Gemma 4 drafter 帖子）的完整<em>回复串</em>受 X 登录墙限制无法被程序抓取 —— 这里的总结基于顶层帖子，外加它们所指向的公开博客、文档、模型卡与论文。凡是数据来自二手报道而非一手文档之处，我都会注明。
+               </div>
+
+               <h2 id="timeline-zh">2026 浪潮一览</h2>
+
+               <p>三次发布，八周时间，一个思想。下面的时间轴是这股趋势的缩影 —— 从把投机解码送到所有人手中的开源草稿模型，到端侧，再到超大规模服务：</p>
+
+               <div class="sd-rail">
+                  <div class="sd-stop">
+                     <div class="when">2026 年 5 月 5 日 —— Gemma 4 Assistant（开源权重）</div>
+                     <p class="what">谷歌发布了一系列自回归<strong>草稿</strong>模型 —— 官方称为 <strong>"Gemma 4 Assistant"</strong>（即 <code>-assistant</code> 检查点）—— 外加为 Gemma 4 家族准备的 <strong>MTP</strong> 头。推理最高提速 <strong>3&times;</strong>、无损、Apache-2.0，并自首日起支持 Transformers、MLX、vLLM、SGLang 与 Ollama。</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">2026 年 6 月 26 日 —— Gemini Nano 冻结式 MTP（端侧）</div>
+                     <p class="what">谷歌研究院把 MTP 改造性地装到<strong>冻结</strong>的 Gemini Nano v3 上（Pixel 9/10）。一个"晚退出（late-exit）"头通过交叉注意力直接读取主模型的 KV cache（零拷贝），节省约 <strong>130&nbsp;MB</strong>，并带来 <strong>50%+</strong> 的提速，每次前向平均多接受约 2 个 token。</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">2026 年 6 月 27 日 —— DeepSeek DSpark（服务器规模）</div>
+                     <p class="what">DeepSeek 在 DeepSeek-V4 自带的 MTP-1 之上，叠加了一套"半并行（semi-parallel）"投机框架与<strong>置信度调度的验证</strong>。在真实生产流量中，单用户提速 <strong>57&ndash;85%</strong>，吞吐提升 <strong>1.5&times;&ndash;5&times;</strong>。</p>
+                  </div>
+                  <div class="sd-stop future">
+                     <div class="when">下一步 —— 分支式草稿与宽松验证</div>
+                     <p class="what">所有人都在朝同一个前沿收敛：并行/分支式草稿、无需辅助头的设计，以及<em>放宽</em>（非精确匹配）的验证以进一步提高接受率。这一章仍在书写中。</p>
+                  </div>
+               </div>
+               <p class="sd-rail-cap">2026 年投机解码浪潮 —— 空心虚线节点是研究正在走向的下一步。</p>
+
+               <h2 id="sources-zh">原始来源</h2>
+               <div class="sd-srcs">
+                  <div class="sd-src">
+                     <div class="lab">DeepSeek DSpark —— 10 条 X 长帖（Dmytro Dzhulgakov，Fireworks AI）</div>
+                     <a href="https://x.com/dzhulgakov/status/2070922887595499930" target="_blank" rel="noopener">x.com/dzhulgakov/status/2070922887595499930</a> &nbsp;·&nbsp;
+                     <a href="https://x.com/dzhulgakov/status/2070922896588087753" target="_blank" rel="noopener">第 4 条 —— "投机并非免费"</a> &nbsp;·&nbsp;
+                     <a href="https://x.com/dzhulgakov/status/2070922902376198579" target="_blank" rel="noopener">第 7 条 —— "DSpark &asymp; EAGLE + MTP"</a>
+                  </div>
+                  <div class="sd-src">
+                     <div class="lab">DeepSeek-V4-Flash-DSpark —— 模型卡</div>
+                     <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark" target="_blank" rel="noopener">huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark</a>
+                  </div>
+                  <div class="sd-src">
+                     <div class="lab">Gemini Nano 冻结式 MTP —— 谷歌研究院博客</div>
+                     <a href="https://research.google/blog/accelerating-gemini-nano-models-on-pixel-with-frozen-multi-token-prediction/" target="_blank" rel="noopener">research.google/blog/accelerating-gemini-nano-models-on-pixel-with-frozen-multi-token-prediction</a>
+                  </div>
+                  <div class="sd-src">
+                     <div class="lab">Gemma 4 drafter —— X 帖子（Google Gemma）</div>
+                     <a href="https://x.com/googlegemma/status/2051694045869879749" target="_blank" rel="noopener">x.com/googlegemma/status/2051694045869879749</a>
+                  </div>
+                  <div class="sd-src">
+                     <div class="lab">Gemma 4 MTP —— 官方文档与 Keyword 博客</div>
+                     <a href="https://ai.google.dev/gemma/docs/mtp/overview" target="_blank" rel="noopener">ai.google.dev/gemma/docs/mtp/overview</a> &nbsp;·&nbsp;
+                     <a href="https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/" target="_blank" rel="noopener">blog.google &mdash; multi-token-prediction-gemma-4</a>
+                  </div>
+               </div>
+
+               <div class="sd-band">
+                  <div class="yr">先把术语讲清楚</div>
+                  <h2 id="terms-zh">用大白话讲关键术语 <span>&mdash; EAGLE、MTP、DFlash</span></h2>
+               </div>
+
+               <p>这几个名字在这些公告里到处出现。下面用所链接来源的内容，简单解释每一个：</p>
+
+               <div class="sd-table-wrap">
+                  <table class="sd-table">
+                     <thead>
+                        <tr>
+                           <th>&nbsp;</th>
+                           <th>EAGLE</th>
+                           <th>MTP <span style="font-weight:400">（Multi-Token Prediction）</span></th>
+                           <th>DFlash <span style="font-weight:400">（块扩散草稿器）</span></th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th>一句话</th>
+                           <td>一种<em>更聪明</em>的起草方式（一个以目标特征为条件的微型额外层）。</td>
+                           <td>让一个模型一次说出<em>好几个</em>词（额外预测头）。</td>
+                           <td>用扩散一次性起草<em>一整块</em> token。</td>
+                        </tr>
+                        <tr>
+                           <th>大白话</th>
+                           <td>普通草稿模型只根据已有的词来猜下一个词。EAGLE 则提前一步预测大模型内部的"思维向量"（隐藏<em>特征</em>），并基于此来起草，于是更多猜测被接受 —— 接受越多，速度越快。</td>
+                           <td>通常模型写一个 token、回填、再写下一个 —— 串行而慢。MTP 加装轻量的额外"头"，预测接下来的 2&ndash;4 个 token，搭便车复用模型自身的嵌入/激活。大模型并行验证、只保留正确的，因此质量不变。</td>
+                           <td>DFlash 不再一次猜一个 token，而是用块扩散模型在一次前向中"绘制"出全部 N 个草稿 token，同时仍以目标隐藏特征为条件保证质量。起草延迟几乎降为零，瓶颈转移到<em>草稿质量</em>。</td>
+                        </tr>
+                        <tr>
+                           <th>起草方式</th>
+                           <td><strong style="color:#b00020">自回归</strong></td>
+                           <td><strong style="color:#b00020">自回归</strong></td>
+                           <td><strong style="color:#2e7d32">并行（非自回归）</strong></td>
+                        </tr>
+                        <tr>
+                           <th>K 个 token 的前向次数</th>
+                           <td>K 次串行</td>
+                           <td>K 次串行</td>
+                           <td><strong>1</strong> 次 —— O(1)</td>
+                        </tr>
+                        <tr>
+                           <th>条件来源</th>
+                           <td>目标最后一层特征 + 上一个 token（EAGLE-3：多层融合）</td>
+                           <td>共享目标的主干与嵌入</td>
+                           <td>目标隐藏特征（目标条件），块内双向</td>
+                        </tr>
+                        <tr>
+                           <th>如何训练</th>
+                           <td>在目标隐藏状态上训练一个 1&ndash;2 层草稿头（便宜）</td>
+                           <td>MTP 头与骨干一起 / 在骨干之上训练，预测接下来的 k 个 token</td>
+                           <td>训练一个轻量块扩散草稿器，以目标特征为条件，对一块 K 个 token 去噪</td>
+                        </tr>
+                        <tr>
+                           <th>独立草稿模型，还是无草稿模型？</th>
+                           <td><strong>~ 小草稿头</strong> —— 搭在目标上的 1&ndash;2 层额外训练层（并非完整独立模型）</td>
+                           <td><strong style="color:#2e7d32">无草稿模型 / 集成</strong> —— 额外的头直接做进目标模型本身；无需另外加载模型</td>
+                           <td><strong style="color:#b00020">独立草稿器</strong> —— 一个轻量块扩散模型，按每个目标训练并随附</td>
+                        </tr>
+                        <tr>
+                           <th>优势</th>
+                           <td>接受率高；长草稿连贯</td>
+                           <td>便宜、集成；搭乘模型自身的计算</td>
+                           <td>起草延迟≈零；块开头强；大加速器上更宽的块≈免费</td>
+                        </tr>
+                        <tr>
+                           <th>劣势</th>
+                           <td>串行：延迟随深度增长</td>
+                           <td>串行：K 个 token 要 K 次前向</td>
+                           <td>块尾质量可能下降；需为每个目标训练扩散草稿器</td>
+                        </tr>
+                        <tr>
+                           <th>出处</th>
+                           <td>Gemini Nano "构建于其上"的基础。家族：EAGLE-2（草稿树）、EAGLE-3（训练期测试）、EAGLE-3.1、P-EAGLE。<a href="https://arxiv.org/abs/2401.15077" target="_blank" rel="noopener">arXiv:2401.15077</a>。</td>
+                           <td>三次发布共同的思想：Gemma 4 内置 MTP 头；Gemini Nano 装到冻结模型上；DeepSeek-V4 原生内置（见下方 MTP-1）。<a href="https://ai.google.dev/gemma/docs/mtp/overview" target="_blank" rel="noopener">Gemma 文档</a> · <a href="https://arxiv.org/abs/2404.19737" target="_blank" rel="noopener">arXiv:2404.19737</a>。</td>
+                           <td>UCSD Z-Lab，ICML 2026（<a href="https://arxiv.org/abs/2602.06036" target="_blank" rel="noopener">arXiv:2602.06036</a>）；DeepSeek DSpark 中"并行块"的那一半。<em>不同于</em> DeepSeek-V4-<strong>Flash</strong> <em>模型</em>。</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+
+               <p>
+                  所以清晰的心智模型是：<strong>EAGLE 与 MTP 都是自回归</strong>草稿器（区别在草稿器<em>住在哪里</em> —— 一个以特征为条件的额外层 vs. 额外的头），而 <strong>DFlash 是异类：它是并行的</strong>，靠扩散一次性生成整块。串行 vs. 一次前向 —— 这正是本文其余部分围绕的那条轴。
+               </p>
+
+               <p style="font-size:0.9em; color:#777;">
+                  <strong>附加术语 —— MTP-1：</strong> 就是"只带一个额外头的 MTP"，即向前预测一个 token。DeepSeek-V4 内置了 MTP-1（每次前向 2 个 token）；DSpark 随后在这个基线之上叠加其半并行、置信度调度的验证。
+               </p>
+
+               <div class="sd-note">
+                  <strong>通用 DFlash —— 它是什么、怎么训练、怎么使用。</strong>
+                  <br><br>
+                  <strong>是什么：</strong> DFlash（<em>"Block Diffusion for Flash Speculative Decoding"</em>，UCSD Z-Lab —— Jian Chen、Yesheng Liang、Zhijian Liu；ICML 2026）用一个<strong>轻量块扩散模型</strong>替代自回归草稿器。它不再一次猜一个 token，而是在一次前向中"绘制"出一块 K 个候选 token —— 把 O(K) 的串行起草变为 O(1)。
+                  <br><br>
+                  <strong>怎么训练：</strong> 训练一个小的块扩散草稿器，去噪/生成一块未来 token，并<em>以从目标模型抽取的上下文特征（隐藏状态）为条件</em> —— 正是让草稿保持准确的 EAGLE 式技巧。草稿器针对每个目标模型在指令数据上训练，并以检查点发布（如 <code>z-lab/LLaMA3.1-8B-Instruct-DFlash-UltraChat</code>、<code>z-lab/Qwen3-4B-DFlash-b16</code>），块大小 K 固定（如 10&ndash;16）。
+                  <br><br>
+                  <strong>怎么使用：</strong> 作为投机解码流水线里的<em>提议器（proposer）</em>直接接入；目标模型并行验证整块并保留正确前缀（无损）。它已集成进 vLLM（GPU/PyTorch）与 vLLM-TPU/JAX（PR #1868&ndash;1870），在多步之间维护一个目标隐藏状态的上下文缓冲。在 TPU v5p 上有"K 平坦（K-flat）"现象 —— 验证 16 个与 1024 个 token 代价几乎一样，因此更宽的块≈免费，真正的杠杆变成<em>草稿质量</em>。据报告：TPU v5p 上平均 <strong>3.13&times;</strong>（数学任务峰值≈6&times;）；与 EAGLE-3 正面对比为 <strong>2.29&times;</strong> 对 1.30&times;。
+                  <br><br>
+                  <strong>在 DSpark 中：</strong> DeepSeek 的 DSpark 把 DFlash 的<em>并行块</em>（块开头强）与一个<em>自回归</em>的 EAGLE-3/MTP 步骤（长草稿深处连贯）融合，胜过任一单独方法。所以 DFlash 是一种通用、与模型无关的起草方法；DSpark 则是把它用作其两半之一的一个生产系统。
+               </div>
+
+               <div class="sd-band">
+                  <div class="yr">核心权衡</div>
+                  <h2 id="ar-vs-parallel-zh">自回归解码 vs. 并行草稿 <span>&mdash; 每种方法都落在这条轴上</span></h2>
+               </div>
+
+               <p>
+                  三次发布之下都藏着同一组张力。草稿模型可以<strong>自回归</strong>地产出猜测（一次一个 token，每个猜测以上一个为条件），也可以<strong>并行草稿</strong>（一次预测一整块 token）。它们以相反的方式失效 —— 而 2026 年的这些系统，本质上是关于如何把两者结合的不同押注。
+               </p>
+
+               <div class="sd-table-wrap">
+                  <table class="sd-table">
+                     <thead>
+                        <tr>
+                           <th>&nbsp;</th>
+                           <th>自回归草稿</th>
+                           <th>并行草稿</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th>如何起草</th>
+                           <td><em>串行</em>地生成草稿 token —— 每个草稿 token 都要回填以产生下一个。</td>
+                           <td>在一次前向中<em>同时</em>预测若干草稿 token（一个"并行块"）。</td>
+                        </tr>
+                        <tr>
+                           <th>K 个草稿 token 的代价</th>
+                           <td><strong>K 次串行</strong>草稿前向 —— 延迟随投机深度线性增长（一个"隐藏的架构天花板"）。</td>
+                           <td>整块只需<strong>一次</strong>前向 —— 深度几乎免费。</td>
+                        </tr>
+                        <tr>
+                           <th>优势</th>
+                           <td>后面的 token 能看到前面的猜测，长草稿更<em>连贯</em>（"EAGLE-3 在长草稿上更连贯"）。</td>
+                           <td>在<em>开头</em>的位置非常强，因为草稿之间无需上下文（"DFlash 在初始位置更强"）。</td>
+                        </tr>
+                        <tr>
+                           <th>劣势</th>
+                           <td>草稿模型慢、或在低接受率下草稿过深，反而会<em>拖累</em>净速度。</td>
+                           <td>靠后的草稿 token 看不到前面的，块越长质量越差。</td>
+                        </tr>
+                        <tr>
+                           <th>代表</th>
+                           <td><strong>EAGLE</strong> 家族（EAGLE-1/2/3/3.1）。</td>
+                           <td><strong>MTP</strong> 头；<strong>P-EAGLE</strong>（并行草稿 EAGLE）。</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+
+               <p>
+                  这正是 <strong>P-EAGLE</strong>（"并行草稿 EAGLE"）要弥合的鸿沟：它通过一个可学习的共享隐藏状态，把 EAGLE 从自回归转变为<em>并行多 token 预测</em>，在保留 EAGLE 特征级准确性的同时去除串行前向瓶颈（<a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a>；另见 <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM</a> 与 <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">Amazon SageMaker</a> 的文章）。
+               </p>
+
+               <p>
+                  这也是为什么 DSpark 的作者 <strong>Dmytro Dzhulgakov</strong>（Fireworks AI）把 DSpark 描述为两种风格的<em>融合</em>：
+               </p>
+
+               <blockquote class="sd-pq">
+                  "DSpark &asymp; EAGLE + MTP。DFlash 在初始位置更强；EAGLE-3 在长草稿上更连贯，但开头的猜测质量较低。DSpark 结合了并行块与自回归两种思路，胜过任一单独方法。" —— @dzhulgakov
+               </blockquote>
+
+               <div class="sd-note">
+                  <strong>投机并非免费。</strong> 同一长帖给出了支配性公式：
+                  <br><br>
+                  <code>time_per_token = (num_tokens_drafted &times; drafter_time + verify_time(num_tokens_drafted)) / num_tokens_accepted</code>
+                  <br><br>
+                  草稿模型太慢、或以低接受率草稿过多 token，都可能实际<em>拖累</em>吞吐。上面每个系统其实都只是在调这个分式的分子与分母。—— @dzhulgakov（Fireworks AI）
+               </div>
+
+               <div class="sd-band">
+                  <div class="yr">总结 1 &nbsp;·&nbsp; 2026 年 6 月 27 日</div>
+                  <h2 id="deepseek-zh">DeepSeek DSpark <span>&mdash; 超大规模下的投机解码</span></h2>
+               </div>
+
+               <p>
+                  <strong>DSpark</strong> 不是一个新模型 —— 它是叠加在既有 <strong>DeepSeek-V4</strong> 检查点之上的推理期优化。正如 Dmytro Dzhulgakov 在帖子里所说，它"巧妙地整合了许多投机解码思想，在真实生产系统中实现 1.5&times; 到 5&times; 的吞吐提升"。关键词是<em>整合</em>：DSpark 与其说是单一技巧，不如说是把业界最好的想法精心拼装、并为服务流量调优。
+               </p>
+
+               <p>
+                  V4 本身已内置一个 <strong>MTP-1</strong> 头，所以在 DSpark 介入之前，基座模型每次前向就能产出<em>两个</em> token。DSpark 在此之上加入 DeepSeek 所称的<strong>"半并行（semi-parallel）"</strong>方法：先投机生成多个候选 token，再施加<strong>自适应/置信度调度的验证</strong> —— 只在有希望的猜测上花验证算力，而不是死板地逐个 token 检查。据报道其效果是消除了"无效检查带来的算力浪费"。
+               </p>
+
+               <ul>
+                  <li><strong>单用户速度：</strong> DeepSeek-V4 <em>Flash</em> 约提速 60&ndash;85%；<em>Pro</em> 版本约 57&ndash;78%（二手报道）。</li>
+                  <li><strong>吞吐：</strong> 视并发不同提升 1.5&times;&ndash;5&times;（帖子的主标题；报道援引 51%&ndash;400%）。</li>
+                  <li><strong>无需重训基座模型</strong> —— 复用已部署的 V4 权重，因此收益本质上是在 MTP-1 之上的"免费"工程。</li>
+                  <li>以完整论文发布（33 位作者，来自<strong>北京大学与 DeepSeek-AI</strong>，由 Xin Cheng 等领衔，<strong>梁文锋（Wenfeng Liang）</strong>为资深作者），并附开源的 <a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">DeepSpec</a> 训练仓库与公开检查点（<code>deepseek-ai/dspark_qwen3_4b_block7</code> 等）。</li>
+               </ul>
+
+               <blockquote class="sd-pq">
+                  "DSpark …… 巧妙地整合了许多投机解码思想，在真实生产系统中实现 1.5x 到 5x 的吞吐提升。" —— @dzhulgakov
+               </blockquote>
+
+               <div class="sd-band">
+                  <div class="yr">深入</div>
+                  <h2 id="thread-zh">Dmytro 的长帖，逐条解读 <span>&mdash; 10 步走读</span></h2>
+               </div>
+
+               <p>
+                  Dmytro Dzhulgakov（Fireworks AI）以一条 <strong>"10 个想法"</strong> 的长帖解释了 DSpark，从 LLM 解码的最基础概念一路搭建到完整的 DSpark 设计。下面逐步走读这条长帖，每条都附上原始示意图。每张卡片都链接回原推文。
+               </p>
+
+               <div class="sd-thread">
+                  <div class="sd-tw">
+                     <div class="num">🧵</div>
+                     <div class="hd"><b>Dmytro Dzhulgakov</b> · @dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="bd">来自 @deepseek_ai 的 DSpark 巧妙地整合了许多投机解码思想，在真实生产系统中实现 1.5x 到 5x 的吞吐提升。让我们用 10 个想法、从最基础处开始来理解它 🧵</p>
+                     <div class="imgs two">
+                        <img src="/assets/blog/2026/speculativedecoding/head_1.jpg" alt="DSpark 长帖头图 1" loading="lazy">
+                        <img src="/assets/blog/2026/speculativedecoding/head_2.jpg" alt="DSpark 长帖头图 2" loading="lazy">
+                     </div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922887595499930" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">1</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">LLM 解码中的批处理（Batching）</p>
+                     <p class="bd">生成 token 受限于从显存读取权重。所以并行解码 10 个 token 只比生成 1 个略慢。连续批处理（continuous batching）正是利用了这一点。</p>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922889868779707" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">2</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">投机解码</p>
+                     <p class="bd">对同一请求，token N+1 依赖 token N，所以我们无法并行解码它们。但如果我们能猜出这些 token（"投机"），就能从主模型的视角快速验证其中哪一段前缀是正确的。</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea2.jpg" alt="投机解码示意图" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922892142104962" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">3</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">草稿模型（Draft model）</p>
+                     <p class="bd">如何投机？当然是用一个模型。最简单的是跑一个在相同分布上训练的更小模型，例如用 Qwen 0.8B 给 Qwen 397B 当草稿。</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea3.png" alt="草稿模型示意图" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922894293749774" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">4</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">投机并非免费</p>
+                     <p class="bd"><code>time_per_token = (num_tokens_drafted * drafter_time + verify_time(num_tokens_drafted)) / num_tokens_accepted</code>
+
+投机器跑得慢、或在低命中率下草稿过多 token，都可能有害。需要恰到好处的平衡。</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea4.jpg" alt="投机代价公式示意图" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922896588087753" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">5</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">EAGLE 与 MTP</p>
+                     <p class="bd">把草稿器做成主模型的一个额外 transformer 层，即除了上一个 token 之外，它还消费丰富的潜在表示（最后一层激活）。这样只需 1&ndash;2 层、而非整个模型，就能得到更快也更准确的投机器。</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea5.png" alt="EAGLE 与 MTP 示意图" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922898425176293" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">6</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">DFlash</p>
+                     <p class="bd">MTP 需要 N 步来生成 N 个草稿 token。DFlash 借用扩散（diffusion）思想，在一次前向中产出全部 N 个 token。投机快得多，但草稿质量时好时坏，相比 MTP/EAGLE 各有胜负。</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea6.png" alt="DFlash 扩散式草稿示意图" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922900400640398" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">7</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">DSpark &asymp; EAGLE + MTP</p>
+                     <p class="bd">DFlash 在初始位置更强。EAGLE-3 在长草稿上更连贯，但开头的猜测质量较低。DSpark 结合了并行块与自回归两种思路，胜过任一单独方法。</p>
+                     <div class="imgs two">
+                        <img src="/assets/blog/2026/speculativedecoding/idea7_1.png" alt="DSpark = EAGLE + MTP 示意图" loading="lazy">
+                        <img src="/assets/blog/2026/speculativedecoding/idea7_2.jpg" alt="DSpark 性能图表" loading="lazy">
+                     </div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922902376198579" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">8</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">更便宜的串行块</p>
+                     <p class="bd">EAGLE-3/MTP 在每个草稿位置都跑完整注意力。由于 DFlash 有并行块来捕获之前的上下文，串行步骤可以用 RNN、甚至马尔可夫模型做得便宜得多。这些都带来一个更快、却依然准确的草稿器！</p>
+                     <div class="imgs two">
+                        <img src="/assets/blog/2026/speculativedecoding/idea8_1.jpg" alt="更便宜的串行块示意图 1" loading="lazy">
+                        <img src="/assets/blog/2026/speculativedecoding/idea8_2.jpg" alt="更便宜的串行块示意图 2" loading="lazy">
+                     </div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922904217543082" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">9</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">可变长度草稿与硬件感知调度器</p>
+                     <p class="bd">num_draft_tokens 应该取多少？这是变化的：
+* 有些请求（如写代码）比其他更容易预测
+* 最优长度取决于服务器负载（批大小）。负载低、GPU 算力空闲时多投机一些。</p>
+                     <div class="imgs two">
+                        <img src="/assets/blog/2026/speculativedecoding/idea9_1.jpg" alt="可变长度草稿示意图 1" loading="lazy">
+                        <img src="/assets/blog/2026/speculativedecoding/idea9_2.jpg" alt="硬件感知调度器示意图 2" loading="lazy">
+                     </div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922906339770683" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num">10</div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">在线草稿器校准</p>
+                     <p class="bd">模型往往在预测下一个 token 时过度自信，这使得很难确定停止草稿的阈值。但我们可以观察运行时草稿器的表现，并在线"校准"阈值。</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/idea10.jpg" alt="在线草稿器校准示意图" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922908550209571" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+
+                  <div class="sd-tw">
+                     <div class="num"><i class="fa-solid fa-flag-checkered"></i></div>
+                     <div class="hd">@dzhulgakov · 2026 年 6 月 27 日</div>
+                     <p class="ttl">把它们拼到一起</p>
+                     <p class="bd">DeepSeek 的魔力在于卓越的系统工程与紧密的模型协同设计。其中许多想法此前都已发表。令人印象深刻的是，他们如何把它们整合在一起，用一套自适应系统交付巨大的端到端提升。</p>
+                     <div class="imgs"><img src="/assets/blog/2026/speculativedecoding/closing.jpg" alt="总结：把它们拼到一起 示意图" loading="lazy"></div>
+                     <div class="lnk"><a href="https://x.com/dzhulgakov/status/2070922910148251685" target="_blank" rel="noopener">在 X 上查看 &rarr;</a></div>
+                  </div>
+               </div>
+
+               <div class="sd-band">
+                  <div class="yr">总结 2 &nbsp;·&nbsp; 2026 年 6 月 26 日</div>
+                  <h2 id="gemini-zh">Gemini Nano 冻结式 MTP <span>&mdash; 端侧的投机解码</span></h2>
+               </div>
+
+               <p>
+                  谷歌研究院攻克的是与 DeepSeek 相反的极端：不是数据中心，而是一部手机。移动推理受制于严苛的内存与能耗预算，而标准投机解码需要一个<em>独立的</em>草稿模型（如 128M 参数），它既争抢内存，又对主模型的内部状态"视而不见"。他们的答案是把 Multi-Token Prediction 改造性地装到<strong>冻结的 Gemini Nano v3</strong> 上 —— 该模型已部署在 Pixel 9 与 10 上。
+               </p>
+
+               <p>设计依赖三步：</p>
+               <ul>
+                  <li><strong>晚退出（late-exit）MTP 头。</strong> 不用独立草稿器，而是在主模型的最后若干层上加一个轻量 Transformer 头，从骨干的高维隐藏状态预测未来 token。</li>
+                  <li><strong>冻结骨干。</strong> 基座权重冻结，只训练这个头。这保证能力与安全对齐<strong>零退化</strong>，并能以完全向后兼容的方式推送效率更新 —— 输出逐比特一致。</li>
+                  <li><strong>零拷贝架构。</strong> 该头<em>直接交叉注意力到主模型冻结的 KV cache</em>，而不维护自己的 cache。这消除了草稿器的 prefill 延迟，相比独立草稿器每实例节省约 <strong>130&nbsp;MB</strong>。</li>
+               </ul>
+
+               <p>
+                  在 AI 通知摘要、校对等生产工作负载中，MTP 平均每次前向多正确预测<strong>近两个 token</strong>，在 Pixel 9 上带来 <strong>50%+ 的提速</strong>，在结构性强的任务（如智能回复）上 token 接受率最高提升 <strong>55%</strong> —— 同时因更少唤醒重型处理器而降低能耗。该工作明确构建于 <strong>EAGLE</strong> 框架与 <strong>CALM</strong>（Confident Adaptive Language Modeling）之上，并展望了分支/并行解码与"验证宽松化"。
+               </p>
+
+               <div class="sd-band">
+                  <div class="yr">总结 3 &nbsp;·&nbsp; 2026 年 5 月 5 日</div>
+                  <h2 id="gemma4-zh">Gemma 4 Assistant <span>&mdash; 人人可用的投机解码</span></h2>
+               </div>
+
+               <p>
+                  Gemma 4 是这股趋势<strong>走向开源</strong>的地方。谷歌在主线之外发布了一系列自回归<strong>草稿</strong>模型外加一个 <strong>MTP</strong> 头 —— 官方命名为 <strong>"Gemma 4 Assistant"</strong>，以 <code>-assistant</code> 检查点发布（如 <code>google/gemma-4-E4B-it-assistant</code>；Transformers 模型类型为 <code>gemma4_assistant</code>，作为 <code>assistant_model</code> 加载）。在同样的 Apache-2.0 许可下，它带来最高 <strong>3&times;</strong> 的推理提速，"输出质量与推理准确性零退化"。关键在于它自首日起就支持 <strong>Transformers、MLX、vLLM、SGLang 与 Ollama</strong>，所以这份提速立刻可用，而非研究摆设。
+               </p>
+
+               <p>据官方文档，Gemma 4 的 MTP 不只是外挂草稿器。三项增强让草稿 token 更便宜也更准确：</p>
+               <ul>
+                  <li><strong>共享输入嵌入。</strong> 草稿模型复用目标的嵌入表，而非自带一份。</li>
+                  <li><strong>目标激活。</strong> 草稿器取目标的<em>最后一层激活</em>，与 token 嵌入拼接，再降维到草稿器维度 —— 因此它并非对骨干状态"视而不见"。</li>
+                  <li><strong>高效嵌入器。</strong> 为避免在整个词表上打分，把 token 聚成簇；头先挑出可能的簇，再把最终计算限制在这些簇内（E2B/E4B 变体）。</li>
+               </ul>
+
+               <p>
+                  文档中一个诚实的注意点：对 <strong>MoE</strong> 模型（Gemma 4 26B A4B），验证草稿 token 可能需要加载额外的专家权重，这在<strong>批大小为 1</strong>、且硬件并行性不佳时会抵消收益。批大小更大时，专家激活重叠增多，收益得以恢复。这次 Gemma 4 发布是 Gemini Nano 工作的直接前身 —— 博客明确指出冻结式 MTP 工作构建于"用 MTP 加速 Gemma 4"之上。
+               </p>
+
+               <div class="sd-band">
+                  <div class="yr">并排对比</div>
+                  <h2 id="comparison-zh">对比 <span>&mdash; 同一思想的三个角度</span></h2>
+               </div>
+
+               <div class="sd-table-wrap">
+                  <table class="sd-table">
+                     <thead>
+                        <tr>
+                           <th>维度</th>
+                           <th>Gemma 4 Assistant</th>
+                           <th>Gemini Nano 冻结式 MTP</th>
+                           <th>DeepSeek DSpark</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th>发布时间</th>
+                           <td>2026 年 5 月 5 日</td>
+                           <td>2026 年 6 月 26 日</td>
+                           <td>2026 年 6 月 27 日</td>
+                        </tr>
+                        <tr>
+                           <th>目标场景</th>
+                           <td>开源权重，通用 / 端侧</td>
+                           <td>端侧（Pixel 9 与 10）</td>
+                           <td>服务器规模的生产服务</td>
+                        </tr>
+                        <tr>
+                           <th>基座模型</th>
+                           <td>Gemma 4 家族（含 26B A4B MoE）</td>
+                           <td>Gemini Nano v3</td>
+                           <td>DeepSeek-V4（Flash 与 Pro）</td>
+                        </tr>
+                        <tr>
+                           <th>是否开源？</th>
+                           <td><strong style="color:#2e7d32">✔ 是</strong> —— Apache-2.0 权重（HF、Kaggle）</td>
+                           <td><strong style="color:#b00020">✗ 否</strong> —— 专有；随 Pixel 更新下发</td>
+                           <td><strong style="color:#2e7d32">✔ 是</strong> —— MIT：论文 + 代码 + 检查点（DeepSpec 仓库）</td>
+                        </tr>
+                        <tr>
+                           <th>草稿器设计</th>
+                           <td>自回归草稿器 + MTP 头；共享嵌入、目标激活、聚簇嵌入器</td>
+                           <td>冻结骨干上的"晚退出"MTP 头；交叉注意力到主 KV cache（零拷贝）</td>
+                           <td>构建于 V4 的 MTP-1 头 + "半并行"候选生成</td>
+                        </tr>
+                        <tr>
+                           <th>是否基于 EAGLE？</th>
+                           <td><strong style="color:#b25e09">~ 部分</strong> —— EAGLE <em>风格</em>的特征条件（消费目标最后一层激活），但是 MTP "assistant" 头，而非 EAGLE 算法本身</td>
+                           <td><strong style="color:#2e7d32">✔ 是</strong> —— 明确构建于 <strong>EAGLE</strong> 框架（加 CALM 晚退出）</td>
+                           <td><strong style="color:#2e7d32">✔ 是</strong> —— <strong>EAGLE-3 + MTP</strong> 混合（"DSpark &asymp; EAGLE + MTP"）</td>
+                        </tr>
+                        <tr>
+                           <th>是否并行草稿？</th>
+                           <td><strong style="color:#b00020">✗ 否</strong> —— assistant <em>自回归</em>地起草（一次一个 token）</td>
+                           <td><strong style="color:#b00020">✗ 否</strong> —— 自回归 MTP 头（并行/分支解码为明确的未来工作）</td>
+                           <td><strong style="color:#2e7d32">✔ 是</strong> —— <em>混合</em>：DFlash 并行块（一次产出全部 N 个 token）+ 自回归的 EAGLE 式步骤</td>
+                        </tr>
+                        <tr>
+                           <th>是否使用 DFlash（块扩散草稿器）？</th>
+                           <td><strong style="color:#b00020">✗ 否</strong> —— 自回归 MTP "assistant" 头，无扩散</td>
+                           <td><strong style="color:#b00020">✗ 否</strong> —— 自回归晚退出 MTP 头，无扩散</td>
+                           <td><strong style="color:#2e7d32">✔ 是</strong> —— DFlash 块扩散草稿器<em>正是</em> DSpark 的并行那一半（与自回归的 EAGLE-3/MTP 步骤配对）</td>
+                        </tr>
+                        <tr>
+                           <th>集成式，还是独立草稿模型？</th>
+                           <td><strong style="color:#b25e09">~ 独立伴随模型</strong> —— 一个小的 "assistant" 检查点与主模型一起加载，但共享目标的嵌入与激活</td>
+                           <td><strong style="color:#2e7d32">✔ 集成</strong> —— 冻结骨干上的晚退出头；无独立模型，额外占用近乎为零（零拷贝）</td>
+                           <td><strong style="color:#2e7d32">✔ 集成</strong> —— MTP-1 头 + DFlash 块搭乘已部署的 V4 权重；无独立的单独语言模型</td>
+                        </tr>
+                        <tr>
+                           <th>是否共享目标 KV cache？</th>
+                           <td><strong style="color:#b25e09">~ 部分</strong> —— 共享输入嵌入并消费目标激活，但非完整的 KV cache 交叉注意力</td>
+                           <td><strong style="color:#2e7d32">✔ 是</strong> —— <strong>零拷贝</strong>直接交叉注意力到冻结 KV cache（无自有 cache；省约 130&nbsp;MB）</td>
+                           <td><strong style="color:#2e7d32">✔ 是</strong> —— 集成的 MTP 头搭乘模型自身的主干/KV（无独立草稿器 cache）</td>
+                        </tr>
+                        <tr>
+                           <th>验证</th>
+                           <td>标准并行验证（无损）</td>
+                           <td>标准并行验证；逐比特一致</td>
+                           <td>自适应 / <strong>置信度调度</strong>验证</td>
+                        </tr>
+                        <tr>
+                           <th>骨干训练</th>
+                           <td>MTP 头与骨干联合预训练</td>
+                           <td><strong>冻结</strong>骨干；只训练头（改造式）</td>
+                           <td>不重训基座；在已部署权重上优化</td>
+                        </tr>
+                        <tr>
+                           <th>主打提速</th>
+                           <td>推理最高 <strong>3&times;</strong></td>
+                           <td>Pixel 9 上 <strong>50%+</strong>；每次前向多约 2 个 token</td>
+                           <td>吞吐 <strong>1.5&times;&ndash;5&times;</strong>；单用户 57&ndash;85%</td>
+                        </tr>
+                        <tr>
+                           <th>质量影响</th>
+                           <td>无损</td>
+                           <td>无损（冻结骨干）</td>
+                           <td>无损（被拒草稿丢弃）</td>
+                        </tr>
+                        <tr>
+                           <th>主打优势</th>
+                           <td>生态覆盖 + 首日框架支持</td>
+                           <td>省约 130&nbsp;MB 内存；更低能耗 / 更省电</td>
+                           <td>真实流量吞吐；不在坏检查上浪费</td>
+                        </tr>
+                        <tr>
+                           <th>许可 / 获取</th>
+                           <td>开源，Apache 2.0（HF、Kaggle）</td>
+                           <td>专有，随 Pixel 更新下发</td>
+                           <td>HF 上的开放检查点 + 论文</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+
+               <p>
+                  贯穿始终的主线：三者都保持输出<strong>无损</strong>，都<em>远离</em>独立草稿器、转向复用骨干自身状态（嵌入、激活或 KV cache）的头，并且都在朝同一个下一前沿收敛 —— 分支式草稿与宽松验证。差别纯粹在于环境：Gemma 4 优化<em>覆盖面</em>，Gemini Nano 优化<em>内存与能耗</em>，DSpark 优化<em>负载下的吞吐</em>。
+               </p>
+
+               <div class="sd-band">
+                  <div class="yr">参考文献</div>
+                  <h2 id="papers-zh">论文 <span>&mdash; 这股浪潮背后的谱系</span></h2>
+               </div>
+
+               <p>2026 年的这些发布站在一条清晰的研究链条之上。按主题分组的奠基性与被直接引用的论文：</p>
+
+               <p class="group-label">1 &middot; 奠基</p>
+
+               <div class="paper">
+                  <div class="ptitle">Fast Inference from Transformers via Speculative Decoding <span class="badge badge-foundation">FOUNDATION</span></div>
+                  <div class="pauthors">Yaniv Leviathan、Matan Kalman、Yossi Matias —— <em>Google Research</em></div>
+                  <p class="psum">为"投机解码"命名的论文：用便宜的草稿器解出 K 个 token，由目标模型并行验证，接受正确的前缀 —— 更快，且不改变输出分布。</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2211.17192" target="_blank" rel="noopener">arXiv:2211.17192</a> &middot; <a href="https://arxiv.org/pdf/2211.17192" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">Accelerating Large Language Model Decoding with Speculative Sampling <span class="badge badge-foundation">FOUNDATION</span></div>
+                  <div class="pauthors">Charlie Chen、Sebastian Borgeaud、Geoffrey Irving、Jean-Baptiste Lespiau、Laurent Sifre、John Jumper —— <em>Google DeepMind</em></div>
+                  <p class="psum">同期的投机采样表述，配有拒绝采样的正确性证明，保证加速后的输出与目标模型分布一致。</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2302.01318" target="_blank" rel="noopener">arXiv:2302.01318</a> &middot; <a href="https://arxiv.org/pdf/2302.01318" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">Better &amp; Faster Large Language Models via Multi-token Prediction <span class="badge badge-research">MTP</span></div>
+                  <div class="pauthors">Fabian Gloeckle、Badr Youbi Idrissi、Baptiste Rozière、David Lopez-Paz、Gabriel Synnaeve —— <em>Meta AI / FAIR</em></div>
+                  <p class="psum">MTP 训练目标 —— 用额外的头一次预测多个未来 token。被两份谷歌文档引为 2026 年草稿器所构建于其上的"标准 MTP 实现"。</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2404.19737" target="_blank" rel="noopener">arXiv:2404.19737</a> &middot; <a href="https://arxiv.org/pdf/2404.19737" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">Confident Adaptive Language Modeling (CALM) <span class="badge badge-research">EARLY-EXIT</span></div>
+                  <div class="pauthors">Tal Schuster、Adam Fisch、Jai Gupta、Mostafa Dehghani、Dara Bahri、Vinh Q. Tran、Yi Tay、Donald Metzler —— <em>Google Research</em></div>
+                  <p class="psum">Gemini Nano 工作所借鉴的"晚退出/早退出"谱系：对简单 token 动态分配更少算力。冻结骨干上晚退出 MTP 头的基础。</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2207.07061" target="_blank" rel="noopener">arXiv:2207.07061</a> &middot; <a href="https://arxiv.org/pdf/2207.07061" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://research.google/blog/accelerating-text-generation-with-confident-adaptive-language-modeling-calm/" target="_blank" rel="noopener">CALM 博客</a></div>
+               </div>
+
+               <p class="group-label">2 &middot; EAGLE 家族</p>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty <span class="badge badge-research">DRAFTER</span></div>
+                  <div class="pauthors">Yuhui Li、Fangyun Wei、Chao Zhang、Hongyang Zhang —— <em>北京大学 &amp; 微软研究院</em></div>
+                  <p class="psum">在<em>特征</em>层面起草：草稿器是一个额外层，消费目标的最后一层激活加上一个 token，使其猜测更可能被目标接受。</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2401.15077" target="_blank" rel="noopener">arXiv:2401.15077</a> &middot; <a href="https://arxiv.org/pdf/2401.15077" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE-2: Faster Inference of Language Models with Dynamic Draft Trees <span class="badge badge-research">DRAFTER</span></div>
+                  <div class="pauthors">Yuhui Li、Fangyun Wei、Chao Zhang、Hongyang Zhang —— <em>北京大学 &amp; 微软研究院</em></div>
+                  <p class="psum">加入上下文感知的动态草稿树，扩展最有希望的草稿分支。3.05&ndash;4.26&times; 提速，比 EAGLE-1 快 20&ndash;40%，仍然无损。</p>
+                  <div class="metric">3.05&ndash;4.26&times; 提速</div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2406.16858" target="_blank" rel="noopener">arXiv:2406.16858</a> &middot; <a href="https://arxiv.org/pdf/2406.16858" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE-3: Scaling up Inference Acceleration via Training-Time Test <span class="badge badge-research">DRAFTER</span></div>
+                  <div class="pauthors">Yuhui Li、Fangyun Wei、Chao Zhang、Hongyang Zhang —— <em>北京大学 &amp; 微软研究院</em></div>
+                  <p class="psum">放弃特征预测、改为直接 token 预测，并通过"训练期测试（training-time test）"融合多层特征，使草稿器能随训练数据增多而持续提升。这是 DSpark 作者在长草稿上对比的那个版本。最高 6.5&times; 提速（比 EAGLE-2 约快 1.4&times;）。</p>
+                  <div class="metric">最高 6.5&times; 提速</div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2503.01840" target="_blank" rel="noopener">arXiv:2503.01840</a> &middot; <a href="https://arxiv.org/pdf/2503.01840" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE-3.1：稳定更深的投机 <span class="badge badge-serve">RELEASE</span></div>
+                  <div class="pauthors">EAGLE 团队（Yuhui Li、Fangyun Wei、Chao Zhang、Hongyang Zhang）&times; <em>vLLM 团队</em> &times; <em>TorchSpec 团队</em>，并获 NVIDIA GPU 支持 —— 团队署名的工程发布（无独立 arXiv 预印本；vLLM/TorchSpec 贡献者以团队整体署名）</div>
+                  <p class="psum">EAGLE-3 的增量改进：在每个目标隐藏状态之后加 FC 归一化，并把归一化后的隐藏状态喂入下一解码步。这修复了深投机深度下的两个不稳定 —— 融合输入被高层隐藏状态主导，以及隐藏状态幅度沿未归一化残差路径增长 —— 使草稿器在更长草稿上保持稳定。</p>
+                  <div class="plinks"><a href="https://vllm.ai/blog/2026-05-26-eagle-3-1" target="_blank" rel="noopener">vLLM 博客（2026-05-26）</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">P-EAGLE: Parallel-Drafting EAGLE with Scalable Training <span class="badge badge-serve">PARALLEL</span></div>
+                  <div class="pauthors"><em>Amazon（AWS AI）</em></div>
+                  <p class="psum">通过可学习的共享隐藏状态，把 EAGLE 从自回归转变为并行多 token 预测，去除串行 K 次前向瓶颈，同时保留特征级准确性。检查点位于 <code>amazon/…-p-eagle</code>。</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a> &middot; <a href="https://arxiv.org/pdf/2602.01469" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM 博客</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">SageMaker 博客</a></div>
+               </div>
+
+               <p class="group-label">3 &middot; 并行 / 扩散草稿</p>
+
+               <div class="paper">
+                  <div class="ptitle">DFlash: Block Diffusion for Flash Speculative Decoding <span class="badge badge-serve">DIFFUSION</span> <span class="badge badge-foundation">ICML 2026</span></div>
+                  <div class="pauthors">Jian Chen、Yesheng Liang、Zhijian Liu —— <em>UCSD Z Lab</em>（Hao Zhang 团队）</div>
+                  <p class="psum">用一个轻量<strong>块扩散</strong>模型替代自回归草稿器，在<strong>一次</strong>前向中产出一整块 K 个 token（把 O(K) 起草降为 O(1)），并以目标隐藏特征为条件保证准确。起草延迟≈零，瓶颈转向草稿质量。它是 DeepSeek DSpark 中"并行块"的那一半；已部署于 vLLM 与 vLLM-TPU。</p>
+                  <div class="metric">&gt;6&times; 无损；比 EAGLE-3 最高快 2.5&times;</div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2602.06036" target="_blank" rel="noopener">arXiv:2602.06036</a> &middot; <a href="https://arxiv.org/pdf/2602.06036" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://z-lab.ai/" target="_blank" rel="noopener">Z-Lab</a> &middot; <a href="https://developers.googleblog.com/supercharging-llm-inference-on-google-tpus-achieving-3x-speedups-with-diffusion-style-speculative-decoding/" target="_blank" rel="noopener">Google TPU 博客</a></div>
+               </div>
+
+               <p class="group-label">4 &middot; DeepSeek 与 DSpark</p>
+
+               <div class="paper">
+                  <div class="ptitle">DeepSeek-V3 Technical Report <span class="badge badge-train">MODEL</span></div>
+                  <div class="pauthors">DeepSeek-AI —— <em>DeepSeek</em></div>
+                  <p class="psum">DeepSeek 内置 MTP 设计（为 MTP 共享嵌入/输出头）的来源，V4 系列继承之，DSpark 在其上加速。</p>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">arXiv:2412.19437</a> &middot; <a href="https://arxiv.org/pdf/2412.19437" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">DSpark: Confidence-Scheduled Speculative Decoding with Semi-Autoregressive Generation <span class="badge badge-serve">SERVING</span></div>
+                  <div class="pauthors">Xin Cheng*、Xingkai Yu*、Chenze Shao*、Jiashi Li*、Yunfan Xiong*、Yi Qian、Jiaqi Zhu、Shirong Ma、Xiaokang Zhang、Jiasheng Ye、Qinyu Chen、Chengqi Deng、Jiping Yu、Damai Dai、Zhengyan Zhang、Yixuan Wei、Yixuan Tan、Wenkai Yang、Runxin Xu、Yu Wu、Zhean Xu、Xuanyu Wang、Muyang Chen、Rui Tian、Xiao Bi、Zhewen Hao、Shaoyuan Chen、Huanqi Cao、Wentao Zhang、Anyi Xu、Huishuai Zhang、Dongyan Zhao、Wenfeng Liang —— <em>北京大学 &amp; DeepSeek-AI</em>（* 共同一作；梁文锋 Wenfeng Liang 为末位/资深作者）</div>
+                  <p class="psum">框架本体。<strong>半自回归（semi-autoregressive）</strong>草稿器 —— 并行骨干耦合一个轻量串行模块 —— 引入块内依赖，修复纯并行草稿器的接受率衰减；<strong>置信度调度、负载感知的验证</strong>依据估计的前缀存活概率与引擎吞吐画像，为每个请求动态裁剪验证长度。在 DeepSeek-V4 服务系统的真实流量下，在同等吞吐下相比 MTP-1 生产基线单用户提速 60&ndash;85%。随 <strong>DeepSpec</strong> 训练仓库开源（其中也含 DeepSeek 自训的 DFlash 与 EAGLE-3 草稿器）。</p>
+                  <div class="metric">单用户相比 MTP-1 提速 60&ndash;85%</div>
+                  <div class="plinks"><a href="https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf" target="_blank" rel="noopener">论文 PDF</a> &middot; <a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">DeepSpec 仓库</a> &middot; <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark" target="_blank" rel="noopener">HF: V4-Flash-DSpark</a> &middot; <a href="https://x.com/dzhulgakov/status/2070922887595499930" target="_blank" rel="noopener">10 想法长帖</a></div>
+               </div>
+
+               <p class="group-label">5 &middot; 用于投机解码的 MTP</p>
+
+               <div class="paper">
+                  <div class="ptitle">FastMTP: Accelerating LLM Inference with Enhanced Multi-Token Prediction <span class="badge badge-research">MTP</span></div>
+                  <div class="pauthors">Jinwen Luo 等 —— <em>腾讯（Tencent）</em></div>
+                  <p class="psum">让 MTP 训练与其推理模式对齐，提升多步草稿质量。约 2.03&times; 提速、输出无损，比普通 MTP 高 82%。权重位于 <code>TencentBAC/FastMTP</code>。</p>
+                  <div class="metric">约 2.03&times; 提速</div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2509.18362" target="_blank" rel="noopener">arXiv:2509.18362</a> &middot; <a href="https://arxiv.org/pdf/2509.18362" target="_blank" rel="noopener">PDF</a></div>
+               </div>
+
+               <p class="group-label">6 &middot; 回顾</p>
+
+               <div class="paper">
+                  <div class="ptitle">Looking back at speculative decoding <span class="badge badge-foundation">BLOG</span></div>
+                  <div class="pauthors"><em>Google Research</em></div>
+                  <p class="psum">谷歌研究院自己对该技术的回顾，直接从 Gemini Nano 冻结式 MTP 帖子链接而来。</p>
+                  <div class="plinks"><a href="https://research.google/blog/looking-back-at-speculative-decoding/" target="_blank" rel="noopener">research.google/blog/looking-back-at-speculative-decoding</a></div>
+               </div>
+
+               <p style="font-size:0.9em; color:#777;">
+                  <strong>模型检查点。</strong> 上述系统不只是论文 —— 它们都附带可运行的权重：DSpark 于 DeepSeek-V4-Flash（<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark" target="_blank" rel="noopener">deepseek-ai/DeepSeek-V4-Flash-DSpark</a>）、开源的 Gemma 4 Assistant MTP 草稿器（<a href="https://huggingface.co/google/gemma-4-E4B-it-assistant" target="_blank" rel="noopener">google/gemma-4-E4B-it-assistant</a>），以及在 vLLM 与 SGLang 中广泛使用的 EAGLE/EAGLE-3 草稿器检查点。DSpark 长帖的作者与讲解者是 Fireworks AI 的 <strong>Dmytro Dzhulgakov</strong>（<a href="https://x.com/dzhulgakov" target="_blank" rel="noopener">@dzhulgakov</a>）。
+               </p>
+
+               <p>
+                  两个月，三家实验室，一个收敛的思想。如果说 2024&ndash;2025 是关于<em>训练</em>更大更便宜的模型，那么 2026 正在成为投机解码成为<em>服务</em>它们之标准方式的一年 —— 在手机上、在数据中心里、以及介于两者之间的一切地方。
+               </p>
+
+               </div><!-- /lang-zh -->
+
+            </article>
+            <br> 
+            <hr>
+            <br> 
+            <div id="subscribe-placeholder"></div>
+         </div>
+         <div>
+           <a href="https://hits.sh/pengandy.com/blog/2026/speculativedecoding/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/speculativedecoding.svg?label=page%20views&color=4f46e5"/></a>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+
+      <!-- Scripts -->
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+      <script>
+      (function(){
+        function setLang(l){
+          var zh = l==='zh';
+          document.body.classList.toggle('zh', zh);
+          var be=document.getElementById('lang-en-btn'), bz=document.getElementById('lang-zh-btn');
+          if(be) be.classList.toggle('active', !zh);
+          if(bz) bz.classList.toggle('active', zh);
+          try{ localStorage.setItem('specdec-lang', l); }catch(e){}
+        }
+        window.__setSpecLang=setLang;
+        function init(){ var v='en'; try{ v=localStorage.getItem('specdec-lang')||'en'; }catch(e){} setLang(v); }
+        if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
+      })();
+      </script>
+   </body>
+</html>
