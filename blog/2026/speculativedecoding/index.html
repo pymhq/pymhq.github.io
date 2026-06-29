@@ -851,8 +851,78 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <strong>Model checkpoints.</strong> The systems above are not just papers — they ship weights you can run: DSpark on DeepSeek-V4-Flash (<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark" target="_blank" rel="noopener">deepseek-ai/DeepSeek-V4-Flash-DSpark</a>), the open Gemma 4 Assistant MTP drafters (<a href="https://huggingface.co/google/gemma-4-E4B-it-assistant" target="_blank" rel="noopener">google/gemma-4-E4B-it-assistant</a>), and the EAGLE/EAGLE-3 drafter checkpoints used across vLLM and SGLang. DSpark's thread author and explainer is <strong>Dmytro Dzhulgakov</strong> (<a href="https://x.com/dzhulgakov" target="_blank" rel="noopener">@dzhulgakov</a>), co-founder &amp; CTO of <strong>Fireworks AI</strong> and a longtime PyTorch core maintainer.
                </p>
 
+               <!-- ===== Training Libraries ===== -->
+               <div class="sd-band">
+                  <div class="yr">The Training Stack</div>
+                  <h2 id="training-libs">Where the Drafters Come From <span>&mdash; the open-source training libraries</span></h2>
+               </div>
+
                <p>
-                  Two months, three labs, one converging idea. If 2024&ndash;2025 was about <em>training</em> bigger and cheaper models, 2026 is shaping up to be the year speculative decoding became the standard way to <em>serve</em> them — on a phone, in a datacenter, and everywhere in between.
+                  Every system above ships a <em>trained drafter</em> — an EAGLE head, an MTP head, a DFlash block. But who trains them, and on what infrastructure? The quieter half of the 2026 story is the rise of dedicated <strong>open-source training libraries</strong> that turn drafting from a research artifact into a repeatable pipeline. They all wrestle with the same core obstacle — funneling the target model's hidden states into the draft model cheaply, at scale — and each attacks it from a different angle. <strong>DeepSpec</strong>, the repo behind DSpark above, is the newest entry in a line that runs back through 2025:
+               </p>
+
+               <div class="sd-rail">
+                  <div class="sd-stop">
+                     <div class="when">Jul 2025 &mdash; SpecForge (SGLang)</div>
+                     <p class="what">The first purpose-built <strong>EAGLE-3</strong> training framework, natively wired to <strong>SGLang</strong> so a draft model is deployable the moment training finishes. Built-in Training-Time Test (TTT), online &amp; offline hidden-state modes, FSDP + tensor parallelism, and MoE support (Llama 4, DeepSeek).</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">Nov 2025 &mdash; Speculators (vLLM) &amp; SageMaker EAGLE</div>
+                     <p class="what">Two production pushes in one month. <strong>Speculators</strong> (vLLM / Red Hat) standardizes drafters into a single Hugging Face format that runs in vLLM out of the box; Amazon <strong>SageMaker AI</strong> ships <strong>EAGLE-2/3 adaptive</strong> speculative decoding that retrains heads on your <em>own</em> traffic for ~2.5&times; throughput.</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">Mar 2026 &mdash; TorchSpec (TorchSpec &amp; Mooncake teams)</div>
+                     <p class="what">A torch-native framework for <strong>disaggregated</strong> drafter training: it decouples the inference engine that generates hidden states from the training workers that consume them, streaming tensors over RDMA/TCP through the <strong>Mooncake</strong> store — no disk, no co-location. Trains a Kimi&nbsp;K2.5 EAGLE-3 drafter in ~1,500 H200-hours.</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">Jun 2026 &mdash; DeepSpec (DeepSeek)</div>
+                     <p class="what">The repo DeepSeek open-sourced alongside <strong>DSpark</strong> — shipping not just the DSpark recipe but DeepSeek's own <strong>DFlash</strong> and <strong>EAGLE-3</strong> drafter training, closing the loop from the algorithm research above to a runnable production stack.</p>
+                  </div>
+               </div>
+               <p class="sd-rail-cap">A year of training-library releases — the tooling that turns speculative decoding from a paper into a pipeline.</p>
+
+               <p class="group-label">The libraries, in detail</p>
+
+               <div class="paper">
+                  <div class="ptitle">SpecForge: Accelerating Speculative Decoding Training for SGLang <span class="badge badge-train">TRAINING</span></div>
+                  <div class="pauthors">The SGLang Team &mdash; <em>LMSYS / SGLang</em></div>
+                  <p class="psum">A purpose-built, EAGLE-3-focused training framework tightly integrated with SGLang, so a freshly trained draft head runs out of the box at inference. Provides built-in Training-Time Test (TTT) support, both <em>online</em> (hidden states on the fly) and <em>offline</em> (precomputed) modes, FSDP + tensor parallelism for large clusters, and native support for MoE targets like Llama 4 and DeepSeek.</p>
+                  <div class="metric">2.18&times; MT-Bench (Llama 4 Maverick draft)</div>
+                  <div class="plinks"><a href="https://lmsys.org/blog/2025-07-25-spec-forge/" target="_blank" rel="noopener">LMSYS blog</a> &middot; <a href="https://github.com/sgl-project/SpecForge" target="_blank" rel="noopener">GitHub: sgl-project/SpecForge</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">Speculators: Standardized, Production-Ready Speculative Decoding <span class="badge badge-train">TRAINING</span> <span class="badge badge-serve">FORMAT</span></div>
+                  <div class="pauthors"><em>vLLM project / Red Hat (Neural Magic)</em></div>
+                  <p class="psum">A unified library for building, training, and <em>storing</em> drafters in a single standardized Hugging Face format with immediate vLLM compatibility — so a speculator trained anywhere drops straight into a production server. Training landed in v0.3.0; v0.5.0 (May 2026) added <strong>DFlash</strong> support and fully unified online training on vLLM's native hidden-state extraction.</p>
+                  <div class="plinks"><a href="https://developers.redhat.com/articles/2025/11/19/speculators-standardized-production-ready-speculative-decoding" target="_blank" rel="noopener">Red Hat announcement</a> &middot; <a href="https://github.com/vllm-project/speculators" target="_blank" rel="noopener">GitHub: vllm-project/speculators</a> &middot; <a href="https://vllm.ai/blog/2026-05-28-speculators-v050" target="_blank" rel="noopener">v0.5.0 (DFlash) blog</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE-Based Adaptive Speculative Decoding on Amazon SageMaker AI <span class="badge badge-train">TRAINING</span> <span class="badge badge-serve">MANAGED</span></div>
+                  <div class="pauthors">Amazon SageMaker AI team &mdash; <em>AWS</em></div>
+                  <p class="psum">A managed path in the SageMaker inference-optimization toolkit that trains <strong>EAGLE-2/3</strong> heads — and, crucially, <em>re</em>trains them on your own captured traffic, so the drafter adapts to your real workload rather than a generic benchmark. Supports six architectures (Llama, Qwen2/3, Qwen3-MoE, GPT-OSS with EAGLE-3; Qwen3-Next with EAGLE-2) and ships pre-trained heads for instant use. <span style="color:#777;">(Disclosure: a project I had a hand in shipping on the SageMaker team.)</span></p>
+                  <div class="metric">~2.5&times; throughput, lossless</div>
+                  <div class="plinks"><a href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-introduces-eagle-based-adaptive-speculative-decoding-to-accelerate-generative-ai-inference/" target="_blank" rel="noopener">AWS Machine Learning blog</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">TorchSpec: Speculative Decoding Training at Scale <span class="badge badge-train">TRAINING</span></div>
+                  <div class="pauthors">TorchSpec team &amp; Mooncake team &mdash; <em>PyTorch ecosystem</em></div>
+                  <p class="psum">A torch-native framework for <strong>disaggregated</strong> drafter training that solves the hidden-state bottleneck head-on: it splits the inference GPUs that <em>generate</em> target hidden states from the training GPUs that <em>consume</em> them, streaming tensors directly over RDMA/TCP via the <strong>Mooncake</strong> store — eliminating both the multi-TB disk cost of offline pipelines and the memory pressure of co-located training. Scales inference and training independently; supports vLLM &amp; SGLang targets.</p>
+                  <div class="metric">Kimi K2.5 EAGLE-3 drafter in ~1,500 H200-hrs; +60% throughput @ BS1</div>
+                  <div class="plinks"><a href="https://pytorch.org/blog/torchspec-speculative-decoding-training-at-scale/" target="_blank" rel="noopener">PyTorch blog</a> &middot; <a href="https://github.com/torchspec-project/TorchSpec" target="_blank" rel="noopener">GitHub: torchspec-project/TorchSpec</a> &middot; <a href="https://github.com/kvcache-ai/Mooncake" target="_blank" rel="noopener">Mooncake</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">DeepSpec <span class="badge badge-train">TRAINING</span></div>
+                  <div class="pauthors">DeepSeek-AI &mdash; <em>DeepSeek</em></div>
+                  <p class="psum">The training repository DeepSeek open-sourced together with the <strong>DSpark</strong> paper. Beyond the DSpark recipe itself, it ships training for DeepSeek's own <strong>DFlash</strong> block-diffusion and <strong>EAGLE-3</strong> drafters — the production-side counterpart to the algorithm research earlier in this post, and the library that anchors the 2026 end of this timeline.</p>
+                  <div class="plinks"><a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">GitHub: deepseek-ai/DeepSpec</a> &middot; <a href="https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf" target="_blank" rel="noopener">DSpark paper (PDF)</a></div>
+               </div>
+
+               <p>
+                  Two months, two labs, three releases, one converging idea &mdash; and beneath them, five open-source training stacks (from SGLang, vLLM/Red Hat, AWS, PyTorch&times;Mooncake, and DeepSeek) turning those drafters into a reproducible pipeline. If 2024&ndash;2025 was about <em>training</em> bigger and cheaper models, 2026 is shaping up to be the year speculative decoding became the standard way to <em>serve</em> them — on a phone, in a datacenter, and everywhere in between.
                </p>
 
                </div><!-- /lang-en -->
@@ -1544,8 +1614,78 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <strong>模型检查点。</strong> 上述系统不只是论文 —— 它们都附带可运行的权重：DSpark 于 DeepSeek-V4-Flash（<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-DSpark" target="_blank" rel="noopener">deepseek-ai/DeepSeek-V4-Flash-DSpark</a>）、开源的 Gemma 4 Assistant MTP 草稿器（<a href="https://huggingface.co/google/gemma-4-E4B-it-assistant" target="_blank" rel="noopener">google/gemma-4-E4B-it-assistant</a>），以及在 vLLM 与 SGLang 中广泛使用的 EAGLE/EAGLE-3 草稿器检查点。DSpark 长帖的作者与讲解者是 Fireworks AI 联合创始人兼 CTO <strong>Dmytro Dzhulgakov</strong>（也是长期的 PyTorch 核心维护者，<a href="https://x.com/dzhulgakov" target="_blank" rel="noopener">@dzhulgakov</a>）。
                </p>
 
+               <!-- ===== 训练库 ===== -->
+               <div class="sd-band">
+                  <div class="yr">训练栈</div>
+                  <h2 id="training-libs-zh">草稿器从哪里来 <span>&mdash; 开源训练库</span></h2>
+               </div>
+
                <p>
-                  两个月，三家实验室，一个收敛的思想。如果说 2024&ndash;2025 是关于<em>训练</em>更大更便宜的模型，那么 2026 正在成为投机解码成为<em>服务</em>它们之标准方式的一年 —— 在手机上、在数据中心里、以及介于两者之间的一切地方。
+                  上面每个系统都附带一个<em>训练好的草稿器</em> —— 一个 EAGLE 头、一个 MTP 头、或一个 DFlash 块。但谁来训练它们、用什么基础设施训练？2026 年故事里更安静的那一半，是一批专门的<strong>开源训练库</strong>的兴起 —— 它们把起草从研究产物变成可复用的流水线。它们都在与同一个核心障碍较劲：如何把目标模型的隐藏状态低成本、大规模地灌入草稿模型 —— 而每一个都从不同角度攻克它。上文 DSpark 背后的 <strong>DeepSpec</strong>，正是这条可上溯至 2025 年的脉络中最新的一员：
+               </p>
+
+               <div class="sd-rail">
+                  <div class="sd-stop">
+                     <div class="when">2025 年 7 月 —— SpecForge（SGLang）</div>
+                     <p class="what">首个专为 <strong>EAGLE-3</strong> 打造的训练框架，与 <strong>SGLang</strong> 原生打通 —— 草稿模型一训完即可部署。内置训练期测试（TTT）、在线与离线两种隐藏状态模式、FSDP + 张量并行，并原生支持 MoE 目标（Llama 4、DeepSeek）。</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">2025 年 11 月 —— Speculators（vLLM）与 SageMaker EAGLE</div>
+                     <p class="what">同一个月里的两记生产化重拳。<strong>Speculators</strong>（vLLM / Red Hat）把草稿器标准化为统一的 Hugging Face 格式，开箱即在 vLLM 中运行；亚马逊 <strong>SageMaker AI</strong> 推出 <strong>EAGLE-2/3 自适应</strong>投机解码，在你<em>自己</em>的流量上重训草稿头，带来约 2.5&times; 的吞吐。</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">2026 年 3 月 —— TorchSpec（TorchSpec 团队与 Mooncake 团队）</div>
+                     <p class="what">一个 torch 原生的<strong>解耦式（disaggregated）</strong>草稿器训练框架：把生成隐藏状态的推理引擎与消费隐藏状态的训练 worker 解耦，通过 <strong>Mooncake</strong> 存储以 RDMA/TCP 直接流式传输张量 —— 不落盘，也不共置。约 1,500 H200 小时训出一个 Kimi&nbsp;K2.5 的 EAGLE-3 草稿器。</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">2026 年 6 月 —— DeepSpec（DeepSeek）</div>
+                     <p class="what">DeepSeek 随 <strong>DSpark</strong> 一起开源的仓库 —— 不仅给出 DSpark 配方，还附带 DeepSeek 自训的 <strong>DFlash</strong> 与 <strong>EAGLE-3</strong> 草稿器训练，把上文的算法研究与可运行的生产栈闭环起来。</p>
+                  </div>
+               </div>
+               <p class="sd-rail-cap">一年的训练库发布 —— 让投机解码从一篇论文变成一条流水线的工具。</p>
+
+               <p class="group-label">逐一细看这些库</p>
+
+               <div class="paper">
+                  <div class="ptitle">SpecForge: Accelerating Speculative Decoding Training for SGLang <span class="badge badge-train">TRAINING</span></div>
+                  <div class="pauthors">SGLang 团队 &mdash; <em>LMSYS / SGLang</em></div>
+                  <p class="psum">一个专为 EAGLE-3 打造、与 SGLang 紧密集成的训练框架 —— 刚训好的草稿头即可在推理端开箱运行。内置训练期测试（TTT）支持，提供<em>在线</em>（即时生成隐藏状态）与<em>离线</em>（预计算）两种模式，配 FSDP + 张量并行以支撑大集群，并原生支持 Llama 4、DeepSeek 等 MoE 目标。</p>
+                  <div class="metric">Llama 4 Maverick 草稿器 MT-Bench 2.18&times;</div>
+                  <div class="plinks"><a href="https://lmsys.org/blog/2025-07-25-spec-forge/" target="_blank" rel="noopener">LMSYS 博客</a> &middot; <a href="https://github.com/sgl-project/SpecForge" target="_blank" rel="noopener">GitHub: sgl-project/SpecForge</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">Speculators: Standardized, Production-Ready Speculative Decoding <span class="badge badge-train">TRAINING</span> <span class="badge badge-serve">FORMAT</span></div>
+                  <div class="pauthors"><em>vLLM 项目 / Red Hat（Neural Magic）</em></div>
+                  <p class="psum">一个用于构建、训练并<em>存储</em>草稿器的统一库，把草稿器规整为单一标准化的 Hugging Face 格式，并即刻兼容 vLLM —— 于是在任何地方训出的投机器都能直接落进生产服务器。训练能力在 v0.3.0 落地；v0.5.0（2026 年 5 月）加入了 <strong>DFlash</strong> 支持，并基于 vLLM 原生隐藏状态抽取统一了在线训练。</p>
+                  <div class="plinks"><a href="https://developers.redhat.com/articles/2025/11/19/speculators-standardized-production-ready-speculative-decoding" target="_blank" rel="noopener">Red Hat 公告</a> &middot; <a href="https://github.com/vllm-project/speculators" target="_blank" rel="noopener">GitHub: vllm-project/speculators</a> &middot; <a href="https://vllm.ai/blog/2026-05-28-speculators-v050" target="_blank" rel="noopener">v0.5.0（DFlash）博客</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">EAGLE-Based Adaptive Speculative Decoding on Amazon SageMaker AI <span class="badge badge-train">TRAINING</span> <span class="badge badge-serve">MANAGED</span></div>
+                  <div class="pauthors">Amazon SageMaker AI 团队 &mdash; <em>AWS</em></div>
+                  <p class="psum">SageMaker 推理优化工具箱中的一条托管路径，训练 <strong>EAGLE-2/3</strong> 头 —— 更关键的是，它能在你自己采集的流量上<em>重新</em>训练这些头，让草稿器适配你真实的工作负载，而非通用基准。支持六种架构（Llama、Qwen2/3、Qwen3-MoE、GPT-OSS 用 EAGLE-3；Qwen3-Next 用 EAGLE-2），并附带预训练好的头以便即开即用。<span style="color:#777;">（披露：这是我在 SageMaker 团队参与交付的一个项目。）</span></p>
+                  <div class="metric">约 2.5&times; 吞吐，无损</div>
+                  <div class="plinks"><a href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-introduces-eagle-based-adaptive-speculative-decoding-to-accelerate-generative-ai-inference/" target="_blank" rel="noopener">AWS 机器学习博客</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">TorchSpec: Speculative Decoding Training at Scale <span class="badge badge-train">TRAINING</span></div>
+                  <div class="pauthors">TorchSpec 团队与 Mooncake 团队 &mdash; <em>PyTorch 生态</em></div>
+                  <p class="psum">一个 torch 原生的<strong>解耦式</strong>草稿器训练框架，正面解决隐藏状态瓶颈：把<em>生成</em>目标隐藏状态的推理 GPU 与<em>消费</em>它们的训练 GPU 分离，通过 <strong>Mooncake</strong> 存储以 RDMA/TCP 直接流式传输张量 —— 既消除离线流水线动辄数 TB 的落盘成本，又消除共置训练的显存压力。推理与训练可独立扩展；支持 vLLM 与 SGLang 目标。</p>
+                  <div class="metric">约 1,500 H200 小时训出 Kimi K2.5 EAGLE-3 草稿器；BS1 下 +60% 吞吐</div>
+                  <div class="plinks"><a href="https://pytorch.org/blog/torchspec-speculative-decoding-training-at-scale/" target="_blank" rel="noopener">PyTorch 博客</a> &middot; <a href="https://github.com/torchspec-project/TorchSpec" target="_blank" rel="noopener">GitHub: torchspec-project/TorchSpec</a> &middot; <a href="https://github.com/kvcache-ai/Mooncake" target="_blank" rel="noopener">Mooncake</a></div>
+               </div>
+
+               <div class="paper">
+                  <div class="ptitle">DeepSpec <span class="badge badge-train">TRAINING</span></div>
+                  <div class="pauthors">DeepSeek-AI &mdash; <em>DeepSeek</em></div>
+                  <p class="psum">DeepSeek 与 <strong>DSpark</strong> 论文一同开源的训练仓库。除 DSpark 配方本身外，它还附带 DeepSeek 自训的 <strong>DFlash</strong> 块扩散与 <strong>EAGLE-3</strong> 草稿器训练 —— 是本文前面算法研究在生产侧的对应物，也是这条时间线 2026 年这一端的压舱石。</p>
+                  <div class="plinks"><a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">GitHub: deepseek-ai/DeepSpec</a> &middot; <a href="https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf" target="_blank" rel="noopener">DSpark 论文（PDF）</a></div>
+               </div>
+
+               <p>
+                  两个月，两家实验室，三次发布，一个收敛的思想 —— 而在它们之下，还有五套开源训练栈（来自 SGLang、vLLM/Red Hat、AWS、PyTorch&times;Mooncake 与 DeepSeek），把这些草稿器变成可复现的流水线。如果说 2024&ndash;2025 是关于<em>训练</em>更大更便宜的模型，那么 2026 正在成为投机解码成为<em>服务</em>它们之标准方式的一年 —— 在手机上、在数据中心里、以及介于两者之间的一切地方。
                </p>
 
                </div><!-- /lang-zh -->
