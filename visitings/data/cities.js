@@ -74,4 +74,9 @@ CITIES =
    {name: 'Lianyungang, Jiangsu', latitude: 34.5967, longitude: 119.2230, radius: 3, fillKey: 'city', date: ''},
    {name: 'Wuchang, Hubei', latitude: 30.5420, longitude: 114.3160, radius: 3, fillKey: 'city', date: ''},
    {name: 'Wuhan, Hubei', latitude: 30.5820, longitude: 114.2719, radius: 8, fillKey: 'city', date: ''},
+   {name: 'Nantucket, MA', latitude: 41.2835, longitude: -70.0995, radius: 3, fillKey: 'city', date: '2026'},
+   {name: 'Nice, France', latitude: 43.7102, longitude: 7.2620, radius: 3, fillKey: 'city', date: '2026'},
+   {name: 'Antibes, France', latitude: 43.5808, longitude: 7.1251, radius: 3, fillKey: 'city', date: '2026'},
+   {name: 'Cannes, France', latitude: 43.5528, longitude: 7.0174, radius: 3, fillKey: 'city', date: '2026'},
+   {name: 'LHR, UK', latitude: 51.4700, longitude: -0.4543, radius: 3, fillKey: 'city', date: '2026'},
 ]

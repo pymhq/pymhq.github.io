@@ -7,4 +7,6 @@ COUNTRIES =
     NLD: {fillKey: 'visited'},
     BEL: {fillKey: 'visited'},
     MEX: {fillKey: 'visited'},
+    FRA: {fillKey: 'visited'},
+    GBR: {fillKey: 'visited'},
 }
