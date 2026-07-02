@@ -25,13 +25,13 @@
       <meta property="og:type" content="article">
       <meta property="og:url" content="https://pengandy.com/blog/2026/vllm/">
       <meta property="og:title" content="vLLM Community Collaboration Newsletter">
-      <meta property="og:description" content="P-EAGLE lands in vLLM 0.16.0, first SIG meetings, and multi-LoRA serving for MoE models.">
+      <meta property="og:description" content="DSpark speculative decoding lands natively in vLLM, PagedAttention retires, EAGLE 3.1, and P-EAGLE in vLLM 0.16.0.">
       <meta property="og:image" content="https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Full-Logo.png">
 
       <!-- Twitter -->
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:title" content="vLLM Community Collaboration Newsletter">
-      <meta name="twitter:description" content="P-EAGLE lands in vLLM 0.16.0, first SIG meetings, and multi-LoRA serving for MoE models.">
+      <meta name="twitter:description" content="DSpark speculative decoding lands natively in vLLM, PagedAttention retires, EAGLE 3.1, and P-EAGLE in vLLM 0.16.0.">
       <meta name="twitter:image" content="https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Full-Logo.png">
       <meta name="twitter:site" content="@pymhq">
       <meta name="twitter:creator" content="@pymhq">
@@ -120,7 +120,7 @@
          <div class="post">
             <header class="post-header">
                <h1 class="post-title">vLLM Community Collaboration Newsletter</h1>
-               <p class="post-meta"> Created in February, 2026<span class="post-readstats"> · 1,035 words · 5 min read</span> </p>
+               <p class="post-meta"> Created in February, 2026<span class="post-readstats"> · 1,395 words · 7 min read</span> </p>
                <p class="post-tags">
                   <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>
                   &nbsp;·&nbsp;
@@ -149,6 +149,73 @@
             <!-- ========================================== -->
             <!-- YOUR CONTENT STARTS HERE -->
             <!-- ========================================== -->
+
+            <h2>Q3 2026 (Jul&ndash;Sep)</h2>
+
+            <p>
+               A fast start to the quarter &mdash; on July 2, DeepSeek's <strong>DSpark</strong> speculative-decoding framework landed natively in vLLM, and, on the same day, vLLM retired <strong>PagedAttention</strong>, the KV-cache paging mechanism that launched the project back in 2023.
+            </p>
+
+            <h3>Jul 2 &mdash; DSpark Speculative Decoding Lands Natively in vLLM</h3>
+
+            <p>
+               vLLM announced that <a href="https://x.com/vllm_project/status/2072545387639189798?s=20" target="_blank">DeepSeek's DSpark</a> now runs natively &mdash; no custom attention kernels required. DSpark is a <em>semi-autoregressive</em> drafter: it proposes several tokens in parallel with non-causal sliding-window attention, then verifies them in a single pass. Output stays identical to plain decoding, but each step covers more ground.
+            </p>
+
+            <div class="release-note">
+               <strong>How vLLM runs DSpark</strong>
+               <ul style="margin-top: 8px;">
+                  <li>Reuses the existing <strong>SparseMLA</strong> backends instead of bespoke attention kernels.</li>
+                  <li>Captures the full draft backbone and sampling loop in a <strong>single CUDA graph</strong>.</li>
+                  <li>Works with prefix caching and FP8 KV cache.</li>
+               </ul>
+            </div>
+
+            <p>
+               <span class="perf-badge">~250 tokens/sec @ batch size 1</span>
+               <span class="perf-badge">~5 avg acceptance length</span>
+               <span class="perf-badge">12&ndash;42% higher acceptance vs. MTP</span>
+            </p>
+            <p style="font-size: 0.9em; color: #555;">
+               Benchmarked on DeepSeek-V4-Pro-DSpark and verified on NVIDIA 8&times;B300 GPUs; the acceptance lift over MTP holds across draft depths.
+            </p>
+
+            <p>Run it on vLLM nightly:</p>
+            <pre style="background:#f6f8fa; border:1px solid #e1e4e8; border-radius:6px; padding:12px 14px; overflow-x:auto; font-size:0.82em; line-height:1.5; margin:12px 0;"><code>vllm serve deepseek-ai/DeepSeek-V4-Pro-DSpark -tp 8 \
+  --trust-remote-code --kv-cache-dtype fp8 \
+  --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"greedy"}'</code></pre>
+
+            <p>
+               <strong>Why it matters here:</strong> DSpark is the hyperscale end of the same speculative-decoding wave this newsletter tracks &mdash; an <em>EAGLE + MTP</em> hybrid that fuses a DFlash-style parallel block with an autoregressive EAGLE-3/MTP step, the same family as P-EAGLE and EAGLE 3.1. A native vLLM path (no kernel forking) is what turns it from a paper into something you can serve today. I unpacked the full 2026 wave &mdash; DSpark, Gemini Nano frozen MTP, and Gemma 4 &mdash; in a separate deep dive.
+            </p>
+
+            <p>
+               <strong>Resources:</strong>
+            </p>
+            <ul>
+               <li><a href="https://x.com/vllm_project/status/2072545387639189798?s=20" target="_blank">vLLM announcement on X</a></li>
+               <li>DSpark Core PR: <a href="https://github.com/vllm-project/vllm/pull/46995" target="_blank">vllm#46995</a></li>
+               <li>Deep dive: <a href="https://pengandy.com/blog/2026/speculativedecoding/" target="_blank">Trendings on Speculative Decoding</a> &mdash; DSpark, Gemini Nano frozen MTP, and Gemma 4 side by side</li>
+            </ul>
+
+            <h3>Jul 2 &mdash; vLLM Retires PagedAttention</h3>
+
+            <p>
+               On the same day, vLLM core maintainer Michael Goin (<a href="https://x.com/mgoin_" target="_blank">@mgoin_</a>) posted &mdash; and the project <a href="https://x.com/vllm_project/status/2072560089156968550?s=20" target="_blank">reposted with a salute</a> &mdash; &ldquo;Today I deleted PagedAttention from vLLM.&rdquo; PagedAttention was the founding innovation that launched vLLM in 2023, paging the KV cache into fixed-size blocks the way an OS pages memory. Its removal is a milestone in its own right: the engine's memory management has evolved past the mechanism it was named for.
+            </p>
+
+            <p>
+               <strong>So what replaced it?</strong> Not a single successor kernel, but a division of labor. The <em>idea</em> survives &mdash; a logical <strong>block table</strong> still maps each sequence's tokens to non-contiguous, fixed-size physical KV blocks. What's gone is vLLM's hand-written PagedAttention CUDA kernel. In the V1 engine, paging now lives <em>inside the attention backends themselves</em>: <strong>FlashAttention 3</strong> and <strong>FlashInfer</strong> read directly from paged KV layouts, so there is no longer a bespoke kernel gathering blocks into contiguous scratch space before the attention math runs.
+            </p>
+
+            <p>
+               Sitting above them is a unified <strong>KV-cache manager</strong> that owns block allocation, eviction, and <a href="https://docs.vllm.ai/en/latest/design/v1/prefix_caching.html" target="_blank">automatic prefix caching</a> &mdash; deduplicating shared prompt prefixes across requests &mdash; and simply hands the resulting block tables to whichever backend serves the layer. The net effect: the same memory efficiency and near-zero fragmentation that made vLLM famous, but implemented as a thin coordination layer over standard, heavily-optimized attention kernels rather than a custom one the project has to maintain itself. Fewer kernels to hand-tune, and every upstream FlashAttention/FlashInfer improvement now lands in vLLM for free.
+            </p>
+
+
+            <br>
+            <hr>
+            <br>
 
             <h2>Q2 2026 (Apr&ndash;Jun)</h2>
 
