@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试 </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="A storyline-driven worldview — from Seattle's Starbucks to Nantucket, Massachusetts, a line threaded through Moby-Dick. 故事线推动的剧情发展和完成度尝试。">
+      <meta name="keywords" content="Nantucket, Moby Dick, Seattle, Boston, storyline, travel">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/storyline/">
+      <meta property="og:title" content="A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试">
+      <meta property="og:description" content="From Seattle's Starbucks to Nantucket, Massachusetts — a line threaded through Moby-Dick. 从西雅图星巴克到马萨诸塞州南太基，一条由《白鲸》串起的故事线。">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/storyline/nantucket-map.svg">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试">
+      <meta name="twitter:description" content="From Seattle's Starbucks to Nantucket, Massachusetts — a line threaded through Moby-Dick.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/storyline/nantucket-map.svg">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="shortcut icon" href="/assets/projects/Peng Andys Logo Symbol.png">
+      <link rel="stylesheet" href="/assets/css/main.css">
+      <link rel="canonical" href="https://pengandy.com/blog/2026/storyline/">
+      <link rel="alternate" type="application/rss+xml" title="Puget Sound Journal" href="https://pengandy.com/feed.xml">
+      <script src="/assets/js/theme.js"></script>
+      <script src="/assets/js/dark_mode.js"></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+      <script src="/assets/js/components.js" defer></script>
+   </head>
+   <style>
+     img {
+         pointer-events: none;
+      }
+     .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+     #markdown-content p { line-height: 1.9; }
+
+     /* language toggle */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
+     body.zh .lang-en { display:none; }
+     body.zh .lang-zh { display:block; }
+
+     /* nautical map */
+     .storyline-map .frame-outer { fill: #f5f1e8; stroke: #2f4a63; stroke-width: 3; }
+     .storyline-map .frame-inner { fill: none; stroke: #2f4a63; stroke-width: 1; opacity: 0.55; }
+     .storyline-map .land        { fill: #dcd3c1; stroke: #b3a891; stroke-width: 1.4; stroke-linejoin: round; }
+     .storyline-map .route       { fill: none; stroke: #2f4a63; stroke-width: 2.2; stroke-dasharray: 7 5; stroke-linecap: round; }
+     .storyline-map .city        { fill: #2f4a63; }
+     .storyline-map .city-ring   { fill: none; stroke: #2f4a63; stroke-width: 1.4; opacity: 0.7; }
+     .storyline-map .island      { fill: #c15a2b; }
+     .storyline-map .island-ring { fill: none; stroke: #c15a2b; stroke-width: 1.4; opacity: 0.75; }
+     .storyline-map .maplabel    { font-family: Georgia, "Times New Roman", serif; fill: #3a3530; }
+     .storyline-map .label-city  { font-size: 15px; font-weight: 600; letter-spacing: 0.4px; }
+     .storyline-map .label-sub   { font-size: 10.5px; fill: #7a7266; letter-spacing: 1px; }
+     .storyline-map .compass     { fill: none; stroke: #2f4a63; stroke-width: 1; opacity: 0.6; }
+     .storyline-map .compass-star{ fill: #dcd3c1; stroke: #2f4a63; stroke-width: 1; }
+     .storyline-map .compass-n   { fill: #c15a2b; }
+     .storyline-map .compass-lbl { font-family: Georgia, serif; font-size: 11px; fill: #2f4a63; }
+     .storyline-map .lat         { fill: none; stroke: #2f4a63; stroke-width: 0.8; stroke-dasharray: 2 4; opacity: 0.4; }
+     .storyline-map .lat-lbl     { font-family: Georgia, serif; font-size: 10px; fill: #7a7266; }
+   </style>
+   <body class="fixed-top-nav" data-page="blog">
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title"><span class="lang-en">A Worldview: Storyline-Driven Plot Progression and the Pursuit of Completion</span><span class="lang-zh">一个世界观：故事线推动的剧情发展和完成度尝试</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in July 2, 2026<span class="post-readstats"> · 763 words · 4 min read</span> </span><span class="lang-zh"> 创建于 2026 年 7 月 2 日<span class="post-readstats"> · 763 字 · 4 分钟阅读</span> </span></p>
+               <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/travel"> <i class="fa-solid fa-hashtag fa-sm"></i> travel</a>   <a href="/blog/tag/nantucket"> <i class="fa-solid fa-hashtag fa-sm"></i> nantucket</a>   <a href="/blog/tag/storyline"> <i class="fa-solid fa-hashtag fa-sm"></i> storyline</a>   ·   <a href="/blog/category/others"> <i class="fa-solid fa-tag fa-sm"></i> others</a> </p>
+            </header>
+            <article class="post-content">
+               <div id="markdown-content">
+
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" class="active" onclick="__setStorylineLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setStorylineLang('zh')">中文</button>
+                  </div>
+
+                  <!-- ================= ENGLISH ================= -->
+                  <div class="lang-en">
+
+                  <p>
+                    If I take one book to Nantucket, it can only be <em>Moby-Dick</em>. The name of this island was underlined and circled again and again during my student years. These passages were my earliest hook — and the opening of this storyline.
+                  </p>
+
+                  <div style="margin: 24px 0 8px 0; padding: 20px 26px; background: rgba(47,74,99,0.06); border-radius: 6px;">
+                    <p style="font-size: 1.1em; font-style: italic; line-height: 1.7; margin-bottom: 10px;">
+                      "A man may stand there and put all America behind him."
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      — Henry David Thoreau, <em>Cape Cod</em>
+                    </p>
+                  </div>
+
+                  <div style="margin: 24px 0 8px 0; padding: 20px 26px; background: rgba(47,74,99,0.06); border-radius: 6px;">
+                    <p style="line-height: 1.85; margin-bottom: 10px;">
+                      "A dozen gulls still follow the white waves tumbling at the stern, now and then plunging sharply to snatch at food in the water. Pitiable little ballerinas — yellow-beaked, white-feathered, clean and slender — they spread their strong, sinewy wings and, along the lightest and most graceful of curves, skate rhythmically upon the back of the wind. The wind's back is broad, and very cold. The wind's tongue carries the raw, briny smell of salt water. In the black-robed witch's bottle, the night brews thicker and thicker. Over the sea at forty-one degrees north latitude there still lingers a film of frosted, translucent something, resisting the freezing of the dark. Once out on the open sea, there is nothing left to touch or to hold."
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      — Yu Guangzhong, <em>Nantucket</em> (trans.)
+                    </p>
+                  </div>
+
+                  <div style="margin: 24px 0 8px 0; padding: 20px 26px; background: rgba(47,74,99,0.06); border-radius: 6px;">
+                    <p style="line-height: 1.85; margin-bottom: 10px;">
+                      "Note: Nantucket is a small island south of Cape Cod in Massachusetts, at the northeastern corner of the United States — fourteen miles long, three and a half miles wide, and about thirty miles from the mainland. From the seventeenth century to the mid-nineteenth century, Nantucket was one of the world's centers of whaling and candle-making. The opening chapters of Herman Melville's immortal masterpiece <em>Moby-Dick</em> are set on this island."
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      — Yu Guangzhong, <em>Nantucket</em> (trans.)
+                    </p>
+                  </div>
+
+                  <div style="margin: 24px 0 8px 0; padding: 20px 26px; background: rgba(47,74,99,0.06); border-radius: 6px;">
+                    <p style="line-height: 1.85; margin-bottom: 10px;">
+                      "One day, someone had a sudden thought: selling piping-hot coffee to Seattleites battered by the cold wind would surely bring them a good deal of warmth. So, from Herman Melville's novel <em>Moby-Dick</em>, he chose the name Starbuck — the coffee-loving first mate among the crew, a name rich with the flavor of the fishing trade — and named the coffeehouse after him. And so, in 1971, the first Starbucks officially opened at 1912 Pike Place."
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      — Yu Zixi, <em>Budget Travel</em> (trans.)
+                    </p>
+                  </div>
+
+                  <hr>
+
+                  <h3>A Storyline Threading the Two Coasts</h3>
+
+                  <p>
+                    In June 2026, ten years after graduation, I used a stretch of time off to return to Boston — this time to run the B.A.A. 10K, and then to give the rest of the trip to the island of Nantucket, Massachusetts, a place I had wanted to see since my student days.
+                  </p>
+
+                  <p>
+                    Ten years ago I moved from the Greater Boston Area, MA to the Greater Seattle Area, WA. Coming back to Massachusetts a decade later, the storyline seems to close a loop: just as those quoted passages say, <strong>Seattle's Starbucks and Massachusetts's Nantucket are bound together by a line drawn through <em>Moby-Dick</em></strong> — Starbucks takes its name from Starbuck, the coffee-loving first mate, and the place where <em>Moby-Dick</em> weighs anchor is Nantucket.
+                  </p>
+
+                  <figure class="storyline-map" style="margin: 32px auto; max-width: 720px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" style="width: 100%; height: auto; display: block;" role="img" aria-label="Nautical map of the United States with a dashed route from Seattle to Boston and Nantucket">
+                      <rect class="frame-outer" x="6" y="6" width="808" height="468" rx="8"/>
+                      <rect class="frame-inner" x="16" y="16" width="788" height="448" rx="4"/>
+                      <line class="lat" x1="20" y1="152" x2="800" y2="152"/>
+                      <text class="lat-lbl" x="26" y="147">41&#176;N</text>
+                      <path class="land" d="M 108 96 L 250 82 L 430 72 Q 520 90 585 96 L 690 80 L 706 74 L 700 112 L 716 152 L 706 210 L 722 262 L 700 300 L 712 322 L 704 384 L 688 328 L 666 314 L 600 328 L 520 344 L 470 336 L 456 374 L 416 360 L 400 336 L 300 330 L 210 300 L 178 300 L 164 270 L 150 236 L 136 176 L 120 130 Z"/>
+                      <path class="route" d="M 134 122 Q 410 52 686 116"/>
+                      <path class="route" d="M 686 116 L 726 152"/>
+                      <circle class="city-ring" cx="134" cy="122" r="8"/>
+                      <circle class="city" cx="134" cy="122" r="3.4"/>
+                      <text class="maplabel label-city" x="134" y="150" text-anchor="middle">Seattle</text>
+                      <text class="maplabel label-sub" x="134" y="165" text-anchor="middle">WA &#183; PNW</text>
+                      <circle class="city-ring" cx="686" cy="116" r="8"/>
+                      <circle class="city" cx="686" cy="116" r="3.4"/>
+                      <text class="maplabel label-city" x="672" y="104" text-anchor="end">Boston</text>
+                      <circle class="island-ring" cx="726" cy="152" r="9"/>
+                      <circle class="island" cx="726" cy="152" r="3.6"/>
+                      <text class="maplabel label-city" x="800" y="176" text-anchor="end" fill="#c15a2b">Nantucket</text>
+                      <text class="maplabel label-sub" x="800" y="191" text-anchor="end">MA &#183; ISLAND</text>
+                      <g transform="translate(132 408)">
+                        <circle class="compass" r="40"/>
+                        <circle class="compass" r="30"/>
+                        <polygon class="compass-star" points="0,-40 8,-8 40,0 8,8 0,40 -8,8 -40,0 -8,-8"/>
+                        <polygon class="compass-n" points="0,-40 8,-8 0,0 -8,-8"/>
+                        <text class="compass-lbl" x="0" y="-46" text-anchor="middle">N</text>
+                      </g>
+                    </svg>
+                    <figcaption style="text-align: center; font-size: 0.85em; color: #888; margin-top: 10px;">
+                      Seattle — dashed line — Boston &amp; Nantucket. A whaling route across the continent.
+                    </figcaption>
+                  </figure>
+
+                  <hr>
+
+                  <h3>A Worldview: Storyline-Driven Plot Progression and Completion</h3>
+
+                  <p>
+                    Unlike most of my peers, I don't travel out of town much. Most of the time it's for a conference, or together with friends; and there's a very personal reason too — I dislike long-distance travel, so I mostly stay tucked away in the PNW.
+                  </p>
+
+                  <p>
+                    But I've always held a worldview: <strong>storyline-driven plot progression and a pursuit of completion</strong> — and that includes storyline-driven travel. For me a trip isn't about checking off a coordinate; it's about pushing a line whose foreshadowing was laid long ago toward the scene it was meant to reach, and adding a note of "completion" to a chapter left hanging for years. Nantucket, to me, was exactly such a plot node waiting to be lit up.
+                  </p>
+
+                  <p>
+                    My first time in Seattle was 2014. It was a solo trip — I traveled through several West Coast cities on my own, including SF and LA, and Seattle was the last stop, because a college senior of mine was interning at MSR (Microsoft Research) and hosted me. I never imagined that after graduation I'd work full time in this city, all the way to now.
+                  </p>
+
+                  <p>
+                    Looking back, that 2014 West Coast trip was really the opening chapter of this storyline; and this 2026 trip to Massachusetts is the scene where it circles back to its origin and pushes forward again. From the Pacific Northwest to the waters south of Cape Cod, from the first Starbucks at Pike Place to the little island where <em>Moby-Dick</em> weighs anchor — the threads were always there. It just took me ten years to draw them into a single route.
+                  </p>
+
+                  <p style="font-size: 1.1em; font-weight: bold; margin-top: 28px; text-align: center;">
+                    📍 Nantucket, MA — the storyline is complete here. 🏝️
+                  </p>
+
+                  </div><!-- /lang-en -->
+
+                  <!-- ================= 中文 ================= -->
+                  <div class="lang-zh">
+
+                  <p>
+                    带一本书去 Nantucket，一定是《白鲸》。这座小岛的名字，在我读书时期就被这些句子一遍遍地反复标记、圈画过。它们是我最初的引子，也是这条故事线的开端。
+                  </p>
+
+                  <div style="margin: 24px 0 8px 0; padding: 20px 26px; background: rgba(47,74,99,0.06); border-radius: 6px;">
+                    <p style="font-size: 1.1em; font-style: italic; line-height: 1.7; margin-bottom: 10px;">
+                      "A man may stand there and put all America behind him."
+                    </p>
+                    <p style="line-height: 1.7; margin-bottom: 10px; color: #555;">
+                      （我站在这里，背后是整个美国）
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      — 亨利·戴维·梭罗（Henry David Thoreau）《科德角》（Cape Cod）
+                    </p>
+                  </div>
+
+                  <div style="margin: 24px 0 8px 0; padding: 20px 26px; background: rgba(47,74,99,0.06); border-radius: 6px;">
+                    <p style="line-height: 1.85; margin-bottom: 10px;">
+                      "仍有十几只鸥，追随船尾翻滚的白浪，有时急骤地俯冲，争啄水中的食物。怪可怜的芭蕾舞女，黄喙白羽，洁净而且窈窕，正张开道劲有力的翅膀，循最轻灵最柔美的曲线，在风的背上有节奏地溜冰。风的背很阔，很冰。风的舌有咸水的腥气。乌衣巫的瓶中，夜，愈酿愈浓。北纬四十一度的洋面，仍有一层翳翳的毛玻璃的什么，在抵抗黑暗的冻结。进了公海，什么也摸不到握不着了。"
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      — 余光中《南太基》
+                    </p>
+                  </div>
+
+                  <div style="margin: 24px 0 8px 0; padding: 20px 26px; background: rgba(47,74,99,0.06); border-radius: 6px;">
+                    <p style="line-height: 1.85; margin-bottom: 10px;">
+                      "附注：南太基（Nantucket）是美国东北角马萨诸塞州鳕岬之南的一个小岛，长十四英里，宽三英里半，距大陆约三十英里。十七世纪至十九世纪中叶，南太基一直是世界捕鲸业及制烛业中心之一。麦尔维尔（Herman Melville）的不朽巨著《白鲸》（Moby Dick）开卷数章即以该岛为背景。"
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      — 余光中《南太基》
+                    </p>
+                  </div>
+
+                  <div style="margin: 24px 0 8px 0; padding: 20px 26px; background: rgba(47,74,99,0.06); border-radius: 6px;">
+                    <p style="line-height: 1.85; margin-bottom: 10px;">
+                      "有一天，有个人突然觉得，要是向那些饱受冷风侵袭的西雅图人兜售滚烫的咖啡，一定能带去不少温暖。于是他从赫尔曼·麦尔维尔（Herman Melville）的小说《白鲸记》（Moby Dick）里选用船员中酷爱咖啡的大副斯达巴克（Starbuck）这样一个极富渔业特征的名字，命名了这间咖啡厅。于是，在 1971 年，第一家星巴克就在派克市场 1912 号正式开张了。"
+                    </p>
+                    <p style="font-size: 0.88em; color: #888; margin: 0;">
+                      — 余子希《穷游》
+                    </p>
+                  </div>
+
+                  <hr>
+
+                  <h3>一条串起东西海岸的故事线</h3>
+
+                  <p>
+                    2026 年 6 月，毕业十年之后，我利用一段休假时间重新回到波士顿——这次是为了跑 B.A.A. 10K，也顺势把后面的时间留给了马萨诸塞州的南太基岛，那个读书时期就想去看一看的地方。
+                  </p>
+
+                  <p>
+                    十年前，我从大波士顿地区（Greater Boston Area, MA）搬到了大西雅图地区（Greater Seattle Area, WA）。十年之后再回麻省，故事线仿佛在此刻闭合了一圈：就像前面摘抄的文字里写的那样，<strong>西雅图的星巴克，和麻省的南太基，有着一条紧密的、由《白鲸》串起的线</strong>——星巴克之名取自《白鲸记》里那位嗜咖啡的大副 Starbuck，而 Moby Dick 的开卷之地，正是南太基。
+                  </p>
+
+                  <figure class="storyline-map" style="margin: 32px auto; max-width: 720px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" style="width: 100%; height: auto; display: block;" role="img" aria-label="美国航海地图：从西雅图到波士顿、南太基的虚线航线">
+                      <rect class="frame-outer" x="6" y="6" width="808" height="468" rx="8"/>
+                      <rect class="frame-inner" x="16" y="16" width="788" height="448" rx="4"/>
+                      <line class="lat" x1="20" y1="152" x2="800" y2="152"/>
+                      <text class="lat-lbl" x="26" y="147">41&#176;N</text>
+                      <path class="land" d="M 108 96 L 250 82 L 430 72 Q 520 90 585 96 L 690 80 L 706 74 L 700 112 L 716 152 L 706 210 L 722 262 L 700 300 L 712 322 L 704 384 L 688 328 L 666 314 L 600 328 L 520 344 L 470 336 L 456 374 L 416 360 L 400 336 L 300 330 L 210 300 L 178 300 L 164 270 L 150 236 L 136 176 L 120 130 Z"/>
+                      <path class="route" d="M 134 122 Q 410 52 686 116"/>
+                      <path class="route" d="M 686 116 L 726 152"/>
+                      <circle class="city-ring" cx="134" cy="122" r="8"/>
+                      <circle class="city" cx="134" cy="122" r="3.4"/>
+                      <text class="maplabel label-city" x="134" y="150" text-anchor="middle">Seattle</text>
+                      <text class="maplabel label-sub" x="134" y="165" text-anchor="middle">WA &#183; PNW</text>
+                      <circle class="city-ring" cx="686" cy="116" r="8"/>
+                      <circle class="city" cx="686" cy="116" r="3.4"/>
+                      <text class="maplabel label-city" x="672" y="104" text-anchor="end">Boston</text>
+                      <circle class="island-ring" cx="726" cy="152" r="9"/>
+                      <circle class="island" cx="726" cy="152" r="3.6"/>
+                      <text class="maplabel label-city" x="800" y="176" text-anchor="end" fill="#c15a2b">Nantucket</text>
+                      <text class="maplabel label-sub" x="800" y="191" text-anchor="end">MA &#183; ISLAND</text>
+                      <g transform="translate(132 408)">
+                        <circle class="compass" r="40"/>
+                        <circle class="compass" r="30"/>
+                        <polygon class="compass-star" points="0,-40 8,-8 40,0 8,8 0,40 -8,8 -40,0 -8,-8"/>
+                        <polygon class="compass-n" points="0,-40 8,-8 0,0 -8,-8"/>
+                        <text class="compass-lbl" x="0" y="-46" text-anchor="middle">N</text>
+                      </g>
+                    </svg>
+                    <figcaption style="text-align: center; font-size: 0.85em; color: #888; margin-top: 10px;">
+                      西雅图 —— 虚线 —— 波士顿 · 南太基。一条横跨大陆的鲸航线。
+                    </figcaption>
+                  </figure>
+
+                  <hr>
+
+                  <h3>一个世界观：故事线推动的剧情发展和完成度</h3>
+
+                  <p>
+                    和大部分同龄人不同，我出 town 出行不多。大部分时候是因为会议需要，或者是和朋友一起；再加上一个很个人的原因——我讨厌长途旅行，所以大多数时间都窝在 PNW 地区。
+                  </p>
+
+                  <p>
+                    但我一直有一个世界观：<strong>故事线推动的剧情发展和完成度尝试</strong>。这里面也包括故事线推动的旅行。一次出行，对我来说不是为了打卡一个坐标，而是为了把某一条早已埋下伏笔的线，推向它应该到达的下一幕、把某个悬置多年的章节补上一个"完成度"。南太基之于我，就是这样一处等待被点亮的剧情节点。
+                  </p>
+
+                  <p>
+                    第一次到西雅图是 2014 年。那是一趟 solo trip，我一个人跑了西海岸的几座大城市，包括 SF、LA，而 Seattle 是最后一站——因为那时有一位本科学长在 MSR（Microsoft Research）intern，他接待了我。当时完全没有想到，毕业以后我会在这座城市 full time，一直待到现在。
+                  </p>
+
+                  <p>
+                    如今回望，那趟 2014 年的西海岸之旅，其实就是这条故事线最初的开篇；而 2026 年的这次麻省之行，是它兜回原点、又向前推进的一幕。从太平洋西北到大西洋鳕岬之南，从派克市场的第一家星巴克到 Moby Dick 起锚的小岛——线索一直都在，只是我花了十年，才把它们连成同一条航线。
+                  </p>
+
+                  <p style="font-size: 1.1em; font-weight: bold; margin-top: 28px; text-align: center;">
+                    📍 Nantucket, MA，故事线在这里完整。🏝️
+                  </p>
+
+                  </div><!-- /lang-zh -->
+
+               </div>
+            </article>
+            <br>
+            <hr>
+            <br>
+            <p></p>
+            <div id="subscribe-placeholder"></div>
+         </div>
+         <div>
+           <a href="https://hits.sh/pengandy.com/blog/2026/storyline/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/storyline.svg?label=page%20views&color=007ec6"/></a>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="/assets/js/bootstrap.bundle.min.js"></script>
+      <script>
+      (function(){
+        function setLang(l){
+          var zh = l==='zh';
+          document.body.classList.toggle('zh', zh);
+          var be=document.getElementById('lang-en-btn'), bz=document.getElementById('lang-zh-btn');
+          if(be) be.classList.toggle('active', !zh);
+          if(bz) bz.classList.toggle('active', zh);
+          try{ localStorage.setItem('storyline-lang', l); }catch(e){}
+        }
+        window.__setStorylineLang=setLang;
+        function init(){ var v='en'; try{ v=localStorage.getItem('storyline-lang')||'en'; }catch(e){} setLang(v); }
+        if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
+      })();
+      </script>
+   </body>
+</html>

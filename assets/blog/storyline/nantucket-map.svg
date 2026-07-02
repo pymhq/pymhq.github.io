@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" width="820" height="480" role="img" aria-label="Nautical map of the United States with a dashed route from Seattle to Boston and Nantucket">
+  <defs>
+    <style>
+      .frame-outer { fill: #f5f1e8; stroke: #2f4a63; stroke-width: 3; }
+      .frame-inner { fill: none; stroke: #2f4a63; stroke-width: 1; opacity: 0.55; }
+      .land        { fill: #dcd3c1; stroke: #b3a891; stroke-width: 1.4; stroke-linejoin: round; }
+      .route       { fill: none; stroke: #2f4a63; stroke-width: 2.2; stroke-dasharray: 7 5; stroke-linecap: round; }
+      .city        { fill: #2f4a63; }
+      .city-ring   { fill: none; stroke: #2f4a63; stroke-width: 1.4; opacity: 0.7; }
+      .island      { fill: #c15a2b; }
+      .island-ring { fill: none; stroke: #c15a2b; stroke-width: 1.4; opacity: 0.75; }
+      .label       { font-family: Georgia, "Times New Roman", serif; fill: #3a3530; }
+      .label-city  { font-size: 15px; font-weight: 600; letter-spacing: 0.4px; }
+      .label-sub   { font-size: 10.5px; fill: #7a7266; letter-spacing: 1px; }
+      .compass     { fill: none; stroke: #2f4a63; stroke-width: 1; opacity: 0.6; }
+      .compass-star{ fill: #dcd3c1; stroke: #2f4a63; stroke-width: 1; }
+      .compass-n   { fill: #c15a2b; }
+      .compass-lbl { font-family: Georgia, serif; font-size: 11px; fill: #2f4a63; }
+      .lat         { fill: none; stroke: #2f4a63; stroke-width: 0.8; stroke-dasharray: 2 4; opacity: 0.4; }
+      .lat-lbl     { font-family: Georgia, serif; font-size: 10px; fill: #7a7266; }
+    </style>
+  </defs>
+
+  <!-- nautical chart frame -->
+  <rect class="frame-outer" x="6" y="6" width="808" height="468" rx="8"/>
+  <rect class="frame-inner" x="16" y="16" width="788" height="448" rx="4"/>
+
+  <!-- faint reference latitude (~41°N, Nantucket) -->
+  <line class="lat" x1="20" y1="152" x2="800" y2="152"/>
+  <text class="lat-lbl" x="26" y="147">41&#176;N</text>
+
+  <!-- simplified contiguous United States -->
+  <path class="land" d="M 108 96
+    L 250 82 L 430 72 Q 520 90 585 96 L 690 80 L 706 74
+    L 700 112 L 716 152 L 706 210 L 722 262 L 700 300
+    L 712 322 L 704 384 L 688 328 L 666 314
+    L 600 328 L 520 344 L 470 336 L 456 374 L 416 360 L 400 336
+    L 300 330 L 210 300 L 178 300 L 164 270 L 150 236 L 136 176 L 120 130 Z"/>
+
+  <!-- dashed rhumb-line route: Seattle -> Boston -> Nantucket -->
+  <path class="route" d="M 134 122 Q 410 52 686 116"/>
+  <path class="route" d="M 686 116 L 726 152"/>
+
+  <!-- Seattle -->
+  <circle class="city-ring" cx="134" cy="122" r="8"/>
+  <circle class="city" cx="134" cy="122" r="3.4"/>
+  <text class="label label-city" x="134" y="150" text-anchor="middle">Seattle</text>
+  <text class="label label-sub" x="134" y="165" text-anchor="middle">WA &#183; PNW</text>
+
+  <!-- Boston -->
+  <circle class="city-ring" cx="686" cy="116" r="8"/>
+  <circle class="city" cx="686" cy="116" r="3.4"/>
+  <text class="label label-city" x="672" y="104" text-anchor="end">Boston</text>
+
+  <!-- Nantucket (island, offshore) -->
+  <circle class="island-ring" cx="726" cy="152" r="9"/>
+  <circle class="island" cx="726" cy="152" r="3.6"/>
+  <text class="label label-city" x="800" y="176" text-anchor="end" fill="#c15a2b">Nantucket</text>
+  <text class="label label-sub" x="800" y="191" text-anchor="end">MA &#183; ISLAND</text>
+
+  <!-- compass rose (lower-left, in the Pacific) -->
+  <g transform="translate(132 408)">
+    <circle class="compass" r="40"/>
+    <circle class="compass" r="30"/>
+    <polygon class="compass-star" points="0,-40 8,-8 40,0 8,8 0,40 -8,8 -40,0 -8,-8"/>
+    <polygon class="compass-n" points="0,-40 8,-8 0,0 -8,-8"/>
+    <text class="compass-lbl" x="0" y="-46" text-anchor="middle">N</text>
+  </g>
+</svg>
