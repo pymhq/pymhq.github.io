@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> How Google Gemini Helped Me Survive My French Riviera Trip </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="A field report on how Google Gemini helped through a chaotic French Riviera trip — flight delays, lost luggage, transit, dining, medical, airport accessibility (WCHR/WCHS), and cultural differences. 人工智能助理如何成为旅行中不可或缺的工具。">
+      <meta name="keywords" content="Gemini, French Riviera, Nice, travel, AI assistant, 蔚蓝海岸">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/french-riviera/">
+      <meta property="og:title" content="How Google Gemini Helped Me Survive My French Riviera Trip">
+      <meta property="og:description" content="Flight delays, lost luggage, transit, dining, medical, airport accessibility — how Gemini became an indispensable travel tool on the Côte d'Azur.">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/french-riviera/hero.jpg">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="How Google Gemini Helped Me Survive My French Riviera Trip">
+      <meta name="twitter:description" content="Flight delays, lost luggage, transit, dining, medical, airport accessibility — how Gemini became an indispensable travel tool on the Côte d'Azur.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/french-riviera/hero.jpg">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="shortcut icon" href="/assets/projects/Peng Andys Logo Symbol.png">
+      <link rel="stylesheet" href="/assets/css/main.css">
+      <link rel="canonical" href="https://pengandy.com/blog/2026/french-riviera/">
+      <link rel="alternate" type="application/rss+xml" title="Puget Sound Journal" href="https://pengandy.com/feed.xml">
+      <script src="/assets/js/theme.js"></script>
+      <script src="/assets/js/dark_mode.js"></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+      <script src="/assets/js/components.js" defer></script>
+   </head>
+   <style>
+     img { pointer-events: none; }
+     #markdown-content p { line-height: 1.9; }
+
+     /* reusable "Gemini advice" callout */
+     .gemini-tip {
+       margin: 16px 0 26px 0;
+       padding: 14px 18px 6px 18px;
+       background: linear-gradient(135deg, rgba(66,133,244,0.07), rgba(155,89,182,0.07));
+       border: 1px solid rgba(120,110,200,0.28);
+       border-radius: 10px;
+     }
+     .gemini-tip .g-label {
+       display: inline-flex; align-items: center; gap: 7px;
+       font-weight: 700; font-size: 0.86em; letter-spacing: 0.3px;
+       color: #7b61c9; margin-bottom: 6px;
+     }
+     .gemini-tip .g-spark { width: 17px; height: 17px; flex: 0 0 auto; }
+     .gemini-tip p { margin: 0 0 10px 0; }
+     .placeholder {
+       color: #9aa0a6; font-style: italic;
+       border-left: 2px dashed #c7b9e6; padding-left: 10px;
+     }
+     .ph-legend {
+       font-size: 0.85em; color: #9aa0a6; font-style: italic;
+       background: rgba(128,128,128,0.06); border-radius: 6px;
+       padding: 8px 12px; margin: 6px 0 26px 0;
+     }
+     .fact-box {
+       margin: 18px 0 26px 0; padding: 14px 18px;
+       background: rgba(224,85,85,0.07); border-left: 4px solid #e05555; border-radius: 6px;
+     }
+
+     /* reusable Gemini prompt / response Q&A card */
+     .g-qa { margin: 14px 0 4px 0; }
+     .g-qa .q, .g-qa .a { border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
+     .g-qa .q { background: rgba(66,133,244,0.06); border: 1px solid rgba(66,133,244,0.20); }
+     .g-qa .a { background: rgba(155,89,182,0.06); border: 1px solid rgba(155,89,182,0.20); }
+     .g-qa .tag {
+       display: inline-block; font-size: 0.72em; font-weight: 700;
+       letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 5px;
+     }
+     .g-qa .q .tag { color: #2f6fd6; }
+     .g-qa .a .tag { color: #7b61c9; }
+     .g-qa .en { line-height: 1.65; }
+     .g-qa .zh { color: #888; font-size: 0.92em; margin-top: 4px; line-height: 1.65; }
+     .g-qa .a-todo { color: #9aa0a6; font-style: italic; }
+     .g-qa .a .en p { margin: 0 0 9px 0; }
+     .g-qa .a .en ul, .g-qa .a .en ol { margin: 4px 0 9px 0; padding-left: 22px; }
+     .g-qa .a .en blockquote {
+       border-left: 3px solid #c7b9e6; margin: 8px 0; padding: 4px 12px;
+       color: #555; font-style: italic; background: rgba(255,255,255,0.45);
+     }
+     .g-qa .a .en hr { margin: 12px 0; border: 0; border-top: 1px dashed rgba(155,89,182,0.3); }
+     .g-qa .a .en table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 0.88em; }
+     .g-qa .a .en th, .g-qa .a .en td { border: 1px solid rgba(120,110,200,0.25); padding: 6px 9px; text-align: left; vertical-align: top; }
+     .g-qa .a .en th { background: rgba(155,89,182,0.10); }
+     .g-qa .a .en pre { background: rgba(0,0,0,0.05); border-radius: 6px; padding: 10px 12px; overflow-x: auto; font-size: 0.82em; line-height: 1.55; margin: 8px 0; white-space: pre; }
+     .sub-h { margin: 30px 0 10px; font-size: 1.08em; font-weight: 700; color: #5a4a8a; border-bottom: 1px solid rgba(120,110,200,0.25); padding-bottom: 5px; }
+
+     /* --- EN / 中文 language toggle --- */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
+     body.zh .lang-en { display:none; }
+     body.zh .lang-zh { display:block; }
+   </style>
+   <body class="fixed-top-nav zh" data-page="blog">
+      <!-- shared Gemini sparkle gradient (referenced by every .g-spark) -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+          <linearGradient id="gemini-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4285F4"/>
+            <stop offset="45%" stop-color="#9b59b6"/>
+            <stop offset="100%" stop-color="#e0559b"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title"><span class="lang-en">How Google Gemini Helped Me Survive My French Riviera Trip</span><span class="lang-zh">谷歌 Gemini 如何帮我扛过这趟南法之旅</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in July 2, 2026<span class="post-readstats"> · 5,877 words · 30 min read</span> </span><span class="lang-zh"> 创建于 2026 年 7 月 2 日<span class="post-readstats"> · 11,763 字 · 59 分钟阅读</span> </span></p>
+               <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/travel"> <i class="fa-solid fa-hashtag fa-sm"></i> travel</a>   <a href="/blog/tag/gemini"> <i class="fa-solid fa-hashtag fa-sm"></i> gemini</a>   <a href="/blog/tag/ai"> <i class="fa-solid fa-hashtag fa-sm"></i> ai</a>   ·   <a href="/blog/category/others"> <i class="fa-solid fa-tag fa-sm"></i> others</a> </p>
+            </header>
+            <div class="post-views" style="margin:14px 0 18px 0;">
+               <a href="https://hits.sh/pengandy.com/blog/2026/french-riviera/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/french-riviera.svg?label=page%20views&color=007ec6"/></a>
+            </div>
+            <article class="post-content">
+               <div id="markdown-content">
+
+                  <figure style="margin: 0 0 26px 0;">
+                    <img src="/assets/blog/french-riviera/hero.jpg" alt="法国南部蔚蓝海岸 French Riviera" style="width:100%; height:auto; border-radius:10px; display:block;" draggable="false">
+                    <figcaption style="text-align:center; font-size:0.85em; color:#888; margin-top:8px;">南法蔚蓝海岸（French Riviera / Côte d'Azur）</figcaption>
+                  </figure>
+
+                  <div style="margin: 8px 0 24px 0; padding: 20px 26px; background: rgba(128,128,128,0.07); border-radius: 6px;">
+                    <p style="font-size: 1.12em; font-style: italic; line-height: 1.7; margin: 0;"><span class="lang-en">"I can't survive my South FRA trip without Gemini."</span><span class="lang-zh">「没有 Gemini，我可能没法在这趟南法之旅中生存下来。」</span></p>
+                  </div>
+
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" class="active" onclick="__setPostLang('zh')">中文</button>
+                  </div>
+
+                  <div class="lang-en">
+
+                  <p>
+                    On my June break, right after running the <strong>B.A.A. 10K</strong> in Boston, I took a trip to the South of France — the <strong>French Riviera / Côte d'Azur</strong> — before my France (FRA) visa expired. It was my second time in Europe; the last was the Netherlands 🇳🇱 in 2023.
+                  </p>
+
+                  <p>
+                    The trip drove home one thing: <strong>AI assistants are quietly becoming an indispensable tool in everyday life</strong>. From four flight delays and lost luggage to ordering food, seeing a doctor, and cross-border accessibility, almost every step leaned on <strong>Google Gemini</strong>. This post walks through each leg of the trip and what Gemini actually helped with (including the bad advice it occasionally gave).
+                  </p>
+
+                  <p>
+                    Two apps carried this trip: <strong>Google Gemini</strong> was the workhorse throughout (queries, translation, emergencies, planning), and <strong>Rednote (Xiaohongshu)</strong> was my side reference for travel tips (local recommendations, pitfalls, photo spots). A fun discovery: in France, Google Search has <strong>no AI Mode</strong>, so I just used the Gemini app the whole time.
+                  </p>
+
+                  <hr>
+
+                  <h3>🎒 Before the Trip: eSIM, Plug Adapter, Cash</h3>
+
+                  <p>Before leaving, Gemini helped me knock out a few must-do pre-trip errands: eSIM data, the power adapter, and whether to exchange cash.</p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>What Gemini helped with</span>
+
+                  <p class="sub-h">📱 Data & SIM: eSIM (Airalo)</p>
+                  <p>
+                    I used an <strong>Airalo</strong> eSIM with a <strong>7-day / 5GB</strong> France plan — online the moment I landed, no hunting for a physical SIM, and data ready for maps, baggage tracking, dining, and train tickets throughout. Beforehand I had Gemini compare eSIM options (coverage, data, price) and walk me through purchase, install, and turning on data roaming after landing.
+                  </p>
+
+                  <p class="sub-h">🔌 Power adapter (US → EU)</p>
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">Do I need a plug adapter going from the US to France?</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Yes — traveling from the US to France you <strong>must use a plug adapter</strong>. US standard is 120V / 60Hz with A/B flat-pin sockets; France is 230V / 50Hz with C/E round-pin sockets. Two key differences:</p>
+                      <p><strong>1. Plug shape differs (adapter required)</strong></p>
+                      <ul>
+                        <li>US plug: two flat pins (Type A) or two flat + one round ground (Type B).</li>
+                        <li>France socket: two round pins (Type C) or two round pins with a ground post (Type E).</li>
+                        <li>Fix: buy a "US → EU" adapter, or bring a universal travel adapter.</li>
+                      </ul>
+                      <p><strong>2. Voltage differs (check your device)</strong> — France's 230V is nearly double the US 120V:</p>
+                      <ul>
+                        <li><strong>Phones, laptops (e.g. MacBook), tablets, cameras:</strong> their power bricks are usually wide-voltage (marked INPUT: 100–240V, 50/60Hz), so a plug adapter alone is fine — no transformer needed.</li>
+                        <li><strong>Hair dryers, curling irons, electric shavers:</strong> these heating tools are often fixed at 120V; plugging straight into French power can fry them or start a fire. Unless labeled 110–240V dual-voltage, you'd need a high-wattage voltage converter, or just borrow/buy one locally.</li>
+                      </ul>
+                    </div></div>
+                  </div>
+
+                  <p class="sub-h">💶 Exchange cash?</p>
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">Do I need to exchange cash for Nice?</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>You don't need much cash for Nice — cards (Visa/Mastercard, contactless widely supported) work almost everywhere — but keep a <strong>small amount of change (~€50–100)</strong> on hand:</p>
+                      <ul>
+                        <li><strong>Card works (the vast majority):</strong> restaurants, supermarkets, hotels, department stores, and public transit (tram, train) all take cards / contactless.</li>
+                        <li><strong>Where cash is handy:</strong> local markets (like the Saleya flower market), small street bakeries, low-value purchases, tips; some public toilets need coins.</li>
+                        <li><strong>Cheapest way to get euros:</strong> withdraw at a local ATM with a no-foreign-fee debit card. Don't exchange at the airport (poor rates); if you must, use a city exchange (e.g. Globex) and carry small notes (€5/€10/€20 — shops often won't break large bills).</li>
+                      </ul>
+                    </div></div>
+                  </div>
+                  </div>
+
+                  <hr>
+
+                  <h3>🚋 Getting Around: Flights, Luggage, City Trams & Regional Trains</h3>
+
+                  <p>
+                    The red-eye from Boston to Nice, hunting for luggage on arrival, city trams, and cross-city TER trains — this whole leg ran almost entirely on Gemini. I carry some baggage around European trains: back in 2023 I botched a metro transfer in Amsterdam (<a href="https://x.com/pymhq/status/1647572777560334337?s=20" target="_blank" rel="noopener">see my rant back then</a>), so this time I had Gemini plan every leg in advance. Here are just the most representative moments.
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>What Gemini helped with</span>
+
+                    <p class="sub-h">✈️ Four delays: a red-eye that became an all-nighter</p>
+                    <p>A Delta red-eye direct from Boston (BOS) to Nice (NCE), planned to leave 8:00 PM and land 9:35 AM the next morning — but it kept slipping: 8:00 PM → 11:25 PM → 12:15 AM → 1:10 AM.</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">The flight keeps getting delayed — recompute my Nice arrival from the latest departure; I have an online meeting that evening (Nice time) I can't miss.</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p>Each time the departure updated, Gemini recomputed the NCE arrival from the latest departure time, flight duration, and BOS/NCE time zones, and I adjusted an important online kick-off meeting that evening accordingly. It also taught me how to use my first-ever airline Meal Voucher — the QR scan kept failing, and it walked me through redeeming it step by step.</p></div></div></div>
+
+                    <p class="sub-h">🧳 Lost luggage: 2+ hours at NCE</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">My checked bag hasn't come out after 2+ hours — what do I do?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p>Gemini clarified the process — where to find ground staff, how to file a lost-baggage claim, which receipts to keep. In the end, a mom on my flight noticed a handful of bags had been dropped on a belt in another corner of the terminal — that's where I found mine.</p></div></div></div>
+
+                    <p class="sub-h">🛬 Airport to city: the €10 tourist ticket vs the €1.70 local price</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">The airport machine only sells a €10 round-trip ticket — how do I get into town for just €1.70?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p>The machines outside the terminal are "tourist-restricted" and only sell the €10 round-trip. The hack: Tram Line 2 is free for the first couple of stops between the airport and the city edge (up to <strong>Grand Arénas</strong>). Board empty-handed, ride one stop to Grand Arénas, buy a €2 physical card + €1.70 single at that platform's machine, then hop back on and tap through to Jean Médecin downtown.</p></div></div></div>
+
+                    <p class="sub-h">🎟️ T1 tram vs TER train</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">What's the difference between Nice's T1 and TER, and how do I buy each?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p><strong>T1 (Tramway)</strong> is the in-city tram; <strong>TER</strong> is SNCF's regional train for cross-city trips (Antibes, Cannes, Villefranche, Menton). For T1, buy at the platform machine and tap to validate on board (skipping it risks a €60+ fine). For TER, easiest is the official <strong>SNCF Connect</strong> app e-ticket (any train that day, no assigned seat), or a paper ticket from the blue machines (paper must be stamped at the yellow validator before boarding).</p></div></div></div>
+
+                    <p class="sub-h">🖼️ An Easter egg: the《Blind》sculpture at Port Vauban</p>
+                    <p>Out of Antibes station, go <strong>left</strong> on flat ground to Port Vauban (don't go right, up the old town's cobbles). On a bench sits a bronze figure with a paint bucket over its head, hunched over a phone — on a trip that leaned entirely on a phone AI, I couldn't resist asking Gemini about it.</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">What's that sculpture on the Port Vauban bench — a person with a paint bucket on their head, staring at a phone?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p>It's <em>Blind</em> by the French contemporary artist <em>David David</em>: a figure with a paint bucket over its head, absorbed in a phone — a jab at modern "digital blindness." Instead of taking in the coast right in front of them, they seal themselves off from the real world with a bucket. Faceless and without identity, it's a public mirror in which every head-down, phone-scrolling passerby sees themselves.</p></div></div></div>
+                    <figure style="margin:12px 0 2px 0; text-align:center;"><img src="/assets/blog/french-riviera/blind-sculpture.jpg" alt="David David Blind sculpture" style="width:100%; max-width:420px; height:auto; border-radius:8px; display:inline-block;" draggable="false"><figcaption style="font-size:0.82em; color:#888; margin-top:6px;">The《Blind》sculpture at Antibes' Port Vauban · <em>David David</em></figcaption></figure>
+
+                    <p class="sub-h">📍 On-the-ground, in one line</p>
+                    <p>Out of Cannes station it's all flat — head straight to the Palais des Festivals red carpet + the blue chairs on La Croisette; for the return, set the destination to <code>Nice Ville</code> (the main station) in the app. The 4-day itinerary got revised several times by Gemini — from "include Sanremo in Italy" to dropping Italy, to the "stripped-down, take-it-easy" version after I fell off a bike — and that constant re-planning is itself the truest footnote to this trip.</p>
+                  </div>
+
+                  <hr>
+
+                  <h3>📮 Little Quests: Postcards, the NICE Postmark, Handprints in Cannes</h3>
+
+                  <p>
+                    Beyond the sea, this trip had a few "little quests / side quests": mail postcards to friends and myself, make sure they carried a "NICE" postmark, and find a film star's handprint at the Palais des Festivals in Cannes. Gemini helped knock out these small-but-fiddly errands too.
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>What Gemini helped with</span>
+
+                    <p class="sub-h">✉️ Postcards: closed on Sunday & getting the NICE postmark</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">I want to mail postcards tomorrow (Sunday) — will the post office be open?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p><strong>Tomorrow, Sunday (June 28), post offices are closed all day.</strong> Every La Poste branch closes on Sundays, including the central one nearest the hotel (La Poste NICE THIERS).</p>
+                      <p><strong>💡 To send postcards anyway:</strong></p>
+                      <ol>
+                        <li><strong>Buy stamps (Timbres):</strong> at a street Tabac (tobacco/souvenir shop) or an old-town newsstand — most are open Sundays and sell international stamps.</li>
+                        <li><strong>Mail them:</strong> once stamped, just drop them in a yellow La Poste box on the street or outside the office — no need to wait for it to open.</li>
+                        <li><strong>Counter business Monday:</strong> the nearest Nice Thiers office (21 Avenue Thiers) opens Monday at 08:00.</li>
+                      </ol>
+                    </div></div></div>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">I want the postcards stamped with a "NICE" postmark, but don't want my injured foot walking extra — what's the safest way?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Key point: in France, dropping a postcard in a yellow street box means it's machine-cancelled at a regional center — <strong>no guarantee of a "NICE" mark</strong>.</p>
+                      <p>Safest: <strong>Monday morning, before heading to Antibes, go to the big Nice post office counter and have staff hand-cancel it (Oblitération à la main) and post it in front of you.</strong></p>
+                      <p><strong>📍 Nice hand-stamp spot (3-min flat walk):</strong> the nearest is <strong>La Poste NICE THIERS</strong> (21 Avenue Thiers, right by the station), open Monday 08:00–18:00. Hand the postcard over and say:</p>
+                      <blockquote>"Pouvez-vous tamponner à la main avec le cachet de Nice, s'il vous plaît ?"<br><span style="color:#888;font-size:0.92em">(Could you hand-stamp this with the Nice postmark, please?)</span></blockquote>
+                      <p>Watch them stamp it — done — then straight onto the train to Antibes.</p>
+                    </div></div></div>
+                    <figure style="margin:12px 0 2px 0; text-align:center;"><img src="/assets/blog/french-riviera/nice-postmark.jpg" alt="Postcard hand-stamped with the NICE postmark" style="width:100%; max-width:520px; height:auto; border-radius:8px; display:inline-block;" draggable="false"><figcaption style="font-size:0.82em; color:#888; margin-top:6px;">The hand-cancelled "NICE" postmark at the counter</figcaption></figure>
+
+                    <p class="sub-h">🎬 Hunting for handprints in Cannes</p>
+                    <p>The ground around the Palais des Festivals red carpet is studded with the handprints of film masters and stars — I specifically wanted to find <em>Quentin Tarantino</em>'s, and while at it had Gemini confirm which Hollywood A-listers actually have prints here. (For the step-light red-carpet route, see "On-the-ground" above.)</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Where exactly is Quentin Tarantino's handprint at the Palais, and how do I find it?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Facing the Palais' iconic red-carpet steps (back to the sea, facing the building), <em>Quentin Tarantino</em>'s handprint is in the <strong>left-hand area</strong> of the red carpet. To locate it:</p>
+                      <ol>
+                        <li><strong>Find the landmark:</strong> walk to the famous red-carpeted steps (where stars pose during the festival).</li>
+                        <li><strong>Go left:</strong> facing the steps, head to <strong>your left</strong> (toward the old port / Tourist Office side).</li>
+                        <li><strong>Find the tile:</strong> his print is from the 1994 batch, on the walkway tiles of the <strong>Esplanade Georges Pompidou</strong> just below and left of the big steps.</li>
+                      </ol>
+                      <p><strong>Tip:</strong> among the dense metal handprints on the left, look for a <strong>flourishing "Q" signature</strong>. His autograph is wild and scrawled — a looping <strong>"Quentin"</strong> above and a long <strong>"Tarantino"</strong> below, with his two palm prints in the middle; spot the year 1994 to confirm.</p>
+                    </div></div></div>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Is Brad Pitt's handprint in Cannes?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Here's a famous walk-of-stars "myth": <strong><em>Brad Pitt</em> does not actually have a physical handprint outside the Palais in Cannes.</strong> Those smiling handprint photos online are from:</p>
+                      <ol>
+                        <li><strong>Hollywood's Chinese Theatre:</strong> in 2007, promoting <em>Ocean's Thirteen</em>, he pressed prints there with <em>George Clooney</em>, <em>Matt Damon</em>, etc.</li>
+                        <li><strong>Deauville American Film Festival:</strong> he left a memento at that other French festival (Deauville), not in the South of France's Cannes.</li>
+                      </ol>
+                      <p><strong>Why none in Cannes?</strong> He's absolutely a regular (<em>Inglourious Basterds</em>, <em>Once Upon a Time in Hollywood</em>, <em>The Tree of Life</em>). But Cannes' Chemin des Étoiles has only ~150–300 prints total, and many A-listers (Pitt, DiCaprio, Cruise) keep tight schedules — premieres, photo calls, dinners — without doing the mold-casting.</p>
+                      <p><strong>Bottom line:</strong> looking down, you can find <em>Quentin Tarantino</em> (2003, left of the carpet), but don't bother hunting for Pitt or DiCaprio.</p>
+                    </div></div></div>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">What about Johnny Depp (Captain Jack)?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Captain Jack's actor <strong><em>Johnny Depp</em> also has no physical handprint on the Cannes walk of stars.</strong> He's a regular (<em>Pirates 4</em>; a high-profile 2023 return with <em>Jeanne du Barry</em> as the opener), but there's no print, for the same reason:</p>
+                      <ul>
+                        <li><strong>Never did the ceremony:</strong> Cannes' star handprints (Chemin des Étoiles) largely come down to "luck" — the committee usually invites people who take part in specific commemorations, masterclasses, or serve as jury president. Depp's visits are always a whirlwind, with no time carved out for a mold.</li>
+                        <li><strong>His home turf is Hollywood:</strong> for Depp's palm and shoe prints, look at the <strong>Hollywood Walk of Fame</strong> and the forecourt of the <strong>TCL Chinese Theatre</strong>.</li>
+                      </ul>
+                      <p>So near the big steps, lock onto <em>Quentin Tarantino</em> (2003, left of the carpet) and <em>Wong Kar-wai</em> (marked WKW, right by the main entrance); Captain Jack's print isn't in the South of France.</p>
+                    </div></div></div>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">And Jim Carrey (The Truman Show)?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p><em>The Truman Show</em>'s star <strong><em>Jim Carrey</em> also has no physical handprint on the Cannes walk.</strong> (Even though the 2022 75th Cannes key-visual poster paid homage to <em>The Truman Show</em>'s sky-wall shot.) His iconic "handprint" photo is really from:</p>
+                      <ul>
+                        <li><strong>The one physical spot:</strong> the <strong>TCL Chinese Theatre</strong> in Hollywood, LA.</li>
+                        <li><strong>When:</strong> November 2, 1995, alongside <em>Clint Eastwood</em>, <em>Jay Leno</em> and others — pressing his famously goofy, splayed-hand prints and wild signature.</li>
+                      </ul>
+                      <p>So at Cannes, the big-name Hollywood-actor area is basically blank. On the tiles left of and in front of the Palais, the ones truly worth seeking out are those with deep European-festival ties:</p>
+                      <ul>
+                        <li><em>Quentin Tarantino</em> (2003, left of the carpet)</li>
+                        <li><em>Wong Kar-wai</em> (marked WKW, by the main entrance)</li>
+                        <li><em>Akira Kurosawa</em> (AK, near the Palais)</li>
+                      </ul>
+                      <p>At the Palais entrance, aim straight for the left of the big steps and the front — those tiles are your safest bet.</p>
+                    </div></div></div>
+                    <figure style="margin:16px 0 4px 0; text-align:center;"><img src="/assets/blog/french-riviera/cannes-handprint.jpg" alt="Handprint on the walk of stars at the Palais des Festivals, Cannes" style="width:100%; max-width:420px; height:auto; border-radius:10px; display:inline-block;" draggable="false"><figcaption style="font-size:0.85em; color:#888; margin-top:8px;">With Tarantino's handprint on the Palais des Festivals walk of stars, Cannes</figcaption></figure>
+                  </div>
+
+                  <hr>
+
+                  <h3>🩺 When Things Went Wrong: Meds, the ER & Re-planning</h3>
+
+                  <p>
+                    Things still went sideways — one day I was biking by the sea along Nice's <strong>Promenade des Anglais</strong>, and then I fell. 😅 The self-care, buying meds, the ER visit, and re-planning the trip afterward all leaned on Gemini, step by step.
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>What Gemini helped with</span>
+
+                    <p class="sub-h">💊 Meds & first aid (before the ER)</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Can the white spray from the pharmacy reduce the toe swelling? What else can I do?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Whether the white spray helps depends on its type:</p>
+                      <ol>
+                        <li><strong>Cold/analgesic spray</strong> (sports cold sprays, lidocaine sprays): if it feels icy, even frosting over, it works by rapid cooling to constrict vessels and numb pain — <strong>effective for acute swelling</strong> in the first 24–48 hours.</li>
+                        <li><strong>Antiseptic/skin spray</strong> (benzalkonium, wound sprays): more for disinfecting/stopping bleeding — limited direct effect on physical swelling.</li>
+                      </ol>
+                      <blockquote>Check the label: "cold / sprain" → fine to spray on the swollen toe; "wound care / antiseptic" → better for the bleeding knee.</blockquote>
+                      <p><strong>Beyond the spray, follow R.I.C.E. (Ice + Elevate here):</strong></p>
+                      <ul>
+                        <li><strong>Ice:</strong> cold pack or a towel-wrapped frozen drink, 15–20 min, several times a day. No heat the first two days — it worsens swelling.</li>
+                        <li><strong>Elevate:</strong> prop the foot above heart level to help drainage.</li>
+                        <li><strong>Reduce load:</strong> walk as little as possible.</li>
+                      </ul>
+                      <p>⚠️ <strong>Go to a hospital if</strong> you can't bear weight at all, the toe looks deformed, or the pain is unbearable — get an X-ray to rule out a fracture. Rinse the knee wound with saline/clean water, apply iodine, and keep it dry.</p>
+                    </div></div></div>
+
+                    <p class="sub-h">🏥 The ER: process & insurance reimbursement</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">I've decided to go to the ER — what's the on-site process for a foreigner, and is there French I can just show them?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p><strong>📝 Foreigner ER process & key French.</strong> At the ER hall, queue at reception (Accueil) for triage.</p>
+                      <p><strong>1. What you'll need:</strong></p>
+                      <ul>
+                        <li><strong>Passport</strong> — required, to register your identity.</li>
+                        <li><strong>Hotel address & phone</strong> — tell them where you're staying.</li>
+                        <li><strong>Payment & insurance:</strong> usually pay out of pocket by card first (registration + consult + X-ray ≈ €100–300). Be sure to ask for the <strong>Feuille de Soins (care sheet)</strong> and <strong>Facture (invoice)</strong> — with these your travel insurer can reimburse you fully back home.</li>
+                      </ul>
+                      <p><strong>2. Show this to reception/triage:</strong></p>
+                      <blockquote>"Je suis tombé de vélo cet après-midi. Mon genou saigne et mon gros orteil gauche ainsi que ma plante du pied sont très gonflés. Je ne peux pas poser le pied par terre. J'ai besoin d'une radiographie pour vérifier s'il y a une fracture."<br><span style="color:#888;font-size:0.92em">(I fell off my bike this afternoon. My knee is bleeding and my left big toe and sole are very swollen. I can't put weight on my foot. I need an X-ray to check for a fracture.)</span></blockquote>
+                      <p>💡 <strong>Before heading in:</strong> wear loose slippers or fully-unlaced sneakers (hard shoes crush a swollen foot); have a companion support you, or borrow an umbrella as a makeshift cane.</p>
+                    </div></div></div>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Can a French public hospital (Hôpital Pasteur) charge my US insurance card? How does the cost / reimbursement work?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>French public hospitals (like <strong>Hôpital Pasteur</strong>) usually can't directly bill US commercial insurance (Blue Cross, Aetna, Cigna). As a foreigner it's "pay upfront, reimburse at home." But don't worry:</p>
+                      <p><strong>1. French public ER is cheap</strong> — it's price-capped. ER + consult + X-ray is typically <strong>€100–300</strong> (~$110–330), possibly less than your US deductible; pay with a chipped US card (Visa/Mastercard).</p>
+                      <p><strong>2. Your US plan likely covers "emergency medical abroad"</strong> — most good PPO plans do; a bike fall is a textbook emergency. Pay on site and collect the reimbursement docs.</p>
+                      <p><strong>📝 The "reimbursement trio" to request before leaving</strong> (at the Bureau des Entrées / Caisse):</p>
+                      <ol>
+                        <li><strong>Facture Acquittée</strong> — the paid invoice.</li>
+                        <li><strong>Feuille de Soins</strong> — the care sheet, with official stamp and doctor's signature.</li>
+                        <li><strong>Compte-rendu médical / Radio</strong> — the medical report + X-ray (paper, or a card with a link/password to download the digital image).</li>
+                      </ol>
+                      <blockquote>💡 The travel credit card you booked the flights with often includes Travel Insurance that can reimburse medical costs — even crutches; or call your standalone travel insurer's 24h line.</blockquote>
+                    </div></div></div>
+
+                    <p class="sub-h">🥾 Re-planning with the Donjoy boot</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">With the Donjoy boot on and no fracture, which nearby cities can I still do, and which should I skip?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>With the boot strapped tight and no fracture, <strong>moderate walking on flat ground is fine</strong> — but the toe/sole bruise will still swell and ache for 3–5 days. Two buckets:</p>
+                      <p><strong>🟢 Go (mostly flat):</strong></p>
+                      <ul>
+                        <li><strong>Monaco:</strong> built on a cliff, but tons of indoor elevators/escalators; take the Hop-on Hop-off bus straight to the palace/casino, just a few flat steps.</li>
+                        <li><strong>Cannes:</strong> the core sights (Palais, La Croisette) are flat, with the iconic blue chairs everywhere to rest.</li>
+                      </ul>
+                      <p><strong>🔴 Skip (all slopes/cobbles):</strong></p>
+                      <ul>
+                        <li><strong>Èze / Saint-Paul-de-Vence:</strong> hilltop medieval "eagle's-nest" villages — steep slopes, narrow steps, uneven cobbles — brutal for the boot and easy to re-sprain.</li>
+                      </ul>
+                      <p><strong>💡 Strategy:</strong> taxi/train over bus, Uber to the door; switch to "Riviera vacation mode" (sea, sun, food, a beach lounger); carry the prescribed oral painkiller (Doliprane) and Voltaren gel, and sit + elevate when it flares up.</p>
+                    </div></div></div>
+                  </div>
+
+                  <hr>
+
+                  <h3>🍽️ Restaurants & Ordering</h3>
+
+                  <p>
+                    A tip: for popular spots, arrive about an hour early to queue. When ordering I often had no idea what drink to get, so I let Gemini recommend based on the menu and local habits. I also kept Gemini's French ordering/communication lines in <strong>Apple Notes</strong> to show the staff — super handy.
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>What Gemini helped with</span>
+                    <p>Drink recommendations; good-value restaurant picks; and French ordering lines to show the waiter directly.</p>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Give me the menu structure and key French terms for Le Cénac so I can order.</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Here's the Le Cénac menu structure and key French terms:</p>
+                      <p><strong>Les Entrées (Starters)</strong></p>
+                      <ul>
+                        <li><strong>Escargots de Bourgogne (x6)</strong> — Burgundy snails in garlic, parsley, and butter (mop the butter with baguette).</li>
+                        <li><strong>Salade de chèvre chaud</strong> — warm goat-cheese salad; a classic light starter.</li>
+                      </ul>
+                      <p><strong>Les Plats (Mains)</strong></p>
+                      <ul><li><strong>Confit de canard</strong> — crispy-skinned duck confit, usually with potatoes.</li></ul>
+                      <p><strong>Les Boissons (Drinks, good for solo)</strong> — look for the <strong>Vins au verre</strong> (by-the-glass) list: a glass of rosé (great with the duck), a glass of dry white (great with snails), or <em>une carafe d'eau</em> (free tap water — you can order it the moment you sit down).</p>
+                      <p><strong>Les Desserts</strong></p>
+                      <ul>
+                        <li><strong>Île flottante</strong> — "floating island," light meringue on vanilla custard; a no-guilt finish after heavy food.</li>
+                        <li><strong>Verrine mascarpone du jour</strong> — a mascarpone cream cup of the day, often with seasonal berries.</li>
+                        <li><strong>Café gourmand</strong> — an espresso with 2–3 mini desserts; the best value if you want a taste of everything.</li>
+                      </ul>
+                      <p><strong>🗣️ Handy lines:</strong> point and say <em>"Je vais prendre ça, ça, et ça, s'il vous plaît."</em> (I'll have this, this, and this); <em>"Une carafe d'eau, s'il vous plaît."</em> (a jug of tap water); at the end, <em>"L'addition, s'il vous plaît."</em> (the check, please).</p>
+                    </div></div></div>
+                    <figure style="margin:12px 0 2px 0;"><img src="/assets/blog/french-riviera/french-meal.jpg" alt="The French meal ordered per Gemini's suggestion" style="width:100%; max-width:520px; height:auto; border-radius:8px; display:block;" draggable="false"><figcaption style="font-size:0.82em; color:#888; margin-top:6px;">The French meal, ordered per the suggestion</figcaption></figure>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Does this bistro (Le Cénac) have smoothies? If not, dining solo on duck confit and snails, what non-alcoholic drink cuts the grease?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p><strong>It usually doesn't have smoothies.</strong> Le Cénac is a traditional French bistro/brasserie; its drink list generally has only wine and beer, classic soft drinks (Coca, Fanta, iced tea, bottled juice), and coffee/tea. American-style health smoothies rarely appear in traditional French restaurants (mostly at brunch cafés or beach stands).</p>
+                      <p><strong>💡 Non-alcoholic picks to cut the grease of duck + snails:</strong></p>
+                      <ol>
+                        <li><strong>Perrier / San Pellegrino (sparkling water)</strong> — highly recommended; the dense bubbles physically "scrub" the butter and duck fat off your palate, better than still water. <em>Une bouteille de Perrier / San Pellegrino, s'il vous plaît.</em></li>
+                        <li><strong>Citron Pressé (fresh-pressed lemon)</strong> — if they have this French summer classic, it's a grease-killer: pure lemon juice with a jug of water and sugar, mix to taste; the acidity cuts the fat perfectly.</li>
+                        <li><strong>Jus de Pomme (apple juice)</strong> — duck classically pairs with apple/berry; an iced apple juice works nicely.</li>
+                      </ol>
+                      <p>If you're not drinking, a bottle of <strong>Perrier</strong> is the most comfortable grease-cutter for this heavy meal.</p>
+                    </div></div></div>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">(with a photo of the drinks list) Do they have hot chocolate, and recommend a grease-cutting drink.</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Got the drinks list — yes, the <strong>Chocolat Chaud (hot chocolate, €4.90)</strong> you asked about is there, under "Hot Drinks" (Boissons Chaudes). Given you ordered snails and duck confit, my picks for a solo grease-cutter:</p>
+                      <p><strong>1. Top pick — non-alcoholic:</strong></p>
+                      <ul>
+                        <li><strong>Citron ou orange pressée (fresh-pressed lemon/orange) | €5.50</strong> — get the <strong>Citron</strong>! Strong natural acidity is the enemy of animal fat; one sip and the duck grease is gone.</li>
+                        <li><strong>Perrier 33cl (sparkling water) | €4.50</strong> — a safe bet; the dense bubbles physically scrub butter and duck fat off the palate.</li>
+                      </ul>
+                      <p><strong>2. If you want a light drink:</strong></p>
+                      <ul>
+                        <li><strong>Kir vin blanc | €5.20</strong> — white wine with a fruit syrup (cassis, peach, blackberry); the white base suits snails, the fruit balances the duck.</li>
+                        <li><strong>Spritz | €9.00</strong> — a Riviera-summer staple, bitter-sweet and bubbly, very pleasant curbside and appetite-whetting.</li>
+                      </ul>
+                      <p>As for the <strong>Chocolat Chaud</strong> — since it's on the menu, if you still have room after the mains, order it at the end as dessert!</p>
+                    </div></div></div>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Help me order from this menu (blackboard photo attached).</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>This blackboard is the actual dessert list. Since you wanted something chocolate and already had rich butter snails and duck confit, two picks best for finishing solo:</p>
+                      <p><strong>🥇 Fondant chocolat (molten chocolate cake) | €9</strong> — the molten chocolate I mentioned; usually served with a scoop of cold vanilla ice cream. Hot, oozing dark chocolate + cold ice cream cuts the grease beautifully — satisfying without feeling dry or heavy.</p>
+                      <p><strong>🥈 Café Gourmand | €9</strong> — an espresso with 2–3 mini desserts; small portions let you still taste something sweet after a big meal, and the black coffee is the ultimate foil to the duck's richness.</p>
+                      <hr>
+                      <p><strong>❌ Skip (too heavy solo):</strong> Gaufre chocolat / Gaufre nutella (chocolate/Nutella waffles) | €9 — a big, dense slab of dough drowned in chocolate; after potatoes and duck leg, you'll regret it.</p>
+                      <p><strong>🗣️ To order, point and say:</strong> <em>"Un fondant chocolat, s'il vous plaît."</em> or <em>"Un café gourmand, s'il vous plaît."</em></p>
+                    </div></div></div>
+                    <figure style="margin:12px 0 2px 0;"><img src="/assets/blog/french-riviera/dessert-menu.jpg" alt="Le Cénac blackboard dessert menu" style="width:100%; max-width:520px; height:auto; border-radius:8px; display:block;" draggable="false"><figcaption style="font-size:0.82em; color:#888; margin-top:6px;">The blackboard dessert menu I sent to Gemini</figcaption></figure>
+                  </div>
+
+                  <hr>
+
+                  <h3>🛂 The Trip Home: Cross-3-Country, One Transfer Accessibility (WCHR)</h3>
+
+                  <p>
+                    The way home was more complex — three countries' airports (<strong>one transfer: NCE → LHR → SEA, changing at London Heathrow</strong>). The key was arranging <strong>wheelchair assistance</strong> for the whole route in advance. Aviation has standard <strong>IATA special-assistance codes</strong>, so I had Gemini clarify which to request and how to talk to ground staff:
+                  </p>
+                  <ul>
+                    <li><strong>WCHR</strong> (Wheelchair – Ramp): can manage stairs and walk to the seat, just can't walk long distances; needs a wheelchair to/from the gate/jet bridge.</li>
+                    <li><strong>WCHS</strong> (Wheelchair – Steps): can't manage stairs, but can walk to the seat in-cabin; needs a wheelchair to the aircraft door.</li>
+                    <li><strong>WCHC</strong> (Wheelchair – Cabin): needs a wheelchair the whole way, including to the seat and in-cabin.</li>
+                  </ul>
+                  <p>
+                    Since there's only <strong>one transfer (at London Heathrow, LHR)</strong>, the key is to request this assistance at booking/check-in and make sure the LHR connection doesn't break down — with just 1 hour, crossing borders (UK→US) and re-clearing transfer security, that's where it most easily goes wrong.
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>What Gemini helped with</span>
+                    <p>Explained the <strong>WCHR / WCHS / WCHC</strong> differences and helped me pick which to request (I ended up on <strong>WCHR</strong>); generated English/French lines to request assistance at Nice check-in and the LHR transfer; flagged the tight 1-hour connection.</p>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Write me a line to ask the crew: I requested arrival wheelchair assistance — should I stay in my seat until they come onboard, or walk to the jet bridge myself?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p>"Hi, I have requested airport wheelchair assistance for my arrival. Should I remain in my seat until the wheelchair agent comes onboard to get me, or should I walk out to the jet bridge myself?"</p></div></div></div>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">All-BA through ticket, only 1 hour to connect at London — do I need to collect my checked bag? Is that enough time?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>On a single British Airways through-ticket:</p>
+                      <p><strong>1. Checked luggage — no need to collect.</strong> It's tagged through to Seattle (SEA) at Nice check-in; during the 1-hour London connection the system transfers it automatically.</p>
+                      <p><strong>2. Terminal & transfer</strong></p>
+                      <ul>
+                        <li><strong>Same terminal:</strong> both BA flights (Nice in, Seattle out) usually use Heathrow <strong>T5</strong> — no terminal change.</li>
+                        <li><strong>Timeline:</strong> even in one terminal, 1 hour is right at Heathrow's "minimum connection time." You can't exit customs; follow the purple <strong>"Flight Connections"</strong> signs and re-clear UK transfer security.</li>
+                      </ul>
+                      <p><strong>🚨 Note (given your right-leg injury)</strong></p>
+                      <blockquote>1 hour means walking, queuing, and re-screening. In your current state, walking it yourself will not make the flight.</blockquote>
+                      <p>At <strong>Nice check-in</strong>, hand over your booking code and passport and clearly request: (1) confirm the bag is tagged to <strong>SEA</strong>; (2) book <strong>LHR wheelchair assistance</strong> on the spot, telling them the connection is only 1 hour and you're injured. Then at London, a wheelchair agent meets you at the jet bridge and takes you via the <strong>Fast Track</strong> green lane past the security queue — the only way to make the Seattle flight in an hour.</p>
+                    </div></div></div>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Where and when should I request this connection wheelchair assistance?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Since you've already checked in at Nice, <strong>don't wait until the gate</strong> — the safest is to find ground staff (or a help desk) in the Nice departures hall now. Nice Airport has dedicated passenger assistance; the earlier BA notes it in the system at Nice, the earlier Heathrow can have someone waiting at the jet bridge.</p>
+                      <p><strong>Find BA ground staff:</strong> return to the BA counter, or go to your gate, or look for an <strong>"Information"</strong> / <strong>"Service Plus" / "Accompagnement"</strong> desk. Show this French line:</p>
+                      <blockquote>"Bonjour, je me suis blessé à la jambe droite. Je viens de m'enregistrer pour mon vol. Comme j'ai une escale très courte d'une heure à Londres Heathrow, est-il possible d'ajouter une assistance handicapé / fauteuil roulant (Wheelchair Assistance) pour mon transfert à Londres ? Merci."<br><span style="color:#888;font-size:0.92em">(Hi, I injured my right leg. I just checked in for my flight. Since I only have a very short 1-hour connection at London Heathrow, could you add wheelchair assistance for my London transfer? Thanks.)</span></blockquote>
+                      <p>If they enter it, they'll say <strong>"C'est fait" (done)</strong>. To be safe, confirm the code — for a short-distance leg injury it's <strong>WCHS</strong> (can't walk far but can board) or <strong>WCHR</strong>.</p>
+                    </div></div></div>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">After they say "C'est fait," how do I double-check in French that the code is really in the system?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>To double-check the code with them in French:</p>
+                      <blockquote>"Merci. Est-ce que vous avez bien enregistré le code WCHR ou WCHS pour l'assistance à Londres ?"<br><span style="color:#888;font-size:0.92em">(Thanks. Did you register the WCHR or WCHS code for the London assistance?)</span></blockquote>
+                      <blockquote>"C'est juste pour être sûr que la demande de fauteuil roulant apparaisse bien dans le système à Heathrow."<br><span style="color:#888;font-size:0.92em">(Just to be sure the wheelchair request shows in the Heathrow system.)</span></blockquote>
+                      <p><strong>💡 They'll likely reply:</strong></p>
+                      <blockquote>"Oui, c'est bien confirmé en WCHR / WCHS." <span style="color:#888;font-size:0.92em">(Yes, confirmed as WCHR / WCHS.)</span> · "Tout est bon dans le système pour Londres." <span style="color:#888;font-size:0.92em">(Everything's set for London.)</span></blockquote>
+                      <p>Once you hear <strong>"Oui"</strong> or see them nod, your London wheelchair service is locked in.</p>
+                    </div></div></div>
+
+                    <p class="sub-h">💶 Airport tax refund (Détaxe)</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">What can I get refunded on the way home, where, and how?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>In France (and the EU), the core rule of the tax refund (Détaxe / Tax Free): only <strong>"goods"</strong> you buy and take home unused qualify; all <strong>"services, dining, medical"</strong> never do. Sort your receipts:</p>
+                      <ul>
+                        <li><strong>Refundable:</strong> clothes, bags, cosmetics, electronics, sealed souvenirs taken home.</li>
+                        <li><strong>Not refundable:</strong> restaurants, hotels, car/taxi, train tickets, and all the medical costs (Hôpital Pasteur, pharmacy) and the Donjoy boot. (No worries — the medical and boot go on the travel credit card's insurance back home.)</li>
+                      </ul>
+                      <p><strong>🛍️ The key prerequisite:</strong> a plain receipt (Ticket de caisse) can't be refunded at the airport. When buying (≥ €100 at one store), show your passport on the spot so the clerk prints a proper <strong>refund form (Formulaire de détaxe, by Global Blue or Planet)</strong> with a barcode; without it you can't refund later.</p>
+                      <p><strong>📍 Where (recommend Nice NCE):</strong> France uses the <strong>PABLO electronic refund system</strong>. T1 near Gate 2, T2 near Gate 3 (before check-in/security). Find the orange PABLO kiosk, switch to your language, scan the barcode:</p>
+                      <ul>
+                        <li><strong>Green (✓):</strong> customs e-stamp done; if you linked a card at purchase, the money returns in a few weeks.</li>
+                        <li><strong>Red (✗):</strong> manual review — go to the Douane (customs) desk with passport, receipts, and the unopened goods for a hand stamp.</li>
+                      </ul>
+                    </div></div></div>
+                  </div>
+
+                  <hr>
+
+                  <h3>🚨 Safety: the Riviera's "pickpocket ecosystem"</h3>
+
+                  <div style="margin: 8px 0 20px 0; padding: 16px 22px; background: rgba(224,85,85,0.07); border-left: 4px solid #e05555; border-radius: 6px;">
+                    <p style="font-size: 1.08em; font-style: italic; line-height: 1.6; margin: 0 0 6px 0;">"Watch out, pickpockets."</p>
+                    <p style="font-size: 0.85em; color: #888; margin: 0;">— a staff member openly warning the waiting crowd, in the NCE passport-control line right after we landed</p>
+                  </div>
+
+                  <p>The South of France is pickpocket territory, so before the trip I also had Gemini explain "why so many thieves" and "how safe Nice really is."</p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>What Gemini helped with</span>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Why does the South of France have so many pickpockets?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>The Riviera (Nice, Marseille, Cannes) is Europe's pickpocket "hot zone" not because locals turned bad, but because a warped "theft ecosystem" formed. A few blunt reasons:</p>
+                      <ol>
+                        <li><strong>A paradise of rich, relaxed marks:</strong> a top resort where wealthy tourists pile in each summer; vacation minds drop their guard; people carry premium cameras, designer bags, the latest iPhones, even cash — "gold everywhere" to a thief.</li>
+                        <li><strong>Easy geography (perfect getaway):</strong> one main coastal rail line (TER) — steal in Cannes, fence in Nice 20 min later; the Italian border (Ventimiglia) is ~40 min by train, so cross-border gangs slip across the same night, beyond French police reach.</li>
+                        <li><strong>Very light penalties:</strong> non-violent theft is treated leniently — caught without violence usually means a statement and a few hours' hold; gangs bring in minors (hard to sentence); summer police are stretched, so a "lost wallet / balcony climb" is basically logged for the insurance claim.</li>
+                        <li><strong>Old architecture aids the "balcony crews":</strong> ornate façades, columns, walkways, and iron balconies are like climbing holds; summer travelers leave balcony doors ajar for air — a green light.</li>
+                      </ol>
+                      <blockquote>💡 In a line: theft here is "high reward, low cost and risk." But don't panic — these thieves are opportunists who only pick the easiest targets.</blockquote>
+                    </div></div></div>
+
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Is Nice safe overall? What should I watch for?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Nice ranks mid-tier among major European tourist cities — generally safe, but watch specific street crime:</p>
+                      <p><strong>🚨 The main risk is theft</strong> (violent crime is rare, but pickpocketing, bag- and phone-snatching are common). High-risk spots:</p>
+                      <ul>
+                        <li>The Promenade des Anglais and the narrow streets of Vieux Nice (old town) — pickpocket central.</li>
+                        <li>On the beach: never leave your bag or phone while you swim.</li>
+                        <li>Nice-Ville central station and around it: shady at night, frequent theft.</li>
+                        <li>Late at night on quiet lanes, watch who's behind you.</li>
+                      </ul>
+                      <p><strong>💡 Tips:</strong> don't flash valuables or count large cash in public; wear your bag in front, not on the chair back; be wary of "ask for directions / sign a petition / help with your bag" scams — decline politely and move on; avoid dark side streets alone late at night, and pair up.</p>
+                    </div></div></div>
+                  </div>
+
+                  <hr>
+
+                  <h3>🤔 Gemini Hallucinates Too</h3>
+
+                  <p>
+                    Of course, it isn't always right. One night at a four-star hotel, worried a thief might climb in from the balcony, I asked Gemini — and got a full, battle-ready "anti-balcony-intrusion" plan:
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>What Gemini helped with</span>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Is balcony break-in theft common at Nice hotels? The front desk won't move my room — what do I do tonight?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Honestly, balcony break-ins targeting tourists aren't rare on the Riviera — the South of France has one of France's highest burglary rates. Thieves favor two targets: low floors or rooms with climbable balconies, and relaxed, off-guard tourists.</p>
+                      <p><strong>Typical MOs:</strong></p>
+                      <ul>
+                        <li><strong>Deep-night entry:</strong> 2–5 AM over the balcony, quiet, grabbing cash/watch/wallet/phone left on the table.</li>
+                        <li><strong>"Balcony grab" while distracted:</strong> when you shower or lie in bed on your phone with the balcony ajar, they reach in and hook valuables.</li>
+                        <li><strong>Rooms facing the elevator:</strong> hallway traffic can see your room's layout during cleaning or your comings-and-goings.</li>
+                      </ul>
+                      <p><strong>Tonight's "iron rules" (since they won't change your room):</strong></p>
+                      <ol>
+                        <li><strong>Never leave the balcony door cracked:</strong> lock it fully; run the A/C, or endure the heat — most balcony thefts happen through a cracked door.</li>
+                        <li><strong>Split up valuables:</strong> lock passport/cash/cards/laptop in the safe or a hard suitcase with a scrambled lock; don't leave watch/wallet/phone on the nightstand.</li>
+                        <li><strong>Set up a noise barrier:</strong> wedge a chair or suitcase hard against the balcony door, with a glass upside-down on top.</li>
+                      </ol>
+                      <p>Lock the balcony, secure the suitcase, brace the door, and the room becomes a "hard target" — a thief who can't push it open or hears movement will give up and move on.</p>
+                    </div></div></div>
+                  </div>
+
+                  <p>
+                    …And the result? <strong>All four nights at the hotel were perfectly fine — nobody climbed the balcony.</strong> Maybe it was just too hot that week and the thieves were too lazy. In hindsight the "brace-the-door + upside-down-glass" plan was a bit much — AI is powerful, but it still needs common sense to keep it in check: it's the co-pilot, not the autopilot.
+                  </p>
+
+                  <hr>
+
+                  <h3>🇫🇷 A Few Differences from the US</h3>
+
+                  <p>A few everyday differences I noticed between the South of France and the US:</p>
+                  <ul>
+                    <li><strong>Greetings matter.</strong> Open with <em>Bonjour</em> when entering a shop or asking directions, and <em>Merci</em> when leaving or helped — I tacked a <em>merci</em> onto nearly every sentence.</li>
+                    <li><strong>No tipping culture</strong> — the bill is basically the final price.</li>
+                    <li><strong>Free tap/mineral water</strong> is standard at restaurants.</li>
+                  </ul>
+
+                  <div class="fact-box">
+                    <p style="margin:0 0 8px 0;"><strong>🌡️ Heat alert: I caught the Ironman cancellation.</strong></p>
+                    <p style="margin:0;">
+                      While I was in the South of France, a historic heatwave swept Europe. The Alpes-Maritimes prefecture, citing an <strong>orange heat alert</strong>, outright cancelled the <strong>IRONMAN France Nice</strong> and IRONMAN 70.3 Nice races set for <strong>June 28</strong>, affecting ~<strong>4,500</strong> athletes who'd already arrived on the Riviera.
+                      (Sources: <a href="https://www.220triathlon.com/news/ironman-nice-cancelled" target="_blank" rel="noopener">220 Triathlon</a> · <a href="https://www.tri247.com/triathlon-news/elite/ironman-forced-to-cancel-nice-races-as-scorching-temperatures-lead-to-health-concerns" target="_blank" rel="noopener">Tri247</a>)
+                    </p>
+                  </div>
+
+                  <hr>
+
+                  <h3>Closing</h3>
+
+                  <p>
+                    On this South-of-France trip, Gemini ran alongside me almost the whole way — time-zone math, finding luggage, planning transit, ordering food, emergency care, cross-border accessibility, the transfer connection. It isn't perfect and occasionally gave bad advice, but for someone who isn't great at long trips, it landed this chaos-filled journey safely.
+                  </p>
+                  <p>
+                    <strong>AI assistants are becoming that "indispensable tool" in everyday life.</strong> Merci, Gemini. 🙏
+                  </p>
+
+                  </div><!-- /lang-en -->
+
+                  <div class="lang-zh">
+
+                  <p>
+                    六月假期，跑完波士顿的 <strong>B.A.A. 10K</strong> 之后，趁着法国（FRA）签证过期前，去了一趟南法蔚蓝海岸（<strong>French Riviera / Côte d'Azur</strong>）。这是第二次来欧洲——上一次还是 2023 年的荷兰🇳🇱。
+                  </p>
+
+                  <p>
+                    这趟旅程带来一个深切的体会：<strong>人工智能助理正在逐渐变成个人生活里不可或缺的工具</strong>。从航班四次延误、行李失踪，到点餐、就医、跨国无障碍通道，几乎每一步都离不开 <strong>Google Gemini</strong>。这篇文章按行程的每一个环节，记录 Gemini 具体帮上了什么忙（也包括它偶尔出的馊主意）。
+                  </p>
+
+                  <p>
+                    这趟主要靠两个 App：<strong>Google Gemini</strong> 是贯穿全程的主力（查询、翻译、应急、规划都靠它），<strong>Rednote（小红书）</strong>则用来做旅行 tips 的侧面参考（本地人推荐、避坑、打卡点）。一个有意思的发现：在法国，Google 搜索<strong>没有 AI Mode</strong>，于是全程干脆直接用 Gemini App。
+                  </p>
+
+                  <hr>
+
+                  <h3>🎒 行前准备：eSIM、转换插头、现金</h3>
+
+                  <p>出发前，Gemini 帮忙搞定了几件"上路前必办"的小事：eSIM 上网、电源转换插头、以及要不要换现金。</p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>Gemini 帮上了什么忙</span>
+
+                  <p class="sub-h">📱 上网与电话卡：eSIM（Airalo）</p>
+                  <p>
+                    这次用的是 <strong>Airalo</strong> 的 eSIM，装了一个 <strong>7 天 / 5GB</strong> 的法国流量包——落地即联网，省去到当地再找实体 SIM 卡的麻烦，也让后面查地图、查行李、订餐、买火车票全程有网可用。出发前先用 Gemini 对比了不同 eSIM 方案（覆盖国家、流量额度、价格），并搞清楚购买、安装与落地后启用数据漫游的步骤。
+                  </p>
+
+                  <p class="sub-h">🔌 电源转换插头（美标 → 欧标）</p>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">美国到法国需要转换插头吗？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>是的，从美国到法国旅游<strong>必须使用转换插头</strong>。美国标准电压 120V / 60Hz，用 A/B 型扁头插座；法国标准电压 230V / 50Hz，用 C/E 型圆头插座。两个核心区别：</p>
+                      <p><strong>1. 插头形状不同（必须用转换插头）</strong></p>
+                      <ul>
+                        <li>美国插头：两脚扁型（A 型）或两扁 + 一圆脚（B 型）。</li>
+                        <li>法国插座：两脚圆型（C 型）或两圆脚带一接地棒（E 型）。</li>
+                        <li>解决方案：买一个"美标转欧标（US → EU）"转换插头，或直接带一个全球通用转换头。</li>
+                      </ul>
+                      <p><strong>2. 电压不同（需检查设备电压）</strong>——法国 230V 几乎是美国 120V 的两倍：</p>
+                      <ul>
+                        <li><strong>手机、笔记本（如 MacBook）、平板、相机：</strong>电源适配器通常是宽电压（标 INPUT: 100–240V, 50/60Hz），在法国直接接转换插头即可，不需要变压器。</li>
+                        <li><strong>吹风机、卷发棒、电动剃须刀：</strong>这类加热工具常固定 120V，直接插法国电会因电压过高烧毁甚至起火；除非标有 110–240V 双电压，否则需额外买大功率变压器（Converter），或直接在当地酒店借用/购买。</li>
+                      </ul>
+                    </div></div>
+                  </div>
+
+                  <p class="sub-h">💶 要不要换现金？</p>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">去 Nice 需要换现金（cash）吗？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>去尼斯旅游不需要换大量现金——当地可广泛刷卡（Visa/Mastercard，普遍支持 Contactless 感应支付），但建议随身备<strong>少量零钱（约 50–100 欧）</strong>：</p>
+                      <ul>
+                        <li><strong>能刷卡的场景（绝大多数）：</strong>餐厅、超市、酒店、百货、公共交通（轻轨、火车）都支持刷卡/感应支付。</li>
+                        <li><strong>需要现金的场景：</strong>当地市集（如萨莱亚花市）、小型街边面包店、低额消费、给小费；有些公共洗手间也需要硬币。</li>
+                        <li><strong>怎么换最划算：</strong>抵达后直接用"免境外手续费的借记卡"在当地 ATM 取现最省钱；别在机场换汇（汇率差），要换就去市区兑换点（如 Globex），并带小面额纸钞（€5/€10/€20，店家常不收大面额找零）。</li>
+                      </ul>
+                    </div></div>
+                  </div>
+                  </div>
+
+                  <hr>
+
+                  <h3>🚋 交通：从航班、行李到市内与跨城火车</h3>
+
+                  <p>
+                    从波士顿到尼斯的红眼航班、落地找行李、市内电车到跨城 TER 火车——这一路的交通几乎全程靠 Gemini。说到欧洲的火车我其实有心理阴影：2023 年在阿姆斯特丹地铁换乘闹过大乌龙（<a href="https://x.com/pymhq/status/1647572777560334337?s=20" target="_blank" rel="noopener">见当时的吐槽推文</a>），所以这次每段都提前让它规划。下面只摘选几个最有代表性的片段。
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>Gemini 帮上了什么忙</span>
+
+                    <p class="sub-h">✈️ 航班四次延误：红眼变通宵</p>
+                    <p>Delta 从波士顿 (BOS) 直飞尼斯 (NCE) 的红眼航班，原计划 8:00 PM 起飞、次日 9:35 AM 抵达，却一再延误：8:00 PM → 11:25 PM → 12:15 AM → 1:10 AM 才起飞。</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">航班一直延误，帮我按最新起飞时间重新算抵达尼斯的时间——我当晚（尼斯时间）有个线上会议不能错过。</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p>每次航班更新起飞时间，Gemini 都根据最新起飞时刻、飞行时长和 BOS/NCE 时区，重新推算抵达 NCE 的时间，我据此调整了当晚一个重要的 kick-off 线上会议。它还教我怎么用第一次拿到的餐食补偿券（Meal Voucher）——扫二维码一直不成功，是它一步步带着兑换的。</p></div></div></div>
+
+                    <p class="sub-h">🧳 行李失踪：在 NCE 等了两个多小时</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">托运行李等了两个多小时还没出来，怎么办？</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p>Gemini 讲清了处理流程——去哪找地勤、如何提交行李遗失申报、要保留哪些凭证。最后是同航班的一位妈妈发现，一小部分行李被放到了航站楼另一个角落的传送带上，我才在那儿找回箱子。</p></div></div></div>
+
+                    <p class="sub-h">🛬 机场到市区：€10 游客票 vs €1.70 本地价</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">机场售票机只卖 €10 的往返票，怎么才能只花 €1.70 进城？</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p>机场航站楼外的售票机被设了"游客限制"，只卖 €10 往返特票。省钱办法：轻轨 2 号线在机场到市区交界的前几站（到 <strong>Grand Arénas</strong> 站）完全免费——空手上车坐 1 站到 Grand Arénas 下车，在站台机器买 €2 实体卡 + €1.70 单程票，再刷卡直达市中心 Jean Médecin。</p></div></div></div>
+
+                    <p class="sub-h">🎟️ T1 电车 vs TER 火车</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">尼斯的 T1 和 TER 有什么区别？分别怎么买票？</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p><strong>T1（Tramway）</strong>是市内有轨电车；<strong>TER</strong>是法国国铁区域火车，去昂蒂布、戛纳、自由城、芒通等跨城用。T1 在站台机器买票、上车"嘀"卡验票（漏验被查罚 60 欧起）；TER 最省事是用官方 App <strong>SNCF Connect</strong> 买电子票（当天不限班次、不对号入座），或在火车站蓝色机器买纸质票（纸质票上车前必须在黄色打票机打戳）。</p></div></div></div>
+
+                    <p class="sub-h">🖼️ 彩蛋：沃邦港的《盲目》雕塑</p>
+                    <p>昂蒂布出站往<strong>左</strong>走平路就到沃邦港（别往右爬老城碎石坡）。港口长椅上坐着一座头扣油漆桶、低头玩手机的青铜雕塑——在这趟"全程离不开手机 AI"的旅行里，忍不住让 Gemini 查了查它。</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">沃邦港长椅上那个头扣油漆桶、低头玩手机的雕塑是什么？</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en"><p>这是法国当代艺术家 <em>David David</em> 的作品《盲目》（Blind）：一个头戴油漆桶的人坐在长椅上专注刷手机，讽刺现代人的"数字盲目"——本该欣赏眼前的海岸，却用一个"桶"把自己与真实世界隔绝。它没有面孔、没有身份，像一面公共镜子，让每个低头刷手机的路人都照见自己。</p></div></div></div>
+                    <figure style="margin:12px 0 2px 0; text-align:center;"><img src="/assets/blog/french-riviera/blind-sculpture.jpg" alt="David David《盲目》Blind 雕塑" style="width:100%; max-width:420px; height:auto; border-radius:8px; display:inline-block;" draggable="false"><figcaption style="font-size:0.82em; color:#888; margin-top:6px;">昂蒂布沃邦港的《盲目》（Blind）雕塑 · <em>David David</em></figcaption></figure>
+
+                    <p class="sub-h">📍 各城落地一句话</p>
+                    <p>戛纳出站全是平路，直奔影节宫红毯 + La Croisette 蓝色大长椅；回程在 App 里目的地输 <code>Nice Ville</code>（尼斯总站）。四天行程被 Gemini 改了好几版——从"含意大利圣雷莫"到去掉意大利、再到骑车摔伤后的"精简躺平版"，这种反复调整本身也是这趟旅行最真实的注脚。</p>
+                  </div>
+
+                  <hr>
+
+                  <h3>📮 小心愿：寄明信片、盖尼斯邮戳、戛纳找手印</h3>
+
+                  <p>
+                    除了看海，这趟还有几个"小心愿 / side quest"：给自己和朋友寄明信片、一定要盖上"尼斯（NICE）"字样的邮戳、以及在戛纳影节宫找电影明星的手印。这些琐碎但要紧的小事，Gemini 也一路帮着搞定。
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>Gemini 帮上了什么忙</span>
+
+                  <p class="sub-h">✉️ 寄明信片：周日邮局关门 &amp; 一定要盖尼斯邮戳</p>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">明天周日想寄明信片，邮局开门吗？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p><strong>明天周日（6月28日）邮局全天都不开门。</strong>法国所有 La Poste 官方邮局周日统一休息（Fermé），包括离酒店最近的中央大邮局（La Poste NICE THIERS）明天也关门。</p>
+                      <p><strong>💡 急着寄明信片可以这样办：</strong></p>
+                      <ol>
+                        <li><strong>买邮票（Timbres）：</strong>去街边的 Tabac（烟草纪念品杂货店）或老城书报亭，大多卖寄海外的国际邮票，周日多开门。</li>
+                        <li><strong>寄明信片：</strong>贴好邮票后直接投进街边或邮局门口那种黄色的 La Poste 邮筒，不用等邮局开门排队。</li>
+                        <li><strong>周一再去柜台：</strong>要办柜台业务，最近的 Nice Thiers 邮局（21 Avenue Thiers）周一 08:00 开门。</li>
+                      </ol>
+                    </div></div>
+                  </div>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">我想让明信片盖上"尼斯"的邮戳，又不想让受伤的脚走冤枉路，怎么办最稳？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>关键点：在法国，把明信片直接塞进路边黄色邮筒，会被集中送到区域处理中心机械盖戳，<strong>无法保证盖上"NICE"字样</strong>。</p>
+                      <p>最稳妥的办法：<strong>周一上午出发去昂蒂布之前，先去酒店楼下的尼斯大邮局柜台，让工作人员人工盖章（Oblitération à la main）后当面投递！</strong></p>
+                      <p><strong>📍 尼斯人工盖章救急点（步行 3 分钟平路）：</strong>离你最近的是 <strong>La Poste NICE THIERS</strong>（21 Avenue Thiers，就在火车站旁），周一 08:00 开门、开到 18:00。进去把明信片递给柜台，对小哥说：</p>
+                      <blockquote>"Pouvez-vous tamponner à la main avec le cachet de Nice, s'il vous plaît ?"<br><span style="color:#888;font-size:0.92em">（请帮我人工盖上尼斯的邮戳，谢谢。）</span></blockquote>
+                      <p>看着他盖完章，完美解决——盖完立马无缝上火车去昂蒂布。</p>
+                      <figure style="margin:12px 0 2px 0; text-align:center;">
+                        <img src="/assets/blog/french-riviera/nice-postmark.jpg" alt="人工盖上的尼斯（NICE）邮戳明信片" style="width:100%; max-width:520px; height:auto; border-radius:8px; display:inline-block;" draggable="false">
+                        <figcaption style="font-size:0.82em; color:#888; margin-top:6px;">柜台人工盖上的"尼斯（NICE）"邮戳</figcaption>
+                      </figure>
+                    </div></div>
+                  </div>
+
+                  <p class="sub-h">🎬 戛纳找手印</p>
+                  <p>
+                    戛纳影节宫红毯周边的地面上，嵌着许多电影大师和明星的手印——特意想去找找<em>昆汀·塔伦蒂诺（Quentin Tarantino）</em>的那一枚，也顺手让 Gemini 帮忙确认了几位好莱坞巨星到底有没有在这里"落户"。（打卡红毯的无痛路线见上面"各城落地 · 戛纳"一节。）
+                  </p>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en"><em>昆汀·塔伦蒂诺</em>的手印具体在影节宫哪个位置？怎么找？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>如果你面向影节宫标志性的红毯台阶（背对大海、面朝建筑大门），<em>昆汀·塔伦蒂诺（Quentin Tarantino）</em>的手印在<strong>红毯的左手边区域</strong>。定位路线：</p>
+                      <ol>
+                        <li><strong>找到参照物：</strong>先走到影节宫那排铺着红地毯的著名阶梯前（电影节明星合影处）。</li>
+                        <li><strong>定位左侧：</strong>面向台阶，往你的<strong>左手边</strong>（靠近旧港、旅游局 Tourist Office 这一侧的地面）走。</li>
+                        <li><strong>寻找地砖：</strong>昆汀的手印属于 1994 年那批，就在大台阶左侧下方的<strong>蓬皮杜大广场（Esplanade Georges Pompidou）</strong>步行道地砖上。</li>
+                      </ol>
+                      <p><strong>寻找小窍门：</strong>在红毯左侧密集的金属手印里，重点找 <strong>"Q" 开头的连笔签名</strong>。昆汀的签名非常狂放潦草，手印上方有明显带圈圈的 <strong>"Quentin"</strong>、下方长长的 <strong>"Tarantino"</strong> 刻字，地砖中间是他按下的一双掌纹，看到 1994 的年份就能确认。</p>
+                    </div></div>
+                  </div>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en"><em>布拉德·皮特</em>的手印在戛纳吗？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>这里涉及一个著名的星光大道"美丽的误会"：<em>布拉德·皮特（Brad Pitt）</em><strong>在戛纳影节宫外的星光大道上，其实并没有留下实体手印。</strong>网上他微笑按手印的照片，其实来自：</p>
+                      <ol>
+                        <li><strong>好莱坞中国大剧院：</strong>2007 年为宣传《十三罗汉》（Ocean's Thirteen），与<em>乔治·克鲁尼</em>、<em>马特·达蒙</em>等在好莱坞按下手印。</li>
+                        <li><strong>多维尔美国电影节：</strong>他在法国另一个电影节（Deauville）留过纪念，而不是南法的戛纳。</li>
+                      </ol>
+                      <p><strong>为什么皮特在戛纳没有手印？</strong>他绝对是戛纳常客（《无耻混蛋》《好莱坞往事》《生命之树》）。但戛纳星光大道（Chemin des Étoiles）总共只有约 150–300 多块手印，很多超一线巨星（皮特、小李子、阿汤哥）行程极紧，只参加首映、拍照会和晚宴，没特意配合组委会做手模翻铸。</p>
+                      <p><strong>总结：</strong>低头找时能找到《落水狗》导演昆汀（2003 年，红毯左侧区域），但不用费力找皮特或小李子的手印了。</p>
+                    </div></div>
+                  </div>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">那<em>约翰尼·德普</em>（杰克船长）的手印呢？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>杰克船长的扮演者<em>约翰尼·德普（Johnny Depp）</em><strong>，在戛纳星光大道上同样没有实体手印。</strong>他是戛纳常客（《加勒比海盗4》、2023 年《杜巴利伯爵夫人》开幕片高调回归），但地面没有他的手印，原因相似：</p>
+                      <ul>
+                        <li><strong>没参与留印仪式：</strong>戛纳星光手印（Chemin des Étoiles）基本靠"缘分"——组委会通常在影人参加特定官方纪念活动、大师班或担任评委会主席时才邀请留印。德普每次来去匆匆，没留出时间做手模翻铸。</li>
+                        <li><strong>他的主场在好莱坞：</strong>想看德普的掌纹和鞋印，在<strong>好莱坞星光大道</strong>和 <strong>TCL 中国大剧院</strong>前的广场地面上。</li>
+                      </ul>
+                      <p>所以在影节宫大台阶附近，可锁定<em>昆汀·塔伦蒂诺</em>（2003 年，红毯左侧区域）和<em>王家卫</em>（WKW，影节宫正门口），德普船长的手印在南法找不到。</p>
+                    </div></div>
+                  </div>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en"><em>金·凯瑞</em>（《楚门的世界》）的手印呢？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>《楚门的世界》男主<em>金·凯瑞（Jim Carrey）</em><strong>，在戛纳星光大道上也没有实体手印。</strong>（虽然 2022 年第 75 届戛纳官方主视觉海报正是致敬《楚门的世界》触碰蓝天假墙的剧照。）他标志性"按手印"照片的真实坐标：</p>
+                      <ul>
+                        <li><strong>唯一实体手印地点：</strong>洛杉矶好莱坞 <strong>TCL 中国大剧院</strong>。</li>
+                        <li><strong>留印时间：</strong>1995 年 11 月 2 日，与<em>克林特·伊斯特伍德</em>、<em>杰·雷诺</em>等一起出席，按下极其搞怪、张开双手的掌纹和狂放签名。</li>
+                      </ul>
+                      <p>所以在戛纳，大牌好莱坞男星区域基本是空白。影节宫左侧和正门前最值得寻访的，还是几位与欧洲电影节渊源极深的人：</p>
+                      <ul>
+                        <li><em>昆汀·塔伦蒂诺</em>（2003 年，红毯左侧区域）</li>
+                        <li><em>王家卫</em>（标 WKW，影节宫正门口）</li>
+                        <li><em>黑泽明</em>（AK，影节宫附近）</li>
+                      </ul>
+                      <p>到影节宫门口，直接锁定大台阶左侧和正门前，找这几块地砖最稳妥。</p>
+                    </div></div>
+                  </div>
+
+                  <figure style="margin:16px 0 4px 0; text-align:center;">
+                    <img src="/assets/blog/french-riviera/cannes-handprint.jpg" alt="戛纳影节宫星光大道上的手印" style="width:100%; max-width:420px; height:auto; border-radius:10px; display:inline-block;" draggable="false">
+                    <figcaption style="font-size:0.85em; color:#888; margin-top:8px;">与戛纳影节宫（Palais des Festivals）星光大道上昆汀的手印合影</figcaption>
+                  </figure>
+                  </div>
+
+                  <hr>
+
+                  <h3>🩺 意外处理：药品、就医与行程调整</h3>
+
+                  <p>
+                    旅途中还是出了状况——有一天在尼斯的<strong>英国人大道（Promenade des Anglais）</strong>海边骑车，然后摔倒了。😅接下来的自救、买药、看急诊、以及受伤后重排行程，几乎全靠 Gemini 一步步带着走。
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>Gemini 帮上了什么忙</span>
+                    <p>识别药店买的喷雾到底能不能消肿、教 R.I.C.E. 应急处理；讲清外国人看急诊的现场流程和高频法语；说明美国医保在法国怎么用、要留哪些报销凭证；以及拿到步行靴后哪些城市能去、哪些要放弃。</p>
+
+                  <p class="sub-h">💊 药品 &amp; 应急处理（送医之前）</p>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">药店给的白色喷雾能缓解脚趾肿胀吗？还能怎么处理？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>摔伤了真挺让人心疼的，尤其膝盖和脚趾这种一动就牵扯到的地方。药店那款<strong>白色喷雾</strong>能不能消肿，主要看成分：</p>
+                      <ol>
+                        <li><strong>冷感/镇痛喷雾（运动损伤冷敷剂、利多卡因喷雾等）：</strong>喷上去冰冰凉凉、甚至结白霜，靠迅速降温收缩血管、减轻充血和痛觉。<strong>对急性肿胀有效</strong>（受伤后 24–48 小时内冷敷效果好）。</li>
+                        <li><strong>消毒/皮肤喷雾（苯扎氯铵、白药喷雾等）：</strong>偏向消炎、杀菌、止血，主要保护伤口不感染，对脚趾的物理肿胀直接缓解有限。</li>
+                      </ol>
+                      <blockquote>看瓶身说明：写"冷敷/固定冷却/运动扭伤"就放心喷肿了的脚趾；写"伤口护理/消毒"就更适合膝盖流血处。</blockquote>
+                      <p><strong>除了喷雾，脚拇指肿了还可以按 R.I.C.E. 原则（最适用冷敷 + 抬高）：</strong></p>
+                      <ul>
+                        <li><strong>冷敷（Ice）：</strong>冰袋或毛巾裹冰镇饮料敷脚趾，每次 15–20 分钟，一天几次。前两天千万别热敷，会加重肿胀。</li>
+                        <li><strong>抬高（Elevate）：</strong>休息时用枕头把脚垫高于心脏，促进血液回流消肿。</li>
+                        <li><strong>减少负重：</strong>尽量少走动，别让大拇指用力。</li>
+                      </ul>
+                      <p>⚠️ <strong>什么时候去医院：</strong>若完全无法下地、脚趾明显变形歪斜、或剧痛难忍，去拍 X 光排除骨折/关节脱位。膝盖伤口先用生理盐水或清水冲净再涂碘伏，这两天洗澡别碰水。</p>
+                    </div></div>
+                  </div>
+
+                  <p class="sub-h">🏥 就医：急诊流程 &amp; 保险报销</p>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">决定去看急诊了，外国人现场流程是什么？有没有能直接出示的法语？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p><strong>📝 外国人看急诊现场流程与高频法语。</strong>到急诊大厅后，到前台（Accueil）排队登记分诊（Triage）。</p>
+                      <p><strong>1. 现场登记需要什么？</strong></p>
+                      <ul>
+                        <li><strong>护照（Passeport）：</strong>必须提供，用于登记身份。</li>
+                        <li><strong>酒店地址与电话：</strong>告诉他们住在 酒店。</li>
+                        <li><strong>支付与保险：</strong>现场通常先用信用卡自费结算（挂号+诊疗+拍片约 100–300 欧元）。务必索要 <strong>Feuille de Soins（诊疗单）</strong> 和 <strong>Facture（正式发票）</strong>，带回国找旅游保险可全额理赔。</li>
+                      </ul>
+                      <p><strong>2. 怎么和医生/前台沟通？</strong>把下面这段直接出示给前台或分诊护士看：</p>
+                      <blockquote>"Je suis tombé de vélo cet après-midi. Mon genou saigne et mon gros orteil gauche ainsi que ma plante du pied sont très gonflés. Je ne peux pas poser le pied par terre. J'ai besoin d'une radiographie pour vérifier s'il y a une fracture."<br><span style="color:#888;font-size:0.92em">（我今天下午骑车摔倒了。膝盖在流血，左脚大拇指和脚掌肿得很厉害，脚完全无法着地。需要拍 X 光片检查是否骨折。）</span></blockquote>
+                      <p>💡 <strong>出发去医院前：</strong>尽量穿宽松拖鞋或把鞋带完全解开的运动鞋（脚肿时硬鞋会挤压受伤部位引发剧痛）；走路让同伴搀扶，或向前台借把雨伞当临时拐杖。</p>
+                    </div></div>
+                  </div>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">法国公立医院（巴斯德医院）能刷美国医保卡吗？费用怎么算、怎么报销？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p><strong>法国公立医院（如巴斯德医院 Hôpital Pasteur）通常无法直接刷美国商业医保卡（Blue Cross、Aetna、Cigna 等）。</strong>作为外国人，流程是"先自费垫付、回国后报销"。但不用太担心：</p>
+                      <p><strong>1. 法国公立医院急诊很便宜：</strong>有国家限价。挂急诊+面诊+X 光全套通常 <strong>100–300 欧元</strong>（约 110–330 美元），可能比美国急诊的免赔额还低，可直接用带芯片的美国信用卡（Visa/Mastercard）现场结算。</p>
+                      <p><strong>2. 美国医保大概率支持"境外紧急医疗报销"：</strong>多数优质商业医保（尤其公司买的 PPO）含 Emergency Medical Coverage Abroad，骑车摔伤属典型紧急医疗，现场付清后索要报销凭证即可。</p>
+                      <p><strong>📝 离院前必须索要的"回国报销三件套"</strong>（去结算柜台 Bureau des Entrées / Caisse 说明要回美国报销）：</p>
+                      <ol>
+                        <li><strong>Facture Acquittée（已付款正式发票）</strong>：证明付了多少钱。</li>
+                        <li><strong>Feuille de Soins（诊疗单）</strong>：有官方盖章和医生签字，写明诊疗项目。</li>
+                        <li><strong>Compte-rendu médical / Radio（医疗报告与 X 光片）</strong>：诊断书 + X 光（纸质报告，或带网址密码的卡片在线下载数字片）。</li>
+                      </ol>
+                      <blockquote>💡 用来买机票的信用卡（很多中高端旅行信用卡）常自带 Travel Insurance，医药费甚至拐杖钱都可能全额报销；若单独买了旅游险（Allianz、AXA 等）可打 24 小时热线，甚至提供在线翻译。</blockquote>
+                    </div></div>
+                  </div>
+
+                  <p class="sub-h">🥾 受伤后行程调整（Donjoy 步行靴能去哪）</p>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">拿到 Donjoy 步行靴、确认没骨折，接下来哪些城市还能去、哪些要放弃？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>拿到 Donjoy 步行靴、确认没骨折后，只要绑紧，<strong>平地适度步行完全允许</strong>；但大拇指和脚掌挫伤未来 3–5 天仍会红肿胀痛。尼斯周边分两类：</p>
+                      <p><strong>🟢 推荐前往（平地为主）：</strong></p>
+                      <ul>
+                        <li><strong>摩纳哥（Monaco）：</strong>虽建在悬崖上，但室内电梯和自动扶梯极发达；买 Hop-on Hop-off 观光巴士直接送到皇宫、赌场门口，只需走几步平路。</li>
+                        <li><strong>戛纳（Cannes）：</strong>核心景区（影节宫、La Croisette 海滨大道）纯平地，沿途大量"蓝色椅子"随时坐下休息。</li>
+                      </ul>
+                      <p><strong>🔴 强烈建议放弃（全坡路/石子路）：</strong></p>
+                      <ul>
+                        <li><strong>埃兹（Éze）/ 圣保罗德旺斯（Saint-Paul-de-Vence）：</strong>典型"鹫巢村"山顶中世纪小镇，全是极陡斜坡、窄台阶、凹凸鹅卵石路，穿步行靴极易踩不稳二次扭伤，上下坡对脚冲击也大。</li>
+                      </ul>
+                      <p><strong>💡 无痛通关策略：</strong>①打车/火车代替公交，到当地多用 Uber 直送景点门口；②切换"南法度假模式"（看海、发呆、吃美食，租张沙滩躺椅）；③随身带医生开的口服止痛药（Doliprane）和 Voltaren 软膏，胀痛就坐下把脚搁高。</p>
+                    </div></div>
+                  </div>
+                  </div>
+
+                  <hr>
+
+                  <h3>🍽️ 餐厅与点餐</h3>
+
+                  <p>
+                    一个小技巧：热门餐厅最好<strong>提前一小时到</strong>去排队。点餐时常常不知道该点什么饮品，就让 Gemini 根据菜单和当地习惯给推荐。另外，把 Gemini 准备好的法语点餐/沟通句子存进<strong>苹果备忘录（Apple Notes）</strong>，需要时直接给店员看，非常省事。
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>Gemini 帮上了什么忙</span>
+                    <p>推荐饮品；推荐高性价比（EUR 划算）的餐厅；生成可以直接展示给店员的法语点餐/沟通文字。</p>
+
+                    <div class="g-qa">
+                      <div class="q">
+                        <span class="tag">💬 Prompt</span>
+                        <div class="en">帮我把 Le Cénac 的菜单整理成中法对照，方便现场对着点单。</div>
+                      </div>
+                      <div class="a">
+                        <span class="tag">✦ Gemini</span>
+                        <div class="en">
+                          <p>这里为你整理一份 <strong>Le Cénac</strong> 核心菜单的中法对账单，方便你现场对着菜单直接向服务生指指点点（或者直接对照手机下单）：</p>
+                          <p><strong>🐌 Les Entrées / 前菜</strong></p>
+                          <ul>
+                            <li><strong>Escargots de Bourgogne (par 6)</strong><br><em>中文：</em>勃艮第蜗牛（6只装）<br><em>特点：</em>经典的大蒜、欧芹、黄油烤蜗牛。盘底的黄油汁记得拿法棍蘸着吃。</li>
+                            <li><strong>Salade de chèvre chaud</strong><br><em>中文：</em>热山羊奶酪沙拉<br><em>特点：</em>烘烤过的山羊奶酪涂在面包上，搭配绿叶沙拉，带有一点温热的奶香，也是很经典的解腻前菜。</li>
+                          </ul>
+                          <p><strong>🦆 Les Plats / 主菜</strong></p>
+                          <ul>
+                            <li><strong>Confit de canard</strong><br><em>中文：</em>油封鸭腿<br><em>特点：</em>鸭皮香脆，肉质酥烂。通常会配土豆（Pommes de terre）。</li>
+                          </ul>
+                          <hr>
+                          <p><strong>🍷 Les Boissons / 饮品（适合单人点单杯）</strong></p>
+                          <p>如果你想点单杯酒，直接看酒单上的 <strong>Vins au verre</strong>（单杯系列）：</p>
+                          <ul>
+                            <li><strong>Un verre de Vin Rosé</strong> — 一杯桃红葡萄酒（搭配油封鸭，清爽解腻）</li>
+                            <li><strong>Un verre de Vin Blanc Sec</strong> — 一杯干白葡萄酒（搭配蜗牛，去腥提鲜）</li>
+                            <li><strong>Une carafe d'eau</strong> — 一壶免费的自来水/滤水（法国餐厅标配，坐下就可以点）</li>
+                          </ul>
+                          <hr>
+                          <p><strong>🍮 Les Desserts / 甜点</strong></p>
+                          <ul>
+                            <li><strong>Île flottante</strong><br><em>中文：</em>漂浮岛<br><em>特点：</em>打发蛋白霜配香草英式奶酱。口感极轻，吃完大肉后的完美无负担收尾。</li>
+                            <li><strong>Verrine mascarpone du jour</strong><br><em>中文：</em>今日马斯卡彭慕斯杯<br><em>特点：</em>类似提拉米苏基底的奶酪杯，通常会搭配当季的水果（如莓果），酸甜解腻。</li>
+                            <li><strong>Café gourmand</strong><br><em>中文：</em>花式咖啡甜点组合<br><em>特点：</em>一杯浓缩咖啡（Espresso）旁边附带两三款迷你缩小的当日甜点。如果一个人什么甜点都想尝一口，点这个最划算。</li>
+                          </ul>
+                          <hr>
+                          <p><strong>🗣️ 现场实用盲盒短句</strong></p>
+                          <p>点菜时指着菜单说：</p>
+                          <blockquote>"Je vais prendre ça, ça, et ça, s'il vous plaît."（请给我来这个、这个、还有这个。）</blockquote>
+                          <p>要免费的自来水：</p>
+                          <blockquote>"Une carafe d'eau, s'il vous plaît."（请给我来一壶自来水。）</blockquote>
+                          <p>结账时说：</p>
+                          <blockquote>"L'addition, s'il vous plaît."（买单，谢谢。）</blockquote>
+                          <figure style="margin:12px 0 2px 0;">
+                            <img src="/assets/blog/french-riviera/french-meal.jpg" alt="按 Gemini 建议点的法餐" style="width:100%; max-width:520px; height:auto; border-radius:8px; display:block;" draggable="false">
+                            <figcaption style="font-size:0.82em; color:#888; margin-top:6px;">这是按照建议点的法餐</figcaption>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="g-qa">
+                      <div class="q">
+                        <span class="tag">💬 Prompt</span>
+                        <div class="en">Give me the menu structure and key French terms for Le Cénac so I can order smoothly.</div>
+                      </div>
+                      <div class="a">
+                        <span class="tag">✦ Gemini</span>
+                        <div class="en">
+                          <p>Here is the menu structure and key French terms for Le Cénac to help you order seamlessly when sitting down:</p>
+                          <p><strong>Les Entrées (Starters)</strong></p>
+                          <ul>
+                            <li><strong>Escargots de Bourgogne (X6)</strong> – Burgundy snails cooked in garlic, parsley, and butter.</li>
+                            <li><strong>Salade Verte / Salade de Saison</strong> – A simple green or seasonal salad to help balance the rich entries.</li>
+                          </ul>
+                          <p><strong>Les Plats (Mains)</strong></p>
+                          <ul>
+                            <li><strong>Confit de Canard</strong> – Crispy duck confit, usually served with <em>pommes salardaises</em> (potatoes cooked in duck fat) or a side salad.</li>
+                          </ul>
+                          <p><strong>Les Boissons (Drinks)</strong></p>
+                          <p>If you want to order a single glass of wine, look for the <strong>Vins au Verre</strong> section:</p>
+                          <ul>
+                            <li><strong>Un verre de vin blanc sec, s'il vous plaît.</strong> (A glass of dry white wine, please – great for the snails).</li>
+                            <li><strong>Un verre de vin rosé, s'il vous plaît.</strong> (A glass of rosé – great for the duck).</li>
+                          </ul>
+                          <p><strong>Les Desserts (Desserts)</strong></p>
+                          <ul>
+                            <li><strong>Île Flottante</strong> – "Floating Island" (light meringue floating on vanilla custard sauce).</li>
+                            <li><strong>Verrine de Mascarpone du jour</strong> – Layered mascarpone cream cup of the day (often featuring seasonal berries).</li>
+                          </ul>
+                          <hr>
+                          <p><strong>💡 Quick Ordering Phrases</strong></p>
+                          <blockquote>"Je vais prendre les escargots et le confit de canard, s'il vous plaît."<br><span style="color:#888;font-size:0.92em">(I will have the snails and the duck confit, please.)</span></blockquote>
+                          <blockquote>"Est-ce que le confit est servi avec une salade ?"<br><span style="color:#888;font-size:0.92em">(Is the duck confit served with a salad?)</span></blockquote>
+                          <blockquote>"Une carafe d'eau, s'il vous plaît."<br><span style="color:#888;font-size:0.92em">(A pitcher of tap water, please – this is always free in France.)</span></blockquote>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="g-qa">
+                      <div class="q">
+                        <span class="tag">💬 Prompt</span>
+                        <div class="en">这家 bistro（Le Cénac）有 smoothie 吗？一个人吃油封鸭和蜗牛，点什么无酒精饮料解腻？</div>
+                      </div>
+                      <div class="a">
+                        <span class="tag">✦ Gemini</span>
+                        <div class="en">
+                          <p><strong>它家通常是没有 Smoothie（奶昔/果昔）的。</strong></p>
+                          <p>Le Cénac 是一家非常传统且正宗的法式小酒馆（Bistrot / Brasserie 风格），这类餐厅的饮品单（Carte des boissons）里一般只有：</p>
+                          <ul>
+                            <li><strong>酒类：</strong>葡萄酒（红、白、桃红）、啤酒。</li>
+                            <li><strong>传统软饮：</strong>可乐（Coca）、芬达、冰茶（Ice Tea）、果汁（Jus de fruits，一般是瓶装的橙汁或苹果汁）。</li>
+                            <li><strong>咖啡与茶：</strong>浓缩咖啡（Espresso）、红茶等。</li>
+                          </ul>
+                          <p>Smoothie 这种美式健康果昔在法国传统餐厅里极少出现（通常只有在专门的 Brunch 咖啡店、轻食店或海滩边的饮品摊才能点到）。</p>
+                          <hr>
+                          <p><strong>💡 如果不想喝酒，一个人吃油封鸭和蜗牛，点什么无酒精饮料解腻？</strong></p>
+                          <p>如果你今晚不想碰酒精，菜单上这几种无酒精饮品同样能拯救油封鸭的油腻：</p>
+                          <ol>
+                            <li><strong>Perrier / San Pellegrino（气泡水）</strong><br>
+                              <span style="color:#888;font-size:0.92em">法语：<em>Une bouteille de Perrier / San Pellegrino, s'il vous plaît.</em></span><br>
+                              <strong>为什么好：</strong>强烈推荐！冰镇的气泡水带有密集的微气泡，喝下去的一瞬间能极大地冲刷掉口腔里油封鸭和黄油蜗牛的油脂感，比普通冰水更解腻。</li>
+                            <li><strong>Citron Pressé（现压柠檬汁）</strong><br>
+                              <strong>为什么好：</strong>如果它们有提供这道法国传统的夏日饮品，那简直是解腻神器。纯柠檬汁配上一壶水和一包糖，你可以根据自己的口味调配酸度，果酸能完美中和脂肪。</li>
+                            <li><strong>Jus de Pomme（苹果汁）</strong><br>
+                              <strong>为什么好：</strong>鸭肉在传统烹饪里经常和苹果、莓果等酸甜水果搭配。点一杯冰苹果汁，清爽的果酸配油封鸭也很搭。</li>
+                          </ol>
+                          <p>所以，如果坐下后不想喝酒，直接跟服务生点一瓶 <strong>Perrier（天然气泡水）</strong>，配上这顿大肉绝对是最舒服的解腻组合！</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="g-qa">
+                      <div class="q">
+                        <span class="tag">💬 Prompt</span>
+                        <div class="en">（附酒水单照片）看看有没有热巧克力，也帮我推荐一款解腻的饮品。</div>
+                      </div>
+                      <div class="a">
+                        <span class="tag">✦ Gemini</span>
+                        <div class="en">
+                          <p>拿到实拍酒单了！在酒水单里，我确实看到了你刚才问的 <strong>Chocolat Chaud（热巧克力，4.90€）</strong>，它被归在"热饮"（Boissons Chaudes）里。</p>
+                          <p>结合你点的<strong>焗蜗牛</strong>和<strong>油封鸭腿</strong>，顺着这份菜单，我为你精准推荐几款最能支撑你完成这场"硬仗"的独享饮品：</p>
+                          <p><strong>1. 绝对的首选：无酒精解腻神器</strong></p>
+                          <ul>
+                            <li><strong>Citron ou orange pressée（现压柠檬汁/橙汁）| 5.50€</strong><br><strong>强烈推荐点 Citron（柠檬）！</strong>这就是我前面提到的法式现压柠檬汁。纯天然的强劲果酸是动物油脂的克星，一口下去，鸭油的腻感瞬间全消。</li>
+                            <li><strong>Perrier 33cl（巴黎水/气泡水）| 4.50€</strong><br>非常稳妥的选择。密集的天然气泡能在物理层面上"刷洗"口腔里的黄油和鸭油，让每一口肉都像第一口一样香。</li>
+                          </ul>
+                          <p><strong>2. 想微醺一下：本地风味搭配</strong></p>
+                          <p>如果你临时决定来一杯酒，一个人喝这几款既有仪式感又很搭：</p>
+                          <ul>
+                            <li><strong>Kir vin blanc（基尔果味白葡萄酒）| 5.20€</strong><br>菜单上写着可以选黑加仑（cassis）、桃子（pêche）、黑莓（mûre）等风味。白葡萄酒基底正好配蜗牛，加入的果味甜浆又能很好地平衡鸭肉。</li>
+                            <li><strong>Spritz（阿佩罗气泡酒）| 9.00€</strong><br>南法夏日标配，微苦带甜，气泡丰富，坐在路边一个人喝着非常惬意，而且极其开胃解腻。</li>
+                          </ul>
+                          <hr>
+                          <p><strong>🛒 怎么跟店员点？</strong></p>
+                          <p>如果你决定要那个最解腻的<strong>现压柠檬汁</strong>，可以指着菜单对服务生说：</p>
+                          <blockquote>"Un citron pressé, s'il vous plaît."（请给我一杯现压柠檬汁。）</blockquote>
+                          <p>至于 <strong>Chocolat Chaud（热巧克力）</strong>，既然菜单上确实有，如果你吃完主菜后觉得自己还有战斗力、胃里还有空间，可以在收尾时把它当做甜点单独点上一杯哦！</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="g-qa">
+                      <div class="q">
+                        <span class="tag">💬 Prompt</span>
+                        <div class="en">看这个菜单帮我点单（并附上了黑板菜单的照片）。</div>
+                        <figure style="margin:10px 0 2px 0;">
+                          <img src="/assets/blog/french-riviera/dessert-menu.jpg" alt="Le Cénac 黑板甜点菜单" style="width:100%; max-width:520px; height:auto; border-radius:8px; display:block;" draggable="false">
+                          <figcaption style="font-size:0.82em; color:#888; margin-top:6px;">发给 Gemini 的黑板甜点菜单照片</figcaption>
+                        </figure>
+                      </div>
+                      <div class="a">
+                        <span class="tag">✦ Gemini</span>
+                        <div class="en">
+                          <p>真是不好意思，刚才连续两次误解了你的意思！现在看到你发的新图片了，这块黑板上写的是店里真正的<strong>固体甜点单（Desserts）</strong>。</p>
+                          <p>既然你前面提到想吃<strong>巧克力相关的甜点</strong>，而且今晚已经吃了偏油腻的黄油焗蜗牛和油封鸭，针对这份甜点菜单，我为你精准推荐两个最适合一个人收尾的巧克力选项：</p>
+                          <p><strong>🥇 第一推荐：Fondant chocolat（熔岩巧克力蛋糕）| 9€</strong><br>
+                          <strong>为什么选它：</strong>这就是我前面提到的熔岩巧克力。它最棒的地方在于，店里通常会配一球<strong>冰凉的香草冰淇淋</strong>。刚烤出来、切开会流心的高纯度温热黑巧克力，搭配冰凉清爽的冰淇淋，冰火交融的口感能极大程度地中和油脂感。一个人吃既能过足巧克力的瘾，又不会觉得干和发噎。</p>
+                          <p><strong>🥈 第二推荐：Café Gourmand（花式咖啡甜点组合）| 9€</strong><br>
+                          <strong>为什么选它：</strong>没想到黑板菜单上真的有这一道！一杯意式浓缩咖啡，旁边配两三个店里的迷你当日甜点。因为分量小，它能让你在吃撑之后依然可以轻松尝到甜味，同时黑咖啡的苦味是化解油封鸭腻感的绝对王牌。</p>
+                          <hr>
+                          <p><strong>❌ 避坑不推荐（一个人吃太扎实）：</strong></p>
+                          <ul>
+                            <li>Gaufre chocolat（巧克力华夫饼）| 9€</li>
+                            <li>Gaufre nutella（巧克力榛子酱华夫饼）| 9€</li>
+                          </ul>
+                          <p><strong>原因：</strong>华夫饼本身就是大块的扎实面团碳水，再淋上厚厚的巧克力酱，在你吃完土豆和鸭腿后，一个人绝对会吃到怀疑人生，太撑了。</p>
+                          <p><strong>🗣️ 现场点单直接指着图片对服务生说：</strong></p>
+                          <p>如果你决定选最完美的<strong>熔岩巧克力蛋糕</strong>：</p>
+                          <blockquote>"Un fondant chocolat, s'il vous plaît."（请给我来一份熔岩巧克力。）</blockquote>
+                          <p>如果你想用黑咖啡解腻并搭配一点小甜点，选 <strong>Café Gourmand</strong>：</p>
+                          <blockquote>"Un café gourmand, s'il vous plaît."（请给我来一份咖啡甜点组合。）</blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr>
+
+                  <h3>🛂 回程安排：跨三国、一次转机的无障碍通道（WCHR）</h3>
+
+                  <p>
+                    回程比来时更复杂——这趟要跨<strong>三个国家的机场</strong>（一次转机：NCE → LHR → SEA，在伦敦希思罗 LHR 转机）。最关键的一件事，是提前把全程的<strong>无障碍与轮椅协助（wheelchair assistance）</strong>安排妥当。航空业有一套标准的 <strong>IATA 特殊协助代码</strong>，于是让 Gemini 帮忙厘清该申请哪一种，以及在每一段转机怎么和地勤沟通：
+                  </p>
+                  <ul>
+                    <li><strong>WCHR</strong>（Wheelchair &ndash; Ramp）：能自己上下台阶、也能走到座位，只是无法长距离步行，需要轮椅接送往返登机口／廊桥。</li>
+                    <li><strong>WCHS</strong>（Wheelchair &ndash; Steps）：无法自行上下台阶，但能在客舱内走到座位，需要轮椅送到舱门。</li>
+                    <li><strong>WCHC</strong>（Wheelchair &ndash; Cabin）：全程都需要轮椅，包括协助送到座位、在客舱内也需要帮助。</li>
+                  </ul>
+                  <p>
+                    因为全程只有<strong>一次转机（在伦敦希思罗 LHR）</strong>，关键是把这段轮椅协助在订票／值机时就提前 request 好，并确保 LHR 转机的<strong>衔接</strong>不掉链子——只有 1 小时、又要跨国（英→美）重过转机安检，最容易出问题。
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>Gemini 帮上了什么忙</span>
+                    <p>讲清 <strong>WCHR / WCHS / WCHC</strong> 的区别，帮忙判断该申请哪一种（我最后用的是 <strong>WCHR</strong>）；生成在尼斯值机和 LHR 转机时向地勤请求轮椅协助的英语／法语话术；提醒 1 小时短转机的衔接注意事项。</p>
+
+                    <div class="g-qa">
+                      <div class="q">
+                        <span class="tag">💬 Prompt</span>
+                        <div class="en">帮我用英文写一句问机组的话：申请了到达轮椅协助，我该留在座位上等，还是自己走到廊桥找他们？</div>
+                      </div>
+                      <div class="a">
+                        <span class="tag">✦ Gemini</span>
+                        <div class="en">"Hi, I have requested airport wheelchair assistance for my arrival. Should I remain in my seat until the wheelchair agent comes onboard to get me, or should I walk out to the jet bridge myself?"</div>
+                        <div class="zh">你好，我申请了到达后的机场轮椅服务。请问我是应该在座位上等到轮椅助理上飞机来接我，还是我自己走出去到廊桥那里找他们？</div>
+                      </div>
+                    </div>
+
+                    <div class="g-qa">
+                      <div class="q">
+                        <span class="tag">💬 Prompt</span>
+                        <div class="en">全程英航（BA）联程票，伦敦转机只有 1 小时——托运行李需要自己取吗？时间够吗？</div>
+                      </div>
+                      <div class="a">
+                        <span class="tag">✦ Gemini</span>
+                        <div class="en">
+                          <p>如果是全段都在英国航空（British Airways）购买的联程机票：</p>
+                          <p><strong>1. 托运行李</strong><br><strong>不需要取。</strong>行李在尼斯机场柜台托运时，地勤会直接帮你在系统里挂到终点站西雅图（SEA）。在伦敦中转的 1 个小时内，你完全不用担心行李的提取和重新托运，机场系统会自动完成转运。</p>
+                          <p><strong>2. 航站楼与转机</strong></p>
+                          <ul>
+                            <li><strong>同航站楼转机：</strong>英国航空的这两班航班（尼斯进、西雅图出）通常都使用伦敦希思罗机场的 <strong>T5 航站楼</strong>。你不需要跨航站楼折腾。</li>
+                            <li><strong>安全时间线：</strong>即便在同一个航站楼，1 个小时的转机时间也已经压到了希思罗机场的"最低转机时间"红线。你下飞机后不能出海关，必须直接沿着 <strong>"Flight Connections"（国际转机）</strong> 的紫色指示牌走，并且需要重新过一次英国的转机安检。</li>
+                          </ul>
+                          <p><strong>🚨 特别提醒（针对您的右腿伤势）</strong></p>
+                          <blockquote>1 个小时的转机时间需要步行、排队并重新通过安检。<strong>以您目前右腿受伤的行动状态，靠自己走是绝对赶不上飞机的。</strong></blockquote>
+                          <p>请务必在<strong>尼斯机场柜台值机时</strong>，将您的预订代码和护照递给地勤，并明确提出以下要求：</p>
+                          <ol>
+                            <li><strong>确认行李直挂：</strong>确认行李条上的终点站是 <strong>SEA</strong>。</li>
+                            <li><strong>当场申请伦敦轮椅接送（Wheelchair Assistance）：</strong>告诉地勤你的中转时间只有 1 小时且腿部受伤，要求他们在系统里为你预订伦敦希思罗（LHR）的轮椅协助。</li>
+                          </ol>
+                          <p>这样，当你落地伦敦一开舱门，就会有机场地勤带着轮椅在廊桥接你。他们会推着你走快速绿色通道（Fast Track）避开安检排队，只有这样才能确保你在 1 小时内顺利登上飞往西雅图的航班。</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="g-qa">
+                      <div class="q">
+                        <span class="tag">💬 Prompt</span>
+                        <div class="en">该在哪里、什么时候申请这个转机的轮椅协助？</div>
+                      </div>
+                      <div class="a">
+                        <span class="tag">✦ Gemini</span>
+                        <div class="en">
+                          <p>既然你已经在尼斯机场办完了托运和登记，那就<strong>不需要等到登机口再申请了</strong>，现在最稳妥的做法是<strong>直接在尼斯机场的出发大厅找地勤人员（或者找服务台）</strong>。</p>
+                          <p>尼斯机场（Nice Côte d'Azur Airport）有专门的旅客协助服务。因为轮椅协助（Airport Assistance）需要时间调度，你在尼斯越早让英国航空（BA）的地勤在系统里帮你备注，伦敦希思罗那边就能越早安排人在廊桥下等你。</p>
+                          <p><strong>🏃‍♂️ 现在请按以下步骤立刻行动：</strong></p>
+                          <p><strong>第一步：在尼斯安检前后找 BA 地勤</strong></p>
+                          <ul>
+                            <li><strong>如果你还没过安检：</strong>直接回到你刚刚办托运的英航柜台，跟柜台人员说。</li>
+                            <li><strong>如果你已经过了安检，在候机大厅：</strong>直接去你的登机口（Gate），如果此时登机口已经有英航的工作人员，直接走上去找他们。</li>
+                            <li><strong>如果登机口还没人：</strong>寻找机场的 <strong>"Information"（问讯处）</strong> 或挂有 <strong>"Service Plus" / "Accompagnement"（特殊协助）</strong> 标志的服务台。</li>
+                          </ul>
+                          <p><strong>第二步：如何用意法双语和他们沟通？</strong></p>
+                          <p>你可以把这段话出示给尼斯机场的工作人员看：</p>
+                          <blockquote><strong>法语（出示给尼斯地勤看）：</strong><br>"Bonjour, je me suis blessé à la jambe droite. Je viens de m'enregistrer pour mon vol. Comme j'ai une escale très courte d'une heure à Londres Heathrow, est-il possible d'ajouter une assistance handicapé / fauteuil roulant (Wheelchair Assistance) pour mon transfert à Londres ? Merci."<br><span style="color:#888;font-size:0.92em">（中文意思：您好，我右腿受伤了。我刚刚办理了航班登记。因为我在伦敦希思罗只有 1 小时极短的中转时间，请问可以帮我在系统里为伦敦的转机添加轮椅协助吗？谢谢。）</span></blockquote>
+                          <p><strong>⚠️ 关键确认：</strong></p>
+                          <p>如果尼斯地勤帮你成功录入了系统，他们通常会告诉你：<strong>"C'est fait"（办好了）</strong>。保险起见，你可以和他们确认一下协助代码。在航空系统中，你这种短距离无法长途行走的腿伤，对应的服务代码叫 <strong>WCHS (Wheelchair - Stair)</strong>（不能走远路，但能自己走上飞机座位）或者 <strong>WCHR (Wheelchair - Ramp)</strong>。</p>
+                          <p>只要尼斯这边帮你在系统里勾选了，你一到伦敦，舱门打开的那一刻，就会有推着轮椅的英航工作人员在廊桥叫你的名字。祝你一切顺利，一定要在尼斯就把这事办妥！</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="g-qa">
+                      <div class="q">
+                        <span class="tag">💬 Prompt</span>
+                        <div class="en">地勤说 "C'est fait" 之后，怎么用法语再确认一下协助代码确实录进系统了？</div>
+                      </div>
+                      <div class="a">
+                        <span class="tag">✦ Gemini</span>
+                        <div class="en">
+                          <p>如果你想在尼斯机场地勤和你说"C'est fait"（办好了）之后，用法语跟他们 Double check（再次确认）服务代码，确保系统里确实录入了轮椅协助，你可以直接这样问：</p>
+                          <p><strong>1. 询问确认代码的法语（直接出示或读给他们听）</strong></p>
+                          <blockquote>"Merci. Est-ce que vous avez bien enregistré le code WCHR ou WCHS pour l'assistance à Londres ?"<br><span style="color:#888;font-size:0.92em">（谢谢。请问您在伦敦的协助服务里，有帮我录入 WCHR 或者 WCHS 的代码吗？）</span></blockquote>
+                          <blockquote>"C'est juste pour être sûr que la demande de fauteuil roulant apparaisse bien dans le système à Heathrow."<br><span style="color:#888;font-size:0.92em">（我只是想确认一下，伦敦希思罗机场的系统里能正常显示轮椅申请。）</span></blockquote>
+                          <p><strong>💡 地勤可能会怎么回答你？</strong></p>
+                          <p>如果录入成功，他们通常会指着屏幕或你的登机牌对你说：</p>
+                          <blockquote>"Oui, c'est bien confirmé en WCHR / WCHS."<br><span style="color:#888;font-size:0.92em">（是的，确实确认了是 WCHR / WCHS。）</span></blockquote>
+                          <blockquote>"Tout est bon dans le système pour Londres."<br><span style="color:#888;font-size:0.92em">（系统里关于伦敦的部分一切都办妥了。）</span></blockquote>
+                          <p>只要听到他们口中蹦出 <strong>"Oui"</strong> 或者看到他们点头，你在伦敦的轮椅服务就稳了！现在过了安检就快去登机口或服务台问问吧，祝一切顺利！</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  <p class="sub-h">💶 机场退税（Détaxe）</p>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">回程能退哪些税？在哪里退、怎么操作？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>在法国（及整个欧盟），退税（Détaxe / Tax Free）核心原则：只有购买并带回国、不在当地消费的<strong>"商品"</strong>能退税；所有<strong>"服务、餐饮、医疗"</strong>绝对不能退。先把小票分类：</p>
+                      <ul>
+                        <li><strong>能退税：</strong>衣服、包、化妆品、电子产品、未开封带回国的纪念品等。</li>
+                        <li><strong>不能退税：</strong>餐厅、酒店、租车/打车、火车票，以及这次尼斯医院（Hôpital Pasteur）和药店的所有医疗费、Donjoy 步行靴。（别担心，医疗和步行靴的钱回美国找信用卡的旅游险报销，同样不亏！）</li>
+                      </ul>
+                      <p><strong>🛍️ 退税的关键前提：</strong>光有普通购物小票（Ticket de caisse）无法在机场退税。购物时（单店满 100 欧元）必须当场出示护照，让店员打印带条形码的正式<strong>退税单（Formulaire de détaxe，Global Blue 或 Planet 开具）</strong>；没开退税单，事后无法凭小票退。</p>
+                      <p><strong>📍 在哪退（推荐尼斯机场 NCE）：</strong>法国普及了 <strong>PABLO 电子退税系统</strong>。T1 在出发层靠近 Gate 2、T2 在出发层靠近 Gate 3（值机安检之前）。找橘红色 PABLO 自助机，切中文，把退税单条形码对准红光扫描：</p>
+                      <ul>
+                        <li><strong>绿色（✓ 成功）：</strong>海关电子盖章完成；购物时若绑了信用卡就什么都不用做，钱几周内退回卡里。</li>
+                        <li><strong>红色（✗ 失败）：</strong>需人工审核，去旁边海关柜台（Douane）出示护照、小票和未拆封商品，人工盖章。</li>
+                      </ul>
+                    </div></div>
+                  </div>
+                  </div>
+
+                  <hr>
+
+                  <h3>🚨 治安与安全：南法的"小偷生态"</h3>
+
+                  <div style="margin: 8px 0 20px 0; padding: 16px 22px; background: rgba(224,85,85,0.07); border-left: 4px solid #e05555; border-radius: 6px;">
+                    <p style="font-size: 1.08em; font-style: italic; line-height: 1.6; margin: 0 0 6px 0;">"Watch out, pickpockets."</p>
+                    <p style="font-size: 0.85em; color: #888; margin: 0;">——我们一落地 NCE、在护照检查（passport control）排队时，工作人员当场对着排队人群这样喊</p>
+                  </div>
+
+                  <p>南法是扒手重灾区，出行前也让 Gemini 科普了一下"为什么这么多小偷"以及"尼斯到底安不安全"。</p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>Gemini 帮上了什么忙</span>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">南法为什么这么多小偷扒手？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>南法（尤其尼斯、马赛、戛纳所在的蔚蓝海岸）之所以成为全欧洲扒手"重灾区"，不是因为当地人变坏，而是形成了一个畸形的"盗窃生态链"，几个极现实的原因：</p>
+                      <ol>
+                        <li><strong>天堂般的"肥羊群"（游客密度高且有钱）：</strong>顶级度假胜地，夏天全球有钱游客扎堆；度假心态放松、警惕性最低；随身高档相机、名牌包、最新 iPhone 甚至大量现金，在小偷眼里"遍地黄金"。</li>
+                        <li><strong>地理交通便利（完美逃跑路线）：</strong>蔚蓝海岸只有一条主要沿海火车线（TER），在戛纳偷完 20 分钟到尼斯销赃；离意大利边境（Ventimiglia）坐火车仅 40 分钟，跨国团伙得手当晚就跨境，法国警察没法跨国追。</li>
+                        <li><strong>法律惩罚极轻：</strong>对非暴力偷盗非常宽容，没使用暴力通常做个笔录、关几小时就放；团伙专门引进十四五岁未成年人，未成年犯罪几乎无法判刑；夏天警力紧张，"丢钱包、爬阳台"这种小案基本只做记录办保险理赔。</li>
+                        <li><strong>建筑风格给了"阳台流"可乘之机：</strong>大量老式建筑外墙有浮雕、装饰柱、连廊、铸铁阳台，对敏捷的小偷像攀岩把手；夏天游客爱开阳台门透气，等于留了绿色通道。</li>
+                      </ol>
+                      <blockquote>💡 一句话：南法小偷多，是因为"回报极高、成本和风险极低"。但不用恐慌——这些贼的核心特质是"欺软怕硬、只挑最容易的目标"。</blockquote>
+                    </div></div>
+                  </div>
+
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">去尼斯整体安全吗？要注意什么？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>尼斯在欧洲主要旅游城市中属中等水平，总体很安全，但要防特定街头犯罪：</p>
+                      <p><strong>🚨 主要风险是盗窃</strong>（恶性暴力犯罪很少，但偷窃、扒窃、抢包抢手机普遍）。高风险区域：</p>
+                      <ul>
+                        <li>英国人漫步大道（Promenade des Anglais）和尼斯老城（Vieux Nice）狭窄街道——扒手最集中。</li>
+                        <li>海滩上：千万别把包或手机留沙滩上单独去游泳。</li>
+                        <li>尼斯中央火车站（Gare de Nice-Ville）及周边：晚上人杂，偷盗频发。</li>
+                        <li>深夜独走偏僻小巷，注意身后来人。</li>
+                      </ul>
+                      <p><strong>💡 防范建议：</strong>财不外露、不在公共场合清点大额现金、少戴贵重首饰；背包放身前别挂椅背；警惕借问路 / 请愿签名 / 主动帮提行李的搭讪，礼貌拒绝快速离开；深夜避免独走黑暗小巷、女性结伴。</p>
+                    </div></div>
+                  </div>
+                  </div>
+
+                  <hr>
+
+                  <h3>🤔 Gemini 也会出馊主意</h3>
+
+                  <p>
+                    当然，它并不总是对的。有一次住的是一家四星酒店，睡前担心会不会有小偷从阳台爬进来，就问了 Gemini——结果它给了一套如临大敌的"防阳台入室"作战方案：
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>Gemini 帮上了什么忙</span>
+                  <div class="g-qa">
+                    <div class="q"><span class="tag">💬 Prompt</span><div class="en">尼斯住酒店，被爬阳台入室偷盗常见吗？前台又不给换房，今晚怎么办？</div></div>
+                    <div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>实话实说：在尼斯乃至整个蔚蓝海岸，针对游客的入室盗窃和攀爬阳台行窃确实不算罕见，南法属于法国入室盗窃率最高的区域之一。贼最喜欢两个目标：①低楼层或带好攀爬阳台的房间；②警惕性放松的度假游客。</p>
+                      <p><strong>惯用套路：</strong></p>
+                      <ul>
+                        <li><strong>深夜趁睡熟潜入：</strong>凌晨 2–5 点通过阳台翻进来，动作极轻，只偷桌上的现金、手表、钱包、手机。</li>
+                        <li><strong>"阳台流"趁人不备：</strong>你洗澡、上洗手间或拉着窗帘看手机时，以为安全把阳台门虚掩，小偷摸准时间翻进阳台勾走桌上贵重物品。</li>
+                        <li><strong>正对电梯的房间：</strong>白天保洁或你进出时，走廊流动的人能一眼看清房内陈设与行李位置。</li>
+                      </ul>
+                      <p><strong>今晚必须执行的"铁律"（前台不给换房时）：</strong></p>
+                      <ol>
+                        <li><strong>阳台门一秒都不要开缝：</strong>再闷也必须完全反锁，宁可开冷气或热一点，绝不留缝（绝大多数爬阳台得手都因留了缝）。</li>
+                        <li><strong>贵重物品"化整为零"：</strong>护照、现金、大额信用卡、电脑锁进保险箱或硬壳行李箱并打乱密码；别把手表钱包手机随手放床头柜。</li>
+                        <li><strong>布置声音障碍：</strong>把桌椅或行李箱死死顶在阳台门上，上面倒扣一个玻璃杯。</li>
+                      </ol>
+                      <p>把阳台锁死、行李箱锁好、门口顶住后，房间就成了"硬骨头"，贼推不动或听到动静就会放弃去找下一个目标。</p>
+                    </div></div>
+                  </div>
+                  </div>
+
+                  <p>
+                    ……结果呢？<strong>四个晚上在酒店都平平安安，没有任何人翻阳台。</strong>也可能是那周实在太热，贼都懒得爬。事后看，这套"顶门 + 倒扣玻璃杯"的方案属实有点用力过猛——AI 助理很强，但仍然需要常识和判断来把关：它是副驾，不是自动驾驶。
+                  </p>
+
+                  <hr>
+
+                  <h3>🇫🇷 南法与美国的几点不同</h3>
+
+                  <p>这趟旅程里，也注意到南法和美国的一些日常差异：</p>
+                  <ul>
+                    <li><strong>问候语很重要。</strong>进店、问路先说一句 <em>Bonjour</em>（你好），离开或收到帮助后说 <em>Merci</em>（谢谢）——几乎每句话都会顺带加一句 <em>merci</em>。</li>
+                    <li><strong>没有小费文化</strong>（no tipping culture），账单基本就是最终价格。</li>
+                    <li><strong>餐厅普遍免费提供矿泉水</strong>／饮用水。</li>
+                  </ul>
+
+                  <div class="fact-box">
+                    <p style="margin:0 0 8px 0;"><strong>🌡️ 高温预警：赶上了 Ironman 取消。</strong></p>
+                    <p style="margin:0;">
+                      在南法的这段时间，正赶上一场席卷欧洲的历史级热浪。Alpes-Maritimes 省因<strong>橙色高温预警</strong>，直接取消了原定 <strong>6 月 28 日</strong>的 <strong>IRONMAN France Nice</strong> 和 IRONMAN 70.3 Nice 比赛，约 <strong>4,500 名</strong>已抵达蔚蓝海岸的选手受到影响。
+                      （来源：<a href="https://www.220triathlon.com/news/ironman-nice-cancelled" target="_blank" rel="noopener">220 Triathlon</a> · <a href="https://www.tri247.com/triathlon-news/elite/ironman-forced-to-cancel-nice-races-as-scorching-temperatures-lead-to-health-concerns" target="_blank" rel="noopener">Tri247</a>）
+                    </p>
+                  </div>
+
+                  <hr>
+
+                  <h3>结语</h3>
+
+                  <p>
+                    这趟南法之行，Gemini 几乎全程陪跑——查时区、找行李、规划交通、点餐、应急就医、跨国无障碍通道、转机衔接。它不是完美的，偶尔也会出馊主意，但对一个不擅长长途旅行的人来说，它确实让这趟状况百出的旅程稳稳落了地。
+                  </p>
+                  <p>
+                    <strong>人工智能助理，正在成为个人生活里那件「不可或缺的工具」。</strong> Merci, Gemini. 🙏
+                  </p>
+
+                  </div><!-- /lang-zh -->
+
+               </div>
+            </article>
+            <br>
+            <hr>
+            <br>
+            <p></p>
+            <div id="subscribe-placeholder"></div>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="/assets/js/bootstrap.bundle.min.js"></script>
+      <!-- EN / 中文 toggle logic (remembers choice per post via localStorage) -->
+      <script>
+      (function(){
+        function setLang(l){
+          var zh = l==='zh';
+          document.body.classList.toggle('zh', zh);
+          var be=document.getElementById('lang-en-btn'), bz=document.getElementById('lang-zh-btn');
+          if(be) be.classList.toggle('active', !zh);
+          if(bz) bz.classList.toggle('active', zh);
+          try{ localStorage.setItem('french-riviera-lang', l); }catch(e){}
+        }
+        window.__setPostLang=setLang;
+        function init(){ var v='zh'; try{ v=localStorage.getItem('french-riviera-lang')||'zh'; }catch(e){} setLang(v); }
+        if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
+      })();
+      </script>
+   </body>
+</html>
