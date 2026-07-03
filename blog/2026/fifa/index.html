@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> 2026 FIFA World Cup Seattle Watch Experience </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="A field report on my first live FIFA World Cup match — Belgium's 3–2 extra-time comeback over Senegal at Seattle Stadium — and my first ADA accessibility journey, with Google Gemini as co-pilot. Shuttles, wheelchair escorts, a 45-minute wait, a wheelchair standoff between four organizations, and seat relocation. 第一次 FIFA 现场观赛，也是第一次 ADA 无障碍体验。">
+      <meta name="keywords" content="FIFA World Cup 2026, Seattle Stadium, Lumen Field, ADA, accessibility, wheelchair, Gemini, Belgium, Senegal, King County Metro">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/fifa/">
+      <meta property="og:title" content="2026 FIFA World Cup Seattle Watch Experience">
+      <meta property="og:description" content="Belgium's 3–2 extra-time comeback over Senegal — and my first ADA accessibility journey at Seattle Stadium, with Gemini as co-pilot.">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/fifa/hero.svg">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="2026 FIFA World Cup Seattle Watch Experience">
+      <meta name="twitter:description" content="Belgium's 3–2 extra-time comeback over Senegal — and my first ADA accessibility journey at Seattle Stadium, with Gemini as co-pilot.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/fifa/hero.svg">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="shortcut icon" href="/assets/projects/Peng Andys Logo Symbol.png">
+      <link rel="stylesheet" href="/assets/css/main.css">
+      <link rel="canonical" href="https://pengandy.com/blog/2026/fifa/">
+      <link rel="alternate" type="application/rss+xml" title="Puget Sound Journal" href="https://pengandy.com/feed.xml">
+      <script src="/assets/js/theme.js"></script>
+      <script src="/assets/js/dark_mode.js"></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+      <script src="/assets/js/components.js" defer></script>
+   </head>
+   <style>
+     img { pointer-events: none; }
+     #markdown-content p { line-height: 1.9; }
+
+     /* reusable "Gemini advice" callout */
+     .gemini-tip {
+       margin: 16px 0 26px 0;
+       padding: 14px 18px 6px 18px;
+       background: linear-gradient(135deg, rgba(66,133,244,0.07), rgba(155,89,182,0.07));
+       border: 1px solid rgba(120,110,200,0.28);
+       border-radius: 10px;
+     }
+     .gemini-tip .g-label {
+       display: inline-flex; align-items: center; gap: 7px;
+       font-weight: 700; font-size: 0.86em; letter-spacing: 0.3px;
+       color: #7b61c9; margin-bottom: 6px;
+     }
+     .gemini-tip .g-spark { width: 17px; height: 17px; flex: 0 0 auto; }
+     .gemini-tip p { margin: 0 0 10px 0; }
+     .placeholder {
+       color: #9aa0a6; font-style: italic;
+       border-left: 2px dashed #c7b9e6; padding-left: 10px;
+     }
+     .ph-legend {
+       font-size: 0.85em; color: #9aa0a6; font-style: italic;
+       background: rgba(128,128,128,0.06); border-radius: 6px;
+       padding: 8px 12px; margin: 6px 0 26px 0;
+     }
+     .fact-box {
+       margin: 18px 0 26px 0; padding: 14px 18px;
+       background: rgba(224,85,85,0.07); border-left: 4px solid #e05555; border-radius: 6px;
+     }
+     .win-box {
+       margin: 18px 0 26px 0; padding: 14px 18px;
+       background: rgba(63,163,77,0.09); border-left: 4px solid #2e8b57; border-radius: 6px;
+     }
+
+     /* reusable Gemini prompt / response Q&A card */
+     .g-qa { margin: 14px 0 4px 0; }
+     .g-qa .q, .g-qa .a { border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
+     .g-qa .q { background: rgba(66,133,244,0.06); border: 1px solid rgba(66,133,244,0.20); }
+     .g-qa .a { background: rgba(155,89,182,0.06); border: 1px solid rgba(155,89,182,0.20); }
+     .g-qa .tag {
+       display: inline-block; font-size: 0.72em; font-weight: 700;
+       letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 5px;
+     }
+     .g-qa .q .tag { color: #2f6fd6; }
+     .g-qa .a .tag { color: #7b61c9; }
+     .g-qa .en { line-height: 1.65; }
+     .g-qa .zh { color: #888; font-size: 0.92em; margin-top: 4px; line-height: 1.65; }
+     .g-qa .a-todo { color: #9aa0a6; font-style: italic; }
+     .g-qa .a .en p { margin: 0 0 9px 0; }
+     .g-qa .a .en ul, .g-qa .a .en ol { margin: 4px 0 9px 0; padding-left: 22px; }
+     .g-qa .a .en blockquote {
+       border-left: 3px solid #c7b9e6; margin: 8px 0; padding: 4px 12px;
+       color: #555; font-style: italic; background: rgba(255,255,255,0.45);
+     }
+     .g-qa .a .en hr { margin: 12px 0; border: 0; border-top: 1px dashed rgba(155,89,182,0.3); }
+     .sub-h { margin: 30px 0 10px; font-size: 1.08em; font-weight: 700; color: #5a4a8a; border-bottom: 1px solid rgba(120,110,200,0.25); padding-bottom: 5px; }
+
+     /* --- EN / 中文 language toggle --- */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
+     body.zh .lang-en { display:none; }
+     body.zh .lang-zh { display:block; }
+   </style>
+   <body class="fixed-top-nav zh" data-page="blog">
+      <!-- shared Gemini sparkle gradient (referenced by every .g-spark) -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+          <linearGradient id="gemini-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4285F4"/>
+            <stop offset="45%" stop-color="#9b59b6"/>
+            <stop offset="100%" stop-color="#e0559b"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title"><span class="lang-en">2026 FIFA World Cup Seattle Watch Experience</span><span class="lang-zh">2026 世界杯西雅图观赛体验</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in July 3, 2026<span class="post-readstats"> · 3,600 words · 18 min read</span> </span><span class="lang-zh"> 创建于 2026 年 7 月 3 日<span class="post-readstats"> · 7,200 字 · 36 分钟阅读</span> </span></p>
+               <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/fifa"> <i class="fa-solid fa-hashtag fa-sm"></i> fifa</a>   <a href="/blog/tag/seattle"> <i class="fa-solid fa-hashtag fa-sm"></i> seattle</a>   ·   <a href="/blog/category/others"> <i class="fa-solid fa-tag fa-sm"></i> others</a> </p>
+            </header>
+            <div class="post-views" style="margin:14px 0 18px 0;">
+               <a href="https://hits.sh/pengandy.com/blog/2026/fifa/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/fifa.svg?label=page%20views&color=007ec6"/></a>
+            </div>
+            <article class="post-content">
+               <div id="markdown-content">
+
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" class="active" onclick="__setPostLang('zh')">中文</button>
+                  </div>
+
+                  <div class="lang-en">
+
+                  <p>
+                    On July 1, 2026, I went to my first-ever FIFA World Cup match in person — and it doubled as my first-ever ADA (accessibility) experience. The game was a Round-of-32 knockout, Belgium vs. Senegal, at Seattle Stadium (during the World Cup, FIFA policy covers the "Lumen Field" name and lists it as "Seattle Stadium"). It turned into one of the most dramatic matches of the whole tournament.
+                  </p>
+
+                  <p>
+                    Just like my <a href="/blog/2026/french-riviera/" style="text-decoration:underline; text-underline-offset:2px; font-weight:600;">South of France trip&nbsp;<i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i></a>, I leaned on the Google Gemini app the entire way — this time starting from the moment I requested a Lyft to the stadium. There was some confusion along the route, but it was all understandable, and honestly none of it dulled the experience. Especially Belgium's stoppage-time comeback and extra-time winner over Senegal, 3–2 — that alone was worth the price of the ticket.
+                  </p>
+
+                  <p>
+                    I want to write down the pain points I hit, so that anyone who comes after me — especially fans who need ADA assistance — can walk in with the full picture.
+                  </p>
+
+                  <div class="fact-box">
+                    <p style="margin:0 0 8px 0;">⚽ The match: Belgium 3–2 Senegal (Round of 32, extra time)</p>
+                    <p style="margin:0;">
+                      Timeline: 25' Senegal 1–0 · 51' Senegal 2–0 · 86' Belgium 2–1 · 89' Belgium 2–2. Belgium pulled two goals back in the final five minutes to force extra time — then a penalty in the 125th minute sealed Belgium 3–2. Belgium advance to the Round of 16 (vs. the USA, here at Seattle Stadium on July 6), before a sold-out 66,925.
+                      (Sources: <a href="https://www.espn.com/soccer/story/_/id/49240489/belgium-stunning-comeback-eliminate-senegal" target="_blank" rel="noopener">ESPN</a> · <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/belgium-senegal-review-highlights" target="_blank" rel="noopener">FIFA</a> · <a href="https://www.soundersfc.com/news/belvsen-recap-belgium-defeats-senegal-3-2-in-extra-time-at-seattle-stadium-advance-to-fifa-world-cup-round-of-16" target="_blank" rel="noopener">Sounders FC</a>)
+                    </p>
+                  </div>
+
+                  <hr>
+
+                  <h3>🗺️ The Whole ADA Journey, Mapped</h3>
+
+                  <p>
+                    Before the play-by-play, here's the whole route in one picture. There were four key locations, and the flow into the stadium (solid) is different from the flow back out (dashed):
+                  </p>
+
+                  <figure style="margin:12px 0 6px 0; text-align:center;">
+                    <img src="/assets/blog/fifa/journey-map.svg" alt="ADA access journey map: Accessible Match Day Shuttle Station → Stadium ADA drop-off → outside stadium entrance → my seat in the ADA area" style="width:100%; height:auto; border-radius:10px; display:inline-block;" draggable="false">
+                    <figcaption style="font-size:0.85em; color:#888; margin-top:8px;">Entry: ① Accessible Match Day Shuttle Station → ② Stadium ADA drop-off → ③ Stadium entrance → ④ my seat. Exit reverses to ④ → ② → ①.</figcaption>
+                  </figure>
+
+                  <hr>
+
+                  <h3>🚗 Getting There: A Lyft to the ADA Drop-off</h3>
+
+                  <p>
+                    I left the hotel a little after 9 AM and called a Lyft, choosing the destination the app auto-suggested: the ADA drop-off location. Before that, I'd already had Gemini prep the exact phrases I'd need at the stadium — where the accessible entrance is, how to ask for a wheelchair escort, and the official drop-off point.
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>What Gemini helped with — ADA phrasebook</span>
+                    <p>I kept these English lines in Apple Notes to show or say to staff on the spot:</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Give me short, polite lines to ask stadium staff for ADA help.</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <ul>
+                        <li>"Hi, where is the ADA / Accessible entrance?"</li>
+                        <li>"I need a wheelchair escort, please."</li>
+                        <li>"Excuse me, can you help me get a wheelchair escort to the ADA shuttle?"</li>
+                        <li>"I need a wheelchair escort to the stadium exit / ADA shuttle, please."</li>
+                        <li>"Excuse me, where is the ADA line for the BofA Fan Bands?"</li>
+                      </ul>
+                    </div></div></div>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">Where exactly is the official ADA drop-off zone at Seattle Stadium, and who's allowed in?</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>Show the driver this:</p>
+                      <blockquote>"Hi, I need to go to the official ADA drop-off zone. It's located at South Charles Street and Occidental Avenue, near the stadium's south entrance. Only ride-shares carrying passengers who need accessibility can enter this point."</blockquote>
+                      <p>From there, the free Accessible Match Day Shuttle Station connects the drop-off area with the stadium gates and the International District/Chinatown Link station.</p>
+                    </div></div></div>
+                  </div>
+
+                  <div class="fact-box">
+                    <p style="margin:0;">🚧 Pain point #1 — the police closure. When we arrived, patrol cars had already closed the road, so the Lyft physically couldn't reach the auto-selected ADA drop-off point. My driver rolled down the window and asked uniformed parking staff along the street until we pinned down the correct ADA drop-off / Match Day Shuttle spot. Lucky break: it was only one block away.</p>
+                  </div>
+
+                  <hr>
+
+                  <h3>🚌 The Accessible Match Day Shuttle</h3>
+
+                  <p>
+                    At the shuttle point, two staff members used the vehicle's lift to get me on board. After a short wait, the shuttle carried me right up to the main gate of Seattle Stadium. This leg was smooth.
+                  </p>
+
+                  <hr>
+
+                  <h3>⏳ The 45-Minute Wait &amp; the Wheelchair Standoff</h3>
+
+                  <p>
+                    This is where it got complicated — and where most of the pain points live.
+                  </p>
+
+                  <div class="fact-box">
+                    <p style="margin:0 0 8px 0;">🚧 Pain point #2 — the no-show handoff. The Accessible Match Day Shuttle staff and I waited together for over 45 minutes at the point where a venue volunteer was supposed to meet us. No volunteer, no staff member ever showed up.</p>
+                    <p style="margin:0;">🚧 Pain point #3 — nobody knew "ADA." Two security staff we flagged down clearly had no idea what ADA meant or how the process worked.</p>
+                  </div>
+
+                  <p>
+                    With the wait going nowhere, a King County Metro staff member stepped in and arranged a little golf-cart shuttle to move me closer to the entrance, hoping we'd find a venue volunteer or staffer there.
+                  </p>
+
+                  <p>
+                    With King County Metro's help we finally reached a volunteer. He didn't have a wheelchair either, but he kindly went off to ask other staff and figure out the process. After a while he came walking back toward us with a wheelchair — and that's when the confusing part happened.
+                  </p>
+
+                  <p>
+                    Just as he was about to hand the wheelchair to the King County Metro staffer, a female staff member stopped him. From inside the cart I couldn't hear clearly, but it was obviously a dispute. Then a second female staff member joined the heated discussion, and it went back and forth until yet another staffer arrived and it was decided the second woman would take over; the volunteer left. The whole standoff lasted a good ten-plus minutes. Only afterward did I understand: every one of these people belonged to a different organization. That's probably a shared pain point of any large event venue.
+                  </p>
+
+                  <p>
+                    After a stretch where the King County Metro staffer and I honestly didn't know what to do — she was about to get out and go ask again — the first female staff member came toward me with a wheelchair, registered me, and finally wheeled me through security and into the venue.
+                  </p>
+
+                  <p>
+                    Inside, meeting the second (FIFA) staffer, I finally got the full picture. Afterward I also checked the venue's official wheelchair policy online — courtesy wheelchairs are dispatched and escorted from <em>gate entry</em> (the designated point), not to someone who has been moved elsewhere:
+                  </p>
+                  <blockquote style="border-left:3px solid #c7b9e6; margin:10px 0 22px; padding:8px 16px; color:#555; font-style:italic; background:rgba(155,89,182,0.05); border-radius:0 6px 6px 0;">
+                    "Wheelchairs are available to fans needing accessible assistance. Simply let a Lumen Field Event Staff member know at gate entry and they can assist. A wheelchair will be dispatched and an Event Staff member will escort you to your seat, and then arrange a time for pick-up at the end of the game."
+                    <br><span style="font-style:normal; font-size:0.85em; color:#888;">— <a href="https://www.lumenfield.com/plan-your-visit-stadium-guide/wheelchair-service" target="_blank" rel="noopener">Lumen Field · Wheelchair Service</a></span>
+                  </blockquote>
+                  <p>
+                    That's the crux: because the King County Metro staffer had confirmed I was the only ADA guest in that window and no volunteer or staffer ever came, she drove me on the cart to a spot closer to the entrance — off the designated point. That well-meant move is exactly why they initially refused to release a wheelchair there, and why the dispute with the volunteer broke out.
+                  </p>
+
+                  <p>
+                    On organizations: the first staff member was Lumen Field Fan Operations; the second was FIFA. A single, simple wheelchair hand-off ended up involving four different organizations and departments — King County Metro, a volunteer, Lumen Field, and FIFA.
+                  </p>
+
+                  <hr>
+
+                  <h3>🎫 Inside: Seat Relocation to the ADA Area</h3>
+
+                  <p>
+                    The Lumen Field staffer then took me to my seat and immediately looped in another Lumen Field colleague to handle a relocation — my original seat had too little space, so I needed to move to the ADA area. The ticketing staffer gave me a few options; once I chose, she coordinated two more colleagues to walk me over to the new spot in the ADA area.
+                  </p>
+
+                  <p>
+                    Throughout the match, the Lumen Field staffer who'd brought me in kept checking on me, even bringing over things I needed — I'm really grateful to him. The FIFA staffer from earlier also came by to see how I was doing, apologized for the earlier confusion, and handed me a small souvenir.
+                  </p>
+
+                  <figure style="margin:16px 0 6px 0; text-align:center;">
+                    <img src="/assets/blog/fifa/with-irene.png" alt="With FIFA's Irene in the stands at Seattle Stadium" style="width:100%; max-width:360px; height:auto; border-radius:10px; display:inline-block;" draggable="false">
+                    <figcaption style="font-size:0.85em; color:#888; margin-top:8px;">With FIFA's Irene at Seattle Stadium</figcaption>
+                  </figure>
+
+                  <hr>
+
+                  <h3>🤝 Four Stakeholder Groups, One Fan</h3>
+
+                  <p>
+                    Piecing it together afterward, my afternoon touched four distinct stakeholder groups, each with a different area of responsibility:
+                  </p>
+                  <ul>
+                    <li>FIFA — the organizer; owns the rules and policy (including the wheelchair-at-designated-point rule).</li>
+                    <li>Lumen Field Fan Operations — the venue; ticketing &amp; relocation, guest services, ADA support, plus access control and screening at the gates.</li>
+                    <li>Volunteers — the friendly, willing glue between everyone (even without their own equipment).</li>
+                    <li>King County Metro — transport and support outside the stadium: the shuttles and the golf cart.</li>
+                  </ul>
+                  <p>
+                    None of them is "wrong." It's just that at the seams — where one org's area of responsibility ends and another's begins — a single fan in a cart can fall through the cracks for an hour. That's the honest, structural pain point of a mega-event.
+                  </p>
+
+                  <hr>
+
+                  <h3>⚽ Why It Was Worth It</h3>
+
+                  <div class="win-box">
+                    <p style="margin:0 0 6px 0;">The five-minute miracle.</p>
+                    <p style="margin:0;">
+                      With about five minutes left, at Belgium 0–2 Senegal, the Lumen Field staffer came over and suggested I switch into a wheelchair early so I'd have an easier time leaving once it ended. I asked how long was left; she said it should be any moment now — everyone thought the match was basically over. Then Belgium scored — and scored again. 2–2. Extra time. And you know the rest: after 120+ minutes, a 125th-minute penalty won it 3–2.
+                    </p>
+                  </div>
+
+                  <p>
+                    For some reason, every live match I watch — no matter the sport — follows the same script: a draw, extra time, a comeback, a last-gasp winner. This was an unforgettable afternoon, and I genuinely, thoroughly enjoyed it.
+                  </p>
+
+                  <hr>
+
+                  <h3>🙏 Thank You</h3>
+
+                  <p>
+                    Sincere thanks to everyone who made this happen — across all those different lanyards:
+                  </p>
+                  <ul>
+                    <li><em>Irene</em> (FIFA) — thank you for the support and my Fan Band.</li>
+                    <li>Lumen Field's <em>Leslie</em>, <em>Kurtis</em>, and <em>Denise</em> — for getting me in, the relocation, and checking on me all match long.</li>
+                    <li>King County Metro's <em>Tomoko</em> and the drivers (both the gentleman and the lady) — for the shuttle, the golf cart, and refusing to give up on me.</li>
+                    <li>The volunteer — a gentleman whose name I never got the chance to ask. Thank you.</li>
+                  </ul>
+
+                  <p>
+                    It was messy in the middle and magical at the end. If you're a fan who needs ADA assistance: request the official ADA drop-off, use the free Accessible Match Day Shuttle, and don't be shy about asking any staffer — Fan Operations, security, volunteer, or Metro — for a wheelchair escort. I hope this map and these notes make your day smoother than mine. ⚽♿️
+                  </p>
+
+                  </div><!-- /lang-en -->
+
+                  <div class="lang-zh">
+
+                  <p>
+                    2026 年 7 月 1 日，我去看了人生第一场 FIFA 世界杯现场比赛——同时也是我第一次的 ADA（无障碍）体验。这是一场 32 进 16 的淘汰赛，比利时 vs. 塞内加尔，在西雅图球场（Seattle Stadium）举行（世界杯期间，按 FIFA 规定"Lumen Field"的名字会被遮盖，统一标示为 "Seattle Stadium"）。这场球最后成了整届赛事最戏剧性的比赛之一。
+                  </p>
+
+                  <p>
+                    和我这趟 <a href="/blog/2026/french-riviera/" style="text-decoration:underline; text-underline-offset:2px; font-weight:600;">南法之旅&nbsp;<i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i></a> 一样，我全程都在用 Google Gemini App——这次从我叫 Lyft 去球场 的那一刻就开始了。整个过程中有一些混乱，但都可以理解；即便如此，也丝毫没有耽误这是一场尽兴享受的体验。尤其是 比利时在最后五分钟的反超、以及加时绝杀塞内加尔 3：2——单这一点就已经值回票价。
+                  </p>
+
+                  <p>
+                    我想把遇到的痛点分享在这里，让后来的人——特别是需要 ADA 帮助的朋友——能带着完整的信息进场。
+                  </p>
+
+                  <div class="fact-box">
+                    <p style="margin:0 0 8px 0;">⚽ 比赛：比利时 3：2 塞内加尔（32 强淘汰赛 · 加时）</p>
+                    <p style="margin:0;">
+                      比赛进程：25' 塞内加尔 1：0 · 51' 塞内加尔 2：0 · 86' 比利时 2：1 · 89' 比利时 2：2。比利时在最后五分钟连追两球扳平、拖入加时——比利时在第 125 分钟罚入点球，3：2 绝杀。比利时晋级 16 强（7 月 6 日在西雅图球场对阵美国）。全场售罄 66,925 人。
+                      （来源：<a href="https://www.espn.com/soccer/story/_/id/49240489/belgium-stunning-comeback-eliminate-senegal" target="_blank" rel="noopener">ESPN</a> · <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/belgium-senegal-review-highlights" target="_blank" rel="noopener">FIFA</a> · <a href="https://www.soundersfc.com/news/belvsen-recap-belgium-defeats-senegal-3-2-in-extra-time-at-seattle-stadium-advance-to-fifa-world-cup-round-of-16" target="_blank" rel="noopener">Sounders FC</a>）
+                    </p>
+                  </div>
+
+                  <hr>
+
+                  <h3>🗺️ 整个 ADA 流程，一张图看懂</h3>
+
+                  <p>
+                    在讲细节之前，先用一张图把整条路线摆出来。全程有四个关键地点，而且进场（实线）和离场（虚线）的走向并不一样：
+                  </p>
+
+                  <figure style="margin:12px 0 6px 0; text-align:center;">
+                    <img src="/assets/blog/fifa/journey-map.svg" alt="ADA 无障碍流程图：无障碍 Match Day Shuttle 车站 → 球场 ADA 落客点 → 球场入口外 → 我的座位（ADA 区域）" style="width:100%; height:auto; border-radius:10px; display:inline-block;" draggable="false">
+                    <figcaption style="font-size:0.85em; color:#888; margin-top:8px;">进场：① 无障碍 Match Day Shuttle 车站 → ② 球场 ADA 落客点 → ③ 球场入口外 → ④ 我的座位。离场反向：④ → ② → ①。</figcaption>
+                  </figure>
+
+                  <hr>
+
+                  <h3>🚗 出发：叫一辆 Lyft 去 ADA 落客点</h3>
+
+                  <p>
+                    我 9 点多就出门了，叫了一辆 Lyft，目的地选的是 Lyft 系统自动提供的 ADA drop-off location。出发前，我已经让 Gemini 把到了球场要用的关键句子都准备好——无障碍入口在哪、怎么请求轮椅护送、以及官方落客点在哪。
+                  </p>
+
+                  <div class="gemini-tip">
+                    <span class="g-label"><svg class="g-spark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 6.6 6.6 2.1-6.6 2.1L12 22.4 9.9 12.4 3.3 10.3 9.9 8.2z" fill="url(#gemini-grad)"/></svg>Gemini 帮上了什么忙 —— ADA 话术卡</span>
+                    <p>我把这些英文句子存进苹果备忘录，现场直接说给或出示给工作人员：</p>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">帮我准备一些简短、礼貌、向球场工作人员请求 ADA 协助的英文句子。</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <ul>
+                        <li>"Hi, where is the ADA / Accessible entrance?"<br><span class="zh">你好，请问无障碍入口在哪里？</span></li>
+                        <li>"I need a wheelchair escort, please."<br><span class="zh">我需要一位轮椅护送员，谢谢。</span></li>
+                        <li>"Excuse me, can you help me get a wheelchair escort to the ADA shuttle?"<br><span class="zh">不好意思，能帮我安排一位轮椅护送员到 ADA 摆渡车吗？</span></li>
+                        <li>"I need a wheelchair escort to the stadium exit / ADA shuttle, please."<br><span class="zh">我需要一位轮椅护送员送我到球场出口 / ADA 摆渡车，谢谢。</span></li>
+                        <li>"Excuse me, where is the ADA line for the BofA Fan Bands?"<br><span class="zh">不好意思，请问领 BofA 球迷手环（Fan Bands）的 ADA 通道在哪里？</span></li>
+                      </ul>
+                    </div></div></div>
+                    <div class="g-qa"><div class="q"><span class="tag">💬 Prompt</span><div class="en">西雅图球场官方的 ADA 落客点到底在哪？谁可以进？</div></div><div class="a"><span class="tag">✦ Gemini</span><div class="en">
+                      <p>把这段出示给司机：</p>
+                      <blockquote>"Hi, I need to go to the official ADA drop-off zone. It's located at South Charles Street and Occidental Avenue, near the stadium's south entrance. Only ride-shares carrying passengers who need accessibility can enter this point."<br><span class="zh">（你好，我要去官方的 ADA 落客点，位置在 South Charles Street 和 Occidental Avenue 路口，靠近球场南入口。只有搭载需要无障碍协助乘客的网约车才能进入此点。）</span></blockquote>
+                      <p>从那里开始，免费的 Accessible Match Day Shuttle Station（无障碍 Match Day 摆渡车车站） 把落客区、球场闸门、以及国际区/中国城（International District/Chinatown）Link 轻轨站连了起来。</p>
+                    </div></div></div>
+                  </div>
+
+                  <div class="fact-box">
+                    <p style="margin:0;">🚧 痛点 #1 —— 警车封路。我们到达时，警车已经封路，Lyft 根本没法开到系统自动选的 ADA 落客点。没办法，司机只能一路摇下车窗，向沿途穿制服的 parking 工作人员打听，才终于问到正确的 ADA 落客 / Match Day Shuttle 地点。很幸运——只有一个 block 的距离。</p>
+                  </div>
+
+                  <hr>
+
+                  <h3>🚌 无障碍 Match Day 摆渡车</h3>
+
+                  <p>
+                    到了摆渡车点，两位工作人员用车上的升降平台（lift）把我载上了 shuttle。稍作等待后，摆渡车把我一路送到了西雅图球场的大门入口。这一段非常顺利。
+                  </p>
+
+                  <hr>
+
+                  <h3>⏳ 45 分钟的等待 &amp; 轮椅之争</h3>
+
+                  <p>
+                    接下来就开始变复杂了——大部分痛点都集中在这里。
+                  </p>
+
+                  <div class="fact-box">
+                    <p style="margin:0 0 8px 0;">🚧 痛点 #2 —— 接应的人没来。无障碍摆渡车的工作人员和我，在本应有场馆志愿者接应的地点，一起原地等了超过 45 分钟。但我们没有等到任何志愿者或工作人员。</p>
+                    <p style="margin:0;">🚧 痛点 #3 —— 没人知道 "ADA" 是什么。我们拦下的两位 security 工作人员，很明显对 ADA 是什么、流程怎么走并不清楚。</p>
+                  </div>
+
+                  <p>
+                    等下去也无果，一位 King County Metro 的工作人员出手，帮我联系了一辆小高尔夫摆渡车，把我送到更靠近入口的地方，希望在那里能找到场馆志愿者或工作人员。
+                  </p>
+
+                  <p>
+                    在 King County Metro 工作人员的帮助下，我们终于联系到了一位志愿者。他手上也没有轮椅，但很热心地跑去问其他工作人员、了解流程。过了一会儿，他推着一台轮椅朝我们走来——令人困惑的事情就在这时发生了。
+                  </p>
+
+                  <p>
+                    正当他准备把轮椅交给 King County Metro 的工作人员时，另一位工作人员女士拦下了他。我在车里听不太清楚，但很明显有纠纷。接着第二位工作人员女士也加入了这场激烈的讨论，来回拉锯，直到又来了一位工作人员，最后决定由第二位女士接管，志愿者离开。这场争执前前后后应该有十几分钟。事后我才明白：这些人每一个都属于不同的组织。这大概也是所有大型活动举办场地共同的痛点吧。
+                  </p>
+
+                  <p>
+                    在等了一段时间、我和 King County Metro 工作人员都不知所措（她正准备再次下车去问）的时候，第一位工作人员女士带着轮椅朝我走来，做了登记，终于推着我进了安检、进入场馆。
+                  </p>
+
+                  <p>
+                    进场后，和第二位（FIFA 的）工作人员见面，我才对整件事有了全貌。事后我也上网核对了场馆的官方轮椅规则——轮椅是在<em>闸门入口</em>（也就是指定地点）派发并全程护送的，而不会提供给被挪到其他位置的人：
+                  </p>
+                  <blockquote style="border-left:3px solid #c7b9e6; margin:10px 0 22px; padding:8px 16px; color:#555; font-style:italic; background:rgba(155,89,182,0.05); border-radius:0 6px 6px 0;">
+                    "Wheelchairs are available to fans needing accessible assistance. Simply let a Lumen Field Event Staff member know at gate entry and they can assist. A wheelchair will be dispatched and an Event Staff member will escort you to your seat, and then arrange a time for pick-up at the end of the game."
+                    <br><span class="zh" style="font-style:normal;">（轮椅提供给需要无障碍协助的球迷：在闸门入口告知任意一位 Lumen Field 工作人员即可，他们会派发轮椅并护送你到座位，并约好散场时的接送时间。）</span>
+                    <br><span style="font-style:normal; font-size:0.85em; color:#888;">—— <a href="https://www.lumenfield.com/plan-your-visit-stadium-guide/wheelchair-service" target="_blank" rel="noopener">Lumen Field · Wheelchair Service（无障碍轮椅服务）</a></span>
+                  </blockquote>
+                  <p>
+                    这正是症结所在：因为 King County Metro 工作人员确认过，那个时间段我是唯一一位 ADA 观赛者，而且始终没有志愿者或工作人员来接应，她才开摆渡车把我送到离入口更近的地方——这就偏离了指定地点。这个善意的举动，正是她们一开始拒绝在那里发放轮椅、也是和那位热心志愿者起争执的原因。
+                  </p>
+
+                  <p>
+                    关于组织，最关键的一点是：第一位工作人员是 Lumen Field Fan Operations 的，第二位是 FIFA 的。一个简单的轮椅对接，就涉及了四个不同的组织和部门——King County Metro、志愿者、Lumen Field、FIFA。
+                  </p>
+
+                  <hr>
+
+                  <h3>🎫 进场后：改票、转移到 ADA 区域</h3>
+
+                  <p>
+                    随后，Lumen Field 的工作人员继续带我进到座位，并立刻联系了另一位 Lumen Field 同事帮我 relocation（改票转移）——因为原先订的位置空间太小，需要把我转移到 ADA Area。负责改票的工作人员给了我几个选择；决定之后，她又联系了另外两位同事，把我带到 ADA 区域的新位置。
+                  </p>
+
+                  <p>
+                    在观看比赛期间，那位把我带进场的 Lumen Field 工作人员时不时会过来问我的情况，还给我带来一些必需品——我非常感谢他。之前那位 FIFA 的工作人员也过来查看我的状态，为之前的混乱道歉，并送给我一个小纪念品。
+                  </p>
+
+                  <figure style="margin:16px 0 6px 0; text-align:center;">
+                    <img src="/assets/blog/fifa/with-irene.png" alt="在西雅图球场与 FIFA 的 Irene 合影" style="width:100%; max-width:360px; height:auto; border-radius:10px; display:inline-block;" draggable="false">
+                    <figcaption style="font-size:0.85em; color:#888; margin-top:8px;">在西雅图球场与 FIFA 的 Irene 的合影</figcaption>
+                  </figure>
+
+                  <hr>
+
+                  <h3>🤝 四个分工组织，一位观众</h3>
+
+                  <p>
+                    事后把整件事拼起来，我这一下午前前后后接触了四个不同的分工组织，各司其职：
+                  </p>
+                  <ul>
+                    <li>FIFA—— 主办方；负责规则与政策（包括"轮椅只在指定地点提供"这条）。</li>
+                    <li>Lumen Field Fan Operations—— 场地提供方；负责售票与改票、宾客服务、ADA 支持，以及闸门的进场管控与安检。</li>
+                    <li>Volunteers（志愿者）—— 各方之间热心、愿意帮忙的"黏合剂"（哪怕自己手上没有设备）。</li>
+                    <li>King County Metro—— 负责球馆<em>场外</em>的交通与支持：各种摆渡车和那辆高尔夫小车。</li>
+                  </ul>
+                  <p>
+                    他们没有谁是"错"的。只是在接缝处——一个组织的责任区间结束、另一个组织的责任区间开始的地方——一位坐在小车里的观众，可能就这样卡在缝隙里一个小时。这就是大型赛事最真实、最结构性的痛点。
+                  </p>
+
+                  <hr>
+
+                  <h3>⚽ 为什么值回票价</h3>
+
+                  <div class="win-box">
+                    <p style="margin:0 0 6px 0;">最后五分钟的奇迹。</p>
+                    <p style="margin:0;">
+                      在离比赛结束大约五分钟、比利时 0：2 塞内加尔的时候，那位 Lumen Field 工作人员过来，说可以先换到轮椅上坐，方便等会儿比赛结束离场。我问她大概还有多久结束，她说应该马上了——大家都觉得比赛快要结束了。然后，比利时连入两球。2：2，加时赛开始。后面的事我们都知道了：踢满 120 多分钟后，第 125 分钟的一记点球，3：2绝杀。
+                    </p>
+                  </div>
+
+                  <p>
+                    出于某种原因，每一次现场看比赛，不管什么球，平局加时反超绝杀这个剧本不变。这是一个难忘的下午，我也真的、彻底地享受了它。
+                  </p>
+
+                  <hr>
+
+                  <h3>🙏 致谢</h3>
+
+                  <p>
+                    真诚地感谢每一位让这一切成真的人——不管你们挂着哪一条工作证：
+                  </p>
+                  <ul>
+                    <li>FIFA 的 <em>Irene</em>—— 谢谢你的支持，还有那个球迷手环。</li>
+                    <li>Lumen Field 的 <em>Leslie</em>、<em>Kurtis</em>、<em>Denise</em>—— 谢谢你们带我进场、帮我改票转移、以及全程的照看。</li>
+                    <li>King County Metro 的 <em>Tomoko</em> 和两位司机（先生和女士）—— 谢谢摆渡车、那辆高尔夫小车，以及自始至终没有放弃我。</li>
+                    <li>那位志愿者大叔—— 还没来得及问您的名字。谢谢您。</li>
+                  </ul>
+
+                  <p>
+                    过程中一度手忙脚乱，结尾却无比奇妙。如果你是需要 ADA 帮助的球迷：认准官方 ADA 落客点、善用免费的 Accessible Match Day Shuttle，也别不好意思向任何一位工作人员（Fan Operations、security、志愿者，或 Metro）开口请求轮椅护送。希望这张图和这些笔记，能让你的观赛日比我更顺。⚽♿️
+                  </p>
+
+                  </div><!-- /lang-zh -->
+
+               </div>
+            </article>
+            <br>
+            <hr>
+            <br>
+            <p></p>
+            <div id="subscribe-placeholder"></div>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="/assets/js/bootstrap.bundle.min.js"></script>
+      <!-- EN / 中文 toggle logic (remembers choice per post via localStorage) -->
+      <script>
+      (function(){
+        function setLang(l){
+          var zh = l==='zh';
+          document.body.classList.toggle('zh', zh);
+          var be=document.getElementById('lang-en-btn'), bz=document.getElementById('lang-zh-btn');
+          if(be) be.classList.toggle('active', !zh);
+          if(bz) bz.classList.toggle('active', zh);
+          try{ localStorage.setItem('fifa-lang', l); }catch(e){}
+        }
+        window.__setPostLang=setLang;
+        function init(){ var v='zh'; try{ v=localStorage.getItem('fifa-lang')||'zh'; }catch(e){} setLang(v); }
+        if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
+      })();
+      </script>
+   </body>
+</html>

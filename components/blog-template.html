@@ -21,6 +21,8 @@
     • Single-language post? Keep only the .lang-en block, delete the toggle,
       the .lang-zh block, and the <script> at the bottom.
     • PERSON NAMES: always wrap in <em>italic</em> — never <strong>bold</strong>.
+    • DO NOT bold (<strong>) ANY content unless the author explicitly asks for it.
+      Default to plain text; use <em>italic</em> only for names/light emphasis.
     • After publishing run:  python3 scripts/add_reading_stats.py
                              python3 scripts/generate_feed.py
     • The EN/中文 toggle works because the button sets `body.zh`, and the CSS

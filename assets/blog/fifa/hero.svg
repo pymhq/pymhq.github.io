@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="1200" height="480" font-family="'Roboto','Helvetica Neue',Arial,sans-serif" role="img" aria-label="2026 FIFA World Cup at Seattle Stadium — an ADA access journey.">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1b2a4a"/>
+      <stop offset="55%" stop-color="#33507f"/>
+      <stop offset="100%" stop-color="#5a7bb0"/>
+    </linearGradient>
+    <linearGradient id="gem" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="45%" stop-color="#9b59b6"/>
+      <stop offset="100%" stop-color="#e0559b"/>
+    </linearGradient>
+    <linearGradient id="pitch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3fa34d"/>
+      <stop offset="100%" stop-color="#256f42"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="480" fill="url(#sky)"/>
+
+  <!-- skyline silhouette -->
+  <g fill="#16233f" opacity="0.85">
+    <rect x="70" y="150" width="34" height="150"/>
+    <rect x="112" y="110" width="26" height="190"/>
+    <rect x="150" y="175" width="40" height="125"/>
+    <!-- space needle -->
+    <g transform="translate(220,90)">
+      <rect x="14" y="40" width="6" height="170"/>
+      <ellipse cx="17" cy="40" rx="26" ry="9"/>
+      <path d="M6 40 q11 -22 22 0 z"/>
+    </g>
+    <rect x="280" y="140" width="30" height="160"/>
+    <rect x="318" y="120" width="24" height="180"/>
+  </g>
+
+  <!-- stars / sparkles -->
+  <g fill="#ffffff" opacity="0.8">
+    <circle cx="520" cy="60" r="1.6"/><circle cx="640" cy="44" r="1.2"/>
+    <circle cx="760" cy="70" r="1.8"/><circle cx="900" cy="50" r="1.3"/>
+    <circle cx="1040" cy="66" r="1.6"/><circle cx="470" cy="96" r="1.2"/>
+  </g>
+
+  <!-- stadium bowl -->
+  <ellipse cx="880" cy="360" rx="330" ry="150" fill="#22314f"/>
+  <ellipse cx="880" cy="352" rx="300" ry="132" fill="#2c3f63"/>
+  <ellipse cx="880" cy="346" rx="235" ry="100" fill="#0f1b33"/>
+  <rect x="720" y="300" width="320" height="96" rx="16" fill="url(#pitch)" transform="rotate(-1 880 348)"/>
+  <line x1="880" y1="300" x2="880" y2="396" stroke="#fff" stroke-width="2" opacity="0.7"/>
+  <circle cx="880" cy="348" r="22" fill="none" stroke="#fff" stroke-width="2" opacity="0.7"/>
+  <!-- light towers -->
+  <g stroke="#93b4e6" stroke-width="3" opacity="0.7">
+    <line x1="650" y1="250" x2="700" y2="300"/>
+    <line x1="1110" y1="250" x2="1060" y2="300"/>
+  </g>
+
+  <!-- Gemini spark -->
+  <path d="M150 360 l14 44 44 14 -44 14 -14 44 -14 -44 -44 -14 44 -14 z" fill="url(#gem)" opacity="0.95"/>
+
+  <!-- wheelchair access mark -->
+  <g transform="translate(470,320)" fill="#ffffff" opacity="0.96">
+    <circle cx="34" cy="34" r="34" fill="url(#gem)"/>
+    <g transform="translate(15,12)" fill="#fff">
+      <circle cx="17" cy="6" r="6"/>
+      <path d="M11 16 h12 v11 h11 v6 h-17 v-17 z"/>
+      <circle cx="18" cy="32" r="12" fill="none" stroke="#fff" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- title text -->
+  <text x="80" y="150" font-size="30" font-weight="300" fill="#cdd9ec" letter-spacing="2">FIFA WORLD CUP 2026™ · SEATTLE STADIUM</text>
+  <text x="78" y="215" font-size="58" font-weight="800" fill="#ffffff">My First Match,</text>
+  <text x="78" y="278" font-size="58" font-weight="800" fill="#ffffff">My First <tspan fill="#7fb2ff">ADA</tspan> Journey</text>
+  <text x="82" y="322" font-size="24" font-weight="400" fill="#aebfe0">比利时 3–2 塞内加尔 · 加时绝杀 · with Google Gemini</text>
+</svg>
