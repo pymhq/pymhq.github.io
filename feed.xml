@@ -93,7 +93,7 @@
       <link>https://pengandy.com/blog/2026/vllm/</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2026/vllm/</guid>
       <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
-      <description>DSpark speculative decoding lands natively in vLLM, PagedAttention retires, EAGLE 3.1, and P-EAGLE in vLLM 0.16.0.</description>
+      <description>P-EAGLE lands in vLLM 0.16.0, first SIG meetings, and multi-LoRA serving for MoE models.</description>
       <enclosure url="https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Full-Logo.png" type="image/png" length="0" />
     </item>
     <item>
