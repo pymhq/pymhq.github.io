@@ -1685,9 +1685,10 @@
                      <li class="nav-item "> <a class="nav-link" href="/cv">CV</a> </li>
                      <li class="nav-item "> <a class="nav-link" href="/news"><span class="lang-en">News</span><span class="lang-zh" style="display: none;">新闻</span></a> </li>
                      <li class="nav-item lang-switch-item">
-                        <button type="button" class="lang-switch-btn" id="lang-switch-btn" onclick="toggleLanguage()" aria-label="Switch language" title="Switch language / 切换语言">
-                           <span class="lang-switch-current">EN</span>
-                        </button>
+                        <div class="lang-toggle" role="group" aria-label="Language selector">
+                           <button type="button" class="active" id="btn-en" onclick="switchLanguage('en')">EN</button>
+                           <button type="button" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
+                        </div>
                      </li>
                   </ul>
                </div>
@@ -1941,32 +1942,24 @@
                el.style.display = 'none';
             });
 
-            var switchBtn = document.getElementById('lang-switch-btn');
-            var switchLabel = switchBtn ? switchBtn.querySelector('.lang-switch-current') : null;
-
             // Show selected language content
             if (lang === 'en') {
                document.querySelectorAll('.lang-en').forEach(function(el) {
                   el.style.display = '';
                });
+               document.getElementById('btn-en').classList.add('active');
+               document.getElementById('btn-zh').classList.remove('active');
                document.title = 'Portfolio';
-               if (switchLabel) { switchLabel.textContent = 'EN'; }
-               if (switchBtn) { switchBtn.setAttribute('aria-label', 'Switch to Chinese / 切换为中文'); }
                localStorage.setItem('preferredLanguage', 'en');
             } else if (lang === 'zh') {
                document.querySelectorAll('.lang-zh').forEach(function(el) {
                   el.style.display = '';
                });
+               document.getElementById('btn-zh').classList.add('active');
+               document.getElementById('btn-en').classList.remove('active');
                document.title = '个人简介';
-               if (switchLabel) { switchLabel.textContent = '中'; }
-               if (switchBtn) { switchBtn.setAttribute('aria-label', 'Switch to English / 切换为英文'); }
                localStorage.setItem('preferredLanguage', 'zh');
             }
-         }
-
-         function toggleLanguage() {
-            var current = localStorage.getItem('preferredLanguage') || 'en';
-            switchLanguage(current === 'en' ? 'zh' : 'en');
          }
 
          // Load preferred language on page load

@@ -47,6 +47,15 @@
       <link rel="stylesheet" href="css/bootstrap-quotes.min.css" />
       <script src="/assets/js/theme.js"></script>
       <script src="/assets/js/dark_mode.js"></script>
+      <style>
+         /* --- EN / 中文 language toggle (matches blog post style) --- */
+         .lang-toggle { display: inline-flex; }
+         .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+           font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+         .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+         .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+         .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+      </style>
    </head>
 
    <body class="fixed-top-nav ">
@@ -68,7 +77,10 @@
             <div class="content-card header-card">
                <img src="assets/img/Memoji.png" class="profile-img-small" alt="Andy Peng Profile">
                <h1><span class="font-weight-bold">Andy</span> Peng</h1>
-               <p class="subtitle">Intrapreneur, Builder, Researcher, Technologist.</p>
+               <p class="subtitle">
+                  <span class="lang-en">Intrapreneur, Builder, Researcher, Technologist.</span>
+                  <span class="lang-zh" style="display: none;">内部创业者、建造者、研究者、技术专家。</span>
+               </p>
                <!--
                <div class="company-logo">
                   <img src="assets/projects/amazon-logo-squid-ink-smile-orange.png" alt="Amazon">
@@ -79,14 +91,14 @@
             <!-- Card 2: Navigation + Social -->
             <div class="content-card navigation-card">
                <nav class="nav-links">
-                  <a href="https://pengandy.com/portfolio">About</a>
-                  <a href="https://pengandy.com/blog/">Blog</a>
-                  <a href="/invited-talks">Books & Invited Talks</a>
-                  <a href="/projects">Projects</a>
-                  <a href="/service">Services</a>
+                  <a href="https://pengandy.com/portfolio"><span class="lang-en">About</span><span class="lang-zh" style="display: none;">简介</span></a>
+                  <a href="https://pengandy.com/blog/"><span class="lang-en">Blog</span><span class="lang-zh" style="display: none;">博客</span></a>
+                  <a href="/invited-talks"><span class="lang-en">Books & Invited Talks</span><span class="lang-zh" style="display: none;">书籍 & 邀请演讲</span></a>
+                  <a href="/projects"><span class="lang-en">Projects</span><span class="lang-zh" style="display: none;">项目</span></a>
+                  <a href="/service"><span class="lang-en">Services</span><span class="lang-zh" style="display: none;">服务</span></a>
                   <a href="/cv">CV</a>
-                  <a href="/publication">Publications</a>
-                  <a href="/news">News</a>
+                  <a href="/publication"><span class="lang-en">Publications</span><span class="lang-zh" style="display: none;">发表</span></a>
+                  <a href="/news"><span class="lang-en">News</span><span class="lang-zh" style="display: none;">新闻</span></a>
                </nav>
                <div class="social-icons-compact">
                   <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="Email"><i class="fa fa-envelope"></i></a>
@@ -95,12 +107,16 @@
                   <a href="/studio" title="Studio"><i class="fa fa-cart-shopping"></i></a>
                   <a href="/visitings" title="Visitings"><i class="fa fa-globe"></i></a>
                </div>
+               <div class="lang-toggle" role="group" aria-label="Language selector" style="margin-top: 16px;">
+                  <button type="button" class="active" id="btn-en" onclick="switchLanguage('en')">EN</button>
+                  <button type="button" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
+               </div>
             </div>
 
             <!-- Card 3: Tag Cloud -->
             <div class="content-card tag-card">
-               <h3 class="card-title">Expertise</h3>
-               <div class="tag-cloud">
+               <h3 class="card-title"><span class="lang-en">Expertise</span><span class="lang-zh" style="display: none;">专长</span></h3>
+               <div class="tag-cloud lang-en">
                   <span style="font-size:1.9808597661330818rem">ENFJ</span>
                   <span style="font-size:1.3797423688644388rem">PNW</span>
                   <span style="font-size:0.8624203575907899rem">Large-Scale Distributed System</span>
@@ -122,6 +138,28 @@
                   <span style="font-size:1.1783698208829727rem">Model Evaluation and Benchmark</span>
                   <span style="font-size:1.2537593519539654rem">Organizational Behavior</span>
                </div>
+               <div class="tag-cloud lang-zh" style="display: none;">
+                  <span style="font-size:1.9808597661330818rem">ENFJ</span>
+                  <span style="font-size:1.3797423688644388rem">大西北 (PNW)</span>
+                  <span style="font-size:0.8624203575907899rem">大规模分布式系统</span>
+                  <span style="font-size:1.9610478096093238rem">技术领导力</span>
+                  <span style="font-size:0.8624203575907899rem">工程</span>
+                  <span style="font-size:0.8624203575907899rem">业界前沿 (SOTA)</span>
+                  <span style="font-size:1.4826779887263513rem">建造者</span>
+                  <span style="font-size:0.7rem">辅导与指导</span>
+                  <span style="font-size:1.4826779887263513rem">内部创业者</span>
+                  <span style="font-size:1.6086610056368245rem">产品与研究</span>
+                  <span style="font-size:0.7rem">从零到一</span>
+                  <span style="font-size:0.8624203575907899rem">保持好奇</span>
+                  <span style="font-size:1.9808597661330818rem">机器学习</span>
+                  <span style="font-size:1.4826779887263513rem">无服务器</span>
+                  <span style="font-size:1.4826779887263513rem">开源</span>
+                  <span style="font-size:1.7710813632276143rem">LLM</span>
+                  <span style="font-size:1.3797423688644388rem">技术顾问</span>
+                  <span style="font-size:0.8624203575907899rem">虚拟化</span>
+                  <span style="font-size:1.1783698208829727rem">模型评估与基准</span>
+                  <span style="font-size:1.2537593519539654rem">组织行为学</span>
+               </div>
             </div>
          </div>
       </div>
@@ -135,6 +173,33 @@
       <script type="text/javascript" src="js/mdb.min.js"></script>
       <!-- Custom scripts -->
       <script type="text/javascript"></script>
+      <!-- Language Toggle Script -->
+      <script>
+         function switchLanguage(lang) {
+            document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
+               el.style.display = 'none';
+            });
+            if (lang === 'en') {
+               document.querySelectorAll('.lang-en').forEach(function(el) {
+                  el.style.display = '';
+               });
+               document.getElementById('btn-en').classList.add('active');
+               document.getElementById('btn-zh').classList.remove('active');
+               localStorage.setItem('preferredLanguage', 'en');
+            } else if (lang === 'zh') {
+               document.querySelectorAll('.lang-zh').forEach(function(el) {
+                  el.style.display = '';
+               });
+               document.getElementById('btn-zh').classList.add('active');
+               document.getElementById('btn-en').classList.remove('active');
+               localStorage.setItem('preferredLanguage', 'zh');
+            }
+         }
+         document.addEventListener('DOMContentLoaded', function() {
+            var preferredLang = localStorage.getItem('preferredLanguage') || 'en';
+            switchLanguage(preferredLang);
+         });
+      </script>
    </body>
 </html>
 

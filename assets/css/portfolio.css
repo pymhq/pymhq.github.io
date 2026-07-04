@@ -492,9 +492,9 @@ html[data-theme=dark] .news table tr:hover {
 }
 
 /* ==========================================================================
-   Single-button language toggle (navbar)
-   Replaces the old two-button EN/中文 stacked switcher with one pill button,
-   matching the unified toggle pattern used on reference sites like lizheng.ai.
+   Language toggle (navbar) — EN | 中文 two-segment pill button.
+   Matches the existing toggle style already used across blog posts
+   (components/blog-template.html) and the homepage, for a consistent look.
    ========================================================================== */
 .lang-switch-item {
   display: flex;
@@ -502,33 +502,32 @@ html[data-theme=dark] .news table tr:hover {
   margin-left: 8px;
 }
 
-.lang-switch-btn {
+.lang-switch-item .lang-toggle {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 42px;
-  height: 30px;
-  padding: 0 12px;
+}
+
+.lang-switch-item .lang-toggle button {
   border: 1px solid var(--global-theme-color);
-  border-radius: 15px;
   background: transparent;
   color: var(--global-theme-color);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  font: 600 0.82em 'Roboto', sans-serif;
+  padding: 5px 16px;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  line-height: 1.4;
 }
 
-.lang-switch-btn:hover,
-.lang-switch-btn:focus {
-  background-color: var(--global-theme-color);
+.lang-switch-item .lang-toggle button:first-child {
+  border-radius: 16px 0 0 16px;
+  border-right: none;
+}
+
+.lang-switch-item .lang-toggle button:last-child {
+  border-radius: 0 16px 16px 0;
+}
+
+.lang-switch-item .lang-toggle button.active {
+  background: var(--global-theme-color);
   color: #fff;
-  outline: none;
-}
-
-.lang-switch-btn .lang-switch-current {
-  pointer-events: none;
 }
 
 @media (max-width: 576px) {
