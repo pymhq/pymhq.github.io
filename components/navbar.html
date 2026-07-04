@@ -388,14 +388,14 @@ nav[data-toggle="toc"] {
          </button> 
          <div class="collapse navbar-collapse text-right" id="navbarNav">
             <ul class="navbar-nav ml-auto flex-nowrap">
-               <li class="nav-item" data-page="bio"> <a class="nav-link" href="/portfolio">About</a> </li>
-               <li class="nav-item" data-page="blog"> <a class="nav-link" href="/blog/">Blog</a> </li>
-               <li class="nav-item" data-page="publications"> <a class="nav-link" href="/invited-talks">Books & Invited Talks</a> </li>
-               <li class="nav-item" data-page="publication"> <a class="nav-link" href="/publication">Publications</a> </li>
-               <li class="nav-item" data-page="projects"> <a class="nav-link" href="/projects">Projects</a> </li>
-               <li class="nav-item" data-page="services"> <a class="nav-link" href="/service">Services</a> </li>
+               <li class="nav-item" data-page="bio"> <a class="nav-link" href="/portfolio"><span class="lang-en">About</span><span class="lang-zh" style="display:none;">简介</span></a> </li>
+               <li class="nav-item" data-page="blog"> <a class="nav-link" href="/blog/"><span class="lang-en">Blog</span><span class="lang-zh" style="display:none;">博客</span></a> </li>
+               <li class="nav-item" data-page="publications"> <a class="nav-link" href="/invited-talks"><span class="lang-en">Books & Invited Talks</span><span class="lang-zh" style="display:none;">书籍 & 邀请演讲</span></a> </li>
+               <li class="nav-item" data-page="publication"> <a class="nav-link" href="/publication"><span class="lang-en">Publications</span><span class="lang-zh" style="display:none;">发表</span></a> </li>
+               <li class="nav-item" data-page="projects"> <a class="nav-link" href="/projects"><span class="lang-en">Projects</span><span class="lang-zh" style="display:none;">项目</span></a> </li>
+               <li class="nav-item" data-page="services"> <a class="nav-link" href="/service"><span class="lang-en">Services</span><span class="lang-zh" style="display:none;">服务</span></a> </li>
                <li class="nav-item" data-page="cv"> <a class="nav-link" href="/cv">CV</a> </li>
-               <li class="nav-item" data-page="news"> <a class="nav-link" href="/news">News</a> </li>
+               <li class="nav-item" data-page="news"> <a class="nav-link" href="/news"><span class="lang-en">News</span><span class="lang-zh" style="display:none;">新闻</span></a> </li>
             </ul>
          </div>
       </div>
@@ -419,6 +419,57 @@ nav[data-toggle="toc"] {
          }
       }
    }
+})();
+</script>
+
+<!-- Global site-wide language state (chosen once on the homepage, applied everywhere).
+     Shows .lang-zh content when preferredLanguage is 'zh'; falls back to English
+     for any block that has no .lang-zh translation, instead of leaving it blank. -->
+<script>
+(function() {
+   // IMPORTANT: setting el.style.display = '' only clears the inline
+   // override and lets CSS take over again. Since main.css has a global
+   // ".lang-zh { display: none; }" default (so text isn't stacked before
+   // JS runs), clearing back to '' would immediately re-hide it. We must
+   // set an explicit display value instead, picked by tag type so inline
+   // spans stay inline and block-level containers stay block.
+   function showEl(el) {
+      var tag = el.tagName;
+      el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+   }
+   function applyGlobalLanguage(lang) {
+      document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
+         el.style.display = 'none';
+      });
+      if (lang === 'zh') {
+         document.querySelectorAll('.lang-zh').forEach(showEl);
+         document.querySelectorAll('.lang-en').forEach(function(el) {
+            var parent = el.parentElement;
+            var hasZhSibling = parent && parent.querySelector('.lang-zh');
+            if (!hasZhSibling) {
+               showEl(el);
+            }
+         });
+         document.body.classList.add('zh');
+      } else {
+         document.querySelectorAll('.lang-en').forEach(showEl);
+         document.body.classList.remove('zh');
+      }
+   }
+   window.applyGlobalLanguage = applyGlobalLanguage;
+
+   // Shared entry point: any page (homepage button, a blog post's own
+   // toggle button, etc.) can call switchLanguage('zh'|'en') to update the
+   // site-wide preference. This re-applies language to the navbar AND the
+   // current page's content immediately, without a reload.
+   window.switchLanguage = function(lang) {
+      try { localStorage.setItem('preferredLanguage', lang); } catch (e) {}
+      applyGlobalLanguage(lang);
+   };
+
+   var preferredLang = 'en';
+   try { preferredLang = localStorage.getItem('preferredLanguage') || 'en'; } catch (e) {}
+   applyGlobalLanguage(preferredLang);
 })();
 </script>
 

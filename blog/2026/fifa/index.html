@@ -114,8 +114,10 @@
      }
      .g-qa .a .en hr { margin: 12px 0; border: 0; border-top: 1px dashed rgba(155,89,182,0.3); }
      .sub-h { margin: 30px 0 10px; font-size: 1.08em; font-weight: 700; color: #5a4a8a; border-bottom: 1px solid rgba(120,110,200,0.25); padding-bottom: 5px; }
-
-     /* --- EN / 中文 language toggle --- */
+     /* --- EN / 中文 language toggle ---
+        Clicking either button updates the shared global preference
+        (localStorage 'preferredLanguage') also used by the homepage and
+        the navbar. See __setPostLang() near the bottom of this file. */
      .lang-toggle { margin: 0 0 22px 0; }
      .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
        font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
@@ -123,10 +125,8 @@
      .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
      .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
      .lang-zh { display:none; }
-     body.zh .lang-en { display:none; }
-     body.zh .lang-zh { display:block; }
    </style>
-   <body class="fixed-top-nav zh" data-page="blog">
+   <body class="fixed-top-nav" data-page="blog">
       <!-- shared Gemini sparkle gradient (referenced by every .g-spark) -->
       <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs>
@@ -154,8 +154,9 @@
 
                   <div class="lang-toggle">
                      <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
-                     <button id="lang-zh-btn" type="button" class="active" onclick="__setPostLang('zh')">中文</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
                   </div>
+
 
                   <div class="lang-en">
 
@@ -553,20 +554,44 @@
       <div id="footer-placeholder"></div>
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
       <script src="/assets/js/bootstrap.bundle.min.js"></script>
-      <!-- EN / 中文 toggle logic (remembers choice per post via localStorage) -->
+      <!-- EN / 中文 toggle logic. Writes the SAME global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
       <script>
       (function(){
-        function setLang(l){
-          var zh = l==='zh';
-          document.body.classList.toggle('zh', zh);
-          var be=document.getElementById('lang-en-btn'), bz=document.getElementById('lang-zh-btn');
-          if(be) be.classList.toggle('active', !zh);
-          if(bz) bz.classList.toggle('active', zh);
-          try{ localStorage.setItem('fifa-lang', l); }catch(e){}
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
         }
-        window.__setPostLang=setLang;
-        function init(){ var v='zh'; try{ v=localStorage.getItem('fifa-lang')||'zh'; }catch(e){} setLang(v); }
-        if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
       })();
       </script>
    </body>
