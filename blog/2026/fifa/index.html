@@ -114,19 +114,10 @@
      }
      .g-qa .a .en hr { margin: 12px 0; border: 0; border-top: 1px dashed rgba(155,89,182,0.3); }
      .sub-h { margin: 30px 0 10px; font-size: 1.08em; font-weight: 700; color: #5a4a8a; border-bottom: 1px solid rgba(120,110,200,0.25); padding-bottom: 5px; }
-
-     /* --- EN / 中文 language toggle --- */
-     .lang-toggle { margin: 0 0 22px 0; }
-     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
-       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
-     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
-     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
-     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     /* Language is applied globally via components/navbar.html's applyGlobalLanguage(). */
      .lang-zh { display:none; }
-     body.zh .lang-en { display:none; }
-     body.zh .lang-zh { display:block; }
    </style>
-   <body class="fixed-top-nav zh" data-page="blog">
+   <body class="fixed-top-nav" data-page="blog">
       <!-- shared Gemini sparkle gradient (referenced by every .g-spark) -->
       <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs>
@@ -151,11 +142,6 @@
             </div>
             <article class="post-content">
                <div id="markdown-content">
-
-                  <div class="lang-toggle">
-                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
-                     <button id="lang-zh-btn" type="button" class="active" onclick="__setPostLang('zh')">中文</button>
-                  </div>
 
                   <div class="lang-en">
 
@@ -553,21 +539,6 @@
       <div id="footer-placeholder"></div>
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
       <script src="/assets/js/bootstrap.bundle.min.js"></script>
-      <!-- EN / 中文 toggle logic (remembers choice per post via localStorage) -->
-      <script>
-      (function(){
-        function setLang(l){
-          var zh = l==='zh';
-          document.body.classList.toggle('zh', zh);
-          var be=document.getElementById('lang-en-btn'), bz=document.getElementById('lang-zh-btn');
-          if(be) be.classList.toggle('active', !zh);
-          if(bz) bz.classList.toggle('active', zh);
-          try{ localStorage.setItem('fifa-lang', l); }catch(e){}
-        }
-        window.__setPostLang=setLang;
-        function init(){ var v='zh'; try{ v=localStorage.getItem('fifa-lang')||'zh'; }catch(e){} setLang(v); }
-        if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
-      })();
-      </script>
+      <!-- Language is applied globally by components/navbar.html's applyGlobalLanguage(). -->
    </body>
 </html>

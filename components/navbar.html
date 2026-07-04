@@ -422,3 +422,38 @@ nav[data-toggle="toc"] {
 })();
 </script>
 
+<!-- Global site-wide language state (chosen once on the homepage, applied everywhere).
+     Shows .lang-zh content when preferredLanguage is 'zh'; falls back to English
+     for any block that has no .lang-zh translation, instead of leaving it blank. -->
+<script>
+(function() {
+   function applyGlobalLanguage(lang) {
+      document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
+         el.style.display = 'none';
+      });
+      if (lang === 'zh') {
+         document.querySelectorAll('.lang-zh').forEach(function(el) {
+            el.style.display = '';
+         });
+         document.querySelectorAll('.lang-en').forEach(function(el) {
+            var parent = el.parentElement;
+            var hasZhSibling = parent && parent.querySelector('.lang-zh');
+            if (!hasZhSibling) {
+               el.style.display = '';
+            }
+         });
+         document.body.classList.add('zh');
+      } else {
+         document.querySelectorAll('.lang-en').forEach(function(el) {
+            el.style.display = '';
+         });
+         document.body.classList.remove('zh');
+      }
+   }
+   window.applyGlobalLanguage = applyGlobalLanguage;
+   var preferredLang = 'en';
+   try { preferredLang = localStorage.getItem('preferredLanguage') || 'en'; } catch (e) {}
+   applyGlobalLanguage(preferredLang);
+})();
+</script>
+

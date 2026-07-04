@@ -175,18 +175,11 @@
       <script type="text/javascript"></script>
       <!-- Language Toggle Script -->
       <script>
-         function switchLanguage(lang) {
+         function applyLanguage(lang) {
             document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
                el.style.display = 'none';
             });
-            if (lang === 'en') {
-               document.querySelectorAll('.lang-en').forEach(function(el) {
-                  el.style.display = '';
-               });
-               document.getElementById('btn-en').classList.add('active');
-               document.getElementById('btn-zh').classList.remove('active');
-               localStorage.setItem('preferredLanguage', 'en');
-            } else if (lang === 'zh') {
+            if (lang === 'zh') {
                document.querySelectorAll('.lang-zh').forEach(function(el) {
                   el.style.display = '';
                });
@@ -202,12 +195,24 @@
                });
                document.getElementById('btn-zh').classList.add('active');
                document.getElementById('btn-en').classList.remove('active');
-               localStorage.setItem('preferredLanguage', 'zh');
+            } else {
+               document.querySelectorAll('.lang-en').forEach(function(el) {
+                  el.style.display = '';
+               });
+               document.getElementById('btn-en').classList.add('active');
+               document.getElementById('btn-zh').classList.remove('active');
             }
+         }
+         // This is the single site-wide entry point for choosing a language.
+         // The choice is saved to localStorage and every other page (via the
+         // shared components/navbar.html) picks it up and applies it there.
+         function switchLanguage(lang) {
+            localStorage.setItem('preferredLanguage', lang);
+            applyLanguage(lang);
          }
          document.addEventListener('DOMContentLoaded', function() {
             var preferredLang = localStorage.getItem('preferredLanguage') || 'en';
-            switchLanguage(preferredLang);
+            applyLanguage(preferredLang);
          });
       </script>
    </body>
