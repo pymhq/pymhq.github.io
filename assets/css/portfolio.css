@@ -490,3 +490,51 @@ html[data-theme=dark] .bio-section-divider {
 html[data-theme=dark] .news table tr:hover {
   background: rgba(38, 152, 186, 0.08);
 }
+
+/* ==========================================================================
+   Single-button language toggle (navbar)
+   Replaces the old two-button EN/中文 stacked switcher with one pill button,
+   matching the unified toggle pattern used on reference sites like lizheng.ai.
+   ========================================================================== */
+.lang-switch-item {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+.lang-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--global-theme-color);
+  border-radius: 15px;
+  background: transparent;
+  color: var(--global-theme-color);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.lang-switch-btn:hover,
+.lang-switch-btn:focus {
+  background-color: var(--global-theme-color);
+  color: #fff;
+  outline: none;
+}
+
+.lang-switch-btn .lang-switch-current {
+  pointer-events: none;
+}
+
+@media (max-width: 576px) {
+  .lang-switch-item {
+    margin-left: 0;
+    margin-top: 8px;
+    justify-content: flex-end;
+  }
+}
