@@ -1085,3 +1085,16 @@ position: absolute;
 left: 2px;
 top: -0.5rem
 }
+
+/* ==========================================================================
+   Global bilingual content default (site-wide fallback)
+   .lang-zh is hidden by CSS from the very first paint, before any JS runs,
+   so English/Chinese text never renders stacked together. Language-switch
+   scripts (components/navbar.html, index.html, portfolio.html, blog posts)
+   restore visibility with an explicit display value chosen per element
+   (see each script's showEl() helper) rather than clearing back to '',
+   since clearing to '' would just let this default hide it again.
+   ========================================================================== */
+.lang-zh {
+  display: none;
+}

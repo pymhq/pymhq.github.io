@@ -175,14 +175,16 @@
       <script type="text/javascript"></script>
       <!-- Language Toggle Script -->
       <script>
+         function showEl(el) {
+            var tag = el.tagName;
+            el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+         }
          function applyLanguage(lang) {
             document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
                el.style.display = 'none';
             });
             if (lang === 'zh') {
-               document.querySelectorAll('.lang-zh').forEach(function(el) {
-                  el.style.display = '';
-               });
+               document.querySelectorAll('.lang-zh').forEach(showEl);
                // Fallback: if an .lang-en block has no sibling .lang-zh translation
                // on this page, keep showing the English version instead of leaving
                // it blank.
@@ -190,15 +192,13 @@
                   var parent = el.parentElement;
                   var hasZhSibling = parent && parent.querySelector('.lang-zh');
                   if (!hasZhSibling) {
-                     el.style.display = '';
+                     showEl(el);
                   }
                });
                document.getElementById('btn-zh').classList.add('active');
                document.getElementById('btn-en').classList.remove('active');
             } else {
-               document.querySelectorAll('.lang-en').forEach(function(el) {
-                  el.style.display = '';
-               });
+               document.querySelectorAll('.lang-en').forEach(showEl);
                document.getElementById('btn-en').classList.add('active');
                document.getElementById('btn-zh').classList.remove('active');
             }
