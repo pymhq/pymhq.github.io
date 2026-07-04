@@ -140,7 +140,7 @@
                </div>
                <div class="tag-cloud lang-zh" style="display: none;">
                   <span style="font-size:1.9808597661330818rem">ENFJ</span>
-                  <span style="font-size:1.3797423688644388rem">大西北 (PNW)</span>
+                  <span style="font-size:1.3797423688644388rem">PNW</span>
                   <span style="font-size:0.8624203575907899rem">大规模分布式系统</span>
                   <span style="font-size:1.9610478096093238rem">技术领导力</span>
                   <span style="font-size:0.8624203575907899rem">工程</span>
@@ -189,6 +189,16 @@
             } else if (lang === 'zh') {
                document.querySelectorAll('.lang-zh').forEach(function(el) {
                   el.style.display = '';
+               });
+               // Fallback: if an .lang-en block has no sibling .lang-zh translation
+               // on this page, keep showing the English version instead of leaving
+               // it blank.
+               document.querySelectorAll('.lang-en').forEach(function(el) {
+                  var parent = el.parentElement;
+                  var hasZhSibling = parent && parent.querySelector('.lang-zh');
+                  if (!hasZhSibling) {
+                     el.style.display = '';
+                  }
                });
                document.getElementById('btn-zh').classList.add('active');
                document.getElementById('btn-en').classList.remove('active');
