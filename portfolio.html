@@ -33,6 +33,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
       <link rel="stylesheet" href="/assets/css/main.css">
       <link rel="stylesheet" href="/assets/css/portfolio.css">
+      <link rel="stylesheet" href="/assets/css/highlights.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
       <script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script>
@@ -1730,188 +1731,323 @@
                   </div>
                </div>
 
-               <!-- About blocks: left column (Research Areas + Links) and right column (Contact + Paid Service + Interests) are independent stacks -->
-               <div class="lang-en blocks-container">
-                  <!-- Left column -->
-                  <div style="display: flex; flex-direction: column; gap: 32px;">
-                     <div class="info-block research-areas-box">
-                        <h4 class="research-title">Research Areas</h4>
-                        <div class="research-keywords" style="margin-top: 12px;">
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">machine learning</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">agentic ai</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">model customization & inference optimization</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">model evaluation and benchmark</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">serverless containers & virtualization</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">open source</code></span>
-                        </div>
-                     </div>
 
-                     <div class="info-block">
-                        <h4>Links</h4>
-                        <div class="links-grid" style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-top: 16px;">
-                           <a href="https://neurips.cc/Conferences/2025/Committees" class="link-card">
-                              <i class="fa fa-brain"></i>
-                              <span class="link-title">NeurIPS</span>
-                           </a>
-                           <a href="https://icml.cc/Conferences/2025/ProgramCommittee" class="link-card">
-                              <i class="fa fa-robot"></i>
-                              <span class="link-title">ICML</span>
-                           </a>
-                           <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" class="link-card">
-                              <i class="fab fa-linux"></i>
-                              <span class="link-title">CNCF Ambassador</span>
-                           </a>
-                           <a href="https://events.linuxfoundation.org/archive/2025/open-source-summit-north-america/program/program-committee/" class="link-card">
-                              <i class="fa fa-code-branch"></i>
-                              <span class="link-title">OSS Program Committee</span>
-                           </a>
-                           <a href="https://foster.uw.edu/academics/degree-programs/master-of-science-in-information-systems/mentors/" class="link-card">
-                              <i class="fa fa-graduation-cap"></i>
-                              <span class="link-title">UW Mentor</span>
-                           </a>
-                           <a href="https://aws.amazon.com/cn/blogs/containers/author/yimipeng/" class="link-card">
-                              <i class="fa fa-laptop-code"></i>
-                              <span class="link-title">Blog Author</span>
-                           </a>
-                           <a href="https://www.amazon.com/stores/author/B0G1JDQFSK" class="link-card">
-                              <i class="fa fa-book"></i>
-                              <span class="link-title">Book Author</span>
-                           </a>
-                           <a href="https://seattleregatta2023.sched.com/speaker/yiming_peng.2589xy9k?iframe=no" class="link-card">
-                              <i class="fa fa-users"></i>
-                              <span class="link-title">Women in Tech</span>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-
-                  <!-- Right column -->
-                  <div style="display: flex; flex-direction: column; gap: 32px;">
-                     <div class="info-block">
-                        <h4>Contact</h4>
-                        <div class="contact-icons">
+               <!-- About blocks: Contact + Interests -->
+               <div class="lang-en">
+                  <div class="contact-block">
+                     <div class="contact-block-left">
+                        <div class="contact-block-icons">
                            <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="email"><i class="fas fa-envelope"></i></a>
                            <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn" rel="external nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i></a>
                            <a href="https://twitter.com/pymhq" title="Twitter" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
                            <a href="https://github.com/pymhq" title="GitHub" rel="external nofollow noopener" target="_blank"><i class="fab fa-github"></i></a>
                         </div>
-                        <div class="contact-note" style="margin-top: 12px;">Email: pengandy [dot] build [at] gmail [dot] com</div>
-                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--global-divider-color);">
-                           <a href="/office" style="display: inline-block; padding: 10px 20px; background: var(--global-theme-color); color: white; border-radius: 8px; text-decoration: none; transition: all 0.2s; font-size: 13px;">
-                              <i class="fa fa-map-marker-alt" style="margin-right: 6px;"></i>Office
-                           </a>
+                        <div class="contact-block-email">
+                           <span class="contact-block-email-label">Email</span>
+                           pengandy [dot] build [at] gmail [dot] com
                         </div>
                      </div>
-
-                     <div class="info-block">
-                        <h4>Personal Studio</h4>
-                        <p class="color-light" style="margin-top: 12px;"><a href="https://pengandy.com/studio" target="_blank" style="color: var(--global-theme-color); font-weight: 500;">PENG ANDY STUDIO LLC</a></p>
-                     </div>
-
-                     <div class="info-block">
-                        <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 12px;">
-                           <i class="fa fa-book-open" style="font-size: 20px; color: var(--global-theme-color);"></i>
-                           <i class="fa fa-headphones" style="font-size: 20px; color: var(--global-theme-color);"></i>
-                           <i class="fa fa-umbrella-beach" style="font-size: 20px; color: var(--global-theme-color);"></i>
-                           <i class="fa fa-ship" style="font-size: 20px; color: var(--global-theme-color);"></i>
-                        </div>
-                        <p style="color: var(--global-text-color-light);">Fan of Orca, Pickleball, Seattle Kraken, Seahawk, Kosaku Shima, Lorde, Quentin Tarantino, Herman Melville. Collecting magnets and mugs.</p>
-                     </div>
+                     <a href="/office" class="contact-block-office"><i class="fa fa-map-marker-alt"></i> Office</a>
+                  </div>
+                  <div class="interests-strip">
+                     <span class="interests-strip-label">Also a fan of:</span>
+                     <span class="interest-pill"><i class="fa fa-water"></i> Orca</span>
+                     <span class="interest-pill"><i class="fa fa-table-tennis-paddle-ball"></i> Pickleball</span>
+                     <span class="interest-pill"><i class="fa fa-hockey-puck"></i> Kraken</span>
+                     <span class="interest-pill"><i class="fa fa-football"></i> Seahawks</span>
+                     <span class="interest-pill"><i class="fa fa-book-open"></i> Kosaku Shima</span>
+                     <span class="interest-pill"><i class="fa fa-headphones"></i> Lorde</span>
+                     <span class="interest-pill"><i class="fa fa-film"></i> Tarantino</span>
+                     <span class="interest-pill"><i class="fa fa-feather"></i> Melville</span>
+                     <span class="interest-pill"><i class="fa fa-mug-hot"></i> Magnets & mugs</span>
                   </div>
                </div>
 
-               <!-- Chinese About blocks -->
-               <div class="lang-zh blocks-container" style="display: none;">
-                  <!-- Left column -->
-                  <div style="display: flex; flex-direction: column; gap: 32px;">
-                     <div class="info-block research-areas-box">
-                        <h4 class="research-title">研究领域</h4>
-                        <div class="research-keywords" style="margin-top: 12px;">
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">机器学习</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">智能体 ai</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">LLM 后训练</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">LLM 推理与优化</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">模型评估与基准</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">无服务器容器与虚拟化</code></span>
-                           <span style="display: inline-block; margin: 4px 6px 4px 0;"><code style="background-color: rgba(0, 123, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: #007bff;">开源</code></span>
-                        </div>
-                     </div>
 
-                     <div class="info-block">
-                        <h4>外部链接</h4>
-                        <div class="links-grid" style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-top: 16px;">
-                           <a href="https://neurips.cc/Conferences/2025/Committees" class="link-card">
-                              <i class="fa fa-brain"></i>
-                              <span class="link-title">NeurIPS 联合主席</span>
-                           </a>
-                           <a href="https://icml.cc/Conferences/2025/ProgramCommittee" class="link-card">
-                              <i class="fa fa-robot"></i>
-                              <span class="link-title">ICML</span>
-                           </a>
-                           <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" class="link-card">
-                              <i class="fab fa-linux"></i>
-                              <span class="link-title">CNCF 大使</span>
-                           </a>
-                           <a href="https://events.linuxfoundation.org/archive/2025/open-source-summit-north-america/program/program-committee/" class="link-card">
-                              <i class="fa fa-code-branch"></i>
-                              <span class="link-title">OSS 计划委员会</span>
-                           </a>
-                           <a href="https://foster.uw.edu/academics/degree-programs/master-of-science-in-information-systems/mentors/" class="link-card">
-                              <i class="fa fa-graduation-cap"></i>
-                              <span class="link-title">西雅图华盛顿大学导师</span>
-                           </a>
-                           <a href="https://aws.amazon.com/cn/blogs/containers/author/yimipeng/" class="link-card">
-                              <i class="fa fa-laptop-code"></i>
-                              <span class="link-title">博客作者</span>
-                           </a>
-                           <a href="https://www.amazon.com/stores/author/B0G1JDQFSK" class="link-card">
-                              <i class="fa fa-book"></i>
-                              <span class="link-title">Packt 作者：《DeepSeek in Practice》</span>
-                           </a>
-                           <a href="https://seattleregatta2023.sched.com/speaker/yiming_peng.2589xy9k?iframe=no" class="link-card">
-                              <i class="fa fa-users"></i>
-                              <span class="link-title">Women in Tech</span>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-
-                  <!-- Right column -->
-                  <div style="display: flex; flex-direction: column; gap: 32px;">
-                     <div class="info-block">
-                        <h4>联系方式</h4>
-                        <div class="contact-icons">
+               <!-- 关于信息：联系方式 + 兴趣爱好 -->
+               <div class="lang-zh" style="display: none;">
+                  <div class="contact-block">
+                     <div class="contact-block-left">
+                        <div class="contact-block-icons">
                            <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="email"><i class="fas fa-envelope"></i></a>
                            <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn" rel="external nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i></a>
                            <a href="https://twitter.com/pymhq" title="Twitter" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                           <a href="https://www.xiaohongshu.com/user/profile/646a8ca2000000000f006c94?xhsshare=CopyLink&appuid=646a8ca2000000000f006c94&apptime=1726950888&share_id=adcee4fb2111492a953479d5aad37577" title="Xiaohongshu" rel="external nofollow noopener" target="_blank"><img width="24" height="24" src="https://img.icons8.com/ios/96/FA5252/xiao-hong-shu.png" alt="xiaohongshu" style="vertical-align: middle;"/></a>
+                           <a href="https://www.xiaohongshu.com/user/profile/646a8ca2000000000f006c94?xhsshare=CopyLink&appuid=646a8ca2000000000f006c94&apptime=1726950888&share_id=adcee4fb2111492a953479d5aad37577" title="Xiaohongshu" rel="external nofollow noopener" target="_blank"><img width="18" height="18" src="https://img.icons8.com/ios/96/FA5252/xiao-hong-shu.png" alt="xiaohongshu"/></a>
                            <a href="https://github.com/pymhq" title="GitHub" rel="external nofollow noopener" target="_blank"><i class="fab fa-github"></i></a>
                         </div>
-                        <div class="contact-note" style="margin-top: 12px;">Email: pengandy [dot] build [at] gmail [dot] com</div>
-                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--global-divider-color);">
-                           <a href="/office" style="display: inline-block; padding: 10px 20px; background: var(--global-theme-color); color: white; border-radius: 8px; text-decoration: none; transition: all 0.2s; font-size: 13px;">
-                              <i class="fa fa-map-marker-alt" style="margin-right: 6px;"></i>办公室
-                           </a>
+                        <div class="contact-block-email">
+                           <span class="contact-block-email-label">邮箱</span>
+                           pengandy [dot] build [at] gmail [dot] com
                         </div>
                      </div>
-
-                     <div class="info-block">
-                        <h4>个人工作室</h4>
-                        <p class="color-light" style="margin-top: 12px;"><a href="https://pengandy.com/studio" target="_blank" style="color: var(--global-theme-color); font-weight: 500;">PENG ANDY STUDIO LLC</a></p>
-                     </div>
-
-                     <div class="info-block">
-                        <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 12px;">
-                           <i class="fa fa-book-open" style="font-size: 20px; color: var(--global-theme-color);"></i>
-                           <i class="fa fa-headphones" style="font-size: 20px; color: var(--global-theme-color);"></i>
-                           <i class="fa fa-umbrella-beach" style="font-size: 20px; color: var(--global-theme-color);"></i>
-                           <i class="fa fa-ship" style="font-size: 20px; color: var(--global-theme-color);"></i>
-                        </div>
-                        <p style="color: var(--global-text-color-light);">Orca、匹克球、西雅图海妖冰球队、海鹰橄榄球队、岛耕作、Lorde、昆汀·塔伦蒂诺、赫尔曼·梅尔维尔。冰箱贴和马克杯。</p>
-                     </div>
+                     <a href="/office" class="contact-block-office"><i class="fa fa-map-marker-alt"></i> 办公室</a>
+                  </div>
+                  <div class="interests-strip">
+                     <span class="interests-strip-label">同时也喜欢：</span>
+                     <span class="interest-pill"><i class="fa fa-water"></i> 虎鲸</span>
+                     <span class="interest-pill"><i class="fa fa-table-tennis-paddle-ball"></i> 匹克球</span>
+                     <span class="interest-pill"><i class="fa fa-hockey-puck"></i> 海妖冰球队</span>
+                     <span class="interest-pill"><i class="fa fa-football"></i> 海鹰橄榄球队</span>
+                     <span class="interest-pill"><i class="fa fa-book-open"></i> 岛耕作</span>
+                     <span class="interest-pill"><i class="fa fa-headphones"></i> Lorde</span>
+                     <span class="interest-pill"><i class="fa fa-film"></i> 昆汀·塔伦蒂诺</span>
+                     <span class="interest-pill"><i class="fa fa-feather"></i> 赫尔曼·梅尔维尔</span>
+                     <span class="interest-pill"><i class="fa fa-mug-hot"></i> 冰箱贴和马克杯</span>
                   </div>
                </div>
 
+
+               </div>
+               <!-- Highlights Section: quick visual snapshot of different roles.
+                    Distinct from Recommendations (third-party proof) and CV
+                    (full chronological detail) — this is a fast overview. -->
+               <div class="lang-en highlights-section">
+                  <h3 class="highlights-section-title">Snapshot</h3>
+                  <div class="highlights-grid">
+
+                     <div class="highlight-card hl-builder">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-rocket"></i></div>
+                           <div>
+                              <p class="highlight-title">Builder & Intrapreneur</p>
+                              <p class="highlight-subtitle">Product · 0-to-1 · Amazon</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>Led 0-to-1 innovation and 10x scaling across multiple Amazon product lines: SageMaker AI & Bedrock, App Runner, Fargate, Alexa AI Health.</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="/projects" class="highlight-org"><i class="fa-brands fa-amazon"></i> Amazon</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-researcher">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-flask"></i></div>
+                           <div>
+                              <p class="highlight-title">Researcher</p>
+                              <p class="highlight-subtitle">NeurIPS · ICML · KDD · ICLR</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>NeurIPS 2025 Co-Chair.</li>
+                           <li>Multi-year Program Committee / reviewer for ICML, KDD, and ICLR (main tracks and workshops).</li>
+                        </ul>
+                        <div class="research-keywords" style="margin: 10px 0 12px 0;">
+                           <span style="display: inline-block; margin: 2px 4px 2px 0;"><code style="background-color: rgba(25, 113, 194, 0.1); padding: 3px 9px; border-radius: 4px; color: #1971c2; font-size: 13px;">machine learning</code></span>
+                           <span style="display: inline-block; margin: 2px 4px 2px 0;"><code style="background-color: rgba(25, 113, 194, 0.1); padding: 3px 9px; border-radius: 4px; color: #1971c2; font-size: 13px;">agentic ai</code></span>
+                           <span style="display: inline-block; margin: 2px 4px 2px 0;"><code style="background-color: rgba(25, 113, 194, 0.1); padding: 3px 9px; border-radius: 4px; color: #1971c2; font-size: 13px;">inference optimization</code></span>
+                           <span style="display: inline-block; margin: 2px 4px 2px 0;"><code style="background-color: rgba(25, 113, 194, 0.1); padding: 3px 9px; border-radius: 4px; color: #1971c2; font-size: 13px;">model evaluation & benchmark</code></span>
+                        </div>
+                        <div class="highlight-tags">
+                           <a href="https://neurips.cc/Conferences/2025/Committees" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-brain"></i> NeurIPS</a>
+                           <a href="https://icml.cc/Conferences/2025/ProgramCommittee" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-robot"></i> ICML</a>
+                           <a href="https://kdd-eval-workshop.github.io/genai-evaluation-kdd2025/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-chart-line"></i> KDD</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-oss">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-brands fa-osi"></i></div>
+                           <div>
+                              <p class="highlight-title">Open Source Contributor</p>
+                              <p class="highlight-subtitle">Linux Foundation · CNCF</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>CNCF Ambassador & Community Lead of Cloud Native Seattle.</li>
+                           <li>Program Committee across Open Source Summit, KubeCon + CloudNativeCon, and PyTorch Conference (multiple years, multiple regions).</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-brands fa-linux"></i> CNCF Ambassador</a>
+                           <a href="https://events.linuxfoundation.org/archive/2025/open-source-summit-north-america/program/program-committee/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-code-branch"></i> Open Source Summit</a>
+                           <a href="https://kccncna2022.sched.com/event/182KU/building-multi-tenant-routing-and-scaling-with-envoy-yiming-peng-amazon-web-services-inc" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-dharmachakra"></i> KubeCon</a>
+                           <a href="https://pytorch.org/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-brands fa-python"></i> PyTorch Conference</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-creator">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                           <div>
+                              <p class="highlight-title">Content Creator</p>
+                              <p class="highlight-subtitle">Book · Blog · Photography</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>Co-author, <em>DeepSeek in Practice</em> (Packt, 2025).</li>
+                           <li>Personal blog at <a href="/blog/" style="color: var(--highlight-accent); font-weight: 600;">pengandy.com/blog</a>, plus short-form photography & video on Xiaohongshu and Instagram.</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="https://www.amazon.com/stores/author/B0G1JDQFSK" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-book"></i> Book Author</a>
+                           <a href="/blog/" class="highlight-org"><i class="fa-solid fa-laptop-code"></i> Blog</a>
+                           <a href="https://www.xiaohongshu.com/user/profile/646a8ca2000000000f006c94" target="_blank" rel="external nofollow noopener" class="highlight-org"><img src="https://img.icons8.com/ios/96/FA5252/xiao-hong-shu.png" alt="Xiaohongshu"> Xiaohongshu</a>
+                           <a href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-lecturer">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                           <div>
+                              <p class="highlight-title">University Lecturer</p>
+                              <p class="highlight-subtitle">UW Foster School of Business</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>Guest lecturer for Generative AI / Cloud Computing courses (MSIS 547, MSIS 549) at the University of Washington's Foster School of Business.</li>
+                           <li>Mentor for the AWS AI/ML Scholarship Program and UW MSIS students.</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="https://foster.uw.edu/academics/degree-programs/master-of-science-in-information-systems/mentors/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-graduation-cap"></i> UW Foster</a>
+                           <a href="https://aws.amazon.com/machine-learning/scholarship/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-users"></i> AWS AI/ML Mentor</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-advisor">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-chart-line"></i></div>
+                           <div>
+                              <p class="highlight-title">VC Advisor</p>
+                              <p class="highlight-subtitle">Fusion Fund · AI2 Incubator</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>Fusion Fund Fellow (2026).</li>
+                           <li>AI2 Incubator Resident Expert, advising early-stage AI startups.</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="https://www.fusionfund.com/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-seedling"></i> Fusion Fund</a>
+                           <a href="https://www.ai2incubator.com/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-lightbulb"></i> AI2 Incubator</a>
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+
+               <!-- Highlights Section (Chinese) -->
+               <div class="lang-zh highlights-section" style="display: none;">
+                  <h3 class="highlights-section-title">背景速览</h3>
+                  <div class="highlights-grid">
+
+                     <div class="highlight-card hl-builder">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-rocket"></i></div>
+                           <div>
+                              <p class="highlight-title">实践者 / 内部创业者</p>
+                              <p class="highlight-subtitle">产品构建 · 0-1 · Amazon</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>主导 Amazon 多条产品线的 0-1 创新与 10 倍规模化：SageMaker AI & Bedrock、App Runner、Fargate、Alexa AI Health。</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="/projects" class="highlight-org"><i class="fa-brands fa-amazon"></i> Amazon</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-researcher">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-flask"></i></div>
+                           <div>
+                              <p class="highlight-title">研究者</p>
+                              <p class="highlight-subtitle">NeurIPS · ICML · KDD · ICLR</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>NeurIPS 2025 联合主席。</li>
+                           <li>多年担任 ICML、KDD、ICLR 主会及 Workshop 的 Program Committee / 审稿人。</li>
+                        </ul>
+                        <div class="research-keywords" style="margin: 10px 0 12px 0;">
+                           <span style="display: inline-block; margin: 2px 4px 2px 0;"><code style="background-color: rgba(25, 113, 194, 0.1); padding: 3px 9px; border-radius: 4px; color: #1971c2; font-size: 13px;">机器学习</code></span>
+                           <span style="display: inline-block; margin: 2px 4px 2px 0;"><code style="background-color: rgba(25, 113, 194, 0.1); padding: 3px 9px; border-radius: 4px; color: #1971c2; font-size: 13px;">智能体 ai</code></span>
+                           <span style="display: inline-block; margin: 2px 4px 2px 0;"><code style="background-color: rgba(25, 113, 194, 0.1); padding: 3px 9px; border-radius: 4px; color: #1971c2; font-size: 13px;">推理优化</code></span>
+                           <span style="display: inline-block; margin: 2px 4px 2px 0;"><code style="background-color: rgba(25, 113, 194, 0.1); padding: 3px 9px; border-radius: 4px; color: #1971c2; font-size: 13px;">模型评估与基准</code></span>
+                        </div>
+                        <div class="highlight-tags">
+                           <a href="https://neurips.cc/Conferences/2025/Committees" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-brain"></i> NeurIPS</a>
+                           <a href="https://icml.cc/Conferences/2025/ProgramCommittee" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-robot"></i> ICML</a>
+                           <a href="https://kdd-eval-workshop.github.io/genai-evaluation-kdd2025/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-chart-line"></i> KDD</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-oss">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-brands fa-osi"></i></div>
+                           <div>
+                              <p class="highlight-title">开源贡献者</p>
+                              <p class="highlight-subtitle">Linux Foundation · CNCF</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>CNCF 大使 & Cloud Native Seattle 社区负责人。</li>
+                           <li>多年、多地担任 Open Source Summit、KubeCon + CloudNativeCon、PyTorch Conference 的 Program Committee。</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-brands fa-linux"></i> CNCF 大使</a>
+                           <a href="https://events.linuxfoundation.org/archive/2025/open-source-summit-north-america/program/program-committee/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-code-branch"></i> Open Source Summit</a>
+                           <a href="https://kccncna2022.sched.com/event/182KU/building-multi-tenant-routing-and-scaling-with-envoy-yiming-peng-amazon-web-services-inc" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-dharmachakra"></i> KubeCon</a>
+                           <a href="https://pytorch.org/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-brands fa-python"></i> PyTorch Conference</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-creator">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                           <div>
+                              <p class="highlight-title">内容创作者</p>
+                              <p class="highlight-subtitle">书籍 · 博客 · 摄影</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>《DeepSeek in Practice》合著者（Packt，2025）。</li>
+                           <li>个人博客 <a href="/blog/" style="color: var(--highlight-accent); font-weight: 600;">pengandy.com/blog</a>，同时在小红书和 Instagram 上分享短视频与摄影内容。</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="https://www.amazon.com/stores/author/B0G1JDQFSK" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-book"></i> 图书作者</a>
+                           <a href="/blog/" class="highlight-org"><i class="fa-solid fa-laptop-code"></i> 博客</a>
+                           <a href="https://www.xiaohongshu.com/user/profile/646a8ca2000000000f006c94" target="_blank" rel="external nofollow noopener" class="highlight-org"><img src="https://img.icons8.com/ios/96/FA5252/xiao-hong-shu.png" alt="Xiaohongshu"> 小红书</a>
+                           <a href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-lecturer">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                           <div>
+                              <p class="highlight-title">大学讲师</p>
+                              <p class="highlight-subtitle">UW Foster 商学院</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>华盛顿大学 Foster 商学院 Generative AI / 云计算课程 (MSIS 547, MSIS 549) Guest Lecturer。</li>
+                           <li>AWS AI/ML Scholarship Program 及 UW MSIS 学生导师。</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="https://foster.uw.edu/academics/degree-programs/master-of-science-in-information-systems/mentors/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-graduation-cap"></i> UW Foster</a>
+                           <a href="https://aws.amazon.com/machine-learning/scholarship/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-users"></i> AWS AI/ML 导师</a>
+                        </div>
+                     </div>
+
+                     <div class="highlight-card hl-advisor">
+                        <div class="highlight-card-head">
+                           <div class="highlight-icon"><i class="fa-solid fa-chart-line"></i></div>
+                           <div>
+                              <p class="highlight-title">VC 顾问</p>
+                              <p class="highlight-subtitle">Fusion Fund · AI2 Incubator</p>
+                           </div>
+                        </div>
+                        <ul class="highlight-points">
+                           <li>Fusion Fund Fellow（2026）。</li>
+                           <li>AI2 Incubator 常驻专家，为早期 AI 创业公司提供顾问支持。</li>
+                        </ul>
+                        <div class="highlight-tags">
+                           <a href="https://www.fusionfund.com/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-seedling"></i> Fusion Fund</a>
+                           <a href="https://www.ai2incubator.com/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-lightbulb"></i> AI2 Incubator</a>
+                        </div>
+                     </div>
+
+                  </div>
                </div>
 
                <!-- Recommendations Section -->

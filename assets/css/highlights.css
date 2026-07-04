@@ -1,0 +1,329 @@
+/**
+ * Highlights Section — "Snapshot" cards for portfolio.html
+ * Distinct from Recommendations (social proof) and CV (full detail):
+ * this is a fast, visual overview of the different hats worn.
+ */
+
+/* Match the Bio card's font-family so Highlights, Contact, and Interests
+   feel like one continuous page rather than mismatched blocks. */
+.highlights-section,
+.contact-block,
+.interests-strip {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.highlights-section {
+  margin: 40px 0 48px 0;
+}
+
+.highlights-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--global-text-color-light);
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.highlights-section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--global-divider-color);
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.highlight-card {
+  position: relative;
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 14px;
+  padding: 22px 24px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  overflow: hidden;
+}
+
+.highlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--highlight-accent, var(--global-theme-color));
+  opacity: 0.85;
+}
+
+.highlight-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--highlight-accent, var(--global-theme-color));
+}
+
+.highlight-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.highlight-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #fff;
+  background: var(--highlight-accent, var(--global-theme-color));
+}
+
+.highlight-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--global-text-color);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.highlight-subtitle {
+  font-size: 13.5px;
+  color: var(--global-text-color-light);
+  margin: 0;
+  font-weight: 500;
+}
+
+.highlight-points {
+  margin: 12px 0 14px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlight-points li {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--global-text-color);
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.highlight-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--highlight-accent, var(--global-theme-color));
+  opacity: 0.7;
+}
+
+.highlight-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.highlight-org {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.06);
+  background: color-mix(in srgb, var(--highlight-accent, var(--global-theme-color)) 12%, transparent);
+  color: var(--highlight-accent, var(--global-theme-color));
+  text-decoration: none !important;
+  transition: transform 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.highlight-org:hover {
+  transform: translateY(-1px);
+  background: rgba(0, 0, 0, 0.12);
+  background: color-mix(in srgb, var(--highlight-accent, var(--global-theme-color)) 22%, transparent);
+}
+
+.highlight-org img {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+.highlight-org i {
+  font-size: 12px;
+}
+
+/* Per-card accent colors */
+.highlight-card.hl-builder     { --highlight-accent: #e8590c; }
+.highlight-card.hl-researcher  { --highlight-accent: #1971c2; }
+.highlight-card.hl-oss         { --highlight-accent: #2f9e44; }
+.highlight-card.hl-creator     { --highlight-accent: #c2255c; }
+.highlight-card.hl-lecturer    { --highlight-accent: #6741d9; }
+.highlight-card.hl-advisor     { --highlight-accent: #e67700; }
+
+/* ==========================================================================
+   Contact + Interests block (below Bio Card)
+   Given the same visual weight as the Highlights cards below it: bold
+   circular icon buttons, clear section label, generous spacing — not a
+   thin utilitarian strip.
+   ========================================================================== */
+.contact-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 30px;
+  margin: 32px 0;
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 16px;
+}
+
+.contact-block-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}
+
+.contact-block-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-block-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--global-bg-color);
+  border: 1px solid var(--global-divider-color);
+  color: var(--global-text-color);
+  font-size: 18px;
+  transition: all 0.2s;
+}
+
+.contact-block-icons a:hover {
+  background: var(--global-theme-color);
+  color: #fff;
+  border-color: var(--global-theme-color);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.contact-block-email {
+  font-size: 16.5px;
+  font-weight: 500;
+  color: var(--global-text-color);
+}
+
+.contact-block-email-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--global-text-color-light);
+  margin-bottom: 4px;
+}
+
+.contact-block-office {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: var(--global-theme-color);
+  color: #fff !important;
+  border-radius: 10px;
+  text-decoration: none !important;
+  font-size: 16px;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.contact-block-office i {
+  font-size: 16px;
+}
+
+.contact-block-office:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.interests-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 40px 0;
+  padding: 0 2px;
+}
+
+.interests-strip-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--global-text-color-light);
+  white-space: nowrap;
+  margin-right: 6px;
+}
+
+.interest-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14.5px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.045);
+  color: var(--global-text-color);
+  white-space: nowrap;
+}
+
+.interest-pill i {
+  font-size: 13px;
+}
+
+.interest-pill i {
+  font-size: 11px;
+  color: var(--global-theme-color);
+  opacity: 0.8;
+}
+
+@media (max-width: 576px) {
+  .contact-block {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .contact-block-office {
+    width: 100%;
+    justify-content: center;
+  }
+}
