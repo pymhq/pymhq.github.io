@@ -29,7 +29,6 @@
   gap: 10px;
 }
 
-.highlights-section-title::after,
 .recommendations-section-title::after {
   content: "";
   flex: 1;
@@ -191,109 +190,21 @@
    circular icon buttons, clear section label, generous spacing — not a
    thin utilitarian strip.
    ========================================================================== */
-.contact-block {
+.bio-interests {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 28px 30px;
-  margin: 32px 0;
-  background: var(--global-card-bg-color);
-  border: 1px solid var(--global-divider-color);
-  border-radius: 16px;
-}
-
-.contact-block-left {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 24px;
-}
-
-.contact-block-icons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.contact-block-icons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--global-bg-color);
-  border: 1px solid var(--global-divider-color);
-  color: var(--global-text-color);
-  font-size: 18px;
-  transition: all 0.2s;
-}
-
-.contact-block-icons a:hover {
-  background: var(--global-theme-color);
-  color: #fff;
-  border-color: var(--global-theme-color);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-}
-
-.contact-block-email {
-  font-size: 16.5px;
-  font-weight: 500;
-  color: var(--global-text-color);
-}
-
-.contact-block-email-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--global-text-color-light);
-  margin-bottom: 4px;
-}
-
-.contact-block-office {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 24px;
-  background: var(--global-theme-color);
-  color: #fff !important;
-  border-radius: 10px;
-  text-decoration: none !important;
-  font-size: 16px;
-  font-weight: 600;
-  flex-shrink: 0;
-  transition: all 0.2s;
-}
-
-.contact-block-office i {
-  font-size: 16px;
-}
-
-.contact-block-office:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
-}
-
-.interests-strip {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 40px 0;
-  padding: 0 2px;
+  gap: 10px;
+  margin-top: 16px !important;
+  margin-bottom: 20px !important;
 }
 
 .interests-strip-label {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--global-text-color-light);
+  margin-right: 2px;
   white-space: nowrap;
-  margin-right: 6px;
 }
 
 .interest-pill {
@@ -310,22 +221,80 @@
 }
 
 .interest-pill i {
-  font-size: 13px;
-}
-
-.interest-pill i {
   font-size: 11px;
   color: var(--global-theme-color);
   opacity: 0.8;
 }
 
-@media (max-width: 576px) {
-  .contact-block {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .contact-block-office {
-    width: 100%;
-    justify-content: center;
-  }
+/* ==========================================================================
+   Contact block — bold, generous, same text scale as the bio paragraphs
+   so it reads as a confident continuation of the bio, not fine print.
+   ========================================================================== */
+.contact-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--global-divider-color);
+}
+
+.contact-block-icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.contact-block-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--global-bg-color);
+  border: 1px solid var(--global-divider-color);
+  color: var(--global-text-color);
+  font-size: 18px;
+  transition: all 0.2s;
+}
+
+.contact-block-icons a:hover {
+  background: var(--global-theme-color);
+  color: #fff;
+  border-color: var(--global-theme-color);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.contact-block-icons img {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-block-email {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--global-text-color);
+}
+
+.contact-block-office {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--global-theme-color);
+  color: #fff !important;
+  border-radius: 10px;
+  text-decoration: none !important;
+  font-size: 16px;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.contact-block-office:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }

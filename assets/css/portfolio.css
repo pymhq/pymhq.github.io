@@ -131,6 +131,10 @@
   /* No hover effects for seamless look */
 }
 
+/* Contact + Interests now live right after the bio text, inside the same
+   wrapping column, so they read as a natural continuation of the bio
+   rather than a separate section below the photo. */
+
 .bio-card p {
   margin-bottom: 16px;
   color: var(--global-text-color);
