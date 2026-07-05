@@ -16,8 +16,9 @@
   margin: 40px 0 48px 0;
 }
 
-.highlights-section-title {
-  font-size: 13px;
+.highlights-section-title,
+.recommendations-section-title {
+  font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -28,7 +29,8 @@
   gap: 10px;
 }
 
-.highlights-section-title::after {
+.highlights-section-title::after,
+.recommendations-section-title::after {
   content: "";
   flex: 1;
   height: 1px;
