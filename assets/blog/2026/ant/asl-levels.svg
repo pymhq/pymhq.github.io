@@ -1,0 +1,40 @@
+<svg viewBox="0 0 680 210" role="img" aria-label="Anthropic AI Safety Levels, ASL-1 through ASL-4 and beyond, with required safeguards increasing at each step" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .asl-lbl { font: 700 13px 'Roboto', sans-serif; fill: #fff; }
+    .asl-sub { font: 400 9.5px 'Roboto', sans-serif; fill: #fff; opacity: 0.92; }
+    .asl-cap { font: 400 9.5px 'Roboto', sans-serif; fill: #888; }
+  </style>
+  <!-- baseline -->
+  <line x1="30" y1="185" x2="650" y2="185" stroke="rgba(128,128,128,0.3)" stroke-width="1"/>
+  <!-- ASL-1 -->
+  <rect x="30" y="150" width="140" height="35" rx="6" fill="#e7c9ba"/>
+  <text x="100" y="165" class="asl-lbl" text-anchor="middle" fill="#7a4a36">ASL-1</text>
+  <text x="100" y="178" class="asl-sub" fill="#7a4a36" text-anchor="middle">no meaningful risk</text>
+  <!-- ASL-2 -->
+  <rect x="180" y="118" width="140" height="67" rx="6" fill="#d4a27f"/>
+  <text x="250" y="140" class="asl-lbl" text-anchor="middle">ASL-2</text>
+  <text x="250" y="154" class="asl-sub" text-anchor="middle">early dangerous</text>
+  <text x="250" y="166" class="asl-sub" text-anchor="middle">signs &#183; current Claude</text>
+  <!-- ASL-3 -->
+  <rect x="330" y="76" width="140" height="109" rx="6" fill="#cc785c"/>
+  <text x="400" y="102" class="asl-lbl" text-anchor="middle">ASL-3</text>
+  <text x="400" y="116" class="asl-sub" text-anchor="middle">substantial uplift in</text>
+  <text x="400" y="128" class="asl-sub" text-anchor="middle">catastrophic misuse or</text>
+  <text x="400" y="140" class="asl-sub" text-anchor="middle">early autonomy &#8212;</text>
+  <text x="400" y="152" class="asl-sub" text-anchor="middle">strict security +</text>
+  <text x="400" y="164" class="asl-sub" text-anchor="middle">red-team gating</text>
+  <!-- ASL-4+ -->
+  <rect x="480" y="30" width="140" height="155" rx="6" fill="#a85238"/>
+  <text x="550" y="58" class="asl-lbl" text-anchor="middle">ASL-4+</text>
+  <text x="550" y="72" class="asl-sub" text-anchor="middle">qualitative jump in</text>
+  <text x="550" y="84" class="asl-sub" text-anchor="middle">autonomy / misuse</text>
+  <text x="550" y="96" class="asl-sub" text-anchor="middle">potential &#8212; standards</text>
+  <text x="550" y="108" class="asl-sub" text-anchor="middle">to be defined before</text>
+  <text x="550" y="120" class="asl-sub" text-anchor="middle">reached, likely needing</text>
+  <text x="550" y="132" class="asl-sub" text-anchor="middle">interpretability-based</text>
+  <text x="550" y="144" class="asl-sub" text-anchor="middle">assurances</text>
+  <!-- rising arrow -->
+  <path d="M30 192 L650 192" stroke="rgba(128,128,128,0.25)" stroke-width="1"/>
+  <text x="30" y="203" class="asl-cap">lower risk</text>
+  <text x="620" y="203" class="asl-cap" text-anchor="end">higher risk, higher bar</text>
+</svg>
