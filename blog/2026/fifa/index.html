@@ -92,6 +92,36 @@
        background: rgba(63,163,77,0.09); border-left: 4px solid #2e8b57; border-radius: 6px;
      }
 
+     /* lightweight inline score strip — for in-post match result mentions */
+     .score-strip {
+       display: flex; align-items: center; gap: 14px;
+       margin: 14px 0 20px 0; padding: 10px 16px;
+       border-left: 3px solid rgba(120,110,200,0.4);
+       background: rgba(120,110,200,0.05); border-radius: 0 8px 8px 0;
+       font-family: 'Roboto', sans-serif; flex-wrap: wrap;
+     }
+     .score-strip .ss-teams {
+       display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.02em;
+       white-space: nowrap;
+     }
+     .score-strip .ss-teams .ss-flag { font-size: 1.15em; }
+     .score-strip .ss-teams .ss-win { color: #14171a; }
+     .score-strip .ss-teams .ss-lose { color: #888; font-weight: 500; }
+     .score-strip .ss-teams .ss-sep { color: #aaa; font-weight: 400; margin: 0 1px; }
+     .score-strip .ss-meta { color: #888; font-size: 0.85em; line-height: 1.5; }
+     .score-strip .ss-meta .ss-tag {
+       display: inline-block; font-size: 0.78em; font-weight: 700; color: #7b61c9;
+       text-transform: uppercase; letter-spacing: 0.3px; margin-right: 6px;
+     }
+     @media (max-width: 480px) {
+       .score-strip { flex-direction: column; align-items: flex-start; gap: 6px; }
+     }
+     @media (prefers-color-scheme: dark) {
+       .score-strip { background: rgba(155,89,182,0.08); }
+       .score-strip .ss-teams .ss-win { color: #f0f2f4; }
+       .score-strip .ss-meta { color: #999; }
+     }
+
      /* reusable Gemini prompt / response Q&A card */
      .g-qa { margin: 14px 0 4px 0; }
      .g-qa .q, .g-qa .a { border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
@@ -160,12 +190,9 @@
 
                   <div class="lang-en">
 
-                  <div class="fact-box">
-                    <p style="margin:0 0 8px 0;"><strong>🔴 UPDATE (July 6, 2026):</strong> USA 1–4 Belgium — Round of 16, FIFA World Cup 2026</p>
-                    <p style="margin:0;">
-                      Back at the same Seattle Stadium, Belgium eliminated co-host USA in the Round of 16, 4–1.
-                      (Sources: <a href="https://www.espn.com/soccer/story/_/id/49290217/usa-belgium-live-world-cup-2026-latest-updates-commentary-score-result" target="_blank" rel="noopener">ESPN</a> · <a href="https://apnews.com/article/world-cup-united-states-belgium-score-0325e8102be7a88e852079deffd70ca0" target="_blank" rel="noopener">AP News</a> · <a href="https://www.fifa.com/en/articles/usa-belgium-match-report-highlights" target="_blank" rel="noopener">FIFA</a>)
-                    </p>
+                  <div class="score-strip">
+                    <span class="ss-teams"><span class="ss-flag">🇺🇸</span>USA <span class="ss-lose">1</span><span class="ss-sep">–</span><span class="ss-win">4</span> Belgium<span class="ss-flag">🇧🇪</span></span>
+                    <span class="ss-meta"><span class="ss-tag">🔴 Round of 16 · Jul 6</span>Belgium eliminated co-host USA. (<a href="https://www.espn.com/soccer/story/_/id/49290217/usa-belgium-live-world-cup-2026-latest-updates-commentary-score-result" target="_blank" rel="noopener">ESPN</a> · <a href="https://apnews.com/article/world-cup-united-states-belgium-score-0325e8102be7a88e852079deffd70ca0" target="_blank" rel="noopener">AP</a> · <a href="https://www.fifa.com/en/articles/usa-belgium-match-report-highlights" target="_blank" rel="noopener">FIFA</a>)</span>
                   </div>
 
                   <p>
@@ -180,12 +207,9 @@
                     I want to write down the pain points I hit, so that anyone who comes after me — especially fans who need ADA assistance — can walk in with the full picture.
                   </p>
 
-                  <div class="fact-box">
-                    <p style="margin:0 0 8px 0;">⚽ The match: Belgium 3–2 Senegal (Round of 32, extra time)</p>
-                    <p style="margin:0;">
-                      Timeline: 25' Senegal 1–0 · 51' Senegal 2–0 · 86' Belgium 2–1 · 89' Belgium 2–2. Belgium pulled two goals back in the final five minutes to force extra time — then a penalty in the 125th minute sealed Belgium 3–2. Belgium advance to the Round of 16 (vs. the USA, here at Seattle Stadium on July 6), before a sold-out 66,925.
-                      (Sources: <a href="https://www.espn.com/soccer/story/_/id/49240489/belgium-stunning-comeback-eliminate-senegal" target="_blank" rel="noopener">ESPN</a> · <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/belgium-senegal-review-highlights" target="_blank" rel="noopener">FIFA</a> · <a href="https://www.soundersfc.com/news/belvsen-recap-belgium-defeats-senegal-3-2-in-extra-time-at-seattle-stadium-advance-to-fifa-world-cup-round-of-16" target="_blank" rel="noopener">Sounders FC</a>)
-                    </p>
+                  <div class="score-strip">
+                    <span class="ss-teams"><span class="ss-flag">🇧🇪</span>Belgium <span class="ss-win">3</span><span class="ss-sep">–</span><span class="ss-lose">2</span> Senegal<span class="ss-flag">🇸🇳</span></span>
+                    <span class="ss-meta"><span class="ss-tag">Round of 32 · Jul 1</span>Down 0–2 with 5 minutes left, Belgium scored twice to force extra time, then won it on a 120+5' penalty. (<a href="https://www.espn.com/soccer/story/_/id/49240489/belgium-stunning-comeback-eliminate-senegal" target="_blank" rel="noopener">ESPN</a> · <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/belgium-senegal-review-highlights" target="_blank" rel="noopener">FIFA</a> · <a href="https://www.soundersfc.com/news/belvsen-recap-belgium-defeats-senegal-3-2-in-extra-time-at-seattle-stadium-advance-to-fifa-world-cup-round-of-16" target="_blank" rel="noopener">Sounders FC</a>)</span>
                   </div>
 
                   <hr>
@@ -359,12 +383,9 @@
 
                   <div class="lang-zh">
 
-                  <div class="fact-box">
-                    <p style="margin:0 0 8px 0;"><strong>🔴 更新（2026 年 7 月 6 日）：</strong>美国 1：4 负于比利时 —— 2026 世界杯 16 强淘汰赛</p>
-                    <p style="margin:0;">
-                      同样在西雅图球场，比利时以 4：1 淘汰东道主美国，晋级 8 强。
-                      （来源：<a href="https://www.espn.com/soccer/story/_/id/49290217/usa-belgium-live-world-cup-2026-latest-updates-commentary-score-result" target="_blank" rel="noopener">ESPN</a> · <a href="https://apnews.com/article/world-cup-united-states-belgium-score-0325e8102be7a88e852079deffd70ca0" target="_blank" rel="noopener">AP News</a> · <a href="https://www.fifa.com/en/articles/usa-belgium-match-report-highlights" target="_blank" rel="noopener">FIFA</a>）
-                    </p>
+                  <div class="score-strip">
+                    <span class="ss-teams"><span class="ss-flag">🇺🇸</span>美国 <span class="ss-lose">1</span><span class="ss-sep">：</span><span class="ss-win">4</span> 比利时<span class="ss-flag">🇧🇪</span></span>
+                    <span class="ss-meta"><span class="ss-tag">🔴 16 强淘汰赛 · 7月6日</span>比利时淘汰东道主美国。（<a href="https://www.espn.com/soccer/story/_/id/49290217/usa-belgium-live-world-cup-2026-latest-updates-commentary-score-result" target="_blank" rel="noopener">ESPN</a> · <a href="https://apnews.com/article/world-cup-united-states-belgium-score-0325e8102be7a88e852079deffd70ca0" target="_blank" rel="noopener">AP</a> · <a href="https://www.fifa.com/en/articles/usa-belgium-match-report-highlights" target="_blank" rel="noopener">FIFA</a>）</span>
                   </div>
 
                   <p>
@@ -379,12 +400,9 @@
                     我想把遇到的痛点分享在这里，让后来的人——特别是需要 ADA 帮助的朋友——能带着完整的信息进场。
                   </p>
 
-                  <div class="fact-box">
-                    <p style="margin:0 0 8px 0;">⚽ 比赛：比利时 3：2 塞内加尔（32 强淘汰赛 · 加时）</p>
-                    <p style="margin:0;">
-                      比赛进程：25' 塞内加尔 1：0 · 51' 塞内加尔 2：0 · 86' 比利时 2：1 · 89' 比利时 2：2。比利时在最后五分钟连追两球扳平、拖入加时——比利时在第 125 分钟罚入点球，3：2 绝杀。比利时晋级 16 强（7 月 6 日在西雅图球场对阵美国）。全场售罄 66,925 人。
-                      （来源：<a href="https://www.espn.com/soccer/story/_/id/49240489/belgium-stunning-comeback-eliminate-senegal" target="_blank" rel="noopener">ESPN</a> · <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/belgium-senegal-review-highlights" target="_blank" rel="noopener">FIFA</a> · <a href="https://www.soundersfc.com/news/belvsen-recap-belgium-defeats-senegal-3-2-in-extra-time-at-seattle-stadium-advance-to-fifa-world-cup-round-of-16" target="_blank" rel="noopener">Sounders FC</a>）
-                    </p>
+                  <div class="score-strip">
+                    <span class="ss-teams"><span class="ss-flag">🇧🇪</span>比利时 <span class="ss-win">3</span><span class="ss-sep">：</span><span class="ss-lose">2</span> 塞内加尔<span class="ss-flag">🇸🇳</span></span>
+                    <span class="ss-meta"><span class="ss-tag">32 强淘汰赛 · 7月1日</span>0：2 落后、离终场仅剩 5 分钟时，比利时连入两球逼平进入加时，第 120+5 分钟点球绝杀。（<a href="https://www.espn.com/soccer/story/_/id/49240489/belgium-stunning-comeback-eliminate-senegal" target="_blank" rel="noopener">ESPN</a> · <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/belgium-senegal-review-highlights" target="_blank" rel="noopener">FIFA</a> · <a href="https://www.soundersfc.com/news/belvsen-recap-belgium-defeats-senegal-3-2-in-extra-time-at-seattle-stadium-advance-to-fifa-world-cup-round-of-16" target="_blank" rel="noopener">Sounders FC</a>）</span>
                   </div>
 
                   <hr>
