@@ -231,6 +231,9 @@ text-decoration: none
     font-weight:bolder;
     color:var(--global-theme-color)
 }
+.navbar.navbar-light .navbar-nav .nav-item.active>.nav-link span{
+    color:var(--global-theme-color)
+}
 .navbar.navbar-light .navbar-nav .nav-item.active>.nav-link:hover{
     color:var(--global-hover-color)
 }

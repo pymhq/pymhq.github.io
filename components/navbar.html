@@ -59,6 +59,14 @@
     font-weight: bolder;
     color: var(--global-theme-color);
 
+    // See assets/css/main.css / _sass/_base.scss for why this is needed:
+    // nav link text is wrapped in <span class="lang-en/lang-zh">, and a
+    // global span color-reset rule overrides the inherited active color
+    // unless we target the span explicitly here.
+    span {
+      color: var(--global-theme-color);
+    }
+
     &:hover {
       color: var(--global-hover-color);
     }
@@ -405,22 +413,10 @@ nav[data-toggle="toc"] {
    </progress>
 </header>
 
-<script>
-// Set active nav item based on current page
-(function() {
-   const currentPage = document.body.getAttribute('data-page');
-   if (currentPage) {
-      const navItem = document.querySelector(`[data-page="${currentPage}"]`);
-      if (navItem) {
-         navItem.classList.add('active');
-         const link = navItem.querySelector('.nav-link');
-         if (link) {
-            link.innerHTML += '<span class="sr-only">(current)</span>';
-         }
-      }
-   }
-})();
-</script>
+<!-- Active nav item is set by initComponents() in assets/js/components.js,
+     which runs after this component's DOM is attached and scopes its query
+     to .navbar-nav. Do not duplicate that logic here (a previous unscoped
+     duplicate caused an active-state race/mismatch on heavier pages). -->
 
 <!-- Global site-wide language state (chosen once on the homepage, applied everywhere).
      Shows .lang-zh content when preferredLanguage is 'zh'; falls back to English

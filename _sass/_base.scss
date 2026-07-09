@@ -176,6 +176,17 @@ blockquote {
       background-color: inherit;
       font-weight: bolder;
       color: var(--global-theme-color);
+
+      // The link text is wrapped in <span class="lang-en"/lang-zh"> for
+      // i18n. A global "span { color: var(--global-text-color) }" rule
+      // (see _base.scss color reset for text elements) sets color directly
+      // on those spans, which overrides the inherited blue from this rule
+      // since it targets the span itself, not just the parent <a>. Target
+      // the spans explicitly here so the active/theme color wins.
+      span {
+        color: var(--global-theme-color);
+      }
+
       &:hover {
         color: var(--global-hover-color);
       }
