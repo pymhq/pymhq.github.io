@@ -36,6 +36,74 @@
       .post-description {
         font-size: 1.25rem;
       }
+
+      /* ============================================================
+         Service — modern tag-forward layout.
+         Card box restored (matches every other .card on the site).
+         Inside: each role is a bold label, followed by entries.
+         The venue/organization name is the identity of each entry,
+         so it becomes a small pill/tag; the surrounding context
+         (role, track, year) stays as plain supporting text next
+         to it. This creates real visual texture instead of a flat
+         list, while staying restrained — tags are small, muted,
+         not loud colored buttons.
+         ============================================================ */
+
+      .service-block {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--global-divider-color);
+      }
+      .service-block:last-child { border-bottom: none; padding-bottom: .25rem; }
+      .service-block:first-of-type { padding-top: .25rem; }
+
+      .service-block .role-label {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin: 0 0 .8rem;
+      }
+
+      .venue-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .venue-list li {
+        font-size: 1.05rem;
+        line-height: 1.85;
+        margin: 0 0 .65rem;
+        color: var(--global-text-color);
+      }
+      .venue-list li:last-child { margin-bottom: 0; }
+
+      /* the tag: venue/org name, pulled out as a small pill */
+      .venue-tag {
+        display: inline-block;
+        font-size: .95rem;
+        font-weight: 600;
+        color: var(--global-theme-color);
+        background: rgba(0,0,0,.035);
+        border: 1px solid var(--global-divider-color);
+        border-radius: 6px;
+        padding: .2rem .65rem;
+        margin-right: .5rem;
+        line-height: 1.5;
+      }
+      html[data-theme='dark'] .venue-tag {
+        background: rgba(255,255,255,.06);
+      }
+
+      .venue-detail {
+        color: var(--global-text-color-light);
+      }
+      .venue-detail a {
+        color: var(--global-text-color-light);
+        text-decoration: underline;
+        text-decoration-color: var(--global-divider-color);
+      }
+      .venue-detail a:hover {
+        color: var(--global-theme-color);
+        text-decoration-color: var(--global-theme-color);
+      }
    </style>
    <body class="fixed-top-nav" data-page="services">
       <div id="navbar-placeholder"></div>

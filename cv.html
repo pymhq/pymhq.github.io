@@ -30,6 +30,64 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
       <script src="/assets/js/theme.js?96d6b3e1c3604aca8b6134c7afdd5db6" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script src="/assets/js/dark_mode.js?9b17307bb950ffa2e34be0227f53558f" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script>
       <script src="/assets/js/components.js" defer></script>
+      <style>
+        /* Service section styles (shared markup with /service page) —
+           modern tag-forward layout: venue/org names become small
+           pills, surrounding context stays as plain supporting text.
+           Card box itself is untouched — matches Experience/Others. */
+        .service-block {
+          padding: 1.4rem 0;
+          border-bottom: 1px solid var(--global-divider-color);
+        }
+        .service-block:last-child { border-bottom: none; padding-bottom: 0; }
+        .service-block:first-of-type { padding-top: 1rem; }
+
+        .service-block .role-label {
+          font-size: 1.1rem;
+          font-weight: 700;
+          margin: 0 0 .75rem;
+        }
+
+        .venue-list {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+        .venue-list li {
+          font-size: 1.02rem;
+          line-height: 1.8;
+          margin: 0 0 .6rem;
+          color: var(--global-text-color);
+        }
+        .venue-list li:last-child { margin-bottom: 0; }
+
+        .venue-tag {
+          display: inline-block;
+          font-size: .92rem;
+          font-weight: 600;
+          color: var(--global-theme-color);
+          background: rgba(0,0,0,.035);
+          border: 1px solid var(--global-divider-color);
+          border-radius: 6px;
+          padding: .18rem .6rem;
+          margin-right: .45rem;
+          line-height: 1.5;
+        }
+        html[data-theme='dark'] .venue-tag {
+          background: rgba(255,255,255,.06);
+        }
+
+        .venue-detail { color: var(--global-text-color-light); }
+        .venue-detail a {
+          color: var(--global-text-color-light);
+          text-decoration: underline;
+          text-decoration-color: var(--global-divider-color);
+        }
+        .venue-detail a:hover {
+          color: var(--global-theme-color);
+          text-decoration-color: var(--global-theme-color);
+        }
+      </style>
    </head>
    <body class="fixed-top-nav" data-page="cv">
       <div id="navbar-placeholder"></div>
@@ -133,6 +191,7 @@
                                           </tr>
                                        </tbody>
                                     </table>
+                                    <p class="ml-1 ml-md-4 mb-0" style="font-size: 0.85rem; color: var(--global-text-color-light);">Supporting portfolio companies and Seattle's AI community through AI House.</p>
                                  </div>
                               </div>
                            </li>
