@@ -177,6 +177,29 @@
          font-size: 0.9rem;
       }
 
+      /* Language link, styled to sit naturally inside the markdown flow —
+         like the "English | 中文" line many READMEs put under the title. */
+      .lang-line {
+         font-size: 0.85rem;
+         color: var(--text-light);
+         margin-bottom: 1.4rem;
+      }
+
+      .lang-line a {
+         cursor: pointer;
+      }
+
+      .lang-line a.active {
+         color: var(--text);
+         font-weight: 600;
+         text-decoration: none;
+         cursor: default;
+      }
+
+      .lang-zh {
+         display: none;
+      }
+
       /* Featured book, kept minimal */
       .book {
          display: flex;
@@ -268,38 +291,45 @@
 
 <body>
    <div class="md">
-      <h1># peng-andy-studio</h1>
-      <p class="tagline">coffee chats &amp; casual conversations with <a href="https://pengandy.com">Andy Peng</a>.</p>
+      <h1># <span class="lang-en">peng-andy-studio</span><span class="lang-zh">Peng Andy 的工作室</span></h1>
+      <p class="lang-line">
+         <a onclick="switchLanguage('en')" id="lang-en-link">English</a> | <a onclick="switchLanguage('zh')" id="lang-zh-link">中文</a>
+      </p>
+      <p class="tagline">
+         <span class="lang-en">coffee chats &amp; casual conversations with <a href="https://pengandy.com">Andy Peng</a>.</span>
+         <span class="lang-zh">与 <a href="https://pengandy.com">Andy Peng</a> 的咖啡闲聊 &amp; 随意交流。</span>
+      </p>
+
 
       <ul class="actions">
-         <li><a href="https://calendly.com/pengandy" target="_blank">Book a coffee chat →</a> <span class="hint">pick a time that works for you</span></li>
-         <li><a href="https://www.paypal.biz/pengandystudio" target="_blank">Donate</a> <span class="hint">buy me a coffee, totally optional</span></li>
-         <li><a href="mailto:pengandy.build@gmail.com">Email</a> <span class="hint">pengandy dot build at gmail dot com</span></li>
+         <li><a href="https://calendly.com/pengandy" target="_blank"><span class="lang-en">Book a coffee chat →</span><span class="lang-zh">预约咖啡闲聊 →</span></a> <span class="hint"><span class="lang-en">pick a time that works for you</span><span class="lang-zh">挑一个方便的时间</span></span></li>
+         <li><a href="https://www.paypal.biz/pengandystudio" target="_blank"><span class="lang-en">Donate</span><span class="lang-zh">打赏</span></a> <span class="hint"><span class="lang-en">buy me a coffee, totally optional</span><span class="lang-zh">请我喝杯咖啡，完全自愿</span></span></li>
+         <li><a href="mailto:pengandy.build@gmail.com"><span class="lang-en">Email</span><span class="lang-zh">邮箱</span></a> <span class="hint">pengandy dot build at gmail dot com</span></li>
       </ul>
 
       <hr>
 
-      <h2><span class="emoji">💬</span>topics I like to chat about</h2>
+      <h2><span class="emoji">💬</span><span class="lang-en">topics I like to chat about</span><span class="lang-zh">我喜欢聊的话题</span></h2>
       <ul class="topics">
-         <li><strong>Research</strong> — <span class="desc">papers, patents, ideas worth exploring together</span></li>
-         <li><strong>Career</strong> — <span class="desc">interview prep, resumes, navigating tech career moves</span></li>
-         <li><strong>Startup Ideas</strong> — <span class="desc">happy to listen and give honest feedback</span></li>
-         <li><strong>Executive</strong> — <span class="desc">leadership, boards, part-time exec conversations</span></li>
-         <li><strong>Org &amp; Culture</strong> — <span class="desc">mentoring, GenAI/ML coaching, team dynamics</span></li>
-         <li><strong>Writing</strong> — <span class="desc">book authoring, reviews, publishing lessons</span></li>
-         <li><strong>Photography</strong> — <span class="desc">gear, composition, trip stories from the road</span></li>
-         <li><strong>Code Review</strong> — <span class="desc">a second pair of eyes on your PR</span></li>
+         <li><strong><span class="lang-en">Research</span><span class="lang-zh">研究</span></strong> — <span class="desc"><span class="lang-en">papers, patents, ideas worth exploring together</span><span class="lang-zh">论文、专利，一起探讨值得研究的想法</span></span></li>
+         <li><strong><span class="lang-en">Career</span><span class="lang-zh">职业发展</span></strong> — <span class="desc"><span class="lang-en">interview prep, resumes, navigating tech career moves</span><span class="lang-zh">面试准备、简历、科技行业职业规划</span></span></li>
+         <li><strong><span class="lang-en">Startup Ideas</span><span class="lang-zh">创业想法</span></strong> — <span class="desc"><span class="lang-en">happy to listen and give honest feedback</span><span class="lang-zh">愿意倾听并给出真诚反馈</span></span></li>
+         <li><strong><span class="lang-en">Executive</span><span class="lang-zh">高管咨询</span></strong> — <span class="desc"><span class="lang-en">leadership, boards, part-time exec conversations</span><span class="lang-zh">领导力、董事会、兼职高管相关交流</span></span></li>
+         <li><strong><span class="lang-en">Org &amp; Culture</span><span class="lang-zh">组织与文化</span></strong> — <span class="desc"><span class="lang-en">mentoring, GenAI/ML coaching, team dynamics</span><span class="lang-zh">辅导、GenAI/ML 指导、团队动态</span></span></li>
+         <li><strong><span class="lang-en">Writing</span><span class="lang-zh">写作</span></strong> — <span class="desc"><span class="lang-en">book authoring, reviews, publishing lessons</span><span class="lang-zh">著书、书评、出版经验</span></span></li>
+         <li><strong><span class="lang-en">Photography</span><span class="lang-zh">摄影</span></strong> — <span class="desc"><span class="lang-en">gear, composition, trip stories from the road</span><span class="lang-zh">器材、构图、旅途中的故事</span></span></li>
+         <li><strong><span class="lang-en">Code Review</span><span class="lang-zh">代码审查</span></strong> — <span class="desc"><span class="lang-en">a second pair of eyes on your PR</span><span class="lang-zh">帮你的 PR 多把一道关</span></span></li>
       </ul>
 
       <hr>
 
-      <h2><span class="emoji">🗞️</span>recent publication &amp; podcast</h2>
+      <h2><span class="emoji">🗞️</span><span class="lang-en">recent publication &amp; podcast</span><span class="lang-zh">近期出版物 &amp; 播客</span></h2>
       <div class="book">
          <img src="/assets/blog/deepseek/packtds.jpg" alt="DeepSeek in Practice">
          <div class="book-info">
             <h3>DeepSeek in Practice</h3>
-            <p>From basics to fine-tuning, distillation, agent design, and prompt engineering of open source LLM. Co-authored with Alex Strick van Linschoten and Duarte O.Carmo. Published by Packt.</p>
-            <a href="https://a.co/d/8tUgb3q" target="_blank">View on Amazon →</a>
+            <p><span class="lang-en">From basics to fine-tuning, distillation, agent design, and prompt engineering of open source LLM. Co-authored with Alex Strick van Linschoten and Duarte O.Carmo. Published by Packt.</span><span class="lang-zh">从基础知识到微调、蒸馏、智能体设计，以及开源 LLM 的提示词工程。与 Alex Strick van Linschoten 和 Duarte O.Carmo 合著，Packt 出版。</span></p>
+            <a href="https://a.co/d/8tUgb3q" target="_blank"><span class="lang-en">View on Amazon →</span><span class="lang-zh">在 Amazon 查看 →</span></a>
          </div>
       </div>
 
@@ -307,22 +337,23 @@
          <img src="/assets/invited-talks/Onboard.jpg" alt="OnBoard! Podcast">
          <div class="book-info">
             <h3>LLM 时代需要怎样的软件开发新范式</h3>
-            <p>Panel with 黄东旭 (PingCAP co-founder &amp; CTO) and 贾扬清 (VP Nvidia, Lepton AI co-founder &amp; CEO) on OnBoard! Podcast.</p>
-            <a href="https://www.xiaoyuzhoufm.com/episode/676054e37d8426f6929d67cb?s=eyJ1IjogIjYwYjVhNzYxZTBmNWU3MjNiYjU4ZmNlYSJ9" target="_blank">Listen on 小宇宙 →</a>
+            <p><span class="lang-en">Panel with 黄东旭 (PingCAP co-founder &amp; CTO) and 贾扬清 (VP Nvidia, Lepton AI co-founder &amp; CEO) on OnBoard! Podcast.</span><span class="lang-zh">与黄东旭（PingCAP 联合创始人兼 CTO）、贾扬清（Nvidia 副总裁，Lepton AI 联合创始人兼 CEO）在 OnBoard! 播客的对谈。</span></p>
+            <a href="https://www.xiaoyuzhoufm.com/episode/676054e37d8426f6929d67cb?s=eyJ1IjogIjYwYjVhNzYxZTBmNWU3MjNiYjU4ZmNlYSJ9" target="_blank"><span class="lang-en">Listen on 小宇宙 →</span><span class="lang-zh">在小宇宙收听 →</span></a>
          </div>
       </div>
 
       <hr>
 
-      <h2><span class="emoji">✍️</span>blog</h2>
+      <h2><span class="emoji">✍️</span><span class="lang-en">blog</span><span class="lang-zh">博客</span></h2>
       <p class="subscribe-line">
-         Longer-form essays on LLM research, engineering leadership, and open source.
-         <a href="https://pengandy.com/blog/" target="_blank" class="subscribe-btn">Subscribe →</a>
+         <span class="lang-en">Longer-form essays on LLM research, engineering leadership, and open source.</span>
+         <span class="lang-zh">关于 LLM 研究、工程领导力和开源的思考。</span>
+         <a href="https://pengandy.com/blog/" target="_blank" class="subscribe-btn"><span class="lang-en">Subscribe →</span><span class="lang-zh">订阅 →</span></a>
       </p>
 
       <hr>
 
-      <h2><span class="emoji">🔗</span>elsewhere</h2>
+      <h2><span class="emoji">🔗</span><span class="lang-en">elsewhere</span><span class="lang-zh">其他平台</span></h2>
       <ul class="social-list">
          <li><a href="https://pengandy.com">pengandy.com</a></li>
          <li><a href="https://twitter.com/pymhq" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
@@ -331,10 +362,54 @@
       </ul>
 
       <footer class="md-footer">
-         <p>We do not provide any form or type of professional services that would violate Amazon's Conflict of Interest Policy.</p>
+         <p><span class="lang-en">We do not provide any form or type of professional services that would violate Amazon's Conflict of Interest Policy.</span><span class="lang-zh">我们不提供任何违反 Amazon 利益冲突政策的专业服务。</span></p>
          <p>© 2026 PENG ANDY STUDIO LLC</p>
       </footer>
    </div>
+
+   <!-- Language Toggle Script -->
+   <script>
+      function showEl(el) {
+         var tag = el.tagName;
+         el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+      }
+      function applyLanguage(lang) {
+         document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
+            el.style.display = 'none';
+         });
+         var enLink = document.getElementById('lang-en-link');
+         var zhLink = document.getElementById('lang-zh-link');
+         if (lang === 'zh') {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            // Fallback: if an .lang-en block has no sibling .lang-zh translation
+            // on this page, keep showing the English version instead of leaving
+            // it blank.
+            document.querySelectorAll('.lang-en').forEach(function(el) {
+               var parent = el.parentElement;
+               var hasZhSibling = parent && parent.querySelector('.lang-zh');
+               if (!hasZhSibling) {
+                  showEl(el);
+               }
+            });
+            zhLink.classList.add('active');
+            enLink.classList.remove('active');
+         } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+            enLink.classList.add('active');
+            zhLink.classList.remove('active');
+         }
+      }
+      // Shared with the rest of the site: reuses the same 'preferredLanguage'
+      // key as the homepage/navbar, so the choice made anywhere carries over.
+      function switchLanguage(lang) {
+         localStorage.setItem('preferredLanguage', lang);
+         applyLanguage(lang);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+         var preferredLang = localStorage.getItem('preferredLanguage') || 'en';
+         applyLanguage(preferredLang);
+      });
+   </script>
 
    <!-- Image protection script -->
    <script>
