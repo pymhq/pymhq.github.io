@@ -236,73 +236,207 @@
             }
         }
 
-        /* PNW footprints inset map (additive; does not affect globe/stats/legend/footer) */
-        #pnw-inset {
+        /* ============================================================
+           PNW full panel (second section, reached by scrolling down)
+           Additive only: does not alter globe/stats/legend/footer above.
+           ============================================================ */
+        html {
+            scroll-snap-type: y proximity;
+        }
+
+        body {
+            overflow: visible;
+        }
+
+        #globe-section {
+            height: 100vh;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .scroll-cue {
             position: fixed;
-            top: 16px;
-            left: 16px;
-            width: 208px;
-            background: #ffffff;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 10px 10px 8px;
-            z-index: 1000;
-        }
-
-        #pnw-inset .pnw-title {
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 7px;
+            gap: 4px;
+            color: #9aa3ad;
             font-size: 0.72rem;
-            font-weight: 600;
-            color: #6b7a52;
-            letter-spacing: 0.3px;
-            margin: 0 2px 7px;
-        }
-
-        #pnw-inset .pnw-title .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #ffc24d;
-            box-shadow: 0 0 6px 2px rgba(255, 194, 77, 0.55);
-            flex: 0 0 auto;
-        }
-
-        #pnw-inset .pnw-count {
-            color: #aab09a;
             font-weight: 500;
+            letter-spacing: 0.4px;
+            z-index: 1000;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            animation: cueBob 2.2s ease-in-out infinite;
         }
 
-        #pnw-map {
-            display: block;
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            background: #eef2ea;
-            overflow: hidden;
+        .scroll-cue i {
+            font-size: 1rem;
         }
 
-        @keyframes pnwTwinkle {
-            0%, 100% { opacity: 0.30; }
-            50%      { opacity: 0.90; }
-        }
-
-        .pnw-glow {
-            animation: pnwTwinkle 2.8s ease-in-out infinite;
+        @keyframes cueBob {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50%      { transform: translateX(-50%) translateY(6px); }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .pnw-glow { animation: none; opacity: 0.75; }
+            .scroll-cue { animation: none; }
+        }
+
+        #pnw-section {
+            height: 100vh;
+            scroll-snap-align: start;
+            position: relative;
+            overflow: hidden;
+            background: #f4f6f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        #pnw-section.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #pnw-section .pnw-section-inner {
+            width: min(92vw, 900px);
+            height: min(84vh, 760px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        #pnw-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #4a5636;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.2px;
+        }
+
+        #pnw-section h2 .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ffc24d;
+            box-shadow: 0 0 8px 3px rgba(255, 194, 77, 0.55);
+        }
+
+        #pnw-section .pnw-subtitle {
+            font-size: 0.85rem;
+            color: #8a9478;
+            margin-top: -10px;
+        }
+
+        #pnw-full-map-wrap {
+            flex: 1;
+            width: 100%;
+            border-radius: 16px;
+            background: #eef2ea;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e2e7da;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #pnw-full-map {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pnw-land-full {
+            fill: #8d9b63;
+            stroke: #6f7e4a;
+            stroke-width: 0.7px;
+            stroke-linejoin: round;
+        }
+
+        .pnw-state-borders {
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 1.4px;
+            stroke-dasharray: 4 3;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        .pnw-marker {
+            cursor: pointer;
+        }
+
+        .pnw-marker .pnw-marker-core {
+            fill: #1565C0;
+            stroke: #ffffff;
+            stroke-width: 2px;
+            transition: r 0.15s ease, fill 0.15s ease;
+        }
+
+        .pnw-marker:hover .pnw-marker-core {
+            fill: #0D47A1;
+            r: 7;
+        }
+
+        .pnw-marker-label {
+            font-size: 11px;
+            font-weight: 600;
+            fill: #3c4530;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .pnw-marker:hover .pnw-marker-label,
+        .pnw-marker.pinned .pnw-marker-label {
+            opacity: 1;
+        }
+
+        #pnw-section .back-to-globe {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 999px;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #556b2f;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        #pnw-section .back-to-globe:hover {
+            background: #f4f6f1;
         }
 
         @media (max-width: 600px) {
-            #pnw-inset { display: none; }
+            #pnw-section .pnw-section-inner {
+                width: 94vw;
+                height: 88vh;
+                gap: 10px;
+            }
+            #pnw-section h2 { font-size: 1.05rem; }
+            .pnw-marker-label { font-size: 9px; }
         }
     </style>
 </head>
 <body>
+    <div id="globe-section">
     <div id="globe-container"></div>
 
     <div class="stats">
@@ -340,11 +474,23 @@
         © 2026 Andy Peng
     </footer>
 
-    <!-- PNW footprints inset map -->
-    <div id="pnw-inset" aria-hidden="true">
-        <div class="pnw-title"><span class="dot"></span>Pacific Northwest<span class="pnw-count" id="pnwCount"></span></div>
-        <svg id="pnw-map" viewBox="0 0 188 158" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="scroll-cue" id="scrollCue" role="button" tabindex="0" aria-label="Scroll to Pacific Northwest map">
+        <span>PNW map</span>
+        <i class="fa-solid fa-chevron-down"></i>
     </div>
+    </div><!-- /#globe-section -->
+
+    <section id="pnw-section" aria-hidden="true">
+        <button class="back-to-globe" id="backToGlobe" type="button">
+            <i class="fa-solid fa-chevron-up"></i> Globe
+        </button>
+        <div class="pnw-section-inner">
+            <h2><span class="dot"></span>Pacific Northwest<span class="pnw-subtitle" id="pnwFullCount"></span></h2>
+            <div id="pnw-full-map-wrap">
+                <svg id="pnw-full-map" viewBox="0 0 800 640" preserveAspectRatio="xMidYMid meet"></svg>
+            </div>
+        </div>
+    </section>
 
     <!-- D3.js for lightweight SVG globe -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -656,65 +802,147 @@
         });
     </script>
 
-    <!-- PNW footprints inset (isolated; reuses cached atlas + CITIES, does not touch globe) -->
+    <!-- PNW full-panel map (second section revealed by scrolling) -->
     <script>
         (function () {
             if (typeof d3 === 'undefined' || typeof topojson === 'undefined' || typeof CITIES === 'undefined') return;
-            const mapEl = document.getElementById('pnw-map');
-            if (!mapEl) return;
 
-            // PNW bounding box (coastal Pacific Northwest)
-            const box = { lonMin: -125.5, lonMax: -115.5, latMin: 41.5, latMax: 50.8 };
-            const pnw = CITIES.filter(c =>
+            const section = document.getElementById('pnw-section');
+            const mapEl = document.getElementById('pnw-full-map');
+            const scrollCue = document.getElementById('scrollCue');
+            const backBtn = document.getElementById('backToGlobe');
+            if (!section || !mapEl) return;
+
+            // Wider PNW bounding box for the full panel (WA + OR + neighbors)
+            const box = { lonMin: -125.5, lonMax: -116.8, latMin: 41.8, latMax: 49.3 };
+            const pnwFull = CITIES.filter(c =>
                 c.longitude >= box.lonMin && c.longitude <= box.lonMax &&
                 c.latitude  >= box.latMin && c.latitude  <= box.latMax);
 
-            const countEl = document.getElementById('pnwCount');
-            if (countEl) countEl.textContent = ' · ' + pnw.length;
+            const countEl = document.getElementById('pnwFullCount');
+            if (countEl) countEl.textContent = pnwFull.length + ' places visited';
 
-            const W = 188, H = 158;
-            const svg = d3.select('#pnw-map');
-            const defs = svg.append('defs');
-            defs.append('filter')
-                .attr('id', 'pnwBlur').attr('x', '-90%').attr('y', '-90%').attr('width', '280%').attr('height', '280%')
-                .append('feGaussianBlur').attr('stdDeviation', 1.7);
+            const W = 800, H = 640;
+            const svg = d3.select('#pnw-full-map');
 
             const bbox = { type: 'MultiPoint', coordinates: [
                 [box.lonMin, box.latMin], [box.lonMax, box.latMin],
                 [box.lonMax, box.latMax], [box.lonMin, box.latMax]
             ] };
-            const proj = d3.geoMercator().fitExtent([[8, 8], [W - 8, H - 8]], bbox);
+            const proj = d3.geoMercator().fitExtent([[24, 24], [W - 24, H - 24]], bbox);
             const geoPath = d3.geoPath(proj);
 
-            function drawDots() {
-                const pts = svg.append('g').attr('class', 'pnw-dots');
-                pnw.forEach(c => {
+            let landDrawn = false;
+
+            function drawMarkers() {
+                const tooltip = document.getElementById('tooltip');
+                const g = svg.append('g').attr('class', 'pnw-full-markers');
+
+                pnwFull.forEach(c => {
                     const xy = proj([c.longitude, c.latitude]);
                     if (!xy) return;
-                    pts.append('circle').attr('class', 'pnw-glow')
-                        .attr('cx', xy[0]).attr('cy', xy[1]).attr('r', 4)
-                        .attr('fill', '#ffc24d').attr('filter', 'url(#pnwBlur)')
-                        .style('animation-delay', (Math.random() * 2.8).toFixed(2) + 's');
-                    pts.append('circle')
-                        .attr('cx', xy[0]).attr('cy', xy[1]).attr('r', 1.6)
-                        .attr('fill', '#fff6d5').attr('stroke', '#ffb02e').attr('stroke-width', 0.4);
+
+                    const marker = g.append('g')
+                        .attr('class', 'pnw-marker')
+                        .attr('transform', `translate(${xy[0]}, ${xy[1]})`);
+
+                    marker.append('circle')
+                        .attr('class', 'pnw-marker-core')
+                        .attr('r', 5.5);
+
+                    marker.append('text')
+                        .attr('class', 'pnw-marker-label')
+                        .attr('x', 10)
+                        .attr('y', 4)
+                        .text(c.name);
+
+                    marker
+                        .on('mouseenter', function (event) {
+                            if (!tooltip) return;
+                            document.getElementById('tooltip-title').textContent = c.name;
+                            document.getElementById('tooltip-date').textContent = c.date || '';
+                            tooltip.style.display = 'block';
+                            tooltip.style.left = (event.pageX + 10) + 'px';
+                            tooltip.style.top = (event.pageY + 10) + 'px';
+                        })
+                        .on('mousemove', function (event) {
+                            if (!tooltip) return;
+                            tooltip.style.left = (event.pageX + 10) + 'px';
+                            tooltip.style.top = (event.pageY + 10) + 'px';
+                        })
+                        .on('mouseleave', function () {
+                            if (tooltip) tooltip.style.display = 'none';
+                        })
+                        .on('click touchstart', function (event) {
+                            event.stopPropagation();
+                            const isPinned = marker.classed('pinned');
+                            d3.selectAll('.pnw-marker').classed('pinned', false);
+                            marker.classed('pinned', !isPinned);
+                            if (tooltip) {
+                                document.getElementById('tooltip-title').textContent = c.name;
+                                document.getElementById('tooltip-date').textContent = c.date || '';
+                                tooltip.style.display = 'block';
+                                const px = event.pageX || (event.touches && event.touches[0].pageX) || xy[0];
+                                const py = event.pageY || (event.touches && event.touches[0].pageY) || xy[1];
+                                tooltip.style.left = (px + 10) + 'px';
+                                tooltip.style.top = (py + 10) + 'px';
+                                setTimeout(() => { tooltip.style.display = 'none'; }, 2500);
+                            }
+                        });
                 });
             }
 
-            // Finer 50m coastline gives a recognizable PNW shape under the footprints
-            d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(world => {
-                const land = topojson.feature(world, world.objects.countries);
-                const feats = land.features.filter(f =>
-                    f.properties && (f.properties.name === 'United States of America' || f.properties.name === 'Canada'));
-                svg.append('g').attr('class', 'pnw-land')
-                    .selectAll('path').data(feats).enter().append('path')
-                    .attr('d', geoPath)
-                    .attr('fill', '#8d9b63')
-                    .attr('stroke', '#6f7e4a')
-                    .attr('stroke-width', 0.5)
-                    .attr('stroke-linejoin', 'round');
-                drawDots();
-            }).catch(() => { drawDots(); });
+            function drawLand() {
+                if (landDrawn) return;
+                d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(world => {
+                    const land = topojson.feature(world, world.objects.countries);
+                    const feats = land.features.filter(f =>
+                        f.properties && (f.properties.name === 'United States of America' || f.properties.name === 'Canada'));
+                    svg.insert('g', ':first-child').attr('class', 'pnw-land-full-g')
+                        .selectAll('path').data(feats).enter().append('path')
+                        .attr('class', 'pnw-land-full')
+                        .attr('d', geoPath);
+                    landDrawn = true;
+                    drawStateBorders();
+                }).catch(() => { drawStateBorders(); });
+            }
+
+            function drawStateBorders() {
+                d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
+                    const states = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
+                    svg.append('path')
+                        .datum(states)
+                        .attr('class', 'pnw-state-borders')
+                        .attr('d', geoPath);
+                    drawMarkers();
+                }).catch(() => { drawMarkers(); });
+            }
+
+            // Reveal the section (and lazily draw the map) once it enters the viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        section.classList.add('revealed');
+                        section.setAttribute('aria-hidden', 'false');
+                        drawLand();
+                    }
+                });
+            }, { threshold: 0.25 });
+            observer.observe(section);
+
+            if (scrollCue) {
+                const goToPanel = () => section.scrollIntoView({ behavior: 'smooth' });
+                scrollCue.addEventListener('click', goToPanel);
+                scrollCue.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToPanel(); }
+                });
+            }
+
+            if (backBtn) {
+                backBtn.addEventListener('click', () => {
+                    document.getElementById('globe-section').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
         })();
     </script>
 </body>

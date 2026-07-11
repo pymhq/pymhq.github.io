@@ -1,8 +1,9 @@
 CITIES =
 [
    {name: 'Seattle, WA', latitude: 47.6061, longitude: -122.3328, radius: 7, fillKey: 'city', date: ''},
+   {name: 'Bellevue, WA', latitude: 47.6101, longitude: -122.2015, radius: 3, fillKey: 'city', date: ''},
    {name: 'Whidbey Island, WA', latitude: 47.9983, longitude: -122.4395, radius: 3, fillKey: 'city', date: '2024'},
-   {name: 'Olympic NP, WA', latitude: 47.8021, longitude: -122.2021, radius: 3, fillKey: 'city', date: '2024'},
+   {name: 'Olympic NP, WA', latitude: 47.8021, longitude: -123.6044, radius: 3, fillKey: 'city', date: '2024'},
    {name: 'Bainbridge Island, WA', latitude: 47.6262, longitude: -122.5212, radius: 3, fillKey: 'city', date: '2026'},
    {name: 'Anacortes, WA', latitude: 48.5126, longitude: -122.6127, radius: 3, fillKey: 'city', date: '2026'},
    {name: 'San Juan Island, WA', latitude: 48.5321, longitude: -123.0869, radius: 3, fillKey: 'city', date: '2026'},
@@ -13,8 +14,11 @@ CITIES =
    {name: 'Aspen, CO', latitude: 39.1911, longitude: -106.8175, radius: 3, fillKey: 'city', date: '2025'},
    {name: 'Rocky Mountain NP, CO', latitude: 40.3428, longitude: -105.6836, radius: 3, fillKey: 'city', date: '2025'},
    {name: 'Maroon Bells, CO', latitude: 39.0708, longitude: -106.9890, radius: 3, fillKey: 'city', date: '2025'},
-   {name: 'Everett, WA', latitude: 47.9790, longitude: -122.7604, radius: 3, fillKey: 'city', date: '2023'},
+   {name: 'Everett, WA', latitude: 47.9790, longitude: -122.2021, radius: 3, fillKey: 'city', date: '2023'},
    {name: 'Port Townsend, WA', latitude: 48.1170, longitude: -122.7604, radius: 3, fillKey: 'city', date: '2023'},
+   {name: 'Kalaloch Beach, WA', latitude: 47.6100, longitude: -124.3750, radius: 3, fillKey: 'city', date: ''},
+   {name: 'Olympic NP Rain Forest, WA', latitude: 47.8609, longitude: -123.9348, radius: 3, fillKey: 'city', date: ''},
+   {name: 'Olympic NP Hurricane Ridge, WA', latitude: 47.9766, longitude: -123.5177, radius: 3, fillKey: 'city', date: ''},
    {name: 'Crater Lake NP, OR', latitude: 42.9295, longitude: -122.1279, radius: 3, fillKey: 'city', date: '2023'},
    {name: 'North Cascades NP, WA', latitude: 48.7718, longitude: -121.2985, radius: 3, fillKey: 'city', date: '2017'},
    {name: 'Mount Rainier NP, WA', latitude: 46.8523, longitude: -121.7603, radius: 3, fillKey: 'city', date: '2023'},
