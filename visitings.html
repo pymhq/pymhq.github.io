@@ -190,6 +190,31 @@
             z-index: 999;
         }
 
+        .home-link {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: #556b2f;
+            font-size: 1.05rem;
+            text-decoration: none;
+            z-index: 1000;
+            transition: background 0.15s ease, transform 0.15s ease;
+        }
+
+        .home-link:hover {
+            background: #f4f6f1;
+            transform: scale(1.06);
+        }
+
         @media (max-width: 768px) {
             .stats {
                 bottom: 10px;
@@ -438,6 +463,10 @@
 <body>
     <div id="globe-section">
     <div id="globe-container"></div>
+
+    <a href="/" class="home-link" title="Back to Home" aria-label="Back to Home">
+        <i class="fa-solid fa-compass-drafting"></i>
+    </a>
 
     <div class="stats">
         <div class="stat-item">
