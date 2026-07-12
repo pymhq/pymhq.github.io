@@ -434,6 +434,20 @@ nav[data-toggle="toc"] {
       var tag = el.tagName;
       el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
    }
+   // Chinese titles for pages that rely on this shared, global language
+   // switcher (i.e. don't define their own applyLanguage()). Keyed by the
+   // <body data-page="..."> attribute already used to highlight the active
+   // nav item, and kept in sync with the nav labels in this same file.
+   var zhTitles = {
+      bio: '简介',
+      publication: '发表',
+      publications: '书籍 & 邀请演讲',
+      projects: '项目',
+      services: '服务',
+      cv: 'CV',
+      news: '新闻'
+   };
+
    function applyGlobalLanguage(lang) {
       document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
          el.style.display = 'none';
@@ -448,9 +462,18 @@ nav[data-toggle="toc"] {
             }
          });
          document.body.classList.add('zh');
+         var currentPage = document.body.getAttribute('data-page');
+         if (currentPage && zhTitles[currentPage] && !document.body.hasAttribute('data-title-en')) {
+            document.body.setAttribute('data-title-en', document.title);
+            document.title = zhTitles[currentPage];
+         }
       } else {
          document.querySelectorAll('.lang-en').forEach(showEl);
          document.body.classList.remove('zh');
+         var savedTitle = document.body.getAttribute('data-title-en');
+         if (savedTitle) {
+            document.title = savedTitle;
+         }
       }
    }
    window.applyGlobalLanguage = applyGlobalLanguage;
