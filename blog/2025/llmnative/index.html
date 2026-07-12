@@ -79,19 +79,39 @@
       color: #8a9bae;
       letter-spacing: 0.3px;
     }
+
+    /* --- EN / 中文 language toggle ---
+       Clicking either button updates the shared global preference
+       (localStorage 'preferredLanguage') also used by the homepage and
+       the navbar. See __setPostLang() near the bottom of this file. */
+    .lang-toggle { margin: 0 0 22px 0; }
+    .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+      font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+    .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+    .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+    .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+    .lang-zh { display: none; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title">LLM Native Primitives: Next Golden Path</h1>
-               <p class="post-meta"> Created in May, 2025<span class="post-readstats"> · 1,087 words · 5 min read</span> </p>
+               <h1 class="post-title"><span class="lang-en">LLM Native Primitives: Next Golden Path</span><span class="lang-zh">LLM 原生原语：下一条黄金路径</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in May, 2025<span class="post-readstats"> · 1,087 words · 5 min read</span> </span><span class="lang-zh"> 创建于 2025 年 5 月<span class="post-readstats"> · 1,087 字 · 5 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> LLM</a>   <a href="/blog/tag/primitive"> <i class="fa-solid fa-hashtag fa-sm"></i> primitive</a>      ·   <a href="/blog/category/oss"> <i class="fa-solid fa-tag fa-sm"></i> oss</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
                <a href="https://hits.sh/pengandy.com/blog/2025/llmnative/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2025/llmnative.svg?label=page%20views&color=007ec6"/></a>
             </div>
+
+            <div class="lang-toggle">
+               <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+               <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+            </div>
+
+            <div class="lang-en">
+
             <article class="post-content">
                <div id="markdown-content">
                   <p><em>“Primitives are the raw parts or the most foundational-level building blocks for software developers. They’re indivisible (if they can be functionally split into two they must) and they do one thing really well. They’re meant to be used together rather than as solutions in and of themselves. And, we’ll build them for maximum developer flexibility. We won’t put a bunch of constraints on primitives to guard against developers hurting themselves. Rather, we’ll optimize for developer freedom and innovation.”</em> - 2003 AWS Vision document</p>
@@ -142,7 +162,7 @@
               </tr>
             </table>
             <br>
-            <p>Peter DeSantis had an excellent keynote in re:Invent 2024 that highlighted "AI workloads are Scale up workloads. Larger models demand more compute. Science and algorithmic limitations decide simple scale out doesn't work." </p>
+            <p><em>Peter DeSantis</em> had an excellent keynote in re:Invent 2024 that highlighted "AI workloads are Scale up workloads. Larger models demand more compute. Science and algorithmic limitations decide simple scale out doesn't work." </p>
             <li>
               Request Variance: LLM requests vary in size and resource use, RAG → long inputs, short outputs, Reasoning → short inputs, long outputs. This unevenness causes overloaded replicas, leading to longer inter-token latency.
             </li>
@@ -164,7 +184,7 @@
             <br>
             <h2>Last Mile Delivery</h2>
             <p>Lately, I’ve seen a flourishing of open-source large model inference frameworks (like llm-d, Dynamo, SGLang..), as well as caching projects such as LMCache, Mooncake, and engines TensorRT, vLLM. Looking back to early 2023, when running a GPU felt like lugging bricks, it’s clear that LLM inference and optimization are now starting to coalesce around some fuzzy but emerging industry-standard paradigms. As someone who’s been hands-on with large model serving for two years, I find this really encouraging.</p>
-            <p>Although this area doesn’t have the academic depth or community influence of blogs from respected researchers like <a href="https://lilianweng.github.io/posts/2025-05-01-thinking/">Lilian Weng</a> or <a href="https://ysymyth.github.io/The-Second-Half/">Shunyu Yao</a>, and it lacks the accessibility and popularity of agent-level applications, it still plays a vital role. It’s hard to classify, it's not the model itself, not the application layer, not infrastructure, and not hardware either. It’s perhaps closest in relationship to MCP vs agents and K8s vs CPU. Sitting between the model and the hardware, you could call this the 'middleware layer.'</p>
+            <p>Although this area doesn’t have the academic depth or community influence of blogs from respected researchers like <a href="https://lilianweng.github.io/posts/2025-05-01-thinking/"><em>Lilian Weng</em></a> or <a href="https://ysymyth.github.io/The-Second-Half/"><em>Shunyu Yao</em></a>, and it lacks the accessibility and popularity of agent-level applications, it still plays a vital role. It’s hard to classify, it's not the model itself, not the application layer, not infrastructure, and not hardware either. It’s perhaps closest in relationship to MCP vs agents and K8s vs CPU. Sitting between the model and the hardware, you could call this the 'middleware layer.'</p>
             <p>This middleware layer aims to tackle the real bottlenecks that stand in the way of deploying LLMs at scale: <em>“LLM inference is too slow, too expensive, and too hard to scale.”</em></p>
             <p>These are ‘last mile’ problems, making LLMs run efficiently, reliably, and elastically, and turning model capabilities into real user value. What’s more, nearly every project in this space is choosing open-source collaboration as the path forward, which is incredibly welcoming for those who are passionate about contributing to open-source communities. It feels a lot like the early days of public cloud 10 years ago: from CPU → virtualization → VM → containers → serverless.</p>
             <p>The LLM/GPU-native era has begun.</p>
@@ -175,7 +195,7 @@
             <li>
               Prefill and Decode Disaggregation: Nvidia's recent research publication <em><a href="https://research.nvidia.com/publication/2025-06_beyond-buzz-pragmatic-take-inference-disaggregation">"Beyond the Buzz: A Pragmatic Take on Inference Disaggregation"</a></em> offers a detailed explanation and presents practical design principles.
               <div class="comment-note-2026">
-                 <span class="note-date">Mar 16, 2026 ·</span> NVIDIA GTC Keynote 2026, NVIDIA Founder and CEO Jensen Huang shared disaggregated inference on <a href="https://www.youtube.com/live/jw_o0xr8MWU?si=X9-EYGOoel3aC4cx&t=7681" target="_blank">Vera Rubin Prefill + Groq Decode</a>.
+                 <span class="note-date">Mar 16, 2026 ·</span> NVIDIA GTC Keynote 2026, NVIDIA Founder and CEO <em>Jensen Huang</em> shared disaggregated inference on <a href="https://www.youtube.com/live/jw_o0xr8MWU?si=X9-EYGOoel3aC4cx&t=7681" target="_blank">Vera Rubin Prefill + Groq Decode</a>.
               </div>
               <div class="comment-note-2026">
                  <span class="note-date">Mar 13, 2026 ·</span> AWS and Cerebras team up to build new disaggregated inference solution: <a href="https://press.aboutamazon.com/aws/2026/3/aws-and-cerebras-collaboration-aims-to-set-a-new-standard-for-ai-inference-speed-and-performance-in-the-cloud" target="_blank">Trainium Prefill + Cerebras Decode</a>.
@@ -202,6 +222,124 @@
             <p>Rather than picking one or two specific software solutions, while waiting the next K8s timing coming, I prefer to talk about a new working model where Product, Engineering, and Research collaborate more closely than ever before. This kind of integration, unlike anything we've seen in the past, is just beginning to take shape. vLLM is a representative example. And the future remains wide open.</p>
             <br>
             <p></p>
+
+            </div><!-- /lang-en -->
+
+            <div class="lang-zh">
+
+            <article class="post-content">
+               <div id="markdown-content">
+                  <p><em>"原语是软件开发者最原始、最基础层面的构建模块。它们不可再分（如果功能上可以拆成两个，就必须拆开），并且只专注做好一件事。它们的设计初衷是被组合使用，而不是作为独立的解决方案本身。而且，我们会为了最大化开发者的灵活性去构建它们。我们不会给原语加上一大堆限制来防止开发者'伤到自己'。相反，我们会为开发者的自由与创新去做优化。"</em> —— 2003 年 AWS 愿景文档</p>
+               </div>
+            </article>
+            <br> 
+            <hr>
+            <br> 
+            <p>"Transformer" <a href="https://www.reddit.com/r/singularity/comments/1l9ple2/happy_8th_birthday_to_the_paper_that_set_all_this/">迎来第 8 个生日</a>，云原生计算基金会（CNCF）十周年（参见<a href="https://pengandy.com/blog/2025/cncf10yo/">这篇文章</a>），Kubernetes、Lambda、ECS 和 Alexa 十一周年，Bedrock 与 Claude 两周年。从 CPU 原生到 LLM/GPU 原生应用的转变已经开始。这个时代的下一条"黄金路径"会是什么？</p>
+            <br>
+            <h2>LLM 应用 vs 其他应用</h2>
+            <p>我曾花两年时间从事业界最先进（SOTA）的 LLM 推理工作，既涉及闭源模型（Anthropic），也涉及开源模型（Llama 和 DeepSeek）。最近，我把关注点转向了模型优化和推理加速。你越接近模型本身，就越会发现，要有效地运行和优化它们，绝非易事。</p>
+            <p>Red Hat AI 的<a href="https://x.com/RedHat_AI/status/1924801645654810755">推文"LLM 推理太慢、太贵、太难扩展"</a>对这些挑战做了深入的描述。</p>
+            <table>
+              <tr>
+                <th>LLM 应用负载</th>
+                <th>其他应用负载</th>
+              </tr>
+              <tr>
+                <td>
+                  <li>
+                    慢
+                  </li>
+                  <li>
+                    资源消耗大
+                  </li>
+                  <li>
+                    不均匀
+                  </li>
+                  <li>
+                    对延迟高度敏感
+                  </li>
+                </td>
+                <td>
+                  <li>
+                    短生命周期、均匀请求
+                  </li>
+                  <li>
+                    一致的 SLO
+                  </li>
+                  <li>
+                    各副本性能均衡
+                  </li>
+                  <li>
+                    副本间协调无额外收益
+                  </li>
+                </td>
+              </tr>
+            </table>
+            <br>
+            <p><em>Peter DeSantis</em> 在 re:Invent 2024 上的一场精彩主题演讲中强调："AI 工作负载是纵向扩展（scale up）的工作负载。更大的模型需要更多计算资源。科学与算法上的限制决定了简单的横向扩展（scale out）行不通。"</p>
+            <li>
+              请求方差：LLM 请求在大小和资源使用上差异很大，RAG 场景 → 长输入、短输出，推理（Reasoning）场景 → 短输入、长输出。这种不均匀性会导致某些副本过载，从而拉长 token 间的生成延迟。
+            </li>
+            <li>
+              解码（Decode）≠ 预填充（Prefill）：LLM 推理实际上是两种工作负载，Prefill 是计算密集型，Decode 是内存密集型。Prefill 需要大量计算资源，将输入转化为传递给下一阶段的数据结构。Decode（token 生成）则是模型逐个、依次生成每一个 token。这对 AI 基础设施提出了截然不同的要求：每生成一个 token，都必须把整个模型从内存中读取一遍，但实际用到的计算量却很小。因此，token 生成对内存的需求很高，对计算的需求却很低。而在智能体 AI 场景下，客户既关心快速的 Prefill，也关心极快的 token 生成速度。标准部署方式让这两个阶段共用同一块 GPU——效率低下。因此，将这两个阶段分离、独立扩展和优化的"分离式服务"（disaggregated serving）变得必要。
+            </li>
+            <div class="comment-note-2026">
+              <span class="note-date">2026 年 3 月 26 日 ·</span> Cerebras CEO 兼创始人 @andrewdfeldman 在一条推文中详细阐述了<a href="https://x.com/andrewdfeldman/status/2037153848146399548" target="_blank">"什么是分离式推理？"</a>。
+            </div>
+            <div class="comment-note-2026">
+              <span class="note-date">2026 年 2 月 ·</span> Amazon 发布了<a href="https://www.aboutamazon.com/stories/what-is-ai-inference-ai-agents">一篇文章</a>，<strong>《什么是 AI 推理？AI 革命的支柱》</strong>，用清晰易懂的方式解释了这一过程。
+            </div>
+            <li>
+              提示缓存（Prompt caching）至关重要：许多工作负载都是多轮的（聊天智能体、工具调用、代码补全）。将请求路由到已缓存上下文的副本，可以避免重复的 Prefill 计算。做得好的话，能把尾部延迟降低几个数量级。
+            </li>
+            <li>
+              容量稀缺：GPU / 加速器有限。对每个组织而言，计算资源都极为有限，这与 CPU 原生应用相比是一个重大差异——CPU 原生应用的资源限制通常没这么严重。在这种背景下，优化推理调度器（具备缓存感知 + 分离感知评分能力）、QoS 感知推理（把延迟敏感与延迟容忍的工作负载，更高效地匹配到合适的基础设施上）以及变体自动扩缩容（Variant Autoscaling，兼顾流量与硬件感知的自动扩缩容）都变得重要起来。在 LLM 的世界里，高可用性与高利用率至关重要。
+            </li>
+            <br>
+            <h2>最后一公里的交付</h2>
+            <p>最近，我看到开源大模型推理框架蓬勃发展（比如 llm-d、Dynamo、SGLang……），以及缓存类项目如 LMCache、Mooncake，还有推理引擎 TensorRT、vLLM。回想 2023 年初，运行一块 GPU 就像搬砖头一样费劲，现在很明显，LLM 推理与优化正开始围绕一些尚不清晰但正在浮现的行业标准范式凝聚起来。作为一个亲手做了两年大模型服务的人，我觉得这非常令人振奋。</p>
+            <p>尽管这个领域没有像 <a href="https://lilianweng.github.io/posts/2025-05-01-thinking/"><em>Lilian Weng</em></a> 或 <a href="https://ysymyth.github.io/The-Second-Half/"><em>Shunyu Yao</em></a>（姚顺雨）这样受人尊敬的研究者的博客那样具有学术深度或社区影响力，也不像智能体层应用那样易于接触和流行，但它依然扮演着至关重要的角色。它很难归类：它不是模型本身，不是应用层，不是基础设施，也不是硬件。它或许最接近于 MCP 相对于智能体、K8s 相对于 CPU 的那种关系。它处于模型与硬件之间，你可以称之为"中间件层"。</p>
+            <p>这个中间件层致力于解决大规模部署 LLM 时真正的瓶颈问题：<em>"LLM 推理太慢、太贵、太难扩展。"</em></p>
+            <p>这些都是"最后一公里"的问题：让 LLM 高效、可靠、弹性地运行，并把模型的能力转化为真正的用户价值。更值得一提的是，这个领域里几乎每一个项目都选择了开源协作作为前进的道路，这对那些热衷于为开源社区做贡献的人来说，无疑是极大的欢迎。这感觉很像十年前公有云的早期阶段：从 CPU → 虚拟化 → VM → 容器 → 无服务器。</p>
+            <p>LLM/GPU 原生时代已经开始。</p>
+            <br>
+            <h2>下一条黄金路径</h2>
+            <p>在 Amazon 内部，有一个叫做"黄金路径"的概念：一套经过深思熟虑的、面向端到端构建者体验的最佳实践工具、架构和配置建议，比较流行的例子包括 AWS Lambda 和 ECS/Fargate。既然所有 CPU 原生的应用和平台都已走过了十年，那么 LLM 原生应用的黄金路径又会是什么？</p>
+            <p>社区似乎已经勾勒出了一些方向：</p>
+            <li>
+              Prefill 与 Decode 分离：Nvidia 最近发表的研究论文 <em><a href="https://research.nvidia.com/publication/2025-06_beyond-buzz-pragmatic-take-inference-disaggregation">"Beyond the Buzz: A Pragmatic Take on Inference Disaggregation"</a></em> 对此做了详细阐述，并给出了实用的设计原则。
+              <div class="comment-note-2026">
+                 <span class="note-date">2026 年 3 月 16 日 ·</span> 在 NVIDIA GTC 2026 主题演讲中，NVIDIA 创始人兼 CEO <em>Jensen Huang</em>（黄仁勋）分享了<a href="https://www.youtube.com/live/jw_o0xr8MWU?si=X9-EYGOoel3aC4cx&t=7681" target="_blank">Vera Rubin Prefill + Groq Decode</a>的分离式推理方案。
+              </div>
+              <div class="comment-note-2026">
+                 <span class="note-date">2026 年 3 月 13 日 ·</span> AWS 与 Cerebras 联手打造新的分离式推理解决方案：<a href="https://press.aboutamazon.com/aws/2026/3/aws-and-cerebras-collaboration-aims-to-set-a-new-standard-for-ai-inference-speed-and-performance-in-the-cloud" target="_blank">Trainium Prefill + Cerebras Decode</a>。
+              </div>
+            </li>
+            <li>
+              前缀 / KV（键值）缓存
+            </li>
+            <li>
+              上下文感知路由与 AI 感知网络路由（负载均衡）
+            </li>
+            <li>
+              QoS 感知路由
+            </li>
+            <li>
+              变体自动扩缩容（Variant Autoscaling）
+            </li>
+            <p>……</p>
+            <br>
+            <img src="/assets/blog/pd.png" height="500">
+            <p>图：Transformer 的 Prefill 与 Decode 阶段</p>
+            <br>
+            <p>如今模型本身的差异正在缩小，未来，"如何更好地运行模型"这件事将成为关键的差异化因素之一。</p>
+            <p>与挑选一两个具体的软件方案相比，在等待下一个类似 K8s 时刻到来的同时，我更愿意谈论一种新的协作模式：产品、工程与研究比以往任何时候都更紧密地协作。这种整合方式前所未见，才刚刚开始成形。vLLM 就是一个代表性的例子。而未来，开源精神继续。</p>
+            <br>
+            <p></p>
+
+            </div><!-- /lang-zh -->
+
             <br>
             <hr>
             <br>
@@ -215,5 +353,45 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> 
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}},{id:"post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",title:'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"We\u2019re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",section:"Posts",handler:()=>{window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/","_blank")}},{id:"post-a-post-with-tabs",title:"a post with tabs",description:"this is what included tabs in a post could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/tabs/"}},{id:"post-a-post-with-typograms",title:"a post with typograms",description:"this is what included typograms code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/typograms/"}},{id:"post-a-post-that-can-be-cited",title:"a post that can be cited",description:"this is what a post that can be cited looks like",section:"Posts",handler:()=>{window.location.href="/blog/2024/TL/"}},{id:"post-a-post-with-pseudo-code",title:"a post with pseudo code",description:"this is what included pseudo code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/pseudocode/"}},{id:"post-a-post-with-code-diff",title:"a post with code diff",description:"this is how you can display code diffs",section:"Posts",handler:()=>{window.location.href="/blog/2024/code-diff/"}},{id:"post-a-post-with-advanced-image-components",title:"a post with advanced image components",description:"this is what advanced image components could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/advanced-images/"}},{id:"post-a-post-with-vega-lite",title:"a post with vega lite",description:"this is what included vega lite code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/vega-lite/"}},{id:"post-a-post-with-geojson",title:"a post with geojson",description:"this is what included geojson code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/geojson-map/"}},{id:"post-a-post-with-echarts",title:"a post with echarts",description:"this is what included echarts code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/echarts/"}},{id:"post-a-post-with-chart-js",title:"a post with chart.js",description:"this is what included chart.js code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/chartjs/"}},{id:"post-a-post-with-tikzjax",title:"a post with TikZJax",description:"this is what included TikZ code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/tikzjax/"}},{id:"post-a-post-with-bibliography",title:"a post with bibliography",description:"an example of a blog post with bibliography",section:"Posts",handler:()=>{window.location.href="/blog/2023/post-bibliography/"}},{id:"post-a-post-with-jupyter-notebook",title:"a post with jupyter notebook",description:"an example of a blog post with jupyter notebook",section:"Posts",handler:()=>{window.location.href="/blog/2023/jupyter-notebook/"}},{id:"post-a-post-with-custom-blockquotes",title:"a post with custom blockquotes",description:"an example of a blog post with custom blockquotes",section:"Posts",handler:()=>{window.location.href="/blog/2023/custom-blockquotes/"}},{id:"post-a-post-with-table-of-contents-on-a-sidebar",title:"a post with table of contents on a sidebar",description:"an example of a blog post with table of contents on a sidebar",section:"Posts",handler:()=>{window.location.href="/blog/2023/sidebar-table-of-contents/"}},{id:"post-a-post-with-audios",title:"a post with audios",description:"this is what included audios could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/audios/"}},{id:"post-a-post-with-videos",title:"a post with videos",description:"this is what included videos could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/videos/"}},{id:"post-displaying-beautiful-tables-with-bootstrap-tables",title:"displaying beautiful tables with Bootstrap Tables",description:"an example of how to use Bootstrap Tables",section:"Posts",handler:()=>{window.location.href="/blog/2023/tables/"}},{id:"post-a-post-with-table-of-contents",title:"a post with table of contents",description:"an example of a blog post with table of contents",section:"Posts",handler:()=>{window.location.href="/blog/2023/table-of-contents/"}},{id:"post-a-post-with-giscus-comments",title:"a post with giscus comments",description:"an example of a blog post with giscus comments",section:"Posts",handler:()=>{window.location.href="/blog/2022/giscus-comments/"}},{id:"post-displaying-external-posts-on-your-al-folio-blog",title:'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"",section:"Posts",handler:()=>{window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2","_blank")}},{id:"post-a-post-with-redirect",title:"a post with redirect",description:"you can also redirect to assets like pdf",section:"Posts",handler:()=>{window.location.href="/assets/pdf/example_pdf.pdf"}},{id:"post-a-post-with-diagrams",title:"a post with diagrams",description:"an example of a blog post with diagrams",section:"Posts",handler:()=>{window.location.href="/blog/2021/diagrams/"}},{id:"post-a-distill-style-blog-post",title:"a distill-style blog post",description:"an example of a distill-style blog post and main elements",section:"Posts",handler:()=>{window.location.href="/blog/2021/distill/"}},{id:"post-a-post-with-twitter",title:"a post with twitter",description:"an example of a blog post with twitter",section:"Posts",handler:()=>{window.location.href="/blog/2020/twitter/"}},{id:"post-a-post-with-disqus-comments",title:"a post with disqus comments",description:"an example of a blog post with disqus comments",section:"Posts",handler:()=>{window.location.href="/blog/2015/disqus-comments/"}},{id:"post-a-post-with-math",title:"a post with math",description:"an example of a blog post with some math",section:"Posts",handler:()=>{window.location.href="/blog/2015/math/"}},{id:"post-a-post-with-code",title:"a post with code",description:"an example of a blog post with some code",section:"Posts",handler:()=>{window.location.href="/blog/2015/code/"}},{id:"post-a-post-with-images",title:"a post with images",description:"this is what included images could look like",section:"Posts",handler:()=>{window.location.href="/blog/2015/images/"}},{id:"post-a-post-with-formatting-and-links",title:"a post with formatting and links",description:"march & april, looking forward to summer",section:"Posts",handler:()=>{window.location.href="/blog/2015/formatting-and-links/"}},{id:"news-a-simple-inline-announcement",title:"A simple inline announcement.",description:"",section:"News"},{id:"news-a-long-announcement-with-details",title:"A long announcement with details",description:"",section:"News",handler:()=>{window.location.href="/news/announcement_2/"}},{id:"news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",title:'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',description:"",section:"News"},{id:"projects-project-1",title:"project 1",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/1_project/"}},{id:"projects-project-2",title:"project 2",description:"a project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/2_project/"}},{id:"projects-project-3-with-very-long-name",title:"project 3 with very long name",description:"a project that redirects to another website",section:"Projects",handler:()=>{window.location.href="/projects/3_project/"}},{id:"projects-project-4",title:"project 4",description:"another without an image",section:"Projects",handler:()=>{window.location.href="/projects/4_project/"}},{id:"projects-project-5",title:"project 5",description:"a project with a background image",section:"Projects",handler:()=>{window.location.href="/projects/5_project/"}},{id:"projects-project-6",title:"project 6",description:"a project with no image",section:"Projects",handler:()=>{window.location.href="/projects/6_project/"}},{id:"projects-project-7",title:"project 7",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/7_project/"}},{id:"projects-project-8",title:"project 8",description:"an other project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/8_project/"}},{id:"projects-project-9",title:"project 9",description:"another project with an image \ud83c\udf89",section:"Projects",handler:()=>{window.location.href="/projects/9_project/"}},{id:"socials-email",title:"Send email",section:"Socials",handler:()=>{window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D","_blank")}},{id:"socials-google-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ","_blank")}},{id:"socials-rss",title:"RSS Feed",section:"Socials",handler:()=>{window.open("/feed.xml","_blank")}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> 
+      <!-- EN / 中文 toggle logic. Writes the SAME global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
    </body>
 </html>
