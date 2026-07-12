@@ -438,6 +438,15 @@ nav[data-toggle="toc"] {
    // switcher (i.e. don't define their own applyLanguage()). Keyed by the
    // <body data-page="..."> attribute already used to highlight the active
    // nav item, and kept in sync with the nav labels in this same file.
+   // Chinese titles for pages that rely on this shared, global language
+   // switcher (i.e. don't define their own applyLanguage()). Keyed by the
+   // <body data-page="..."> attribute already used to highlight the active
+   // nav item, and kept in sync with the nav labels in this same file.
+   //
+   // NOTE: excludes "blog" — data-page="blog" is shared by the blog listing
+   // AND every individual post, each with its own unique <title>, so it
+   // can't be mapped to one generic string here. The blog listing page's
+   // title is translated directly in blog/index.html instead.
    var zhTitles = {
       bio: '简介',
       publication: '发表',
