@@ -171,19 +171,39 @@
        color: #b0a08a;
        letter-spacing: 0.3px;
      }
+
+     /* --- EN / 中文 language toggle ---
+        Clicking either button updates the shared global preference
+        (localStorage 'preferredLanguage') also used by the homepage and
+        the navbar. See __setPostLang() near the bottom of this file. */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display: none; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title">LLM Year in Review</h1>
-               <p class="post-meta"> Created in December, 2025<span class="post-readstats"> · 1,566 words · 8 min read</span> </p>
+               <h1 class="post-title"><span class="lang-en">LLM Year in Review</span><span class="lang-zh">LLM 年度回顾</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in December, 2025<span class="post-readstats"> · 1,566 words · 8 min read</span> </span><span class="lang-zh"> 创建于 2025 年 12 月<span class="post-readstats"> · 1,566 字 · 8 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/open-source"> <i class="fa-solid fa-hashtag fa-sm"></i> open-source</a>   <a href="/blog/tag/review"> <i class="fa-solid fa-hashtag fa-sm"></i> review</a>      ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
                <a href="https://hits.sh/pengandy.com/blog/2025/llm/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2025/llm.svg?label=page%20views&color=007ec6"/></a>
             </div>
+
+            <div class="lang-toggle">
+               <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+               <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+            </div>
+
+            <div class="lang-en">
+
             <article class="post-content">
                <div id="markdown-content">
                   <p>Following <a href="https://x.com/karpathy/status/2002118205729562949?s=20" target="_blank">@karpathy's 2025 LLM Year in Review</a>, here are my observations on the LLM landscape in 2025.</p>
@@ -209,19 +229,19 @@
             <h2>Academia vs Industry Fusion</h2>
             <p>First, congratulations to Professors <em>Andrew Barto</em> of UMass Amherst—my graduate alma mater—and his former graduate student <em>Richard Sutton</em> on receiving <a href="https://amturing.acm.org/">the 2024 Turing Award</a> this spring for their pioneering work in reinforcement learning.</p>
             <p><a href="https://pengandy.com/blog/2025/neurips/">NeurIPS 2025</a> in San Diego was a crowded and hugely successful event, showcasing the vibrant intersection of academic research and industrial innovation. The conference highlighted both the opportunities and challenges facing the AI research community. The unexpected incident involving OpenReview has drawn increased attention to fairness, impartiality, transparency, high quality, and privacy protection in academic sharing, prompting concrete actions across the research community, including the NeurIPS donation and the <em>AI Research Leaders: Join Us in Supporting OpenReview</em> initiative.</p>
-            <p>The ongoing discussion about <a href="https://pengandy.com/blog/2025/RSRCHORENG/" target="_blank">research vs engineering</a> has intensified this year. We're seeing fascinating position changes between veterans and young researchers, reflecting the evolving landscape of AI careers. 2025 marks a watershed moment as more 95s young researchers are becoming executives at major companies and startups, commanding compensation comparable to NBA stars in Bay Area tech. Notable examples include Shengjia Zhao (Chief Scientist at Meta Superintelligence Labs), Shunyu Yao (姚顺雨) at Tencent, and Fuli Luo (罗福莉) at Xiaomi. These leaders share a common profile: former researchers at OpenAI or top labs like DeepSeek, PhD from Stanford or UC Berkeley, and undergraduate degrees from Tsinghua or Peking University. For startup, we also have new research-type companies like Thinking Machines Lab (founded by former OpenAI CTO, Soumith Chintala, PyTorch co-creator, joined last month) and for corporate, Amazon recently appointing Pieter Abbeel (UC Berkeley professor, co-founder of Covariant) to lead their frontier model research team.</p>
+            <p>The ongoing discussion about <a href="https://pengandy.com/blog/2025/RSRCHORENG/" target="_blank">research vs engineering</a> has intensified this year. We're seeing fascinating position changes between veterans and young researchers, reflecting the evolving landscape of AI careers. 2025 marks a watershed moment as more 95s young researchers are becoming executives at major companies and startups, commanding compensation comparable to NBA stars in Bay Area tech. Notable examples include <em>Shengjia Zhao</em> (Chief Scientist at Meta Superintelligence Labs), <em>Shunyu Yao</em> (姚顺雨) at Tencent, and <em>Fuli Luo</em> (罗福莉) at Xiaomi. These leaders share a common profile: former researchers at OpenAI or top labs like DeepSeek, PhD from Stanford or UC Berkeley, and undergraduate degrees from Tsinghua or Peking University. For startup, we also have new research-type companies like Thinking Machines Lab (founded by former OpenAI CTO, <em>Soumith Chintala</em>, PyTorch co-creator, joined last month) and for corporate, Amazon recently appointing <em>Pieter Abbeel</em> (UC Berkeley professor, co-founder of Covariant) to lead their frontier model research team.</p>
             <p>We're witnessing a destructive restructuring of the AI talent landscape. In this new era, everyone needs to find their position. The traditional career paths are being rewritten, and adaptability has become the most valuable skill.</p>
             <div class="comment-note-2026">
-               <span class="note-date">Jul 07, 2026 ·</span> Lenny Rachitsky and Noam Segal's <a href="https://www.lennysnewsletter.com/p/how-tech-workers-are-feeling-in-2026" target="_blank">2026 tech worker sentiment survey</a> found the workforce splitting in two: those "amplified" by AI are thriving, while those "destabilized" or "diminished" by it are burned out and pessimistic—now the single strongest predictor of career optimism, ahead of role, seniority, or company size.
+               <span class="note-date">Jul 07, 2026 ·</span> <em>Lenny Rachitsky</em> and <em>Noam Segal</em>'s <a href="https://www.lennysnewsletter.com/p/how-tech-workers-are-feeling-in-2026" target="_blank">2026 tech worker sentiment survey</a> found the workforce splitting in two: those "amplified" by AI are thriving, while those "destabilized" or "diminished" by it are burned out and pessimistic—now the single strongest predictor of career optimism, ahead of role, seniority, or company size.
             </div>
             <div class="comment-note-2026">
-               <span class="note-date">Jul 02, 2026 ·</span> Zuhayeer Musa, Founder of <a href="http://Levels.fyi" target="_blank">Levels.fyi</a>, posted <a href="https://x.com/zuhayeer/status/2072817352509665589?s=20" target="_blank">"Where (not) to work as SWE in 2026."</a>
+               <span class="note-date">Jul 02, 2026 ·</span> <em>Zuhayeer Musa</em>, Founder of <a href="http://Levels.fyi" target="_blank">Levels.fyi</a>, posted <a href="https://x.com/zuhayeer/status/2072817352509665589?s=20" target="_blank">"Where (not) to work as SWE in 2026."</a>
             </div>
             <div class="comment-note-2026">
                <span class="note-date">June 2026 ·</span> The author of <a href="https://x.com/pymhq/status/2024187984741093814?s=20">"The Cost of Staying"</a> took her own advice, shifting from investor to builder by joining SpaceX / xAI.
             </div>
             <div class="comment-note-2026">
-               <span class="note-date">May 2026 ·</span> <a href="https://x.com/deedydas/status/2055491938464489888?s=20" target="_blank">Deedy Das</a>, Partner at Menlo Ventures, captured the frenetic SF vibes and the widening divide between the ~10k frontier-AI insiders who hit retirement-level wealth and everyone else navigating layoffs, career paralysis, and an uncertain future of work.
+               <span class="note-date">May 2026 ·</span> <a href="https://x.com/deedydas/status/2055491938464489888?s=20" target="_blank"><em>Deedy Das</em></a>, Partner at Menlo Ventures, captured the frenetic SF vibes and the widening divide between the ~10k frontier-AI insiders who hit retirement-level wealth and everyone else navigating layoffs, career paralysis, and an uncertain future of work.
             </div>
             <div class="comment-note-2026">
                <span class="note-date">Feb 2026 ·</span> An investor at Bloomberg Beta captured a snapshot of this industry transition in her <a href="https://x.com/pymhq/status/2024187984741093814?s=20">"The Cost of Staying" write-up</a>.
@@ -231,7 +251,7 @@
             <h2><a href="https://pengandy.com/blog/2025/llmnative/">LLM Native</a>: Open Source Ecosystem in Place</h2>
             <p>The shift toward GPU-CPU Native infrastructure has accelerated dramatically. Key projects driving this revolution include vLLM, SGLang, llm-d, Nvidia's Dynamo, and LMCache. Looking back at GTC 25, there was no "public" concept of disaggregated inference at all. Just one year later, industry standards have emerged and are growing rapidly. There's also an interesting discussion on customizing popular open-source libraries—check out <a href="https://blog.vllm.ai/2025/11/20/vllm-plugin-system.html">this article</a>.</p>
             <div class="comment-note-2026">
-               <span class="note-date">Mar 16, 2026 ·</span> NVIDIA GTC Keynote 2026, NVIDIA Founder and CEO Jensen Huang shared disaggregated inference on <a href="https://www.youtube.com/live/jw_o0xr8MWU?si=X9-EYGOoel3aC4cx&t=7681" target="_blank">Vera Rubin Prefill + Groq Decode</a>.
+               <span class="note-date">Mar 16, 2026 ·</span> NVIDIA GTC Keynote 2026, NVIDIA Founder and CEO <em>Jensen Huang</em> shared disaggregated inference on <a href="https://www.youtube.com/live/jw_o0xr8MWU?si=X9-EYGOoel3aC4cx&t=7681" target="_blank">Vera Rubin Prefill + Groq Decode</a>.
             </div>
             <div class="comment-note-2026">
                <span class="note-date">Mar 13, 2026 ·</span> AWS and Cerebras team up to build new disaggregated inference solution: <a href="https://press.aboutamazon.com/aws/2026/3/aws-and-cerebras-collaboration-aims-to-set-a-new-standard-for-ai-inference-speed-and-performance-in-the-cloud" target="_blank">Trainium Prefill + Cerebras Decode</a>.
@@ -307,7 +327,7 @@
                <span class="note-date">2026/03/19 ·</span> @KobeissiLetter: <a href="https://x.com/KobeissiLetter/status/2034784748640289139?s=20" target="_blank">Data centers surpass office buildings in US construction</a>
             </div>
             <div class="comment-note-2026">
-               <span class="note-date">2026/03/10 ·</span> <a href="https://blogs.nvidia.com/blog/ai-5-layer-cake/" target="_blank">The AI "5-Layer Cake"</a> by Jensen Huang, Nvidia CEO.
+               <span class="note-date">2026/03/10 ·</span> <a href="https://blogs.nvidia.com/blog/ai-5-layer-cake/" target="_blank">The AI "5-Layer Cake"</a> by <em>Jensen Huang</em>, Nvidia CEO.
             </div>
             <br>
 
@@ -347,7 +367,7 @@
                <span class="note-date">Mar 09, 2026 ·</span> Claude Code launches <a href="https://claude.com/blog/code-review" target="_blank">Code Review</a>.
             </div>
             <div class="comment-note-2026">
-               <span class="note-date">Mar 04, 2026 ·</span> The Pragmatic Engineer Podcast: <a href="https://youtu.be/julbw1JuAz0?si=PhtOF9SSVVlCU744" target="_blank">Building Claude Code with Boris Cherny</a>.
+               <span class="note-date">Mar 04, 2026 ·</span> The Pragmatic Engineer Podcast: <a href="https://youtu.be/julbw1JuAz0?si=PhtOF9SSVVlCU744" target="_blank">Building Claude Code with <em>Boris Cherny</em></a>.
             </div>
             <div class="comment-note-2026">
                <span class="note-date">Feb 22, 2026 ·</span> Claude Code <a href="https://x.com/bcherny/status/2025701404988592359?s=20" target="_blank">celebrates its 1 year birthday</a>.
@@ -358,13 +378,13 @@
             <br>
 
             <h2>LLM 3 Years</h2>
-            <p>From conversational AI in 2019 to Bedrock in 2023—I become a three-year "veteran" in the LLM domain. OpenAI turns 10 this month: https://openai.com/index/ten-years/. This space is growing at an unimaginable pace, hype and the unknown intertwined. When an industrial revolution is underway, people can only move forward step by step. See <a href="https://x.com/karpathy/status/2004607146781278521?s=20">@karpathy</a> and <a href="https://www.reddit.com/r/ClaudeAI/comments/1q2k2c0/google_engineer_says_claude_code_rebuilt_their/">@rakyll</a> threads. Recommended interviews: <a href="https://radical.vc/geoffrey-hinton-and-jeff-dean-in-conversation/">Geoff Hinton & Jeff Dean</a>, <a href="https://youtu.be/aR20FWCCjAs?si=muktbHb3paxsdjqE">Ilya Sutskever</a>, <a href="https://youtu.be/mfv0V1SxbNA?si=GQ2etIl96mmm_VCR">Linus Torvalds</a>, <a href="https://www.deeplearning.ai/the-batch/issue-333/">Andrew Ng</a> and <a href="https://blog.google/technology/ai/2025-research-breakthroughs/">Google's blog</a>.</p>
+            <p>From conversational AI in 2019 to Bedrock in 2023—I become a three-year "veteran" in the LLM domain. OpenAI turns 10 this month: https://openai.com/index/ten-years/. This space is growing at an unimaginable pace, hype and the unknown intertwined. When an industrial revolution is underway, people can only move forward step by step. See <a href="https://x.com/karpathy/status/2004607146781278521?s=20">@karpathy</a> and <a href="https://www.reddit.com/r/ClaudeAI/comments/1q2k2c0/google_engineer_says_claude_code_rebuilt_their/">@rakyll</a> threads. Recommended interviews: <a href="https://radical.vc/geoffrey-hinton-and-jeff-dean-in-conversation/"><em>Geoff Hinton</em> & <em>Jeff Dean</em></a>, <a href="https://youtu.be/aR20FWCCjAs?si=muktbHb3paxsdjqE"><em>Ilya Sutskever</em></a>, <a href="https://youtu.be/mfv0V1SxbNA?si=GQ2etIl96mmm_VCR"><em>Linus Torvalds</em></a>, <a href="https://www.deeplearning.ai/the-batch/issue-333/"><em>Andrew Ng</em></a> and <a href="https://blog.google/technology/ai/2025-research-breakthroughs/">Google's blog</a>.</p>
             <br>
 
             <h2>What's Next</h2>
             <p>No direct answer, but open source will continue to be the way.</p>
             <div class="comment-note-2026">
-               <span class="note-date">Jul 10, 2026 ·</span> Mira Murati, CEO of Thinking Machines Lab: <a href="https://thinkingmachines.ai/blog/the-future-worth-building-is-human/" target="_blank">"The Future Worth Building Is Human."</a>
+               <span class="note-date">Jul 10, 2026 ·</span> <em>Mira Murati</em>, CEO of Thinking Machines Lab: <a href="https://thinkingmachines.ai/blog/the-future-worth-building-is-human/" target="_blank">"The Future Worth Building Is Human."</a>
             </div>
             <div class="comment-note-2026">
                <span class="note-date">Mar 05, 2026 ·</span> Anthropic Economic Research report: <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank">Labor market impacts of AI: A new measure and early evidence</a>.
@@ -373,7 +393,7 @@
                <span class="note-date">Feb 22, 2026 ·</span> A Wall Street article spreading around: <a href="https://www.citriniresearch.com/p/2028gic" target="_blank">The 2028 Global Intelligence Crisis</a>.
             </div>
             <div class="comment-note-2026">
-               <span class="note-date">Nov 2025 ·</span> <a href="https://www.linkedin.com/company/prometheus/" target="_blank">Project Prometheus</a> founded by Jeff Bezos and Vik Bajaj (ex-Google X), with $6.2B in funding and the slogan "AI for the physical economy."            </div>
+               <span class="note-date">Nov 2025 ·</span> <a href="https://www.linkedin.com/company/prometheus/" target="_blank">Project Prometheus</a> founded by <em>Jeff Bezos</em> and <em>Vik Bajaj</em> (ex-Google X), with $6.2B in funding and the slogan "AI for the physical economy."            </div>
             <div class="comment-note-2025">
                <span class="note-date">Apr 03, 2025 ·</span> <a href="https://ai-2027.com/" target="_blank">AI 2027</a> offers a detailed scenario forecast of how transformative AI could unfold over the next few years.
             </div>
@@ -382,6 +402,203 @@
             <!-- ========================================== -->
             <!-- YOUR CONTENT ENDS HERE -->
             <!-- ========================================== -->
+
+            </div><!-- /lang-en -->
+
+            <div class="lang-zh">
+
+            <article class="post-content">
+               <div id="markdown-content">
+                  <p>继 <a href="https://x.com/karpathy/status/2002118205729562949?s=20" target="_blank">@karpathy 的 2025 LLM 年度回顾</a>之后，这里是我对 2025 年 LLM 领域的一些观察。</p>
+                  <p><em>我与 ChatGPT 的这一年：</em></p>
+                  <p><em>（"幻觉"：不是 GPU，而是 TPU？）</em></p>
+                  <img src="/assets/blog/llm/Still-Life-with-TPU-Chip-and-Coffee-Mug-ChatGPT-2025.png" alt="tweet" class="img-fluid" style="max-width: 50%; height: auto; margin: 20px auto; display: block;">
+                  <p><em>我今年最喜欢的 AI 突破：<a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">DeepSeek</a></em></p>
+               </div>
+            </article>
+            <br>
+            <hr>
+            <br>
+
+            <h2>基础模型：开源 vs 闭源</h2>
+            <p>2025 年是基础模型格局发生转变的一年。虽然我们看到 Google DeepMind、Anthropic 和 OpenAI 推出了更强大的模型，开源与闭源之间的转换仍在持续演变。Meta 和 xAI 等公司把此前的开源模式转向了闭源。OpenAI 在 2025 年 8 月发布了 gpt-oss（继 GPT-3 之后其首个开源模型系列）。</p>
+            <p>尽管行业出现了这些转变，我今年最喜欢的 AI 突破仍然是 DeepSeek。DeepSeek 证明了<em>开源可行</em>。他们对开放性坚定不移的承诺——即便像 Meta 这样的巨头都在退缩——启发了新一代开源模型，包括阿里巴巴 Qwen、Kimi、小米 MiMo、MiniMax 以及 AI2 的 OLMo。开源推动了创新、研究，以及 AI 技术的民主化。</p>
+            <br>
+
+            <h2>学术界与产业界的融合</h2>
+            <p>首先，祝贺马萨诸塞大学阿默斯特分校（我的研究生母校）教授 <em>Andrew Barto</em> 及其昔日的博士生 <em>Richard Sutton</em>，凭借他们在强化学习领域的开创性工作，于今年春天荣获<a href="https://amturing.acm.org/">2024 年图灵奖</a>。</p>
+            <p>在圣迭戈举行的<a href="https://pengandy.com/blog/2025/neurips/">NeurIPS 2025</a>是一场人潮涌动、极为成功的盛会，展现了学术研究与产业创新蓬勃交汇的景象。这次会议也凸显了 AI 研究界所面临的机遇与挑战。围绕 OpenReview 的意外事件，让业界更加关注学术分享中的公平性、公正性、透明度、高质量与隐私保护，并促使研究社区采取了具体行动，包括 NeurIPS 的捐款以及<em>AI Research Leaders: Join Us in Supporting OpenReview</em>倡议。</p>
+            <p>关于<a href="https://pengandy.com/blog/2025/RSRCHORENG/" target="_blank">研究与工程</a>的持续讨论在今年愈发激烈。我们看到资深人士与年轻研究者之间的地位正在发生有趣的变化，这也反映出 AI 职业格局的演变。2025 年标志着一个分水岭：越来越多 95 后年轻研究者成为大公司和创业公司的高管，薪酬待遇堪比湾区科技圈的 NBA 球星。典型例子包括在 Meta Superintelligence Labs 担任首席科学家的 <em>Shengjia Zhao</em>（赵晟佳）、在腾讯任职的 <em>Shunyu Yao</em>（姚顺雨），以及在小米任职的 <em>Fuli Luo</em>（罗福莉）。这些领军人物有着相似的履历：曾在 OpenAI 或 DeepSeek 等顶尖实验室担任研究员，拥有斯坦福或加州大学伯克利分校的博士学位，本科则毕业于清华或北大。在创业公司方面，我们也看到了 Thinking Machines Lab 这样的新型研究型公司（由前 OpenAI CTO、PyTorch 联合创始人 <em>Soumith Chintala</em> 创立，他上个月刚加入）；在大企业方面，Amazon 最近任命 <em>Pieter Abbeel</em>（加州大学伯克利分校教授、Covariant 联合创始人）领导其前沿模型研究团队。</p>
+            <p>我们正在见证 AI 人才格局的一场颠覆式重构。在这个新时代，每个人都需要重新找到自己的位置。传统的职业路径正在被重写，适应能力已成为最宝贵的技能。</p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 7 月 7 日 ·</span> <em>Lenny Rachitsky</em> 与 <em>Noam Segal</em> 的<a href="https://www.lennysnewsletter.com/p/how-tech-workers-are-feeling-in-2026" target="_blank">2026 科技从业者情绪调查</a>发现，职场群体正在分裂为两类：被 AI"赋能"的人如鱼得水，而被 AI"削弱"或"边缘化"的人则精疲力竭、悲观失望——这已成为预测职业乐观程度最强的单一因素，超过了职位、资历或公司规模。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 7 月 2 日 ·</span> <a href="http://Levels.fyi" target="_blank">Levels.fyi</a> 创始人 <em>Zuhayeer Musa</em> 发布了<a href="https://x.com/zuhayeer/status/2072817352509665589?s=20" target="_blank">《2026 年软件工程师"何处（不）就业"》</a>一文。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 6 月 ·</span> <a href="https://x.com/pymhq/status/2024187984741093814?s=20">《留守的代价》</a>的作者听从了自己的建议，从投资人转型为建设者，加入了 SpaceX / xAI。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 5 月 ·</span> Menlo Ventures 合伙人 <a href="https://x.com/deedydas/status/2055491938464489888?s=20" target="_blank"><em>Deedy Das</em></a> 捕捉到了旧金山的躁动氛围，以及那约 1 万名跻身"提前退休级"财富的前沿 AI 圈内人，与其他仍在应对裁员、职业停滞和工作前景不确定的普通人之间日益扩大的分化。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 2 月 ·</span> Bloomberg Beta 的一位投资人在她的<a href="https://x.com/pymhq/status/2024187984741093814?s=20">《留守的代价》一文</a>中，记录下了这场行业转型的一个片段。
+            </div>
+            <br>
+
+            <h2><a href="https://pengandy.com/blog/2025/llmnative/">LLM Native</a>：开源生态已然成形</h2>
+            <p>向 GPU-CPU 原生基础设施的转变正在急剧加速。推动这场变革的关键项目包括 vLLM、SGLang、llm-d、Nvidia 的 Dynamo，以及 LMCache。回顾 GTC 25，当时业界对"分离式推理"还完全没有任何"公开"的概念。仅仅一年之后，行业标准已经涌现并迅速壮大。关于如何定制热门开源库，也出现了一场有趣的讨论——可参见<a href="https://blog.vllm.ai/2025/11/20/vllm-plugin-system.html">这篇文章</a>。</p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 3 月 16 日 ·</span> 在 NVIDIA GTC 2026 主题演讲中，NVIDIA 创始人兼 CEO <em>Jensen Huang</em>（黄仁勋）分享了<a href="https://www.youtube.com/live/jw_o0xr8MWU?si=X9-EYGOoel3aC4cx&t=7681" target="_blank">Vera Rubin Prefill + Groq Decode</a>的分离式推理方案。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 3 月 13 日 ·</span> AWS 与 Cerebras 联手打造新的分离式推理解决方案：<a href="https://press.aboutamazon.com/aws/2026/3/aws-and-cerebras-collaboration-aims-to-set-a-new-standard-for-ai-inference-speed-and-performance-in-the-cloud" target="_blank">Trainium Prefill + Cerebras Decode</a>。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 ·</span> 2 月：vLLM 成立 Inferact（种子轮 1.5 亿美元）· 1 月：SGLang 成立 RadixArk（估值约 4 亿美元）。
+            </div>
+            <p><a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">云原生计算基金会（CNCF）迎来十周年</a>。Linux 基金会与开源 AI 社区在 2025 年依旧异常活跃，持续推动智能体 AI 与基础模型生态的发展。</p>
+
+            <div class="timeline">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2025 年 12 月</div>
+                     <div class="timeline-description">MCP 一周年。Linux 基金会成立 Agentic AI Foundation（AAIF），纳入 MCP、goose 与 AGENTS.md</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2025 年 10 月 30 日</div>
+                     <div class="timeline-description">LMCache 加入 PyTorch 基金会</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2025 年 10 月 22 日</div>
+                     <div class="timeline-description">Ray 加入 PyTorch 基金会</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2025 年 6 月</div>
+                     <div class="timeline-description">Agent2Agent（A2A）加入 Linux 基金会</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2025 年 5 月</div>
+                     <div class="timeline-description">vLLM 与 DeepSpeed 加入 PyTorch 基金会</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2024 年 7 月</div>
+                     <div class="timeline-description">vLLM 加入 Linux Foundation AI & Data</div>
+                  </div>
+               </div>
+            </div>
+            <br>
+
+            <h2>智能体 AI：高速前进</h2>
+            <p>行业共识很明确：<em>2025 年是智能体之年</em>。我们见证了智能体 AI 框架、工具与应用的大爆发，从根本上改变了我们对 AI 系统的理解方式。</p>
+            <p>从自动化编码助手到多智能体协作框架，智能体 AI 已从研究新奇事物走向生产落地的现实。智能体沙箱场景也让 <a href="https://brooker.co.za/blog/2025/09/18/firecracker.html">Firecracker</a> 走上舞台。Linux 基金会成立 Agentic AI Foundation（AAIF），标志着这一趋势将长期延续。</p>
+            <br>
+
+            <h2>跨公司合作不断扩展</h2>
+            <p>2025 年之前，顶尖 AI 实验室往往只与一两家公司绑定——OpenAI 与 Microsoft，Anthropic 与 Google、Amazon。今年，跨公司合作正在扩展：OpenAI 如今同时与 Microsoft、Oracle 和 AWS 合作，Claude Code 也已在 OpenRouter 上线。顶尖 AI 实验室之间也开始协作，8 月，OpenAI 与 Anthropic 联合开展了一项试点对齐评估演练（Alignment Evaluation Exercise），并公布了研究结果。</p>
+            <br>
+
+            <h2>越来越多的数据中心</h2>
+            <p>Google 的 TPU 再度回到聚光灯下，尽管它其实已经存在了很长时间。同时，新发布的 Trainium 3 以及由 Trainium 2 驱动的 Project Rainier，已投入 Anthropic 的 Claude 模型训练与推理工作负载。此外，AWS 与 OpenAI 之间还达成了一项数年、数十亿美元规模的协议。GPU 与 ASIC 芯片之争仍在继续。毫无疑问，越来越多专用的物理数据中心正在从零开始兴建，而能源问题也变得日益重要。</p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026/03/19 ·</span> @KobeissiLetter：<a href="https://x.com/KobeissiLetter/status/2034784748640289139?s=20" target="_blank">数据中心建设规模超越美国办公楼建设</a>
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026/03/10 ·</span> Nvidia CEO <em>Jensen Huang</em>（黄仁勋）提出的<a href="https://blogs.nvidia.com/blog/ai-5-layer-cake/" target="_blank">"AI 五层蛋糕"</a>。
+            </div>
+            <br>
+
+            <h2>越来越快的性能</h2>
+            <p>更高的 OPTS、更短的 TTFT、更长的上下文长度——Artificial Analysis 上的排名竞赛仍在持续。性能正变得在每一层都至关重要——从应用层、智能体提供方，到 API 与模型提供方。Fireworks AI 和 Together AI 等公司在这一领域做得不错。AI 技术的创新速度极快——<a href="https://developer.nvidia.com/blog/top-5-ai-model-optimization-techniques-for-faster-smarter-inference/">推理优化技术</a>，比如投机解码，就是一个典型例子。从最早的草稿模型投机解码（Chen 等人，<a href="https://arxiv.org/abs/2302.01318">2023</a>）开始，后续的 EAGLE（Extrapolation Algorithm for Greater Language‑model Efficiency）系列将这一思路进一步推进：EAGLE-1（<a href="https://arxiv.org/abs/2401.15077">ICML 2024</a>）、EAGLE‑2（<a href="https://arxiv.org/abs/2406.16858">EMNLP 2024</a>）、EAGLE‑3（<a href="https://arxiv.org/abs/2503.01840">2025</a>），以及最近的 SuffixDecoding（<a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/115453">NeurIPS 2025 焦点海报</a>）。</p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 6 月 ·</span> DeepSeek <a href="https://github.com/deepseek-ai/DeepSpec">DeepSpec</a> <a href="https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf">DSpark</a>。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 5 月 ·</span> <a href="https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/">Gemma 4：多 token 预测草稿模型</a>。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 3 月 ·</span> <a href="https://vllm.ai/blog/p-eagle">P-EAGLE：在 vLLM 中通过并行投机解码实现更快的 LLM 推理</a> &nbsp; <span class="note-date">2026 年 2 月 ·</span> Amazon Science 团队在 arXiv 上发布的新预印本，<a href="https://www.arxiv.org/abs/2602.01469">P-EAGLE：可扩展训练的并行草稿 EAGLE</a>。
+            </div>
+            <p>所有这些新的学术创新，从第 0 天起就获得了开源社区的支持，从而快速走向产业应用。在今天的 AI 社区里，开源的速度快得令人难以置信。</p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 3 月 ·</span> TorchSpec 团队、Mooncake 团队的<a href="https://pytorch.org/blog/torchspec-speculative-decoding-training-at-scale/">TorchSpec</a> &nbsp; <span class="note-date">2025 年 11 月 ·</span> vLLM 的<a href="https://developers.redhat.com/articles/2025/11/19/speculators-standardized-production-ready-speculative-decoding">Speculators</a>，Amazon SageMaker 团队的<a href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-introduces-eagle-based-adaptive-speculative-decoding-to-accelerate-generative-ai-inference/">基于 EAGLE 的自适应投机解码</a> &nbsp; <span class="note-date">2025 年 7 月 ·</span> SGLang 的<a href="https://lmsys.org/blog/2025-07-25-spec-forge/">SpecForge</a>
+            </div>
+            <p>此外，像内核调优这样的底层创新也未曾停歇——例如，Perplexity 10 月在 <a href="https://github.com/perplexityai/pplx-garden">GitHub</a> 上开源的内核及其<a href="https://arxiv.org/abs/2510.27656">论文</a>，以及 Cerebras AI 等公司设计的 AI 原生处理器与基础设施，都通过软硬件的紧密结合实现了高性能。而高性能的背后，是高质量的数据集。</p>
+            <br>
+
+            <h2>基准评测、可解释性、可观测性、信任与安全</h2>
+            <p>将一个基于概率的 LLM 方案，转变为稳定、一致、可用于生产的产品，绝非易事。最后一公里的交付——从创新到生产就绪——至关重要。要实现生产就绪，需要大量工作，包括严格的基准评测、全面的模型评估，以及最重要的一点：建立信任与安全。一些机构已经意识到这些挑战，并正在积极构建解决方案来弥补差距——例如 Arklex.ai 与 Virtue AI。</p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 6 月 ·</span> <a href="https://x.com/dawnsongtweets/status/2070191051873345910?s=20" target="_blank">@dawnsongtweets</a>：Virtue AI 加入 Meta Superintelligence Labs（MSL）。
+            </div>
+            <p>此外，<a href="https://www.darioamodei.com/post/the-urgency-of-interpretability">"可解释性的紧迫性"</a>已经十分明确，打开黑箱是必要之举。</p>
+            <br>
+
+            <h2>叙事胜于性能</h2>
+            <p>个人体验：Nano Banana 并未完全达到预期，需要投入大量的提示词调试，仍有不少精调的空间。</p>
+            <br>
+
+            <h2>生产力工具</h2>
+            <p>编码：Kiro CLI、Cursor 和 Claude Code。文档：ChatGPT。知识：Perplexity。</p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 3 月 9 日 ·</span> Claude Code 推出<a href="https://claude.com/blog/code-review" target="_blank">代码评审（Code Review）</a>功能。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 3 月 4 日 ·</span> The Pragmatic Engineer Podcast：<a href="https://youtu.be/julbw1JuAz0?si=PhtOF9SSVVlCU744" target="_blank">与 <em>Boris Cherny</em> 一起打造 Claude Code</a>。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 2 月 22 日 ·</span> Claude Code <a href="https://x.com/bcherny/status/2025701404988592359?s=20" target="_blank">庆祝一周年</a>。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 2 月 11 日 ·</span> <a href="https://www.reddit.com/r/OpenAI/comments/1r22l1j/cursor_is_dying/" target="_blank">"Cursor 正在衰落"</a>。
+            </div>
+            <br>
+
+            <h2>与 LLM 相伴的三年</h2>
+            <p>从 2019 年接触对话式 AI，到 2023 年投身 Bedrock——我已成为 LLM 领域一名"三年老兵"。OpenAI 本月迎来十周年：https://openai.com/index/ten-years/。这个领域正以难以想象的速度增长，炒作与未知交织在一起。当一场产业革命正在发生时，人们只能一步一步向前走。可参见 <a href="https://x.com/karpathy/status/2004607146781278521?s=20">@karpathy</a> 与 <a href="https://www.reddit.com/r/ClaudeAI/comments/1q2k2c0/google_engineer_says_claude_code_rebuilt_their/">@rakyll</a> 的讨论帖。推荐访谈：<a href="https://radical.vc/geoffrey-hinton-and-jeff-dean-in-conversation/"><em>Geoff Hinton</em> 与 <em>Jeff Dean</em></a>、<a href="https://youtu.be/aR20FWCCjAs?si=muktbHb3paxsdjqE"><em>Ilya Sutskever</em></a>、<a href="https://youtu.be/mfv0V1SxbNA?si=GQ2etIl96mmm_VCR"><em>Linus Torvalds</em></a>、<a href="https://www.deeplearning.ai/the-batch/issue-333/"><em>Andrew Ng</em></a>，以及<a href="https://blog.google/technology/ai/2025-research-breakthroughs/">Google 的博客</a>。</p>
+            <br>
+
+            <h2>接下来会发生什么</h2>
+            <p>没有直接的答案，但开源仍将继续是正道。</p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 7 月 10 日 ·</span> Thinking Machines Lab CEO <em>Mira Murati</em>：<a href="https://thinkingmachines.ai/blog/the-future-worth-building-is-human/" target="_blank">《值得建设的未来是属于人类的》</a>。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 3 月 5 日 ·</span> Anthropic 经济研究报告：<a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank">《AI 对劳动力市场的影响：一种新的衡量方法与早期证据》</a>。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 2 月 22 日 ·</span> 一篇在华尔街流传的文章：<a href="https://www.citriniresearch.com/p/2028gic" target="_blank">《2028 年全球智能危机》</a>。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2025 年 11 月 ·</span> <a href="https://www.linkedin.com/company/prometheus/" target="_blank">Project Prometheus</a> 由 <em>Jeff Bezos</em> 与 <em>Vik Bajaj</em>（前 Google X 成员）共同创立，获得 62 亿美元融资，口号是"为实体经济打造 AI"。            </div>
+            <div class="comment-note-2025">
+               <span class="note-date">2025 年 4 月 3 日 ·</span> <a href="https://ai-2027.com/" target="_blank">AI 2027</a> 提供了一份详尽的情景预测，描绘了未来几年变革性 AI 可能如何演进。
+            </div>
+            <br>
+
+            </div><!-- /lang-zh -->
 
             <br>
             <hr>
@@ -396,5 +613,45 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script>
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}},{id:"post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",title:'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"We\u2019re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",section:"Posts",handler:()=>{window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/","_blank")}},{id:"post-a-post-with-tabs",title:"a post with tabs",description:"this is what included tabs in a post could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/tabs/"}},{id:"post-a-post-with-typograms",title:"a post with typograms",description:"this is what included typograms code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/typograms/"}},{id:"post-a-post-that-can-be-cited",title:"a post that can be cited",description:"this is what a post that can be cited looks like",section:"Posts",handler:()=>{window.location.href="/blog/2024/TL/"}},{id:"post-a-post-with-pseudo-code",title:"a post with pseudo code",description:"this is what included pseudo code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/pseudocode/"}},{id:"post-a-post-with-code-diff",title:"a post with code diff",description:"this is how you can display code diffs",section:"Posts",handler:()=>{window.location.href="/blog/2024/code-diff/"}},{id:"post-a-post-with-advanced-image-components",title:"a post with advanced image components",description:"this is what advanced image components could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/advanced-images/"}},{id:"post-a-post-with-vega-lite",title:"a post with vega lite",description:"this is what included vega lite code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/vega-lite/"}},{id:"post-a-post-with-geojson",title:"a post with geojson",description:"this is what included geojson code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/geojson-map/"}},{id:"post-a-post-with-echarts",title:"a post with echarts",description:"this is what included echarts code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/echarts/"}},{id:"post-a-post-with-chart-js",title:"a post with chart.js",description:"this is what included chart.js code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/chartjs/"}},{id:"post-a-post-with-tikzjax",title:"a post with TikZJax",description:"this is what included TikZ code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/tikzjax/"}},{id:"post-a-post-with-bibliography",title:"a post with bibliography",description:"an example of a blog post with bibliography",section:"Posts",handler:()=>{window.location.href="/blog/2023/post-bibliography/"}},{id:"post-a-post-with-jupyter-notebook",title:"a post with jupyter notebook",description:"an example of a blog post with jupyter notebook",section:"Posts",handler:()=>{window.location.href="/blog/2023/jupyter-notebook/"}},{id:"post-a-post-with-custom-blockquotes",title:"a post with custom blockquotes",description:"an example of a blog post with custom blockquotes",section:"Posts",handler:()=>{window.location.href="/blog/2023/custom-blockquotes/"}},{id:"post-a-post-with-table-of-contents-on-a-sidebar",title:"a post with table of contents on a sidebar",description:"an example of a blog post with table of contents on a sidebar",section:"Posts",handler:()=>{window.location.href="/blog/2023/sidebar-table-of-contents/"}},{id:"post-a-post-with-audios",title:"a post with audios",description:"this is what included audios could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/audios/"}},{id:"post-a-post-with-videos",title:"a post with videos",description:"this is what included videos could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/videos/"}},{id:"post-displaying-beautiful-tables-with-bootstrap-tables",title:"displaying beautiful tables with Bootstrap Tables",description:"an example of how to use Bootstrap Tables",section:"Posts",handler:()=>{window.location.href="/blog/2023/tables/"}},{id:"post-a-post-with-table-of-contents",title:"a post with table of contents",description:"an example of a blog post with table of contents",section:"Posts",handler:()=>{window.location.href="/blog/2023/table-of-contents/"}},{id:"post-a-post-with-giscus-comments",title:"a post with giscus comments",description:"an example of a blog post with giscus comments",section:"Posts",handler:()=>{window.location.href="/blog/2022/giscus-comments/"}},{id:"post-displaying-external-posts-on-your-al-folio-blog",title:'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"",section:"Posts",handler:()=>{window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2","_blank")}},{id:"post-a-post-with-redirect",title:"a post with redirect",description:"you can also redirect to assets like pdf",section:"Posts",handler:()=>{window.location.href="/assets/pdf/example_pdf.pdf"}},{id:"post-a-post-with-diagrams",title:"a post with diagrams",description:"an example of a blog post with diagrams",section:"Posts",handler:()=>{window.location.href="/blog/2021/diagrams/"}},{id:"post-a-distill-style-blog-post",title:"a distill-style blog post",description:"an example of a distill-style blog post and main elements",section:"Posts",handler:()=>{window.location.href="/blog/2021/distill/"}},{id:"post-a-post-with-twitter",title:"a post with twitter",description:"an example of a blog post with twitter",section:"Posts",handler:()=>{window.location.href="/blog/2020/twitter/"}},{id:"post-a-post-with-disqus-comments",title:"a post with disqus comments",description:"an example of a blog post with disqus comments",section:"Posts",handler:()=>{window.location.href="/blog/2015/disqus-comments/"}},{id:"post-a-post-with-math",title:"a post with math",description:"an example of a blog post with some math",section:"Posts",handler:()=>{window.location.href="/blog/2015/math/"}},{id:"post-a-post-with-code",title:"a post with code",description:"an example of a blog post with some code",section:"Posts",handler:()=>{window.location.href="/blog/2015/code/"}},{id:"post-a-post-with-images",title:"a post with images",description:"this is what included images could look like",section:"Posts",handler:()=>{window.location.href="/blog/2015/images/"}},{id:"post-a-post-with-formatting-and-links",title:"a post with formatting and links",description:"march & april, looking forward to summer",section:"Posts",handler:()=>{window.location.href="/blog/2015/formatting-and-links/"}},{id:"news-a-simple-inline-announcement",title:"A simple inline announcement.",description:"",section:"News"},{id:"news-a-long-announcement-with-details",title:"A long announcement with details",description:"",section:"News",handler:()=>{window.location.href="/news/announcement_2/"}},{id:"news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",title:'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',description:"",section:"News"},{id:"projects-project-1",title:"project 1",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/1_project/"}},{id:"projects-project-2",title:"project 2",description:"a project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/2_project/"}},{id:"projects-project-3-with-very-long-name",title:"project 3 with very long name",description:"a project that redirects to another website",section:"Projects",handler:()=>{window.location.href="/projects/3_project/"}},{id:"projects-project-4",title:"project 4",description:"another without an image",section:"Projects",handler:()=>{window.location.href="/projects/4_project/"}},{id:"projects-project-5",title:"project 5",description:"a project with a background image",section:"Projects",handler:()=>{window.location.href="/projects/5_project/"}},{id:"projects-project-6",title:"project 6",description:"a project with no image",section:"Projects",handler:()=>{window.location.href="/projects/6_project/"}},{id:"projects-project-7",title:"project 7",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/7_project/"}},{id:"projects-project-8",title:"project 8",description:"an other project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/8_project/"}},{id:"projects-project-9",title:"project 9",description:"another project with an image \ud83c\udf89",section:"Projects",handler:()=>{window.location.href="/projects/9_project/"}},{id:"socials-email",title:"Send email",section:"Socials",handler:()=>{window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D","_blank")}},{id:"socials-google-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ","_blank")}},{id:"socials-rss",title:"RSS Feed",section:"Socials",handler:()=>{window.open("/feed.xml","_blank")}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+      <!-- EN / 中文 toggle logic. Writes the SAME global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
    </body>
 </html>
