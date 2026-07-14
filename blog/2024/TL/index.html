@@ -56,14 +56,25 @@
      img {
          pointer-events: none;
       }
+     /* --- EN / 中文 language toggle ---
+        Clicking either button updates the shared global preference
+        (localStorage 'preferredLanguage') also used by the homepage and
+        the navbar. See __setPostLang() near the bottom of this file. */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title">Recent Thinkings on Technical Leadership</h1>
-               <p class="post-meta"> Created in December 5, 2024<span class="post-readstats"> · 2,508 words · 13 min read</span> </p>
+               <h1 class="post-title"><span class="lang-en">Recent Thinkings on Technical Leadership</span><span class="lang-zh">关于技术领导力的近期思考</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in December 5, 2024<span class="post-readstats"> · 2,508 words · 13 min read</span> </span><span class="lang-zh"> 创建于 2024 年 12 月 5 日<span class="post-readstats"> · 约 4,200 字 · 13 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/al-folio/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a>   ·   <a href="/al-folio/blog/tag/technicalleadership"> <i class="fa-solid fa-hashtag fa-sm"></i> technical leadership</a>   ·   <a href="/al-folio/blog/category/organization"> <i class="fa-solid fa-tag fa-sm"></i> organization</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -71,18 +82,25 @@
             </div>
             <article class="post-content">
                <div id="markdown-content">
-                 <p><em>"What matters is that the problems get solved, not how."</em> - Reilly, Tanya. "The Staff Engineer's Path" (p. 46). 
+
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+                  </div>
+
+                 <p><em><span class="lang-en">"What matters is that the problems get solved, not how."</span><span class="lang-zh">「重要的是问题被解决了，而不是如何解决的。」</span></em> - <span class="lang-en"><em>Reilly, Tanya</em>. "The Staff Engineer's Path" (p. 46). </span><span class="lang-zh"><em>Tanya Reilly</em>，《The Staff Engineer's Path》（第 46 页）。</span>
                </div>
             </article>
             <br> 
             <hr>
             <br> 
+            <div class="lang-en">
             <p>Back to 2022, I gave an online talk on the topic of IC vs. Manager, sharing some of my observations and experiences from when I took on a people manager role in the Serverless department. Although this session was primarily aimed at a Mandarin-speaking audience. I've recently started jotting down follow-up notes on the IC aspects to help me recap. I think it might also be a good opportunity to share these insights with my network and exchange perspectives.</p>
             <br>
             <h2>L6 at Amazon</h2>
-            <p>The L6 level at Amazon covers a broad spectrum of responsibilities. I was inspired by the article <a href="https://medium.com/geekculture/belonging-to-amazons-principal-engineering-community-aa8059152fbf">"Belonging to Amazon’s Principal Engineering Community"</a> by Carlos Arguelles, L8 SPE at Amazon, which offers valuable insights into technical leadership within the company.</p>
+            <p>The L6 level at Amazon covers a broad spectrum of responsibilities. I was inspired by the article <a href="https://medium.com/geekculture/belonging-to-amazons-principal-engineering-community-aa8059152fbf">"Belonging to Amazon’s Principal Engineering Community"</a> by <em>Carlos Arguelles</em>, L8 SPE at Amazon, which offers valuable insights into technical leadership within the company.</p>
             <p>One thing I’ve noticed is the limited availability of articles offering insights specifically about the L6 IC (Individual Contributor) role. Some say that L6 at Amazon is similar in scope to a <em>Staff Engineer</em> at companies like Google and Meta or <em>Principal SDE</em> at Microsoft. According to Amazon's internal role guidelines, this level involves a range of responsibilities, with varying degrees of scope, influence, ambiguity, problem complexity, execution, and impact.</p>
-            <p>Role Framework is an interesting topic. There is a book <em>"Staff Engineer"</em> authored by Will Larson, which outlines four archetypes for senior-level engineers: 1. Tech Lead, 2. Architect, 3. Solver, and 4. Right Hand. 
+            <p>Role Framework is an interesting topic. There is a book <em>"Staff Engineer"</em> authored by <em>Will Larson</em>, which outlines four archetypes for senior-level engineers: 1. Tech Lead, 2. Architect, 3. Solver, and 4. Right Hand. 
             <p>At this level, you lead projects that require the collaboration of multiple engineers and teams, effectively acting as a "force multiplier." However, the challenges both technical and non-technical are significant. You’re expected to demonstrate strong technical leadership while navigating categories of problems, dealing with uncertainty, and simplify complexity.</p>
             <p>One unique aspect of Amazon's flat leveling system is the absence of a <em>Staff Engineer</em> level. Instead, after Senior, the next step is Principal Engineer (L7). This gap can make L6 feel like a bit of an awkward middle ground. Some joke that L6 is the "lowest ROI" IC level across the company due to the heavy responsibilities and challenges, but without the clear distinction of a <em>Staff Engineer</em> role.</p>
             <img src="/assets/blog/levelsfyi.png" height="650">
@@ -130,7 +148,7 @@
             <br>
             <h2>Motivating Teams and Scaling Impact</h2>
             <p>As an L6, you’re in a position of leadership and authority within your team. However, it's important to remember that leadership at Amazon is about empowering others and fostering a collaborative environment.</p>
-            <p>One of Amazon's long-standing cultural principles is the "no-author" culture in Quip, which means that everyone is a contributor. Anyone can leave comments, suggest improvements, or provide feedback on documents. This fosters a sense of ownership and collective responsibility across the team. You can read more about this unique approach to documentation and collaboration in this <a href="https://www.linkedin.com/posts/carlos-arguelles-6352392_did-you-know-documents-at-amazon-have-no-activity-7263599768629579776-VNUu?utm_source=share&utm_medium=member_desktop">LinkedIn post</a> by Carlos Arguelles.</p>
+            <p>One of Amazon's long-standing cultural principles is the "no-author" culture in Quip, which means that everyone is a contributor. Anyone can leave comments, suggest improvements, or provide feedback on documents. This fosters a sense of ownership and collective responsibility across the team. You can read more about this unique approach to documentation and collaboration in this <a href="https://www.linkedin.com/posts/carlos-arguelles-6352392_did-you-know-documents-at-amazon-have-no-activity-7263599768629579776-VNUu?utm_source=share&utm_medium=member_desktop">LinkedIn post</a> by <em>Carlos Arguelles</em>.</p>
             <p>To motivate your team and build a strong sense of appreciation, always value their contributions. After each project launch, take the time to send an internal appreciation letter acknowledging the efforts of the team and any groups you’ve worked closely with. This small gesture can go a long way in maintaining morale and fostering a culture of recognition.</p>
             <br> 
             <h2>Delegation and Influencing Your Team</h2>
@@ -140,7 +158,7 @@
             <br>
             <h2>Customer Call, Product, OP, WBR, and PRFAQ</h2>
             <p>During my time at Serverless, as a founding engineer of the product, I gained extensive experience in public-facing activities and high-profile initiatives. I collaborated closely with the product, GTM, architect and sales teams on product promotion, including public speaking and writing blog posts. I also contributed input on re:Invent session topics and provided support for content and context.</p>
-            <p>In App Runner, I was actively involved in every customer call as a founding engineer. Similarly, in S3, our VP, Mai-Lan, strongly encourages all L6 SDEs to participate in customer calls at least once or twice a month. The product team shares a schedule of upcoming calls and invites those who are interested or relevant to attend. These calls are a vital channel for gaining insights into customer needs and enhancing our contributions as an engineering team. Additionally, there are engagements such as WBR, OP reviews, and other similar initiatives that provide L6 ICs with a deeper understanding of the product and business, which in turn enhances our ability to make meaningful contributions to the company. It is long run value. In my previous departments, I participated in OP, WBR/MBR meetings and provided input, and I also contributed to writing several PRFAQs alongside the product team. <em>"Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers." </em> - Andy Jassy.</p>
+            <p>In App Runner, I was actively involved in every customer call as a founding engineer. Similarly, in S3, our VP, <em>Mai-Lan</em>, strongly encourages all L6 SDEs to participate in customer calls at least once or twice a month. The product team shares a schedule of upcoming calls and invites those who are interested or relevant to attend. These calls are a vital channel for gaining insights into customer needs and enhancing our contributions as an engineering team. Additionally, there are engagements such as WBR, OP reviews, and other similar initiatives that provide L6 ICs with a deeper understanding of the product and business, which in turn enhances our ability to make meaningful contributions to the company. It is long run value. In my previous departments, I participated in OP, WBR/MBR meetings and provided input, and I also contributed to writing several PRFAQs alongside the product team. <em>"Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers." </em> - <em>Andy Jassy</em>.</p>
             <br>
             <h2>Partnering with SDMs</h2>
             <p>As an L6 Engineer, it is usual to collaborate with one or more two-pizza teams in daily work. Your manager and skip-level manager are key partners, and it's important to work closely with them, especially on directional discussions. SDMs (Software Development Managers) often have a more complete view of the project than ICs. Collaborating with SDM and people senior than you helps you better understand the roadmap, build wider vision and provides an opportunity to offer valuable input based on your technical perspective.</p>
@@ -161,8 +179,98 @@
             <p>There’s no easy way around office politics. The key is to be straight and explicit in your communication. At the same time, it's important to understand where people are coming from, be empathetic and kind. If communication issues arise, address them directly and work to fix them. </p>
             <br>
             <h2>Philosophy</h2>
-            <p>As Joe Tsai, Chairman of Alibaba, once said, "Leadership is about dealing with people, getting others to do what you want them to do." While practicing this skill can be challenging, it's a vital aspect of technical leadership. Learning how to effectively collaborate with and motivate others is the key.</p>
+            <p>As <em>Joe Tsai</em>, Chairman of Alibaba, once said, "Leadership is about dealing with people, getting others to do what you want them to do." While practicing this skill can be challenging, it's a vital aspect of technical leadership. Learning how to effectively collaborate with and motivate others is the key.</p>
             <p>As for me, my philosophy is simple: People will have their likes and dislikes, that’s expected and nothing new. Always stay humility and empathy. Keep open and straight.</p>
+            </div><!-- /lang-en -->
+
+            <div class="lang-zh">
+            <p>回到 2022 年，我做过一次线上分享，主题是 IC（个人贡献者）与 Manager（管理者）的对比，分享了我在 Serverless 部门担任 people manager 时的一些观察和经历。虽然那场分享主要面向中文听众，但最近我开始整理关于 IC 方面的后续笔记，帮助自己回顾。我想这也是一个不错的机会，把这些心得分享给我的圈子，交流彼此的视角。</p>
+            <br>
+            <h2>Amazon 的 L6</h2>
+            <p>Amazon 的 L6 级别涵盖非常宽泛的职责范围。Amazon L8 高级首席工程师（SPE）<em>Carlos Arguelles</em> 的文章 <a href="https://medium.com/geekculture/belonging-to-amazons-principal-engineering-community-aa8059152fbf">"Belonging to Amazon’s Principal Engineering Community"</a> 给了我很多启发，其中对公司内部技术领导力的洞见非常有价值。</p>
+            <p>我注意到的一点是，专门探讨 L6 IC（个人贡献者）角色的文章非常有限。有人说 Amazon 的 L6 在职责范围上类似于 Google、Meta 等公司的 <em>Staff Engineer</em>，或微软的 <em>Principal SDE</em>。根据 Amazon 内部的角色指南，这一级别涉及一系列职责，在范围、影响力、模糊性、问题复杂度、执行力和影响等维度上各有不同的要求。</p>
+            <p>角色框架（Role Framework）是个有趣的话题。<em>Will Larson</em> 写过一本书<em>《Staff Engineer》</em>，其中概括了资深工程师的四种原型：1. Tech Lead（技术负责人），2. Architect（架构师），3. Solver（问题解决者），4. Right Hand（左膀右臂）。
+            <p>在这个级别，你主导的项目需要多名工程师和多个团队协作，实际上扮演着"力量倍增器"的角色。然而，技术与非技术层面的挑战都不小。你需要展现出强大的技术领导力，同时驾驭各类问题、应对不确定性、化繁为简。</p>
+            <p>Amazon 扁平职级体系的一个独特之处在于没有 <em>Staff Engineer</em> 这一级。Senior 之后的下一步直接是 Principal Engineer（L7）。这个断层让 L6 显得有点像尴尬的中间地带。有人开玩笑说，L6 是全公司"投资回报率最低"的 IC 级别——责任重、挑战大，却没有 <em>Staff Engineer</em> 这样清晰的头衔区分。</p>
+            <img src="/assets/blog/levelsfyi.png" height="650">
+            <p>（来源：levels.fyi）</p>
+            <br>
+            <p>顺带一提，新入职的 MBA 毕业生也是以 L6 作为起点级别。</p>
+            <p>尽管挑战重重，L6 在 Amazon 工程职级体系中是一个独特的位置，既有很高的影响力，也有充足的成长空间。</p>
+            <br>
+            <h2>交付成果（Deliver Results）</h2>
+            <p>领导角色最常被问到的第一个问题是：你如何带领团队交付成果？作为 L6，你往往不仅要主导单个项目，还要同时统筹多条并行的工作线。就我个人而言，到目前为止我在 Amazon 参与并交付了 10 多个 VP/SVP 级别优先级的目标，涵盖对外功能、财务和运营层面的成果。在 AWS App Runner 期间，有一段时间我同时管理 10 个并行项目（功能、卓越运营 OE、安全、实习生项目等），每一项都挂着我的名字负责到底，并接受每日或每周的跟踪。在这种场景下取得成功的关键在于：有效推动每条战线的进展，把任务委派给合适的团队成员，充当开路者和问题解决者，并在需要的地方提供支持。缺点是：我很想有时间写代码，但实在挤不出来。</p>
+            <p>另一个常见的挑战是持续达成看似不可能的时间线，如何做到？我最近在<a href="https://www.linkedin.com/advice/0/youre-facing-scope-creep-your-ml-project-how-can-r5sse?contributionUrn=urn%3Ali%3Acomment%3A%28articleSegment%3A%28urn%3Ali%3AlinkedInArticle%3A7263621850222444544%2C7263621851845734400%29%2C7268424405536374784%29&utm_source=share&utm_campaign=copy_contribution_link&utm_medium=member_desktop&articleSegmentUrn=urn%3Ali%3AarticleSegment%3A%28urn%3Ali%3AlinkedInArticle%3A7263621850222444544%2C7263621851845734400%29&dashContributionUrn=urn%3Ali%3Afsd_comment%3A%287268424405536374784%2CarticleSegment%3A%28urn%3Ali%3AlinkedInArticle%3A7263621850222444544%2C7263621851845734400%29%29">一篇 LinkedIn 文章</a>中回答了这个问题。以下是我的思路总结：</p>
+            <blockquote>
+              <h4>从现实出发</h4>
+              <p>首先对局面做现实评估。分清哪些可以改变、哪些不能改变，并了解以下几方面的弹性空间：</p>
+              <li>资源：能否增加团队成员？</li>
+              <li>时间线：截止日期有没有调整余地？</li>
+              <li>任务：能否分阶段、按里程碑发布？</li>
+              <br>
+              <h4>协作与优先级</h4>
+              <p>与跨职能团队伙伴、产品和工程紧密合作，明确并排定任务优先级。把事情拆分为高、中、低优先级。</p>
+              <h4>向高层领导寻求指引</h4>
+              <p>与高层领导及其他职能团队保持定期沟通。不要犹豫，主动请教他们的见解和指导。用他们的输入来塑造你的决策，确保方向正确。</p>
+              <h4>"决策正确（Are Right, A Lot）"</h4>
+              <p>持续做出"正确"的结果很难，但至关重要。这是一种长期的自律，不仅确保短期成功，更通过交付真正的价值确保长期成功。</p>
+              <br>
+              <p>现实评估、协作和来自领导层的指引相结合，将帮助你带领团队有效交付成果。挑战很艰巨，但一旦做对，影响是巨大的。</p>
+            </blockquote>
+            <h2>拥抱多样化的任务</h2>
+            <p>作为 L6，不要犹豫承担各类职责，比如 region build、卓越运营（OE）以及其他未必总是高曝光度的工作。我的一位导师曾告诉我："尽可能承担多样化的任务，亲自动手。这会让你更深入地理解团队面临的真实挑战，让你脚踏实地地解决实际问题。"</p>
+            <p>我曾参与一个历时多年的关系型数据库迁移项目。虽然这不是一个光鲜的项目，但最终带来了可观的回报——每年数百万美元的成本节省，并在一次 <a href="https://aws.amazon.com/blogs/opensource/the-wheel/">AWS Weekly Ops Meeting</a> 上被认可为重要的 AWS Ops Win。
+            <p>平衡这些任务是关键。虽然不是每项任务看起来都光彩夺目，但团队会欣赏你的多面手能力和深入细节的意愿。这也让你对正在进行的工作保持全面的视角。</p>
+            <br>
+            <h2>带宽管理</h2>
+            <p>最忙的时候，我的日历同一时段被重复预订了四场会议。当你同时应对多项任务和多个沟通渠道时，很容易被 Slack 消息淹没而无暇回复。有效管理自己的带宽非常重要。以下是一些有帮助的策略：</p>
+            <li>
+              维护文档：不要只依赖口头沟通，把事情写下来。建立文档或笔记，让其他人在需要时能方便地查阅并找到答案。这样即使你无法立即回复，重要信息也已被记录并可获取。
+            </li>
+            <li>
+              在频道中讨论：团队讨论尽量放在共享频道里进行。这样会留下记录，大家可以回头搜索答案，减少重复解释的需要。
+            </li>
+            <li>
+              避免微观管理：你会很想坐下来和每个人一起亲自排查问题。我很喜欢这样做——花半天时间和团队成员并肩troubleshoot——但这不可扩展。如果我在单个任务上花太多时间，就有可能失去对更大优先级的关注，也不利于帮助初级成员成长和保障长期生产力。
+            </li>
+            <p>有效的带宽管理在于平衡：既要给予指导，也要建立一套让大家能独立找到答案的机制，把你的时间花在影响最大的事情上。</p>
+            <br>
+            <h2>激励团队与放大影响力</h2>
+            <p>作为 L6，你在团队中处于领导和权威的位置。但需要记住，Amazon 的领导力核心在于赋能他人、营造协作的环境。</p>
+            <p>Amazon 长期以来的文化准则之一是 Quip 中的"无作者（no-author）"文化，意味着每个人都是贡献者。任何人都可以在文档上留下评论、提出改进建议或给出反馈。这在团队中培养了主人翁意识和集体责任感。你可以在 <em>Carlos Arguelles</em> 的这篇 <a href="https://www.linkedin.com/posts/carlos-arguelles-6352392_did-you-know-documents-at-amazon-have-no-activity-7263599768629579776-VNUu?utm_source=share&utm_medium=member_desktop">LinkedIn 帖子</a>中读到更多关于这种独特文档协作方式的内容。</p>
+            <p>要激励团队并建立强烈的被认可感，请始终珍视他们的贡献。每次项目发布后，花时间发一封内部感谢信，认可团队以及所有紧密合作过的团队的付出。这个小小的举动对维持士气、营造认可文化大有裨益。</p>
+            <br>
+            <h2>委派与影响你的团队</h2>
+            <p>作为 L6 SDE，亲自执行每项任务、深究每个问题根本不现实，这种方式无法扩展。学会恰当地把任务委派给团队，对你的成功和团队的生产力都至关重要。</p>
+            <p>要明白，你不需要写每一行代码。虽然我在当前岗位上仍然写代码，但在 Amazon，L6 一年下来写的代码有限是常态。你的角色更多地转向直接或间接地影响团队，推动你的设计和愿景落地执行。</p>
+            <p>有效的委派不只是把任务甩出去，而是赋能团队成员去承担所有权、做出决策并推进项目。通过这种方式影响团队，你既能确保进展，又能放大自己的影响力。</p>
+            <br>
+            <h2>客户电话、产品、OP、WBR 与 PRFAQ</h2>
+            <p>在 Serverless 期间，作为产品的创始工程师，我在对外活动和高曝光项目上积累了丰富经验。我与产品、GTM、架构师和销售团队紧密合作进行产品推广，包括公开演讲和撰写博客文章。我还为 re:Invent 会议议题提供输入，并为内容和上下文提供支持。</p>
+            <p>在 App Runner，作为创始工程师，我积极参与了每一次客户电话。同样，在 S3，我们的 VP <em>Mai-Lan</em> 强烈鼓励所有 L6 SDE 每月至少参加一到两次客户电话。产品团队会分享即将进行的电话日程，并邀请感兴趣或相关的人参加。这些电话是了解客户需求、提升工程团队贡献的重要渠道。此外，还有 WBR、OP 评审等类似活动，让 L6 IC 更深入地理解产品和业务，进而增强我们为公司做出有意义贡献的能力。这是长期价值。在我之前的部门，我参与了 OP、WBR/MBR 会议并提供输入，还与产品团队一起撰写了多份 PRFAQ。<em>"领导者从客户出发，反向推动工作。他们努力赢得并维系客户的信任。领导者虽然会关注竞争对手，但更痴迷于客户。"</em> —— <em>Andy Jassy</em>。</p>
+            <br>
+            <h2>与 SDM 协作</h2>
+            <p>作为 L6 工程师，日常工作中与一个或多个"两个披萨团队"协作是常态。你的经理和隔级经理是关键伙伴，与他们紧密合作很重要，尤其是在方向性讨论上。SDM（软件开发经理）往往比 IC 拥有更完整的项目视图。与 SDM 以及比你资深的人协作，能帮助你更好地理解路线图、建立更宽广的视野，也让你有机会从技术视角提供有价值的输入。</p>
+            <br>
+            <h2>实时给予反馈</h2>
+            <p>我的一位经理，Amazon 的一位 L7 领导，分享过一个与队友沟通的宝贵方法：给予"分钟级反馈（minutes feedback）"。也就是在事件或互动发生后不久、记忆还新鲜时就给出反馈。这能确保反馈相关、可执行且及时，让队友能够快速改进和调整。</p>
+            <br>
+            <h2>Bar Raiser</h2>
+            <p>从进入 Amazon 的第二年至今，我一直担任内部变更管理 Bar Raiser（与面试 Bar Raiser 不同）。在我工作过的每个部门，我都参与了 Bar Raiser 小组。在这个角色中，我们评审部门内各团队的每一个发布变更，并拥有最终审批权。我们每周轮值 office hours，就各团队的卓越运营、流水线、自动化流程等提供输入。我们一丝不苟、标准很高。我在 Amazon 的第一位导师曾这样向我描述理想的变更管理："所需的严谨程度应该达到：如果你把流程交给一位毫无上下文的同事，他也能在没有额外支持的情况下执行完成。"担任 Bar Raiser 加深了我对 Amazon"坚持最高标准（Insist on the Highest Standards）"的理解，也让我有更多机会了解不同团队正在进行的工作。确保质量至关重要。</p>
+            <br>
+            <h2>保持包容，做团队协作者</h2>
+            <p>透明沟通与包容至关重要，却常常被忽视或令人犹豫。人们可能担心谈话跑偏、担心增加额外障碍，或者纠结于其他不确定性。要应对这些挑战，关键是让所有人参与进来——不要把人排除在会议、邮件或 Slack 频道之外。有时你会观察到一些工程师、甚至一些经理并非如此行事。要记住：短期内你或许能绕开同事几次，但久而久之，这种行为会被注意到、被记住。协同工作、做一个好的团队协作者非常重要。</p>
+            <p>多年前，一位我敬重的经理鼓励我采纳这种心态，从那以后我一直践行。把讨论局限在排他的小圈子里，有时反而透露出过度自信或还没准备好接纳多元的输入。除非谈话涉及机密或个人隐私，让更广泛的受众知情能为你的工作带来可见度，创造获得宝贵反馈的机会，并确保你不会错过"你不知道自己不知道"的东西。经理们无法总是捕捉到每个细节，邀请更广泛的参与有助于确保重要的线索被审视并得到应有的关注。</p>
+            <p>包容的另一层含义是多元、公平与包容（DEI）——以开放的心态接纳来自不同背景和文化的人，作为一个团队互相支持。在 S3，我们有内部的 Inclusion Ambassador 项目，所有大使每月聚在一起复盘和分享心得。类似地，AWS 也有面向公众开放的 Global Inclusion Ambassadors 项目。</p>
+            <p>我曾在 Military Apprentice（退役军人学徒）项目中担任导师，被分配了一位在 Alexa Healthcare 的学徒。他之前是驻扎在华盛顿州 Whidbey Island 的空军飞机机械师，后来转型进入软件开发行业。起初，我并不确定这次转型能否成功，因为他缺乏很多基础知识。但回头看，这对我来说是一段非常难忘且宝贵的经历。在项目期间，我们互相学习。我为他提供背景和指导，帮助他理解软件开发的基础。如今，我时常看到他的进展动态——他已经是一名技术娴熟的软件工程师了。真正的创新，源于让多元的视角进入对话，让每个声音都被听见。</p>
+            <br>
+            <h2>办公室政治</h2>
+            <p>办公室政治没有捷径可走。关键是沟通要直接、明确。同时，也要理解对方的立场，保持同理心与善意。如果出现沟通问题，直面它并努力修复。</p>
+            <br>
+            <h2>哲学</h2>
+            <p>正如阿里巴巴董事会主席<em>蔡崇信（Joe Tsai）</em>曾说："领导力就是与人打交道，让别人去做你想让他们做的事。"践行这项技能颇具挑战，但它是技术领导力的重要方面。学会有效地与他人协作并激励他人，才是关键。</p>
+            <p>至于我，我的哲学很简单：人各有好恶，这很正常，也不新鲜。始终保持谦逊与同理心。保持开放与坦诚。</p>
+            </div><!-- /lang-zh -->
             <br>
             <br>
             <hr>
@@ -178,5 +286,46 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> 
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}},{id:"post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",title:'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"We\u2019re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",section:"Posts",handler:()=>{window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/","_blank")}},{id:"post-a-post-with-tabs",title:"a post with tabs",description:"this is what included tabs in a post could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/tabs/"}},{id:"post-a-post-with-typograms",title:"a post with typograms",description:"this is what included typograms code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/typograms/"}},{id:"post-a-post-that-can-be-cited",title:"a post that can be cited",description:"this is what a post that can be cited looks like",section:"Posts",handler:()=>{window.location.href="/blog/2024/TL/"}},{id:"post-a-post-with-pseudo-code",title:"a post with pseudo code",description:"this is what included pseudo code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/pseudocode/"}},{id:"post-a-post-with-code-diff",title:"a post with code diff",description:"this is how you can display code diffs",section:"Posts",handler:()=>{window.location.href="/blog/2024/code-diff/"}},{id:"post-a-post-with-advanced-image-components",title:"a post with advanced image components",description:"this is what advanced image components could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/advanced-images/"}},{id:"post-a-post-with-vega-lite",title:"a post with vega lite",description:"this is what included vega lite code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/vega-lite/"}},{id:"post-a-post-with-geojson",title:"a post with geojson",description:"this is what included geojson code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/geojson-map/"}},{id:"post-a-post-with-echarts",title:"a post with echarts",description:"this is what included echarts code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/echarts/"}},{id:"post-a-post-with-chart-js",title:"a post with chart.js",description:"this is what included chart.js code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/chartjs/"}},{id:"post-a-post-with-tikzjax",title:"a post with TikZJax",description:"this is what included TikZ code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/tikzjax/"}},{id:"post-a-post-with-bibliography",title:"a post with bibliography",description:"an example of a blog post with bibliography",section:"Posts",handler:()=>{window.location.href="/blog/2023/post-bibliography/"}},{id:"post-a-post-with-jupyter-notebook",title:"a post with jupyter notebook",description:"an example of a blog post with jupyter notebook",section:"Posts",handler:()=>{window.location.href="/blog/2023/jupyter-notebook/"}},{id:"post-a-post-with-custom-blockquotes",title:"a post with custom blockquotes",description:"an example of a blog post with custom blockquotes",section:"Posts",handler:()=>{window.location.href="/blog/2023/custom-blockquotes/"}},{id:"post-a-post-with-table-of-contents-on-a-sidebar",title:"a post with table of contents on a sidebar",description:"an example of a blog post with table of contents on a sidebar",section:"Posts",handler:()=>{window.location.href="/blog/2023/sidebar-table-of-contents/"}},{id:"post-a-post-with-audios",title:"a post with audios",description:"this is what included audios could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/audios/"}},{id:"post-a-post-with-videos",title:"a post with videos",description:"this is what included videos could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/videos/"}},{id:"post-displaying-beautiful-tables-with-bootstrap-tables",title:"displaying beautiful tables with Bootstrap Tables",description:"an example of how to use Bootstrap Tables",section:"Posts",handler:()=>{window.location.href="/blog/2023/tables/"}},{id:"post-a-post-with-table-of-contents",title:"a post with table of contents",description:"an example of a blog post with table of contents",section:"Posts",handler:()=>{window.location.href="/blog/2023/table-of-contents/"}},{id:"post-a-post-with-giscus-comments",title:"a post with giscus comments",description:"an example of a blog post with giscus comments",section:"Posts",handler:()=>{window.location.href="/blog/2022/giscus-comments/"}},{id:"post-displaying-external-posts-on-your-al-folio-blog",title:'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"",section:"Posts",handler:()=>{window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2","_blank")}},{id:"post-a-post-with-redirect",title:"a post with redirect",description:"you can also redirect to assets like pdf",section:"Posts",handler:()=>{window.location.href="/assets/pdf/example_pdf.pdf"}},{id:"post-a-post-with-diagrams",title:"a post with diagrams",description:"an example of a blog post with diagrams",section:"Posts",handler:()=>{window.location.href="/blog/2021/diagrams/"}},{id:"post-a-distill-style-blog-post",title:"a distill-style blog post",description:"an example of a distill-style blog post and main elements",section:"Posts",handler:()=>{window.location.href="/blog/2021/distill/"}},{id:"post-a-post-with-twitter",title:"a post with twitter",description:"an example of a blog post with twitter",section:"Posts",handler:()=>{window.location.href="/blog/2020/twitter/"}},{id:"post-a-post-with-disqus-comments",title:"a post with disqus comments",description:"an example of a blog post with disqus comments",section:"Posts",handler:()=>{window.location.href="/blog/2015/disqus-comments/"}},{id:"post-a-post-with-math",title:"a post with math",description:"an example of a blog post with some math",section:"Posts",handler:()=>{window.location.href="/blog/2015/math/"}},{id:"post-a-post-with-code",title:"a post with code",description:"an example of a blog post with some code",section:"Posts",handler:()=>{window.location.href="/blog/2015/code/"}},{id:"post-a-post-with-images",title:"a post with images",description:"this is what included images could look like",section:"Posts",handler:()=>{window.location.href="/blog/2015/images/"}},{id:"post-a-post-with-formatting-and-links",title:"a post with formatting and links",description:"march & april, looking forward to summer",section:"Posts",handler:()=>{window.location.href="/blog/2015/formatting-and-links/"}},{id:"news-a-simple-inline-announcement",title:"A simple inline announcement.",description:"",section:"News"},{id:"news-a-long-announcement-with-details",title:"A long announcement with details",description:"",section:"News",handler:()=>{window.location.href="/news/announcement_2/"}},{id:"news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",title:'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',description:"",section:"News"},{id:"projects-project-1",title:"project 1",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/1_project/"}},{id:"projects-project-2",title:"project 2",description:"a project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/2_project/"}},{id:"projects-project-3-with-very-long-name",title:"project 3 with very long name",description:"a project that redirects to another website",section:"Projects",handler:()=>{window.location.href="/projects/3_project/"}},{id:"projects-project-4",title:"project 4",description:"another without an image",section:"Projects",handler:()=>{window.location.href="/projects/4_project/"}},{id:"projects-project-5",title:"project 5",description:"a project with a background image",section:"Projects",handler:()=>{window.location.href="/projects/5_project/"}},{id:"projects-project-6",title:"project 6",description:"a project with no image",section:"Projects",handler:()=>{window.location.href="/projects/6_project/"}},{id:"projects-project-7",title:"project 7",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/7_project/"}},{id:"projects-project-8",title:"project 8",description:"an other project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/8_project/"}},{id:"projects-project-9",title:"project 9",description:"another project with an image \ud83c\udf89",section:"Projects",handler:()=>{window.location.href="/projects/9_project/"}},{id:"socials-email",title:"Send email",section:"Socials",handler:()=>{window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D","_blank")}},{id:"socials-google-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ","_blank")}},{id:"socials-rss",title:"RSS Feed",section:"Socials",handler:()=>{window.open("/feed.xml","_blank")}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> 
+
+      <!-- EN / 中文 toggle. Persists the shared global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
    </body>
 </html>
