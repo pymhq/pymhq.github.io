@@ -90,8 +90,24 @@
      .ant-ipo .date { font-size: 1.05em; font-weight: 700; margin-top: 4px; }
      .ant-ipo .note { font-size: 0.82em; color: #888; margin-top: 4px; }
 
+     /* highlighted inline blog links */
+     a.ant-hl { font-weight: 600; color: var(--ant-clay); background: rgba(204,120,92,0.14); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid var(--ant-clay); text-decoration: none; white-space: nowrap; }
+     a.ant-hl:hover { background: var(--ant-clay); color: #fff; text-decoration: none; }
+
      /* pull-quote from collaboration */
      blockquote.ant-pq { border-left: 3px solid var(--ant-tan); margin: 18px auto; padding: 6px 18px; color: #777; font-style: italic; max-width: 680px; }
+
+     /* ── GitHub contribution-dashboard style monthly activity graph ── */
+     .ant-gh { max-width: 730px; margin: 24px auto 20px; background: #0d1117; border: 1px solid #30363d; border-radius: 10px; padding: 16px 18px 14px; font-family: -apple-system,"Segoe UI",Helvetica,Arial,sans-serif; }
+     .ant-gh .gh-head { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+     .ant-gh .gh-count { font-size: 0.78em; color: #8b949e; }
+     .ant-gh .gh-grid { display: flex; gap: 5px; align-items: flex-end; justify-content: space-between; }
+     .ant-gh .mo { position: relative; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px; flex: 1; min-width: 0; cursor: pointer; }
+     .ant-gh .sq { width: 100%; max-width: 34px; aspect-ratio: 1; border-radius: 4px; background: #39d353; outline: 1px solid rgba(240,246,252,0.08); outline-offset: -1px; }
+     .ant-gh .mo:hover .sq { background: #56e06b; }
+     .ant-gh .mo:hover::after { content: attr(data-tip); position: absolute; bottom: 100%; left: 50%; transform: translate(-50%, -8px); background: #2d333b; color: #cdd9e5; padding: 7px 11px; border-radius: 6px; font-size: 0.74rem; line-height: 1.45; width: max-content; max-width: 250px; white-space: normal; text-align: center; z-index: 20; box-shadow: 0 4px 14px rgba(0,0,0,0.5); pointer-events: none; }
+     .ant-gh .lbl { font-size: 0.62em; color: #8b949e; white-space: nowrap; }
+     @media (max-width: 575px) { .ant-gh .lbl { transform: rotate(-50deg); margin-top: 4px; } .ant-gh .gh-grid { gap: 3px; } }
 
      /* --- EN / 中文 language toggle ---
         Clicking either button updates the shared global preference
@@ -230,11 +246,11 @@
                </div>
 
                <p>
-                  We partnered <strong>directly with Anthropic</strong> — including co-founder <em>Ben Mann</em> — with two-plus working sessions a week and a monthly happy hour to celebrate each new model release. That work touched ideas that have since become standards across the open-source inference community: <a href="https://pengandy.com/blog/2025/llmnative/" target="_blank" rel="noopener">disaggregated inference, multi-node inference, context-aware routing, and prompt caching</a>.
+                  We partnered <strong>directly with Anthropic</strong> — including co-founder <em>Ben Mann</em> — with two-plus working sessions a week and a monthly happy hour to celebrate each new model release. That work touched ideas that have since become standards across the open-source inference community — <a class="ant-hl" href="https://pengandy.com/blog/2025/llmnative/" target="_blank" rel="noopener">learn more in my other blog post &rarr;</a>
                </p>
 
                <p>
-                  Through 2024 I led almost all of Claude's <strong>Day-0 public releases</strong> on Bedrock. The cadence was relentless — roughly one or two major launches a month:
+                  Through 2024 I led almost all of Claude's <strong>Day-0 public releases</strong> on Bedrock. The cadence was relentless — roughly one or two major launches a month — <a class="ant-hl" href="https://pengandy.com/blog/2024/bdrk1yo/" target="_blank" rel="noopener">full story in Bedrock 1 Year &rarr;</a>
                </p>
 
                <ul>
@@ -245,6 +261,30 @@
                   <li><strong>November</strong> — Claude 3.5 Haiku GA; Anthropic + Palantir bringing Claude to the U.S. government cloud.</li>
                   <li><strong>December</strong> — prompt caching, latency-optimized inference, and Claude 3.5 Sonnet in the AWS Top Secret cloud (re:Invent).</li>
                </ul>
+
+               <div class="ant-gh">
+                  <div class="gh-head">
+                     <span class="gh-count">16 shipping months &middot; Dec 2023 &ndash; Mar 2025</span>
+                  </div>
+                  <div class="gh-grid">
+                     <div class="mo" data-tip="Dec 2023 — Joined Bedrock as engineer #2; serverless inference for Anthropic models funded (Day-0)"><span class="sq"></span><span class="sq"></span><span class="lbl">Dec 23</span></div>
+                     <div class="mo" data-tip="Jan 2024 — Inference-engine bring-up; 2+ weekly working sessions with Anthropic"><span class="sq"></span><span class="lbl">Jan</span></div>
+                     <div class="mo" data-tip="Feb 2024 — Benchmark &amp; load-testing harness ahead of Claude 3"><span class="sq"></span><span class="lbl">Feb</span></div>
+                     <div class="mo" data-tip="Mar 2024 — Claude 3 family lands on Bedrock: Sonnet &amp; Haiku"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Mar</span></div>
+                     <div class="mo" data-tip="Apr 2024 — Day-0 Claude 3 Opus (Teal)"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Apr</span></div>
+                     <div class="mo" data-tip="May 2024 — Claude 3 Sonnet &amp; Haiku in Frankfurt"><span class="sq"></span><span class="sq"></span><span class="lbl">May</span></div>
+                     <div class="mo" data-tip="Jun 2024 — Bedrock live in London, São Paulo &amp; Canada (Central)"><span class="sq"></span><span class="sq"></span><span class="lbl">Jun</span></div>
+                     <div class="mo" data-tip="Jul 2024 — Day-0 Claude 3.5 Sonnet (Dove); fine-tuning Claude 3 Haiku (preview)"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Jul</span></div>
+                     <div class="mo" data-tip="Aug 2024 — Batch inference at 50% of on-demand price"><span class="sq"></span><span class="sq"></span><span class="lbl">Aug</span></div>
+                     <div class="mo" data-tip="Sep 2024 — Provisioned Throughput for Claude models"><span class="sq"></span><span class="sq"></span><span class="lbl">Sep</span></div>
+                     <div class="mo" data-tip="Oct 2024 — Claude 3.5 Sonnet v2 + Computer Use (Firefly), Anthropic's first agentic-AI feature"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Oct</span></div>
+                     <div class="mo" data-tip="Nov 2024 — Claude 3.5 Haiku GA (Tepui); Anthropic × Palantir; AWS named primary training partner (+$4B)"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Nov</span></div>
+                     <div class="mo" data-tip="Dec 2024 — re:Invent: prompt caching (preview), latency-optimized inference, Claude in the Top Secret cloud; first Claude on Trainium/Inferentia"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Dec</span></div>
+                     <div class="mo" data-tip="Jan 2025 — Post-re:Invent hardening; final 3P deliverable kicked off"><span class="sq"></span><span class="lbl">Jan 25</span></div>
+                     <div class="mo" data-tip="Feb 2025 — Day-0 Claude 3.7 Sonnet, first hybrid-reasoning model on Bedrock"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Feb</span></div>
+                     <div class="mo" data-tip="Mar 2025 — CountTokens: token counting meets Bedrock — my last 3P deliverable"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Mar</span></div>
+                  </div>
+               </div>
 
                <p>
                   I also delivered the <strong>first Claude model on AWS Trainium/Inferentia</strong>, partnering with <em>James Bradbury</em> (Anthropic's Head of Compute) and the Annapurna teams. There's a serendipity I still smile at: through my Linux Foundation community work I'd been invited to San Francisco on the PyTorchCon Program Committee, where I sat on a panel alongside James. The following week, back in Seattle, I found myself working with him full-time on Claude on Trainium. You meet someone outside of work, and a week later you're shipping a frontier launch together.
@@ -433,11 +473,11 @@
                </div>
 
                <p>
-                  我们<strong>直接与 Anthropic 合作</strong> —— 包括联合创始人 <em>Ben Mann</em> —— 每周两次以上的工作会议，每月一次 happy hour 庆祝每个新模型发布。那些工作触及的理念，如今已成为开源推理社区的标准：<a href="https://pengandy.com/blog/2025/llmnative/" target="_blank" rel="noopener">分离式推理、多节点推理、上下文感知路由与提示缓存</a>。
+                  我们<strong>直接与 Anthropic 合作</strong> —— 包括联合创始人 <em>Ben Mann</em> —— 每周两次以上的工作会议，每月一次 happy hour 庆祝每个新模型发布。那些工作触及的理念，如今已成为开源推理社区的标准 —— <a class="ant-hl" href="https://pengandy.com/blog/2025/llmnative/" target="_blank" rel="noopener">在我的另一篇博客中了解更多 &rarr;</a>
                </p>
 
                <p>
-                  整个 2024 年，我主导了 Claude 在 Bedrock 上几乎所有的 <strong>Day-0 公开发布</strong>。节奏紧锣密鼓 —— 大约每月一到两次重大发布：
+                  整个 2024 年，我主导了 Claude 在 Bedrock 上几乎所有的 <strong>Day-0 公开发布</strong>。节奏紧锣密鼓 —— 大约每月一到两次重大发布 —— <a class="ant-hl" href="https://pengandy.com/blog/2024/bdrk1yo/" target="_blank" rel="noopener">详见《Bedrock 一周年回顾》 &rarr;</a>
                </p>
 
                <ul>
@@ -448,6 +488,30 @@
                   <li><strong>十一月</strong> —— Claude 3.5 Haiku 正式发布（GA）；Anthropic 与 Palantir 一起把 Claude 带入美国政府云。</li>
                   <li><strong>十二月</strong> —— 提示缓存、延迟优化推理，以及 Claude 3.5 Sonnet 进入 AWS 绝密云（re:Invent）。</li>
                </ul>
+
+               <div class="ant-gh">
+                  <div class="gh-head">
+                     <span class="gh-count">16 个交付月 &middot; 2023.12 &ndash; 2025.03</span>
+                  </div>
+                  <div class="gh-grid">
+                     <div class="mo" data-tip="2023.12 — 以 2 号工程师加入 Bedrock；Anthropic 模型无服务器推理项目立项（Day-0）"><span class="sq"></span><span class="sq"></span><span class="lbl">12月23</span></div>
+                     <div class="mo" data-tip="2024.01 — 推理引擎启动；每周 2+ 次与 Anthropic 的工作会议"><span class="sq"></span><span class="lbl">1月</span></div>
+                     <div class="mo" data-tip="2024.02 — 基准与压力测试体系，为 Claude 3 做准备"><span class="sq"></span><span class="lbl">2月</span></div>
+                     <div class="mo" data-tip="2024.03 — Claude 3 家族登陆 Bedrock：Sonnet 与 Haiku"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">3月</span></div>
+                     <div class="mo" data-tip="2024.04 — Day-0 发布 Claude 3 Opus（Teal）"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">4月</span></div>
+                     <div class="mo" data-tip="2024.05 — Claude 3 Sonnet 与 Haiku 在法兰克福上线"><span class="sq"></span><span class="sq"></span><span class="lbl">5月</span></div>
+                     <div class="mo" data-tip="2024.06 — Bedrock 上线伦敦、圣保罗与加拿大（中部）区域"><span class="sq"></span><span class="sq"></span><span class="lbl">6月</span></div>
+                     <div class="mo" data-tip="2024.07 — Day-0 发布 Claude 3.5 Sonnet（Dove）；Claude 3 Haiku 微调（预览）"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">7月</span></div>
+                     <div class="mo" data-tip="2024.08 — 批量推理，按需价格的 50%"><span class="sq"></span><span class="sq"></span><span class="lbl">8月</span></div>
+                     <div class="mo" data-tip="2024.09 — Claude 模型 Provisioned Throughput"><span class="sq"></span><span class="sq"></span><span class="lbl">9月</span></div>
+                     <div class="mo" data-tip="2024.10 — Claude 3.5 Sonnet v2 + Computer Use（Firefly），Anthropic 首个智能体 AI 功能"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">10月</span></div>
+                     <div class="mo" data-tip="2024.11 — Claude 3.5 Haiku 正式发布（Tepui）；Anthropic × Palantir；AWS 成为首要训练伙伴（追加 40 亿美元）"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">11月</span></div>
+                     <div class="mo" data-tip="2024.12 — re:Invent：提示缓存（预览）、延迟优化推理、绝密云；首个 Claude on Trainium/Inferentia"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">12月</span></div>
+                     <div class="mo" data-tip="2025.01 — re:Invent 后的加固运维；启动最后一项 3P 交付"><span class="sq"></span><span class="lbl">1月25</span></div>
+                     <div class="mo" data-tip="2025.02 — Day-0 发布 Claude 3.7 Sonnet，Bedrock 上首个混合推理模型"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">2月</span></div>
+                     <div class="mo" data-tip="2025.03 — CountTokens：Token 计数登陆 Bedrock —— 我在 3P 的最后一项交付"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">3月</span></div>
+                  </div>
+               </div>
 
                <p>
                   我还交付了 <strong>首个跑在 AWS Trainium/Inferentia 上的 Claude 模型</strong>，与 <em>James Bradbury</em>（Anthropic 计算负责人）及 Annapurna 团队合作。有一段缘分我至今想起仍会微笑：通过我在 Linux 基金会的社区工作，我受邀以 PyTorchCon 项目委员会成员身份前往旧金山，与 James 同台。第二周回到西雅图，我就发现自己在全职和他一起做 Claude on Trainium。你在工作之外遇见某人，一周后就和他一起交付一次前沿发布。
