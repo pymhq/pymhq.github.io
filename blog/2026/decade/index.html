@@ -63,26 +63,46 @@
       margin-right: auto;
       width: 50%;
     }
+     /* --- EN / 中文 language toggle ---
+        Clicking either button updates the shared global preference
+        (localStorage 'preferredLanguage') also used by the homepage and
+        the navbar. See __setPostLang() near the bottom of this file. */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title">Decade at Amazon</h1>
-               <p class="post-meta"> Created in March 14, 2026 </p>
+               <h1 class="post-title"><span class="lang-en">Decade at Amazon</span><span class="lang-zh">亚马逊十年</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in March 14, 2026<span class="post-readstats"> · 612 words · 3 min read</span> </span><span class="lang-zh"> 创建于 2026 年 3 月 14 日<span class="post-readstats"> · 约 930 字 · 3 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/decade"> <i class="fa-solid fa-hashtag fa-sm"></i> decade</a>   ·   <a href="/blog/category/corporate"> <i class="fa-solid fa-tag fa-sm"></i> corporate</a> </p>
             </header>
+            <div class="post-views" style="margin:14px 0 18px 0;">
+               <a href="https://hits.sh/pengandy.com/blog/2026/decade/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/decade.svg?label=page%20views&color=007ec6"/></a>
+            </div>
             <article class="post-content">
                <div id="markdown-content">
 
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+                  </div>
+
                   <div style="margin: 8px 0 36px 0; padding: 24px 28px; border-left: none; background: rgba(128,128,128,0.07); border-radius: 6px;">
                     <p style="font-size: 1.15em; font-style: italic; line-height: 1.7; margin-bottom: 12px;">
-                      "I very frequently get the question, 'What's going to change in the next ten years?' And that is a very interesting question; it's a very common one. I almost never get the question, 'What's not going to change in the next ten years?' And I submit to you that that second question is actually the more important of the two."
+                      <span class="lang-en">"I very frequently get the question, 'What's going to change in the next ten years?' And that is a very interesting question; it's a very common one. I almost never get the question, 'What's not going to change in the next ten years?' And I submit to you that that second question is actually the more important of the two."</span><span class="lang-zh">「我经常被问到：『未来十年会有什么变化？』这是个很有意思的问题，也很常见。但几乎没有人问我：『未来十年什么不会变？』而我要告诉你，第二个问题其实比第一个更重要。」</span>
                     </p>
                     <p style="font-size: 0.88em; color: #888; margin: 0;">
-                      — Jeff Bezos<br>
-                      <span style="font-size: 0.95em;">Amazon &nbsp;·&nbsp; Blue Origin &nbsp;·&nbsp; Washington Post &nbsp;·&nbsp; Bezos Earth Fund &nbsp;·&nbsp; Bezos Academy</span>
+                      <span class="lang-en">— <em>Jeff Bezos</em><br>
+                      <span style="font-size: 0.95em;">Amazon &nbsp;·&nbsp; Blue Origin &nbsp;·&nbsp; Washington Post &nbsp;·&nbsp; Bezos Earth Fund &nbsp;·&nbsp; Bezos Academy</span></span><span class="lang-zh">—— <em>杰夫·贝索斯</em><br>
+                      <span style="font-size: 0.95em;">亚马逊 &nbsp;·&nbsp; 蓝色起源 &nbsp;·&nbsp; 华盛顿邮报 &nbsp;·&nbsp; 贝索斯地球基金 &nbsp;·&nbsp; 贝索斯学院</span></span>
                     </p>
                   </div>
 
@@ -93,6 +113,7 @@
                        draggable="false">
                 </div>
 
+                  <div class="lang-en">
                   <p>
                     Last month, the Seattle Seahawks became World Champions — the Super Bowl LX parade rolled through downtown Seattle. That moment also quietly marked my 10th year as a Seattleite.
                   </p>
@@ -106,7 +127,7 @@
                   </p>
 
                   <p>
-                    It is almost poetic — one of the few companies on Earth named after a river. I joined on March 14, 2016, when Jeff Bezos was still CEO, — the same calendar date as AWS's founding, March 14, 2006. Today marks <strong>3,652 Day 1s</strong>. 
+                    It is almost poetic — one of the few companies on Earth named after a river. I joined on March 14, 2016, when <em>Jeff Bezos</em> was still CEO, — the same calendar date as AWS's founding, March 14, 2006. Today marks <strong>3,652 Day 1s</strong>. 
                   </p>
 
                   <hr>
@@ -151,14 +172,18 @@
                   </p>
 
                   <p>
-                    In his 2023 Letter to Shareholders, CEO Andy Jassy explained the concept of "Primitive Services" — and it captures something I have believed in throughout my career:
+                    How one layer led to the next — every team switch, every bet, every failed promotion attempt and lesson along the way — is a story of its own. I've written it up in full: <a href="https://pengandy.com/blog/2026/curiosity-driven-builder/" style="font-weight: 600; color: #e47911; background: rgba(255,153,0,0.14); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid #ff9900; text-decoration: none; white-space: nowrap;">Curiosity-Driven Builder's Journey &rarr;</a>
+                  </p>
+
+                  <p>
+                    In his 2023 Letter to Shareholders, CEO <em>Andy Jassy</em> explained the concept of "Primitive Services" — and it captures something I have believed in throughout my career:
                   </p>
 
                   <blockquote style="border-left: 4px solid #ff9900; padding: 12px 20px; margin: 20px 0; background: rgba(255,153,0,0.05); font-style: italic;">
                     <p>"The best way we know how to do this is by building primitive services. Think of them as discrete, foundational building blocks that builders can weave together in whatever combination they desire. Here's how we described primitives in our 2003 AWS Vision document:</p>
                     <p>"Primitives are the raw parts or the most foundational-level building blocks for software developers. They're indivisible (if they can be functionally split into two they must) and they do one thing really well. They're meant to be used together rather than as solutions in and of themselves. And, we'll build them for maximum developer flexibility. We won't put a bunch of constraints on primitives to guard against developers hurting themselves. Rather, we'll optimize for developer freedom and innovation."</p>
                     <p>Of course, this concept of primitives can be applied to more than software development, but they're especially relevant in technology. And, over the last 20 years, primitives have been at the heart of how we've innovated quickly."</p>
-                    <footer>— Andy Jassy, 2023 Letter to Shareholders</footer>
+                    <footer>— <em>Andy Jassy</em>, 2023 Letter to Shareholders</footer>
                   </blockquote>
 
                   <p>
@@ -190,7 +215,111 @@
                   <p style="font-size: 1.1em; font-weight: bold; margin-top: 28px;">
                     Keep re:Inventing.
                   </p>
+                  </div><!-- /lang-en -->
 
+                  <div class="lang-zh">
+                  <p>
+                    上个月，西雅图海鹰队夺得世界冠军——超级碗 LX 的庆祝游行穿过西雅图市中心。那一刻，也悄悄标记了我成为西雅图人的第十个年头。
+                  </p>
+
+                  <p>
+                    今天，2026 年 3 月 14 日，是 AWS 的 20 岁生日，也是我加入 Amazon 十周年的日子。
+                  </p>
+
+                  <p>
+                    能够亲历这 20 年的后半程——在这家公司内部构建、交付、并与之共同成长——是一份真正的荣幸。
+                  </p>
+
+                  <p>
+                    这几乎有些诗意——地球上少数几家以河流命名的公司之一。我在 2016 年 3 月 14 日入职，那时 <em>Jeff Bezos</em> 还是 CEO——与 AWS 创立的日子（2006 年 3 月 14 日）是同一天。今天，是第 <strong>3,652 个 Day 1</strong>。
+                  </p>
+
+                  <hr>
+
+                  <h3>构建原语服务</h3>
+
+                  <p>
+                    过去十年，无论是刻意选择还是工作使然，我有机会为技术栈中几乎每一层核心原语服务贡献力量。
+                  </p>
+
+                  <!-- Lego Stack -->
+                  <a href="https://pengandy.com/@amazon" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none; cursor: pointer; user-select: none; -webkit-user-select: none;" oncontextmenu="return false;">
+                  <div style="max-width: 480px; margin: 32px auto;">
+                    <div style="background: #6f42c1; color: #fff; padding: 14px 20px; border-radius: 8px 8px 0 0; text-align: center; font-weight: bold; border-bottom: 3px solid rgba(0,0,0,0.15);">
+                      LLM 研究与科学
+                    </div>
+                    <div style="background: #ff9900; color: #232f3e; padding: 14px 20px; text-align: center; font-weight: bold; border-bottom: 3px solid rgba(0,0,0,0.15);">
+                      生成式 AI：Amazon Bedrock 与 SageMaker
+                    </div>
+                    <div style="background: #3f8624; color: #fff; padding: 14px 20px; text-align: center; font-weight: bold; border-bottom: 3px solid rgba(0,0,0,0.15);">
+                      基础数据服务：Amazon S3
+                    </div>
+                    <div style="background: #00a1c9; color: #fff; padding: 14px 20px; text-align: center; font-weight: bold; border-bottom: 3px solid rgba(0,0,0,0.15);">
+                      无服务器与容器：AWS App Runner 与 Fargate
+                    </div>
+                    <div style="background: #1a73e8; color: #fff; padding: 14px 20px; text-align: center; font-weight: bold; border-bottom: 3px solid rgba(0,0,0,0.15);">
+                      对话式 AI：Alexa Health &amp; Wellness
+                    </div>
+                    <div style="background: #232f3e; color: #ff9900; padding: 14px 20px; text-align: center; font-weight: bold; border-bottom: 3px solid rgba(0,0,0,0.15);">
+                      金融科技：AWS Payments
+                    </div>
+                    <div style="background: #aab7b8; color: #232f3e; padding: 14px 20px; border-radius: 0 0 8px 8px; text-align: center; font-weight: bold;">
+                      入职（Day 1）
+                    </div>
+                  </div>
+                  </a>
+
+                  <p>
+                    在这些层级之间，我参与发布了 8 个从零到一的公开产品，也为无数将业务规模扩大 10 倍以上的工作出过力。
+                    <a href="https://pengandy.com/projects" target="_blank">我的工作</a>曾 4 次出现在财报中，并获得 CEO 们的公开认可。
+                    虽然工作横跨不同的产品与服务，但底层的主题始终如一：客户。
+                  </p>
+
+                  <p>
+                    一层如何引向下一层——每一次换组、每一次押注、每一次晋升失败与一路上的教训——本身就是一个完整的故事。我把它完整写了下来：<a href="https://pengandy.com/blog/2026/curiosity-driven-builder/" style="font-weight: 600; color: #e47911; background: rgba(255,153,0,0.14); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid #ff9900; text-decoration: none; white-space: nowrap;">好奇心驱动的 Builder 之旅 &rarr;</a>
+                  </p>
+
+                  <p>
+                    CEO <em>Andy Jassy</em> 在 2023 年致股东信中阐释了"原语服务（Primitive Services）"的概念——它恰好道出了我整个职业生涯所信奉的东西：
+                  </p>
+
+                  <blockquote style="border-left: 4px solid #ff9900; padding: 12px 20px; margin: 20px 0; background: rgba(255,153,0,0.05); font-style: italic;">
+                    <p>"我们所知的最好方式，就是构建原语服务。把它们想象成离散的、基础性的构建模块，builder 可以按照自己想要的任意组合把它们编织在一起。以下是我们在 2003 年 AWS 愿景文档中对原语的描述：</p>
+                    <p>"原语是软件开发者的原材料，是最基础层级的构建模块。它们不可再分（如果在功能上可以一分为二，就必须拆分），并且把一件事做到极致。它们生来就是要被组合使用的，而不是作为独立的解决方案。而且，我们会为开发者的最大灵活性而构建它们。我们不会为了防止开发者伤到自己而给原语套上一堆约束，而是为开发者的自由与创新而优化。"</p>
+                    <p>当然，原语的概念不仅适用于软件开发，但它在技术领域尤为切题。过去 20 年里，原语一直是我们快速创新的核心。"</p>
+                    <footer>—— <em>Andy Jassy</em>，2023 年致股东信</footer>
+                  </blockquote>
+
+                  <p>
+                    我深深相信基本功。即使在 AI 驱动的世界里，让基础伟大的那些原则——简单、可组合、可靠——永远不会过期。</p>
+                  </p>
+
+                  <hr>
+
+                  <h3>关于行业的一点思考</h3>
+
+                  <p>
+                    最近有一些颇有深度的讨论，关于 LLM 时代技术人应该把旗帜插在哪里——包括
+                    <a href="https://x.com/amytam01/status/2023593365401636896" target="_blank"><em>《The Cost of Staying》</em></a>
+                    和 <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank">Anthropic 的经济研究博客</a>。
+                    我同意研究型创业公司/实验室正在成为新的重心。与此同时，我仍然看到大厂（FAANG）内部有大量机会——在超大规模下实践与创新。时钟确实在滴答作响。继续攻克难题、持续构建新的技能栈——这一点不会变。
+                  </p>
+
+                  <hr>
+
+                  <h3>什么不会变</h3>
+
+                  <ul>
+                    <li>决策正确（Are Right, A Lot）。持续做困难而有影响力的工作——这永远不变。</li>
+                    <li>保持谦逊，持续学习（Stay humble and keep learning）。</li>
+                  </ul>
+
+                  <p><em>深深感谢一路上共事过的每一位领导与经理——没有你们的支持，就没有这个里程碑。</em></p>
+
+                  <p style="font-size: 1.1em; font-weight: bold; margin-top: 28px;">
+                    Keep re:Inventing.
+                  </p>
+                  </div><!-- /lang-zh -->
                </div>
             </article>
             <br>
@@ -199,15 +328,53 @@
             <p></p>
             <div id="subscribe-placeholder"></div>
          </div>
-         <div>
-           <a href="https://hits.sh/pengandy.com/blog/2026/decade/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/decade.svg?label=page%20views&color=007ec6"/></a>
-         </div>
       </div>
 
       <div id="footer-placeholder"></div>
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script>
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+
+      <!-- EN / 中文 toggle. Persists the shared global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
    </body>
 </html>
 
