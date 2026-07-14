@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="Vintage atlas style route map: Seattle to East Coast to Nice, Côte d'Azur detail, return Nice to London to Seattle">
+  <defs>
+    <marker id="arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d1352b"/>
+    </marker>
+    <marker id="arrN" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1d5c96"/>
+    </marker>
+  </defs>
+
+  <!-- ===== sea ===== -->
+  <rect x="0" y="0" width="1200" height="700" fill="#b9d8e8"/>
+
+  <!-- ===== graticule (atlas grid) ===== -->
+  <g stroke="#9cc3d6" stroke-width="0.8">
+    <line x1="150" y1="30" x2="150" y2="670"/>
+    <line x1="300" y1="30" x2="300" y2="670"/>
+    <line x1="450" y1="30" x2="450" y2="670"/>
+    <line x1="600" y1="30" x2="600" y2="670"/>
+    <line x1="750" y1="30" x2="750" y2="670"/>
+    <line x1="900" y1="30" x2="900" y2="670"/>
+    <line x1="1050" y1="30" x2="1050" y2="670"/>
+    <line x1="30" y1="130" x2="1170" y2="130"/>
+    <line x1="30" y1="255" x2="1170" y2="255"/>
+    <line x1="30" y1="380" x2="1170" y2="380"/>
+    <line x1="30" y1="505" x2="1170" y2="505"/>
+    <line x1="30" y1="630" x2="1170" y2="630"/>
+  </g>
+
+  <!-- ===== North America ===== -->
+  <path d="M 60,130
+           L 150,120 C 200,118 240,130 265,150
+           C 250,180 250,210 270,225 C 290,238 310,225 315,195 C 318,172 305,150 330,140
+           L 380,135 C 400,150 395,175 420,185 C 440,192 452,210 448,235
+           C 462,265 458,290 452,310 C 445,345 448,375 435,400
+           C 428,425 440,445 432,470 L 425,505
+           C 418,515 410,505 412,488 C 400,465 380,455 355,452
+           C 320,448 300,462 280,455 C 255,448 250,430 240,415
+           L 225,440 C 210,455 200,440 205,420
+           C 190,400 165,380 150,350 C 135,320 128,290 122,262
+           C 116,230 105,205 90,185 C 75,165 62,150 60,130 Z"
+        fill="#f5eedb" stroke="#333" stroke-width="2.6" stroke-linejoin="round"/>
+
+  <!-- ===== Greenland ===== -->
+  <path d="M 490,105 C 472,125 474,155 492,172 C 512,188 540,182 552,158 C 564,132 554,108 530,99 C 515,94 500,95 490,105 Z"
+        fill="#f5eedb" stroke="#333" stroke-width="2.6"/>
+
+  <!-- ===== Iceland ===== -->
+  <path d="M 636,146 C 630,156 637,166 651,166 C 665,166 673,156 665,146 C 657,137 642,136 636,146 Z"
+        fill="#f5eedb" stroke="#333" stroke-width="2.4"/>
+
+  <!-- ===== Scandinavia ===== -->
+  <path d="M 890,40 C 875,75 870,115 885,150 C 895,172 915,180 930,168 C 948,155 950,120 958,90 L 965,40 Z"
+        fill="#f5eedb" stroke="#333" stroke-width="2.6"/>
+
+  <!-- ===== Ireland & Great Britain ===== -->
+  <path d="M 762,240 C 752,250 750,264 758,274 C 768,284 782,280 786,266 C 790,252 782,240 772,236 C 768,235 765,236 762,240 Z"
+        fill="#f5eedb" stroke="#333" stroke-width="2.4"/>
+  <path d="M 800,215 C 788,232 786,252 795,270 C 802,284 818,290 830,282 C 842,272 845,252 840,235 C 848,228 852,218 848,208 C 840,196 826,192 815,198 C 808,202 804,208 800,215 Z"
+        fill="#f5eedb" stroke="#333" stroke-width="2.6"/>
+
+  <!-- ===== mainland Europe: Channel coast, Brittany, Biscay, Iberia, Riviera, Italy ===== -->
+  <path d="M 870,255
+           C 855,262 845,258 838,268 C 848,278 860,282 855,295
+           C 835,300 812,296 800,310 C 790,320 795,332 810,334
+           C 800,345 792,365 800,385 L 775,395
+           C 760,398 752,408 755,418 L 752,470
+           C 750,485 758,492 770,492 C 795,495 820,498 838,488
+           C 860,478 875,462 888,448 C 896,440 902,436 910,438
+           C 922,440 930,434 938,428 C 950,424 958,428 962,438
+           C 968,458 978,472 992,486 L 1000,510
+           C 1006,520 1014,516 1012,505 C 1008,488 1000,470 995,452
+           C 990,438 992,428 998,420 L 1040,415 L 1090,420 L 1140,410 L 1170,405
+           L 1170,240 L 1100,245 C 1060,250 1030,240 1000,248
+           C 960,255 930,248 900,252 C 888,254 878,252 870,255 Z"
+        fill="#f5eedb" stroke="#333" stroke-width="2.6" stroke-linejoin="round"/>
+
+  <!-- ===== North Africa ===== -->
+  <path d="M 770,585 C 820,570 900,565 980,572 C 1060,578 1120,570 1170,560 L 1170,670 L 770,670 Z"
+        fill="#f5eedb" stroke="#333" stroke-width="2.6"/>
+
+  <!-- ===== geographic labels ===== -->
+  <g font-family="Georgia,'Palatino Linotype','Times New Roman',serif" fill="#2f2a24">
+    <text x="250" y="345" text-anchor="middle" font-size="17" letter-spacing="4">AMÉRIQUE</text>
+    <text x="250" y="366" text-anchor="middle" font-size="12" letter-spacing="3">DU NORD</text>
+    <text x="955" y="350" text-anchor="middle" font-size="17" letter-spacing="4">EUROPE</text>
+    <text x="575" y="345" text-anchor="middle" font-size="15" font-style="italic" letter-spacing="3" fill="#3d6e8c">OCÉAN</text>
+    <text x="575" y="365" text-anchor="middle" font-size="15" font-style="italic" letter-spacing="3" fill="#3d6e8c">ATLANTIQUE</text>
+    <text x="878" y="538" text-anchor="middle" font-size="13" font-style="italic" fill="#3d6e8c">Mer Méditerranée</text>
+    <text x="820" y="645" text-anchor="middle" font-size="13" letter-spacing="3" fill="#6b5d49">AFRIQUE</text>
+  </g>
+
+  <!-- ===== routes ===== -->
+  <path d="M 120,255 Q 285,220 449,305" fill="none" stroke="#d1352b" stroke-width="3.2" stroke-dasharray="10 6" marker-end="url(#arrR)"/>
+  <path d="M 449,305 Q 700,140 935,430" fill="none" stroke="#d1352b" stroke-width="3.2" stroke-dasharray="10 6" marker-end="url(#arrR)"/>
+  <path d="M 935,430 Q 900,330 828,272" fill="none" stroke="#1d5c96" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round" marker-end="url(#arrN)"/>
+  <path d="M 828,272 Q 480,80 120,255" fill="none" stroke="#1d5c96" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round" marker-end="url(#arrN)"/>
+
+  <!-- ===== cities ===== -->
+  <g font-family="Georgia,'Palatino Linotype',serif" fill="#2f2a24">
+    <circle cx="120" cy="255" r="6.5" fill="#d1352b" stroke="#fff" stroke-width="2"/>
+    <text x="112" y="240" text-anchor="middle" font-size="16" font-weight="bold">Seattle</text>
+    <text x="112" y="280" text-anchor="middle" font-size="11.5" fill="#6b5d49">SEA</text>
+
+    <circle cx="449" cy="305" r="5" fill="#fff" stroke="#d1352b" stroke-width="2.5"/>
+
+    <circle cx="828" cy="272" r="6.5" fill="#1d5c96" stroke="#fff" stroke-width="2"/>
+    <text x="862" y="262" text-anchor="middle" font-size="15" font-weight="bold">Londres</text>
+    <text x="864" y="279" text-anchor="middle" font-size="11.5" fill="#6b5d49">LHR</text>
+
+    <circle cx="935" cy="430" r="6.5" fill="#d1352b" stroke="#fff" stroke-width="2"/>
+    <text x="925" y="412" text-anchor="middle" font-size="15" font-weight="bold">Nice</text>
+    <text x="924" y="398" text-anchor="middle" font-size="11.5" fill="#6b5d49">NCE</text>
+  </g>
+
+  <!-- leader from Nice to the detail panel -->
+  <line x1="941" y1="437" x2="1000" y2="545" stroke="#333" stroke-width="1.3" stroke-dasharray="4 4"/>
+
+  <!-- ===== Côte d'Azur detail panel ===== -->
+  <g>
+    <rect x="930" y="545" width="235" height="120" fill="#f5eedb" stroke="#333" stroke-width="2.4"/>
+    <rect x="935" y="550" width="225" height="110" fill="none" stroke="#333" stroke-width="0.8"/>
+    <!-- sea inside the panel -->
+    <path d="M 935,624 C 965,610 990,616 1015,606 C 1040,596 1065,602 1090,592 C 1115,583 1140,588 1160,580 L 1160,660 L 935,660 Z"
+          fill="#b9d8e8" stroke="#333" stroke-width="1.6"/>
+    <text x="1047" y="568" text-anchor="middle" font-family="Georgia,serif" font-size="13.5" font-weight="bold" letter-spacing="1" fill="#2f2a24">La Côte d'Azur — détail</text>
+    <text x="1085" y="650" text-anchor="middle" font-family="Georgia,serif" font-size="10.5" font-style="italic" fill="#3d6e8c">Mer Méditerranée</text>
+    <g font-family="Georgia,serif" font-size="11.5" fill="#2f2a24">
+      <circle cx="963" cy="620" r="4" fill="#d1352b" stroke="#fff" stroke-width="1.3"/>
+      <text x="963" y="608" text-anchor="middle">Cannes</text>
+      <circle cx="1013" cy="610" r="4" fill="#d1352b" stroke="#fff" stroke-width="1.3"/>
+      <text x="1013" y="638" text-anchor="middle">Antibes</text>
+      <circle cx="1063" cy="598" r="4.5" fill="#d1352b" stroke="#fff" stroke-width="1.3"/>
+      <text x="1063" y="586" text-anchor="middle" font-weight="bold">Nice</text>
+      <circle cx="1118" cy="588" r="4" fill="#d1352b" stroke="#fff" stroke-width="1.3"/>
+      <text x="1118" y="613" text-anchor="middle">Monaco</text>
+    </g>
+  </g>
+
+  <!-- ===== legend ===== -->
+  <g font-family="Georgia,'Palatino Linotype',serif" fill="#2f2a24">
+    <rect x="48" y="588" width="330" height="74" fill="#f5eedb" stroke="#333" stroke-width="2.2"/>
+    <rect x="53" y="593" width="320" height="64" fill="none" stroke="#333" stroke-width="0.8"/>
+    <line x1="68" y1="614" x2="122" y2="614" stroke="#d1352b" stroke-width="3.2" stroke-dasharray="10 6"/>
+    <text x="132" y="619" font-size="13.5">Aller · Seattle → côte Est → Nice</text>
+    <line x1="68" y1="642" x2="122" y2="642" stroke="#1d5c96" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
+    <text x="132" y="647" font-size="13.5">Retour · Nice → Londres → Seattle</text>
+  </g>
+
+  <!-- ===== title cartouche ===== -->
+  <g font-family="Georgia,'Palatino Linotype',serif" fill="#2f2a24">
+    <rect x="400" y="40" width="400" height="56" fill="#f5eedb" stroke="#333" stroke-width="2.4"/>
+    <rect x="405" y="45" width="390" height="46" fill="none" stroke="#333" stroke-width="0.8"/>
+    <text x="600" y="65" text-anchor="middle" font-size="18" letter-spacing="4" font-weight="bold">ITINÉRAIRE DU VOYAGE</text>
+    <text x="600" y="84" text-anchor="middle" font-size="12.5" font-style="italic">Seattle ⇄ Côte d'Azur · Juin 2026</text>
+  </g>
+
+  <!-- ===== compass rose ===== -->
+  <g transform="translate(580,505)" stroke="#2f2a24" fill="#2f2a24">
+    <circle r="24" fill="none" stroke-width="1.4"/>
+    <circle r="3" stroke="none"/>
+    <path d="M0,-36 L6,-6 L-6,-6 Z" fill="#d1352b" stroke="none"/>
+    <path d="M0,36 L6,6 L-6,6 Z" fill="#f5eedb" stroke="#2f2a24" stroke-width="1"/>
+    <path d="M-36,0 L-6,-6 L-6,6 Z" fill="#f5eedb" stroke="#2f2a24" stroke-width="1"/>
+    <path d="M36,0 L6,-6 L6,6 Z" fill="#f5eedb" stroke="#2f2a24" stroke-width="1"/>
+    <text x="0" y="-42" text-anchor="middle" font-family="Georgia,serif" font-size="14" stroke="none">N</text>
+  </g>
+</svg>
