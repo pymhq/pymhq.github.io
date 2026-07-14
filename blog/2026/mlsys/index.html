@@ -150,14 +150,25 @@
        color: #8a9bae;
        letter-spacing: 0.3px;
      }
+     /* --- EN / 中文 language toggle ---
+        Clicking either button updates the shared global preference
+        (localStorage 'preferredLanguage') also used by the homepage and
+        the navbar. See __setPostLang() near the bottom of this file. */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title">MLSys 2026: Speculative Decoding, Invited Talks &amp; What's Next</h1>
-               <p class="post-meta"> Created in May, 2026<span class="post-readstats"> · 2,119 words · 11 min read</span> </p>
+               <h1 class="post-title"><span class="lang-en">MLSys 2026: Speculative Decoding, Invited Talks &amp; What's Next</span><span class="lang-zh">MLSys 2026：投机解码、特邀报告与未来展望</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in May, 2026<span class="post-readstats"> · 2,119 words · 11 min read</span> </span><span class="lang-zh"> 创建于 2026 年 5 月<span class="post-readstats"> · 约 3,600 字 · 11 分钟阅读</span> </span></p>
                <p class="post-tags">
                   <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>
                   &nbsp;·&nbsp;
@@ -173,11 +184,17 @@
             </div>
             <article class="post-content">
                <div id="markdown-content">
-                  <p><a href="https://mlsys.org/virtual/2026/calendar" target="_blank">MLSys 2026</a> (May 18&ndash;21, Bellevue, WA) just wrapped. This is my post-conference reading guide: the speculative-decoding papers worth your time grouped by theme, the invited-talk lineup, and a step back to think about where the next innovation cycle is heading.</p>
+
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+                  </div>
+
+                  <p><span class="lang-en"><a href="https://mlsys.org/virtual/2026/calendar" target="_blank">MLSys 2026</a> (May 18&ndash;21, Bellevue, WA) just wrapped. This is my post-conference reading guide: the speculative-decoding papers worth your time grouped by theme, the invited-talk lineup, and a step back to think about where the next innovation cycle is heading.</span><span class="lang-zh"><a href="https://mlsys.org/virtual/2026/calendar" target="_blank">MLSys 2026</a>（5 月 18&ndash;21 日，华盛顿州贝尔维尤）刚刚落幕。这是我的会后阅读指南：按主题分组的、值得一读的投机解码（speculative decoding）论文，特邀报告阵容，以及退后一步、思考下一个创新周期走向何方。</span></p>
                </div>
             </article>
             <p style="font-size: 0.82em; color: #888; line-height: 1.6;">
-               <em>Disclaimer: This is a personal reading guide from an individual builder's perspective. All groupings, summaries, and opinions are my own; headline numbers are quoted from the papers' own abstracts.</em>
+               <em><span class="lang-en">Disclaimer: This is a personal reading guide from an individual builder's perspective. All groupings, summaries, and opinions are my own; headline numbers are quoted from the papers' own abstracts.</span><span class="lang-zh">声明：这是一份来自个人 builder 视角的阅读指南。所有分组、总结与观点均为我个人所有；标题数字引自论文各自的摘要。</span></em>
             </p>
             <br>
             <hr>
@@ -187,6 +204,7 @@
             <!-- YOUR CONTENT STARTS HERE -->
             <!-- ========================================== -->
 
+            <div class="lang-en">
             <h2>Speculative Decoding @ MLSys 2026</h2>
 
             <p>
@@ -354,7 +372,177 @@
             <p style="font-size: 0.82em; color: #888; line-height: 1.6;">
                <em>Co-authored with Claude.</em>
             </p>
+            </div><!-- /lang-en -->
 
+            <div class="lang-zh">
+            <h2>MLSys 2026 上的投机解码</h2>
+
+            <p>
+               投机解码（Speculative Decoding，SD）是 MLSys 2026 上声量最大的主题之一——全议程共有九篇论文，而且讨论的重心已经明显转移：不再是"草稿-验证（draft-then-verify）行不行？"，而是"它到底在哪里真正划算、在哪里只是幻觉？"下面我按论文所攻克的问题分组，每篇都附上 MLSys 页面与 arXiv 预印本链接。
+            </p>
+
+            <p style="font-size:0.86em;color:#777;">
+               <i class="fa-brands fa-linkedin"></i> <strong>注：</strong><a href="https://www.linkedin.com/posts/semianalysis_mlsys-2026-is-next-week-mlsys-is-the-conference-ugcPost-7461611567596617729-ZfoH" target="_blank">SemiAnalysis 的 MLSys 2026 前瞻</a>从分析师视角标记了同样的潮流——面向 RL 长尾 rollout 的投机解码、走向生产环境的稀疏注意力、通过分离架构实现的软硬件协同设计，以及 MoE 推理服务的挑战。
+            </p>
+
+            <p style="font-size:0.86em;color:#777;">
+               九篇论文全部来自 <strong>Research Track</strong>。根据 <a href="https://mlsys.org/virtual/2026/calendar" target="_blank">MLSys 2026 日程</a>，口头报告分布在两个 session——<em>LLM Training 2</em>（5 月 20 日周三）与 <em>LLM Serving 5</em>（5 月 21 日周四）——因此我在下面为每篇标注其 track，以及它面向 <span class="badge badge-train">LLM TRAINING</span> 还是 <span class="badge badge-serve">LLM SERVING</span>。
+            </p>
+
+            <p class="group-label">1 &middot; RL + 投机解码</p>
+            <p style="font-size:0.9em;color:#555;">rollout/生成阶段如今主导着 RL 后训练的时间开销。这两篇论文把 SD 重新对准 RL 循环——在那里，drafter 和 policy 都在不断变化。</p>
+
+            <div class="paper">
+               <div class="ptitle">ReSpec: Towards Optimizing Speculative Decoding in Reinforcement Learning Systems <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-train">LLM TRAINING</span></div>
+               <div class="pauthors">Qiaoling Chen, Zijun Liu, Peng Sun, Shenggui Li, Guoteng Wang, Ziming Liu, Yonggang Wen, Siyuan Feng, Tianwei Zhang</div>
+               <p class="psum">生成可占 RL 训练时间的 75% 以上。ReSpec 解决了朴素 SD 在 RL 中失效的三种方式——大 batch 下收益消失、actor 更新导致 drafter 过时、以及 drafter 引起的策略退化——手段是动态 SD 配置调优、以蒸馏演化 drafter，以及按奖励加权的更新。</p>
+               <div class="metric">最高 4.5&times; 加速，奖励收敛保持不变</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3836" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2510.26475" target="_blank">arXiv:2510.26475</a> &middot; <a href="https://arxiv.org/pdf/2510.26475" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">Beat the Long Tail: Distribution-Aware Speculative Decoding for RL Training (DAS) <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-train">LLM TRAINING</span></div>
+               <div class="pauthors">Zelei Shao, Vikranth Srivatsa, Sanjana Srivastava, Qingyang Wu, Alpay Ariyak, Xiaoxia Wu, Ameen Patel, Jue Wang, Percy Liang, Tri Dao, Ce Zhang, Yiying Zhang, Ben Athiwaratkun, Chenfeng Xu, Junxiong Wang</div>
+               <p class="psum">一小部分长 rollout 主导了墙钟时间。DAS 抛弃神经网络 drafter，改用一个自适应的非参数 drafter——基于最近 rollout、以增量维护的后缀树构建——再配合一个长度感知的策略，把更多投机预算花在决定总完工时间的长轨迹上，且不改变模型输出。</p>
+               <div class="metric">rollout 时间最多减少 50%，训练曲线完全一致</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3766" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2511.13841" target="_blank">arXiv:2511.13841</a> &middot; <a href="https://arxiv.org/pdf/2511.13841" target="_blank">PDF</a> &middot; <a href="https://www.linkedin.com/posts/yiyingzhang_reinforcement-learning-rl-post-training-ugcPost-7462931498493706240-VnUg" target="_blank"><i class="fa-brands fa-linkedin"></i> 作者手记</a></div>
+               <p class="psum" style="margin-top:6px;font-size:0.84em;color:#777;">合著者 <em>Yiying Zhang</em>（与 Together AI 合作）的文章给出了细分数据：<strong>数学 RL rollout 加速 50%，代码 RL 加速 25%</strong>——诀窍在于利用训练 epoch 之间反复出现的 prompt 模式，因为与固定模型的推理服务不同，RL 的权重在持续变化。</p>
+            </div>
+
+            <p class="group-label">2 &middot; 自投机解码</p>
+            <p style="font-size:0.9em;color:#555;">一个模型同时充当 drafter 与 verifier——无需训练或部署单独的草稿模型。</p>
+
+            <div class="paper">
+               <div class="ptitle">Accelerating Large-Scale Reasoning Model Inference with Sparse Self-Speculative Decoding (SpecGen) <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Yilong Zhao, Jiaming Tang, Kan Zhu, Zihao Ye, Chi-Chih Chang, Chaofan Lin, Jongseok Park, Guangxuan Xiao, Mohamed Abdelfattah, Mingyu Gao, Baris Kasikci, Song Han, Ion Stoica</div>
+               <p class="psum">长思维链让推理模型的推断受限于内存。PillarAttn 只用关键 token（注意力分数最高者）来打草稿，并巧妙复用验证阶段的注意力分数，再配合统一的草稿/验证调度、用于重叠的延迟验证，以及动态 KV 缓存管理。无损且免训练。</p>
+               <div class="metric">吞吐量最高超越先前 SOTA 2.13&times;</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3733" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2512.01278" target="_blank">arXiv:2512.01278</a> &middot; <a href="https://arxiv.org/pdf/2512.01278" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">Accelerating LLM Inference: Self-Speculative Decoding via Learned Seed Injection <span class="badge badge-poster">POSTER</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Anuradha Pandey</div>
+               <p class="psum">一种自投机方案：注入一个学习得到的"种子"来驱动模型自身的草稿路径。（Poster；截稿时尚未找到预印本。）</p>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/poster/10178" target="_blank">MLSys</a></div>
+            </div>
+
+            <p class="group-label">3 &middot; 基准测试与现实检验</p>
+
+            <div class="paper">
+               <div class="ptitle">Speculative Decoding: Performance or Illusion? <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Xiaoxuan Liu, Jiaxiang Yu, Jongseok Park, Ion Stoica, Alvin Cheung</div>
+               <p class="psum">第一个在生产级引擎（vLLM）上对 SD 的系统性研究——五种变体（n-gram、EAGLE/EAGLE-3、草稿模型、MTP），覆盖四个模型、六种负载、batch size 1&ndash;128。结论一针见血：SD 有效，但随着 batch 增大、系统转为计算受限，收益不断缩水；目标模型的验证主导了执行时间，而且实测与理论上界之间存在巨大差距。</p>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3782" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2601.11580" target="_blank">arXiv:2601.11580</a> &middot; <a href="https://arxiv.org/pdf/2601.11580" target="_blank">PDF</a> &middot; <a href="https://specdecode-bench.github.io/" target="_blank">基准站点</a></div>
+            </div>
+
+            <p class="group-label">4 &middot; Drafter 设计与新负载</p>
+            <p style="font-size:0.9em;color:#555;">把 SD 推向新的 drafter 架构（扩散模型）、新的目标模型家族（MoE）与新的硬件（笔记本 NPU）。</p>
+
+            <div class="paper">
+               <div class="ptitle">SpecDiff-2: Scaling Diffusion Drafter Alignment for Faster Speculative Decoding <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Jameson Sandler, Jacob K. Christopher, Tom Hartvigsen, Ferdinando Fioretto</div>
+               <p class="psum">用离散扩散、非自回归的 drafter 消除打草稿中的顺序依赖，并提出新技术把扩散 drafter 对齐到自回归 verifier（减少拒绝率）。</p>
+               <div class="metric">平均 tokens/sec +55%，最高较标准解码 5.5&times;，无精度损失</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3755" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2511.00606" target="_blank">arXiv:2511.00606</a> &middot; <a href="https://arxiv.org/pdf/2511.00606" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">PRISM: Parametrically Refactoring Inference for Speculative Sampling Draft Models <span class="badge badge-oral">ORAL</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Xuliang Wang, Yuetao Chen, Maochan Zhen, Fang Liu, Xinzhou Zheng, Xingwu Liu, Hong Xu, Ming Li</div>
+               <p class="psum">把每个预测步骤分解到不同的参数集上，将 drafter 容量与推理成本解耦——以极小的草稿延迟换取更长的被接受草稿序列。</p>
+               <div class="metric">在已高度优化的引擎上解码吞吐 &gt;2.6&times;</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/oral/3789" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2602.01762" target="_blank">arXiv:2602.01762</a> &middot; <a href="https://arxiv.org/pdf/2602.01762" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">Cascade: Utility-Driven Speculative Decoding for Mixture-of-Experts <span class="badge badge-poster">POSTER</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Anish Saxena, Po-An Tsai, Hritvik Taneja, Aamer Jaleel, Moinuddin Qureshi</div>
+               <p class="psum">在 MoE 中，草稿 token 会共同激活更多专家，使验证成本膨胀 2&ndash;3 倍——朴素 SD 甚至可能拖慢至 1.5 倍。Cascade 定义了"投机效用"指标（token 收益 / 验证成本），并利用其迭代级局部性来开关投机、调节草稿长度 K。</p>
+               <div class="metric">最坏减速被限制在 5% 以内（对比 1.5&times;），较静态 K 吞吐 +7&ndash;14%</div>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/poster/10189" target="_blank">MLSys</a> &middot; <a href="https://arxiv.org/abs/2506.20675" target="_blank">arXiv:2506.20675</a> &middot; <a href="https://arxiv.org/pdf/2506.20675" target="_blank">PDF</a></div>
+            </div>
+
+            <div class="paper">
+               <div class="ptitle">SD-HC: Heterogeneous Functional Pipelining for Speculative LLM Decoding on AI PCs <span class="badge badge-poster">POSTER</span> <span class="badge badge-research">RESEARCH</span> <span class="badge badge-serve">LLM SERVING</span></div>
+               <div class="pauthors">Xikai (Noah) Meng, Chao Li, Spandan Tiwari</div>
+               <p class="psum">把 SD 带上笔记本"AI PC"，在消费级芯片的异构 CPU/GPU/NPU 单元之间流水线化草稿与验证。（Poster；截稿时尚未找到预印本。）</p>
+               <div class="plinks"><a href="https://mlsys.org/virtual/2026/poster/10199" target="_blank">MLSys</a></div>
+            </div>
+
+            <p style="font-size:0.9em;color:#555;margin-top:18px;">
+               <strong>这九篇串起来的主线：</strong>SD 已从单一技巧成长为一个设计空间。前沿从<em>推理延迟</em>（最初的用途）移向 <em>RL 训练吞吐</em>（ReSpec、DAS）；drafter 从小语言模型变成了<em>后缀树</em>（DAS）、<em>扩散模型</em>（SpecDiff-2）或<em>模型自身</em>（SpecGen）；而《Performance or Illusion?》是这个领域诚实的镜子——大 batch 下 verifier 主导一切，容易摘的果子已经没有了。
+            </p>
+
+            <br>
+            <hr>
+            <br>
+
+            <h2>特邀报告</h2>
+
+            <p>
+               <a href="https://mlsys.org/virtual/2026/eventlistwithbios/Invited%20Talk" target="_blank">特邀报告阵容</a>读起来就像一张系统领域走向的地图——重点不再是单个 kernel，而是贯穿整个技术栈的协同设计，以及一个反复出现的元主题：<em>AI 正在编写我们过去手写的系统。</em>
+            </p>
+
+            <div class="talk"><strong>主旨演讲 &mdash; <em>Amin Vahdat</em></strong> <span class="tspk">（Google AI 与基础设施 SVP 兼首席技术官）</span></div>
+            <div class="talk"><strong>The Next Horizon of Systems: From MLSys to System Intelligence</strong> &mdash; <span class="tspk"><em>Lidong Zhou</em>（微软亚太研发首席科学家）。主张"系统智能"：AI 正在重塑系统学科本身——带来推理、设计、验证与演化的新形态。</span></div>
+            <div class="talk"><strong>The Path to Inference Efficiency</strong> &mdash; <span class="tspk"><em>Christos Kozyrakis</em>（NVIDIA / 斯坦福）。大的收益不来自孤立技巧，而来自把硬件、系统与模型当作一个整体栈来对待。</span></div>
+            <div class="talk"><strong>Rethinking Pretraining: Data and Architecture</strong> &mdash; <span class="tspk"><em>Luke Zettlemoyer</em>（华盛顿大学 / Meta）。几乎所有高级能力最终都能追溯到预训练数据。</span></div>
+            <div class="talk"><strong>Beyond Model Serving: Cross-Stack Co-Design for Agentic Systems</strong> &mdash; <span class="tspk"><em>Esha Choukse</em>（微软 Azure 研究院）。把精度与质量当作可与延迟、成本、能耗互相权衡的动态系统级量。</span></div>
+            <div class="talk"><strong>When AI Starts Writing Systems Code</strong> &mdash; <span class="tspk"><em>Mark Saroufim</em>（GPU MODE，前 Meta）。面向 GPU 优化的 Kernel LLM——以及如何让 AI 生成的 kernel 达到生产级。</span></div>
+            <div class="talk"><strong>Rethinking Open Source Contribution in the Age of AI Agents</strong> &mdash; <span class="tspk"><em>Roger Wang</em>（vLLM 核心维护者）。当 AI 生成的 PR 涌入时，人类必须专注于理解系统、挑对问题、并对交付的东西负责。</span></div>
+            <div class="talk"><strong>LMCache: An Efficient KV Cache Layer for Enterprise-Scale LLM Inference</strong> &mdash; <span class="tspk"><em>Yuhan Liu</em>（芝加哥大学）。跨查询、跨引擎的开源 KV 缓存复用——吞吐最高 15&times;。</span></div>
+            <div class="talk"><strong>Eliciting Language Model Behaviors with Investigator Agents</strong> &mdash; <span class="tspk"><em>Xiang Lisa Li</em>（OpenAI；即将加入华盛顿大学）。用"调查员智能体"搜索能诱发特定目标行为的 prompt。</span></div>
+
+            <br>
+            <hr>
+            <br>
+
+            <h2>下一步 &mdash; 创新周期</h2>
+
+            <p>
+               从任何一篇论文中退后一步。过去十年，作为 builder 我亲历了<strong>三个大的技术周期</strong>——上面这场投机解码的冲刺，只是当下正在进行的那一个。下图用两种方式呈现它们。
+            </p>
+
+            <img src="/assets/blog/mlsys/innovation-cycles.svg" alt="2016-2026 三个创新周期的两种视图：炒作波峰，以及 NLP/对话式 AI、云原生、LLM/AI 原生的阶梯式采用时代" class="img-fluid" style="max-width:100%;height:auto;margin:8px 0 16px 0;">
+
+            <p>
+               <strong>模式一 &mdash; 炒作波（波峰与波谷）。</strong>每项技术在集体注意力中都有自己的浪尖。<em>云原生</em>最先起飞——Kubernetes 于 2014 年开源，CNCF 于 2015 年成立，到约 2017&ndash;2019 年成为默认基座，随后进入平台期而非消退。<em>NLP / 对话式 AI 理解</em>的浪尖在 2019&ndash;2020 年前后（聊天机器人与语音助手时代），之后被更大的浪潮吸收。<em>LLM / AI 原生</em>看似随着 <a href="https://openai.com/index/chatgpt/" target="_blank">ChatGPT 于 2022 年 11 月 30 日的发布</a>一夜之间出现——但这条曲线从来不是零。它坐落在数十年的强化学习根基之上（<em>Barto</em> 与 <em>Sutton</em> 自 1980 年代的工作，获 <a href="https://awards.acm.org/about/2024-turing" target="_blank">2024 年图灵奖</a>认可），以及 2017 年的 Transformer（<a href="https://arxiv.org/abs/1706.03762" target="_blank">《Attention Is All You Need》</a>）。你甚至能在曲线上看到早期的震颤：<a href="https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol" target="_blank">AlphaGo 战胜李世石</a>（2016）、AlphaZero（2017）、AlphaStar / OpenAI Five（2019），每一个都是 RL 的一次小小公开浪尖，起而又落。2022 年底改变的是<em>垂直起飞</em>——RLHF 对齐了模型，ChatGPT 把它们交到每个人手中——而与前两条曲线不同，它在 2026 年仍在攀升。
+            </p>
+
+            <p>
+               <strong>模式二 &mdash; 采用时代（平坦的台阶）。</strong>剥去炒作，只看我作为 builder 实际构建和交付了什么，就得到三个并行的平台，一个比一个高：
+            </p>
+            <ul>
+               <li><strong>2019&ndash;2020 &mdash; NLP。</strong>在健康领域构建语音 AI——意图、槽位与对话理解，那时 transformer 还没有吞噬一切。</li>
+               <li><strong>2020&ndash;2022 &mdash; 容器与无服务器。</strong>在 AWS Fargate 上交付、孵化 AWS App Runner——随着平台成熟，计算层的虚拟化与抽象成为工作单元。</li>
+               <li><strong>2023&ndash;至今 &mdash; LLM（进行中）。</strong>AI 原生与智能体系统。<strong><a href="https://newsletter.semianalysis.com/p/anthropic-growth-and-bedrock-mix" target="_blank">Amazon Bedrock</a></strong> 于 2023 年正式发布时，参与创立了 Bedrock 上的 Anthropic Claude 模型推理引擎，与 Anthropic 直接合作（联合创始人 <em>Ben Mann</em>）。那些工作触及的几个理念如今已是开源社区众所周知的行业标准——<a href="https://pengandy.com/blog/2025/llmnative/" target="_blank">分离式推理、多节点推理、上下文感知路由与提示缓存</a>。整个 2024 年，主导了几乎所有 Claude 模型<a href="https://pengandy.com/blog/2024/bdrk1yo/" target="_blank">在 Bedrock 上的 Day-0 公开发布</a>——包括 Claude 3.5 v2 上的 Computer Use（Anthropic 首个智能体 AI 功能）。交付了 AWS Trainium/Inferentia 平台上的首个 Claude 模型发布，并与 <em>James Bradbury</em>（Anthropic 计算负责人）及 Annapurna 团队合作，把它扩展到承载 Bedrock 约 90% 的 Trainium 芯片流量。2025 年，转向开源权重模型优化——后训练（微调）与推理优化：为投机解码训练 EAGLE 草稿模型、量化与 kernel 调优，横跨 SageMaker AI 与 Bedrock。那个未闭合的箭头正是重点：这个时代尚未见顶，这也正是 MLSys 2026 议程呈现如今面貌的原因。</li>
+            </ul>
+
+            <p>
+               台阶的高度并非随意——每个周期都吸收并站在前一个之上。NLP 的理解问题成了 LLM 的子任务；云原生基础设施成了 LLM 得以部署与沙箱化的基座。你甚至能从机构的传承中读出这一点：Linux 基金会在这张图的右半边一路接棒——从 <a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">CNCF（云原生）</a>到 PyTorch 基金会，再到如今的 Agentic AI 基金会（AAIF）。梯子只会向上。一个贯穿始终的具体例子：Firecracker——诞生于云原生时代的 microVM——如今正被积极采用为智能体 AI 计算的沙箱运行时。
+            </p>
+
+            <p>
+               <strong>那么，梯子的下一级是什么？</strong>来自旧金山的押注指向屏幕之外的物理世界：<strong>机器人、世界模型与具身智能</strong>——不只是生成 token，而是感知、预测与行动的系统。
+            </p>
+
+            <p>
+               但诚实地说，有一个症结——这也是这个平台尚未成形的原因：<em>定义</em>本身仍然完全开放。"世界模型"就是一个哈姆雷特——一千个人眼里有一千个哈姆雷特。问十位 builder 它是什么，你会得到十个答案：一个人形机器人？一套自动驾驶栈？一个可查询的世界模型？还是一个带 API 和机械爪的智能体？
+            </p>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 6 月 3 日 ·</span> <em>李飞飞</em>博士在文章 <a href="https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models" target="_blank">"A Functional Taxonomy of World Models"</a> 中分享了她对世界模型的定义。
+            </div>
+            <p>
+               此前的三个周期，最终都围绕一个清晰的<em>工作单元</em>凝结成形——一个意图、一个容器、一个 token。下一个周期在找到自己的工作单元之前不会真正起飞。而在那之前，上面这些 MLSys 式的工作——高效推理、软硬件协同设计、自我优化的基础设施——恰恰是在为最终胜出的那个定义铺设轨道。
+            </p>
+
+            <br>
+            <hr>
+            <p style="font-size: 0.82em; color: #888; line-height: 1.6;">
+               <em>与 Claude 合著。</em>
+            </p>
+            </div><!-- /lang-zh -->
             <!-- ========================================== -->
             <!-- YOUR CONTENT ENDS HERE -->
             <!-- ========================================== -->
@@ -373,5 +561,46 @@
       <script src="/assets/js/bootstrap.bundle.min.js"></script>
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script>
+
+      <!-- EN / 中文 toggle. Persists the shared global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
    </body>
 </html>
