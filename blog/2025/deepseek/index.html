@@ -63,14 +63,25 @@
       margin-right: auto;
       width: 50%;
     }
+     /* --- EN / 中文 language toggle ---
+        Clicking either button updates the shared global preference
+        (localStorage 'preferredLanguage') also used by the homepage and
+        the navbar. See __setPostLang() near the bottom of this file. */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title">DeepSeek: Large Language Model of Year 2025 (and new book!)</h1>
-               <p class="post-meta"> Created in December, 2025<span class="post-readstats"> · 823 words · 4 min read</span> </p>
+               <h1 class="post-title"><span class="lang-en">DeepSeek: Large Language Model of Year 2025 (and new book!)</span><span class="lang-zh">DeepSeek：2025 年度大语言模型（以及新书！）</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in December, 2025<span class="post-readstats"> · 823 words · 4 min read</span> </span><span class="lang-zh"> 创建于 2025 年 12 月<span class="post-readstats"> · 约 1,400 字 · 4 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/deepseek"> <i class="fa-solid fa-hashtag fa-sm"></i> deepseek</a>   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/open-source"> <i class="fa-solid fa-hashtag fa-sm"></i> open-source</a>   <a href="/blog/tag/book"> <i class="fa-solid fa-hashtag fa-sm"></i> book</a>      ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -78,6 +89,12 @@
             </div>
             <article class="post-content">
                <div id="markdown-content">
+
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+                  </div>
+
                   <p></p>
                </div>
             </article>
@@ -89,15 +106,16 @@
             <!-- YOUR CONTENT STARTS HERE -->
             <!-- ========================================== -->
 
+            <div class="lang-en">
             <h2>My Favorite AI Breakthrough This Year: DeepSeek</h2>
             <p>When MIT CSAIL <a href="https://x.com/mit_csail/status/1999887139492798972?s=46&t=pcwmbGTukCEBFR7rxgp-1g" target="_blank">asked on Twitter</a> about everyone's favorite AI breakthrough this year, my answer was clear: DeepSeek.</p>
             <img src="/assets/blog/deepseek/tweetmitcsail.png" alt="tweet" class="img-fluid" style="max-width: 50%; height: auto; margin: 20px auto; display: block;">
-            <p>It’s been about a year since <a href="https://huggingface.co/blog/huggingface/one-year-since-the-deepseek-moment">the 2025 DeepSeek moment</a>. Nathan Lambert's <a href="https://www.interconnects.ai/p/2025-open-models-year-in-review" target="_blank">2025 Open Models Year in Review</a> puts DeepSeek, Qwen, and Kimi as the top 3 open-source models in 2025. This recognition is well-deserved and reflects DeepSeek's significant impact on the open-source AI community.</p>
+            <p>It’s been about a year since <a href="https://huggingface.co/blog/huggingface/one-year-since-the-deepseek-moment">the 2025 DeepSeek moment</a>. <em>Nathan Lambert</em>'s <a href="https://www.interconnects.ai/p/2025-open-models-year-in-review" target="_blank">2025 Open Models Year in Review</a> puts DeepSeek, Qwen, and Kimi as the top 3 open-source models in 2025. This recognition is well-deserved and reflects DeepSeek's significant impact on the open-source AI community.</p>
             <br>
 
             <h2>Why DeepSeek Stands Out</h2>
             <p>Although we have more powerful models like Claude, OpenAI, and innovations like Cursor, Nano Banana this year, DeepSeek's position has not changed. This is especially remarkable given that more companies like Meta and xAI are switching their models to closed-source during this period. Meanwhile, as many labs invest in flashy agentic applications, DeepSeek continues to invest in fundamental research, as reflected in its recent mHC (<a href="https://arxiv.org/abs/2512.24880">5 Jan, 2026</a>) and Conditional Memory Engram (<a href="https://arxiv.org/abs/2601.07372">12 Jan 2026</a>) papers.</p>
-            <p>DeepSeek's commitment to openness has not gone unnoticed by the scientific community. Nature featured DeepSeek in a prominent article: <a href="https://www.nature.com/articles/s41586-025-09422-z" target="_blank">"DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning"</a> published on September 17, 2025. Shortly after, on December 8, 2025, Nature recognized Liang Wenfeng as part of <a href="https://www.nature.com/articles/d41586-025-03845-4" target="_blank">Nature's 10</a>, a list of people who shaped science in 2025.</p>
+            <p>DeepSeek's commitment to openness has not gone unnoticed by the scientific community. Nature featured DeepSeek in a prominent article: <a href="https://www.nature.com/articles/s41586-025-09422-z" target="_blank">"DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning"</a> published on September 17, 2025. Shortly after, on December 8, 2025, Nature recognized <em>Liang Wenfeng</em> as part of <a href="https://www.nature.com/articles/d41586-025-03845-4" target="_blank">Nature's 10</a>, a list of people who shaped science in 2025.</p>
             <img src="/assets/blog/deepseek/llmoss2025.jpg" alt="LLM Open Source 2025" class="img-fluid" style="max-width: 60%; height: auto; margin: 20px auto; display: block;">
             <p style="text-align: center; font-size: 0.85em; color: #666; margin-top: -10px;">Credit to @natolambert for this adorable image</p>
             <br>
@@ -105,7 +123,7 @@
             <h2><a href="https://a.co/d/dj9N85O">DeepSeek in Practice: A New Book</a></h2>
             <p>As an open-source enthusiast, it's a pleasure to contribute back to the community. I'm excited to announce the publication of <strong>"DeepSeek in Practice: From basics to fine-tuning, distillation, agent design, and prompt engineering of open source LLM"</strong>, published on November 21, 2025.</p>
             <img src="/assets/blog/deepseek/packtds.jpg" alt="DeepSeek Essentials Book" class="img-fluid" style="max-width: 45%; height: auto; margin: 20px auto; display: block;">
-            <p>I am responsible for Chapters 1, 2, and 4, with the rest co-authored by Alex and Durate. The book covers:</p>
+            <p>I am responsible for Chapters 1, 2, and 4, with the rest co-authored by <em>Alex</em> and <em>Durate</em>. The book covers:</p>
             <ul>
                <li>Chapter 1: What is DeepSeek?</li>
                <li>Chapter 2: Deep Dive into DeepSeek</li>
@@ -120,13 +138,13 @@
 
             <h2>The Journey to Publication</h2>
             <p>I got connected with Packt Publishing back in 2022, after I led a feature launch in the Containers department and got the chance to talk about it on a YouTube channel. Packt initially wanted me to write a book about serverless and containers. We came up with an outline but didn't continue through at that time. I kept this connection since then.</p>
-            <p>Last year, when I saw Packt published a book about Bedrock, I was excited as I am in the same product department. This year in May, I received a message invitation from Gebin, the Director of GenAI Content Publishing and Partnerships asking if I was interested in co-authoring a book about the open-source model DeepSeek. At the same time, I happened to be transitioning my research toward open-source LLM optimization and had looking into DeepSeek-R1 (671B).</p>
-            <p>At that time, I was hesitant as I knew bandwidth was limited, so I was transparent about this situation. Thanks to Gebin, VG (our editor), and Prajakta for supporting me to make this book completed.</p>
+            <p>Last year, when I saw Packt published a book about Bedrock, I was excited as I am in the same product department. This year in May, I received a message invitation from <em>Gebin</em>, the Director of GenAI Content Publishing and Partnerships asking if I was interested in co-authoring a book about the open-source model DeepSeek. At the same time, I happened to be transitioning my research toward open-source LLM optimization and had looking into DeepSeek-R1 (671B).</p>
+            <p>At that time, I was hesitant as I knew bandwidth was limited, so I was transparent about this situation. Thanks to <em>Gebin</em>, <em>VG</em> (our editor), and <em>Prajakta</em> for supporting me to make this book completed.</p>
             <br>
 
             <h2>Keeping Content Fresh in a Fast-Moving Field</h2>
             <p>Initially, I was worried about the industry pace changing so quickly. Nearly every two weeks there is a new model coming up. Would this book fall behind the latest industry news when it's published?</p>
-            <p>I got mental support from my colleague Raj, the Principal Engineer on our team. He said not to worry about content becoming stale—it's always good to give back to the community for people who are not experts or closely on the front lines of this LLM domain. I feel deeply grateful for those words, and I sincerely thank my manager Rakesh, Xu, and my colleague Sid, along with Raj, for their continued support.</p>
+            <p>I got mental support from my colleague <em>Raj</em>, the Principal Engineer on our team. He said not to worry about content becoming stale—it's always good to give back to the community for people who are not experts or closely on the front lines of this LLM domain. I feel deeply grateful for those words, and I sincerely thank my manager <em>Rakesh</em>, <em>Xu</em>, and my colleague <em>Sid</em>, along with <em>Raj</em>, for their continued support.</p>
             <p>Fortunately, when we published the book, our content was still fresh. Of course, in between, we incrementally added content based on the latest model updates. Though we still didn't get a chance to catch up with DeepSeek v3.2: <a href="https://arxiv.org/abs/2512.02556" target="_blank">"DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models"</a> submitted on December 2, 2025, to arXiv.</p>
             <p>That's really the DeepSeek way—no on-purpose marketing, just shooting out a paper on arXiv or open weights on HF. I like it.</p>
             <br>
@@ -137,6 +155,58 @@
             <p>Numerous implementations already exist, such as MCP, vLLM, and SGLang, as well as the most recent Xiaomi MiMo and OLMo releases.</p>
             <p>The open-source ecosystem is in place.</p>
             <p><strong>Open source is the way.</strong></p>
+            </div><!-- /lang-en -->
+
+            <div class="lang-zh">
+            <h2>我今年最喜欢的 AI 突破：DeepSeek</h2>
+            <p>当 MIT CSAIL <a href="https://x.com/mit_csail/status/1999887139492798972?s=46&t=pcwmbGTukCEBFR7rxgp-1g" target="_blank">在 Twitter 上发问</a>，让大家说出今年最喜欢的 AI 突破时，我的答案很明确：DeepSeek。</p>
+            <img src="/assets/blog/deepseek/tweetmitcsail.png" alt="tweet" class="img-fluid" style="max-width: 50%; height: auto; margin: 20px auto; display: block;">
+            <p>距离 <a href="https://huggingface.co/blog/huggingface/one-year-since-the-deepseek-moment">2025 年的"DeepSeek 时刻"</a>已经过去大约一年了。<em>Nathan Lambert</em> 的<a href="https://www.interconnects.ai/p/2025-open-models-year-in-review" target="_blank">《2025 开源模型年度回顾》</a>把 DeepSeek、Qwen 和 Kimi 列为 2025 年开源模型前三。这份认可实至名归，也反映了 DeepSeek 对开源 AI 社区的深远影响。</p>
+            <br>
+
+            <h2>DeepSeek 为何脱颖而出</h2>
+            <p>尽管今年我们有 Claude、OpenAI 等更强大的模型，也有 Cursor、Nano Banana 这样的创新产品，DeepSeek 的地位依然没有改变。尤为难得的是，同一时期 Meta、xAI 等更多公司正把自家模型转向闭源。与此同时，当许多实验室押注光鲜的智能体应用时，DeepSeek 仍持续投入基础研究——最近的 mHC（<a href="https://arxiv.org/abs/2512.24880">2026 年 1 月 5 日</a>）和 Conditional Memory Engram（<a href="https://arxiv.org/abs/2601.07372">2026 年 1 月 12 日</a>）两篇论文就是佐证。</p>
+            <p>DeepSeek 对开放的坚持也没有被科学界忽视。《自然》（Nature）在 2025 年 9 月 17 日发表了重磅文章：<a href="https://www.nature.com/articles/s41586-025-09422-z" target="_blank">《DeepSeek-R1 通过强化学习激发 LLM 的推理能力》</a>。随后在 2025 年 12 月 8 日，《自然》将<em>梁文锋</em>评入 <a href="https://www.nature.com/articles/d41586-025-03845-4" target="_blank">Nature's 10</a>——2025 年度塑造科学的十位人物。</p>
+            <img src="/assets/blog/deepseek/llmoss2025.jpg" alt="LLM Open Source 2025" class="img-fluid" style="max-width: 60%; height: auto; margin: 20px auto; display: block;">
+            <p style="text-align: center; font-size: 0.85em; color: #666; margin-top: -10px;">感谢 @natolambert 提供这张可爱的图</p>
+            <br>
+
+            <h2><a href="https://a.co/d/dj9N85O">DeepSeek in Practice：一本新书</a></h2>
+            <p>作为开源爱好者，能回馈社区是一种乐趣。我很高兴地宣布，<strong>《DeepSeek in Practice: From basics to fine-tuning, distillation, agent design, and prompt engineering of open source LLM》</strong>已于 2025 年 11 月 21 日出版。</p>
+            <img src="/assets/blog/deepseek/packtds.jpg" alt="DeepSeek Essentials Book" class="img-fluid" style="max-width: 45%; height: auto; margin: 20px auto; display: block;">
+            <p>我负责第 1、2、4 章，其余章节由 <em>Alex</em> 与 <em>Durate</em> 合著。全书内容包括：</p>
+            <ul>
+               <li>第 1 章：什么是 DeepSeek？</li>
+               <li>第 2 章：深入 DeepSeek</li>
+               <li>第 3 章：DeepSeek 提示工程</li>
+               <li>第 4 章：使用 DeepSeek：案例研究</li>
+               <li>第 5 章：基于 DeepSeek 构建应用</li>
+               <li>第 6 章：基于 DeepSeek 的智能体</li>
+               <li>第 7 章：以 DeepSeek 驱动的 Gemma 3 法律推理微调</li>
+               <li>第 8 章：部署 DeepSeek 模型</li>
+            </ul>
+            <br>
+
+            <h2>出版之路</h2>
+            <p>我与 Packt 出版社的缘分始于 2022 年——当时我在 Containers 部门主导了一个功能的发布，并有机会在一个 YouTube 频道上分享。Packt 最初希望我写一本关于 serverless 与容器的书。我们拟好了大纲，但那时没有继续推进。此后我一直保持着这份联系。</p>
+            <p>去年，当我看到 Packt 出版了一本关于 Bedrock 的书时非常兴奋，因为我就在同一个产品部门。今年五月，我收到 GenAI 内容出版与合作总监 <em>Gebin</em> 的消息邀请，问我是否有兴趣合著一本关于开源模型 DeepSeek 的书。恰在此时，我的研究方向正转向开源 LLM 优化，并且一直在研究 DeepSeek-R1（671B）。</p>
+            <p>当时我有些犹豫，因为深知自己精力有限，于是坦诚地说明了情况。感谢 <em>Gebin</em>、我们的编辑 <em>VG</em> 和 <em>Prajakta</em> 的支持，让这本书得以完成。</p>
+            <br>
+
+            <h2>在快速演进的领域里保持内容新鲜</h2>
+            <p>起初，我很担心行业节奏变化太快。几乎每两周就有新模型问世。这本书出版时会不会已经落后于最新的行业动态？</p>
+            <p>我从同事 <em>Raj</em>——我们团队的 Principal Engineer——那里获得了精神支持。他说不必担心内容过时——为那些并非专家、不在 LLM 领域第一线的人回馈社区，永远是值得的。这番话让我深受感动。我诚挚感谢我的经理 <em>Rakesh</em>、<em>Xu</em>，以及同事 <em>Sid</em> 和 <em>Raj</em> 的持续支持。</p>
+            <p>幸运的是，书出版时内容依然新鲜。当然，其间我们也根据最新的模型动态增量补充了内容。不过我们还是没来得及跟上 DeepSeek v3.2——<a href="https://arxiv.org/abs/2512.02556" target="_blank">《DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models》</a>于 2025 年 12 月 2 日提交到 arXiv。</p>
+            <p>这就是典型的 DeepSeek 风格——不刻意营销，只是往 arXiv 上发一篇论文、往 HF 上放出开源权重。我喜欢这种方式。</p>
+            <br>
+
+            <h2>DeepSeek 为何依然重要</h2>
+            <p>即使在今天，我知道很多人更偏爱 Qwen 这样的小模型，但 DeepSeek 有其独特优势。这本书将与你分享如何在实践中使用它。</p>
+            <p>某种意义上，DeepSeek 今年的开源为行业提供了基础大模型的新选项，同时打破了此前闭源模型的壁垒。这一意义是长期的。我见过不止一家机构在学习和研究 DeepSeek，包括对其进行优化——这推动了整个行业生态的开放与发展。</p>
+            <p>大量实现已经落地，比如 MCP、vLLM、SGLang，以及最近发布的小米 MiMo 和 OLMo。</p>
+            <p>开源生态已经就位。</p>
+            <p><strong>坚持开源（Open source is the way）。</strong></p>
+            </div><!-- /lang-zh -->
 
             <!-- ========================================== -->
             <!-- YOUR CONTENT ENDS HERE -->
@@ -155,5 +225,46 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script>
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}},{id:"post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",title:'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"We\u2019re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",section:"Posts",handler:()=>{window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/","_blank")}},{id:"post-a-post-with-tabs",title:"a post with tabs",description:"this is what included tabs in a post could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/tabs/"}},{id:"post-a-post-with-typograms",title:"a post with typograms",description:"this is what included typograms code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/typograms/"}},{id:"post-a-post-that-can-be-cited",title:"a post that can be cited",description:"this is what a post that can be cited looks like",section:"Posts",handler:()=>{window.location.href="/blog/2024/TL/"}},{id:"post-a-post-with-pseudo-code",title:"a post with pseudo code",description:"this is what included pseudo code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/pseudocode/"}},{id:"post-a-post-with-code-diff",title:"a post with code diff",description:"this is how you can display code diffs",section:"Posts",handler:()=>{window.location.href="/blog/2024/code-diff/"}},{id:"post-a-post-with-advanced-image-components",title:"a post with advanced image components",description:"this is what advanced image components could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/advanced-images/"}},{id:"post-a-post-with-vega-lite",title:"a post with vega lite",description:"this is what included vega lite code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/vega-lite/"}},{id:"post-a-post-with-geojson",title:"a post with geojson",description:"this is what included geojson code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/geojson-map/"}},{id:"post-a-post-with-echarts",title:"a post with echarts",description:"this is what included echarts code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/echarts/"}},{id:"post-a-post-with-chart-js",title:"a post with chart.js",description:"this is what included chart.js code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/chartjs/"}},{id:"post-a-post-with-tikzjax",title:"a post with TikZJax",description:"this is what included TikZ code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/tikzjax/"}},{id:"post-a-post-with-bibliography",title:"a post with bibliography",description:"an example of a blog post with bibliography",section:"Posts",handler:()=>{window.location.href="/blog/2023/post-bibliography/"}},{id:"post-a-post-with-jupyter-notebook",title:"a post with jupyter notebook",description:"an example of a blog post with jupyter notebook",section:"Posts",handler:()=>{window.location.href="/blog/2023/jupyter-notebook/"}},{id:"post-a-post-with-custom-blockquotes",title:"a post with custom blockquotes",description:"an example of a blog post with custom blockquotes",section:"Posts",handler:()=>{window.location.href="/blog/2023/custom-blockquotes/"}},{id:"post-a-post-with-table-of-contents-on-a-sidebar",title:"a post with table of contents on a sidebar",description:"an example of a blog post with table of contents on a sidebar",section:"Posts",handler:()=>{window.location.href="/blog/2023/sidebar-table-of-contents/"}},{id:"post-a-post-with-audios",title:"a post with audios",description:"this is what included audios could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/audios/"}},{id:"post-a-post-with-videos",title:"a post with videos",description:"this is what included videos could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/videos/"}},{id:"post-displaying-beautiful-tables-with-bootstrap-tables",title:"displaying beautiful tables with Bootstrap Tables",description:"an example of how to use Bootstrap Tables",section:"Posts",handler:()=>{window.location.href="/blog/2023/tables/"}},{id:"post-a-post-with-table-of-contents",title:"a post with table of contents",description:"an example of a blog post with table of contents",section:"Posts",handler:()=>{window.location.href="/blog/2023/table-of-contents/"}},{id:"post-a-post-with-giscus-comments",title:"a post with giscus comments",description:"an example of a blog post with giscus comments",section:"Posts",handler:()=>{window.location.href="/blog/2022/giscus-comments/"}},{id:"post-displaying-external-posts-on-your-al-folio-blog",title:'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"",section:"Posts",handler:()=>{window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2","_blank")}},{id:"post-a-post-with-redirect",title:"a post with redirect",description:"you can also redirect to assets like pdf",section:"Posts",handler:()=>{window.location.href="/assets/pdf/example_pdf.pdf"}},{id:"post-a-post-with-diagrams",title:"a post with diagrams",description:"an example of a blog post with diagrams",section:"Posts",handler:()=>{window.location.href="/blog/2021/diagrams/"}},{id:"post-a-distill-style-blog-post",title:"a distill-style blog post",description:"an example of a distill-style blog post and main elements",section:"Posts",handler:()=>{window.location.href="/blog/2021/distill/"}},{id:"post-a-post-with-twitter",title:"a post with twitter",description:"an example of a blog post with twitter",section:"Posts",handler:()=>{window.location.href="/blog/2020/twitter/"}},{id:"post-a-post-with-disqus-comments",title:"a post with disqus comments",description:"an example of a blog post with disqus comments",section:"Posts",handler:()=>{window.location.href="/blog/2015/disqus-comments/"}},{id:"post-a-post-with-math",title:"a post with math",description:"an example of a blog post with some math",section:"Posts",handler:()=>{window.location.href="/blog/2015/math/"}},{id:"post-a-post-with-code",title:"a post with code",description:"an example of a blog post with some code",section:"Posts",handler:()=>{window.location.href="/blog/2015/code/"}},{id:"post-a-post-with-images",title:"a post with images",description:"this is what included images could look like",section:"Posts",handler:()=>{window.location.href="/blog/2015/images/"}},{id:"post-a-post-with-formatting-and-links",title:"a post with formatting and links",description:"march & april, looking forward to summer",section:"Posts",handler:()=>{window.location.href="/blog/2015/formatting-and-links/"}},{id:"news-a-simple-inline-announcement",title:"A simple inline announcement.",description:"",section:"News"},{id:"news-a-long-announcement-with-details",title:"A long announcement with details",description:"",section:"News",handler:()=>{window.location.href="/news/announcement_2/"}},{id:"news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",title:'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',description:"",section:"News"},{id:"projects-project-1",title:"project 1",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/1_project/"}},{id:"projects-project-2",title:"project 2",description:"a project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/2_project/"}},{id:"projects-project-3-with-very-long-name",title:"project 3 with very long name",description:"a project that redirects to another website",section:"Projects",handler:()=>{window.location.href="/projects/3_project/"}},{id:"projects-project-4",title:"project 4",description:"another without an image",section:"Projects",handler:()=>{window.location.href="/projects/4_project/"}},{id:"projects-project-5",title:"project 5",description:"a project with a background image",section:"Projects",handler:()=>{window.location.href="/projects/5_project/"}},{id:"projects-project-6",title:"project 6",description:"a project with no image",section:"Projects",handler:()=>{window.location.href="/projects/6_project/"}},{id:"projects-project-7",title:"project 7",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/7_project/"}},{id:"projects-project-8",title:"project 8",description:"an other project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/8_project/"}},{id:"projects-project-9",title:"project 9",description:"another project with an image \ud83c\udf89",section:"Projects",handler:()=>{window.location.href="/projects/9_project/"}},{id:"socials-email",title:"Send email",section:"Socials",handler:()=>{window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D","_blank")}},{id:"socials-google-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ","_blank")}},{id:"socials-rss",title:"RSS Feed",section:"Socials",handler:()=>{window.open("/feed.xml","_blank")}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+
+      <!-- EN / 中文 toggle. Persists the shared global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
    </body>
 </html>
