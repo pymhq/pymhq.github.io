@@ -55,14 +55,25 @@
      img {
          pointer-events: none;
       }
+     /* --- EN / 中文 language toggle ---
+        Clicking either button updates the shared global preference
+        (localStorage 'preferredLanguage') also used by the homepage and
+        the navbar. See __setPostLang() near the bottom of this file. */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title">Serverless 10th Anniversary</h1>
-               <p class="post-meta"> Created in November, 2024<span class="post-readstats"> · 436 words · 2 min read</span> </p>
+               <h1 class="post-title"><span class="lang-en">Serverless 10th Anniversary</span><span class="lang-zh">Serverless 十周年</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in November, 2024<span class="post-readstats"> · 436 words · 2 min read</span> </span><span class="lang-zh"> 创建于 2024 年 11 月<span class="post-readstats"> · 约 750 字 · 2 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a>   ·   <a href="/blog/tag/serverless"> <i class="fa-solid fa-hashtag fa-sm"></i> serverless</a>   <a href="/blog/tag/10yo"> <i class="fa-solid fa-hashtag fa-sm"></i> 10yo</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -70,25 +81,49 @@
             </div>
             <article class="post-content">
                <div id="markdown-content">
+
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+                  </div>
+
                   <p></p>
                </div>
             </article>
             <br> 
             <hr>
             <br> 
+            <div class="lang-en">
             <p>2024 marks 10 years of Serverless with AWS Lambda and Amazon ECS as products. Bedrock also celebrates 1 year at our AI/ML Services & Infrastructure Town Hall. As I was looking through old emails, I found a cool coincidence: October 28, 2022, the same date as ECS’s anniversary, was the day I sent my transition email to the team at that time. It felt like a full-circle moment.</p>
             <br>
             <h2>Containers & Serverless Journey</h2>
             <p>Being part of the virtualization and container organization (Developers, Events, Containers and Serverless: DECS) was one of the most rewarding chapters of my time as a builder. My passion for this tech led me to dive deep, spending nearly all my time from 2020 to 2022 on related projects. Beyond the technology itself, I was drawn to the open culture of the community, actively engaging in external activities with The Linux Foundation and Cloud Native Computing Foundation (CNCF). Revisiting my <a href="https://medium.com/@pymhq/andy-at-containers-serverless-2022-4ea4d0d1c78e">2022 recap blog post</a>. I was fortunate to be on the AWS App Runner founding team from its incubation stage as a Fargate engineer, which also led to my promotion to L6. Building a public product from 0 to 1, and working on foundational, bottom-level engineering tasks here was an unforgettable experience.</p>
-            <p>I owe so much to my leaders and colleagues: my managers, Mats, Anupam, Prashant (now VP at Datadog), Joyita, with whom I later collaborated on another cool database index project in S3, and Jason (my last director manager at AWS App Runner); my skip, Inbal (now CPO of Twilio and formerly CPO of GitHub); and Deepak, our VP back then and currently VP of NGDE (Amazon Q & CodeWhisperer), one of my current team's clients. Deepak’s “Friday Notes” emails continue to be an inspiring read, and I’m so grateful for their guidance and support. A lot has changed since then. AWS App Runner joined AWS Lambda the same month I switched team. Some ECS/Fargate colleagues transitioned to different organizations, such as Annapurna, EKS, over the following years, some stay.</p>
+            <p>I owe so much to my leaders and colleagues: my managers, <em>Mats</em>, <em>Anupam</em>, <em>Prashant</em> (now VP at Datadog), <em>Joyita</em>, with whom I later collaborated on another cool database index project in S3, and <em>Jason</em> (my last director manager at AWS App Runner); my skip, <em>Inbal</em> (now CPO of Twilio and formerly CPO of GitHub); and <em>Deepak</em>, our VP back then and currently VP of NGDE (Amazon Q & CodeWhisperer), one of my current team's clients. <em>Deepak</em>’s “Friday Notes” emails continue to be an inspiring read, and I’m so grateful for their guidance and support. A lot has changed since then. AWS App Runner joined AWS Lambda the same month I switched team. Some ECS/Fargate colleagues transitioned to different organizations, such as Annapurna, EKS, over the following years, some stay.</p>
             <img src="/assets/blog/svs10yo/ecsemail.png" height="650">
             <br> 
             <h2>Serverless LLM</h2>
             <p>Someone says Bedrock is the "Lambda of LLM. " I say it is more than that.. LLM inference is a hot topic, and serverless architecture continues to play a key role in handling the heavy lifting, enabling high performance, high availability, and high efficiency delivery of AI/ML value to customers. This principle has held true since before the 'Attention is All You Need' era.</p>
-            <p>AWS's VP Swami also noted: "Serverless infrastructure is the backbone of agentic AI systems providing on-demand resources without needing to manage servers.."</p>
+            <p>AWS's VP <em>Swami</em> also noted: "Serverless infrastructure is the backbone of agentic AI systems providing on-demand resources without needing to manage servers.."</p>
             <p>Keep Going. Serverless & Containers! </p>
             <br> 
             <p>Learn more 10 Years of Serverless: https://aws.amazon.com/serverless/10th-anniversary/</p>
+            </div><!-- /lang-en -->
+
+            <div class="lang-zh">
+            <p>2024 年，以 AWS Lambda 和 Amazon ECS 为代表的 Serverless 产品迎来了十周年。在我们的 AI/ML Services & Infrastructure 全员大会上，Bedrock 也庆祝了它的一周年。当我翻看旧邮件时，发现了一个有趣的巧合：2022 年 10 月 28 日，与 ECS 的周年纪念日是同一天，正是我当时向团队发送转岗邮件的日子。仿佛是一个圆满的轮回时刻。</p>
+            <br>
+            <h2>容器与 Serverless 之旅</h2>
+            <p>作为虚拟化与容器组织（Developers, Events, Containers and Serverless: DECS）的一员，是我作为 builder 生涯中最有收获的篇章之一。出于对这项技术的热爱，我深入钻研，2020 年至 2022 年几乎把所有时间都投入到相关项目中。除了技术本身，我也被这个社区的开放文化所吸引，积极参与 The Linux Foundation 和云原生计算基金会（CNCF）的外部活动。可以回顾我的<a href="https://medium.com/@pymhq/andy-at-containers-serverless-2022-4ea4d0d1c78e">2022 年总结博客</a>。我很幸运地以 Fargate 工程师的身份，从孵化阶段就加入了 AWS App Runner 的创始团队，这也让我晋升到了 L6。在这里从 0 到 1 打造一个公开产品，并参与底层的基础工程工作，是一段难忘的经历。</p>
+            <p>我非常感激我的领导和同事们：我的经理们，<em>Mats</em>、<em>Anupam</em>、<em>Prashant</em>（现任 Datadog 副总裁）、<em>Joyita</em>（后来我们又在 S3 的另一个很酷的数据库索引项目上合作过），以及 <em>Jason</em>（我在 AWS App Runner 的最后一位总监经理）；我的隔级经理 <em>Inbal</em>（现任 Twilio 首席产品官，曾任 GitHub 首席产品官）；还有 <em>Deepak</em>，当时我们的副总裁，现任 NGDE（Amazon Q 与 CodeWhisperer）副总裁，也是我目前团队的客户之一。<em>Deepak</em> 的“Friday Notes”邮件至今仍是令人深受启发的读物，我非常感谢他们的指导与支持。此后发生了许多变化：AWS App Runner 在我换团队的同一个月加入了 AWS Lambda；一些 ECS/Fargate 的同事在随后几年里转到了不同的组织，比如 Annapurna、EKS，也有一些人留了下来。</p>
+            <img src="/assets/blog/svs10yo/ecsemail.png" height="650">
+            <br> 
+            <h2>Serverless LLM</h2>
+            <p>有人说 Bedrock 是“LLM 界的 Lambda”。我认为它远不止于此。LLM 推理是当下的热门话题，而 Serverless 架构在承担繁重工作方面持续扮演着关键角色，为客户实现高性能、高可用、高效率的 AI/ML 价值交付。这一原则早在 “Attention is All You Need” 时代之前就已成立。</p>
+            <p>AWS 副总裁 <em>Swami</em> 也指出：“Serverless 基础设施是 agentic AI 系统的支柱，无需管理服务器即可按需提供资源。”</p>
+            <p>继续前进，Serverless 与容器！</p>
+            <br> 
+            <p>了解更多 Serverless 十周年：https://aws.amazon.com/serverless/10th-anniversary/</p>
+            </div><!-- /lang-zh -->
             <br>
             <br>
             <hr>
@@ -103,5 +138,46 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> 
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}},{id:"post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",title:'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"We\u2019re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",section:"Posts",handler:()=>{window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/","_blank")}},{id:"post-a-post-with-tabs",title:"a post with tabs",description:"this is what included tabs in a post could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/tabs/"}},{id:"post-a-post-with-typograms",title:"a post with typograms",description:"this is what included typograms code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/typograms/"}},{id:"post-a-post-that-can-be-cited",title:"a post that can be cited",description:"this is what a post that can be cited looks like",section:"Posts",handler:()=>{window.location.href="/blog/2024/TL/"}},{id:"post-a-post-with-pseudo-code",title:"a post with pseudo code",description:"this is what included pseudo code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/pseudocode/"}},{id:"post-a-post-with-code-diff",title:"a post with code diff",description:"this is how you can display code diffs",section:"Posts",handler:()=>{window.location.href="/blog/2024/code-diff/"}},{id:"post-a-post-with-advanced-image-components",title:"a post with advanced image components",description:"this is what advanced image components could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/advanced-images/"}},{id:"post-a-post-with-vega-lite",title:"a post with vega lite",description:"this is what included vega lite code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/vega-lite/"}},{id:"post-a-post-with-geojson",title:"a post with geojson",description:"this is what included geojson code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/geojson-map/"}},{id:"post-a-post-with-echarts",title:"a post with echarts",description:"this is what included echarts code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/echarts/"}},{id:"post-a-post-with-chart-js",title:"a post with chart.js",description:"this is what included chart.js code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/chartjs/"}},{id:"post-a-post-with-tikzjax",title:"a post with TikZJax",description:"this is what included TikZ code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/tikzjax/"}},{id:"post-a-post-with-bibliography",title:"a post with bibliography",description:"an example of a blog post with bibliography",section:"Posts",handler:()=>{window.location.href="/blog/2023/post-bibliography/"}},{id:"post-a-post-with-jupyter-notebook",title:"a post with jupyter notebook",description:"an example of a blog post with jupyter notebook",section:"Posts",handler:()=>{window.location.href="/blog/2023/jupyter-notebook/"}},{id:"post-a-post-with-custom-blockquotes",title:"a post with custom blockquotes",description:"an example of a blog post with custom blockquotes",section:"Posts",handler:()=>{window.location.href="/blog/2023/custom-blockquotes/"}},{id:"post-a-post-with-table-of-contents-on-a-sidebar",title:"a post with table of contents on a sidebar",description:"an example of a blog post with table of contents on a sidebar",section:"Posts",handler:()=>{window.location.href="/blog/2023/sidebar-table-of-contents/"}},{id:"post-a-post-with-audios",title:"a post with audios",description:"this is what included audios could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/audios/"}},{id:"post-a-post-with-videos",title:"a post with videos",description:"this is what included videos could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/videos/"}},{id:"post-displaying-beautiful-tables-with-bootstrap-tables",title:"displaying beautiful tables with Bootstrap Tables",description:"an example of how to use Bootstrap Tables",section:"Posts",handler:()=>{window.location.href="/blog/2023/tables/"}},{id:"post-a-post-with-table-of-contents",title:"a post with table of contents",description:"an example of a blog post with table of contents",section:"Posts",handler:()=>{window.location.href="/blog/2023/table-of-contents/"}},{id:"post-a-post-with-giscus-comments",title:"a post with giscus comments",description:"an example of a blog post with giscus comments",section:"Posts",handler:()=>{window.location.href="/blog/2022/giscus-comments/"}},{id:"post-displaying-external-posts-on-your-al-folio-blog",title:'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"",section:"Posts",handler:()=>{window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2","_blank")}},{id:"post-a-post-with-redirect",title:"a post with redirect",description:"you can also redirect to assets like pdf",section:"Posts",handler:()=>{window.location.href="/assets/pdf/example_pdf.pdf"}},{id:"post-a-post-with-diagrams",title:"a post with diagrams",description:"an example of a blog post with diagrams",section:"Posts",handler:()=>{window.location.href="/blog/2021/diagrams/"}},{id:"post-a-distill-style-blog-post",title:"a distill-style blog post",description:"an example of a distill-style blog post and main elements",section:"Posts",handler:()=>{window.location.href="/blog/2021/distill/"}},{id:"post-a-post-with-twitter",title:"a post with twitter",description:"an example of a blog post with twitter",section:"Posts",handler:()=>{window.location.href="/blog/2020/twitter/"}},{id:"post-a-post-with-disqus-comments",title:"a post with disqus comments",description:"an example of a blog post with disqus comments",section:"Posts",handler:()=>{window.location.href="/blog/2015/disqus-comments/"}},{id:"post-a-post-with-math",title:"a post with math",description:"an example of a blog post with some math",section:"Posts",handler:()=>{window.location.href="/blog/2015/math/"}},{id:"post-a-post-with-code",title:"a post with code",description:"an example of a blog post with some code",section:"Posts",handler:()=>{window.location.href="/blog/2015/code/"}},{id:"post-a-post-with-images",title:"a post with images",description:"this is what included images could look like",section:"Posts",handler:()=>{window.location.href="/blog/2015/images/"}},{id:"post-a-post-with-formatting-and-links",title:"a post with formatting and links",description:"march & april, looking forward to summer",section:"Posts",handler:()=>{window.location.href="/blog/2015/formatting-and-links/"}},{id:"news-a-simple-inline-announcement",title:"A simple inline announcement.",description:"",section:"News"},{id:"news-a-long-announcement-with-details",title:"A long announcement with details",description:"",section:"News",handler:()=>{window.location.href="/news/announcement_2/"}},{id:"news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",title:'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',description:"",section:"News"},{id:"projects-project-1",title:"project 1",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/1_project/"}},{id:"projects-project-2",title:"project 2",description:"a project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/2_project/"}},{id:"projects-project-3-with-very-long-name",title:"project 3 with very long name",description:"a project that redirects to another website",section:"Projects",handler:()=>{window.location.href="/projects/3_project/"}},{id:"projects-project-4",title:"project 4",description:"another without an image",section:"Projects",handler:()=>{window.location.href="/projects/4_project/"}},{id:"projects-project-5",title:"project 5",description:"a project with a background image",section:"Projects",handler:()=>{window.location.href="/projects/5_project/"}},{id:"projects-project-6",title:"project 6",description:"a project with no image",section:"Projects",handler:()=>{window.location.href="/projects/6_project/"}},{id:"projects-project-7",title:"project 7",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/7_project/"}},{id:"projects-project-8",title:"project 8",description:"an other project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/8_project/"}},{id:"projects-project-9",title:"project 9",description:"another project with an image \ud83c\udf89",section:"Projects",handler:()=>{window.location.href="/projects/9_project/"}},{id:"socials-email",title:"Send email",section:"Socials",handler:()=>{window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D","_blank")}},{id:"socials-google-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ","_blank")}},{id:"socials-rss",title:"RSS Feed",section:"Socials",handler:()=>{window.open("/feed.xml","_blank")}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> 
+
+      <!-- EN / 中文 toggle. Persists the shared global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
    </body>
 </html>
