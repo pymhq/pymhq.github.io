@@ -31,6 +31,45 @@
       <script src="/assets/js/theme.js?96d6b3e1c3604aca8b6134c7afdd5db6" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script> <script src="/assets/js/dark_mode.js?9b17307bb950ffa2e34be0227f53558f" type="2ef554a3a95c8d10e5edf0a5-text/javascript"></script>
       <script src="/assets/js/components.js" defer></script>
       <style>
+        /* Experience breakdown — a quiet vertical timeline nested under
+           the Builder entry (right column only). Small dots on a faint
+           rail; periods muted, roles slightly emphasized. Scoped to
+           .xp-* so no other card is affected. */
+        .xp-breakdown { margin: 12px 0 2px; }
+        .xp-row {
+          position: relative;
+          padding: 4px 0 4px 20px;
+          font-size: .88em;
+          line-height: 1.55;
+        }
+        .xp-row::before {          /* rail */
+          content: "";
+          position: absolute;
+          left: 5px; top: 0; bottom: 0;
+          width: 1px;
+          background: var(--global-divider-color);
+        }
+        .xp-row:first-child::before { top: 50%; }
+        .xp-row:last-child::before  { bottom: 50%; }
+        .xp-row::after {           /* dot */
+          content: "";
+          position: absolute;
+          left: 2.5px; top: 50%;
+          transform: translateY(-50%);
+          width: 6px; height: 6px;
+          border-radius: 50%;
+          background: var(--global-theme-color);
+          opacity: .6;
+        }
+        .xp-period {
+          display: inline-block;
+          min-width: 138px;
+          color: var(--global-text-color-light, #888);
+          font-weight: 400;
+          letter-spacing: .2px;
+        }
+        .xp-role { font-weight: 500; color: var(--global-text-color); }
+
         /* Service section styles (shared markup with /service page) —
            modern tag-forward layout: venue/org names become small
            pills, surrounding context stays as plain supporting text.
@@ -125,7 +164,7 @@
                                     </table>
                                  </div>
                                  <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
-                                    <h6 class="title font-weight-bold ml-1 ml-md-4"><a href="https://pengandy.com/@amazon" rel="external nofollow noopener" target="_blank">Builder</a></h6>
+                                    <h6 class="title font-weight-bold ml-1 ml-md-4">Builder</h6>
                                     <table class="table-cv ml-1 ml-md-4 institution">
                                        <tbody>
                                           <tr>
@@ -134,6 +173,12 @@
                                           </tr>
                                        </tbody>
                                     </table>
+                                    <div class="xp-breakdown ml-1 ml-md-4">
+                                       <div class="xp-row"><span class="xp-period"><span class="lang-en">2023 &ndash; Present</span><span class="lang-zh" style="display:none;">2023 &ndash; 至今</span></span><span class="xp-role"><span class="lang-en">ML Research Engineering</span><span class="lang-zh" style="display:none;">机器学习研究工程</span></span></div>
+                                       <div class="xp-row"><span class="xp-period">2020 &ndash; 2023</span><span class="xp-role"><span class="lang-en">Software Engineering</span><span class="lang-zh" style="display:none;">软件工程</span></span></div>
+                                       <div class="xp-row"><span class="xp-period">2019 &ndash; 2020</span><span class="xp-role"><span class="lang-en">ML Research Engineering</span><span class="lang-zh" style="display:none;">机器学习研究工程</span></span></div>
+                                       <div class="xp-row"><span class="xp-period">2016 &ndash; 2019</span><span class="xp-role"><span class="lang-en">Software Engineering</span><span class="lang-zh" style="display:none;">软件工程</span></span></div>
+                                    </div>
                                  </div>
                               </div>
                            </li>
