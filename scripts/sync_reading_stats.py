@@ -32,7 +32,15 @@ POST_HREF = re.compile(r'^/blog/\d{4}/[^/"]+/?$')
 changed = []
 
 def strip_stats(inner):
+    """Reduce a list meta inner-HTML to just its trailing date/link remainder.
+    Idempotent: unwraps any lang-en span (possibly nested from earlier runs)
+    before stripping the leading stats clause."""
     s = norm(inner)
+    while True:
+        m = re.search(r'<span class="lang-en">(.*?)</span>', s, re.S)
+        if not m:
+            break
+        s = norm(m.group(1))
     s = re.sub(r'^[\d,]+\s+words\s*·\s*', '', s)
     s = re.sub(r'^\d+\s+min read\s*·\s*', '', s)
     return s.strip()

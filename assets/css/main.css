@@ -377,6 +377,14 @@ color: var(--global-text-color-light);
 font-size: .875rem;
 margin-bottom: 0
 }
+/* Bilingual metas wrap text in .lang-en/.lang-zh spans; the global
+   "span { color: var(--global-text-color) }" rule (see ~line 114) would
+   otherwise paint them black instead of the light meta color. */
+.post-list li .post-meta span,
+.post .post-meta span,
+.featured-posts .post-meta span {
+color: var(--global-text-color-light)
+}
 .post-list li .post-tags {
 color: var(--global-text-color-light);
 font-size: .875rem;
