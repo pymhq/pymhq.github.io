@@ -65,9 +65,9 @@
       width: 50%;
     }
 
-     /* highlighted inline blog link — same style as /blog/2026/ant/ */
-     a.ant-hl { font-weight: 600; color: #cc785c; background: rgba(204,120,92,0.14); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid #cc785c; text-decoration: none; white-space: nowrap; }
-     a.ant-hl:hover { background: #cc785c; color: #fff; text-decoration: none; }
+     /* highlighted inline blog link — follows site theme color (light/dark aware) */
+     a.ant-hl { font-weight: 600; color: var(--global-theme-color); background: color-mix(in srgb, var(--global-theme-color) 14%, transparent); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid var(--global-theme-color); text-decoration: none; white-space: nowrap; }
+     a.ant-hl:hover { background: var(--global-theme-color); color: #fff; text-decoration: none; }
 
      /* choice / offer rows — "anchor" style */
      .anchor-wrap { max-width: 680px; margin: 24px auto 6px auto; }
@@ -1456,11 +1456,15 @@
                   </p>
 
                   <p>
+                    And crossing carries a price most people underestimate. Everything you've earned on your side of the wall — <strong style="color:#3f8624;">&#10003; knowledge&nbsp;&nbsp;&#10003; network&nbsp;&nbsp;&#10003; position&nbsp;&nbsp;&#10003; trust</strong> — is your <strong>leverage</strong>, and all of it is local. Choosing to cross means <strong>giving that leverage up</strong>, and betting you can rebuild it on the other side.
+                  </p>
+
+                  <p>
                     Crossing starts at the door. The door — your entry ticket — includes: that domain, that team, happens to be hiring with <strong>open headcount</strong>, and you <strong>pass the interview and land the offer</strong>. With a <strong>background match</strong> or <strong>related experience</strong>, that step is relatively easy. Starting from <strong>zero experience</strong>, it is genuinely challenging.
                   </p>
 
                   <p>
-                    And the door is only the cheap part. The moment you step through, a massive <strong>learning curve</strong> is waiting — and everything you already owned now carries the same prefix: <strong style="color:#6f42c1;">re</strong>-learn the new knowledge, <strong style="color:#6f42c1;">re</strong>-build the network connections, <strong style="color:#6f42c1;">re</strong>-find your own position, and <strong style="color:#6f42c1;">re</strong>-earn the trust. Every <strong>"re-"</strong> is a cost — paid in time, energy, and humility.
+                    And the door is only the beginning. The real difficulty starts the moment you step into the room: a massive <strong>learning curve</strong> is waiting — and everything you already owned now carries the same prefix: <strong style="color:#6f42c1;">re</strong>-learn the new knowledge, <strong style="color:#6f42c1;">re</strong>-build the network connections, <strong style="color:#6f42c1;">re</strong>-find your own position, and <strong style="color:#6f42c1;">re</strong>-earn the trust. Every <strong>"re-"</strong> is a cost — paid in time, energy, and humility.
                   </p>
 
                   <div class="cp-engine">
@@ -1483,7 +1487,7 @@
                       <text x="88" y="284" font-size="12.5" font-weight="700" fill="#333">Domain A &mdash; where you stand</text>
                       <text x="88" y="306" font-size="10.5" fill="#3f8624">&#10003; knowledge&nbsp;&nbsp;&nbsp;&#10003; network</text>
                       <text x="88" y="324" font-size="10.5" fill="#3f8624">&#10003; position&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10003; trust</text>
-                      <text x="88" y="346" font-size="9.5" fill="#999">earned over years &mdash; and all local</text>
+                      <text x="88" y="346" font-size="9.5" fill="#999">your leverage &mdash; earned over years, all local</text>
                       <text x="70" y="384" font-size="9.5" font-weight="700" fill="#6f42c1">the trade-off: move forward = give these up,</text>
                       <text x="70" y="397" font-size="9.5" fill="#6f42c1">or stay in the current zone</text>
 
@@ -1538,7 +1542,7 @@
                       <text x="704" y="90" text-anchor="end" font-size="10" fill="#3f8624">re-do tons of checklist items</text>
                     </svg>
                   </div>
-                  <p class="cp-cycle-note">Same industry, different worlds. The wall between domains is not an industry barrier &mdash; it stands <em>inside</em> one industry. The <strong>door</strong> is only the entry ticket &mdash; open headcount, a passed interview, an offer in hand: a background match or related experience makes that step relatively easy, zero experience makes it brutally hard. And the door is the cheap part &mdash; behind it waits the <strong>learning curve</strong>, where everything you already earned comes back with the prefix <strong style="color:#6f42c1;">re-</strong>: re-learn, re-build, re-find, re-earn. Every &ldquo;re-&rdquo; is a cost.</p>
+                  <p class="cp-cycle-note">Same industry, different worlds. The wall between domains is not an industry barrier &mdash; it stands <em>inside</em> one industry. Crossing means giving up the local <strong>leverage</strong> you earned &mdash; knowledge, network, position, trust. The <strong>door</strong> is only the entry ticket &mdash; open headcount, a passed interview, an offer in hand: a background match or related experience makes that step relatively easy, zero experience makes it brutally hard. And the door is only the beginning &mdash; the real difficulty starts the moment you step into the room: the <strong>learning curve</strong>, where everything you already earned comes back with the prefix <strong style="color:#6f42c1;">re-</strong>: re-learn, re-build, re-find, re-earn. Every &ldquo;re-&rdquo; is a cost.</p>
 
                   <p>
                     Jumping domains is hard — risky and challenging — and <strong>surviving</strong> in a new domain means <strong>re-doing tons of checklist items</strong>. That is why shifting position or domain deserves <strong>caution</strong>, <strong>passion</strong>, and a <strong>tactical strategy</strong>. It is a trade-off. Five chapters in, that is exactly what the decision lens is for.
@@ -2835,11 +2839,15 @@
                   </p>
 
                   <p>
+                    而跨越本身，还有一笔大多数人低估的代价。你在墙这一侧挣到的一切——<strong style="color:#3f8624;">&#10003; 知识&nbsp;&nbsp;&#10003; 人脉&nbsp;&nbsp;&#10003; 位置&nbsp;&nbsp;&#10003; 信任</strong>——都是你的<strong>杠杆（leverage）</strong>，而且都只在本地有效。选择跨越，就意味着<strong>放弃这些杠杆</strong>，赌自己能在墙的另一边把它们重新建立起来。
+                  </p>
+
+                  <p>
                     跨越，从敲门砖开始。这块敲门砖——你的入场券——包括：那个领域、那个团队恰好在招聘、有名额（headcount）开放，同时你也通过了面试、拿到了 offer。若有<strong>背景匹配</strong>或<strong>相关经验</strong>，这一步相对容易；若是<strong>零经验基础</strong>，就非常有挑战。
                   </p>
 
                   <p>
-                    而门，只是最便宜的那部分。一旦踏进去，迎面而来的就是巨大的<strong>学习曲线</strong>——你曾经拥有的一切，如今都带上了同一个前缀：<strong style="color:#6f42c1;">重新</strong>学习新知识、<strong style="color:#6f42c1;">重新</strong>积累人脉、<strong style="color:#6f42c1;">重新</strong>找到属于自己的位置、<strong style="color:#6f42c1;">重新</strong>赢得信任。每一个<strong>“重新”</strong>，都是成本——用时间、精力和放低身段来支付。
+                    而门，只是一个开始。在你踏入房间的那一刻，困难才真正开始：迎面而来的是巨大的<strong>学习曲线</strong>——你曾经拥有的一切，如今都带上了同一个前缀：<strong style="color:#6f42c1;">重新</strong>学习新知识、<strong style="color:#6f42c1;">重新</strong>积累人脉、<strong style="color:#6f42c1;">重新</strong>找到属于自己的位置、<strong style="color:#6f42c1;">重新</strong>赢得信任。每一个<strong>“重新”</strong>，都是成本——用时间、精力和放低身段来支付。
                   </p>
 
                   <div class="cp-engine">
@@ -2862,7 +2870,7 @@
                       <text x="88" y="284" font-size="12.5" font-weight="700" fill="#333">领域 A &mdash; 你现在的立足之地</text>
                       <text x="88" y="306" font-size="10.5" fill="#3f8624">&#10003; 知识&nbsp;&nbsp;&nbsp;&nbsp;&#10003; 人脉网络</text>
                       <text x="88" y="324" font-size="10.5" fill="#3f8624">&#10003; 位置&nbsp;&nbsp;&nbsp;&nbsp;&#10003; 信任</text>
-                      <text x="88" y="346" font-size="9.5" fill="#999">多年挣来的 &mdash; 但都只在本地有效</text>
+                      <text x="88" y="346" font-size="9.5" fill="#999">你的杠杆 &mdash; 多年挣来，只在本地有效</text>
                       <text x="70" y="384" font-size="9.5" font-weight="700" fill="#6f42c1">权衡：向前一步 = 放弃这些，</text>
                       <text x="70" y="397" font-size="9.5" fill="#6f42c1">或者，留在当前的领域</text>
 
@@ -2917,7 +2925,7 @@
                       <text x="704" y="90" text-anchor="end" font-size="10" fill="#3f8624">把一长串清单重做一遍</text>
                     </svg>
                   </div>
-                  <p class="cp-cycle-note">同一个行业，不同的世界。领域之间的这堵墙并不是行业壁垒——它立在<em>同一个</em>行业的内部。<strong>门</strong>只是入场券——名额开放、面试通过、拿到 offer：背景匹配或相关经验让这一步相对容易，零经验则难上加难。而门还是最便宜的那部分——门后等着的是那条<strong>学习曲线</strong>：你曾经挣到的一切，都会带着<strong style="color:#6f42c1;">“重新”</strong>这个前缀回来——重新学习、重新建立、重新找到、重新赢得。每一个“重新”，都是成本。</p>
+                  <p class="cp-cycle-note">同一个行业，不同的世界。领域之间的这堵墙并不是行业壁垒——它立在<em>同一个</em>行业的内部。跨越意味着放弃你已经挣到的本地<strong>杠杆</strong>——知识、人脉、位置、信任。<strong>门</strong>只是入场券——名额开放、面试通过、拿到 offer：背景匹配或相关经验让这一步相对容易，零经验则难上加难。而门只是一个开始——踏入房间的那一刻，困难才真正开始：那条<strong>学习曲线</strong>上，你曾经挣到的一切，都会带着<strong style="color:#6f42c1;">“重新”</strong>这个前缀回来——重新学习、重新建立、重新找到、重新赢得。每一个“重新”，都是成本。</p>
 
                   <p>
                     跳领域很难——有风险、有挑战——想在新领域<strong>生存</strong>下来，意味着<strong>把一长串清单项重做一遍</strong>。所以，转换位置或领域，需要<strong>谨慎</strong>、<strong>热情</strong>与<strong>战术性的策略</strong>。这是一场权衡（trade-off）。走过五章之后回头看，这正是那套决策透镜存在的意义。
