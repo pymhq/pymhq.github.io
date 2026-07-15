@@ -57,14 +57,25 @@
      img {
          pointer-events: none;
       }
+     /* --- EN / 中文 language toggle ---
+        Clicking either button updates the shared global preference
+        (localStorage 'preferredLanguage') also used by the homepage and
+        the navbar. See __setPostLang() near the bottom of this file. */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title">Research vs Engineering</h1>
-               <p class="post-meta"> Created in August, 2025<span class="post-readstats"> · 914 words · 5 min read</span> </p>
+               <h1 class="post-title"><span class="lang-en">Research vs Engineering</span><span class="lang-zh">研究 vs 工程</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in August, 2025<span class="post-readstats"> · 914 words · 5 min read</span> </span><span class="lang-zh"> 创建于 2025 年 8 月<span class="post-readstats"> · 约 1,600 字 · 5 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/research"> <i class="fa-solid fa-hashtag fa-sm"></i> research</a>   <a href="/blog/tag/engineering"> <i class="fa-solid fa-hashtag fa-sm"></i> engineering</a>   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   ·   <a href="/blog/category/organization"> <i class="fa-solid fa-tag fa-sm"></i> organization</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -72,13 +83,20 @@
             </div>
             <article class="post-content">
                <div id="markdown-content">
+
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+                  </div>
+
                   <p><em></em></p>
                </div>
             </article>
 
+            <div class="lang-en">
             <div style="background:#f8f9fa; border-left:3px solid #1a56db; padding:12px 18px; margin:18px 0; border-radius:0 4px 4px 0;">
                <p style="margin:0 0 8px 0; font-weight:600; color:#333;"><i class="fa-brands fa-x-twitter"></i> Update (June 2026): once the old research/engineer buckets dissolve, what fills the gap? Boris Cherny sketches a set of function-agnostic archetypes.</p>
-               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;">A <a href="https://x.com/bcherny/status/2071379474277613732" target="_blank">tweet by Boris Cherny</a> (@bcherny), creator of Claude Code, reframes future roles not by job title but by what people actually do:</p>
+               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;">A <a href="https://x.com/bcherny/status/2071379474277613732" target="_blank">tweet by <em>Boris Cherny</em></a> (@bcherny), creator of Claude Code, reframes future roles not by job title but by what people actually do:</p>
                <blockquote style="margin:0 0 10px 0; font-size:0.93em; color:#555; border-left:2px solid #ccc; padding-left:12px;">
                   &ldquo;As engineering, product, design, DS, etc. melt into a new kind of role, I was reflecting on what roles might look like in the future. For example, when I look at the Claude Code team I see what I think is five archetypes:
                   <br>1. <strong>Prototyper</strong>: comes up with brand new ideas; churns out many ideas, most of which don't ship
@@ -94,11 +112,11 @@
 
             <div style="background:#f8f9fa; border-left:3px solid #1a56db; padding:12px 18px; margin:18px 0; border-radius:0 4px 4px 0;">
                <p style="margin:0 0 8px 0; font-weight:600; color:#333;"><i class="fa-brands fa-x-twitter"></i> Update (May 2026): the debate found its answer in a job title &mdash; "Member of Technical Staff" (MTS).</p>
-               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;">A <a href="https://x.com/Yuchenj_UW/status/2058610306851733576" target="_blank">viral tweet by Yuchen Jin</a> (@Yuchenj_UW) captures exactly the de-bucketing this post argues for:</p>
+               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;">A <a href="https://x.com/Yuchenj_UW/status/2058610306851733576" target="_blank">viral tweet by <em>Yuchen Jin</em></a> (@Yuchenj_UW) captures exactly the de-bucketing this post argues for:</p>
                <blockquote style="margin:0 0 10px 0; font-size:0.93em; color:#555; border-left:2px solid #ccc; padding-left:12px;">
                   &ldquo;Whoever invented &lsquo;Member of Technical Staff&rsquo; was a genius. It filters out Staff/Principal title-maxxers, protects engineering and research from corporate ladder brain, and leaves recruiters staring at LinkedIn like: &lsquo;Is this person L4 or L7?&rsquo; MTS is the best title. Happy to be MTS.&rdquo;
                </blockquote>
-               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;">In the replies, OpenAI's <a href="https://x.com/gdb/status/2058650343244976608" target="_blank">Greg Brockman</a> (@gdb) gave the origin story: when starting OpenAI, &ldquo;we didn't want to bucket people into researchers &amp; engineers. Alan Kay advised that they used &lsquo;Member of Technical Staff&rsquo; at Xerox PARC, we loved &amp; adopted it.&rdquo; That's the same flat, builder-first ethos &mdash; one title for everyone solving the problem.</p>
+               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;">In the replies, OpenAI's <a href="https://x.com/gdb/status/2058650343244976608" target="_blank"><em>Greg Brockman</em></a> (@gdb) gave the origin story: when starting OpenAI, &ldquo;we didn't want to bucket people into researchers &amp; engineers. <em>Alan Kay</em> advised that they used &lsquo;Member of Technical Staff&rsquo; at Xerox PARC, we loved &amp; adopted it.&rdquo; That's the same flat, builder-first ethos &mdash; one title for everyone solving the problem.</p>
                <a href="https://x.com/Yuchenj_UW/status/2058610306851733576" target="_blank"><img src="/assets/blog/rsrchvseng/mts-tweet.png" alt="Tweet by Yuchen Jin praising the Member of Technical Staff (MTS) title, with Greg Brockman's reply on its Xerox PARC / OpenAI origin" style="max-width:420px; width:100%; height:auto; border:1px solid #e0e0e0; border-radius:6px; margin-top:4px;"></a>
             </div>
             <br> 
@@ -107,7 +125,7 @@
             <p></p>
             <br>
             <h2>Elon's <a href="https://x.com/elonmusk/status/1950254103474446728">repost</a></h2>
-            <p>It starts from a repost by Elon:</p>
+            <p>It starts from a repost by <em>Elon</em>:</p>
             <blockquote> 
             <p>This false nomenclature of “researcher” and “engineer”, which is a thinly-masked way of describing a two-tier engineering system, is being deleted from @xAI today.</p>
             <p>There are only engineers.</p>
@@ -118,23 +136,23 @@
             <p>Can't agree more.</p>
             <br>
             <h2>Debate</h2>
-            <p>People are debating this tweet, Yann LeCun, Chief AI Scientist at Meta, is one of them.</p>
+            <p>People are debating this tweet, <em>Yann LeCun</em>, Chief AI Scientist at Meta, is one of them.</p>
             <img src="/assets/blog/rsrchvseng/yannlecuntweet.png" height="300">
             <br>
             <p>and</p>
             <img src="/assets/blog/rsrchvseng/yannlecunpost02.png" height="500">
             <br>
-            <p>Sorry, but I have to agree with Elon, no engineers are being evaluated based on "'pull requests' or 'lines of code'."</p>
+            <p>Sorry, but I have to agree with <em>Elon</em>, no engineers are being evaluated based on "'pull requests' or 'lines of code'."</p>
             <p>I feel we shouldn’t draw a hard line between software engineering and research work, in today’s world, anyone can take on a wide range of roles. One concern I’ve noticed is that some so called "researcher"s aren’t interested in, or even refuse to use, advanced tools despite their widespread adoption. For example, one applied scientist I worked with told me he doesn’t use <em>Docker</em>. This is exactly the kind of the "pretentious" situation Elon mentioned in his tweet, and something we should stand against.</p>
             <br>
             <h2>LLM era's seniority, leveling, and authority</h2>
-            <p>This also happened recently: Meta appointed Shengjia Zhao—who graduated just three years ago—as the Chief Scientist of Meta Superintelligence Labs. It's the same role title held by Yann LeCun, putting him in an awkward position where he had to publish a post to clarify things. (In same year November, LeCun left Meta and created a new startup called <a href="https://www.linkedin.com/posts/yann-lecun_as-many-of-you-have-heard-through-rumors-activity-7397020300451749888-2lhA?utm_source=share&utm_medium=member_desktop&rcm=ACoAAA0iWrwBSLtD_x4zWdZyiXvCtbP7oTB5-_I">"AMI"</a>.) Meanwhile, Meta continues to offer large compensation packages to individuals and experts in the LLM space. LLMs are rapidly and disruptively changing the world. It reflects that corporate tenure, seniority, leveling, and authority are being redefined in the LLM era.</p>
+            <p>This also happened recently: Meta appointed <em>Shengjia Zhao</em>—who graduated just three years ago—as the Chief Scientist of Meta Superintelligence Labs. It's the same role title held by <em>Yann LeCun</em>, putting him in an awkward position where he had to publish a post to clarify things. (In same year November, LeCun left Meta and created a new startup called <a href="https://www.linkedin.com/posts/yann-lecun_as-many-of-you-have-heard-through-rumors-activity-7397020300451749888-2lhA?utm_source=share&utm_medium=member_desktop&rcm=ACoAAA0iWrwBSLtD_x4zWdZyiXvCtbP7oTB5-_I">"AMI"</a>.) Meanwhile, Meta continues to offer large compensation packages to individuals and experts in the LLM space. LLMs are rapidly and disruptively changing the world. It reflects that corporate tenure, seniority, leveling, and authority are being redefined in the LLM era.</p>
             <img src="/assets/blog/rsrchvseng/yannlecunpost01.png" height="500">
             <br>
-            <p>Meta might be an extreme case, but some groups are still staying calm, for example, Andrew Tulloch from Thinking Machines Lab (a lab co-founded by Lilian Weng, former VP of Research at Open AI. </p>
+            <p>Meta might be an extreme case, but some groups are still staying calm, for example, <em>Andrew Tulloch</em> from Thinking Machines Lab (a lab co-founded by <em>Lilian Weng</em>, former VP of Research at Open AI. </p>
             <img src="/assets/blog/rsrchvseng/deedydastweet.png" height="500">
             <br>
-            <p>Anthropic co-founder Ben Mann also mentioned on <a href="https://www.lennysnewsletter.com/p/anthropic-co-founder-benjamin-mann">Lenny’s Podcast</a> that he isn’t too concerned about this recruiting battle with Meta.</p>
+            <p>Anthropic co-founder <em>Ben Mann</em> also mentioned on <a href="https://www.lennysnewsletter.com/p/anthropic-co-founder-benjamin-mann">Lenny’s Podcast</a> that he isn’t too concerned about this recruiting battle with Meta.</p>
             <br>
             <h2>My Take</h2>
             <p>I have experience in both academia and industry. During school, I was an independent researcher in the lab of an IEEE Fellow. Later, I also played both roles in my professional work. In my view, an engineer is fundamentally a problem solver.</p>
@@ -143,6 +161,74 @@
             <img src="/assets/blog/rsrchvseng/sde.png" height="500">
             <br>
             <p>Especially in the era of LLMs, the popular idea of "a one-person company" has gained traction. As I mentioned in <a href="https://pengandy.com/blog/2025/llmnative/">another blog post</a>, "..a new working model where Product, Engineering, and Research collaborate more closely than ever before". In the new era, everyone can be a product manager, researcher, engineer, or marketer, and the boundaries between professions will become increasingly blurred.</p>
+            </div><!-- /lang-en -->
+            <div class="lang-zh">
+            <div style="background:#f8f9fa; border-left:3px solid #1a56db; padding:12px 18px; margin:18px 0; border-radius:0 4px 4px 0;">
+               <p style="margin:0 0 8px 0; font-weight:600; color:#333;"><i class="fa-brands fa-x-twitter"></i> 更新（2026 年 6 月）：当旧的"研究员/工程师"分类消解之后，空出来的位置由什么填补？Boris Cherny 勾勒了一组与职能无关的原型。</p>
+               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;">Claude Code 的创造者 <em>Boris Cherny</em>（@bcherny）的<a href="https://x.com/bcherny/status/2071379474277613732" target="_blank">一条推文</a>重新定义了未来的角色——不按职位头衔，而按人们实际做的事：</p>
+               <blockquote style="margin:0 0 10px 0; font-size:0.93em; color:#555; border-left:2px solid #ccc; padding-left:12px;">
+                  「随着工程、产品、设计、数据科学等融合成一种新型角色，我一直在思考未来的角色会是什么样。比如，看看 Claude Code 团队，我认为有五种原型：
+                  <br>1. <strong>Prototyper（原型者）</strong>：提出全新的想法；产出大量点子，其中大多数不会上线
+                  <br>2. <strong>Builder（构建者）</strong>：快速把原型/想法变成生产级的产品/基础设施
+                  <br>3. <strong>Sweeper（清道夫）</strong>：清理 UI、简化代码与系统、下线功能、优化性能
+                  <br>4. <strong>Grower（增长者）</strong>：接手已构建的产品并持续迭代，改进产品与市场的契合度（PMF）
+                  <br>5. <strong>Maintainer（维护者）</strong>：拥有一个成熟系统，随规模扩展保证其安全、可靠、快速、高效
+                  <br>很多人横跨 2 种角色，有时是 3 种。我还注意到这些角色其实并不绑定于职能……也许未来的产品角色会更像这样，而不是今天这种按领域划分的角色？」
+               </blockquote>
+               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;">这是 MTS 理念（见下方 2026 年 5 月更新）的自然下一步：我们不仅丢掉了"研究员 vs 工程师"的标签，甚至不再把角色与职能绑定。一个健康的团队，就是这些原型按产品所处生命周期加权的组合——PMF 之前依赖 Prototyper/Builder/Sweeper，成熟产品则依赖 Sweeper/Grower/Maintainer。这正是本文主张的 builder 优先、问题解决者至上的精神，被具体化了。</p>
+               <a href="https://x.com/bcherny/status/2071379474277613732" target="_blank"><img src="/assets/blog/rsrchvseng/bcherny-tweet.png" alt="Boris Cherny 描述 Claude Code 团队五种未来角色原型的推文：Prototyper、Builder、Sweeper、Grower 与 Maintainer" style="max-width:420px; width:100%; height:auto; border:1px solid #e0e0e0; border-radius:6px; margin-top:4px;"></a>
+            </div>
+
+            <div style="background:#f8f9fa; border-left:3px solid #1a56db; padding:12px 18px; margin:18px 0; border-radius:0 4px 4px 0;">
+               <p style="margin:0 0 8px 0; font-weight:600; color:#333;"><i class="fa-brands fa-x-twitter"></i> 更新（2026 年 5 月）：这场辩论在一个职位头衔中找到了答案——"Member of Technical Staff"（MTS，技术成员）。</p>
+               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;"><em>Yuchen Jin</em>（@Yuchenj_UW）的<a href="https://x.com/Yuchenj_UW/status/2058610306851733576" target="_blank">一条爆火推文</a>恰好道出了本文主张的"去分类化"：</p>
+               <blockquote style="margin:0 0 10px 0; font-size:0.93em; color:#555; border-left:2px solid #ccc; padding-left:12px;">
+                  「发明『Member of Technical Staff』的人是个天才。它过滤掉了沉迷 Staff/Principal 头衔的人，保护工程和研究免受公司爬梯脑的侵蚀，还让招聘者盯着 LinkedIn 发呆：『这人到底是 L4 还是 L7？』MTS 是最好的头衔。很高兴自己是 MTS。」
+               </blockquote>
+               <p style="margin:0 0 8px 0; font-size:0.95em; color:#444;">在回复中，OpenAI 的 <a href="https://x.com/gdb/status/2058650343244976608" target="_blank"><em>Greg Brockman</em></a>（@gdb）给出了起源故事：创立 OpenAI 时，「我们不想把人分成研究员和工程师。<em>Alan Kay</em> 建议说，施乐 PARC 用的就是『Member of Technical Staff』，我们很喜欢，就采用了。」这正是同一种扁平的、builder 优先的精神——所有解决问题的人共用一个头衔。</p>
+               <a href="https://x.com/Yuchenj_UW/status/2058610306851733576" target="_blank"><img src="/assets/blog/rsrchvseng/mts-tweet.png" alt="Yuchen Jin 称赞 Member of Technical Staff（MTS）头衔的推文，附 Greg Brockman 关于其施乐 PARC / OpenAI 起源的回复" style="max-width:420px; width:100%; height:auto; border:1px solid #e0e0e0; border-radius:6px; margin-top:4px;"></a>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <h2><em>Elon</em> 的<a href="https://x.com/elonmusk/status/1950254103474446728">转发</a></h2>
+            <p>一切始于 <em>Elon</em> 的一条转发：</p>
+            <blockquote>
+            <p>"研究员"与"工程师"这种虚假的命名法——不过是对双层工程体系的一层薄薄遮掩——今天将从 @xAI 中删除。</p>
+            <p>这里只有工程师。</p>
+            <p>"研究员"是学术界的遗留词汇。</p>
+            </blockquote>
+            <img src="/assets/blog/rsrchvseng/elonstweet.png" height="500">
+            <br>
+            <p>再同意不过了。</p>
+            <br>
+            <h2>争论</h2>
+            <p>人们对这条推文争论不休，Meta 首席 AI 科学家 <em>Yann LeCun</em> 就是其中之一。</p>
+            <img src="/assets/blog/rsrchvseng/yannlecuntweet.png" height="300">
+            <br>
+            <p>以及</p>
+            <img src="/assets/blog/rsrchvseng/yannlecunpost02.png" height="500">
+            <br>
+            <p>抱歉，这次我得站 <em>Elon</em>——没有哪个工程师是按"'pull request 数'或'代码行数'"来评估的。</p>
+            <p>我认为不应该在软件工程与研究工作之间划一条硬线。在今天的世界里，任何人都可以承担多种角色。我注意到的一个问题是：一些所谓的"研究员"对先进工具不感兴趣，甚至拒绝使用——尽管这些工具早已被广泛采用。比如，一位与我共事过的应用科学家告诉我他不用 <em>Docker</em>。这恰恰就是 Elon 推文中提到的那种"装腔作势（pretentious）"，是我们应该反对的。</p>
+            <br>
+            <h2>LLM 时代的资历、职级与权威</h2>
+            <p>最近还发生了这样一件事：Meta 任命毕业仅三年的<em>赵晟佳（Shengjia Zhao）</em>为 Meta 超级智能实验室的首席科学家——与 <em>Yann LeCun</em> 的头衔相同，把后者置于一个尴尬的境地，以至于他不得不发文澄清。（同年 11 月，LeCun 离开 Meta，创办了名为 <a href="https://www.linkedin.com/posts/yann-lecun_as-many-of-you-have-heard-through-rumors-activity-7397020300451749888-2lhA?utm_source=share&utm_medium=member_desktop&rcm=ACoAAA0iWrwBSLtD_x4zWdZyiXvCtbP7oTB5-_I">"AMI"</a> 的新创公司。）与此同时，Meta 仍在向 LLM 领域的个人与专家开出巨额薪酬包。LLM 正在迅速而颠覆性地改变世界。这反映出：在 LLM 时代，企业的任期、资历、职级与权威正在被重新定义。</p>
+            <img src="/assets/blog/rsrchvseng/yannlecunpost01.png" height="500">
+            <br>
+            <p>Meta 或许是个极端案例，但也有一些团队保持着冷静——比如 Thinking Machines Lab 的 <em>Andrew Tulloch</em>（该实验室由前 OpenAI 研究副总裁 <em>Lilian Weng</em> 联合创立）。</p>
+            <img src="/assets/blog/rsrchvseng/deedydastweet.png" height="500">
+            <br>
+            <p>Anthropic 联合创始人 <em>Ben Mann</em> 也在 <a href="https://www.lennysnewsletter.com/p/anthropic-co-founder-benjamin-mann">Lenny's Podcast</a> 上提到，他并不太担心与 Meta 的这场抢人大战。</p>
+            <br>
+            <h2>我的看法</h2>
+            <p>我在学术界和工业界都有经历。读书时，我在一位 IEEE Fellow 的实验室里做独立研究；后来在职业工作中，两种角色我都扮演过。在我看来，工程师本质上是问题解决者。</p>
+            <p>Amazon 有个概念叫"Builder（构建者）"。我们有 <a href="https://aws.amazon.com/builders-library/">The Amazon Builders' Library</a> 这样的资源，也有 <a href="https://aws.amazon.com/careers/life-at-aws-builders-day-brings-aws-culture-to-life/">Builder's Day</a> 这样的活动。无论你的角色是什么——SDE（软件开发工程师，或者按我们有时的说法，"Someone Doing Everything"，什么都干的人）、MLE、研究工程师、应用科学家、研究科学家还是产品经理——你都是交付产品的 builder。</p>
+            <br>
+            <img src="/assets/blog/rsrchvseng/sde.png" height="500">
+            <br>
+            <p>尤其在 LLM 时代，"一人公司"的流行理念获得了广泛认同。正如我在<a href="https://pengandy.com/blog/2025/llmnative/">另一篇博客</a>中所说，"……一种产品、工程与研究前所未有紧密协作的新工作模式"。在新时代，每个人都可以是产品经理、研究员、工程师或营销者，职业之间的边界将越来越模糊。</p>
+            </div><!-- /lang-zh -->
             <br>
             <p></p>
             <br>
@@ -158,5 +244,46 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> 
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}},{id:"post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",title:'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"We\u2019re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",section:"Posts",handler:()=>{window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/","_blank")}},{id:"post-a-post-with-tabs",title:"a post with tabs",description:"this is what included tabs in a post could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/tabs/"}},{id:"post-a-post-with-typograms",title:"a post with typograms",description:"this is what included typograms code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/typograms/"}},{id:"post-a-post-that-can-be-cited",title:"a post that can be cited",description:"this is what a post that can be cited looks like",section:"Posts",handler:()=>{window.location.href="/blog/2024/TL/"}},{id:"post-a-post-with-pseudo-code",title:"a post with pseudo code",description:"this is what included pseudo code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/pseudocode/"}},{id:"post-a-post-with-code-diff",title:"a post with code diff",description:"this is how you can display code diffs",section:"Posts",handler:()=>{window.location.href="/blog/2024/code-diff/"}},{id:"post-a-post-with-advanced-image-components",title:"a post with advanced image components",description:"this is what advanced image components could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/advanced-images/"}},{id:"post-a-post-with-vega-lite",title:"a post with vega lite",description:"this is what included vega lite code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/vega-lite/"}},{id:"post-a-post-with-geojson",title:"a post with geojson",description:"this is what included geojson code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/geojson-map/"}},{id:"post-a-post-with-echarts",title:"a post with echarts",description:"this is what included echarts code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/echarts/"}},{id:"post-a-post-with-chart-js",title:"a post with chart.js",description:"this is what included chart.js code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/chartjs/"}},{id:"post-a-post-with-tikzjax",title:"a post with TikZJax",description:"this is what included TikZ code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/tikzjax/"}},{id:"post-a-post-with-bibliography",title:"a post with bibliography",description:"an example of a blog post with bibliography",section:"Posts",handler:()=>{window.location.href="/blog/2023/post-bibliography/"}},{id:"post-a-post-with-jupyter-notebook",title:"a post with jupyter notebook",description:"an example of a blog post with jupyter notebook",section:"Posts",handler:()=>{window.location.href="/blog/2023/jupyter-notebook/"}},{id:"post-a-post-with-custom-blockquotes",title:"a post with custom blockquotes",description:"an example of a blog post with custom blockquotes",section:"Posts",handler:()=>{window.location.href="/blog/2023/custom-blockquotes/"}},{id:"post-a-post-with-table-of-contents-on-a-sidebar",title:"a post with table of contents on a sidebar",description:"an example of a blog post with table of contents on a sidebar",section:"Posts",handler:()=>{window.location.href="/blog/2023/sidebar-table-of-contents/"}},{id:"post-a-post-with-audios",title:"a post with audios",description:"this is what included audios could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/audios/"}},{id:"post-a-post-with-videos",title:"a post with videos",description:"this is what included videos could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/videos/"}},{id:"post-displaying-beautiful-tables-with-bootstrap-tables",title:"displaying beautiful tables with Bootstrap Tables",description:"an example of how to use Bootstrap Tables",section:"Posts",handler:()=>{window.location.href="/blog/2023/tables/"}},{id:"post-a-post-with-table-of-contents",title:"a post with table of contents",description:"an example of a blog post with table of contents",section:"Posts",handler:()=>{window.location.href="/blog/2023/table-of-contents/"}},{id:"post-a-post-with-giscus-comments",title:"a post with giscus comments",description:"an example of a blog post with giscus comments",section:"Posts",handler:()=>{window.location.href="/blog/2022/giscus-comments/"}},{id:"post-displaying-external-posts-on-your-al-folio-blog",title:'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"",section:"Posts",handler:()=>{window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2","_blank")}},{id:"post-a-post-with-redirect",title:"a post with redirect",description:"you can also redirect to assets like pdf",section:"Posts",handler:()=>{window.location.href="/assets/pdf/example_pdf.pdf"}},{id:"post-a-post-with-diagrams",title:"a post with diagrams",description:"an example of a blog post with diagrams",section:"Posts",handler:()=>{window.location.href="/blog/2021/diagrams/"}},{id:"post-a-distill-style-blog-post",title:"a distill-style blog post",description:"an example of a distill-style blog post and main elements",section:"Posts",handler:()=>{window.location.href="/blog/2021/distill/"}},{id:"post-a-post-with-twitter",title:"a post with twitter",description:"an example of a blog post with twitter",section:"Posts",handler:()=>{window.location.href="/blog/2020/twitter/"}},{id:"post-a-post-with-disqus-comments",title:"a post with disqus comments",description:"an example of a blog post with disqus comments",section:"Posts",handler:()=>{window.location.href="/blog/2015/disqus-comments/"}},{id:"post-a-post-with-math",title:"a post with math",description:"an example of a blog post with some math",section:"Posts",handler:()=>{window.location.href="/blog/2015/math/"}},{id:"post-a-post-with-code",title:"a post with code",description:"an example of a blog post with some code",section:"Posts",handler:()=>{window.location.href="/blog/2015/code/"}},{id:"post-a-post-with-images",title:"a post with images",description:"this is what included images could look like",section:"Posts",handler:()=>{window.location.href="/blog/2015/images/"}},{id:"post-a-post-with-formatting-and-links",title:"a post with formatting and links",description:"march & april, looking forward to summer",section:"Posts",handler:()=>{window.location.href="/blog/2015/formatting-and-links/"}},{id:"news-a-simple-inline-announcement",title:"A simple inline announcement.",description:"",section:"News"},{id:"news-a-long-announcement-with-details",title:"A long announcement with details",description:"",section:"News",handler:()=>{window.location.href="/news/announcement_2/"}},{id:"news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",title:'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',description:"",section:"News"},{id:"projects-project-1",title:"project 1",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/1_project/"}},{id:"projects-project-2",title:"project 2",description:"a project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/2_project/"}},{id:"projects-project-3-with-very-long-name",title:"project 3 with very long name",description:"a project that redirects to another website",section:"Projects",handler:()=>{window.location.href="/projects/3_project/"}},{id:"projects-project-4",title:"project 4",description:"another without an image",section:"Projects",handler:()=>{window.location.href="/projects/4_project/"}},{id:"projects-project-5",title:"project 5",description:"a project with a background image",section:"Projects",handler:()=>{window.location.href="/projects/5_project/"}},{id:"projects-project-6",title:"project 6",description:"a project with no image",section:"Projects",handler:()=>{window.location.href="/projects/6_project/"}},{id:"projects-project-7",title:"project 7",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/7_project/"}},{id:"projects-project-8",title:"project 8",description:"an other project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/8_project/"}},{id:"projects-project-9",title:"project 9",description:"another project with an image \ud83c\udf89",section:"Projects",handler:()=>{window.location.href="/projects/9_project/"}},{id:"socials-email",title:"Send email",section:"Socials",handler:()=>{window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D","_blank")}},{id:"socials-google-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ","_blank")}},{id:"socials-rss",title:"RSS Feed",section:"Socials",handler:()=>{window.open("/feed.xml","_blank")}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> 
+
+      <!-- EN / 中文 toggle. Persists the shared global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
    </body>
 </html>
