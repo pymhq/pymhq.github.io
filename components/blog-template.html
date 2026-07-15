@@ -14,7 +14,7 @@
     OG_IMAGE_URL                    https://pengandy.com/assets/blog/POST_SLUG/hero.jpg
     POST_DATE_EN / POST_DATE_ZH     e.g. "July 2, 2026" / "2026 年 7 月 2 日"
     WORD_COUNT / READ_MIN           fill after writing; the blog index card is
-                                    auto-filled by scripts/add_reading_stats.py
+                                    auto-synced by scripts/sync_reading_stats.py
     TAGS_AND_CATEGORIES             the <a> tag/category links row
 
   NOTES
@@ -23,7 +23,8 @@
     • PERSON NAMES: always wrap in <em>italic</em> — never <strong>bold</strong>.
     • DO NOT bold (<strong>) ANY content unless the author explicitly asks for it.
       Default to plain text; use <em>italic</em> only for names/light emphasis.
-    • After publishing run:  python3 scripts/add_reading_stats.py
+    • After publishing run:  python3 scripts/sync_reading_stats.py   (sync index from post metas)
+                             python3 scripts/check_reading_stats.py  (verify consistency)
                              python3 scripts/generate_feed.py
     • The EN/中文 toggle works because the button sets `body.zh`, and the CSS
       below hides the inactive language. Wrap the <h1> and <p class="post-meta">
@@ -106,7 +107,7 @@
          <div class="post">
             <header class="post-header">
                <h1 class="post-title"><span class="lang-en">BLOG_TITLE_EN</span><span class="lang-zh">BLOG_TITLE_ZH</span></h1>
-               <!-- word count + read time live in .post-readstats; index card is auto-filled by add_reading_stats.py -->
+               <!-- word count + read time live in .post-readstats; index card is auto-synced by sync_reading_stats.py -->
                <p class="post-meta"><span class="lang-en"> Created in POST_DATE_EN<span class="post-readstats"> · WORD_COUNT words · READ_MIN min read</span> </span><span class="lang-zh"> 创建于 POST_DATE_ZH<span class="post-readstats"> · WORD_COUNT 字 · READ_MIN 分钟阅读</span> </span></p>
                <p class="post-tags">
                   TAGS_AND_CATEGORIES
