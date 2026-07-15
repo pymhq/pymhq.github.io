@@ -61,14 +61,25 @@
       margin-right: auto;
       width: 50%;
     }
+     /* --- EN / 中文 language toggle ---
+        Clicking either button updates the shared global preference
+        (localStorage 'preferredLanguage') also used by the homepage and
+        the navbar. See __setPostLang() near the bottom of this file. */
+     .lang-toggle { margin: 0 0 22px 0; }
+     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
+       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
+     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
+     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-zh { display:none; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title">ICML 2025 Summary</h1>
-               <p class="post-meta"> Created in July, 2025<span class="post-readstats"> · 609 words · 4 min read</span> </p>
+               <h1 class="post-title"><span class="lang-en">ICML 2025 Summary</span><span class="lang-zh">ICML 2025 总结</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in July, 2025<span class="post-readstats"> · 612 words · 4 min read</span> </span><span class="lang-zh"> 创建于 2025 年 7 月<span class="post-readstats"> · 约 989 字 · 3 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> LLM</a>   <a href="/blog/tag/icml"> <i class="fa-solid fa-hashtag fa-sm"></i> icml</a>   <a href="/blog/tag/academia"> <i class="fa-solid fa-hashtag fa-sm"></i> academia</a>      ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -76,12 +87,19 @@
             </div>
             <article class="post-content">
                <div id="markdown-content">
+
+                  <div class="lang-toggle">
+                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+                     <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+                  </div>
+
                   <p></p>
                </div>
             </article>
             <br> 
             <hr>
             <br> 
+            <div class="lang-en">
             <p>It’s privileged to serve on <a href="https://icml.cc/Conferences/2025/ProgramCommittee">the program committee</a> for ICML 2025. my second time attending a conf at Vancouver Convention Centre, the last was NeurIPS 2019, right before the pandemic. Same venue, diff conf, and a diff time: the field has shifted from NLP to LLMs. What’s next?</p>
             <img src="/assets/blog/icml/icml25badge.PNG" height="500">
             <br>
@@ -145,10 +163,10 @@
             <h2>After Hour Events (By Invitation)</h2>
             <p>List the events I was invited to, unfortunately, I had to miss most part of them due to limited bandwidth and scheduling conflicts.</p>
             <li>
-              Anyscale: Invited by co-founder Robert Nishihara. The event was in a bar. We discussed the growing importance of online data quality.
+              Anyscale: Invited by co-founder <em>Robert Nishihara</em>. The event was in a bar. We discussed the growing importance of online data quality.
             </li>
             <li>
-              Y Combinator Lunch: Held at the “Five Sails”, very upscale. Many people were not ICML attendees but came to pitch projects, seek funding, or find co-founders. Had a long conversation with Pete Koomen (General Partner of YC). Initially, we were listening to a PhD student’s project on a LLM-native programming language. I later debated whether programming would even be needed in the future, or modules like that. Multiple drink options and refined desserts. Ran into the founder of Ollama, who invited me to their product’s 2nd anniversary.
+              Y Combinator Lunch: Held at the “Five Sails”, very upscale. Many people were not ICML attendees but came to pitch projects, seek funding, or find co-founders. Had a long conversation with <em>Pete Koomen</em> (General Partner of YC). Initially, we were listening to a PhD student’s project on a LLM-native programming language. I later debated whether programming would even be needed in the future, or modules like that. Multiple drink options and refined desserts. Ran into the founder of Ollama, who invited me to their product’s 2nd anniversary.
             </li>
             <li>
               Perplexity HH Bistro Night: Great vibes and well organized.
@@ -175,6 +193,103 @@
             </li>
             <br>
             <p>P.S. Vancouver felt hotter than Seattle.</p>
+            </div><!-- /lang-en -->
+
+            <div class="lang-zh">
+            <p>很荣幸能在 ICML 2025 担任<a href="https://icml.cc/Conferences/2025/ProgramCommittee">程序委员会</a>成员。这是我第二次在温哥华会议中心参加会议，上一次是 2019 年的 NeurIPS，就在疫情之前。同样的场馆，不同的会议，也是不同的时代：领域已经从 NLP 转向了 LLM。下一个是什么？</p>
+            <img src="/assets/blog/icml/icml25badge.PNG" height="500">
+            <br>
+            <h2></h2>
+            <li>
+              ICML 与 ICLR、NeurIPS 并称机器学习三大顶级会议。ICML 很贴心地为参与论文评审的人准备了带 "Reviewer" 头衔的胸牌。
+            </li>
+            <li>
+              会场是温哥华会议中心。上一次来这里是 2019 年的 NeurIPS，就在疫情之前。场馆没变，但会议主题已经从 NLP 转向了 LLM。
+            </li>
+            <li>
+              注意到参会者都在积极社交——无论是找工作的学生，还是招人的公司与高校。
+            </li>
+            <li>
+              ICML 期间，我收到了几家公司高管的私信。不少人提到读过我的博客 <em><a href="https://pengandy.com/blog/2025/llmnative/">"LLM Native Primitives: Next Golden Path"</a></em>。很高兴我的分享引起了共鸣，并在业界获得了一定认可。
+            </li>
+            <br>
+            <h2>一些数字</h2>
+            <p>投稿与录用论文数：12,468 篇投稿（比 2024 年的 9,473 篇增长 32%+）；共录用 3,333 篇</p>
+            <p>主赛道</p>
+            <li>
+              12,107 篇投稿；录用 3,260 篇（27%）；108 篇 oral，213 篇 spotlight
+            </li>
+            <li>
+              155 位资深领域主席；1,133 位领域主席；10,733 位审稿人
+            </li>
+            <li>
+              45,610 份评审
+            </li>
+            <br>
+            <p>立场论文赛道</p>
+            <li>
+              361 篇投稿；录用 73 篇（20%）；12 篇 oral，12 篇 spotlight
+            </li>
+            <li>
+              2 位赛道主席；34 位领域主席；400 位审稿人
+            </li>
+            <li>
+              1,333 份评审
+            </li>
+            <br>
+            <p>录用论文的前 20 个主要主题领域中，deep learning: large language models 出现频次达 438。</p>
+            <br>
+            <h2>展商亮点</h2>
+            <li>
+              亚马逊的展位布置得很不错，延续了雨林主题。我们准备了 T 恤和两种周边：柯基和香蕉。第一天只剩柯基，第二天只剩香蕉，看来参观者的喜好每天都在变。每位团队成员都与不同候选人进行了研究交流，对学生来说，这是从内部了解亚马逊各团队的好机会。
+            </li>
+            <br>
+            <img src="/assets/blog/icml/icml25boothtweet.jpg" height="500">
+            <br>
+            <li>
+              展厅入口处，Jump Trading 摆了一台使用 Artly 的机械臂咖啡机——这个品牌由一对来自西雅图的夫妇创立。
+            </li>
+            <li>
+              M7 里来了：GDM（很多人来自伦敦）、微软、Meta；其他还有 IBM、Databricks、Netflix。没有看到 NVIDIA。
+            </li>
+            <li>
+              来自中国的：腾讯（带了很多🐧毛绒玩具）、字节跳动、华为。阿里巴巴没有参展。
+            </li>
+            <br>
+            <h2>会后活动（邀请制）</h2>
+            <p>列一下我收到邀请的活动。可惜由于精力有限和日程冲突，大部分都只能错过。</p>
+            <li>
+              Anyscale：联合创始人 <em>Robert Nishihara</em> 邀请。活动在一家酒吧举行，我们讨论了在线数据质量日益增长的重要性。
+            </li>
+            <li>
+              Y Combinator 午餐会：在非常高档的 "Five Sails" 举行。很多人并不是 ICML 参会者，而是来推介项目、寻求融资或寻找联合创始人的。与 <em>Pete Koomen</em>（YC 合伙人）聊了很久。起初我们在听一位博士生讲他的 LLM 原生编程语言项目，后来我抛出了一个议题：未来是否还需要编程，或者类似的模块。多种酒水选择和精致甜点。偶遇了 Ollama 的创始人，他邀请我参加他们产品的两周年活动。
+            </li>
+            <li>
+              Perplexity HH Bistro 之夜：氛围很棒，组织得当。
+            </li>
+            <li>
+              Turing x Anyscale：联合主办的活动。
+            </li>
+            <li>
+              MIT E14 Fund：后来在 YC 活动上偶遇了主办方。
+            </li>
+            <li>
+              机器之心晚宴：在 Hyatt 举行。更偏商务，人手充足，参加者众多。现场有专属摄影师的拍照区。即使到得晚，服务生也会把餐食端上来。
+            </li>
+            <br>
+            <h2>知道但没报名的活动</h2>
+            <li>
+              Amazon AGI SF lab 的会后活动。
+            </li>
+            <li>
+              华为和腾讯的游轮活动——可见中国公司在海外扩张的活跃程度，以及中国高校应届毕业生庞大的人才储备。
+            </li>
+            <li>
+              Cursor、OAI 等。
+            </li>
+            <br>
+            <p>附：温哥华比西雅图还热。</p>
+            </div><!-- /lang-zh -->
             <br>
             <hr>
             <br>
@@ -188,5 +303,46 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> 
       <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
       <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-about",title:"about",section:"Navigation",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"blog",description:"",section:"Navigation",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"publications",description:"publications by categories in reversed chronological order. generated by jekyll-scholar.",section:"Navigation",handler:()=>{window.location.href="/publications/"}},{id:"nav-projects",title:"projects",description:"A growing collection of your cool projects.",section:"Navigation",handler:()=>{window.location.href="/projects/"}},{id:"nav-repositories",title:"repositories",description:"Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",section:"Navigation",handler:()=>{window.location.href="/repositories/"}},{id:"nav-cv",title:"cv",description:"This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",section:"Navigation",handler:()=>{window.location.href="/cv/"}},{id:"nav-teaching",title:"teaching",description:"Materials for courses you taught. Replace this text with your description.",section:"Navigation",handler:()=>{window.location.href="/teaching/"}},{id:"nav-people",title:"people",description:"members of the lab or group",section:"Navigation",handler:()=>{window.location.href="/people/"}},{id:"dropdown-publications",title:"publications",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-projects",title:"projects",description:"",section:"Dropdown",handler:()=>{window.location.href=""}},{id:"dropdown-blog",title:"blog",description:"",section:"Dropdown",handler:()=>{window.location.href="/blog/"}},{id:"post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",title:'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"We\u2019re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",section:"Posts",handler:()=>{window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/","_blank")}},{id:"post-a-post-with-tabs",title:"a post with tabs",description:"this is what included tabs in a post could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/tabs/"}},{id:"post-a-post-with-typograms",title:"a post with typograms",description:"this is what included typograms code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/typograms/"}},{id:"post-a-post-that-can-be-cited",title:"a post that can be cited",description:"this is what a post that can be cited looks like",section:"Posts",handler:()=>{window.location.href="/blog/2024/TL/"}},{id:"post-a-post-with-pseudo-code",title:"a post with pseudo code",description:"this is what included pseudo code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/pseudocode/"}},{id:"post-a-post-with-code-diff",title:"a post with code diff",description:"this is how you can display code diffs",section:"Posts",handler:()=>{window.location.href="/blog/2024/code-diff/"}},{id:"post-a-post-with-advanced-image-components",title:"a post with advanced image components",description:"this is what advanced image components could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/advanced-images/"}},{id:"post-a-post-with-vega-lite",title:"a post with vega lite",description:"this is what included vega lite code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/vega-lite/"}},{id:"post-a-post-with-geojson",title:"a post with geojson",description:"this is what included geojson code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/geojson-map/"}},{id:"post-a-post-with-echarts",title:"a post with echarts",description:"this is what included echarts code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/echarts/"}},{id:"post-a-post-with-chart-js",title:"a post with chart.js",description:"this is what included chart.js code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2024/chartjs/"}},{id:"post-a-post-with-tikzjax",title:"a post with TikZJax",description:"this is what included TikZ code could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/tikzjax/"}},{id:"post-a-post-with-bibliography",title:"a post with bibliography",description:"an example of a blog post with bibliography",section:"Posts",handler:()=>{window.location.href="/blog/2023/post-bibliography/"}},{id:"post-a-post-with-jupyter-notebook",title:"a post with jupyter notebook",description:"an example of a blog post with jupyter notebook",section:"Posts",handler:()=>{window.location.href="/blog/2023/jupyter-notebook/"}},{id:"post-a-post-with-custom-blockquotes",title:"a post with custom blockquotes",description:"an example of a blog post with custom blockquotes",section:"Posts",handler:()=>{window.location.href="/blog/2023/custom-blockquotes/"}},{id:"post-a-post-with-table-of-contents-on-a-sidebar",title:"a post with table of contents on a sidebar",description:"an example of a blog post with table of contents on a sidebar",section:"Posts",handler:()=>{window.location.href="/blog/2023/sidebar-table-of-contents/"}},{id:"post-a-post-with-audios",title:"a post with audios",description:"this is what included audios could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/audios/"}},{id:"post-a-post-with-videos",title:"a post with videos",description:"this is what included videos could look like",section:"Posts",handler:()=>{window.location.href="/blog/2023/videos/"}},{id:"post-displaying-beautiful-tables-with-bootstrap-tables",title:"displaying beautiful tables with Bootstrap Tables",description:"an example of how to use Bootstrap Tables",section:"Posts",handler:()=>{window.location.href="/blog/2023/tables/"}},{id:"post-a-post-with-table-of-contents",title:"a post with table of contents",description:"an example of a blog post with table of contents",section:"Posts",handler:()=>{window.location.href="/blog/2023/table-of-contents/"}},{id:"post-a-post-with-giscus-comments",title:"a post with giscus comments",description:"an example of a blog post with giscus comments",section:"Posts",handler:()=>{window.location.href="/blog/2022/giscus-comments/"}},{id:"post-displaying-external-posts-on-your-al-folio-blog",title:'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',description:"",section:"Posts",handler:()=>{window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2","_blank")}},{id:"post-a-post-with-redirect",title:"a post with redirect",description:"you can also redirect to assets like pdf",section:"Posts",handler:()=>{window.location.href="/assets/pdf/example_pdf.pdf"}},{id:"post-a-post-with-diagrams",title:"a post with diagrams",description:"an example of a blog post with diagrams",section:"Posts",handler:()=>{window.location.href="/blog/2021/diagrams/"}},{id:"post-a-distill-style-blog-post",title:"a distill-style blog post",description:"an example of a distill-style blog post and main elements",section:"Posts",handler:()=>{window.location.href="/blog/2021/distill/"}},{id:"post-a-post-with-twitter",title:"a post with twitter",description:"an example of a blog post with twitter",section:"Posts",handler:()=>{window.location.href="/blog/2020/twitter/"}},{id:"post-a-post-with-disqus-comments",title:"a post with disqus comments",description:"an example of a blog post with disqus comments",section:"Posts",handler:()=>{window.location.href="/blog/2015/disqus-comments/"}},{id:"post-a-post-with-math",title:"a post with math",description:"an example of a blog post with some math",section:"Posts",handler:()=>{window.location.href="/blog/2015/math/"}},{id:"post-a-post-with-code",title:"a post with code",description:"an example of a blog post with some code",section:"Posts",handler:()=>{window.location.href="/blog/2015/code/"}},{id:"post-a-post-with-images",title:"a post with images",description:"this is what included images could look like",section:"Posts",handler:()=>{window.location.href="/blog/2015/images/"}},{id:"post-a-post-with-formatting-and-links",title:"a post with formatting and links",description:"march & april, looking forward to summer",section:"Posts",handler:()=>{window.location.href="/blog/2015/formatting-and-links/"}},{id:"news-a-simple-inline-announcement",title:"A simple inline announcement.",description:"",section:"News"},{id:"news-a-long-announcement-with-details",title:"A long announcement with details",description:"",section:"News",handler:()=>{window.location.href="/news/announcement_2/"}},{id:"news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",title:'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',description:"",section:"News"},{id:"projects-project-1",title:"project 1",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/1_project/"}},{id:"projects-project-2",title:"project 2",description:"a project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/2_project/"}},{id:"projects-project-3-with-very-long-name",title:"project 3 with very long name",description:"a project that redirects to another website",section:"Projects",handler:()=>{window.location.href="/projects/3_project/"}},{id:"projects-project-4",title:"project 4",description:"another without an image",section:"Projects",handler:()=>{window.location.href="/projects/4_project/"}},{id:"projects-project-5",title:"project 5",description:"a project with a background image",section:"Projects",handler:()=>{window.location.href="/projects/5_project/"}},{id:"projects-project-6",title:"project 6",description:"a project with no image",section:"Projects",handler:()=>{window.location.href="/projects/6_project/"}},{id:"projects-project-7",title:"project 7",description:"with background image",section:"Projects",handler:()=>{window.location.href="/projects/7_project/"}},{id:"projects-project-8",title:"project 8",description:"an other project with a background image and giscus comments",section:"Projects",handler:()=>{window.location.href="/projects/8_project/"}},{id:"projects-project-9",title:"project 9",description:"another project with an image \ud83c\udf89",section:"Projects",handler:()=>{window.location.href="/projects/9_project/"}},{id:"socials-email",title:"Send email",section:"Socials",handler:()=>{window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D","_blank")}},{id:"socials-google-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ","_blank")}},{id:"socials-rss",title:"RSS Feed",section:"Socials",handler:()=>{window.open("/feed.xml","_blank")}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> 
+
+      <!-- EN / 中文 toggle. Persists the shared global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
    </body>
 </html>
