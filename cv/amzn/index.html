@@ -15,25 +15,19 @@
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>@amazon</title>
+   <title>AMZN &middot; CV</title>
    <meta name="author" content="Peng, Andy">
    <meta name="description" content="Amazon Career Timeline">
    <meta name="keywords" content="Amazon, AWS, Career">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
    <link rel="stylesheet" href="/assets/css/main.css?0286170e23c3c109f66311d4c1ef1b3b">
-   <link rel="canonical" href="https://pengandy.com/@amazon">
+   <link rel="canonical" href="https://pengandy.com/cv/amzn/">
    <script src="/assets/js/theme.js?96d6b3e1c3604aca8b6134c7afdd5db6" type="text/javascript"></script>
    <script src="/assets/js/dark_mode.js?9b17307bb950ffa2e34be0227f53558f" type="text/javascript"></script>
    <script src="/assets/js/components.js" defer></script>
 
    <style>
-      body {
-         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
-         -webkit-font-smoothing: antialiased;
-         -moz-osx-font-smoothing: grayscale;
-      }
-
       .timeline-container {
          position: relative;
          padding: 30px 0;
@@ -250,6 +244,116 @@
          background: rgba(2, 132, 199, 0.05);
       }
 
+      /* ===== Level ladder (promotion milestones) ===== */
+      .level-ladder {
+         display: flex;
+         align-items: flex-start;
+         max-width: 900px;
+         margin: 6px 0 38px;
+      }
+
+      .ladder-step {
+         flex: 1;
+         position: relative;
+         text-align: center;
+         padding-top: 26px;
+      }
+
+      .ladder-step::before {
+         content: '';
+         position: absolute;
+         top: 7px;
+         left: 50%;
+         width: 100%;
+         height: 2px;
+         background: #e2e8f0;
+      }
+
+      .ladder-step:last-child::before {
+         display: none;
+      }
+
+      .ladder-dot {
+         position: absolute;
+         top: 0;
+         left: 50%;
+         transform: translateX(-50%);
+         width: 16px;
+         height: 16px;
+         border-radius: 50%;
+         background: #0076df;
+         border: 3px solid white;
+         box-shadow: 0 2px 10px rgba(0, 118, 223, 0.35);
+         z-index: 1;
+      }
+
+      .ladder-dot.golden {
+         background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+         box-shadow: 0 2px 12px rgba(245, 158, 11, 0.4);
+      }
+
+      .ladder-dot.red {
+         background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+         box-shadow: 0 2px 12px rgba(239, 68, 68, 0.4);
+      }
+
+      .ladder-dot.current {
+         animation: pulse 2s infinite;
+      }
+
+      .ladder-level {
+         font-size: 1.05rem;
+         font-weight: 700;
+         color: #0f172a;
+         letter-spacing: -0.01em;
+      }
+
+      .ladder-label {
+         font-size: 0.8rem;
+         color: #475569;
+         font-weight: 500;
+         margin-top: 2px;
+      }
+
+      .ladder-date {
+         font-size: 0.78rem;
+         color: #64748b;
+         margin-top: 2px;
+      }
+
+      /* ===== Discipline sections ===== */
+      .discipline-section {
+         max-width: 900px;
+         margin-bottom: 40px;
+         border: 1px solid #e2e8f0;
+         border-radius: 12px;
+         padding: 26px 30px 0;
+         box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+      }
+
+      .discipline-title {
+         font-size: 1.5rem;
+         font-weight: 700;
+         color: #0f172a;
+         letter-spacing: -0.02em;
+         margin-bottom: 6px;
+      }
+
+      .discipline-subtitle {
+         font-size: 0.95rem;
+         color: #64748b;
+         margin-bottom: 4px;
+         line-height: 1.6;
+      }
+
+      .discipline-section .timeline-container {
+         padding: 20px 0 0;
+      }
+
+      .discipline-section .timeline-item:last-child {
+         padding-bottom: 30px;
+      }
+
       /* Responsive improvements */
       @media (max-width: 768px) {
          .timeline-item {
@@ -264,6 +368,26 @@
          .role-title {
             font-size: 1.2rem;
          }
+
+         .ladder-level {
+            font-size: 0.92rem;
+         }
+
+         .ladder-label {
+            font-size: 0.68rem;
+         }
+
+         .ladder-date {
+            font-size: 0.66rem;
+         }
+
+         .discipline-section {
+            padding: 20px 18px 0;
+         }
+
+         .discipline-title {
+            font-size: 1.3rem;
+         }
       }
    </style>
 </head>
@@ -275,6 +399,36 @@
       <div class="post">
          <article>
             <div style="color: #a0a0a0; font-size: 0.75rem; margin-bottom: 20px;">L6, Amazon = 66 (Principal), Microsoft / L6 (Staff), Google / L6 (Staff), Meta</div>
+            <div class="level-ladder">
+               <div class="ladder-step">
+                  <div class="ladder-dot"></div>
+                  <div class="ladder-level">L4</div>
+                  <div class="ladder-label">Onboard · Software Engineer I</div>
+                  <div class="ladder-date">Pi Day 2016</div>
+               </div>
+               <div class="ladder-step">
+                  <div class="ladder-dot"></div>
+                  <div class="ladder-level">L5</div>
+                  <div class="ladder-label">Promoted · Software Engineer II</div>
+                  <div class="ladder-date">Jul 2018</div>
+               </div>
+               <div class="ladder-step">
+                  <div class="ladder-dot golden"></div>
+                  <div class="ladder-level">L6</div>
+                  <div class="ladder-label">Promoted · Engineer III, Tech Lead / UTL</div>
+                  <div class="ladder-date">Apr 2022</div>
+               </div>
+               <div class="ladder-step">
+                  <div class="ladder-dot red current"></div>
+                  <div class="ladder-level">L6</div>
+                  <div class="ladder-label">ML Research Engineer III, Tech Lead</div>
+                  <div class="ladder-date">Present</div>
+               </div>
+            </div>
+
+            <div class="discipline-section">
+               <div class="discipline-title">ML Research Engineering</div>
+               <div class="discipline-subtitle">Generative AI: SageMaker AI, Bedrock &nbsp;·&nbsp; Conversational AI: Alexa AI Health &amp; Wellness</div>
             <div class="timeline-container">
 
                <!-- Bedrock & SageMaker Research -->
@@ -293,6 +447,31 @@
                      </div>
                   </div>
                </div>
+
+               <!-- Alexa AI Health & Wellness -->
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="role-header">
+                        <div class="role-title">Machine Learning Engineer II (L5)</div>
+                        <div class="role-team"><span class="team-tag">Conversational AI</span>Alexa AI Health & Wellness</div>
+                        <div class="role-period">
+                           <i class="far fa-calendar-alt"></i> Mar 2019 - Jul 2020 · Seattle, WA
+                        </div>
+                     </div>
+                     <div class="notes-section">
+                        <p><span class="badge-founding">Founding Engineer</span> medication management <span class="badge-zero-to-one">0→1</span>, featured in Q4 2019 earnings report, & HIPAA-Eligible Skill <span class="badge-zero-to-one">0→1</span> (2020). Partnered with <span class="entity-person">Rachel Jiang</span>, <span class="entity-person">Yvonne Chou</span> (Chief of Staff, <span class="entity-company">AI2</span>), and <span class="entity-person">Missy Krasner</span> (former VP, <span class="entity-company">Box</span>).</p>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+            </div>
+
+            <div class="discipline-section">
+               <div class="discipline-title">Software Engineering</div>
+               <div class="discipline-subtitle">AWS App Runner, Fargate, S3, Payments</div>
+            <div class="timeline-container">
 
                <!-- S3 -->
                <div class="timeline-item">
@@ -342,23 +521,6 @@
                   </div>
                </div>
 
-               <!-- Alexa AI Health & Wellness -->
-               <div class="timeline-item">
-                  <div class="timeline-marker"></div>
-                  <div class="timeline-content">
-                     <div class="role-header">
-                        <div class="role-title">Machine Learning Engineer II (L5)</div>
-                        <div class="role-team"><span class="team-tag">Conversational AI</span>Alexa AI Health & Wellness</div>
-                        <div class="role-period">
-                           <i class="far fa-calendar-alt"></i> Mar 2019 - Jul 2020 · Seattle, WA
-                        </div>
-                     </div>
-                     <div class="notes-section">
-                        <p><span class="badge-founding">Founding Engineer</span> medication management <span class="badge-zero-to-one">0→1</span>, featured in Q4 2019 earnings report, & HIPAA-Eligible Skill <span class="badge-zero-to-one">0→1</span> (2020). Partnered with <span class="entity-person">Rachel Jiang</span>, <span class="entity-person">Yvonne Chou</span> (Chief of Staff, <span class="entity-company">AI2</span>), and <span class="entity-person">Missy Krasner</span> (former VP, <span class="entity-company">Box</span>).</p>
-                     </div>
-                  </div>
-               </div>
-
                <!-- AWS Payments - Engineer II -->
                <div class="timeline-item">
                   <div class="timeline-marker"></div>
@@ -387,19 +549,9 @@
                   </div>
                </div>
 
-               <!-- Onboard -->
-               <div class="timeline-item">
-                  <div class="timeline-marker"></div>
-                  <div class="timeline-content">
-                     <div class="role-header">
-                        <div class="role-title">Onboard</div>
-                        <div class="role-period">
-                           <i class="far fa-calendar-alt"></i> Pi Day 2016 · Seattle, WA
-                        </div>
-                     </div>
-                  </div>
-               </div>
+               <!-- Onboard: represented by the first milestone of the level ladder above -->
 
+            </div>
             </div>
          </article>
       </div>
