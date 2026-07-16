@@ -23,15 +23,15 @@
     • PERSON NAMES: always wrap in <em>italic</em> — never <strong>bold</strong>.
     • DO NOT bold (<strong>) ANY content unless the author explicitly asks for it.
       Default to plain text; use <em>italic</em> only for names/light emphasis.
-    • HIGHLIGHTED LINKS: cross-references to other posts use <a class="post-hl">
-      (pill style defined in the CSS below). The pill SHAPE is fixed for every
-      article; the accent COLOR may vary per article — override --hl-color in
-      the post's own <style> (e.g. a.post-hl { --hl-color: var(--sd-indigo); }).
-      Default is the site theme blue (--global-theme-color). Apply the class in
-      BOTH the EN and 中文 versions of the sentence.
-      Legacy posts use per-post class names for the same style: ant-hl in
-      blog/2026/curiosity-driven-builder/, sd-hl in blog/2026/speculativedecoding/.
-      New posts should use post-hl.
+    • LINKS IN PROSE: links embedded mid-sentence stay PLAIN <a> (site default
+      blue, underline on hover) — do not decorate them; pills mid-sentence look
+      jarring. Reserve <a class="post-hl"> (pill style in the CSS below) for a
+      standalone call-to-action at the end of a paragraph, e.g.
+      "learn more in my other blog post &rarr;". The pill SHAPE is fixed; the
+      accent COLOR may vary per article — override --hl-color in the post's own
+      <style>. Default is the site theme blue (--global-theme-color). Apply the
+      same treatment in BOTH the EN and 中文 versions. (Legacy: ant-hl in
+      blog/2026/curiosity-driven-builder/ is this same pill style.)
     • After publishing run:  python3 scripts/sync_reading_stats.py   (sync index from post metas)
                              python3 scripts/check_reading_stats.py  (verify consistency)
                              python3 scripts/generate_feed.py
