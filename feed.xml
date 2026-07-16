@@ -17,20 +17,20 @@
       <enclosure url="https://pengandy.com/assets/blog/fifa/with-irene.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>How Google Gemini Helped Me Survive My French Riviera Trip</title>
-      <link>https://pengandy.com/blog/2026/french-riviera/</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2026/french-riviera/</guid>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-      <description>Flight delays, lost luggage, transit, dining, medical, airport accessibility — how Gemini became an indispensable travel tool on the Côte d&#x27;Azur.</description>
-      <enclosure url="https://pengandy.com/assets/blog/french-riviera/hero.jpg" type="image/png" length="0" />
-    </item>
-    <item>
       <title>A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试</title>
       <link>https://pengandy.com/blog/2026/storyline/</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2026/storyline/</guid>
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
       <description>From Seattle&#x27;s Starbucks to Nantucket, Massachusetts — a line threaded through Moby-Dick. 从西雅图星巴克到马萨诸塞州南太基，一条由《白鲸》串起的故事线。</description>
       <enclosure url="https://pengandy.com/assets/blog/storyline/nantucket-map.svg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>How Google Gemini Helped Me Survive My French Riviera Trip</title>
+      <link>https://pengandy.com/blog/2026/french-riviera/</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2026/french-riviera/</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Flight delays, lost luggage, transit, dining, medical, airport accessibility — how Gemini became an indispensable travel tool on the Côte d&#x27;Azur.</description>
+      <enclosure url="https://pengandy.com/assets/blog/french-riviera/hero.jpg" type="image/png" length="0" />
     </item>
     <item>
       <title>Flywheel for Small Business and The Personal Brand</title>
@@ -151,6 +151,14 @@
       <description>2025 June</description>
     </item>
     <item>
+      <title>Horizontal vs. Vertical</title>
+      <link>https://pengandy.com/blog/2025/horizontalvsvertical/</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/horizontalvsvertical/</guid>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+      <description>Blog.</description>
+      <enclosure url="https://pengandy.com/assets/projects/programs.png" type="image/png" length="0" />
+    </item>
+    <item>
       <title>LLM Native Primitives</title>
       <link>https://pengandy.com/blog/2025/llmnative/</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/llmnative/</guid>
@@ -164,14 +172,6 @@
       <guid isPermaLink="true">https://pengandy.com/blog/2025/opensourceprograms202505/</guid>
       <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
       <description>2025 May</description>
-    </item>
-    <item>
-      <title>Horizontal vs. Vertical</title>
-      <link>https://pengandy.com/blog/2025/horizontalvsvertical/</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/horizontalvsvertical/</guid>
-      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
-      <description>Blog.</description>
-      <enclosure url="https://pengandy.com/assets/projects/programs.png" type="image/png" length="0" />
     </item>
     <item>
       <title>CNCF 10 Years</title>
