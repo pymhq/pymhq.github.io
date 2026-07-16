@@ -24,9 +24,14 @@
     • DO NOT bold (<strong>) ANY content unless the author explicitly asks for it.
       Default to plain text; use <em>italic</em> only for names/light emphasis.
     • HIGHLIGHTED LINKS: cross-references to other posts use <a class="post-hl">
-      (pill style defined in the CSS below). The accent color may vary per
-      article — override --hl-color in the post's own <style> if the post has
-      its own palette; default is the site theme blue. See BLOG-STYLE-GUIDE.md.
+      (pill style defined in the CSS below). The pill SHAPE is fixed for every
+      article; the accent COLOR may vary per article — override --hl-color in
+      the post's own <style> (e.g. a.post-hl { --hl-color: var(--sd-indigo); }).
+      Default is the site theme blue (--global-theme-color). Apply the class in
+      BOTH the EN and 中文 versions of the sentence.
+      Legacy posts use per-post class names for the same style: ant-hl in
+      blog/2026/curiosity-driven-builder/, sd-hl in blog/2026/speculativedecoding/.
+      New posts should use post-hl.
     • After publishing run:  python3 scripts/sync_reading_stats.py   (sync index from post metas)
                              python3 scripts/check_reading_stats.py  (verify consistency)
                              python3 scripts/generate_feed.py
@@ -93,7 +98,7 @@
 
      /* --- highlighted inline links (cross-references to other posts) ---
         Shared pill style; accent color may vary per article by overriding
-        --hl-color. See BLOG-STYLE-GUIDE.md. */
+        --hl-color. See the NOTES in the header comment above. */
      a.post-hl { --hl-color: var(--global-theme-color); font-weight: 600; color: var(--hl-color); background: color-mix(in srgb, var(--hl-color) 14%, transparent); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid var(--hl-color); text-decoration: none; white-space: nowrap; }
      a.post-hl:hover { background: var(--hl-color); color: #fff; text-decoration: none; }
 
