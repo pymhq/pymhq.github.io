@@ -58,9 +58,9 @@
      /* ── Speculative decoding theme ── */
      :root { --sd-indigo: #4f46e5; --sd-cyan: #06b6d4; --sd-mute: #888; }
 
-     /* highlighted internal links */
-     a.sd-hl { color: var(--sd-indigo); font-weight: 500; text-decoration: underline; text-decoration-color: rgba(79,70,229,0.35); text-decoration-thickness: 1px; text-underline-offset: 3px; transition: text-decoration-color 0.15s ease; }
-     a.sd-hl:hover { text-decoration-color: var(--sd-indigo); }
+     /* highlighted inline links — shared pill style (see BLOG-STYLE-GUIDE.md); accent color per article via --hl-color */
+     a.sd-hl { --hl-color: var(--global-theme-color); font-weight: 600; color: var(--hl-color); background: color-mix(in srgb, var(--hl-color) 14%, transparent); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid var(--hl-color); text-decoration: none; white-space: nowrap; }
+     a.sd-hl:hover { background: var(--hl-color); color: #fff; text-decoration: none; }
 
      /* opening quote */
      .sd-quote { margin: 8px 0 36px 0; padding: 24px 28px; background: rgba(79,70,229,0.07); border-left: 4px solid var(--sd-indigo); border-radius: 6px; }
