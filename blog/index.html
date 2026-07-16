@@ -47,26 +47,79 @@
                <div id="subscribe-placeholder"></div>
             </div>
             <div>
-            <div class="tag-category-list">
-               <ul class="p-0 m-0">
-                  <li> <i class="fa-solid fa-hashtag fa-sm"></i> <a href="/blog/tag/llm">llm</a> </li>
-                  <p>•</p>
-                  <li> <i class="fa-solid fa-hashtag fa-sm"></i> <a href="/blog/tag/software">software</a> </li>
-                  <p>•</p>
-                  <li> <i class="fa-solid fa-hashtag fa-sm"></i> <a href="/blog/tag/intrapreneur">intrapreneur</a> </li>
-                  <p>•</p>
-                  <li> <i class="fa-solid fa-hashtag fa-sm"></i> <a href="/blog/tag/technicalleadership">technical leadership</a> </li>
-                  <p>•</p>
-                  <li> <i class="fa-solid fa-hashtag fa-sm"></i> <a href="/blog/tag/corporate">corporate</a> </li>
-                  <p>•</p>
-                  <li> <i class="fa-solid fa-tag fa-sm"></i> <a href="/blog/category/products">products</a> </li>
-                  <p>•</p>
-                  <li> <i class="fa-solid fa-tag fa-sm"></i> <a href="/blog/category/research">research</a> </li>
-                  <p>•</p>
-                  <li> <i class="fa-solid fa-tag fa-sm"></i> <a href="/blog/category/corporate">corporate</a> </li>
-                  <p>•</p>
-                  <li> <i class="fa-solid fa-tag fa-sm"></i> <a href="/blog/category/organization">organization</a> </li>
-               </ul>
+            <style>
+               .tag-cloud { border-bottom: 1px solid var(--global-divider-color); padding: 0 0 1.5rem; text-align: center; }
+               .tag-cloud-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--global-text-color-light); opacity: 0.7; margin: 1.1rem 0 0.55rem; }
+               .tag-cloud-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 0.45rem; }
+               .tc-chip { display: inline-flex; align-items: center; gap: 0.32rem; padding: 0.18rem 0.7rem; border: 1px solid var(--global-divider-color); border-radius: 999px; font-size: 0.8rem; line-height: 1.5; color: var(--global-text-color-light); text-decoration: none; transition: color 0.15s ease, border-color 0.15s ease; }
+               .tc-chip i { font-size: 0.62rem; opacity: 0.55; }
+               .tc-chip:hover { color: var(--global-theme-color); border-color: var(--global-theme-color); text-decoration: none; }
+               .tc-chip .tc-count { font-size: 0.68rem; opacity: 0.6; font-variant-numeric: tabular-nums; }
+               .tc-hot { font-size: 0.88rem; font-weight: 500; color: var(--global-text-color); }
+               .tc-one { opacity: 0.85; }
+            </style>
+            <div class="tag-cloud">
+               <div class="tag-cloud-label"><span class="lang-en">categories</span><span class="lang-zh" style="display:none;">分类</span></div>
+               <div class="tag-cloud-group">
+                  <a class="tc-chip tc-hot" href="/blog/category/products/"><i class="fa-solid fa-tag"></i>products<span class="tc-count">10</span></a>
+                  <a class="tc-chip tc-hot" href="/blog/category/research/"><i class="fa-solid fa-tag"></i>research<span class="tc-count">7</span></a>
+                  <a class="tc-chip" href="/blog/category/organization/"><i class="fa-solid fa-tag"></i>organization<span class="tc-count">4</span></a>
+                  <a class="tc-chip" href="/blog/category/others/"><i class="fa-solid fa-tag"></i>others<span class="tc-count">4</span></a>
+                  <a class="tc-chip" href="/blog/category/corporate/"><i class="fa-solid fa-tag"></i>corporate<span class="tc-count">3</span></a>
+                  <a class="tc-chip" href="/blog/category/opensource/"><i class="fa-solid fa-tag"></i>open source<span class="tc-count">2</span></a>
+                  <a class="tc-chip tc-one" href="/blog/category/branding/"><i class="fa-solid fa-tag"></i>branding</a>
+                  <a class="tc-chip tc-one" href="/blog/category/community/"><i class="fa-solid fa-tag"></i>community</a>
+               </div>
+               <div class="tag-cloud-label"><span class="lang-en">tags</span><span class="lang-zh" style="display:none;">标签</span></div>
+               <div class="tag-cloud-group">
+                  <a class="tc-chip tc-hot" href="/blog/tag/llm/"><i class="fa-solid fa-hashtag"></i>llm<span class="tc-count">9</span></a>
+                  <a class="tc-chip tc-hot" href="/blog/tag/corporate/"><i class="fa-solid fa-hashtag"></i>corporate<span class="tc-count">6</span></a>
+                  <a class="tc-chip tc-hot" href="/blog/tag/opensource/"><i class="fa-solid fa-hashtag"></i>open source<span class="tc-count">6</span></a>
+                  <a class="tc-chip" href="/blog/tag/intrapreneur/"><i class="fa-solid fa-hashtag"></i>intrapreneur<span class="tc-count">3</span></a>
+                  <a class="tc-chip" href="/blog/tag/speculative-decoding/"><i class="fa-solid fa-hashtag"></i>speculative decoding<span class="tc-count">3</span></a>
+                  <a class="tc-chip" href="/blog/tag/10yo/"><i class="fa-solid fa-hashtag"></i>10yo<span class="tc-count">2</span></a>
+                  <a class="tc-chip" href="/blog/tag/academia/"><i class="fa-solid fa-hashtag"></i>academia<span class="tc-count">2</span></a>
+                  <a class="tc-chip" href="/blog/tag/bedrock/"><i class="fa-solid fa-hashtag"></i>bedrock<span class="tc-count">2</span></a>
+                  <a class="tc-chip" href="/blog/tag/travel/"><i class="fa-solid fa-hashtag"></i>travel<span class="tc-count">2</span></a>
+                  <a class="tc-chip tc-one" href="/blog/tag/1yo/"><i class="fa-solid fa-hashtag"></i>1yo</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/agenticai/"><i class="fa-solid fa-hashtag"></i>agentic ai</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/ai/"><i class="fa-solid fa-hashtag"></i>ai</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/anthropic/"><i class="fa-solid fa-hashtag"></i>anthropic</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/book/"><i class="fa-solid fa-hashtag"></i>book</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/builder/"><i class="fa-solid fa-hashtag"></i>builder</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/career/"><i class="fa-solid fa-hashtag"></i>career</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/claude/"><i class="fa-solid fa-hashtag"></i>claude</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/cncf/"><i class="fa-solid fa-hashtag"></i>cncf</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/conference/"><i class="fa-solid fa-hashtag"></i>conference</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/decade/"><i class="fa-solid fa-hashtag"></i>decade</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/deepseek/"><i class="fa-solid fa-hashtag"></i>deepseek</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/deliverables/"><i class="fa-solid fa-hashtag"></i>deliverables</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/eagle/"><i class="fa-solid fa-hashtag"></i>eagle</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/engineering/"><i class="fa-solid fa-hashtag"></i>engineering</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/fifa/"><i class="fa-solid fa-hashtag"></i>fifa</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/flywheel/"><i class="fa-solid fa-hashtag"></i>flywheel</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/gemini/"><i class="fa-solid fa-hashtag"></i>gemini</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/genai/"><i class="fa-solid fa-hashtag"></i>genai</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/icml/"><i class="fa-solid fa-hashtag"></i>icml</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/inference/"><i class="fa-solid fa-hashtag"></i>inference</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/mlsys/"><i class="fa-solid fa-hashtag"></i>mlsys</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/mtp/"><i class="fa-solid fa-hashtag"></i>mtp</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/nantucket/"><i class="fa-solid fa-hashtag"></i>nantucket</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/neurips/"><i class="fa-solid fa-hashtag"></i>neurips</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/primitive/"><i class="fa-solid fa-hashtag"></i>primitive</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/productivity/"><i class="fa-solid fa-hashtag"></i>productivity</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/programs/"><i class="fa-solid fa-hashtag"></i>programs</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/projectversaries/"><i class="fa-solid fa-hashtag"></i>projectversaries</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/recap/"><i class="fa-solid fa-hashtag"></i>recap</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/reflection/"><i class="fa-solid fa-hashtag"></i>reflection</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/research/"><i class="fa-solid fa-hashtag"></i>research</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/review/"><i class="fa-solid fa-hashtag"></i>review</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/seattle/"><i class="fa-solid fa-hashtag"></i>seattle</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/serverless/"><i class="fa-solid fa-hashtag"></i>serverless</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/storyline/"><i class="fa-solid fa-hashtag"></i>storyline</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/technicalleadership/"><i class="fa-solid fa-hashtag"></i>technical leadership</a>
+                  <a class="tc-chip tc-one" href="/blog/tag/vllm/"><i class="fa-solid fa-hashtag"></i>vllm</a>
+               </div>
             </div>
             <br> 
             <div class="container featured-posts">
@@ -124,42 +177,42 @@
                      <a class="post-title" href="/blog/2026/fifa/"><span class="lang-en">2026 FIFA World Cup Seattle Watch Experience</span><span class="lang-zh" style="display:none;">2026 世界杯西雅图观赛体验</span></a>
                   </h3>
                   <p class="post-meta"><span class="lang-en"> 1,709 words   ·   9 min read   ·   July, 2026 </span><span class="lang-zh" style="display:none;"> 约 2,875 字   ·   9 分钟阅读   ·   July, 2026 </span></p>
-                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/fifa"> <i class="fa-solid fa-hashtag fa-sm"></i> fifa</a>   <a href="/blog/tag/seattle"> <i class="fa-solid fa-hashtag fa-sm"></i> seattle</a>   ·   <a href="/blog/category/others"> <i class="fa-solid fa-tag fa-sm"></i> others</a> </p>
+                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/fifa"> <i class="fa-solid fa-hashtag fa-sm"></i> fifa</a> <a href="/blog/tag/seattle"> <i class="fa-solid fa-hashtag fa-sm"></i> seattle</a>   ·   <a href="/blog/category/others"> <i class="fa-solid fa-tag fa-sm"></i> others</a> </p>
                </li>
                <li>
                   <h3>
                      <a class="post-title" href="/blog/2026/french-riviera/"><span class="lang-en">How Google Gemini Helped Me Survive My French Riviera Trip</span><span class="lang-zh" style="display:none;">Google Gemini 如何帮我搞定南法之旅</span></a>
                   </h3>
                   <p class="post-meta"><span class="lang-en"> 2,973 words   ·   15 min read   ·   July, 2026 </span><span class="lang-zh" style="display:none;"> 约 5,002 字   ·   14 分钟阅读   ·   July, 2026 </span></p>
-                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/travel"> <i class="fa-solid fa-hashtag fa-sm"></i> travel</a>   <a href="/blog/tag/gemini"> <i class="fa-solid fa-hashtag fa-sm"></i> gemini</a>   <a href="/blog/tag/ai"> <i class="fa-solid fa-hashtag fa-sm"></i> ai</a>   ·   <a href="/blog/category/others"> <i class="fa-solid fa-tag fa-sm"></i> others</a> </p>
+                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/travel"> <i class="fa-solid fa-hashtag fa-sm"></i> travel</a> <a href="/blog/tag/gemini"> <i class="fa-solid fa-hashtag fa-sm"></i> gemini</a> <a href="/blog/tag/ai"> <i class="fa-solid fa-hashtag fa-sm"></i> ai</a>   ·   <a href="/blog/category/others"> <i class="fa-solid fa-tag fa-sm"></i> others</a> </p>
                </li>
                <li>
                   <h3>
                      <a class="post-title" href="/blog/2026/storyline/"><span class="lang-en">A Worldview: Storyline-Driven Plot Progression and the Pursuit of Completion</span><span class="lang-zh" style="display:none;">一个世界观：故事线推动的剧情发展和完成度尝试</span></a>
                   </h3>
                   <p class="post-meta"><span class="lang-en"> 763 words   ·   4 min read   ·   July, 2026 </span><span class="lang-zh" style="display:none;"> 约 1,151 字   ·   4 分钟阅读   ·   July, 2026 </span></p>
-                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/travel"> <i class="fa-solid fa-hashtag fa-sm"></i> travel</a>   <a href="/blog/tag/nantucket"> <i class="fa-solid fa-hashtag fa-sm"></i> nantucket</a>   <a href="/blog/tag/storyline"> <i class="fa-solid fa-hashtag fa-sm"></i> storyline</a>   ·   <a href="/blog/category/others"> <i class="fa-solid fa-tag fa-sm"></i> others</a> </p>
+                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/travel"> <i class="fa-solid fa-hashtag fa-sm"></i> travel</a> <a href="/blog/tag/nantucket"> <i class="fa-solid fa-hashtag fa-sm"></i> nantucket</a> <a href="/blog/tag/storyline"> <i class="fa-solid fa-hashtag fa-sm"></i> storyline</a>   ·   <a href="/blog/category/others"> <i class="fa-solid fa-tag fa-sm"></i> others</a> </p>
                </li>
                <li>
                   <h3>
                      <a class="post-title" href="/blog/2026/speculativedecoding/"><span class="lang-en">Trendings on Speculative Decoding</span><span class="lang-zh" style="display:none;">投机解码（Speculative Decoding）趋势</span></a>
                   </h3>
                   <p class="post-meta"><span class="lang-en"> 5,473 words   ·   28 min read   ·   June, 2026 </span><span class="lang-zh" style="display:none;"> 约 8,885 字   ·   26 分钟阅读   ·   June, 2026 </span></p>
-                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>   <a href="/blog/tag/mtp"> <i class="fa-solid fa-hashtag fa-sm"></i> mtp</a>   <a href="/blog/tag/eagle"> <i class="fa-solid fa-hashtag fa-sm"></i> eagle</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
+                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative decoding</a> <a href="/blog/tag/mtp"> <i class="fa-solid fa-hashtag fa-sm"></i> mtp</a> <a href="/blog/tag/inference"> <i class="fa-solid fa-hashtag fa-sm"></i> inference</a> <a href="/blog/tag/eagle"> <i class="fa-solid fa-hashtag fa-sm"></i> eagle</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
                </li>
                <li>
                   <h3>
                      <a class="post-title" href="/blog/2026/ant/"><span class="lang-en">My Story with Anthropic</span><span class="lang-zh" style="display:none;">我与 Anthropic 的故事</span></a>
                   </h3>
                   <p class="post-meta"><span class="lang-en"> 1,758 words   ·   9 min read   ·   June, 2026 </span><span class="lang-zh" style="display:none;"> 约 2,833 字   ·   8 分钟阅读   ·   June, 2026 </span></p>
-                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/anthropic"> <i class="fa-solid fa-hashtag fa-sm"></i> anthropic</a>   <a href="/blog/tag/claude"> <i class="fa-solid fa-hashtag fa-sm"></i> claude</a>   <a href="/blog/tag/bedrock"> <i class="fa-solid fa-hashtag fa-sm"></i> bedrock</a>   ·   <a href="/blog/category/corporate"> <i class="fa-solid fa-tag fa-sm"></i> corporate</a> </p>
+                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/anthropic"> <i class="fa-solid fa-hashtag fa-sm"></i> anthropic</a> <a href="/blog/tag/claude"> <i class="fa-solid fa-hashtag fa-sm"></i> claude</a> <a href="/blog/tag/bedrock"> <i class="fa-solid fa-hashtag fa-sm"></i> bedrock</a>   ·   <a href="/blog/category/corporate"> <i class="fa-solid fa-tag fa-sm"></i> corporate</a> </p>
                </li>
                <li>
                   <h3>
                      <a class="post-title" href="/blog/2026/curiosity-driven-builder/"><span class="lang-en">Curiosity-Driven Builder's Journey</span><span class="lang-zh" style="display:none;">好奇心驱动的创造者之旅</span></a>
                   </h3>
                   <p class="post-meta"><span class="lang-en"> 10,480 words   ·   53 min read   ·   June, 2026 </span><span class="lang-zh" style="display:none;"> 约 16,220 字   ·   47 分钟阅读   ·   June, 2026 </span></p>
-                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/career"> <i class="fa-solid fa-hashtag fa-sm"></i> career</a>   <a href="/blog/tag/builder"> <i class="fa-solid fa-hashtag fa-sm"></i> builder</a>   ·   <a href="/blog/category/corporate"> <i class="fa-solid fa-tag fa-sm"></i> corporate</a> </p>
+                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/career"> <i class="fa-solid fa-hashtag fa-sm"></i> career</a> <a href="/blog/tag/builder"> <i class="fa-solid fa-hashtag fa-sm"></i> builder</a>   ·   <a href="/blog/category/corporate"> <i class="fa-solid fa-tag fa-sm"></i> corporate</a> </p>
                </li>
                <li>
                   <h3>
@@ -180,21 +233,21 @@
                      <a class="post-title" href="/blog/2026/mlsys/"><span class="lang-en">MLSys 2026: Speculative Decoding, Invited Talks &amp; What's Next</span><span class="lang-zh" style="display:none;">MLSys 2026：投机解码、邀请演讲与未来展望</span></a>
                   </h3>
                   <p class="post-meta"><span class="lang-en"> 2,113 words   ·   11 min read   ·   May, 2026 </span><span class="lang-zh" style="display:none;"> 约 3,333 字   ·   10 分钟阅读   ·   May, 2026 </span></p>
-                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/mlsys"> <i class="fa-solid fa-hashtag fa-sm"></i> mlsys</a>   <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
+                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/mlsys"> <i class="fa-solid fa-hashtag fa-sm"></i> mlsys</a> <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative decoding</a> <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
                </li>
                <li>
                   <h3>
                      <a class="post-title" href="/blog/2026/decade/"><span class="lang-en">Decade at Amazon</span><span class="lang-zh" style="display:none;">在亚马逊的十年</span></a>
                   </h3>
                   <p class="post-meta"><span class="lang-en"> 690 words   ·   4 min read   ·   March, 2026 </span><span class="lang-zh" style="display:none;"> 约 1,108 字   ·   3 分钟阅读   ·   March, 2026 </span></p>
-                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/veteran"> <i class="fa-solid fa-hashtag fa-sm"></i> veteran</a>   <a href="/blog/tag/amazon"> <i class="fa-solid fa-hashtag fa-sm"></i> amazon</a>   ·   <a href="/blog/category/corporate"> <i class="fa-solid fa-tag fa-sm"></i> corporate</a> </p>
+                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/decade"> <i class="fa-solid fa-hashtag fa-sm"></i> decade</a>   ·   <a href="/blog/category/corporate"> <i class="fa-solid fa-tag fa-sm"></i> corporate</a> </p>
                </li>
                <li>
                   <h3>
                      <a class="post-title" href="/blog/2026/vllm/"><span class="lang-en">vLLM Community Collaboration Newsletter</span><span class="lang-zh" style="display:none;">vLLM 社区协作简报</span></a>
                   </h3>
                   <p class="post-meta"> 996 words   ·   5 min read   ·   February, 2026 </p>
-                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/vllm"> <i class="fa-solid fa-hashtag fa-sm"></i> vllm</a>   <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>   <a href="/blog/tag/open-source"> <i class="fa-solid fa-hashtag fa-sm"></i> open-source</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
+                  <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/vllm"> <i class="fa-solid fa-hashtag fa-sm"></i> vllm</a> <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative decoding</a> <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
                </li>
                <li>
                   <h3>
@@ -208,7 +261,7 @@
                      <a class="post-title" href="/blog/2025/llm/"><span class="lang-en">LLM Year in Review</span><span class="lang-zh" style="display:none;">LLM 年度回顾</span></a>
                   </h3>
                   <p class="post-meta"><span class="lang-en"> 1,727 words   ·   9 min read   ·   December, 2025 </span><span class="lang-zh" style="display:none;"> 约 3,032 字   ·   9 分钟阅读   ·   December, 2025 </span></p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/open-source"> <i class="fa-solid fa-hashtag fa-sm"></i> open-source</a>   <a href="/blog/tag/review"> <i class="fa-solid fa-hashtag fa-sm"></i> review</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a> <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a> <a href="/blog/tag/review"> <i class="fa-solid fa-hashtag fa-sm"></i> review</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
                </li>
                <li>
                   <h3>
@@ -219,7 +272,7 @@
                   </h3>
                   <p>My experience at NeurIPS 2025 in Mexico City</p>
                   <p class="post-meta"><span class="lang-en"> 1,156 words   ·   6 min read   ·   December, 2025 </span><span class="lang-zh" style="display:none;"> 约 1,908 字   ·   5 分钟阅读   ·   December, 2025 </span></p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/neurips"> <i class="fa-solid fa-hashtag fa-sm"></i> neurips</a>   <a href="/blog/tag/conference"> <i class="fa-solid fa-hashtag fa-sm"></i> conference</a>   <a href="/blog/tag/academia"> <i class="fa-solid fa-hashtag fa-sm"></i> academia</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/neurips"> <i class="fa-solid fa-hashtag fa-sm"></i> neurips</a> <a href="/blog/tag/conference"> <i class="fa-solid fa-hashtag fa-sm"></i> conference</a> <a href="/blog/tag/academia"> <i class="fa-solid fa-hashtag fa-sm"></i> academia</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
                </li>
                <li>
                   <h3>
@@ -230,7 +283,7 @@
                   </h3>
                   <p>DeepSeek's impact on open-source LLMs and the new book 'DeepSeek in Practice'</p>
                   <p class="post-meta"><span class="lang-en"> 826 words   ·   5 min read   ·   December, 2025 </span><span class="lang-zh" style="display:none;"> 约 1,183 字   ·   4 分钟阅读   ·   December, 2025 </span></p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/deepseek"> <i class="fa-solid fa-hashtag fa-sm"></i> deepseek</a>   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/open-source"> <i class="fa-solid fa-hashtag fa-sm"></i> open-source</a>   <a href="/blog/tag/book"> <i class="fa-solid fa-hashtag fa-sm"></i> book</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/deepseek"> <i class="fa-solid fa-hashtag fa-sm"></i> deepseek</a> <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a> <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a> <a href="/blog/tag/book"> <i class="fa-solid fa-hashtag fa-sm"></i> book</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
                </li>
                <li>
                   <h3>
@@ -241,7 +294,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"><span class="lang-en"> 910 words   ·   5 min read   ·   August, 2025 </span><span class="lang-zh" style="display:none;"> 约 1,454 字   ·   4 分钟阅读   ·   August, 2025 </span></p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/research"> <i class="fa-solid fa-hashtag fa-sm"></i> research</a>   <a href="/blog/tag/engineering"> <i class="fa-solid fa-hashtag fa-sm"></i> engineering</a>   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   ·   <a href="/blog/category/organization"> <i class="fa-solid fa-tag fa-sm"></i> organization</a> </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/research"> <i class="fa-solid fa-hashtag fa-sm"></i> research</a> <a href="/blog/tag/engineering"> <i class="fa-solid fa-hashtag fa-sm"></i> engineering</a> <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   ·   <a href="/blog/category/organization"> <i class="fa-solid fa-tag fa-sm"></i> organization</a> </p>
                </li>
                <li>
                   <h3>
@@ -252,7 +305,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"><span class="lang-en"> 612 words   ·   4 min read   ·   July, 2025 </span><span class="lang-zh" style="display:none;"> 约 989 字   ·   3 分钟阅读   ·   July, 2025 </span></p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/icml"> <i class="fa-solid fa-hashtag fa-sm"></i> icml</a>   <a href="/blog/tag/academia"> <i class="fa-solid fa-hashtag fa-sm"></i> academia</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a> <a href="/blog/tag/icml"> <i class="fa-solid fa-hashtag fa-sm"></i> icml</a> <a href="/blog/tag/academia"> <i class="fa-solid fa-hashtag fa-sm"></i> academia</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
                </li>
                <li>
                   <h3>
@@ -263,7 +316,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"> 8 words   ·   1 min read   ·   July, 2025 </p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a>   ·   <a href="/blog/category/organization"> <i class="fa-solid fa-tag fa-sm"></i> organization</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a>   ·   <a href="/blog/category/organization"> <i class="fa-solid fa-tag fa-sm"></i> organization</a> </p>
                </li>
                <li>
                   <h3>
@@ -274,7 +327,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"> 32 words   ·   1 min read   ·   June, 2025 </p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> LLM</a>   <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> opensource</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a> <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
                </li>
                <li>
                   <h3>
@@ -285,7 +338,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"><span class="lang-en"> 1,088 words   ·   6 min read   ·   May, 2025 </span><span class="lang-zh" style="display:none;"> 约 1,981 字   ·   6 分钟阅读   ·   May, 2025 </span></p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> LLM</a>   <a href="/blog/tag/primitive"> <i class="fa-solid fa-hashtag fa-sm"></i> primitive</a>   ·   <a href="/blog/category/oss"> <i class="fa-solid fa-tag fa-sm"></i> oss</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a> <a href="/blog/tag/primitive"> <i class="fa-solid fa-hashtag fa-sm"></i> primitive</a>   ·   <a href="/blog/category/opensource"> <i class="fa-solid fa-tag fa-sm"></i> open source</a> </p>
                </li>
                <li>
                   <h3>
@@ -296,7 +349,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"> 76 words   ·   1 min read   ·   May, 2025 </p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> LLM</a>   <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> opensource</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a> <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
                </li>
                <li>
                   <h3>
@@ -307,7 +360,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"> 7 words   ·   1 min read   ·   May, 2025 </p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/programs"> <i class="fa-solid fa-hashtag fa-sm"></i> programs</a>   <a href="/blog/tag/intrapreneur"> <i class="fa-solid fa-hashtag fa-sm"></i> intrapreneur</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/programs"> <i class="fa-solid fa-hashtag fa-sm"></i> programs</a> <a href="/blog/tag/intrapreneur"> <i class="fa-solid fa-hashtag fa-sm"></i> intrapreneur</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
                </li>
                <li>
                   <h3>
@@ -318,7 +371,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"><span class="lang-en"> 1,623 words   ·   9 min read   ·   April, 2025 </span><span class="lang-zh" style="display:none;"> 约 2,492 字   ·   8 分钟阅读   ·   April, 2025 </span></p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/cncf"> <i class="fa-solid fa-hashtag fa-sm"></i> CNCF</a>   <a href="/blog/tag/10yo"> <i class="fa-solid fa-hashtag fa-sm"></i> 10yo</a>   ·   <a href="/blog/category/opensource"> <i class="fa-solid fa-tag fa-sm"></i> open source</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/cncf"> <i class="fa-solid fa-hashtag fa-sm"></i> cncf</a> <a href="/blog/tag/10yo"> <i class="fa-solid fa-hashtag fa-sm"></i> 10yo</a> <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a> <a href="/blog/tag/agenticai"> <i class="fa-solid fa-hashtag fa-sm"></i> agentic ai</a>   ·   <a href="/blog/category/opensource"> <i class="fa-solid fa-tag fa-sm"></i> open source</a> </p>
                </li>
                <li>
                   <h3>
@@ -329,7 +382,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"> 2 words   ·   1 min read   ·   April, 2025 </p>
-                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/Projectversaries"> <i class="fa-solid fa-hashtag fa-sm"></i> Projectversaries</a>   <a href="/blog/tag/intrapreneur"> <i class="fa-solid fa-hashtag fa-sm"></i> intrapreneur</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/projectversaries"> <i class="fa-solid fa-hashtag fa-sm"></i> projectversaries</a> <a href="/blog/tag/intrapreneur"> <i class="fa-solid fa-hashtag fa-sm"></i> intrapreneur</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
                </li>
                <li>
                   <h3>
@@ -340,7 +393,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"> 51 words   ·   1 min read   ·   December, 2024 </p>
-                  <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/GenAI"> <i class="fa-solid fa-hashtag fa-sm"></i> GenAI</a>   <a href="/blog/tag/productivity"> <i class="fa-solid fa-hashtag fa-sm"></i> productivity</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/genai"> <i class="fa-solid fa-hashtag fa-sm"></i> genai</a> <a href="/blog/tag/productivity"> <i class="fa-solid fa-hashtag fa-sm"></i> productivity</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
                </li>
                <li>
                   <h3>
@@ -351,7 +404,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"><span class="lang-en"> 2,261 words   ·   12 min read   ·   December, 2024 </span><span class="lang-zh" style="display:none;"> 约 3,517 字   ·   10 分钟阅读   ·   December, 2024 </span></p>
-                  <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a>   ·   <a href="/blog/tag/bedrock"> <i class="fa-solid fa-hashtag fa-sm"></i> bedrock</a>   <a href="/blog/tag/1yo"> <i class="fa-solid fa-hashtag fa-sm"></i> 1yo</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a> <a href="/blog/tag/bedrock"> <i class="fa-solid fa-hashtag fa-sm"></i> bedrock</a> <a href="/blog/tag/1yo"> <i class="fa-solid fa-hashtag fa-sm"></i> 1yo</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
                </li>
                <li>
                   <h3>
@@ -362,7 +415,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"><span class="lang-en"> 2,509 words   ·   13 min read   ·   December, 2024 </span><span class="lang-zh" style="display:none;"> 约 3,931 字   ·   11 分钟阅读   ·   December, 2024 </span></p>
-                  <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a>   ·   <a href="/blog/tag/technicalleadership "> <i class="fa-solid fa-hashtag fa-sm"></i> technical leadership</a>   ·   <a href="/blog/category/organization"> <i class="fa-solid fa-tag fa-sm"></i> organization</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a> <a href="/blog/tag/technicalleadership"> <i class="fa-solid fa-hashtag fa-sm"></i> technical leadership</a>   ·   <a href="/blog/category/organization"> <i class="fa-solid fa-tag fa-sm"></i> organization</a> </p>
                </li>
                <li>
                   <h3>
@@ -373,7 +426,7 @@
                   </h3>
                   <p></p>
                   <p class="post-meta"><span class="lang-en"> 434 words   ·   3 min read   ·   December, 2024 </span><span class="lang-zh" style="display:none;"> 约 683 字   ·   2 分钟阅读   ·   December, 2024 </span></p>
-                  <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a>   ·   <a href="/blog/tag/serverless "> <i class="fa-solid fa-hashtag fa-sm"></i> serverless</a>   <a href="/blog/tag/10yo"> <i class="fa-solid fa-hashtag fa-sm"></i> 10yo</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a>   </p>
+                  <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/corporate"> <i class="fa-solid fa-hashtag fa-sm"></i> corporate</a> <a href="/blog/tag/serverless"> <i class="fa-solid fa-hashtag fa-sm"></i> serverless</a> <a href="/blog/tag/10yo"> <i class="fa-solid fa-hashtag fa-sm"></i> 10yo</a>   ·   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
                </li>
                <li>
                   <h3>
