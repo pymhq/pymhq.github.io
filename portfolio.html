@@ -789,6 +789,20 @@
         background-color: var(--global-bg-color);
         opacity: 0.95;
       }
+
+      /* Keep nav labels on one line on desktop. This page's navbar brand
+         (social icons) is ~20px wider than the text brand used on other
+         pages, which left the nav list ~1.5px short of its natural width;
+         flexbox then shrank the widest item ("Books & Invited Talks") and
+         wrapped "Talks" onto a second line, doubling the navbar height and
+         leaving a visual gap after "Blog". Scoped to viewports wide enough
+         to fit all items on one line, so narrower viewports keep the old
+         wrapping behavior instead of clipping items off-screen. */
+      @media (min-width: 1050px) {
+        .navbar .navbar-nav .nav-link {
+          white-space: nowrap;
+        }
+      }
       
       .navbar .dropdown-menu {
         background-color: var(--global-bg-color);
