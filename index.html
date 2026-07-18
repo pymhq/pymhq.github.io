@@ -138,36 +138,62 @@
             margin: 14px auto 6px;
          }
 
-         /* Wordless cues, visitings scroll-cue style on the horizontal axis */
+         /* Semicircular edge handles: a soft half-disc "drawer handle" resting
+            on the screen edge, chevron centered in the visible half, gentle
+            inward nudge. Replaces the bare chevron cues. */
          .h-cue {
             position: fixed;
             top: 50%;
-            z-index: 1500;
+            width: 56px;
+            height: 56px;
+            margin-top: -28px;
+            border-radius: 50%;
+            background: var(--global-card-bg-color);
+            border: 1px solid var(--global-divider-color);
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #9aa3ad;
-            font-size: 1.7rem;
+            font-size: 1.05rem;
+            z-index: 1500;
             cursor: pointer;
             -webkit-user-select: none;
             user-select: none;
+            transition: box-shadow 0.25s ease, right 0.25s ease, left 0.25s ease, color 0.25s ease;
+         }
+         .h-cue:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            color: var(--global-theme-color);
          }
          #cue-right {
-            right: 22px;
-            animation: cueBobRight 2.2s ease-in-out infinite;
+            right: -28px;
+            padding-right: 26px; /* center the chevron in the visible half */
          }
+         #cue-right:hover { right: -20px; }
+         #cue-right i { animation: cueNudgeLeft 2.4s ease-in-out infinite; }
          #cue-left {
-            left: 22px;
+            left: -28px;
+            padding-left: 26px;
             display: none;
-            animation: cueBobLeft 2.2s ease-in-out infinite;
          }
-         @keyframes cueBobRight {
-            0%, 100% { transform: translateY(-50%) translateX(0); opacity: 0.5; }
-            50%      { transform: translateY(-50%) translateX(10px); opacity: 0.95; }
+         #cue-left:hover { left: -20px; }
+         #cue-left i { animation: cueNudgeRight 2.4s ease-in-out infinite; }
+         @keyframes cueNudgeLeft {
+            0%, 100% { transform: translateX(0); opacity: 0.65; }
+            50%      { transform: translateX(-4px); opacity: 1; }
          }
-         @keyframes cueBobLeft {
-            0%, 100% { transform: translateY(-50%) translateX(0); opacity: 0.5; }
-            50%      { transform: translateY(-50%) translateX(-10px); opacity: 0.95; }
+         @keyframes cueNudgeRight {
+            0%, 100% { transform: translateX(0); opacity: 0.65; }
+            50%      { transform: translateX(4px); opacity: 1; }
          }
          @media (prefers-reduced-motion: reduce) {
-            .h-cue { animation: none; transform: translateY(-50%); }
+            #cue-right i, #cue-left i { animation: none; }
+         }
+         @media (max-width: 480px) {
+            .h-cue { width: 48px; height: 48px; margin-top: -24px; font-size: 0.95rem; }
+            #cue-right { right: -24px; padding-right: 22px; }
+            #cue-left { left: -24px; padding-left: 22px; }
          }
       </style>
    </head>
@@ -310,10 +336,10 @@
            pattern on the x axis). Cues scroll between the two panels; the
            browser's own physics handles swipes — no custom gesture code. -->
       <div class="h-cue" id="cue-right" role="button" tabindex="0" aria-label="Endorsements">
-         <i class="fa-solid fa-angles-right"></i>
+         <i class="fa-solid fa-chevron-right"></i>
       </div>
       <div class="h-cue" id="cue-left" role="button" tabindex="0" aria-label="Back to home">
-         <i class="fa-solid fa-angles-left"></i>
+         <i class="fa-solid fa-chevron-left"></i>
       </div>
       <script>
          (function() {
@@ -337,8 +363,8 @@
             // Swap cues + trigger the reveal transition based on position.
             function refresh() {
                var onSecond = panels.scrollLeft > panels.clientWidth / 2;
-               cueRight.style.display = onSecond ? 'none' : 'block';
-               cueLeft.style.display = onSecond ? 'block' : 'none';
+               cueRight.style.display = onSecond ? 'none' : 'flex';
+               cueLeft.style.display = onSecond ? 'flex' : 'none';
                if (panels.scrollLeft > panels.clientWidth / 4) {
                   endorsePanel.classList.add('visible');
                }
