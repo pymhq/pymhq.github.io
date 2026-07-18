@@ -92,27 +92,47 @@
             margin: 0 auto 3rem;
          }
 
-         /* Wordless return cue: large muted double-chevron at the left edge,
-            bobbing leftward. Click or a horizontal trackpad swipe slides the
-            page out and returns home. */
+         /* Semicircular return handle on the left edge — same design as the
+            homepage panel cues: half-disc resting on the screen edge,
+            chevron centered in the visible half, gentle inward nudge. */
          #back-cue {
             position: fixed;
-            left: 22px;
+            left: -28px;
             top: 50%;
-            z-index: 1500;
+            width: 56px;
+            height: 56px;
+            margin-top: -28px;
+            padding-left: 26px; /* center the chevron in the visible half */
+            border-radius: 50%;
+            background: var(--global-card-bg-color);
+            border: 1px solid var(--global-divider-color);
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #9aa3ad;
-            font-size: 1.7rem;
+            font-size: 1.05rem;
+            z-index: 1500;
             cursor: pointer;
             -webkit-user-select: none;
             user-select: none;
-            animation: backBobX 2.2s ease-in-out infinite;
+            transition: box-shadow 0.25s ease, left 0.25s ease, color 0.25s ease;
          }
-         @keyframes backBobX {
-            0%, 100% { transform: translateY(-50%) translateX(0); opacity: 0.5; }
-            50%      { transform: translateY(-50%) translateX(-10px); opacity: 0.95; }
+         #back-cue:hover {
+            left: -20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            color: var(--global-theme-color);
+         }
+         #back-cue i { animation: backNudge 2.4s ease-in-out infinite; }
+         @keyframes backNudge {
+            0%, 100% { transform: translateX(0); opacity: 0.65; }
+            50%      { transform: translateX(4px); opacity: 1; }
          }
          @media (prefers-reduced-motion: reduce) {
-            #back-cue { animation: none; transform: translateY(-50%); }
+            #back-cue i { animation: none; }
+         }
+         @media (max-width: 480px) {
+            #back-cue { width: 48px; height: 48px; margin-top: -24px; left: -24px; padding-left: 22px; font-size: 0.95rem; }
          }
          body.leaving {
             transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.45s ease;
@@ -142,7 +162,7 @@
       </div>
       <div id="footer-placeholder"></div>
       <div id="back-cue" role="button" tabindex="0" aria-label="Back to home">
-         <i class="fa-solid fa-angles-left"></i>
+         <i class="fa-solid fa-chevron-left"></i>
       </div>
       <script>
          // Return gesture: click the cue or swipe horizontally on the trackpad
