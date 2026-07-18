@@ -55,10 +55,126 @@
          .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
          .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
          .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+
+         /* ============================================================
+            Endorsements full panel (second section, reached by swiping
+            right). Same pattern as the visitings page's PNW panel, but
+            on the horizontal axis: native scroll + snap, one direction.
+            ============================================================ */
+         html, body {
+            height: 100%;
+            overflow: hidden; /* the panel container owns scrolling */
+         }
+
+         .hpanels {
+            display: flex;
+            width: 100vw;
+            height: calc(100vh - 56px); /* below the fixed-top-nav padding */
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            overscroll-behavior-x: contain; /* no browser back/forward swipe */
+            scrollbar-width: none;
+         }
+         .hpanels::-webkit-scrollbar { display: none; }
+
+         .hpanel {
+            flex: 0 0 100vw;
+            height: 100%;
+            overflow-y: auto;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+         }
+
+         /* Second panel reveal, like visitings' #pnw-section */
+         #panel-endorse .endorse-panel-inner {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 24px 20px 90px;
+            opacity: 0;
+            transform: translateX(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+         }
+         #panel-endorse.visible .endorse-panel-inner {
+            opacity: 1;
+            transform: none;
+         }
+
+         .endorse-panel-hero {
+            text-align: center;
+            padding: 12px 0 8px;
+         }
+         .endorse-panel-hero .hero-avatars {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 14px;
+         }
+         .endorse-panel-hero .hero-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--global-bg-color);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+            margin-left: -14px;
+         }
+         .endorse-panel-hero .hero-avatar:first-child { margin-left: 0; }
+         .endorse-panel-hero .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+         }
+         .endorse-panel-hero h2 {
+            font-size: 22px !important;
+            font-weight: 700 !important;
+            margin: 0 0 4px;
+         }
+         .endorse-panel-hero .hero-rule {
+            width: 44px;
+            border: none;
+            border-top: 2px solid var(--global-theme-color);
+            margin: 14px auto 6px;
+         }
+
+         /* Wordless cues, visitings scroll-cue style on the horizontal axis */
+         .h-cue {
+            position: fixed;
+            top: 50%;
+            z-index: 1500;
+            color: #9aa3ad;
+            font-size: 1.7rem;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+         }
+         #cue-right {
+            right: 22px;
+            animation: cueBobRight 2.2s ease-in-out infinite;
+         }
+         #cue-left {
+            left: 22px;
+            display: none;
+            animation: cueBobLeft 2.2s ease-in-out infinite;
+         }
+         @keyframes cueBobRight {
+            0%, 100% { transform: translateY(-50%) translateX(0); opacity: 0.5; }
+            50%      { transform: translateY(-50%) translateX(10px); opacity: 0.95; }
+         }
+         @keyframes cueBobLeft {
+            0%, 100% { transform: translateY(-50%) translateX(0); opacity: 0.5; }
+            50%      { transform: translateY(-50%) translateX(-10px); opacity: 0.95; }
+         }
+         @media (prefers-reduced-motion: reduce) {
+            .h-cue { animation: none; transform: translateY(-50%); }
+         }
       </style>
    </head>
 
    <body class="fixed-top-nav ">
+      <div class="hpanels" id="hpanels">
+         <section class="hpanel" id="panel-home">
       <div class="container-center mt-5">
          <div class="post">
             <header class="post-header">
@@ -93,11 +209,11 @@
                <nav class="nav-links">
                   <a href="/portfolio"><span class="lang-en">About</span><span class="lang-zh" style="display: none;">关于</span></a>
                   <a href="/blog/"><span class="lang-en">Blog</span><span class="lang-zh" style="display: none;">博客</span></a>
-                  <a href="/invited-talks"><span class="lang-en">Books & Invited Talks</span><span class="lang-zh" style="display: none;">书籍 & 邀请演讲</span></a>
-                  <a href="/publication"><span class="lang-en">Publications</span><span class="lang-zh" style="display: none;">发表</span></a>
+                  <a href="/publications"><span class="lang-en">Books & Publications</span><span class="lang-zh" style="display: none;">书籍 & 发表</span></a>
                   <a href="/projects"><span class="lang-en">Projects</span><span class="lang-zh" style="display: none;">项目</span></a>
                   <a href="/service"><span class="lang-en">Services</span><span class="lang-zh" style="display: none;">服务</span></a>
                   <a href="/news"><span class="lang-en">News</span><span class="lang-zh" style="display: none;">新闻</span></a>
+                  <a href="/endorsements"><span class="lang-en">Endorsements</span><span class="lang-zh" style="display: none;">行业背书</span></a>
                   <a href="/resume"><span class="lang-en">Resume</span><span class="lang-zh" style="display: none;">简历</span></a>
                   <a href="https://pengandy.com/studio" target="_blank" rel="noopener"><span class="lang-en">Contact</span><span class="lang-zh" style="display: none;">联系 & 合作</span></a>
                </nav>
@@ -164,6 +280,22 @@
             </div>
          </div>
       </div>
+         </section>
+         <section class="hpanel" id="panel-endorse">
+            <div class="endorse-panel-inner">
+               <div class="endorse-panel-hero">
+                  <div class="hero-avatars">
+                     <div class="hero-avatar"><img src="/assets/img/endorsements/leonard-boussioux.jpg" style="object-position: 50% 20%;" alt="Léonard Boussioux"></div>
+                     <div class="hero-avatar"><img src="/assets/img/endorsements/jennifer-madriaga.jpg" alt="Jennifer Madriaga"></div>
+                     <div class="hero-avatar"><img src="/assets/img/endorsements/yi-zhang.jpg" style="object-position: 50% 30%;" alt="Yi Zhang"></div>
+                  </div>
+                  <h2><span class="lang-en">Endorsements</span><span class="lang-zh" style="display: none;">行业背书</span></h2>
+                  <hr class="hero-rule">
+               </div>
+               <div id="panel-endorse-content"></div>
+            </div>
+         </section>
+      </div>
       <footer class="fixed-bottom">
          <div class="container mt-0">
             <div>© Copyright 2026 Andy Peng.</div>
@@ -174,6 +306,63 @@
       <script type="text/javascript" src="js/mdb.min.js"></script>
       <!-- Custom scripts -->
       <script type="text/javascript"></script>
+      <!-- Endorsements panel: native horizontal scroll-snap (visitings-page
+           pattern on the x axis). Cues scroll between the two panels; the
+           browser's own physics handles swipes — no custom gesture code. -->
+      <div class="h-cue" id="cue-right" role="button" tabindex="0" aria-label="Endorsements">
+         <i class="fa-solid fa-angles-right"></i>
+      </div>
+      <div class="h-cue" id="cue-left" role="button" tabindex="0" aria-label="Back to home">
+         <i class="fa-solid fa-angles-left"></i>
+      </div>
+      <script>
+         (function() {
+            var panels = document.getElementById('hpanels');
+            var cueRight = document.getElementById('cue-right');
+            var cueLeft = document.getElementById('cue-left');
+            var endorsePanel = document.getElementById('panel-endorse');
+
+            function goRight() { panels.scrollTo({ left: panels.clientWidth, behavior: 'smooth' }); }
+            function goLeft()  { panels.scrollTo({ left: 0, behavior: 'smooth' }); }
+            function onKey(fn) {
+               return function(e) {
+                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); }
+               };
+            }
+            cueRight.addEventListener('click', goRight);
+            cueRight.addEventListener('keydown', onKey(goRight));
+            cueLeft.addEventListener('click', goLeft);
+            cueLeft.addEventListener('keydown', onKey(goLeft));
+
+            // Swap cues + trigger the reveal transition based on position.
+            function refresh() {
+               var onSecond = panels.scrollLeft > panels.clientWidth / 2;
+               cueRight.style.display = onSecond ? 'none' : 'block';
+               cueLeft.style.display = onSecond ? 'block' : 'none';
+               if (panels.scrollLeft > panels.clientWidth / 4) {
+                  endorsePanel.classList.add('visible');
+               }
+            }
+            panels.addEventListener('scroll', refresh, { passive: true });
+            refresh();
+
+            // Load the shared recommendations component into the panel
+            // (same single source of truth as the /endorsements page).
+            fetch('/components/recommendations-content.html')
+               .then(function(r) { return r.text(); })
+               .then(function(html) {
+                  var slot = document.getElementById('panel-endorse-content');
+                  if (slot) {
+                     slot.innerHTML = html;
+                     // Content arrives after the initial language pass, so
+                     // re-apply the saved preference to the injected markup.
+                     if (typeof applyLanguage === 'function') {
+                        applyLanguage(localStorage.getItem('preferredLanguage') || 'en');
+                     }
+                  }
+               });
+         })();
+      </script>
       <!-- Language Toggle Script -->
       <script>
          function showEl(el) {

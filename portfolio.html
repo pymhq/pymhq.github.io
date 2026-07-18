@@ -1693,13 +1693,12 @@
                   <ul class="navbar-nav ml-auto flex-nowrap">
 		     <li class="nav-item active"> <a class="nav-link" href="/portfolio"><span class="lang-en">About</span><span class="lang-zh" style="display: none;">关于</span> <span class="sr-only">(current)</span> </a> </li>
 		     <li class="nav-item "> <a class="nav-link" href="/blog/"><span class="lang-en">Blog</span><span class="lang-zh" style="display: none;">博客</span></a> </li>
-                     <li class="nav-item "> <a class="nav-link" href="/invited-talks"><span class="lang-en">Books & Invited Talks</span><span class="lang-zh" style="display: none;">书籍 & 邀请演讲</span></a> </li>
-                     <li class="nav-item "> <a class="nav-link" href="/publication"><span class="lang-en">Publications</span><span class="lang-zh" style="display: none;">发表</span></a> </li>
+                     <li class="nav-item "> <a class="nav-link" href="/publications"><span class="lang-en">Books & Publications</span><span class="lang-zh" style="display: none;">书籍 & 发表</span></a> </li>
                      <li class="nav-item "> <a class="nav-link" href="/projects"><span class="lang-en">Projects</span><span class="lang-zh" style="display: none;">项目</span></a> </li>
                      <li class="nav-item "> <a class="nav-link" href="/service"><span class="lang-en">Services</span><span class="lang-zh" style="display: none;">服务</span></a> </li>
-                     <li class="nav-item "> <a class="nav-link" href="/news"><span class="lang-en">News</span><span class="lang-zh" style="display: none;">新闻</span></a> </li>
+                     <li class="nav-item "> <a class="nav-link" href="/endorsements"><span class="lang-en">Endorsements</span><span class="lang-zh" style="display: none;">行业背书</span></a> </li>
                      <li class="nav-item "> <a class="nav-link" href="/resume"><span class="lang-en">Resume</span><span class="lang-zh" style="display: none;">简历</span></a> </li>
-                     <li class="nav-item "> <a class="nav-link" href="https://pengandy.com/studio" target="_blank" rel="noopener"><span class="lang-en">Contact</span><span class="lang-zh" style="display: none;">联系</span></a> </li>
+                     <li class="nav-item "> <a class="nav-link" href="https://pengandy.com/studio" target="_blank" rel="noopener"><span class="lang-en">Contact</span><span class="lang-zh" style="display: none;">联系 & 合作</span></a> </li>
                   </ul>
                </div>
             </div>
@@ -2044,11 +2043,7 @@
                   </div>
                </div>
 
-               <!-- Recommendations Section -->
-               <div class="post mt-5">
-                  <div id="recommendations-placeholder"></div>
-               </div>
-               </div>
+               <!-- Recommendations moved to the dedicated /endorsements page -->
 
             </article>
          </div>
@@ -2100,44 +2095,5 @@
          });
       </script>
 
-      <script>
-         // Load recommendations component
-         (function() {
-           const placeholder = document.getElementById('recommendations-placeholder');
-           if (placeholder) {
-             // Create the card structure
-             placeholder.innerHTML = `
-               <div class="highlights-section">
-                 <h3 class="highlights-section-title recommendations-section-title lang-en">Recommendations</h3>
-                 <h3 class="highlights-section-title recommendations-section-title lang-zh" style="display: none;">行业背书</h3>
-                 <div id="recommendations-content-placeholder"></div>
-               </div>
-             `;
-
-             // Re-apply the current language so the injected title matches
-             // the rest of the page (this markup is added after the initial
-             // applyLanguage() call on DOMContentLoaded).
-             var currentLang = localStorage.getItem('preferredLanguage') || 'en';
-             placeholder.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
-               var show = currentLang === 'zh' ? el.classList.contains('lang-zh') : el.classList.contains('lang-en');
-               el.style.display = show ? 'block' : 'none';
-             });
-
-             // Load the actual content
-             fetch('/components/recommendations-content.html')
-               .then(response => response.text())
-               .then(html => {
-                 const contentPlaceholder = document.getElementById('recommendations-content-placeholder');
-                 if (contentPlaceholder) {
-                   contentPlaceholder.innerHTML = html;
-                   // The initial applyLanguage() ran before this content was
-                   // injected, so re-apply the saved preference to make the
-                   // recommendation cards match the rest of the page.
-                   applyLanguage(localStorage.getItem('preferredLanguage') || 'en');
-                 }
-               });
-           }
-         })();
-      </script>
    </body>
 </html>
