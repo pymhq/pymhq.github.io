@@ -16,6 +16,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title> Trendings on Speculative Decoding </title>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Noto+Serif+SC:wght@500;600;700&display=swap">
       <meta name="author" content="Peng, Andy">
       <meta name="description" content="A timeline of 2026's speculative decoding wave — Gemma 4 Assistant drafters, Gemini Nano's frozen Multi-Token Prediction on Pixel, and DeepSeek's DSpark — with summaries, a side-by-side comparison table, and the papers behind them.">
       <meta name="keywords" content="speculative decoding, multi-token prediction, MTP, DeepSeek DSpark, Gemini Nano, Gemma 4, Gemma 4 Assistant, EAGLE, LLM inference, drafter">
@@ -53,95 +54,208 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
    </head>
    <style>
+     /* ================================================================
+        FLAGSHIP REDESIGN v2 — style layer only; markup/content untouched.
+        Accent = the site theme blue (light #0076df / dark #2698ba via
+        --global-theme-color), so the article matches the whole site.
+        Design language: ONE accent + left vertical bars + hairlines.
+        Selectors are written to out-rank main.css generics
+        (table td {font-size:1.2rem}, .post .post-meta, blockquote, ...).
+        ================================================================ */
+     :root {
+       --fx-accent: var(--global-theme-color, #0076df);
+       --fx-soft: rgba(0, 118, 223, .06);
+       --fx-mute: #5f6672;
+       --fx-rule: rgba(128, 128, 128, .28);
+       --fx-hair: rgba(128, 128, 128, .15);
+       --fx-yes: #15803d; --fx-no: #b91c1c; --fx-warn: #b45309;
+       --fx-serif: "Source Serif 4", "Noto Serif SC", Georgia, "Songti SC", serif;
+       --fx-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+       --fx-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+       --fx-prose: 680px; --fx-wide: 880px;
+     }
+     @supports (color: color-mix(in srgb, red 5%, transparent)) {
+       :root { --fx-soft: color-mix(in srgb, var(--global-theme-color, #0076df) 7%, transparent); }
+     }
+     html[data-theme=dark] {
+       --fx-mute: #a3aab6;
+       --fx-rule: rgba(200, 200, 220, .28); --fx-hair: rgba(200, 200, 220, .14);
+       --fx-yes: #6ee7a0; --fx-no: #fda4af; --fx-warn: #fcd34d;
+     }
+
      img { pointer-events: none; }
-
-     /* ── Speculative decoding theme ── */
-     :root { --sd-indigo: #4f46e5; --sd-cyan: #06b6d4; --sd-mute: #888; }
-
-     /* opening quote */
-     .sd-quote { margin: 8px 0 36px 0; padding: 24px 28px; background: rgba(79,70,229,0.07); border-left: 4px solid var(--sd-indigo); border-radius: 6px; }
-     .sd-quote p.q { font-size: 1.12em; font-style: italic; line-height: 1.7; margin-bottom: 12px; }
-     .sd-quote p.a { font-size: 0.88em; color: var(--sd-mute); margin: 0; }
-
-     /* chapter heading band */
-     .sd-band { margin: 52px 0 16px 0; }
-     .sd-band .yr { font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sd-indigo); font-weight: 700; }
-     .sd-band h2 { margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid var(--sd-indigo); }
-     .sd-band h2 span { font-weight: 300; color: var(--sd-mute); }
-
-     /* vertical timeline rail */
-     .sd-rail { max-width: 720px; margin: 24px auto 10px; position: relative; padding-left: 26px; }
-     .sd-rail::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--sd-cyan), var(--sd-indigo)); }
-     .sd-stop { position: relative; padding: 0 0 22px 18px; }
-     .sd-stop::before { content: ""; position: absolute; left: -26px; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--sd-indigo); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--sd-indigo); }
-     .sd-stop.future::before { background: transparent; border: 3px dashed var(--sd-indigo); box-shadow: none; }
-     .sd-stop .when { font-weight: 700; font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.04em; color: var(--sd-indigo); }
-     .sd-stop .what { font-size: 0.95em; margin: 2px 0 0; }
-     .sd-rail-cap { text-align: center; font-size: 0.8em; color: var(--sd-mute); margin: 4px auto 6px; max-width: 720px; }
-
-     /* source cards */
-     .sd-srcs { max-width: 760px; margin: 14px auto 6px; display: grid; grid-template-columns: 1fr; gap: 10px; }
-     .sd-src { padding: 12px 16px; border: 1px solid rgba(79,70,229,0.25); border-left: 4px solid var(--sd-indigo); border-radius: 8px; background: rgba(79,70,229,0.03); }
-     .sd-src .lab { font-size: 0.72em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sd-indigo); }
-     .sd-src a { word-break: break-word; }
-
-     /* comparison table */
-     .sd-table-wrap { overflow-x: auto; margin: 18px 0; }
-     table.sd-table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
-     table.sd-table th, table.sd-table td { border: 1px solid rgba(128,128,128,0.3); padding: 9px 12px; vertical-align: top; text-align: left; }
-     table.sd-table thead th { background: var(--sd-indigo); color: #fff; font-weight: 600; }
-     table.sd-table tbody th { background: rgba(79,70,229,0.06); font-weight: 600; white-space: nowrap; }
-     table.sd-table tbody tr:nth-child(even) td { background: rgba(128,128,128,0.04); }
-
-     /* note callout */
-     .sd-note { max-width: 760px; margin: 18px auto; padding: 12px 18px; border: 1px dashed var(--sd-cyan); border-radius: 8px; background: rgba(6,182,212,0.05); font-size: 0.9em; color: #555; }
-
-     blockquote.sd-pq { border-left: 3px solid var(--sd-cyan); margin: 18px auto; padding: 6px 18px; color: #777; font-style: italic; max-width: 720px; }
-
-     /* thread walkthrough cards */
-     .sd-thread { max-width: 760px; margin: 18px auto; }
-     .sd-tw { position: relative; border: 1px solid rgba(79,70,229,0.22); border-radius: 12px; padding: 16px 18px 16px 58px; margin: 0 0 16px; background: rgba(79,70,229,0.03); }
-     .sd-tw .num { position: absolute; left: 14px; top: 16px; width: 32px; height: 32px; border-radius: 50%; background: var(--sd-indigo); color: #fff; font-weight: 700; font-size: 0.8em; display: flex; align-items: center; justify-content: center; }
-     .sd-tw .hd { font-size: 0.8em; color: var(--sd-mute); margin-bottom: 8px; }
-     .sd-tw .hd b { color: #444; }
-     .sd-tw .ttl { font-weight: 700; margin: 0 0 4px; }
-     .sd-tw .bd { font-size: 0.95em; white-space: pre-line; margin: 0; }
-     .sd-tw .bd code { font-size: 0.84em; background: rgba(128,128,128,0.12); padding: 1px 4px; border-radius: 4px; }
-     .sd-tw .imgs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-     .sd-tw .imgs img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(128,128,128,0.2); }
-     .sd-tw .imgs.two img { max-width: 48%; }
-     .sd-tw .lnk { font-size: 0.78em; margin-top: 10px; }
-     .sd-tw.future { border-style: dashed; border-color: var(--sd-cyan); background: rgba(6,182,212,0.04); }
-     .sd-tw.future .num { background: transparent; color: var(--sd-cyan); border: 2px dashed var(--sd-cyan); }
-
-     /* paper cards (matching /blog/2026/mlsys/) */
-     .group-label { font-weight: 700; color: var(--sd-indigo); margin: 26px 0 6px 0; }
-     .paper { border-left: 3px solid #6c757d; background: #f8f9fa; padding: 12px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; }
-     .paper .ptitle { font-weight: 600; color: #222; font-size: 0.98em; line-height: 1.4; }
-     .paper .pauthors { font-size: 0.85em; color: #666; margin: 4px 0 6px 0; }
-     .paper .psum { font-size: 0.9em; color: #444; margin: 0; }
-     .paper .plinks { font-size: 0.82em; margin-top: 6px; }
-     .badge { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 0.74em; font-weight: 700; letter-spacing: 0.02em; vertical-align: middle; margin-left: 6px; }
-     .badge-research { background: #eef0f2; border: 1px solid #cfd4da; color: #4b5563; }
-     .badge-train  { background: #f3e8fd; border: 1px solid #d6b4fb; color: #7c3aed; }
-     .badge-serve  { background: #e6f7f4; border: 1px solid #9fe0d4; color: #0d9488; }
-     .badge-foundation { background: #e8f0fe; border: 1px solid #adc6ff; color: #1a56db; }
-     .metric { display: inline-block; background: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; border-radius: 4px; padding: 1px 7px; font-size: 0.82em; font-weight: 600; margin-top: 6px; }
-
-     /* --- EN / 中文 language toggle ---
-        Clicking either button updates the shared global preference
-        (localStorage 'preferredLanguage') also used by the homepage and
-        the navbar. See __setPostLang() near the bottom of this file. */
-     .lang-toggle { margin: 0 0 22px 0; }
-     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
-       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
-     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
-     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
-     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
-     .lang-zh { display: none; }
      h2[id], h3[id] { scroll-margin-top: 90px; }
+
+     /* ---------- layout rhythm: 880px shell, 680px prose ---------- */
+     .post { max-width: var(--fx-wide); margin: 0 auto; font-family: var(--fx-sans); }
+     .post .post-content > div > p,
+     .post .post-content > div > ul,
+     .post .post-content > div > blockquote { max-width: var(--fx-prose); margin-left: auto; margin-right: auto; }
+     .post .post-content > div > p { font-size: 1.0625rem; line-height: 1.85; }
+     .post .post-content > div > ul { padding-left: 22px; font-size: 1.03rem; line-height: 1.8; }
+     .post .post-content > div > ul li { margin-bottom: .45em; }
+     .post .post-content a { color: var(--fx-accent); text-decoration: none; border-bottom: 1px solid var(--fx-rule); transition: border-color .15s; }
+     .post .post-content a:hover { text-decoration: none; border-bottom-color: var(--fx-accent); }
+     .post .post-content code { font-family: var(--fx-mono); font-size: .84em; background: var(--global-code-bg-color, rgba(128,128,128,.12)); padding: 2px 6px; border-radius: 5px; }
+
+     /* ---------- hero ---------- */
+     .post .post-header { max-width: var(--fx-prose); margin: 26px auto 0; }
+     .post .post-title { font-family: var(--fx-serif); font-weight: 700; font-size: clamp(2.05rem, 5.2vw, 2.9rem); line-height: 1.16; letter-spacing: -.015em; margin-bottom: 14px; }
+     .post .post-meta { font-family: var(--fx-sans); font-size: .85rem; font-weight: 500; color: var(--fx-mute); margin-bottom: 6px; }
+     .post .post-tags { font-size: .82rem; padding-bottom: 16px; margin-bottom: 0; border-bottom: 1px solid var(--fx-hair); }
+     .post .post-tags a { color: var(--fx-mute); border-bottom: none; }
+     .post .post-tags a:hover { color: var(--fx-accent); text-decoration: none; }
+     .post .post-views { max-width: var(--fx-prose); margin: 14px auto 20px !important; }
+
+     /* ---------- EN / 中文 toggle ---------- */
+     .lang-toggle { max-width: var(--fx-prose); margin: 0 auto 26px; }
+     .lang-toggle button { border: 1px solid var(--fx-rule); background: transparent; color: var(--fx-mute);
+       font: 600 .8rem/1.4 var(--fx-sans); padding: 5px 16px; cursor: pointer; }
+     .lang-toggle button:first-child { border-radius: 999px 0 0 999px; border-right: none; }
+     .lang-toggle button:last-child { border-radius: 0 999px 999px 0; }
+     .lang-toggle button.active { background: var(--fx-accent); border-color: var(--fx-accent); color: #fff; }
+     .lang-zh { display: none; }
+
+     /* ---------- opening quote: left-bar pull quote ---------- */
+     .post .post-content .sd-quote { max-width: calc(var(--fx-prose) - 30px); margin: 40px auto 42px; padding: 2px 0 2px 26px;
+       position: relative; background: none; border: none; border-left: 3px solid var(--fx-accent); border-radius: 0; }
+     .post .post-content .sd-quote p.q { font-family: var(--fx-serif); font-style: italic; font-weight: 500;
+       font-size: 1.32rem; line-height: 1.55; margin: 0 0 10px; }
+     .post .post-content .sd-quote p.a { font: 500 .82rem/1.5 var(--fx-sans); letter-spacing: .03em; color: var(--fx-mute); margin: 0; }
+
+     /* ---------- contents ---------- */
+     .post .post-content .fx-toc { max-width: var(--fx-prose); margin: 38px auto 50px; padding: 22px 0 6px;
+       border-top: 1px solid var(--global-text-color, #1a1a1a); }
+     .post .post-content .fx-toc .lbl { font: 700 .72rem/1 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-mute); margin-bottom: 14px; }
+     .post .post-content .fx-toc ol { columns: 2; column-gap: 44px; margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+     .post .post-content .fx-toc li { counter-increment: toc; break-inside: avoid; padding: 7px 0; border-bottom: 1px solid var(--fx-hair); font-size: .93rem; line-height: 1.5; }
+     .post .post-content .fx-toc li::before { content: counter(toc, decimal-leading-zero); font: 600 .72rem/1 var(--fx-mono); color: var(--fx-accent); margin-right: 12px; }
+     .post .post-content .fx-toc a { border-bottom: none; color: var(--global-text-color, #1a1a1a); }
+     .post .post-content .fx-toc a:hover { color: var(--fx-accent); }
+     @media (max-width: 640px) { .post .post-content .fx-toc ol { columns: 1; } }
+
+     /* ---------- section heads: accent tick + kicker + serif h2 ---------- */
+     .post .post-content h2 { font-family: var(--fx-serif); font-weight: 700; font-size: 1.7rem; line-height: 1.3; letter-spacing: -.01em;
+       max-width: var(--fx-prose); margin: 68px auto 24px; position: relative; padding: 20px 0 0; border-bottom: none; }
+     .post .post-content h2::before { content: ""; position: absolute; top: 0; left: 0; width: 36px; height: 3px; border-radius: 2px; background: var(--fx-accent); }
+     .post .post-content h2 span { font-weight: 400; color: var(--fx-mute); }
+     .post .post-content .sd-band { max-width: var(--fx-prose); margin: 72px auto 24px; position: relative; padding-top: 20px; }
+     .post .post-content .sd-band::before { content: ""; position: absolute; top: 0; left: 0; width: 36px; height: 3px; border-radius: 2px; background: var(--fx-accent); }
+     .post .post-content .sd-band .yr { font: 700 .72rem/1 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-accent); }
+     .post .post-content .sd-band h2 { margin: 10px 0 0; padding: 0; }
+     .post .post-content .sd-band h2::before { display: none; }
+
+     /* ---------- timeline rail ---------- */
+     .post .post-content .sd-rail { max-width: var(--fx-prose); margin: 32px auto 8px; position: relative; padding-left: 30px; }
+     .post .post-content .sd-rail::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 1px; background: var(--fx-rule); }
+     .post .post-content .sd-stop { position: relative; padding: 0 0 28px 16px; }
+     .post .post-content .sd-stop::before { content: ""; position: absolute; left: -30px; top: 5px; width: 9px; height: 9px; border-radius: 50%;
+       background: var(--fx-accent); border: none; box-shadow: none; outline: 4px solid var(--global-bg-color, #fff); }
+     .post .post-content .sd-stop.future::before { background: transparent; border: 2px dashed var(--fx-warn); width: 11px; height: 11px; left: -32px; }
+     .post .post-content .sd-stop .when { font: 700 .74rem/1.55 var(--fx-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--fx-accent); margin-bottom: 4px; }
+     .post .post-content .sd-stop.future .when { color: var(--fx-warn); }
+     .post .post-content .sd-stop .what { font-size: .97rem; line-height: 1.75; margin: 0; }
+     .post .post-content .sd-rail-cap { max-width: var(--fx-prose); margin: 10px auto 0; text-align: left;
+       font-family: var(--fx-serif); font-style: italic; font-size: .85rem; color: var(--fx-mute); }
+
+     /* ---------- sources: one bordered list ---------- */
+     .post .post-content .sd-srcs { max-width: var(--fx-prose); margin: 26px auto; display: block;
+       border: 1px solid var(--fx-hair); border-radius: 14px; overflow: hidden; }
+     .post .post-content .sd-src { padding: 14px 20px; border: none; border-bottom: 1px solid var(--fx-hair); border-radius: 0; background: none; font-size: .88rem; line-height: 1.7; }
+     .post .post-content .sd-src:last-child { border-bottom: none; }
+     .post .post-content .sd-src .lab { font: 700 .7rem/1.55 var(--fx-sans); letter-spacing: .07em; text-transform: uppercase; color: var(--fx-mute); margin-bottom: 3px; }
+
+     /* ---------- tables: hairline editorial style ----------
+        NOTE: main.css sets `table td {font-size:1.2rem}` and
+        `table th {font-weight:bold}` — every cell property is set
+        explicitly here so nothing leaks through.              */
+     .post .post-content .sd-table-wrap { max-width: var(--fx-wide); margin: 30px auto; overflow-x: auto; }
+     table.sd-table { width: 100%; min-width: 640px; border-collapse: collapse; }
+     table.sd-table th, table.sd-table td { border: none; padding: 12px 14px; vertical-align: top; text-align: left; }
+     table.sd-table td { font-size: .92rem; line-height: 1.65; border-bottom: 1px solid var(--fx-hair); }
+     table.sd-table thead th { font-family: var(--fx-sans); font-size: .9rem; font-weight: 700; line-height: 1.45;
+       vertical-align: bottom; color: var(--global-text-color, #1a1a1a); background: transparent;
+       border-top: 2px solid var(--global-text-color, #1a1a1a); border-bottom: 1px solid var(--fx-rule); }
+     table.sd-table thead th span { display: block; font-size: .78rem; font-weight: 400 !important; color: var(--fx-mute); }
+     table.sd-table tbody th { font-family: var(--fx-sans); font-size: .8rem; font-weight: 600; line-height: 1.6;
+       color: var(--fx-mute); white-space: normal; background: transparent; border-bottom: 1px solid var(--fx-hair); }
+     table.sd-table tbody tr:nth-child(even) td { background: transparent; }
+     table.sd-table tbody tr:hover td, table.sd-table tbody tr:hover th { background: var(--fx-soft); }
+     table.sd-table a { border-bottom: none; }
+     table.sd-table code { font-size: .8em; }
+     /* theme-aware recolor of inline ✔/✗/~ verdicts (markup untouched) */
+     .sd-table strong[style*="2e7d32"] { color: var(--fx-yes) !important; }
+     .sd-table strong[style*="b00020"] { color: var(--fx-no) !important; }
+     .sd-table strong[style*="b25e09"] { color: var(--fx-warn) !important; }
+     .post .post-content p[style*="color:#777"], .post .post-content span[style*="color:#777"] { color: var(--fx-mute) !important; }
+
+     /* ---------- note callout: left-bar aside ---------- */
+     .post .post-content .sd-note { max-width: var(--fx-prose); margin: 30px auto; padding: 18px 22px 18px 24px;
+       border: none; border-left: 3px solid var(--fx-accent); border-radius: 0 12px 12px 0;
+       background: var(--fx-soft); font-size: .93rem; line-height: 1.75; color: inherit; }
+
+     /* ---------- in-text quote ---------- */
+     .post .post-content blockquote.sd-pq { max-width: var(--fx-prose); margin: 30px auto; padding: 2px 0 2px 24px;
+       border: none; border-left: 3px solid var(--fx-rule);
+       font-family: var(--fx-serif); font-style: italic; font-size: 1.02rem; line-height: 1.75; color: var(--fx-mute); }
+     .post .post-content blockquote.sd-pq p { font-size: inherit; }
+
+     /* ---------- thread walkthrough cards ---------- */
+     .post .post-content .sd-thread { max-width: var(--fx-wide); margin: 30px auto; }
+     .post .post-content .sd-tw { position: relative; border: 1px solid var(--fx-hair); border-radius: 16px;
+       padding: 18px 22px 18px 64px; margin: 0 0 14px; background: var(--global-card-bg-color, #fff); }
+     .post .post-content .sd-tw .num { position: absolute; left: 18px; top: 19px; width: 30px; height: 30px; border-radius: 50%;
+       background: transparent; border: 1.5px solid var(--fx-accent); color: var(--fx-accent);
+       font: 700 .78rem/1 var(--fx-sans); display: flex; align-items: center; justify-content: center; }
+     .post .post-content .sd-tw .hd { font: 500 .78rem/1.5 var(--fx-sans); color: var(--fx-mute); margin-bottom: 6px; }
+     .post .post-content .sd-tw .hd b { color: var(--global-text-color, #1a1a1a); }
+     .post .post-content .sd-tw .ttl { font-family: var(--fx-serif); font-weight: 600; font-size: 1.05rem; line-height: 1.4; margin: 0 0 5px; }
+     .post .post-content .sd-tw .bd { font-size: .94rem; line-height: 1.75; white-space: pre-line; margin: 0; }
+     .post .post-content .sd-tw .imgs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+     .post .post-content .sd-tw .imgs img { max-width: 100%; border-radius: 10px; border: 1px solid var(--fx-hair); }
+     .post .post-content .sd-tw .imgs.two img { max-width: calc(50% - 5px); }
+     .post .post-content .sd-tw .lnk { margin-top: 10px; font: 600 .76rem/1 var(--fx-sans); }
+     .post .post-content .sd-tw .lnk a { border-bottom: none; }
+     .post .post-content .sd-tw.future { border-style: dashed; border-color: var(--fx-warn); background: transparent; }
+     .post .post-content .sd-tw.future .num { border: 2px dashed var(--fx-warn); color: var(--fx-warn); background: transparent; }
+     @media (max-width: 560px) {
+       .post .post-content .sd-tw { padding-left: 22px; }
+       .post .post-content .sd-tw .num { position: static; margin-bottom: 10px; }
+       .post .post-content .sd-tw .imgs.two img { max-width: 100%; }
+     }
+
+     /* ---------- papers: reference-list style ---------- */
+     .post .post-content .group-label { max-width: var(--fx-prose); margin: 34px auto 6px;
+       font: 700 .78rem/1.5 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--fx-accent); }
+     .post .post-content .paper { max-width: var(--fx-prose); margin: 0 auto 4px; padding: 16px 0 16px 20px;
+       background: none; border-radius: 0; border-left: 3px solid var(--fx-hair); transition: border-color .15s; }
+     .post .post-content .paper:hover { border-left-color: var(--fx-accent); }
+     .post .post-content .paper .ptitle { font-family: var(--fx-serif); font-weight: 600; font-size: 1.02rem; line-height: 1.5; color: var(--global-text-color, #1a1a1a); }
+     .post .post-content .paper .pauthors { font: 400 .82rem/1.6 var(--fx-sans); color: var(--fx-mute); margin: 4px 0 7px; }
+     .post .post-content .paper .psum { font-size: .92rem; line-height: 1.7; color: inherit; margin: 0; }
+     .post .post-content .paper .plinks { font: 600 .8rem/1.9 var(--fx-sans); margin-top: 7px; }
+     .badge { display: inline-block; vertical-align: 2px; margin-left: 8px; padding: 2px 8px; border-radius: 999px;
+       font: 700 .62rem/1.4 var(--fx-sans); letter-spacing: .07em; text-transform: uppercase;
+       border: 1px solid var(--fx-rule); color: var(--fx-mute); background: transparent; }
+     .badge-foundation { border-color: var(--fx-accent); color: var(--fx-accent); background: transparent; }
+     .badge-research, .badge-train, .badge-serve { background: transparent; border-color: var(--fx-rule); color: var(--fx-mute); }
+     .metric { display: inline-block; margin-top: 8px; padding: 2px 10px; border-radius: 999px; background: transparent;
+       font: 600 .78rem/1.6 var(--fx-mono); color: var(--fx-yes); border: 1px solid var(--fx-yes); }
+
+     /* ---------- reading aids ---------- */
+     #fxbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--fx-accent); z-index: 2001; }
+     #fx-outline { display: none; position: fixed; top: 130px; left: max(18px, calc(50vw - 440px - 236px)); width: 204px;
+       font: 500 .8rem/1.5 var(--fx-sans); max-height: calc(100vh - 180px); overflow-y: auto; }
+     @media (min-width: 1200px) { #fx-outline { display: block; } }
+     #fx-outline .olbl { font: 700 .66rem/1 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-mute); margin-bottom: 10px; }
+     #fx-outline a { display: block; padding: 4px 0 4px 12px; color: var(--fx-mute); text-decoration: none;
+       border-left: 2px solid var(--fx-hair); transition: all .15s; }
+     #fx-outline a:hover { color: var(--global-text-color, #1a1a1a); text-decoration: none; }
+     #fx-outline a.on { color: var(--fx-accent); border-left-color: var(--fx-accent); font-weight: 600; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
+      <div id="fxbar"></div>
+      <nav id="fx-outline" aria-label="On this page"></nav>
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
@@ -151,7 +265,7 @@
                <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>   <a href="/blog/tag/mtp"> <i class="fa-solid fa-hashtag fa-sm"></i> mtp</a>   <a href="/blog/tag/inference"> <i class="fa-solid fa-hashtag fa-sm"></i> inference</a>   <a href="/blog/tag/eagle"> <i class="fa-solid fa-hashtag fa-sm"></i> eagle</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
-               <a href="https://hits.sh/pengandy.com/blog/2026/speculativedecoding/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/speculativedecoding.svg?label=page%20views&color=4f46e5"/></a>
+               <a href="https://hits.sh/pengandy.com/blog/2026/speculativedecoding/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/speculativedecoding.svg?label=page%20views&color=0076df"/></a>
             </div>
             <article class="post-content">
 
@@ -175,9 +289,9 @@
                   In my own writing on the LLM space — from my <a href="https://pengandy.com/blog/2025/llm/" target="_blank" rel="noopener">LLM Year in Review</a> to my <a href="https://pengandy.com/blog/2026/mlsys/" target="_blank" rel="noopener">MLSys 2026 recap</a> — I've watched this technique go from a clever trick to a production necessity. What's striking about <strong>2026</strong> is how the whole field converged on the same answer in the span of two months — and from three very different angles: Google's open <strong>Gemma 4</strong> drafters, Google's on-device <strong>Gemini Nano</strong> frozen Multi-Token Prediction, and DeepSeek's server-scale <strong>DSpark</strong>. This post walks that timeline, summarizes each, and lays them side by side.
                </p>
 
-               <nav style="max-width: 640px; margin: 26px auto; border: 1px solid rgba(79,70,229,0.25); border-radius: 8px; padding: 16px 22px; background: rgba(79,70,229,0.04);">
-                  <div style="font-weight: 700; font-size: 0.82em; letter-spacing: 0.05em; text-transform: uppercase; color: var(--sd-indigo); margin-bottom: 10px;">Contents</div>
-                  <ol style="margin: 0; padding-left: 20px; line-height: 1.9; font-size: 0.95em;">
+               <nav class="fx-toc">
+                  <div class="lbl">Contents</div>
+                  <ol>
                      <li><a href="#timeline">The 2026 Wave, at a Glance</a></li>
                      <li><a href="#sources">Original Sources</a></li>
                      <li><a href="#terms">Key Terms in Plain English &mdash; EAGLE, MTP, DFlash</a></li>
@@ -969,9 +1083,9 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <strong>关于来源的说明。</strong> 本文在下方链接了每一条原始公告。两条 X/Twitter 长帖（Dmytro Dzhulgakov 的 DSpark 长帖、以及 Gemma 4 drafter 帖子）的完整<em>回复串</em>受 X 登录墙限制无法被程序抓取 —— 这里的总结基于顶层帖子，外加它们所指向的公开博客、文档、模型卡与论文。凡是数据来自二手报道而非一手文档之处，我都会注明。
                </div>
 
-               <nav style="max-width: 640px; margin: 26px auto; border: 1px solid rgba(79,70,229,0.25); border-radius: 8px; padding: 16px 22px; background: rgba(79,70,229,0.04);">
-                  <div style="font-weight: 700; font-size: 0.82em; letter-spacing: 0.05em; text-transform: uppercase; color: var(--sd-indigo); margin-bottom: 10px;">目录</div>
-                  <ol style="margin: 0; padding-left: 20px; line-height: 1.9; font-size: 0.95em;">
+               <nav class="fx-toc">
+                  <div class="lbl">目录</div>
+                  <ol>
                      <li><a href="#timeline-zh">2026 浪潮一览</a></li>
                      <li><a href="#sources-zh">原始来源</a></li>
                      <li><a href="#terms-zh">用大白话讲关键术语 &mdash; EAGLE、MTP、DFlash</a></li>
@@ -1787,6 +1901,44 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
         var initial = 'en';
         try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
         applyHere(initial);
+      })();
+      </script>
+      <!-- reading aids (progress bar + scrollspy outline) -->
+      <script>
+      (function(){
+        addEventListener('scroll', function(){
+          var d = document.documentElement;
+          var p = d.scrollTop / (d.scrollHeight - d.clientHeight) * 100;
+          var b = document.getElementById('fxbar'); if (b) b.style.width = p + '%';
+        }, {passive:true});
+        var obs = null;
+        function build(){
+          var nav = document.getElementById('fx-outline'); if (!nav) return;
+          var lang = 'en'; try { lang = localStorage.getItem('preferredLanguage') || 'en'; } catch(e){}
+          var root = document.querySelector(lang === 'zh' ? '.post-content .lang-zh' : '.post-content .lang-en');
+          if (!root) return;
+          if (obs) obs.disconnect();
+          nav.innerHTML = '<div class="olbl">' + (lang === 'zh' ? '本页目录' : 'On this page') + '</div>';
+          var map = {};
+          root.querySelectorAll('h2[id]').forEach(function(h){
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = (h.childNodes[0].textContent || h.textContent).trim();
+            nav.appendChild(a); map[h.id] = a;
+          });
+          obs = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+              if (e.isIntersecting){
+                nav.querySelectorAll('a').forEach(function(a){ a.classList.remove('on'); });
+                if (map[e.target.id]) map[e.target.id].classList.add('on');
+              }
+            });
+          }, {rootMargin: '-15% 0px -75% 0px'});
+          Object.keys(map).forEach(function(id){ obs.observe(document.getElementById(id)); });
+        }
+        build();
+        var orig = window.__setPostLang;
+        if (orig) window.__setPostLang = function(l){ orig(l); build(); };
       })();
       </script>
    </body>
