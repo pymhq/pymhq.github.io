@@ -63,11 +63,8 @@
   function initComponents() {
     const promises = [];
     
-    // Static component version: lets the browser cache components across
-    // page navigations (GH Pages only gives max-age=600, but within a
-    // session this avoids refetching the navbar on every click).
-    // Bump manually whenever files under /components change.
-    const cacheBuster = '?v=20260718';
+    // Cache busting parameter to force reload of components
+    const cacheBuster = '?v=' + Date.now();
     
     // Load navbar if placeholder exists
     if (document.getElementById('navbar-placeholder')) {
