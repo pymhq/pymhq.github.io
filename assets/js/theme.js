@@ -240,6 +240,10 @@ let initTheme = () => {
   document.addEventListener("DOMContentLoaded", function () {
     const mode_toggle = document.getElementById("light-toggle");
 
+    // Not every page has the toggle (navbar is injected asynchronously
+    // and no longer contains it); skip quietly. Same guard as dark_mode.js.
+    if (!mode_toggle) return;
+
     mode_toggle.addEventListener("click", function () {
       toggleThemeSetting();
     });
