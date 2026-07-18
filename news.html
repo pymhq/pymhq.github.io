@@ -64,7 +64,8 @@
                return r.text();
             }).catch(function(e) {
                if (tries <= 1) throw e;
-               return new Promise(function(res) { setTimeout(res, 800); })
+               // fast first retry (300ms), longer second (600ms)
+               return new Promise(function(res) { setTimeout(res, (4 - tries) * 300); })
                   .then(function() { return fetchRetry(url, tries - 1); });
             });
          }

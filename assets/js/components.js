@@ -21,7 +21,8 @@
       })
       .catch(error => {
         if (tries <= 1) throw error;
-        return new Promise(resolve => setTimeout(resolve, 800))
+        // fast first retry (300ms), longer second (600ms)
+        return new Promise(resolve => setTimeout(resolve, (4 - tries) * 300))
           .then(() => fetchWithRetry(url, tries - 1));
       });
   }
