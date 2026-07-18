@@ -7,9 +7,11 @@
   'use strict';
 
   /**
-   * Load a component HTML file and insert it into the target element
+   * Fetch text with retries: GitHub Pages occasionally serves transient
+   * 5xx errors (see githubstatus.com incident history); one silent failure
+   * here used to leave the navbar/footer blank until a manual refresh.
    */
-  function loadComponent(url, targetSelector) {
+  function fetchWithRetry(url, tries) {
     return fetch(url)
       .then(response => {
         if (!response.ok) {
@@ -17,6 +19,18 @@
         }
         return response.text();
       })
+      .catch(error => {
+        if (tries <= 1) throw error;
+        return new Promise(resolve => setTimeout(resolve, 800))
+          .then(() => fetchWithRetry(url, tries - 1));
+      });
+  }
+
+  /**
+   * Load a component HTML file and insert it into the target element
+   */
+  function loadComponent(url, targetSelector) {
+    return fetchWithRetry(url, 3)
       .then(html => {
         const target = document.querySelector(targetSelector);
         if (target) {

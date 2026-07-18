@@ -336,6 +336,19 @@
          <i class="fa-solid fa-chevron-left"></i>
       </div>
       <script>
+
+         // Transient GitHub Pages 5xx errors used to leave this section
+         // blank until a manual refresh; check status and retry instead.
+         function fetchRetry(url, tries) {
+            return fetch(url).then(function(r) {
+               if (!r.ok) throw new Error(url + ': ' + r.status);
+               return r.text();
+            }).catch(function(e) {
+               if (tries <= 1) throw e;
+               return new Promise(function(res) { setTimeout(res, 800); })
+                  .then(function() { return fetchRetry(url, tries - 1); });
+            });
+         }
          (function() {
             var panels = document.getElementById('hpanels');
             var cueRight = document.getElementById('cue-right');
@@ -368,8 +381,7 @@
 
             // Load the shared recommendations component into the panel
             // (same single source of truth as the /endorsements page).
-            fetch('/components/recommendations-content.html')
-               .then(function(r) { return r.text(); })
+            fetchRetry('/components/recommendations-content.html', 3)
                .then(function(html) {
                   var slot = document.getElementById('panel-endorse-content');
                   if (slot) {

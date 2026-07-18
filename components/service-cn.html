@@ -1,9 +1,21 @@
 <h2><a href="/service" style="color: inherit;">服务</a></h2>
 <div class="service" id="service-content-placeholder-cn"></div>
 <script>
+
+         // Transient GitHub Pages 5xx errors used to leave this section
+         // blank until a manual refresh; check status and retry instead.
+         function fetchRetry(url, tries) {
+            return fetch(url).then(function(r) {
+               if (!r.ok) throw new Error(url + ': ' + r.status);
+               return r.text();
+            }).catch(function(e) {
+               if (tries <= 1) throw e;
+               return new Promise(function(res) { setTimeout(res, 800); })
+                  .then(function() { return fetchRetry(url, tries - 1); });
+            });
+         }
    // Load core service content
-   fetch('/components/service-content.html')
-      .then(response => response.text())
+   fetchRetry('/components/service-content.html', 3)
       .then(html => {
          const placeholder = document.getElementById('service-content-placeholder-cn');
          if (placeholder) {
