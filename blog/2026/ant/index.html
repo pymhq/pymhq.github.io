@@ -53,51 +53,112 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
    </head>
    <style>
+     /* ================================================================
+        FLAGSHIP style layer — ported from blog/2026/speculativedecoding/.
+        Style layer only; markup/content untouched. Accent = Anthropic
+        clay (#cc785c), the post's identity color, in the flagship
+        grammar: ONE accent + left vertical bars + hairlines.
+        ================================================================ */
+     :root {
+       --ant-clay: #cc785c; --ant-tan: #d4a27f;
+       --fx-accent: var(--ant-clay);
+       --fx-soft: rgba(204, 120, 92, .07);
+       --fx-mute: #5f6672;
+       --fx-rule: rgba(128, 128, 128, .28);
+       --fx-hair: rgba(128, 128, 128, .15);
+       --fx-warn: #b45309;
+       --fx-serif: "Source Serif 4", "Noto Serif SC", Georgia, "Songti SC", serif;
+       --fx-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+       --fx-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+       --fx-prose: 680px; --fx-wide: 880px;
+     }
+     html[data-theme=dark] {
+       --fx-accent: var(--ant-tan);
+       --fx-soft: rgba(212, 162, 127, .09);
+       --fx-mute: #a3aab6;
+       --fx-rule: rgba(200, 200, 220, .28); --fx-hair: rgba(200, 200, 220, .14);
+       --fx-warn: #fcd34d;
+     }
+
      img { pointer-events: none; }
+     h2[id], h3[id] { scroll-margin-top: 90px; }
 
-     /* ── Anthropic story timeline ── */
-     :root { --ant-clay: #cc785c; --ant-tan: #d4a27f; }
+     /* ---------- layout rhythm: 880px shell, 680px prose ---------- */
+     .post { max-width: var(--fx-wide); margin: 0 auto; font-family: var(--fx-sans); }
+     .post div.lang-en > p, .post div.lang-zh > p { max-width: var(--fx-prose); margin-left: auto; margin-right: auto; font-size: 1.0625rem; line-height: 1.85; }
+     .post div.lang-en > ul, .post div.lang-zh > ul { max-width: var(--fx-prose); margin-left: auto; margin-right: auto; padding-left: 22px; font-size: 1.03rem; line-height: 1.8; }
+     .post div.lang-en a, .post div.lang-zh a { color: var(--fx-accent); text-decoration: none; border-bottom: 1px solid var(--fx-rule); transition: border-color .15s; }
+     .post div.lang-en a:hover, .post div.lang-zh a:hover { text-decoration: none; border-bottom-color: var(--fx-accent); }
+     .post div.lang-en > hr, .post div.lang-zh > hr { max-width: var(--fx-prose); margin: 10px auto; border-top: 1px solid var(--fx-hair); }
 
-     /* opening quote */
-     .ant-quote { margin: 8px 0 36px 0; padding: 24px 28px; background: rgba(204,120,92,0.08); border-left: 4px solid var(--ant-clay); border-radius: 6px; }
-     .ant-quote p.q { font-size: 1.12em; font-style: italic; line-height: 1.7; margin-bottom: 12px; }
-     .ant-quote p.a { font-size: 0.88em; color: #888; margin: 0; }
+     /* ---------- hero ---------- */
+     .post .post-header { max-width: var(--fx-prose); margin: 26px auto 0; }
+     .post .post-title { font-family: var(--fx-serif); font-weight: 700; font-size: clamp(2.05rem, 5.2vw, 2.9rem); line-height: 1.16; letter-spacing: -.015em; margin-bottom: 14px; }
+     .post .post-meta { font-family: var(--fx-sans); font-size: .85rem; font-weight: 500; color: var(--fx-mute); margin-bottom: 6px; }
+     .post .post-tags { font-size: .82rem; padding-bottom: 16px; margin-bottom: 0; border-bottom: 1px solid var(--fx-hair); }
+     .post .post-tags a { color: var(--fx-mute); border-bottom: none; }
+     .post .post-tags a:hover { color: var(--fx-accent); text-decoration: none; }
+     .post .post-views { max-width: var(--fx-prose); margin: 14px auto 20px !important; }
 
-     /* chapter heading band */
-     .ant-band { margin: 52px 0 16px 0; }
-     .ant-band .yr { font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ant-clay); font-weight: 700; }
-     .ant-band h2 { margin: 6px 0 0 0; padding-bottom: 10px; border-bottom: 3px solid var(--ant-clay); }
-     .ant-band h2 span { font-weight: 300; color: #888; }
+     /* ---------- opening quote: left-bar pull quote ---------- */
+     .ant-quote { max-width: calc(var(--fx-prose) - 30px); margin: 40px auto 42px; padding: 2px 0 2px 26px;
+       background: none; border: none; border-left: 3px solid var(--fx-accent); border-radius: 0; }
+     .ant-quote p.q { font-family: var(--fx-serif); font-style: italic; font-weight: 500; font-size: 1.32rem; line-height: 1.55; margin: 0 0 10px; }
+     .ant-quote p.a { font: 500 .82rem/1.5 var(--fx-sans); letter-spacing: .03em; color: var(--fx-mute); margin: 0; }
 
-     /* vertical story timeline rail */
-     .ant-rail { max-width: 700px; margin: 24px auto 10px; position: relative; padding-left: 26px; }
-     .ant-rail::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--ant-tan), var(--ant-clay)); }
-     .ant-stop { position: relative; padding: 0 0 22px 18px; }
-     .ant-stop::before { content: ""; position: absolute; left: -26px; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--ant-clay); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--ant-clay); }
-     .ant-stop.future::before { background: transparent; border: 3px dashed var(--ant-clay); box-shadow: none; }
-     .ant-stop .when { font-weight: 700; font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ant-clay); }
-     .ant-stop .what { font-size: 0.95em; margin: 2px 0 0; }
-     .ant-rail-cap { text-align: center; font-size: 0.8em; color: #888; margin: 4px auto 6px; max-width: 700px; }
+     /* ---------- chapter heading band: accent tick + kicker + serif h2 ---------- */
+     .ant-band { max-width: var(--fx-prose); margin: 72px auto 24px; position: relative; padding-top: 20px; }
+     .ant-band::before { content: ""; position: absolute; top: 0; left: 0; width: 36px; height: 3px; border-radius: 2px; background: var(--fx-accent); }
+     .ant-band .yr { font: 700 .72rem/1 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-accent); }
+     .ant-band h2 { font-family: var(--fx-serif); font-weight: 700; font-size: 1.7rem; line-height: 1.3; letter-spacing: -.01em; margin: 10px 0 0; padding: 0; border-bottom: none; }
+     .ant-band h2 span { font-weight: 400; color: var(--fx-mute); }
+     .post div.lang-en > h2, .post div.lang-zh > h2 { font-family: var(--fx-serif); font-weight: 700; font-size: 1.7rem; line-height: 1.3; letter-spacing: -.01em;
+       max-width: var(--fx-prose); margin: 68px auto 24px; position: relative; padding: 20px 0 0; border-bottom: none; }
+     .post div.lang-en > h2::before, .post div.lang-zh > h2::before { content: ""; position: absolute; top: 0; left: 0; width: 36px; height: 3px; border-radius: 2px; background: var(--fx-accent); }
 
-     /* valuation curve */
-     .ant-val { max-width: 640px; margin: 14px auto 4px; }
+     /* ---------- story timeline: thin rail + accent stops ---------- */
+     .ant-rail { max-width: var(--fx-prose); margin: 32px auto 8px; position: relative; padding-left: 30px; }
+     .ant-rail::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 1px; background: var(--fx-rule); }
+     .ant-stop { position: relative; padding: 0 0 28px 16px; }
+     .ant-stop::before { content: ""; position: absolute; left: -30px; top: 5px; width: 9px; height: 9px; border-radius: 50%;
+       background: var(--fx-accent); border: none; box-shadow: none; outline: 4px solid var(--global-bg-color, #fff); }
+     .ant-stop.future::before { background: transparent; border: 2px dashed var(--fx-warn); width: 11px; height: 11px; left: -32px; box-shadow: none; }
+     .ant-stop .when { font: 700 .74rem/1.55 var(--fx-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--fx-accent); }
+     .ant-stop.future .when { color: var(--fx-warn); }
+     .ant-stop .what { font-size: .97rem; line-height: 1.75; margin: 2px 0 0; }
+     .ant-rail-cap { max-width: var(--fx-prose); margin: 10px auto 0; text-align: left;
+       font-family: var(--fx-serif); font-style: italic; font-size: .85rem; color: var(--fx-mute); }
+
+     /* ---------- valuation curve ---------- */
+     .ant-val { max-width: 640px; margin: 26px auto 4px; }
      .ant-val svg { width: 100%; height: auto; display: block; }
-     .ant-val-cap { text-align: center; font-size: 0.8em; color: #888; margin: 4px auto 6px; max-width: 640px; }
+     .ant-val-cap { text-align: center; font-family: var(--fx-serif); font-style: italic; font-size: .85rem; color: var(--fx-mute); margin: 4px auto 6px; max-width: 640px; }
 
-     /* IPO placeholder callout */
-     .ant-ipo { max-width: 680px; margin: 26px auto; padding: 16px 22px; border: 2px dashed var(--ant-clay); border-radius: 10px; background: rgba(204,120,92,0.05); text-align: center; }
-     .ant-ipo .tag { font-size: 0.74em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ant-clay); }
-     .ant-ipo .date { font-size: 1.05em; font-weight: 700; margin-top: 4px; }
-     .ant-ipo .note { font-size: 0.82em; color: #888; margin-top: 4px; }
+     /* ---------- IPO placeholder callout: dashed future card ---------- */
+     .ant-ipo { max-width: var(--fx-prose); margin: 30px auto; padding: 16px 22px; border: 2px dashed var(--fx-warn); border-radius: 14px; background: transparent; text-align: center; }
+     .ant-ipo .tag { font: 700 .72rem/1.6 var(--fx-sans); text-transform: uppercase; letter-spacing: .1em; color: var(--fx-warn); }
+     .ant-ipo .date { font-family: var(--fx-serif); font-size: 1.05rem; font-weight: 700; margin-top: 4px; }
+     .ant-ipo .note { font-size: .82rem; color: var(--fx-mute); margin-top: 4px; }
 
-     /* highlighted inline blog links */
-     a.ant-hl { font-weight: 600; color: var(--ant-clay); background: rgba(204,120,92,0.14); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid var(--ant-clay); text-decoration: none; white-space: nowrap; }
-     a.ant-hl:hover { background: var(--ant-clay); color: #fff; text-decoration: none; }
+     /* ---------- highlighted inline blog links ---------- */
+     .post .post-content a.ant-hl { font-weight: 600; color: var(--fx-accent); background: var(--fx-soft); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid var(--fx-accent); text-decoration: none; white-space: nowrap; }
+     .post .post-content a.ant-hl:hover { background: var(--fx-accent); color: #fff; text-decoration: none; }
 
-     /* pull-quote from collaboration */
-     blockquote.ant-pq { border-left: 3px solid var(--ant-tan); margin: 18px auto; padding: 6px 18px; color: #777; font-style: italic; max-width: 680px; }
+     /* ---------- in-text pull-quote ---------- */
+     .post .post-content blockquote.ant-pq { max-width: var(--fx-prose); margin: 30px auto; padding: 2px 0 2px 24px;
+       border: none; border-left: 3px solid var(--fx-rule); background: none;
+       font-family: var(--fx-serif); font-style: italic; font-size: 1.02rem; line-height: 1.75; color: var(--fx-mute); }
 
-     /* ── GitHub contribution-dashboard style monthly activity graph ── */
+     /* ---------- figures ---------- */
+     .post .post-content figure img { border: 1px solid var(--fx-hair); }
+     .post .post-content figcaption { font-family: var(--fx-serif) !important; font-style: italic; color: var(--fx-mute) !important; }
+
+     /* ---------- dark-mode-safe recolor of inline greys ---------- */
+     .post .post-content [style*="color: #888"], .post .post-content [style*="color:#888"],
+     .post .post-content [style*="color: #999"], .post .post-content [style*="color: #777"] { color: var(--fx-mute) !important; }
+
+     /* ── GitHub contribution-dashboard style monthly activity graph ──
+        intentionally GitHub-dark, self-contained in both themes */
      .ant-gh { max-width: 730px; margin: 24px auto 20px; background: #0d1117; border: 1px solid #30363d; border-radius: 10px; padding: 16px 18px 14px; font-family: -apple-system,"Segoe UI",Helvetica,Arial,sans-serif; }
      .ant-gh .gh-head { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
      .ant-gh .gh-count { font-size: 0.78em; color: #8b949e; }
@@ -113,16 +174,28 @@
         Clicking either button updates the shared global preference
         (localStorage 'preferredLanguage') also used by the homepage and
         the navbar. See __setPostLang() near the bottom of this file. */
-     .lang-toggle { margin: 0 0 22px 0; }
-     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
-       font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
-     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
-     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
-     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
+     .lang-toggle { max-width: var(--fx-prose); margin: 0 auto 26px; }
+     .lang-toggle button { border: 1px solid var(--fx-rule); background: transparent; color: var(--fx-mute);
+       font: 600 .8rem/1.4 var(--fx-sans); padding: 5px 16px; cursor: pointer; }
+     .lang-toggle button:first-child { border-radius: 999px 0 0 999px; border-right: none; }
+     .lang-toggle button:last-child { border-radius: 0 999px 999px 0; }
+     .lang-toggle button.active { background: var(--fx-accent); border-color: var(--fx-accent); color: #fff; }
      .lang-zh { display: none; }
-     h2[id], h3[id] { scroll-margin-top: 90px; }
+
+     /* ---------- reading aids ---------- */
+     #fxbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--fx-accent); z-index: 2001; }
+     #fx-outline { display: none; position: fixed; top: 130px; left: max(18px, calc(50vw - 440px - 236px)); width: 204px;
+       font: 500 .8rem/1.5 var(--fx-sans); max-height: calc(100vh - 180px); overflow-y: auto; }
+     @media (min-width: 1200px) { #fx-outline { display: block; } }
+     #fx-outline .olbl { font: 700 .66rem/1 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-mute); margin-bottom: 10px; }
+     #fx-outline a { display: block; padding: 4px 0 4px 12px; color: var(--fx-mute); text-decoration: none;
+       border-left: 2px solid var(--fx-hair); transition: all .15s; }
+     #fx-outline a:hover { color: var(--global-text-color, #1a1a1a); text-decoration: none; }
+     #fx-outline a.on { color: var(--fx-accent); border-left-color: var(--fx-accent); font-weight: 600; }
    </style>
    <body class="fixed-top-nav" data-page="blog">
+      <div id="fxbar"></div>
+      <nav id="fx-outline" aria-label="On this page"></nav>
       <div id="navbar-placeholder"></div>
       <div class="container mt-5" role="main">
          <div class="post">
@@ -313,7 +386,7 @@
                </blockquote>
 
                <p>
-                  After shipping my last 3P task in Q1 2025, I chose to step sideways. Bedrock Inference was organized into <strong>3P</strong> (Claude and other closed models), <strong>2P</strong> (open-weights — Llama, DeepSeek, Qwen), and <strong>1P</strong> (Amazon's own Nova and Titan). I moved from 3P into 2P, beginning my research line in <strong>model optimization (speculative decoding)</strong> and customization — the work I still lead today. I left the Claude program, but I never stopped watching it.
+                  After shipping my last 3P task in Q1 2025, I chose to step sideways. Bedrock Inference was organized into <strong>3P</strong> (Claude and other closed models), <strong>2P</strong> (open-weights — Gemma, gpt-oss, Qwen, DeepSeek), and <strong>1P</strong> (Amazon's own Nova and Titan). I moved from 3P into 2P, beginning my research line in <strong>model optimization (speculative decoding)</strong> and customization — the work I still lead today. I left the Claude program, but I never stopped watching it.
                </p>
 
                <!-- ===== 2026 ===== -->
@@ -539,7 +612,7 @@
                </blockquote>
 
                <p>
-                  在 2025 年 Q1 交付了我最后一个 3P 任务后，我选择转身。Bedrock 推理团队分为 <strong>3P</strong>（Claude 等闭源模型）、<strong>2P</strong>（开源权重 —— Llama、DeepSeek、Qwen）与 <strong>1P</strong>（Amazon 自家的 Nova 与 Titan）。我从 3P 转入 2P，开启了我在 <strong>模型优化（投机解码）</strong> 与定制方向的研究线 —— 也就是我今天仍在带领的工作。我离开了 Claude 项目，但从未停止关注它。
+                  在 2025 年 Q1 交付了我最后一个 3P 任务后，我选择转身。Bedrock 推理团队分为 <strong>3P</strong>（Claude 等闭源模型）、<strong>2P</strong>（开源权重 —— Gemma、gpt-oss、Qwen、DeepSeek）与 <strong>1P</strong>（Amazon 自家的 Nova 与 Titan）。我从 3P 转入 2P，开启了我在 <strong>模型优化（投机解码）</strong> 与定制方向的研究线 —— 也就是我今天仍在带领的工作。我离开了 Claude 项目，但从未停止关注它。
                </p>
 
                <div class="ant-band">
@@ -653,6 +726,43 @@
         var initial = 'en';
         try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
         applyHere(initial);
+      })();
+      </script>
+      <script>
+      (function(){
+        addEventListener('scroll', function(){
+          var d = document.documentElement;
+          var p = d.scrollTop / (d.scrollHeight - d.clientHeight) * 100;
+          var b = document.getElementById('fxbar'); if (b) b.style.width = p + '%';
+        }, {passive:true});
+        var obs = null;
+        function build(){
+          var nav = document.getElementById('fx-outline'); if (!nav) return;
+          var lang = 'en'; try { lang = localStorage.getItem('preferredLanguage') || 'en'; } catch(e){}
+          var root = document.querySelector(lang === 'zh' ? '.post div.lang-zh' : '.post div.lang-en');
+          if (!root) return;
+          if (obs) obs.disconnect();
+          nav.innerHTML = '<div class="olbl">' + (lang === 'zh' ? '本页目录' : 'On this page') + '</div>';
+          var map = {};
+          root.querySelectorAll('h2[id]').forEach(function(h){
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = (h.childNodes[0].textContent || h.textContent).trim();
+            nav.appendChild(a); map[h.id] = a;
+          });
+          obs = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+              if (e.isIntersecting){
+                nav.querySelectorAll('a').forEach(function(a){ a.classList.remove('on'); });
+                if (map[e.target.id]) map[e.target.id].classList.add('on');
+              }
+            });
+          }, {rootMargin: '-15% 0px -75% 0px'});
+          Object.keys(map).forEach(function(id){ obs.observe(document.getElementById(id)); });
+        }
+        build();
+        var orig = window.__setPostLang;
+        if (orig) window.__setPostLang = function(l){ orig(l); build(); };
       })();
       </script>
    </body>
