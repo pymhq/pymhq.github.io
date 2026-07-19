@@ -112,6 +112,17 @@
      .lang-toggle button.active { background: var(--fx-accent); border-color: var(--fx-accent); color: #fff; }
      .lang-zh { display: none; }
 
+     /* ---------- contents ---------- */
+     .post .fx-toc { max-width: var(--fx-prose); margin: 38px auto 50px; padding: 22px 0 6px;
+       border-top: 1px solid var(--global-text-color, #1a1a1a); }
+     .post .fx-toc .lbl { font: 700 .72rem/1 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-mute); margin-bottom: 14px; }
+     .post .fx-toc ol { columns: 2; column-gap: 44px; margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+     .post .fx-toc li { counter-increment: toc; break-inside: avoid; padding: 7px 0; border-bottom: 1px solid var(--fx-hair); font-size: .93rem; line-height: 1.5; }
+     .post .fx-toc li::before { content: counter(toc, decimal-leading-zero); font: 600 .72rem/1 var(--fx-mono); color: var(--fx-accent); margin-right: 12px; }
+     .post .fx-toc a { border-bottom: none; color: var(--global-text-color, #1a1a1a); }
+     .post .fx-toc a:hover { color: var(--fx-accent); }
+     @media (max-width: 640px) { .post .fx-toc ol { columns: 1; } }
+
      /* ---------- section heads: accent tick + serif h2 ---------- */
      .post div.lang-en > h2, .post div.lang-zh > h2 { font-family: var(--fx-serif); font-weight: 700; font-size: 1.7rem; line-height: 1.3; letter-spacing: -.01em;
        max-width: var(--fx-prose); margin: 68px auto 24px; position: relative; padding: 20px 0 0; border-bottom: none; }
@@ -192,6 +203,24 @@
             <!-- ========================================== -->
             <!-- YOUR CONTENT STARTS HERE -->
             <!-- ========================================== -->
+
+            <nav class="fx-toc">
+               <div class="lbl">Contents</div>
+               <ol>
+                  <li><a href="#foundation-model">Foundation Model: Open Source vs Closed Source</a></li>
+                  <li><a href="#academia-industry">Academia vs Industry Fusion</a></li>
+                  <li><a href="#llm-native">LLM Native: Open Source Ecosystem in Place</a></li>
+                  <li><a href="#agentic-ai">Agentic AI: Moving Fast</a></li>
+                  <li><a href="#partnerships">Expanded Cross-Company Partnerships</a></li>
+                  <li><a href="#data-center">More and More Data Center</a></li>
+                  <li><a href="#performance">Faster and Faster Performance</a></li>
+                  <li><a href="#trust-safety">Benchmark, Interpretability, Observability, Trust &amp; Safety</a></li>
+                  <li><a href="#pitch">Pitch Over Performance</a></li>
+                  <li><a href="#productivity">Productivity</a></li>
+                  <li><a href="#llm-3-years">LLM 3 Years</a></li>
+                  <li><a href="#whats-next">What's Next</a></li>
+               </ol>
+            </nav>
 
             <h2 id="foundation-model">Foundation Model: Open Source vs Closed Source</h2>
             <p>2025 has been a year of shifts in the foundation model landscape. While we've seen more powerful models from Google DeepMind, Anthropic and OpenAI, the shift between open source and closed source continues to evolve. Companies like Meta and xAI switched their previously open-source mode to closed source. OpenAI shipped gpt-oss (their 1st open-source model family post GPT-3) in August 2025.</p>
@@ -444,6 +473,24 @@
             <br>
             <hr>
             <br>
+
+            <nav class="fx-toc">
+               <div class="lbl">目录</div>
+               <ol>
+                  <li><a href="#foundation-model-zh">基础模型：开源 vs 闭源</a></li>
+                  <li><a href="#academia-industry-zh">学术界与产业界的融合</a></li>
+                  <li><a href="#llm-native-zh">LLM Native：开源生态已然成形</a></li>
+                  <li><a href="#agentic-ai-zh">智能体 AI：高速前进</a></li>
+                  <li><a href="#partnerships-zh">跨公司合作不断扩展</a></li>
+                  <li><a href="#data-center-zh">越来越多的数据中心</a></li>
+                  <li><a href="#performance-zh">越来越快的性能</a></li>
+                  <li><a href="#trust-safety-zh">基准评测、可解释性、可观测性、信任与安全</a></li>
+                  <li><a href="#pitch-zh">叙事胜于性能</a></li>
+                  <li><a href="#productivity-zh">生产力工具</a></li>
+                  <li><a href="#llm-3-years-zh">与 LLM 相伴的三年</a></li>
+                  <li><a href="#whats-next-zh">接下来会发生什么</a></li>
+               </ol>
+            </nav>
 
             <h2 id="foundation-model-zh">基础模型：开源 vs 闭源</h2>
             <p>2025 年是基础模型格局发生转变的一年。虽然我们看到 Google DeepMind、Anthropic 和 OpenAI 推出了更强大的模型，开源与闭源之间的转换仍在持续演变。Meta 和 xAI 等公司把此前的开源模式转向了闭源。OpenAI 在 2025 年 8 月发布了 gpt-oss（继 GPT-3 之后其首个开源模型系列）。</p>
