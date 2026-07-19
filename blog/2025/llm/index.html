@@ -119,8 +119,8 @@
      .post .fx-toc ol { columns: 2; column-gap: 44px; margin: 0; padding: 0; list-style: none; counter-reset: toc; }
      .post .fx-toc li { counter-increment: toc; break-inside: avoid; padding: 7px 0; border-bottom: 1px solid var(--fx-hair); font-size: .93rem; line-height: 1.5; }
      .post .fx-toc li::before { content: counter(toc, decimal-leading-zero); font: 600 .72rem/1 var(--fx-mono); color: var(--fx-accent); margin-right: 12px; }
-     .post .fx-toc a { border-bottom: none; color: var(--global-text-color, #1a1a1a); }
-     .post .fx-toc a:hover { color: var(--fx-accent); }
+     .post .fx-toc a, .post div.lang-en .fx-toc a, .post div.lang-zh .fx-toc a { border-bottom: none; color: var(--global-text-color, #1a1a1a); }
+     .post .fx-toc a:hover, .post div.lang-en .fx-toc a:hover, .post div.lang-zh .fx-toc a:hover { color: var(--fx-accent); }
      @media (max-width: 640px) { .post .fx-toc ol { columns: 1; } }
 
      /* ---------- section heads: accent tick + serif h2 ---------- */
@@ -196,9 +196,6 @@
                   <p><em>My Favorite AI Breakthrough This Year: <a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">DeepSeek</a></em></p>
                </div>
             </article>
-            <br>
-            <hr>
-            <br>
 
             <!-- ========================================== -->
             <!-- YOUR CONTENT STARTS HERE -->
@@ -470,9 +467,6 @@
                   <p><em>我今年最喜欢的 AI 突破：<a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">DeepSeek</a></em></p>
                </div>
             </article>
-            <br>
-            <hr>
-            <br>
 
             <nav class="fx-toc">
                <div class="lbl">目录</div>
