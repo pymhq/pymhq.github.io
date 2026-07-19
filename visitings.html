@@ -427,6 +427,122 @@
             opacity: 1;
         }
 
+        /* --- rivers & lakes --- */
+        .pnw-river {
+            fill: none;
+            stroke: #8fb8cc;
+            stroke-width: 1.7px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.9;
+        }
+
+        .pnw-river.minor {
+            stroke-width: 1.2px;
+            opacity: 0.75;
+        }
+
+        .pnw-lake-line {
+            fill: none;
+            stroke: #a9cadb;
+            stroke-linecap: round;
+        }
+
+        .pnw-lake-dot {
+            fill: #a9cadb;
+            stroke: #8fb8cc;
+            stroke-width: 1px;
+        }
+
+        /* caldera glyph extras (Crater Lake / Mt. Mazama) */
+        .pnw-peak .peak-water {
+            fill: #4a86ad;
+            stroke: #2f6288;
+            stroke-width: 1px;
+            stroke-linejoin: round;
+        }
+
+        .pnw-peak .peak-island {
+            fill: #8d9b63;
+            stroke: #46503a;
+            stroke-width: 0.8px;
+            stroke-linejoin: round;
+        }
+
+        .pnw-water-label {
+            font-size: 9px;
+            font-style: italic;
+            font-weight: 600;
+            fill: #2a5d80;
+            paint-order: stroke;
+            stroke: rgba(238, 242, 234, 0.55);
+            stroke-width: 2.5px;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        /* --- cascade / olympic peaks --- */
+        .pnw-peak {
+            cursor: pointer;
+        }
+
+        .pnw-peak .peak-body {
+            fill: #6b7a48;
+            stroke: #46503a;
+            stroke-width: 1.2px;
+            stroke-linejoin: round;
+        }
+
+        .pnw-peak .peak-snow {
+            fill: #f7f4ea;
+            stroke: #46503a;
+            stroke-width: 1px;
+            stroke-linejoin: round;
+        }
+
+        .pnw-peak-label {
+            font-size: 9.5px;
+            font-weight: 700;
+            fill: #2f3626;
+            paint-order: stroke;
+            stroke: rgba(244, 246, 241, 0.7);
+            stroke-width: 2.5px;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        .pnw-peak-elev {
+            font-size: 8px;
+            font-weight: 500;
+            font-style: italic;
+            fill: #5a6650;
+            paint-order: stroke;
+            stroke: rgba(244, 246, 241, 0.7);
+            stroke-width: 2.5px;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        /* not-yet-visited peaks fade back naturally */
+        .pnw-peak.unvisited {
+            opacity: 0.55;
+            transition: opacity 0.2s ease;
+        }
+
+        .pnw-peak.unvisited .peak-body {
+            fill: #96a086;
+            stroke: #7f8878;
+        }
+
+        .pnw-peak.unvisited .peak-snow {
+            fill: #e9ece4;
+            stroke: #7f8878;
+        }
+
+        .pnw-peak.unvisited:hover {
+            opacity: 0.9;
+        }
+
         #pnw-section .back-to-globe {
             position: absolute;
             top: 18px;
@@ -722,6 +838,9 @@
             }
             #pnw-section h2 { font-size: 1.05rem; }
             .pnw-marker-label { font-size: 9px; }
+            .pnw-peak-label { font-size: 8px; }
+            .pnw-peak-elev { font-size: 7px; }
+            .pnw-water-label { font-size: 8px; }
         }
     </style>
 </head>
@@ -1199,6 +1318,18 @@
                                 <use href="#ic-chair"/>
                                 <circle class="rt-hit" r="12"/>
                                 <text class="rt-poi-label" x="-13" y="4" text-anchor="end">Alki Beach</text>
+                            </g>
+
+                            <!-- Centennial Park — Smith Cove waterfront path -->
+                            <g class="rt-poi" data-name="Centennial Park — Elliott Bay waterfront" transform="translate(683, 574)">
+                                <circle class="rt-stop" r="3.5"/><circle class="rt-hit" r="9"/>
+                                <text class="rt-poi-label" x="11" y="4" text-anchor="start">Centennial Park</text>
+                            </g>
+
+                            <!-- Waterfront Park — downtown piers (Pier 58) -->
+                            <g class="rt-poi" data-name="Waterfront Park — Pier 58" transform="translate(692, 585)">
+                                <circle class="rt-stop" r="3.5"/><circle class="rt-hit" r="9"/>
+                                <text class="rt-poi-label" x="11" y="4" text-anchor="start">Waterfront Park</text>
                             </g>
 
                             <!-- Seattle Ferry Terminal (Colman Dock) -->
@@ -1679,6 +1810,173 @@
             const proj = d3.geoMercator().fitExtent([[24, 24], [W - 24, H - 24]], bbox);
             const geoPath = d3.geoPath(proj);
 
+            // ---------- peaks, rivers & lakes (hand-curated, illustrated) ----------
+
+            const PNW_PEAKS = [
+                { name: 'Mt. Baker',      lat: 48.7767, lon: -121.8144, elev: '10,781 ft', glyph: 'volcano', scale: 1.05, visited: false, label: 'right' },
+                { name: 'Mt. Olympus',    lat: 47.8021, lon: -123.7108, elev: '7,980 ft',  glyph: 'peak',    scale: 0.9,  visited: false, label: 'left'  },
+                { name: 'Mt. Si',         lat: 47.4881, lon: -121.7431, elev: '4,167 ft',  glyph: 'peak',    scale: 0.62, visited: false, label: 'right' },
+                { name: 'Mt. Rainier',    lat: 46.8523, lon: -121.7603, elev: '14,411 ft', glyph: 'volcano', scale: 1.35, visited: true, date: '2023', label: 'right' },
+                { name: 'Mt. St. Helens', lat: 46.1914, lon: -122.1956, elev: '8,363 ft',  glyph: 'flattop', scale: 0.95, visited: false, label: 'left'  },
+                { name: 'Mt. Adams',      lat: 46.2024, lon: -121.4906, elev: '12,281 ft', glyph: 'volcano', scale: 1.1,  visited: false, label: 'right' },
+                { name: 'Mt. Hood',       lat: 45.3735, lon: -121.6959, elev: '11,240 ft', glyph: 'volcano', scale: 1.05, visited: false, label: 'right' },
+                { name: 'Crater Lake',    lat: 42.9295, lon: -122.1279, elev: '6,178 ft',  glyph: 'caldera', scale: 1.15, visited: true, date: '2023', label: 'right' }
+            ];
+
+            // small hand-drawn glyphs, base of the mountain sits on y = 0
+            const PEAK_GLYPHS = {
+                volcano: [
+                    { cls: 'peak-body', d: 'M -13 0 Q -7 -5 -3.5 -15 Q 0 -19 3.5 -15 Q 7 -5 13 0 Z' },
+                    { cls: 'peak-snow', d: 'M -4.6 -11 Q 0 -18.2 4.6 -11 L 2.9 -12.2 L 1.6 -9.8 L 0 -12.4 L -1.6 -9.8 L -2.9 -12.2 Z' }
+                ],
+                flattop: [
+                    { cls: 'peak-body', d: 'M -12 0 Q -6 -4.5 -4 -11 L -2 -13 L -0.8 -11.2 L 0.8 -11.2 L 2 -13 L 4 -11 Q 6 -4.5 12 0 Z' },
+                    { cls: 'peak-snow', d: 'M -3.4 -8.2 L -2 -12.6 L -0.8 -10.9 L 0.8 -10.9 L 2 -12.6 L 3.4 -8.2 L 2 -9.4 L 1 -7.9 L 0 -9.6 L -1 -7.9 L -2 -9.4 Z' }
+                ],
+                peak: [
+                    { cls: 'peak-body', d: 'M -9 0 L -3.5 -8 L -1.5 -13 L 0.8 -9 L 2.8 -11 L 9 0 Z' },
+                    { cls: 'peak-snow', d: 'M -2.7 -7.8 L -1.5 -12.4 L -0.1 -8.6 L -0.9 -9.3 L -1.8 -7.6 Z M 2 -9.9 L 2.8 -11 L 3.7 -9.4 L 2.9 -9.9 Z' }
+                ],
+                // Mt. Mazama: broad collapsed cone, caldera filled with deep blue water,
+                // Wizard Island rising from the lake
+                caldera: [
+                    { cls: 'peak-body',   d: 'M -17 0 Q -10 -3.5 -6.5 -9.5 L -5.2 -7.8 L 5.2 -7.8 L 6.5 -9.5 Q 10 -3.5 17 0 Z' },
+                    { cls: 'peak-water',  d: 'M -5.2 -7.8 L 5.2 -7.8 Q 4.5 -4.9 0 -4.6 Q -4.5 -4.9 -5.2 -7.8 Z' },
+                    { cls: 'peak-island', d: 'M -2.6 -6.2 L -1.3 -8.8 L 0 -6.2 Z' },
+                    { cls: 'peak-snow',   d: 'M -7.6 -7.9 L -6.5 -9.5 L -5.7 -8.4 L -6.5 -8.8 Z M 5.7 -8.4 L 6.5 -9.5 L 7.6 -7.9 L 6.5 -8.8 Z' }
+                ]
+            };
+
+            // rivers as lon/lat waypoints, smoothed at draw time
+            const PNW_RIVERS = [
+                { name: 'Columbia', pts: [
+                    [-117.63, 49.00], [-118.05, 48.60], [-118.20, 48.05], [-118.60, 47.83], [-118.98, 47.94],
+                    [-119.40, 48.05], [-119.65, 48.00], [-120.00, 47.80], [-120.32, 47.42], [-120.08, 47.05],
+                    [-119.99, 46.94], [-119.90, 46.65], [-119.45, 46.55], [-119.27, 46.28], [-119.05, 46.22],
+                    [-118.94, 46.05], [-119.35, 45.92], [-119.90, 45.84], [-120.20, 45.72], [-121.17, 45.61],
+                    [-121.50, 45.71], [-121.90, 45.67], [-122.67, 45.62], [-122.80, 45.86], [-122.96, 46.10],
+                    [-123.40, 46.15], [-123.83, 46.19], [-124.05, 46.24]
+                ] },
+                { name: 'Snake', pts: [
+                    [-116.82, 46.40], [-117.02, 46.42], [-117.44, 46.62], [-118.00, 46.60], [-118.22, 46.58],
+                    [-118.55, 46.40], [-118.88, 46.25], [-119.03, 46.19]
+                ] },
+                { name: 'Willamette', minor: true, pts: [
+                    [-123.09, 44.05], [-123.17, 44.30], [-123.26, 44.56], [-123.04, 44.94],
+                    [-122.76, 45.30], [-122.61, 45.35], [-122.76, 45.52], [-122.76, 45.65]
+                ] },
+                { name: 'Skagit', minor: true, pts: [
+                    [-121.07, 48.72], [-121.25, 48.67], [-121.43, 48.53], [-121.75, 48.54],
+                    [-121.99, 48.52], [-122.23, 48.50], [-122.33, 48.42], [-122.45, 48.33]
+                ] },
+                { name: 'Yakima', minor: true, pts: [
+                    [-121.33, 47.32], [-120.94, 47.19], [-120.55, 46.99], [-120.40, 46.75],
+                    [-120.51, 46.60], [-120.00, 46.30], [-119.77, 46.20], [-119.48, 46.26], [-119.25, 46.25]
+                ] }
+            ];
+
+            // lakes: thin ones drawn as thick round-capped strokes, round ones as dots
+            const PNW_LAKES = [
+                { name: 'Lake Washington',   w: 4,   pts: [[-122.26, 47.73], [-122.24, 47.64], [-122.25, 47.50]] },
+                { name: 'Lake Chelan',       w: 3,   pts: [[-120.62, 48.32], [-120.30, 48.08], [-120.02, 47.84]] },
+                { name: 'Ross Lake',         w: 2.5, pts: [[-121.06, 48.97], [-121.07, 48.73]] },
+                { name: 'Upper Klamath Lake', w: 5,  pts: [[-121.95, 42.55], [-121.83, 42.28]] }
+            ];
+
+            const PNW_WATER_LABELS = [
+                { name: 'Columbia R.',   at: [-119.55, 45.55] },
+                { name: 'Snake R.',      at: [-117.95, 46.78] },
+                { name: 'Willamette R.', at: [-123.62, 44.70] }
+            ];
+
+            const waterLine = d3.line()
+                .curve(d3.curveCatmullRom.alpha(0.5))
+                .x(d => proj(d)[0])
+                .y(d => proj(d)[1]);
+
+            function drawWater() {
+                const g = svg.append('g').attr('class', 'pnw-water');
+
+                PNW_RIVERS.forEach(r => {
+                    g.append('path')
+                        .attr('class', 'pnw-river' + (r.minor ? ' minor' : ''))
+                        .attr('d', waterLine(r.pts));
+                });
+
+                PNW_LAKES.forEach(l => {
+                    if (l.r) {
+                        const c = proj(l.at);
+                        g.append('circle')
+                            .attr('class', 'pnw-lake-dot')
+                            .attr('cx', c[0]).attr('cy', c[1]).attr('r', l.r);
+                    } else {
+                        g.append('path')
+                            .attr('class', 'pnw-lake-line')
+                            .attr('stroke-width', l.w)
+                            .attr('d', waterLine(l.pts));
+                    }
+                });
+
+                PNW_WATER_LABELS.forEach(t => {
+                    const c = proj(t.at);
+                    g.append('text')
+                        .attr('class', 'pnw-water-label')
+                        .attr('x', c[0]).attr('y', c[1])
+                        .attr('text-anchor', 'middle')
+                        .text(t.name);
+                });
+            }
+
+            function drawPeaks() {
+                const tooltip = document.getElementById('tooltip');
+                const g = svg.append('g').attr('class', 'pnw-peaks');
+
+                PNW_PEAKS.forEach(p => {
+                    const xy = proj([p.lon, p.lat]);
+                    if (!xy) return;
+
+                    const node = g.append('g')
+                        .attr('class', 'pnw-peak ' + (p.visited ? 'visited' : 'unvisited'))
+                        .attr('transform', `translate(${xy[0]}, ${xy[1]})`);
+
+                    const art = node.append('g').attr('transform', `scale(${p.scale})`);
+                    PEAK_GLYPHS[p.glyph].forEach(seg => {
+                        art.append('path').attr('class', seg.cls).attr('d', seg.d);
+                    });
+
+                    const right = p.label !== 'left';
+                    const lx = (right ? 14 : -14) * p.scale;
+                    node.append('text')
+                        .attr('class', 'pnw-peak-label')
+                        .attr('x', lx).attr('y', -6)
+                        .attr('text-anchor', right ? 'start' : 'end')
+                        .text(p.name);
+                    node.append('text')
+                        .attr('class', 'pnw-peak-elev')
+                        .attr('x', lx).attr('y', 4)
+                        .attr('text-anchor', right ? 'start' : 'end')
+                        .text(p.elev);
+
+                    node
+                        .on('mouseenter', function (event) {
+                            if (!tooltip) return;
+                            document.getElementById('tooltip-title').textContent = p.name + ' · ' + p.elev;
+                            document.getElementById('tooltip-date').textContent = p.visited ? (p.date || '') : '';
+                            tooltip.style.display = 'block';
+                            tooltip.style.left = (event.clientX + 10) + 'px';
+                            tooltip.style.top = (event.clientY + 10) + 'px';
+                        })
+                        .on('mousemove', function (event) {
+                            if (!tooltip) return;
+                            tooltip.style.left = (event.clientX + 10) + 'px';
+                            tooltip.style.top = (event.clientY + 10) + 'px';
+                        })
+                        .on('mouseleave', function () {
+                            if (tooltip) tooltip.style.display = 'none';
+                        });
+                });
+            }
+
             let landDrawn = false;
 
             function drawMarkers() {
@@ -1686,6 +1984,8 @@
                 const g = svg.append('g').attr('class', 'pnw-full-markers');
 
                 pnwFull.forEach(c => {
+                    // Crater Lake NP is drawn as the illustrated caldera instead of a dot
+                    if (/^Crater Lake/.test(c.name)) return;
                     const xy = proj([c.longitude, c.latitude]);
                     if (!xy) return;
 
@@ -1750,8 +2050,9 @@
                         .attr('class', 'pnw-land-full')
                         .attr('d', geoPath);
                     landDrawn = true;
+                    drawWater();
                     drawStateBorders();
-                }).catch(() => { drawStateBorders(); });
+                }).catch(() => { drawWater(); drawStateBorders(); });
             }
 
             function drawStateBorders() {
@@ -1761,8 +2062,9 @@
                         .datum(states)
                         .attr('class', 'pnw-state-borders')
                         .attr('d', geoPath);
+                    drawPeaks();
                     drawMarkers();
-                }).catch(() => { drawMarkers(); });
+                }).catch(() => { drawPeaks(); drawMarkers(); });
             }
 
             // Reveal the section (and lazily draw the map) once it enters the viewport
