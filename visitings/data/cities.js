@@ -21,7 +21,7 @@ CITIES =
    {name: 'Olympic NP Hurricane Ridge, WA', latitude: 47.9766, longitude: -123.5177, radius: 3, fillKey: 'city', date: ''},
    {name: 'Crater Lake NP, OR', latitude: 42.9295, longitude: -122.1279, radius: 3, fillKey: 'city', date: '2023'},
    {name: 'North Cascades NP, WA', latitude: 48.7718, longitude: -121.2985, radius: 3, fillKey: 'city', date: '2017'},
-   {name: 'Mount Rainier NP, WA', latitude: 46.8523, longitude: -121.7603, radius: 3, fillKey: 'city', date: '2023'},
+   {name: 'Mount Rainier NP, WA', latitude: 46.8523, longitude: -121.7603, radius: 3, fillKey: 'city', date: '2016'},
    {name: 'Vancouver, BC', latitude: 49.2827, longitude: -123.1207, radius: 3, fillKey: 'city', date: ''},
    {name: 'Portland, OR', latitude: 45.5152, longitude: -122.6784, radius: 3, fillKey: 'city', date: ''},
    {name: 'Chicago, IL', latitude: 41.8781, longitude: -87.6298, radius: 2, fillKey: 'city', date: '2023'},

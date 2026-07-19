@@ -525,18 +525,18 @@
 
         /* not-yet-visited peaks fade back naturally */
         .pnw-peak.unvisited {
-            opacity: 0.55;
+            opacity: 0.8;
             transition: opacity 0.2s ease;
         }
 
         .pnw-peak.unvisited .peak-body {
-            fill: #96a086;
-            stroke: #7f8878;
+            fill: #b3bca6;
+            stroke: #4f584a;
         }
 
         .pnw-peak.unvisited .peak-snow {
-            fill: #e9ece4;
-            stroke: #7f8878;
+            fill: #f0f2ea;
+            stroke: #4f584a;
         }
 
         .pnw-peak.unvisited:hover {
@@ -1814,9 +1814,9 @@
 
             const PNW_PEAKS = [
                 { name: 'Mt. Baker',      lat: 48.7767, lon: -121.8144, elev: '10,781 ft', glyph: 'volcano', scale: 1.05, visited: false, label: 'right' },
-                { name: 'Mt. Olympus',    lat: 47.8021, lon: -123.7108, elev: '7,980 ft',  glyph: 'peak',    scale: 0.9,  visited: false, label: 'left'  },
+                { name: 'Mt. Olympus',    lat: 47.8321, lon: -123.7808, elev: '7,980 ft',  glyph: 'peak',    scale: 1.05, visited: false, label: 'left'  },
                 { name: 'Mt. Si',         lat: 47.4881, lon: -121.7431, elev: '4,167 ft',  glyph: 'peak',    scale: 0.62, visited: false, label: 'right' },
-                { name: 'Mt. Rainier',    lat: 46.8523, lon: -121.7603, elev: '14,411 ft', glyph: 'volcano', scale: 1.35, visited: true, date: '2023', label: 'right' },
+                { name: 'Mt. Rainier',    lat: 46.8523, lon: -121.7603, elev: '14,411 ft', glyph: 'volcano', scale: 1.35, visited: true, date: '2016', label: 'right' },
                 { name: 'Mt. St. Helens', lat: 46.1914, lon: -122.1956, elev: '8,363 ft',  glyph: 'flattop', scale: 0.95, visited: false, label: 'left'  },
                 { name: 'Mt. Adams',      lat: 46.2024, lon: -121.4906, elev: '12,281 ft', glyph: 'volcano', scale: 1.1,  visited: false, label: 'right' },
                 { name: 'Mt. Hood',       lat: 45.3735, lon: -121.6959, elev: '11,240 ft', glyph: 'volcano', scale: 1.05, visited: false, label: 'right' },
