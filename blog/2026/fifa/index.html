@@ -92,8 +92,45 @@
        background: rgba(63,163,77,0.09); border-left: 4px solid #2e8b57; border-radius: 6px;
      }
 
-     /* lightweight inline score strip — for in-post match result mentions */
-     .score-strip {
+     /* ── FIFA World Cup 2026™ champion update banner ── */
+     .champ-update {
+       position: relative; overflow: hidden; cursor: pointer;
+       margin: 18px 0 26px 0; padding: 16px 20px;
+       background: linear-gradient(135deg, rgba(218,165,32,0.10), rgba(200,16,46,0.07) 55%, rgba(255,196,0,0.10));
+       border: 1px solid rgba(218,165,32,0.45); border-radius: 12px;
+     }
+     .champ-update .cu-tag {
+       display: inline-block; font-size: 0.72em; font-weight: 700;
+       text-transform: uppercase; letter-spacing: 0.5px; color: #b8860b; margin-bottom: 6px;
+     }
+     .champ-update .cu-line {
+       font-weight: 700; font-size: 1.08em; display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
+     }
+     .champ-update .cu-line .cu-trophy { font-size: 1.25em; }
+     .champ-update .cu-note { color: #888; font-size: 0.85em; margin-top: 5px; line-height: 1.55; }
+     .champ-update .cu-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+     @media (prefers-color-scheme: dark) {
+       .champ-update .cu-tag { color: #e6b83c; }
+     }
+     /* google-search-easter-egg style mini confetti burst */
+     .champ-update .cu-confetti { position: absolute; inset: 0; pointer-events: none; }
+     .champ-update .cu-confetti i {
+       position: absolute; top: -12px; width: 7px; height: 11px; border-radius: 2px;
+       opacity: 0; transform: translateY(0) rotate(0deg);
+     }
+     .champ-update.celebrate .cu-confetti i {
+       animation: cuFall var(--dur, 2.4s) ease-in var(--delay, 0s) 1 both;
+     }
+     @keyframes cuFall {
+       0%   { opacity: 0; transform: translateY(-10px) rotate(0deg); }
+       8%   { opacity: 1; }
+       100% { opacity: 0; transform: translateY(150px) rotate(var(--spin, 540deg)); }
+     }
+     @media (prefers-reduced-motion: reduce) {
+       .champ-update.celebrate .cu-confetti i { animation: none; }
+     }
+
+     /* lightweight inline score strip — for in-post match result mentions */     .score-strip {
        display: flex; align-items: center; gap: 14px;
        margin: 14px 0 20px 0; padding: 10px 16px;
        border-left: 3px solid rgba(120,110,200,0.4);
@@ -189,6 +226,12 @@
 
 
                   <div class="lang-en">
+
+                  <div class="champ-update" id="champ-en" role="button" tabindex="0" aria-label="Spain are FIFA World Cup 2026 champions — tap for confetti">
+                    <span class="cu-confetti" aria-hidden="true"></span>
+                    <span class="cu-tag">🎉 Update · Jul 19, 2026</span>
+                    <div class="cu-line"><span class="cu-trophy">🏆</span><span class="ss-flag">🇪🇸</span>Spain — FIFA World Cup 2026 Champions</div>
+                  </div>
 
                   <div class="score-strip">
                     <span class="ss-teams"><span class="ss-flag">🇺🇸</span>USA <span class="ss-lose">1</span><span class="ss-sep">–</span><span class="ss-win">4</span> Belgium<span class="ss-flag">🇧🇪</span></span>
@@ -382,6 +425,12 @@
                   </div><!-- /lang-en -->
 
                   <div class="lang-zh">
+
+                  <div class="champ-update" id="champ-zh" role="button" tabindex="0" aria-label="西班牙夺得 2026 世界杯冠军——点按放彩带">
+                    <span class="cu-confetti" aria-hidden="true"></span>
+                    <span class="cu-tag">🎉 更新 · 2026 年 7 月 19 日</span>
+                    <div class="cu-line"><span class="cu-trophy">🏆</span><span class="ss-flag">🇪🇸</span>西班牙 —— 2026 世界杯冠军</div>
+                  </div>
 
                   <div class="score-strip">
                     <span class="ss-teams"><span class="ss-flag">🇺🇸</span>美国 <span class="ss-lose">1</span><span class="ss-sep">：</span><span class="ss-win">4</span> 比利时<span class="ss-flag">🇧🇪</span></span>
@@ -626,6 +675,40 @@
         var initial = 'en';
         try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
         applyHere(initial);
+      })();
+      </script>
+      <!-- google-search-easter-egg style confetti for the champion update banner -->
+      <script>
+      (function(){
+        var COLORS = ['#c8102e', '#ffc400', '#daa520', '#e05555', '#f6d365', '#ffffff'];
+        document.querySelectorAll('.champ-update').forEach(function(box){
+          var holder = box.querySelector('.cu-confetti');
+          if (!holder) return;
+          for (var i = 0; i < 34; i++) {
+            var p = document.createElement('i');
+            p.style.left = (Math.random() * 98) + '%';
+            p.style.background = COLORS[i % COLORS.length];
+            p.style.setProperty('--delay', (Math.random() * 0.7).toFixed(2) + 's');
+            p.style.setProperty('--dur', (1.6 + Math.random() * 1.4).toFixed(2) + 's');
+            p.style.setProperty('--spin', Math.round(360 + Math.random() * 540) + 'deg');
+            if (Math.random() < 0.3) { p.style.borderRadius = '50%'; p.style.height = '7px'; }
+            holder.appendChild(p);
+          }
+          function pop(){
+            box.classList.remove('celebrate');
+            void box.offsetWidth; /* restart animation */
+            box.classList.add('celebrate');
+          }
+          box.addEventListener('click', pop);
+          box.addEventListener('keydown', function(e){
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pop(); }
+          });
+          new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(e){
+              if (e.isIntersecting) { pop(); obs.disconnect(); }
+            });
+          }, { threshold: 0.6 }).observe(box);
+        });
       })();
       </script>
    </body>
