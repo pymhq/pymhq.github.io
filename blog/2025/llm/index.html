@@ -154,6 +154,13 @@
      .comment-note-2026 .note-date { color: var(--fx-accent); }
      .comment-note-2025 .note-date { color: var(--fx-warn); }
 
+     /* ---------- personal reflections: dashed-frame serif asides ---------- */
+     .my-thought { max-width: var(--fx-prose); margin: 16px auto; padding: 14px 22px;
+       font-family: var(--fx-serif); font-style: italic; font-size: .97rem; line-height: 1.85;
+       border: 1.5px dashed var(--fx-mute); border-radius: 12px; background: transparent; }
+     .my-thought .thought-label { display: block; margin-bottom: 2px; font: 700 .68rem/1.8 var(--fx-sans);
+       font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: var(--fx-mute); }
+
      /* ---------- reading aids ---------- */
      #fxbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--fx-accent); z-index: 2001; }
      #fx-outline { display: none; position: fixed; top: 130px; left: max(18px, calc(50vw - 440px - 236px)); width: 204px;
@@ -210,8 +217,8 @@
                   <li><a href="#agentic-ai">Agentic AI: Moving Fast</a></li>
                   <li><a href="#partnerships">Expanded Cross-Company Partnerships</a></li>
                   <li><a href="#data-center">More and More Data Center</a></li>
-                  <li><a href="#performance">Faster and Faster Performance</a></li>
-                  <li><a href="#trust-safety">Benchmark, Interpretability, Observability, Trust &amp; Safety</a></li>
+                  <li><a href="#performance">Faster and Faster Performance Optimization</a></li>
+                  <li><a href="#trust-safety">Evaluation, Alignment, Interpretability, Trust &amp; Safety</a></li>
                   <li><a href="#pitch">Pitch Over Performance</a></li>
                   <li><a href="#productivity">Productivity</a></li>
                   <li><a href="#llm-3-years">LLM 3 Years</a></li>
@@ -370,7 +377,7 @@
             </div>
             <br>
 
-            <h2 id="performance">Faster and Faster Performance</h2>
+            <h2 id="performance">Faster and Faster Performance Optimization</h2>
             <p>More OPTS, shorter TTFT, and longer context lengths, the ranking race in Artificial Analysis continues. Performance is becoming critically important at every layer—from applications and agent providers to API and model providers. Companies like Fireworks AI and Together AI did a good job in this domain. AI technologies are innovating fast — <a href="https://developer.nvidia.com/blog/top-5-ai-model-optimization-techniques-for-faster-smarter-inference/">inference optimization techniques</a> like speculative decoding are a prime example. Beginning with draft-model speculative decoding (Chen et al., <a href="https://arxiv.org/abs/2302.01318">2023</a>), later the EAGLE (Extrapolation Algorithm for Greater Language‑model Efficiency) series has pushed this approach further: EAGLE-1 (<a href="https://arxiv.org/abs/2401.15077">ICML 2024</a>), EAGLE‑2 (<a href="https://arxiv.org/abs/2406.16858">EMNLP 2024</a>), EAGLE‑3 (<a href="https://arxiv.org/abs/2503.01840">2025</a>), and most recently, SuffixDecoding (<a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/115453">NeurIPS 2025 spotlight poster</a>).</p>
             <div class="comment-note-2026">
                <span class="note-date">Jul 15, 2026 ·</span> Fireworks AI <a href="https://fireworks.ai/blog/series-d-announcement" target="_blank">announced its Series D</a>: $1.505B raised at a <strong>$17.5B valuation</strong>, surpassing $1B in annualized revenue and serving 40+ trillion tokens per day.
@@ -391,7 +398,7 @@
             <p>Besides, low-level innovations like kernel tuning continue unabated—for example, Perplexity’s October open sourced kernel on <a href="https://github.com/perplexityai/pplx-garden">GitHub</a> and <a href="https://arxiv.org/abs/2510.27656">paper</a> and companies like Cerebras AI design AI-native processors and infrastructure, result in high performance through tight hardware–software combination. Behind high performance is a high-quality dataset.</p>
             <br>
 
-            <h2 id="trust-safety">Benchmark, Interpretability, Observability, Trust & Safety</h2>
+            <h2 id="trust-safety">Evaluation, Alignment, Interpretability, Trust & Safety</h2>
             <p>Transitioning a probability-based LLM solution into a stable, consistency, production-ready product is not trivial. Last-mile delivery: from innovations to production readiness is important. Achieving production readiness requires extensive work, including rigorous benchmarking, thorough model evaluation, and, most importantly, establishing trust and safety. Some organizations have recognized these challenges and are actively building solutions to close the gap.—examples include Arklex.ai and Virtue AI.</p>
             <div class="comment-note-2026">
                <span class="note-date">Jun 2026 ·</span> <a href="https://x.com/dawnsongtweets/status/2070191051873345910?s=20" target="_blank">@dawnsongtweets</a>: Virtue AI joined Meta Superintelligence Labs (MSL).
@@ -438,6 +445,13 @@
                <span class="note-date">Jul 10, 2026 ·</span> <em>Mira Murati</em>, CEO of Thinking Machines Lab: <a href="https://thinkingmachines.ai/blog/the-future-worth-building-is-human/" target="_blank">"The Future Worth Building Is Human."</a>
             </div>
             <div class="comment-note-2026">
+               <span class="note-date">Jul 09, 2026 ·</span> <a href="https://ai-2040.com/" target="_blank">AI 2040</a> — "Plan A," the AI 2027 team's positive scenario for delaying superintelligence until 2040 (<a href="https://x.com/thlarsen/status/2075252396616474882?s=20" target="_blank">announcement</a>).
+            </div>
+            <div class="my-thought">
+               <span class="thought-label">My own thought</span>
+               The productivity surplus brought by AI could bring today's capital-driven form of society to an early end (capitalism as an economic system emerged in the 16th century, ~500 years ago).
+            </div>
+            <div class="comment-note-2026">
                <span class="note-date">Mar 05, 2026 ·</span> Anthropic Economic Research report: <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank">Labor market impacts of AI: A new measure and early evidence</a>.
             </div>
             <div class="comment-note-2026">
@@ -477,8 +491,8 @@
                   <li><a href="#agentic-ai-zh">智能体 AI：高速前进</a></li>
                   <li><a href="#partnerships-zh">跨公司合作不断扩展</a></li>
                   <li><a href="#data-center-zh">越来越多的数据中心</a></li>
-                  <li><a href="#performance-zh">越来越快的性能</a></li>
-                  <li><a href="#trust-safety-zh">基准评测、可解释性、可观测性、信任与安全</a></li>
+                  <li><a href="#performance-zh">越来越快的性能优化</a></li>
+                  <li><a href="#trust-safety-zh">评测、对齐、可解释性、信任与安全</a></li>
                   <li><a href="#pitch-zh">叙事胜于性能</a></li>
                   <li><a href="#productivity-zh">生产力工具</a></li>
                   <li><a href="#llm-3-years-zh">与 LLM 相伴的三年</a></li>
@@ -637,7 +651,7 @@
             </div>
             <br>
 
-            <h2 id="performance-zh">越来越快的性能</h2>
+            <h2 id="performance-zh">越来越快的性能优化</h2>
             <p>更高的 OPTS、更短的 TTFT、更长的上下文长度——Artificial Analysis 上的排名竞赛仍在持续。性能正变得在每一层都至关重要——从应用层、智能体提供方，到 API 与模型提供方。Fireworks AI 和 Together AI 等公司在这一领域做得不错。AI 技术的创新速度极快——<a href="https://developer.nvidia.com/blog/top-5-ai-model-optimization-techniques-for-faster-smarter-inference/">推理优化技术</a>，比如投机解码，就是一个典型例子。从最早的草稿模型投机解码（Chen 等人，<a href="https://arxiv.org/abs/2302.01318">2023</a>）开始，后续的 EAGLE（Extrapolation Algorithm for Greater Language‑model Efficiency）系列将这一思路进一步推进：EAGLE-1（<a href="https://arxiv.org/abs/2401.15077">ICML 2024</a>）、EAGLE‑2（<a href="https://arxiv.org/abs/2406.16858">EMNLP 2024</a>）、EAGLE‑3（<a href="https://arxiv.org/abs/2503.01840">2025</a>），以及最近的 SuffixDecoding（<a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/115453">NeurIPS 2025 焦点海报</a>）。</p>
             <div class="comment-note-2026">
                <span class="note-date">2026 年 7 月 15 日 ·</span> Fireworks AI <a href="https://fireworks.ai/blog/series-d-announcement" target="_blank">宣布完成 D 轮融资</a>：融资 15.05 亿美元，估值达 <strong>175 亿美元</strong>，年化收入突破 10 亿美元，每日服务超 40 万亿 token。
@@ -658,7 +672,7 @@
             <p>此外，像内核调优这样的底层创新也未曾停歇——例如，Perplexity 10 月在 <a href="https://github.com/perplexityai/pplx-garden">GitHub</a> 上开源的内核及其<a href="https://arxiv.org/abs/2510.27656">论文</a>，以及 Cerebras AI 等公司设计的 AI 原生处理器与基础设施，都通过软硬件的紧密结合实现了高性能。而高性能的背后，是高质量的数据集。</p>
             <br>
 
-            <h2 id="trust-safety-zh">基准评测、可解释性、可观测性、信任与安全</h2>
+            <h2 id="trust-safety-zh">评测、对齐、可解释性、信任与安全</h2>
             <p>将一个基于概率的 LLM 方案，转变为稳定、一致、可用于生产的产品，绝非易事。最后一公里的交付——从创新到生产就绪——至关重要。要实现生产就绪，需要大量工作，包括严格的基准评测、全面的模型评估，以及最重要的一点：建立信任与安全。一些机构已经意识到这些挑战，并正在积极构建解决方案来弥补差距——例如 Arklex.ai 与 Virtue AI。</p>
             <div class="comment-note-2026">
                <span class="note-date">2026 年 6 月 ·</span> <a href="https://x.com/dawnsongtweets/status/2070191051873345910?s=20" target="_blank">@dawnsongtweets</a>：Virtue AI 加入 Meta Superintelligence Labs（MSL）。
@@ -703,6 +717,13 @@
             </div>
             <div class="comment-note-2026">
                <span class="note-date">2026 年 7 月 10 日 ·</span> Thinking Machines Lab CEO <em>Mira Murati</em>：<a href="https://thinkingmachines.ai/blog/the-future-worth-building-is-human/" target="_blank">《值得建设的未来是属于人类的》</a>。
+            </div>
+            <div class="comment-note-2026">
+               <span class="note-date">2026 年 7 月 9 日 ·</span> <a href="https://ai-2040.com/" target="_blank">AI 2040</a>——AI 2027 团队提出的正面情景 "Plan A"，主张将超级智能的到来推迟至 2040 年（<a href="https://x.com/thlarsen/status/2075252396616474882?s=20" target="_blank">发布推文</a>）。
+            </div>
+            <div class="my-thought">
+               <span class="thought-label">我的思考</span>
+               人工智能带来的生产力过剩导致当前资本驱动社会形态的提前结束（资本主义作为一种经济制度兴起于 16 世纪，距今约五百年）。
             </div>
             <div class="comment-note-2026">
                <span class="note-date">2026 年 3 月 5 日 ·</span> Anthropic 经济研究报告：<a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank">《AI 对劳动力市场的影响：一种新的衡量方法与早期证据》</a>。
