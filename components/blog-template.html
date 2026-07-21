@@ -32,13 +32,85 @@
       <style>. Default is the site theme blue (--global-theme-color). Apply the
       same treatment in BOTH the EN and 中文 versions. (Legacy: ant-hl in
       blog/2026/curiosity-driven-builder/ is this same pill style.)
-    • After publishing run:  python3 scripts/sync_reading_stats.py   (sync index from post metas)
-                             python3 scripts/check_reading_stats.py  (verify consistency)
-                             python3 scripts/generate_feed.py
     • The EN/中文 toggle works because the button sets `body.zh`, and the CSS
       below hides the inactive language. Wrap the <h1> and <p class="post-meta">
       in .lang-en / .lang-zh spans so the header switches too.
+
   ============================================================================
+  PUBLISH CHECKLIST — every page/file to touch for ONE new post
+  ----------------------------------------------------------------------------
+  The site is fully static; nothing regenerates listing pages for you.
+  Work through ALL of these, in order:
+
+  1. POST PAGE — blog/<YEAR>/<slug>/index.html  (this template)
+
+  2. OG CARD (new minimal style — full SOP in /OG-CARD-SOP.md):
+       • The card is EITHER pure text OR a pure image — never a mix of
+         text overlaid on / combined with imagery.
+       • cp assets/blog/2026/speculativedecoding/og-card.html \
+            assets/blog/<year>/<slug>/og-card.html
+       • Edit ONLY two spots: <h1> hook (first line class="accent" = number /
+         counter-intuitive claim; second line ink) and .sub (<b>names</b> +
+         one line on what the reader would miss). NO page title, NO author,
+         NO domain, NO "Puget Sound Journal". White bg; ink #16181d + site
+         blue #0076df only; sub #3c4148; serif = Source Serif 4.
+       • Render 3x PNG with headless Chrome (--window-size=1200,630
+         --force-device-scale-factor=3 --virtual-time-budget=8000);
+         verify with sips: expect 3600 × 1890.
+       • Point og:image + twitter:image in the post <head> at the ABSOLUTE
+         URL: https://pengandy.com/assets/blog/<year>/<slug>/og-card.png
+       • Commit og-card.html + og-card.png together with the post.
+
+  3. BLOG INDEX — blog/index.html:
+       • Add the post card <li> at the top of the post list (title EN/ZH,
+         description, date, readstats, tags/category links — same links as
+         the post's own .post-tags row).
+       • Update the tag cloud: NEW tag → add a `tc-chip tc-one` chip
+         (alphabetical); EXISTING tag → bump its <span class="tc-count">
+         (a tc-one chip gaining a 2nd post gets a count span; promote to
+         `tc-hot` only for the top few). Same for the category chip counts.
+       • If the first page is over its card budget, move the oldest card
+         to blog/page/2/index.html.
+
+  4. PAGE 2 — blog/page/2/index.html:
+       • Its tag/category cloud is a COPY of the index cloud — apply the
+         exact same cloud edits there.
+
+  5. YEAR ARCHIVE — blog/<YEAR>/index.html: add the same post card.
+       (Create the year archive first if this is the year's first post —
+       copy blog/2025/index.html as the base.)
+
+  6. TAG PAGES — for EACH tag on the post:
+       • Existing tag: add the post card to blog/tag/<tag>/index.html.
+       • New tag: mkdir blog/tag/<tag>/ and copy an existing single-tag
+         page (e.g. blog/tag/mlsys/index.html) as the base, then add the
+         chip to BOTH clouds (steps 3 & 4).
+
+  7. CATEGORY PAGE — blog/category/<cat>/index.html: add the post card.
+
+  8. SCRIPTS (run from repo root, commit results):
+       python3 scripts/sync_reading_stats.py    # sync index card readstats
+       python3 scripts/check_reading_stats.py   # verify consistency
+       python3 scripts/generate_feed.py         # regenerate feed.xml
+
+  9. AFTER PUSHING — run the post URL through the LinkedIn Post Inspector
+     (https://www.linkedin.com/post-inspector/) to refresh the cache and
+     preview the real card before sharing.
+
+  CONSISTENCY RULE: the tag/category links on the post page, its card on
+  every listing page (index / page 2 / year / tag / category), the two tag
+  clouds, and feed.xml must all agree.
+
+  TAG CHECK — MANDATORY on EVERY post update or new post:
+    • Diff the post's .post-tags row against blog/tag/: any tag without a
+      blog/tag/<slug>/index.html is NEW → create its page AND add its chip
+      to BOTH clouds (blog/index.html + blog/page/2/index.html).
+    • Verify the chip really is in the CLOUD block (class="tc-chip"), not
+      just in a post card's tag row — grep 'tc-chip.*<slug>' in both files.
+      (A card link is NOT a cloud chip; they are easy to conflate.)
+    • Naming: URL slug is hyphenated (reinforcement-learning); the DISPLAY
+      label always uses spaces (reinforcement learning) — on the post page,
+      on every card, and on the chip.
 -->
 
 <!-- Google tag (gtag.js) -->
