@@ -81,4 +81,8 @@ CITIES =
    {name: 'Nantucket, MA', latitude: 41.2835, longitude: -70.0995, radius: 3, fillKey: 'city', date: '2026'},
    {name: 'Nice · Antibes · Cannes, France', latitude: 43.6139, longitude: 7.1348, radius: 3, fillKey: 'city', date: '2026'},
    {name: 'LHR, UK', latitude: 51.4700, longitude: -0.4543, radius: 3, fillKey: 'city', date: '2026'},
+   {name: 'UCSD, CA', latitude: 32.8801, longitude: -117.2340, radius: 3, fillKey: 'city', date: ''},
+   {name: 'UCI, CA', latitude: 33.6405, longitude: -117.8443, radius: 3, fillKey: 'city', date: ''},
+   {name: 'UCLA, CA', latitude: 34.0689, longitude: -118.4452, radius: 3, fillKey: 'city', date: ''},
+   {name: 'UWash, WA', latitude: 47.6553, longitude: -122.3035, radius: 3, fillKey: 'city', date: ''},
 ]
