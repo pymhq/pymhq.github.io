@@ -25,13 +25,15 @@
       <meta property="og:url" content="https://pengandy.com/blog/2026/ant/">
       <meta property="og:title" content="My Story with Anthropic">
       <meta property="og:description" content="A storytelling timeline of my observation of, and collaboration with, Anthropic.">
-      <meta property="og:image" content="https://pengandy.com/assets/blog/br.png">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/2026/ant/og-card.png">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="630">
 
       <!-- Twitter -->
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:title" content="My Story with Anthropic">
       <meta name="twitter:description" content="A storytelling timeline of my observation of, and collaboration with, Anthropic.">
-      <meta name="twitter:image" content="https://pengandy.com/assets/blog/br.png">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/2026/ant/og-card.png">
       <meta name="twitter:site" content="@pymhq">
       <meta name="twitter:creator" content="@pymhq">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
@@ -105,6 +107,17 @@
        background: none; border: none; border-left: 3px solid var(--fx-accent); border-radius: 0; }
      .ant-quote p.q { font-family: var(--fx-serif); font-style: italic; font-weight: 500; font-size: 1.32rem; line-height: 1.55; margin: 0 0 10px; }
      .ant-quote p.a { font: 500 .82rem/1.5 var(--fx-sans); letter-spacing: .03em; color: var(--fx-mute); margin: 0; }
+
+     /* ---------- contents ---------- */
+     .post .fx-toc { max-width: var(--fx-prose); margin: 38px auto 50px; padding: 22px 0 6px;
+       border-top: 1px solid var(--global-text-color, #1a1a1a); }
+     .post .fx-toc .lbl { font: 700 .72rem/1 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-mute); margin-bottom: 14px; }
+     .post .fx-toc ol { columns: 2; column-gap: 44px; margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+     .post .fx-toc li { counter-increment: toc; break-inside: avoid; padding: 7px 0; border-bottom: 1px solid var(--fx-hair); font-size: .93rem; line-height: 1.5; }
+     .post .fx-toc li::before { content: counter(toc, decimal-leading-zero); font: 600 .72rem/1 var(--fx-mono); color: var(--fx-accent); margin-right: 12px; }
+     .post .fx-toc a, .post div.lang-en .fx-toc a, .post div.lang-zh .fx-toc a { border-bottom: none; color: var(--global-text-color, #1a1a1a); }
+     .post .fx-toc a:hover, .post div.lang-en .fx-toc a:hover, .post div.lang-zh .fx-toc a:hover { color: var(--fx-accent); }
+     @media (max-width: 640px) { .post .fx-toc ol { columns: 1; } }
 
      /* ---------- chapter heading band: accent tick + kicker + serif h2 ---------- */
      .ant-band { max-width: var(--fx-prose); margin: 72px auto 24px; position: relative; padding-top: 20px; }
@@ -228,6 +241,19 @@
                <p>
                   This post is that story, told along its timeline. I've drawn the arc as a diagram first, then walked through it chapter by chapter — partly a record of the collaboration, partly an honest log of what I observed from the inside as the frontier moved.
                </p>
+
+               <nav class="fx-toc">
+                  <div class="lbl">Contents</div>
+                  <ol>
+                     <li><a href="#timeline">The Arc, at a Glance</a></li>
+                     <li><a href="#c2023">Engineer No. 2 &mdash; a confidential beginning</a></li>
+                     <li><a href="#c2024">Building Together &mdash; Day-0 launches, late nights, and Trainium</a></li>
+                     <li><a href="#c2025">The Year It Clicked &mdash; industry recognition &amp; Claude Code</a></li>
+                     <li><a href="#c2026">Everyone Uses Claude &mdash; from frontier to household name</a></li>
+                     <li><a href="#trust-and-safety">Trust and Safety &mdash; the philosophy underneath everything</a></li>
+                     <li><a href="#cipo">The Chapter Not Yet Written &mdash; the IPO</a></li>
+                  </ol>
+               </nav>
 
                <h2 id="timeline">The Arc, at a Glance</h2>
 
@@ -463,6 +489,19 @@
                <p>
                   这篇文章就是那个故事，沿着它的时间线讲述。我先把这条弧线画成一张图，再逐章走过 —— 既是合作的记录，也是我在前沿不断移动时、从内部观察到的一份诚实日志。
                </p>
+
+               <nav class="fx-toc">
+                  <div class="lbl">目录</div>
+                  <ol>
+                     <li><a href="#timeline-zh">弧线一览</a></li>
+                     <li><a href="#c2023-zh">2 号工程师 &mdash; 一个机密的开端</a></li>
+                     <li><a href="#c2024-zh">并肩共建 &mdash; Day-0 发布、深夜与 Trainium</a></li>
+                     <li><a href="#c2025-zh">豁然开朗的一年 &mdash; 业界认可与 Claude Code</a></li>
+                     <li><a href="#c2026-zh">人人都用 Claude &mdash; 从前沿到家喻户晓</a></li>
+                     <li><a href="#trust-and-safety-zh">信任与安全 &mdash; 贯穿始终的根本理念</a></li>
+                     <li><a href="#cipo-zh">尚未书写的一章 &mdash; IPO</a></li>
+                  </ol>
+               </nav>
 
                <h2 id="timeline-zh">弧线一览</h2>
 

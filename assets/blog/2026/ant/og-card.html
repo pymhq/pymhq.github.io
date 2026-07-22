@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+  OG card for /blog/2026/ant/ — pure-image card (flywheel precedent).
+  The image IS the article's "16 shipping months" GitHub-style shipping
+  heatmap (.ant-gh), reproduced 1:1 from the post and scaled to fill
+  the 1200x630 canvas. No added text per OG-CARD-SOP pure-image rule.
+  Render: headless Chrome, --window-size=1200,630 --force-device-scale-factor=3
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { width: 1200px; height: 630px; background: #ffffff;
+         display: flex; align-items: center; justify-content: center;
+         font-family: -apple-system,"Segoe UI",Helvetica,Arial,sans-serif; }
+  .stage { zoom: 1.48; }
+
+  /* ---- .ant-gh styles copied verbatim from blog/2026/ant/index.html ---- */
+  .ant-gh { width: 730px; box-sizing: border-box; background: #0d1117; border: 1px solid #30363d; border-radius: 10px; padding: 16px 18px 14px; }
+  .ant-gh .gh-head { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .ant-gh .gh-count { font-size: 0.78em; color: #8b949e; }
+  .ant-gh .gh-grid { display: flex; gap: 5px; align-items: flex-end; justify-content: space-between; }
+  .ant-gh .mo { position: relative; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px; flex: 1; min-width: 0; }
+  .ant-gh .sq { width: 100%; max-width: 34px; aspect-ratio: 1; border-radius: 4px; background: #39d353; outline: 1px solid rgba(240,246,252,0.08); outline-offset: -1px; }
+  .ant-gh .lbl { font-size: 0.62em; color: #8b949e; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="ant-gh">
+      <div class="gh-head">
+        <span class="gh-count">16 shipping months &middot; Dec 2023 &ndash; Mar 2025</span>
+      </div>
+      <div class="gh-grid">
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="lbl">Dec 23</span></div>
+        <div class="mo"><span class="sq"></span><span class="lbl">Jan</span></div>
+        <div class="mo"><span class="sq"></span><span class="lbl">Feb</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Mar</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Apr</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="lbl">May</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="lbl">Jun</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Jul</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="lbl">Aug</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="lbl">Sep</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Oct</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Nov</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Dec</span></div>
+        <div class="mo"><span class="sq"></span><span class="lbl">Jan 25</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Feb</span></div>
+        <div class="mo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="lbl">Mar</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
