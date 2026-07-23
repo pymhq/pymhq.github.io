@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+  OG card source for pengandy.com/studio (option C, site-style version).
+  Render at 1200x630. Each .card is one variant; screenshot individually
+  via headless Chrome using #v1 / #v2 anchors + clip, or open in a browser
+  to preview both.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --text: #24292f;        /* studio body text */
+    --text-light: #6a737d;  /* studio tagline gray */
+    --border: #e1e4e8;      /* studio/homepage card border */
+    --link: #0076df;        /* homepage --global-theme-color */
+    --bg: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace;
+    background: #f0f2f5;
+  }
+  .card {
+    width: 1200px;
+    height: 630px;
+    background: var(--bg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 110px;
+    overflow: hidden;
+  }
+  /* inner hairline frame, echoes homepage .content-card */
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 28px;
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    pointer-events: none;
+  }
+  .repo {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 44px;
+  }
+  .repo .hash { color: var(--link); }
+  .repo .name { color: var(--text); }
+  h1 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text);
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+  }
+  h1 .accent { color: var(--link); }
+  .tagline {
+    font-size: 30px;
+    line-height: 1.5;
+    color: var(--text-light);
+    margin-bottom: 56px;
+  }
+  .cta {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--link);
+  }
+  .topics {
+    font-size: 26px;
+    color: var(--text-light);
+    margin-bottom: 56px;
+  }
+  .topics .dot { color: var(--border); padding: 0 6px; }
+  .spacer { height: 40px; }
+</style>
+</head>
+<body>
+
+<!-- V1: minimal, poster-like (FINAL — rendered as og-card.png) -->
+<div class="card" id="v1">
+  <h1>Let&rsquo;s talk<span class="accent">.</span></h1>
+  <p class="tagline">coffee chats, advising &amp; collaboration<br>with Andy Peng.</p>
+  <p class="cta">pengandy.com/studio &rarr;</p>
+</div>
+
+<div class="spacer"></div>
+
+<!-- V2: adds the topics line from the studio page -->
+<div class="card" id="v2">
+  <div class="repo"><span class="hash">#</span> <span class="name">peng-andy-studio</span></div>
+  <h1>Contact &amp; collaborate<span class="accent">.</span></h1>
+  <p class="topics">research <span class="dot">&middot;</span> career <span class="dot">&middot;</span> startups <span class="dot">&middot;</span> exec <span class="dot">&middot;</span> writing <span class="dot">&middot;</span> speaking</p>
+  <p class="cta">&#9749; pengandy.com/studio &rarr;</p>
+</div>
+
+</body>
+</html>
