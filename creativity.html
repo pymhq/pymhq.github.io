@@ -792,6 +792,43 @@
         .back-to-top:hover { background: rgba(255, 255, 255, 0.16); }
 
         /* ------------------------------------------------------------
+           Language toggle (shares 'preferredLanguage' with the rest of
+           the site). .lang-zh hidden by default so text isn't stacked
+           before JS applies the saved preference.
+           ------------------------------------------------------------ */
+        .lang-zh { display: none; }
+        .lang-toggle-fixed {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: var(--card-bg);
+            border: 2px solid #e0e0e0;
+            border-radius: 999px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            z-index: 1000;
+        }
+        .lang-toggle-fixed button {
+            border: none;
+            background: transparent;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #6a7280;
+            padding: 9px 13px;
+            cursor: pointer;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .lang-toggle-fixed button:hover { background: #f0f6ff; }
+        .lang-toggle-fixed button.active {
+            background: var(--theme);
+            color: #fff;
+        }
+
+        /* ------------------------------------------------------------
            Media protection (best-effort): block right-click save, drag,
            long-press and text-select on photos & reels.
            ------------------------------------------------------------ */
@@ -832,6 +869,11 @@
         <i class="fa-solid fa-house"></i>
     </a>
 
+    <div class="lang-toggle-fixed" role="group" aria-label="Language selector">
+        <button type="button" class="active" id="btn-en" onclick="switchLanguage('en')">EN</button>
+        <button type="button" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
+    </div>
+
     <!-- ============================================================
          01 · Hero
          ============================================================ -->
@@ -841,17 +883,17 @@
             <div class="hero-card">
                 <div class="hero-kicker">pengandy.com / creativity</div>
                 <h1><span class="accent">Creativity</span><span class="cursor" aria-hidden="true"></span></h1>
-                <p class="hero-sub">Things I design, draw, shoot, and cut — the craft behind this site and beyond.</p>
+                <p class="hero-sub"><span class="lang-en">Things I design, draw, shoot, and cut — the craft behind this site and beyond.</span><span class="lang-zh">我设计、绘制、拍摄与剪辑的作品 —— 这个网站背后的手艺，以及更多。</span></p>
                 <nav class="hero-chapters" aria-label="Chapters">
-                    <a class="chapter-chip" href="#design"><span class="chip-dot" style="background:#0076df"></span>Design Language</a>
-                    <a class="chapter-chip" href="#maps"><span class="chip-dot" style="background:#ffc24d"></span>Cartography</a>
-                    <a class="chapter-chip" href="#photo"><span class="chip-dot" style="background:#b3542e"></span>Photography</a>
-                    <a class="chapter-chip" href="#reels"><span class="chip-dot" style="background:#ff5470"></span>Reels</a>
+                    <a class="chapter-chip" href="#design"><span class="chip-dot" style="background:#0076df"></span><span class="lang-en">Design Language</span><span class="lang-zh">设计语言</span></a>
+                    <a class="chapter-chip" href="#maps"><span class="chip-dot" style="background:#ffc24d"></span><span class="lang-en">Cartography</span><span class="lang-zh">地图绘制</span></a>
+                    <a class="chapter-chip" href="#photo"><span class="chip-dot" style="background:#b3542e"></span><span class="lang-en">Photography</span><span class="lang-zh">摄影</span></a>
+                    <a class="chapter-chip" href="#reels"><span class="chip-dot" style="background:#ff5470"></span><span class="lang-en">Reels</span><span class="lang-zh">短片</span></a>
                 </nav>
             </div>
         </div>
         <div class="scroll-cue" data-target="#design">
-            <span>explore</span>
+            <span><span class="lang-en">explore</span><span class="lang-zh">探索</span></span>
             <i class="fa-solid fa-chevron-down"></i>
         </div>
     </section>
@@ -862,8 +904,8 @@
     <section class="panel-section" id="design">
         <span class="section-index">02 / 05</span>
         <div class="section-inner">
-            <h2><span class="dot"></span>Design Language</h2>
-            <p class="section-subtitle">The system behind pengandy.com — code-style typography, soft cards, snap panels.</p>
+            <h2><span class="dot"></span><span class="lang-en">Design Language</span><span class="lang-zh">设计语言</span></h2>
+            <p class="section-subtitle"><span class="lang-en">The system behind pengandy.com — code-style typography, soft cards, snap panels.</span><span class="lang-zh">pengandy.com 背后的设计系统 —— 代码风格排版、柔和卡片、吸附式面板。</span></p>
 
             <div class="pager-frame">
                 <button class="pager-nav prev" type="button" aria-label="Previous panel" disabled>
@@ -877,8 +919,8 @@
                     <!-- Panel 1: tokens -->
                     <div class="pager-panel" aria-label="Design tokens">
                         <div class="spec-card">
-                            <h3><i class="fa-solid fa-palette"></i>Tokens</h3>
-                            <p class="spec-note">One palette, many moods — each surface of the site keeps its own accent while sharing the same bones.</p>
+                            <h3><i class="fa-solid fa-palette"></i><span class="lang-en">Tokens</span><span class="lang-zh">设计令牌</span></h3>
+                            <p class="spec-note"><span class="lang-en">One palette, many moods — each surface of the site keeps its own accent while sharing the same bones.</span><span class="lang-zh">一套色板，多种气质 —— 网站的每个页面都有自己的主题色，却共享同一副骨架。</span></p>
                             <div class="swatch-row">
                                 <div class="swatch"><div class="chip" style="background:#0076df"></div><div class="meta"><span class="name">--theme</span><span class="val">#0076df</span></div></div>
                                 <div class="swatch"><div class="chip" style="background:#556b2f"></div><div class="meta"><span class="name">--moss</span><span class="val">#556b2f</span></div></div>
@@ -897,15 +939,15 @@
                     <!-- Panel 2: interaction model -->
                     <div class="pager-panel" aria-label="Interaction patterns">
                         <div class="spec-card">
-                            <h3><i class="fa-solid fa-arrows-left-right"></i>The Panel System</h3>
-                            <p class="spec-note">Native scroll + snap, two axes: vertical between chapters, horizontal within them. This very pager is the pattern — try dragging the strip below.</p>
+                            <h3><i class="fa-solid fa-arrows-left-right"></i><span class="lang-en">The Panel System</span><span class="lang-zh">面板系统</span></h3>
+                            <p class="spec-note"><span class="lang-en">Native scroll + snap, two axes: vertical between chapters, horizontal within them. This very pager is the pattern — try dragging the strip below.</span><span class="lang-zh">原生滚动 + 吸附，两个方向：章节间纵向滚动，章节内横向翻页。你眼前这个翻页器就是范例 —— 试着拖动下面的横条。</span></p>
                             <div class="mini-viewport">
                                 <div class="mini-track">
-                                    <div class="mini-slide s1"><b>scroll-snap-type: x mandatory</b><span>the browser does the physics — no carousel library</span></div>
-                                    <div class="mini-slide s2"><b>scroll-snap-align: start</b><span>every panel lands exactly where it should</span></div>
-                                    <div class="mini-slide s3"><b>overscroll-behavior: contain</b><span>no accidental back-swipe, ever</span></div>
+                                    <div class="mini-slide s1"><b>scroll-snap-type: x mandatory</b><span><span class="lang-en">the browser does the physics — no carousel library</span><span class="lang-zh">物理效果全靠浏览器 —— 不用轮播库</span></span></div>
+                                    <div class="mini-slide s2"><b>scroll-snap-align: start</b><span><span class="lang-en">every panel lands exactly where it should</span><span class="lang-zh">每个面板都精准停在该停的位置</span></span></div>
+                                    <div class="mini-slide s3"><b>overscroll-behavior: contain</b><span><span class="lang-en">no accidental back-swipe, ever</span><span class="lang-zh">永远不会误触返回手势</span></span></div>
                                 </div>
-                                <div class="mini-hint">← swipe or drag →</div>
+                                <div class="mini-hint"><span class="lang-en">← swipe or drag →</span><span class="lang-zh">← 滑动或拖拽 →</span></div>
                             </div>
                         </div>
                     </div>
@@ -913,12 +955,12 @@
                     <!-- Panel 3: principles -->
                     <div class="pager-panel" aria-label="Design principles">
                         <div class="spec-card">
-                            <h3><i class="fa-solid fa-compass-drafting"></i>Principles</h3>
+                            <h3><i class="fa-solid fa-compass-drafting"></i><span class="lang-en">Principles</span><span class="lang-zh">设计原则</span></h3>
                             <ul class="principles">
-                                <li><b><i class="fa-solid fa-terminal"></i>Code is the aesthetic</b><span>Monospace everywhere. The site reads like a well-formatted source file.</span></li>
-                                <li><b><i class="fa-solid fa-layer-group"></i>Cards, not pages</b><span>Soft borders, 12px radii, shadows that whisper. Content lives in cards.</span></li>
-                                <li><b><i class="fa-solid fa-wand-magic-sparkles"></i>Motion earns its place</b><span>Reveals, nudges, and bobs — always subtle, always skippable via reduced-motion.</span></li>
-                                <li><b><i class="fa-solid fa-feather"></i>Zero frameworks</b><span>Hand-written HTML/CSS/JS. Every byte on the page was put there on purpose.</span></li>
+                                <li><b><i class="fa-solid fa-terminal"></i><span class="lang-en">Code is the aesthetic</span><span class="lang-zh">代码即美学</span></b><span><span class="lang-en">Monospace everywhere. The site reads like a well-formatted source file.</span><span class="lang-zh">全站等宽字体。整个网站读起来像一份排版精良的源代码文件。</span></span></li>
+                                <li><b><i class="fa-solid fa-layer-group"></i><span class="lang-en">Cards, not pages</span><span class="lang-zh">卡片，而非页面</span></b><span><span class="lang-en">Soft borders, 12px radii, shadows that whisper. Content lives in cards.</span><span class="lang-zh">柔和的边框、12px 圆角、若隐若现的阴影。内容都住在卡片里。</span></span></li>
+                                <li><b><i class="fa-solid fa-wand-magic-sparkles"></i><span class="lang-en">Motion earns its place</span><span class="lang-zh">动效物尽其用</span></b><span><span class="lang-en">Reveals, nudges, and bobs — always subtle, always skippable via reduced-motion.</span><span class="lang-zh">渐显、轻推、浮动 —— 始终克制，且始终尊重减少动效偏好设置。</span></span></li>
+                                <li><b><i class="fa-solid fa-feather"></i><span class="lang-en">Zero frameworks</span><span class="lang-zh">零框架</span></b><span><span class="lang-en">Hand-written HTML/CSS/JS. Every byte on the page was put there on purpose.</span><span class="lang-zh">纯手写 HTML/CSS/JS。页面上的每一个字节都有它存在的理由。</span></span></li>
                             </ul>
                         </div>
                     </div>
@@ -928,7 +970,7 @@
             </div>
         </div>
         <div class="scroll-cue" data-target="#maps">
-            <span>cartography</span>
+            <span><span class="lang-en">cartography</span><span class="lang-zh">地图绘制</span></span>
             <i class="fa-solid fa-chevron-down"></i>
         </div>
     </section>
@@ -939,8 +981,8 @@
     <section class="panel-section" id="maps">
         <span class="section-index">03 / 05</span>
         <div class="section-inner">
-            <h2><span class="dot"></span>Cartography</h2>
-            <p class="section-subtitle">Hand-drawn SVG maps from <b>/visitings</b> — every coastline, peak, and ferry route is a path I plotted.</p>
+            <h2><span class="dot"></span><span class="lang-en">Cartography</span><span class="lang-zh">地图绘制</span></h2>
+            <p class="section-subtitle"><span class="lang-en">Hand-drawn SVG maps from <b>/visitings</b> — every coastline, peak, and ferry route is a path I plotted.</span><span class="lang-zh">来自 <b>/visitings</b> 的手绘 SVG 地图 —— 每一条海岸线、每一座山峰、每一条渡轮航线，都是我亲手绘制的路径。</span></p>
 
             <div class="pager-frame">
                 <button class="pager-nav prev" type="button" aria-label="Previous panel" disabled>
@@ -1009,9 +1051,9 @@
                                 </g>
                             </svg>
                             <div class="map-caption">
-                                <span><b>Style study.</b> Olive land, dashed borders, snow-capped peak glyphs, italic water labels.</span>
+                                <span><span class="lang-en"><b>Style study.</b> Olive land, dashed borders, snow-capped peak glyphs, italic water labels.</span><span class="lang-zh"><b>风格研究。</b>橄榄色陆地、虚线边界、雪顶山峰图标、斜体水域标注。</span></span>
                                 <a class="map-visit-link" href="/visitings">
-                                    <i class="fa-solid fa-earth-americas"></i> Open /visitings
+                                    <i class="fa-solid fa-earth-americas"></i> <span class="lang-en">Open /visitings</span><span class="lang-zh">打开 /visitings</span>
                                 </a>
                             </div>
                         </div>
@@ -1020,17 +1062,17 @@
                     <!-- Panel 2: anatomy -->
                     <div class="pager-panel" aria-label="Map anatomy">
                         <div class="map-anatomy-card">
-                            <h3><i class="fa-solid fa-pen-ruler"></i>Anatomy of a panel map</h3>
+                            <h3><i class="fa-solid fa-pen-ruler"></i><span class="lang-en">Anatomy of a panel map</span><span class="lang-zh">一幅面板地图的解剖</span></h3>
                             <ul class="anatomy-list">
-                                <li><span class="n">1</span><span><b>A rotatable D3 globe</b> greets you first — countries fill in as they're visited, cities pin with tooltips.</span></li>
-                                <li><span class="n">2</span><span><b>Scroll down, and the world zooms in</b> — a full-viewport Pacific Northwest chart snaps into place with a fade-and-rise reveal.</span></li>
-                                <li><span class="n">3</span><span><b>Swipe right for route charts</b> — Salish Sea ferry crossings drawn like an old nautical map: anchors, whales, sea-siren medallions.</span></li>
-                                <li><span class="n">4</span><span><b>Everything is inline SVG</b> — no tiles, no map API. Peaks get elevation labels; unvisited ones fade back politely.</span></li>
-                                <li><span class="n">5</span><span><b>Dots, chevrons, and edge handles</b> guide the way — the same navigation grammar reused across the whole site.</span></li>
+                                <li><span class="n">1</span><span><span class="lang-en"><b>A rotatable D3 globe</b> greets you first — countries fill in as they're visited, cities pin with tooltips.</span><span class="lang-zh"><b>首先迎接你的是可旋转的 D3 地球仪</b> —— 到访过的国家逐一填色，城市图钉带有悬浮提示。</span></span></li>
+                                <li><span class="n">2</span><span><span class="lang-en"><b>Scroll down, and the world zooms in</b> — a full-viewport Pacific Northwest chart snaps into place with a fade-and-rise reveal.</span><span class="lang-zh"><b>向下滚动，世界随之放大</b> —— 一幅满屏的太平洋西北地区海图以渐显上升的方式吸附就位。</span></span></li>
+                                <li><span class="n">3</span><span><span class="lang-en"><b>Swipe right for route charts</b> — Salish Sea ferry crossings drawn like an old nautical map: anchors, whales, sea-siren medallions.</span><span class="lang-zh"><b>向右滑动查看航线图</b> —— 萨利希海的渡轮航线画成旧式航海图的模样：锚、鲸鱼、海妖徽章。</span></span></li>
+                                <li><span class="n">4</span><span><span class="lang-en"><b>Everything is inline SVG</b> — no tiles, no map API. Peaks get elevation labels; unvisited ones fade back politely.</span><span class="lang-zh"><b>一切都是内联 SVG</b> —— 没有瓦片，没有地图 API。山峰标注海拔；未到访的则礼貌地淡入背景。</span></span></li>
+                                <li><span class="n">5</span><span><span class="lang-en"><b>Dots, chevrons, and edge handles</b> guide the way — the same navigation grammar reused across the whole site.</span><span class="lang-zh"><b>圆点、箭头和边缘把手</b>指引方向 —— 与全站复用同一套导航语法。</span></span></li>
                             </ul>
                             <div>
                                 <a class="map-visit-link" href="/visitings">
-                                    <i class="fa-solid fa-compass"></i> Explore the real thing
+                                    <i class="fa-solid fa-compass"></i> <span class="lang-en">Explore the real thing</span><span class="lang-zh">去看看真实版本</span>
                                 </a>
                             </div>
                         </div>
@@ -1041,7 +1083,7 @@
             </div>
         </div>
         <div class="scroll-cue" data-target="#photo">
-            <span>photography</span>
+            <span><span class="lang-en">photography</span><span class="lang-zh">摄影</span></span>
             <i class="fa-solid fa-chevron-down"></i>
         </div>
     </section>
@@ -1052,43 +1094,43 @@
     <section class="panel-section" id="photo">
         <span class="section-index">04 / 05</span>
         <div class="section-inner">
-            <h2><span class="dot"></span>Photography</h2>
-            <p class="section-subtitle">Frames from the road — coastlines, workbenches, small delights.</p>
+            <h2><span class="dot"></span><span class="lang-en">Photography</span><span class="lang-zh">摄影</span></h2>
+            <p class="section-subtitle"><span class="lang-en">Frames from the road — coastlines, workbenches, small delights.</span><span class="lang-zh">旅途中的画面 —— 海岸线、工作台，和那些微小的欢喜。</span></p>
 
             <div class="photo-grid">
                 <div class="photo-tile big g1">
                     <img src="/assets/creativity/photos/c7e2a9f4.jpg" alt="Plein air easel painting beneath blooming cherry trees" loading="lazy">
-                    <span class="ph-label">plein air · cherry blossoms</span>
+                    <span class="ph-label"><span class="lang-en">plein air · cherry blossoms</span><span class="lang-zh">户外写生 · 樱花</span></span>
                 </div>
                 <div class="photo-tile g2">
                     <img src="/assets/creativity/photos/b3d18e07.jpg" alt="A seagull perched on a downtown rooftop ledge" loading="lazy">
-                    <span class="ph-label">rooftop neighbor</span>
+                    <span class="ph-label"><span class="lang-en">rooftop neighbor</span><span class="lang-zh">屋顶邻居</span></span>
                 </div>
                 <div class="photo-tile tall g3">
                     <img src="/assets/creativity/photos/f09c54ba.jpg" alt="Hand-finishing a ring at a jewelry workbench" loading="lazy">
-                    <span class="ph-label">at the bench · ring making</span>
+                    <span class="ph-label"><span class="lang-en">at the bench · ring making</span><span class="lang-zh">工作台前 · 制作戒指</span></span>
                 </div>
                 <div class="photo-tile g4">
                     <img src="/assets/creativity/photos/a6e873d1.jpg" alt="A handful of black volcanic sand" loading="lazy">
-                    <span class="ph-label">black sand</span>
+                    <span class="ph-label"><span class="lang-en">black sand</span><span class="lang-zh">黑沙</span></span>
                 </div>
                 <div class="photo-tile wide g5">
                     <img src="/assets/creativity/photos/d24b9c6e.jpg" alt="A child running along a misty Oregon coast shoreline" loading="lazy">
-                    <span class="ph-label">oregon coast · fog</span>
+                    <span class="ph-label"><span class="lang-en">oregon coast · fog</span><span class="lang-zh">俄勒冈海岸 · 雾</span></span>
                 </div>
                 <div class="photo-tile g6">
                     <img src="/assets/creativity/photos/e58f01cb.jpg" alt="Seaside table with clams and a mimosa in golden-hour light" loading="lazy">
-                    <span class="ph-label">golden hour table</span>
+                    <span class="ph-label"><span class="lang-en">golden hour table</span><span class="lang-zh">黄金时刻的餐桌</span></span>
                 </div>
                 <div class="photo-tile g7">
                     <img src="/assets/creativity/photos/9a4d7f23.jpg" alt="An iced blue drink with a whale illustration on a counter" loading="lazy">
-                    <span class="ph-label">coastal blue</span>
+                    <span class="ph-label"><span class="lang-en">coastal blue</span><span class="lang-zh">海岸蓝</span></span>
                 </div>
             </div>
-            <p class="photo-note"><i class="fa-solid fa-circle-info"></i> A first selection — more frames rotating in over time.</p>
+            <p class="photo-note"><i class="fa-solid fa-circle-info"></i> <span class="lang-en">A first selection — more frames rotating in over time.</span><span class="lang-zh">首批精选 —— 更多照片会陆续轮换上架。</span></p>
         </div>
         <div class="scroll-cue" data-target="#reels">
-            <span>reels</span>
+            <span><span class="lang-en">reels</span><span class="lang-zh">短片</span></span>
             <i class="fa-solid fa-chevron-down"></i>
         </div>
     </section>
@@ -1099,56 +1141,102 @@
     <section class="panel-section" id="reels">
         <span class="section-index" style="color:#555c66">05 / 05</span>
         <div class="section-inner">
-            <h2><span class="dot"></span>Reels</h2>
-            <p class="section-subtitle">Short cuts, 9:16 — sketchbooks, islands, and street corners.</p>
+            <h2><span class="dot"></span><span class="lang-en">Reels</span><span class="lang-zh">短片</span></h2>
+            <p class="section-subtitle"><span class="lang-en">Short cuts, 9:16 — sketchbooks, islands, and street corners.</span><span class="lang-zh">9:16 竖屏短片 —— 速写本、海岛与街角。</span></p>
 
             <div class="reel-row" aria-label="Reels">
                 <div class="reel-card r1 playable" data-video>
                     <video src="/assets/creativity/reels/5b07d9e1.mp4" poster="/assets/creativity/reels/5b07d9e1-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
                     <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title">World Cup 2026</span><span class="rl-sub">lumen field · 1:03</span></div>
+                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">World Cup 2026</span><span class="lang-zh">2026 世界杯</span></span><span class="rl-sub"><span class="lang-en">lumen field · 1:03</span><span class="lang-zh">流明球场 · 1:03</span></span></div>
                 </div>
                 <div class="reel-card r1 playable" data-video>
                     <video src="/assets/creativity/reels/71c3e8d5.mp4" poster="/assets/creativity/reels/71c3e8d5-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
                     <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title">Sketching Hokusai</span><span class="rl-sub">seattle art museum · 0:26</span></div>
+                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Sketching Hokusai</span><span class="lang-zh">速写北斋</span></span><span class="rl-sub"><span class="lang-en">seattle art museum · 0:26</span><span class="lang-zh">西雅图艺术博物馆 · 0:26</span></span></div>
                 </div>
                 <div class="reel-card r2 playable" data-video>
                     <video src="/assets/creativity/reels/4f8a2b96.mp4" poster="/assets/creativity/reels/4f8a2b96-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
                     <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title">Maps of Nantucket</span><span class="rl-sub">island wander · 1:04</span></div>
+                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Maps of Nantucket</span><span class="lang-zh">楠塔基特的地图</span></span><span class="rl-sub"><span class="lang-en">island wander · 1:04</span><span class="lang-zh">海岛漫游 · 1:04</span></span></div>
                 </div>
                 <div class="reel-card r5 playable" data-video>
                     <video src="/assets/creativity/reels/8d15c7a3.mp4" poster="/assets/creativity/reels/8d15c7a3-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
                     <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title">Orcas Island</span><span class="rl-sub">salish sea · 0:46</span></div>
+                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Orcas Island</span><span class="lang-zh">奥卡斯岛</span></span><span class="rl-sub"><span class="lang-en">salish sea · 0:46</span><span class="lang-zh">萨利希海 · 0:46</span></span></div>
                 </div>
                 <div class="reel-card r3 playable" data-video>
                     <video src="/assets/creativity/reels/2e96b4f8.mp4" poster="/assets/creativity/reels/2e96b4f8-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
                     <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title">Gelato paradiso</span><span class="rl-sub">street corner · 1:16</span></div>
+                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Gelato paradiso</span><span class="lang-zh">冰淇淋天堂</span></span><span class="rl-sub"><span class="lang-en">street corner · 1:16</span><span class="lang-zh">街角 · 1:16</span></span></div>
                 </div>
                 <div class="reel-card r4">
-                    <span class="reel-badge">SOON</span>
+                    <span class="reel-badge"><span class="lang-en">SOON</span><span class="lang-zh">敬请期待</span></span>
                     <div class="reel-play"><i class="fa-solid fa-film"></i></div>
-                    <div class="reel-meta"><span class="rl-title">More rolling in</span><span class="rl-sub">stay tuned</span></div>
+                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">More rolling in</span><span class="lang-zh">更多短片制作中</span></span><span class="rl-sub"><span class="lang-en">stay tuned</span><span class="lang-zh">敬请期待</span></span></div>
                 </div>
             </div>
-            <p class="reels-note"><i class="fa-solid fa-clapperboard"></i> Tap a card to play · muted by default.</p>
+            <p class="reels-note"><i class="fa-solid fa-clapperboard"></i> <span class="lang-en">Tap a card to play · muted by default.</span><span class="lang-zh">点按卡片播放 · 默认静音。</span></p>
 
             <div class="creativity-footer">
                 <button class="back-to-top" type="button" id="backToTop">
-                    <i class="fa-solid fa-chevron-up"></i> Top
+                    <i class="fa-solid fa-chevron-up"></i> <span class="lang-en">Top</span><span class="lang-zh">回顶部</span>
                 </button>
                 <span>·</span>
-                <a href="/">home</a>
+                <a href="/"><span class="lang-en">home</span><span class="lang-zh">首页</span></a>
                 <span>·</span>
-                <a href="/visitings">visitings</a>
+                <a href="/visitings"><span class="lang-en">visitings</span><span class="lang-zh">足迹</span></a>
                 <span>·</span>
-                <a href="/portfolio">about</a>
+                <a href="/portfolio"><span class="lang-en">about</span><span class="lang-zh">关于</span></a>
             </div>
         </div>
     </section>
+
+    <!-- Language toggle: shares the site-wide 'preferredLanguage' key with
+         the homepage/navbar/studio pages, so the choice made anywhere
+         carries over here (and vice versa). -->
+    <script>
+        function showEl(el) {
+            var tag = el.tagName;
+            el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyLanguage(lang) {
+            document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
+                el.style.display = 'none';
+            });
+            var enBtn = document.getElementById('btn-en');
+            var zhBtn = document.getElementById('btn-zh');
+            if (lang === 'zh') {
+                document.querySelectorAll('.lang-zh').forEach(showEl);
+                // Fallback: if an .lang-en block has no sibling .lang-zh
+                // translation, keep showing English instead of leaving it blank.
+                document.querySelectorAll('.lang-en').forEach(function(el) {
+                    var parent = el.parentElement;
+                    var hasZhSibling = parent && parent.querySelector('.lang-zh');
+                    if (!hasZhSibling) showEl(el);
+                });
+                zhBtn.classList.add('active');
+                enBtn.classList.remove('active');
+                document.documentElement.lang = 'zh';
+                document.title = '创作 — Peng Andy';
+            } else {
+                document.querySelectorAll('.lang-en').forEach(showEl);
+                enBtn.classList.add('active');
+                zhBtn.classList.remove('active');
+                document.documentElement.lang = 'en';
+                document.title = 'Creativity — Peng Andy';
+            }
+        }
+        function switchLanguage(lang) {
+            try { localStorage.setItem('preferredLanguage', lang); } catch (e) {}
+            applyLanguage(lang);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var preferredLang = 'en';
+            try { preferredLang = localStorage.getItem('preferredLanguage') || 'en'; } catch (e) {}
+            applyLanguage(preferredLang);
+        });
+    </script>
 
     <script>
         (function () {
