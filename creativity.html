@@ -597,10 +597,14 @@
         .photo-grid {
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 110px;
-            gap: 12px;
+            grid-template-columns: 1.25fr 1fr 1fr;
+            grid-auto-rows: 235px;
+            gap: 14px;
         }
+
+        /* four-frame editorial mosaic */
+        .photo-tile.ph-hero { grid-row: span 2; }
+        .photo-tile.ph-wide { grid-column: span 2; }
 
         .photo-tile {
             border-radius: 12px;
@@ -630,11 +634,26 @@
         .photo-tile .ph-label { z-index: 2; }
 
         .photo-tile .ph-icon { font-size: 1.4rem; opacity: 0.85; }
+        .photo-tile .ph-num {
+            position: absolute;
+            top: 10px;
+            left: 12px;
+            z-index: 2;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(0, 0, 0, 0.32);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 999px;
+            padding: 2px 9px;
+            backdrop-filter: blur(3px);
+        }
         .photo-tile .ph-label {
             position: absolute;
-            left: 10px;
-            bottom: 8px;
-            font-size: 0.62rem;
+            left: 12px;
+            bottom: 10px;
+            font-size: 0.68rem;
             font-weight: 600;
             letter-spacing: 0.5px;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
@@ -860,11 +879,48 @@
         }
 
         /* ------------------------------------------------------------
+           Hero panel 2 — site-film portal (swipe right to enter)
+           ------------------------------------------------------------ */
+        .film-portal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: min(92%, 640px);
+            padding: 44px 28px;
+            border-radius: 18px;
+            text-decoration: none;
+            background: radial-gradient(600px 300px at 50% -20%, rgba(88,166,255,0.16), transparent 60%), #101012;
+            border: 1px solid rgba(88, 166, 255, 0.28);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+            text-align: center;
+        }
+        .film-portal .fp-kicker { font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; color: #58a6ff; }
+        .film-portal .fp-title { font-size: 2rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+        .film-portal .fp-title .fp-zh { display: block; font-size: 0.95rem; font-weight: 400; color: #9a9aa0; margin-top: 4px; }
+        .film-portal .fp-sub { font-size: 0.8rem; color: #8b94a3; max-width: 440px; line-height: 1.7; }
+        .film-portal .fp-play {
+            width: 58px; height: 58px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #58a6ff; font-size: 1.15rem;
+            border: 2px solid rgba(88, 166, 255, 0.55);
+            animation: fp-pulse 1.8s ease-in-out infinite;
+        }
+        @keyframes fp-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.35); }
+            50% { box-shadow: 0 0 0 12px rgba(88, 166, 255, 0); }
+        }
+        .film-portal .fp-note { font-size: 0.72rem; color: #58a6ff; opacity: 0; transition: opacity 0.3s ease; }
+        .film-portal.arming .fp-note { opacity: 1; }
+
+        /* ------------------------------------------------------------
            Responsive
            ------------------------------------------------------------ */
         @media (max-width: 768px) {
-            .photo-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 100px; }
-            .photo-tile.big { grid-column: span 2; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+            .photo-tile.ph-hero { grid-row: span 2; }
+            .photo-tile.ph-wide { grid-column: span 1; }
             .pager-nav.prev { left: 4px; }
             .pager-nav.next { right: 4px; }
             .spec-card { padding: 20px 18px; }
@@ -892,6 +948,17 @@
     <section class="panel-section" id="hero">
         <span class="section-index">01 / 05</span>
         <div class="section-inner">
+            <div class="pager-frame">
+                <button class="pager-nav prev" type="button" aria-label="Previous panel" disabled>
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="pager-nav next" type="button" aria-label="Next panel">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <div class="pager">
+                    <!-- Panel 1: the original hero card -->
+                    <div class="pager-panel" aria-label="Creativity intro">
             <div class="hero-card">
                 <div class="hero-kicker">pengandy.com / creativity</div>
                 <h1><span class="accent">Creativity</span><span class="cursor" aria-hidden="true"></span></h1>
@@ -902,6 +969,21 @@
                     <a class="chapter-chip" href="#photo"><span class="chip-dot" style="background:#b3542e"></span><span class="lang-en">Photography</span><span class="lang-zh">摄影</span></a>
                     <a class="chapter-chip" href="#reels"><span class="chip-dot" style="background:#ff5470"></span><span class="lang-en">Reels</span><span class="lang-zh">短片</span></a>
                 </nav>
+            </div>
+                    </div>
+
+                    <!-- Panel 2: site-film portal — settling here enters /showcase -->
+                    <div class="pager-panel" aria-label="Site film portal">
+                        <a class="film-portal" href="/showcase/">
+                            <div class="fp-kicker">pengandy.com · site film</div>
+                            <div class="fp-title">Site Film<span class="fp-zh">全站漫游</span></div>
+                            <p class="fp-sub"><span class="lang-en">A guided tour of every page — cursor, clicks and all · 2:23</span><span class="lang-zh">一部走遍全站的导览短片 —— 光标、点击、一镜到底 · 2:23</span></p>
+                            <div class="fp-play"><i class="fa-solid fa-play"></i></div>
+                            <div class="fp-note"><span class="lang-en">entering the film…</span><span class="lang-zh">正在进入短片…</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="pager-dots" role="tablist" aria-label="Hero panels"></div>
             </div>
         </div>
         <div class="scroll-cue" data-target="#design">
@@ -1110,36 +1192,28 @@
             <p class="section-subtitle"><span class="lang-en">Frames from the road — coastlines, workbenches, small delights.</span><span class="lang-zh">旅途中的画面 —— 海岸线、工作台，和那些小发现。</span></p>
 
             <div class="photo-grid">
-                <div class="photo-tile big g1">
+                <div class="photo-tile ph-hero g1">
                     <img src="/assets/creativity/photos/c7e2a9f4.jpg" alt="Plein air easel painting beneath blooming cherry trees" loading="lazy">
+                    <span class="ph-num">01</span>
                     <span class="ph-label"><span class="lang-en">plein air · cherry blossoms</span><span class="lang-zh">户外写生 · 华大樱花</span></span>
+                </div>
+                <div class="photo-tile ph-wide g5">
+                    <img src="/assets/creativity/photos/d24b9c6e.jpg" alt="A child running along a misty Oregon coast shoreline" loading="lazy">
+                    <span class="ph-num">02</span>
+                    <span class="ph-label"><span class="lang-en">oregon coast · fog</span><span class="lang-zh">俄勒冈海岸 · 雾</span></span>
                 </div>
                 <div class="photo-tile g2">
                     <img src="/assets/creativity/photos/b3d18e07.jpg" alt="A seagull perched on a downtown rooftop ledge" loading="lazy">
+                    <span class="ph-num">03</span>
                     <span class="ph-label"><span class="lang-en">rooftop neighbor</span><span class="lang-zh">屋顶邻居</span></span>
-                </div>
-                <div class="photo-tile tall g3">
-                    <img src="/assets/creativity/photos/f09c54ba.jpg" alt="Hand-finishing a ring at a jewelry workbench" loading="lazy">
-                    <span class="ph-label"><span class="lang-en">at the bench · crafting</span><span class="lang-zh">工作台前 · 制作</span></span>
-                </div>
-                <div class="photo-tile g4">
-                    <img src="/assets/creativity/photos/a6e873d1.jpg" alt="A handful of black volcanic sand" loading="lazy">
-                    <span class="ph-label"><span class="lang-en">black sand · punalu'u</span><span class="lang-zh">黑沙滩 · 夏威夷</span></span>
-                </div>
-                <div class="photo-tile wide g5">
-                    <img src="/assets/creativity/photos/d24b9c6e.jpg" alt="A child running along a misty Oregon coast shoreline" loading="lazy">
-                    <span class="ph-label"><span class="lang-en">oregon coast · fog</span><span class="lang-zh">俄勒冈海岸 · 雾</span></span>
-                </div>
-                <div class="photo-tile g6">
-                    <img src="/assets/creativity/photos/e58f01cb.jpg" alt="Seaside table with clams and a mimosa in golden-hour light" loading="lazy">
-                    <span class="ph-label"><span class="lang-en">golden hour table</span><span class="lang-zh">黄金时刻的餐桌 · 柯克兰，华州</span></span>
                 </div>
                 <div class="photo-tile g7">
                     <img src="/assets/creativity/photos/9a4d7f23.jpg" alt="An iced blue drink with a whale illustration on a counter" loading="lazy">
+                    <span class="ph-num">04</span>
                     <span class="ph-label"><span class="lang-en">coastal blue</span><span class="lang-zh">海岸蓝 · Seattle Spheres</span></span>
                 </div>
             </div>
-            <p class="photo-note"><i class="fa-solid fa-circle-info"></i> <span class="lang-en">A first selection — more frames rotating in over time.</span><span class="lang-zh">首批精选 —— 更多照片会陆续轮换上架。</span></p>
+            <p class="photo-note"><i class="fa-solid fa-circle-info"></i> <span class="lang-en">Four frames, for now — more rotating in over time.</span><span class="lang-zh">先放四张 —— 更多照片会陆续轮换上架。</span></p>
         </div>
         <div class="scroll-cue" data-target="#reels">
             <span><span class="lang-en">reels</span><span class="lang-zh">短片</span></span>
@@ -1328,6 +1402,23 @@
                 window.addEventListener('resize', sync);
                 sync();
             });
+
+            /* ------------------------------------------------------
+               Hero panel 2: settle on the film portal → enter /showcase
+               ------------------------------------------------------ */
+            const heroPager = document.querySelector('#hero .pager');
+            if (heroPager) {
+                const portal = heroPager.querySelector('.film-portal');
+                let armTimer = null;
+                heroPager.addEventListener('scroll', () => {
+                    clearTimeout(armTimer);
+                    const onPortal = heroPager.scrollLeft > heroPager.clientWidth * 0.6;
+                    portal.classList.toggle('arming', onPortal);
+                    if (onPortal) {
+                        armTimer = setTimeout(() => { window.location.href = '/showcase/'; }, 900);
+                    }
+                }, { passive: true });
+            }
 
             /* ------------------------------------------------------
                Reels: tap to play/pause, one at a time

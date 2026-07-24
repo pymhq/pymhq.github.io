@@ -111,6 +111,42 @@
     background: rgba(16,16,18,0.85); display: none; }
   body.paused #paused-badge { display: block; }
 
+  /* ---- exit chip (always available) ---- */
+  #exit {
+    position: fixed; top: 9px; right: 110px; z-index: 55;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
+    color: #9a9aa0; border: 1px solid rgba(255,255,255,0.18); border-radius: 14px;
+    padding: 3px 12px; background: rgba(16,16,18,0.6); cursor: pointer; text-decoration: none;
+  }
+  #exit:hover { color: #fff; border-color: var(--accent-soft); }
+
+  /* ---- poster / start screen ---- */
+  #poster {
+    position: fixed; inset: 0; z-index: 70;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+    background:
+      radial-gradient(1000px 500px at 50% -10%, rgba(88,166,255,0.12), transparent 60%), #0b0b0d;
+    transition: opacity 0.5s ease; text-align: center;
+  }
+  #poster.hidden { opacity: 0; pointer-events: none; }
+  #poster .p-kicker { font-family: var(--mono); font-size: 12px; letter-spacing: 3px;
+    color: var(--accent); text-transform: uppercase; }
+  #poster h1 { font-family: 'Roboto Slab', serif; font-size: 48px; color: #fff; }
+  #poster h1 .accent { color: var(--accent); }
+  #poster .p-sub { font-size: 15px; color: var(--text-light); }
+  #poster .p-play {
+    margin-top: 8px; width: 76px; height: 76px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    border: 2px solid var(--accent); color: var(--accent); font-size: 24px; background: transparent;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  #poster .p-play:hover { background: var(--accent); color: #0b0b0d; transform: scale(1.06); }
+  #poster .p-actions { display: flex; gap: 14px; align-items: center; margin-top: 6px; }
+  #poster .p-back { font-family: var(--mono); font-size: 12px; color: #9a9aa0;
+    text-decoration: none; border-bottom: 1px dotted #555; padding-bottom: 1px; cursor: pointer; }
+  #poster .p-back:hover { color: #fff; }
+  #poster .p-hint { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.5px; color: #5a5a60; }
+
   @media (max-width: 900px) {
     .frame-wrap { width: 92vw; }
     .card-scene h1 { font-size: 34px; }
@@ -126,6 +162,17 @@
 <div id="brand"><span class="b">pengandy.com</span> · SITE FILM</div>
 <div id="counter">01 / 11</div>
 <div id="paused-badge">PAUSED 已暂停</div>
+<a id="exit" title="Exit the film 退出短片">✕ EXIT 退出</a>
+<div id="poster">
+  <div class="p-kicker">pengandy.com · site film</div>
+  <h1>Site <span class="accent">Film</span></h1>
+  <div class="p-sub">A guided tour of every page — cursor, clicks and all · 2:23<br>一部走遍全站的导览短片 · 全站漫游</div>
+  <button class="p-play" id="posterPlay" aria-label="Play the film"><i>▶</i></button>
+  <div class="p-actions">
+    <a class="p-back" id="posterBack">← back to creativity 返回创作页</a>
+  </div>
+  <div class="p-hint">SPACE pause 暂停 · ←→ scene 切换场景 · R replay 重播 · ESC exit 退出</div>
+</div>
 <div id="hint"><kbd>SPACE</kbd> pause 暂停 · <kbd>←</kbd><kbd>→</kbd> scene 切换场景 · <kbd>R</kbd> replay 重播</div>
 <div id="stage"></div>
 <div id="captions"></div>
@@ -594,18 +641,52 @@ function togglePause() {
   document.body.classList.toggle('paused', paused);
 }
 document.addEventListener('keydown', e => {
+  const posterUp = !poster.classList.contains('hidden');
+  if (e.code === 'Escape') { exitFilm(); return; }
+  if (posterUp) {
+    if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); startFilm(); }
+    return;
+  }
   if (e.code === 'Space') { e.preventDefault(); togglePause(); }
   else if (e.code === 'ArrowRight') { if (idx + 1 < SCENES.length) show(idx + 1); }
   else if (e.code === 'ArrowLeft') { if (idx > 0) show(idx - 1); }
-  else if (e.key === 'r' || e.key === 'R') { paused = false; document.body.classList.remove('paused'); show(0); }
+  else if (e.key === 'r' || e.key === 'R') { paused = false; document.body.classList.remove('paused'); startFilm(); }
 });
 stage.addEventListener('click', togglePause);
 
-['home-wide','portfolio','blog'].forEach(preload);
-if (new URLSearchParams(location.search).get('record')) {
-  document.getElementById('hint').style.display = 'none';
+/* ---- poster / exit wiring ---- */
+const RECORD = new URLSearchParams(location.search).get('record');
+const poster = document.getElementById('poster');
+function sameOriginReferrer() {
+  try { return document.referrer && new URL(document.referrer).origin === location.origin; }
+  catch (_) { return false; }
 }
-window.addEventListener('load', () => setTimeout(() => show(0), 300));
+function exitFilm() {
+  if (sameOriginReferrer() && history.length > 1) history.back();
+  else location.href = '/creativity';
+}
+function startFilm() {
+  poster.classList.add('hidden');
+  show(0);
+}
+document.getElementById('posterPlay').addEventListener('click', startFilm);
+document.getElementById('posterBack').addEventListener('click', exitFilm);
+document.getElementById('exit').addEventListener('click', exitFilm);
+
+['home-wide','portfolio','blog'].forEach(preload);
+if (RECORD) {
+  document.getElementById('hint').style.display = 'none';
+  poster.style.display = 'none';
+  document.getElementById('exit').style.display = 'none';
+  window.addEventListener('load', () => setTimeout(() => show(0), 300));
+}
+// film end -> bring the poster back as a replay screen
+setInterval(() => {
+  if (window.__filmDone && !RECORD && poster.classList.contains('hidden')) {
+    window.__filmDone = false;
+    poster.classList.remove('hidden');
+  }
+}, 500);
 </script>
 </body>
 </html>
