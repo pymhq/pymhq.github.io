@@ -129,6 +129,69 @@ p, div, span, li {
   flex-wrap: wrap;
 }
 
+/* Editorial grouped navigation (2026-07, Variant B): a 2x2 grid mirroring
+   the site navbar's groups — About / Books & Writing / Science & Tech /
+   Creativity — with Contact promoted into the card's footer row. Group
+   kickers use the exact same spec as .card-title (12px caps) so every
+   card header on the landing shares one size. */
+.navigation-card {
+  grid-template-columns: 1fr;   /* overrides the old nav|social two-column grid */
+  gap: 4px;
+  padding: 24px 30px 14px;
+}
+.nav-links.nvz-serif {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 48px;
+  text-align: left;
+}
+.nvz-k {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--global-text-color-light, #828282);
+  padding-bottom: 7px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(22, 24, 29, 0.08);
+}
+.nvz-serif a {
+  display: block !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.4;
+  padding: 4px 0 !important;
+  border-radius: 0 !important;
+  color: var(--global-text-color) !important;
+  text-decoration: none !important;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+.nvz-serif a:hover {
+  background: none !important;
+  color: var(--global-theme-color) !important;
+  transform: translateX(4px);
+}
+.nvz-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(22, 24, 29, 0.08);
+  margin-top: 20px;
+  padding-top: 14px;
+}
+.nvz-contact {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
+  color: var(--global-text-color) !important;
+  text-decoration: none !important;
+  transition: color 0.18s ease;
+}
+.nvz-contact:hover { color: var(--global-theme-color) !important; }
+
 .nav-links a {
   font-size: 13px !important;
   font-weight: 500 !important;
@@ -260,6 +323,11 @@ footer.fixed-bottom .footer-link:hover {
     display: block;
     padding: 8px 16px;
   }
+
+  /* editorial grid collapses to one column; footer stacks centered */
+  .nav-links.nvz-serif { grid-template-columns: 1fr; gap: 18px; }
+  .nvz-serif a { padding: 5px 0 !important; }
+  .nvz-foot { flex-direction: column; align-items: center; gap: 12px; }
 
   .social-icons-compact {
     justify-content: center;
