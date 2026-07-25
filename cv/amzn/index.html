@@ -244,6 +244,106 @@
          background: rgba(2, 132, 199, 0.05);
       }
 
+      /* ===== Collaborators (one person per line) ===== */
+      .collab-block {
+         margin-top: 14px;
+         padding: 14px 18px;
+         border: 1px solid #e2e8f0;
+         border-radius: 6px;
+         background: #fcfdfe;
+      }
+
+      .collab-label {
+         font-size: 0.72rem;
+         letter-spacing: 0.09em;
+         text-transform: uppercase;
+         color: #64748b;
+         font-weight: 600;
+         margin-bottom: 10px;
+      }
+
+      .collab-label i {
+         opacity: 0.6;
+         margin-right: 5px;
+      }
+
+      .collab-list {
+         list-style: none;
+         margin: 0;
+         padding: 0;
+      }
+
+      .collab-item {
+         display: block;
+         padding: 5px 0 5px 1.3em;
+         text-indent: -1.3em;
+         border-bottom: 1px solid #f1f5f9;
+         font-size: 0.86rem;
+         line-height: 1.55;
+      }
+
+      .collab-item > * {
+         text-indent: 0;
+      }
+
+      .collab-item:last-child {
+         border-bottom: none;
+      }
+
+      .collab-name {
+         font-weight: 600;
+         color: #0f172a;
+         margin-right: 7px;
+      }
+
+      /* role while we worked together */
+      .collab-then {
+         color: #475569;
+         margin-right: 7px;
+      }
+
+      /* where they are now, if they moved on */
+      .collab-now {
+         color: #475569;
+      }
+
+      .collab-now::before {
+         content: '\2192';
+         color: #94a3b8;
+         margin-right: 6px;
+      }
+
+      .collab-now .collab-now-label {
+         font-size: 0.74rem;
+         letter-spacing: 0.06em;
+         text-transform: uppercase;
+         color: #94a3b8;
+         margin-right: 4px;
+      }
+
+      /* concurrent / community roles, shown as a muted sub-line */
+      .collab-also {
+         display: block;
+         margin-top: 2px;
+         font-size: 0.8rem;
+         color: #64748b;
+         line-height: 1.5;
+      }
+
+      .collab-also .collab-also-label {
+         font-size: 0.72rem;
+         letter-spacing: 0.06em;
+         text-transform: uppercase;
+         color: #94a3b8;
+         margin-right: 5px;
+      }
+
+      @media (max-width: 768px) {
+         .collab-item {
+            font-size: 0.86rem;
+         }
+      }
+
       /* ===== Level ladder (promotion milestones) ===== */
       .level-ladder {
          display: flex;
@@ -436,14 +536,47 @@
                   <div class="timeline-marker current red"></div>
                   <div class="timeline-content">
                      <div class="role-header">
-                        <div class="role-title">Machine Learning Research Engineer III, Tech Lead (L6)</div>
+                        <div class="role-title">Machine Learning Research Engineer III (L6)</div>
                         <div class="role-team"><span class="team-tag">GenAI</span>Bedrock & SageMaker AI</div>
                         <div class="role-period">
                            <i class="far fa-calendar-alt"></i> Dec 2023 - Present · Bellevue/Seattle, WA
                         </div>
                      </div>
                      <div class="notes-section">
-                        <p>Manage and scale <span class="entity-revenue">multi-hundreds of millions to multi-billion in ARR</span> (per <a href="https://newsletter.semianalysis.com/p/anthropic-growth-and-bedrock-mix" class="highlight-link">SemiAnalysis</a>) products across agentic AI, model evaluation &amp; benchmark, post-training, and inference optimization. <strong>Agent, Model Evaluation &amp; Benchmark</strong> — <span class="entity-amzn-product">Bedrock</span> <span class="entity-company">Anthropic</span> LLM Inference <span class="badge-zero-to-one">0→1</span>: Designed and built Bedrock’s Anthropic inference engine (Bedrock Forklift), with capabilities disaggregated and multi-node inference, context-aware routing, tokenization, and trust &amp; safety. Established the cross-company evaluation &amp; benchmark methodology with <span class="entity-company">Anthropic</span> and led production releases of <span class="entity-model">Claude 3 Opus</span>, <span class="entity-model">3.5 Sonnet v2</span> (computer use / agent), and <span class="entity-model">3.5 Haiku</span>. Partnered with <span class="entity-person">Ben Mann</span> (<span class="entity-company">Anthropic</span> Co-founder); <strong>Post-Training &amp; Speculative Decoding</strong> — <span class="badge-founding">Founding Engineer</span> Inference Optimization (<span class="entity-amzn-product">SageMaker AI</span> &amp; <span class="entity-amzn-product">Bedrock</span> Science) <span class="badge-zero-to-one">0→1</span> (<span class="badge-reinvent">re:Invent 2025</span>): Led agentic-AI-based model customization and <span class="entity-model">EAGLE</span> adaptive speculative decoding for open-weight models — optimizing throughput (speculative decoding), latency (kernel tuning), and cost efficiency per customer use case — followed by <span class="entity-model">P-EAGLE</span> parallel drafting (2026). Designed both the training recipe and the training system for the speculator (draft model): hyperparameter optimization (HPO), hidden-state extraction and preparation, dataset format conversion, distributed multi-phase fine-tuning, and training duration optimization. Collaborated with <span class="entity-person">George Karypis</span> (ex-Senior Principal Scientist, AWS; Professor, University of Minnesota; <a href="https://cse.umn.edu/cs/news/george-karypis-received-2025-acm-sigkdd-innovation-award" class="highlight-link">2025 ACM SIGKDD Innovation Award</a> recipient); <strong>Inference</strong> — <span class="entity-model">Claude</span> inference on <span class="entity-amzn-product">Trainium</span> chip <span class="badge-zero-to-one">0→1</span> (<span class="badge-reinvent">re:Invent 2024</span>): Delivered the first Claude model release on Trainium (Inferentia) platform and enabled 90% of Bedrock traffic to run on Trainium chips. Partnered with <span class="entity-person">James Bradbury</span>, <span class="entity-company">Anthropic</span> Head of Compute and <span class="entity-person">Ron Diamant</span>, VP &amp; Distinguished Engineer at <span class="entity-amzn-product">Annapurna ML</span>; <span class="entity-company">Anthropic</span>–<span class="entity-company">Palantir</span> Partnership classified environments compute <span class="badge-zero-to-one">0→1</span>. (Featured in Q1 and Q3 2024 earnings reports and publicly underscored by CEOs.) <span style="font-style: italic; color: #64748b;">More Privileged &amp; Confidential initiatives.</span></p>
+                        <p>Manage and scale <span class="entity-revenue">multi-hundreds of millions to multi-billion in ARR</span> (per <a href="https://newsletter.semianalysis.com/p/anthropic-growth-and-bedrock-mix" class="highlight-link">SemiAnalysis</a>) products across agentic AI, model evaluation &amp; benchmark, post-training, and inference optimization. <strong>Agent, Model Evaluation &amp; Benchmark</strong> — <span class="entity-amzn-product">Bedrock</span> <span class="entity-company">Anthropic</span> LLM Inference <span class="badge-zero-to-one">0→1</span>: Designed and built Bedrock’s Anthropic inference engine (Bedrock Forklift), with capabilities disaggregated and multi-node inference, context-aware routing, tokenization, and trust &amp; safety. Established the cross-company evaluation &amp; benchmark methodology with <span class="entity-company">Anthropic</span> and led production releases of <span class="entity-model">Claude 3 Opus</span>, <span class="entity-model">3.5 Sonnet v2</span> (computer use / agent), and <span class="entity-model">3.5 Haiku</span>. <strong>Post-Training &amp; Speculative Decoding</strong> — <span class="badge-founding">Founding Engineer</span> Inference Optimization (<span class="entity-amzn-product">SageMaker AI</span> &amp; <span class="entity-amzn-product">Bedrock</span> Science) <span class="badge-zero-to-one">0→1</span> (<span class="badge-reinvent">re:Invent 2025</span>): Led agentic-AI-based model customization and <span class="entity-model">EAGLE</span> adaptive speculative decoding for open-weight models — optimizing throughput (speculative decoding), latency (kernel tuning), and cost efficiency per customer use case — followed by <span class="entity-model">P-EAGLE</span> parallel drafting (2026). Designed both the training recipe and the training system for the speculator (draft model): hyperparameter optimization (HPO), hidden-state extraction and preparation, dataset format conversion, distributed multi-phase fine-tuning, and training duration optimization. <strong>Inference</strong> — <span class="entity-model">Claude</span> inference on <span class="entity-amzn-product">Trainium</span> chip <span class="badge-zero-to-one">0→1</span> (<span class="badge-reinvent">re:Invent 2024</span>): Delivered the first Claude model release on Trainium (Inferentia) platform and enabled 90% of Bedrock traffic to run on Trainium chips. <span class="entity-company">Anthropic</span>–<span class="entity-company">Palantir</span> Partnership classified environments compute <span class="badge-zero-to-one">0→1</span>. (Featured in Q1 and Q3 2024 earnings reports and publicly underscored by CEOs.) <span style="font-style: italic; color: #64748b;">More Privileged &amp; Confidential initiatives.</span></p>
+                     </div>
+                     <div class="collab-block">
+                        <div class="collab-label"><i class="fas fa-user-group"></i> Collaborated with</div>
+                        <ul class="collab-list">
+                           <li class="collab-item">
+                              <span class="collab-name">Ben Mann</span>
+                              <span class="collab-then">Co-founder, Anthropic</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">James Bradbury</span>
+                              <span class="collab-then">Head of Compute, Anthropic</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Ron Diamant</span>
+                              <span class="collab-then">VP &amp; Distinguished Engineer, Annapurna ML (AWS)</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">George Karypis</span>
+                              <span class="collab-then">then Sr. Principal Scientist, AWS</span>
+                              <span class="collab-now"><span class="collab-now-label">Mar ’26</span>Chief Scientist, NTT DATA AIVista</span>
+                              <span class="collab-also"><span class="collab-also-label">concurrently</span>Professor, University of Minnesota · <a href="https://cse.umn.edu/cs/news/george-karypis-received-2025-acm-sigkdd-innovation-award" class="highlight-link">2025 ACM SIGKDD Innovation Award</a></span>
+                           </li>
+                           <!-- TODO(andy): confirm name + titles -->
+                           <li class="collab-item">
+                              <span class="collab-name">Rama Krishna Sandeep Pokkunuri</span>
+                              <span class="collab-then">then Sr. Principal Engineer, AWS</span>
+                              <span class="collab-now"><span class="collab-now-label">Jun ’26</span>Distinguished Engineer, Google</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Somu Perianayagam</span>
+                              <span class="collab-then">Sr. Principal Engineer, AWS</span>
+                           </li>
+                        </ul>
                      </div>
                   </div>
                </div>
@@ -460,7 +593,25 @@
                         </div>
                      </div>
                      <div class="notes-section">
-                        <p><span class="badge-founding">Founding Engineer</span> medication management <span class="badge-zero-to-one">0→1</span>, featured in Q4 2019 earnings report, & HIPAA-Eligible Skill <span class="badge-zero-to-one">0→1</span> (2020). Partnered with <span class="entity-person">Rachel Jiang</span>, <span class="entity-person">Yvonne Chou</span> (Chief of Staff, <span class="entity-company">AI2</span>), and <span class="entity-person">Missy Krasner</span> (former VP, <span class="entity-company">Box</span>).</p>
+                        <p><span class="badge-founding">Founding Engineer</span> medication management <span class="badge-zero-to-one">0→1</span>, featured in Q4 2019 earnings report, & HIPAA-Eligible Skill <span class="badge-zero-to-one">0→1</span> (2020).</p>
+                     </div>
+                     <div class="collab-block">
+                        <div class="collab-label"><i class="fas fa-user-group"></i> Collaborated with</div>
+                        <ul class="collab-list">
+                           <li class="collab-item">
+                              <span class="collab-name">Rachel Jiang</span>
+                              <span class="collab-then">then Head of Alexa Health &amp; Wellness</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Yvonne Chou</span>
+                              <span class="collab-then">then Principal Product Manager</span>
+                              <span class="collab-now"><span class="collab-now-label">Jul ’20</span>Chief of Staff, AI2</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Missy Krasner</span>
+                              <span class="collab-then">then Head of Strategic Partnerships, Alexa Health &amp; Wellness · ex-VP, Box</span>
+                           </li>
+                        </ul>
                      </div>
                   </div>
                </div>
@@ -499,7 +650,51 @@
                         </div>
                      </div>
                      <div class="notes-section">
-                        <p>UTL an organization of 70 (4 two-pizza teams) managing two products with <span class="entity-revenue">hundreds of millions in ARR</span>. DockerCon 2022 co-presentation with <span class="entity-person">Inbal Shani</span> (CPO, <span class="entity-company">Twilio</span>; former CPO, <span class="entity-company">GitHub</span>).</p>
+                        <p>UTL an organization of 70 (4 two-pizza teams) managing two products with <span class="entity-revenue">hundreds of millions in ARR</span>. DockerCon 2022 co-presentation.</p>
+                     </div>
+                     <div class="collab-block">
+                        <div class="collab-label"><i class="fas fa-user-group"></i> Collaborated with</div>
+                        <ul class="collab-list">
+                           <li class="collab-item">
+                              <span class="collab-name">Inbal Shani</span>
+                              <span class="collab-then">then General Manager, AWS ECS</span>
+                              <span class="collab-now"><span class="collab-now-label">Nov ’22</span>CPO, GitHub</span>
+                              <span class="collab-now"><span class="collab-now-label">Mar ’24</span>CPO &amp; Head of R&amp;D, Twilio</span>
+                           </li>
+                           <!-- TODO(andy): fill in AWS-era + current titles below -->
+                           <li class="collab-item">
+                              <span class="collab-name">Shubha Rao</span>
+                              <span class="collab-then">then Sr. Manager, Product Management, ECS</span>
+                              <span class="collab-now"><span class="collab-now-label">Jul ’23</span>VP Product Management, GitHub</span>
+                              <span class="collab-now"><span class="collab-now-label">Jan ’25</span>Director, Product Management, Google</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Alolita Sharma</span>
+                              <span class="collab-then">then Sr. Manager, Software Engineering · Principal Technologist, AWS</span>
+                              <span class="collab-now"><span class="collab-now-label">Apr ’22</span>Engineering Management, Observability &amp; Platform Technologies, Apple</span>
+                              <span class="collab-also"><span class="collab-also-label">concurrently</span>CNCF Governing Board member · Chair, End User TAB · Co-Chair, Observability TAG</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Michael Hausenblas</span>
+                              <span class="collab-then">then Principal Product Manager, AWS</span>
+                              <span class="collab-now"><span class="collab-now-label">Jun ’26</span>Principal Software Engineer, Genesys</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Phil Estes</span>
+                              <span class="collab-then">Principal Engineer, AWS</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Mike Danilov</span>
+                              <span class="collab-then">then Sr. Principal Software Engineer, AWS Lambda</span>
+                              <span class="collab-now"><span class="collab-now-label">Sep ’24</span>Principal Software Engineer, Google</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Jaana Dogan</span>
+                              <span class="collab-then">then Principal Engineer, AWS · ex-Staff Engineer, Google</span>
+                              <span class="collab-now"><span class="collab-now-label">Apr ’22</span>Distinguished Engineer, GitHub</span>
+                              <span class="collab-now"><span class="collab-now-label">Jul ’24</span>Principal Engineer, Google</span>
+                           </li>
+                        </ul>
                      </div>
                   </div>
                </div>
@@ -517,6 +712,38 @@
                      </div>
                      <div class="notes-section">
                         <p><span class="badge-founding">Founding Engineer</span> <span class="entity-amzn-product">AWS App Runner</span> <span class="badge-zero-to-one">0→1</span>, serverless compute product incubated from <span class="entity-amzn-product">Fargate</span>. Featured in Q2 2021 earnings report and publicly underscored by CEO. <span class="badge-founding">Founding Engineer</span> <span class="entity-amzn-product">AWS App Runner</span> Observability <span class="badge-zero-to-one">0→1</span>.</p>
+                     </div>
+                     <div class="collab-block">
+                        <div class="collab-label"><i class="fas fa-user-group"></i> Collaborated with</div>
+                        <ul class="collab-list">
+                           <!-- TODO(andy): fill in AWS-era + current titles below -->
+                           <li class="collab-item">
+                              <span class="collab-name">Prashant Prahlad</span>
+                              <span class="collab-then">then Sr. Manager, AWS</span>
+                              <span class="collab-now"><span class="collab-now-label">May ’22</span>VP, Products, Datadog</span>
+                              <span class="collab-now"><span class="collab-now-label">Dec ’25</span>SVP, Products, Capital One</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Akshay Ram</span>
+                              <span class="collab-then">then Sr. Product Manager, AWS</span>
+                              <span class="collab-now"><span class="collab-now-label">Jan ’22</span>Group Product Manager, Google</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Archana Srikanta</span>
+                              <span class="collab-then">Principal Software Engineer, AWS</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Onur Filiz</span>
+                              <span class="collab-then">then Principal Software Engineer, AWS</span>
+                              <span class="collab-now"><span class="collab-now-label">Sep ’23</span>Principal Software Engineer, Microsoft</span>
+                           </li>
+                           <li class="collab-item">
+                              <span class="collab-name">Amit Gupta</span>
+                              <span class="collab-then">then Sr. Software Development Engineer, AWS</span>
+                              <span class="collab-now"><span class="collab-now-label">Oct ’22</span>Principal Software Engineer, AWS</span>
+                              <span class="collab-now"><span class="collab-now-label">May ’26</span>Staff Engineer, Stripe</span>
+                           </li>
+                        </ul>
                      </div>
                   </div>
                </div>
