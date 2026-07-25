@@ -66,7 +66,7 @@
          .hpanels {
             display: flex;
             width: 100vw;
-            height: calc(100vh - 56px); /* below the fixed-top-nav padding */
+            height: 100vh; /* no fixed-top-nav on the homepage (removed 2026-07-24) */
             overflow-x: auto;
             overflow-y: hidden;
             scroll-snap-type: x mandatory;
@@ -87,7 +87,7 @@
          #panel-endorse .endorse-panel-inner {
             max-width: 790px;
             margin: 0 auto;
-            padding: 24px 20px 90px;
+            padding: 80px 20px 90px; /* was 24px top + 56px body padding before the fixed-top-nav class was dropped */
             opacity: 0;
             transform: translateX(24px);
             transition: opacity 0.6s ease, transform 0.6s ease;
@@ -382,7 +382,7 @@
       </style>
    </head>
 
-   <body class="fixed-top-nav ">
+   <body>
       <div class="hpanels" id="hpanels">
          <section class="hpanel" id="panel-home">
       <div class="hero2">
