@@ -16,17 +16,42 @@
     margin: 0 0 14px 0;
     line-height: 1.5;
   }
+  /* Kit only lays this form out as a single row under its own
+     [min-width~="600"] rules. Its index.js rewrites that min-width
+     attribute to the form's real width (520px here), which drops the 600
+     breakpoint and falls back to `flex: 1 0 100%` (meant to stack). With
+     nowrap forced and shrink at 0, the submit button then grew to the full
+     row width and was clipped by the form's overflow:hidden down to a
+     ~20px sliver — intermittently, depending on whether Kit's script had
+     run yet. Pin the flex values here so the row is identical either way. */
   .subscribe-box .formkit-fields {
     flex-wrap: nowrap !important;
+    align-items: stretch;
   }
   .subscribe-box .formkit-field {
+    flex: 1 1 auto !important;
     min-width: 0;
   }
   .subscribe-box .formkit-input {
     min-width: 0;
   }
+  .subscribe-box .formkit-submit {
+    flex: 0 0 auto !important;
+    margin-left: 8px !important;
+  }
   .subscribe-box .formkit-submit > span {
     white-space: nowrap;
+  }
+  /* Narrow screens: stack the way Kit intends. */
+  @media (max-width: 480px) {
+    .subscribe-box .formkit-fields {
+      flex-wrap: wrap !important;
+    }
+    .subscribe-box .formkit-field,
+    .subscribe-box .formkit-submit {
+      flex: 1 0 100% !important;
+      margin-left: 0 !important;
+    }
   }
   .subscribe-box .formkit-submit,
   .subscribe-box .formkit-submit > span {
