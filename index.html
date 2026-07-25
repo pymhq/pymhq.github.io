@@ -239,6 +239,17 @@
          margin: 0 0 10px;
       }
       .hero2-name .font-weight-bold { font-weight: 700 !important; }
+      /* ZH: single-character name with a quiet raised pinyin gloss —
+         same treatment as the portfolio page title. Higher specificity
+         than the .hero2-name span reset above. */
+      .hero2-name .hero2-pinyin {
+         font-size: 0.38em !important;
+         font-weight: 300 !important;
+         color: var(--global-text-color-light, #828282);
+         letter-spacing: 0.5px;
+         margin-left: 10px;
+         vertical-align: 0.6em;
+      }
       .hero2-tagline,
       .hero2-tagline span {
          font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
@@ -381,7 +392,7 @@
          <div class="hero2-head">
             <img class="hero2-avatar" src="assets/img/Memoji.png" alt="Peng, Andy">
             <div class="hero2-id">
-               <h1 class="hero2-name">Peng, <span class="font-weight-bold">Andy</span></h1>
+               <h1 class="hero2-name"><span class="lang-en">Peng, <span class="font-weight-bold">Andy</span></span><span class="lang-zh" style="display: none;"><span class="font-weight-bold">彭</span><span class="hero2-pinyin">(Péng)</span></span></h1>
                <p class="hero2-tagline">
                   <span class="lang-en">Builder, researcher, technologist, advisor.</span>
                   <span class="lang-zh" style="display: none;">构建者、研究者、技术专家、顾问。</span>
