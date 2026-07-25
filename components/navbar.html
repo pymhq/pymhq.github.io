@@ -412,6 +412,14 @@ nav[data-toggle="toc"] {
   justify-content: space-between;
   padding: 0 15px;
 }
+/* brand variants: text everywhere; social icons on the bio page */
+.fnv-brand-social { display: none; align-items: center; gap: 15px; padding: 0; }
+.fnv-brand-social a { font-size: 1.7rem; line-height: 1; text-decoration: none !important; } /* original size */
+.fnv-brand-social a i { color: var(--global-text-color); transition: color 0.18s ease; }
+.fnv-brand-social a:hover i { color: var(--global-theme-color); }
+body[data-page="bio"] .fnv-brand-text { display: none; }
+body[data-page="bio"] .fnv-brand-social { display: flex; }
+
 .fnv-shell .navbar-brand {
   white-space: nowrap;
   margin-right: 10px;
@@ -731,7 +739,17 @@ html.fnv-menu-open .fnv-overlay .fnv-col:nth-child(4) { transition-delay: 0.24s;
 <header>
    <nav id="navbar" class="navbar navbar-light fixed-top fnv">
       <div class="fnv-shell">
-         <a class="navbar-brand title font-weight-lighter" href="/">Peng, <span class="font-weight-bold">Andy</span></a>
+         <a class="navbar-brand title font-weight-lighter fnv-brand-text" href="/">Peng, <span class="font-weight-bold">Andy</span></a>
+         <!-- Bio page variant: the About page shows the name as its own big
+              heading, so the navbar brand switches to social icons there
+              (the original pre-2026-07 portfolio navbar look). Toggled purely
+              by body[data-page="bio"] CSS below — one component, no forks. -->
+         <div class="navbar-brand social fnv-brand-social">
+            <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn" rel="external nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/pymhq" title="X" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://substack.com/@pengandy" title="Substack" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-substack fa-sm"></i></a>
+         </div>
          <ul class="navbar-nav fnv-items">
             <li class="nav-item fnv-has-dd">
                <button class="nav-link fnv-dd-btn" type="button" aria-haspopup="true" aria-expanded="false"><span class="lang-en">About</span><span class="lang-zh" style="display:none;">关于</span> <span class="fnv-caret" aria-hidden="true"></span></button>

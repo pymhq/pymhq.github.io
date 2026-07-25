@@ -18,15 +18,22 @@
 
 .highlights-section-title,
 .recommendations-section-title {
-  font-size: 16px;
-  font-weight: 700;
+  font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.8px;
   color: var(--global-text-color-light);
-  margin: 0 0 20px 0;
+  margin: 0 0 22px 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+}
+.highlights-section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--global-divider-color);
 }
 
 .recommendations-section-title::after {
@@ -53,25 +60,14 @@
   background: var(--global-card-bg-color);
   border: 1px solid var(--global-divider-color);
   border-radius: 14px;
-  padding: 22px 24px;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  padding: 26px 28px;
+  transition: box-shadow 0.2s, border-color 0.2s;
   overflow: hidden;
 }
 
-.highlight-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--highlight-accent, var(--global-theme-color));
-  opacity: 0.85;
-}
-
 .highlight-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-  border-color: var(--highlight-accent, var(--global-theme-color));
+  box-shadow: 0 10px 26px rgba(22, 24, 29, 0.07);
+  border-color: rgba(0, 118, 223, 0.3);
 }
 
 .highlight-card-head {
@@ -90,12 +86,12 @@
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  color: #fff;
-  background: var(--highlight-accent, var(--global-theme-color));
+  color: var(--global-theme-color);
+  background: rgba(0, 118, 223, 0.08);
 }
 
 .highlight-title {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 700;
   color: var(--global-text-color);
   margin: 0;
@@ -132,8 +128,8 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--highlight-accent, var(--global-theme-color));
-  opacity: 0.7;
+  background: var(--global-text-color-light, #828282);
+  opacity: 0.55;
 }
 
 .highlight-tags {
@@ -146,23 +142,22 @@
 .highlight-org {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 5px 11px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.06);
-  background: color-mix(in srgb, var(--highlight-accent, var(--global-theme-color)) 12%, transparent);
-  color: var(--highlight-accent, var(--global-theme-color));
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(22, 24, 29, 0.14);
+  color: var(--global-text-color-light, #828282);
   text-decoration: none !important;
-  transition: transform 0.15s, background 0.15s;
+  transition: color 0.18s ease, border-color 0.18s ease;
   white-space: nowrap;
 }
 
 .highlight-org:hover {
-  transform: translateY(-1px);
-  background: rgba(0, 0, 0, 0.12);
-  background: color-mix(in srgb, var(--highlight-accent, var(--global-theme-color)) 22%, transparent);
+  color: var(--global-theme-color);
+  border-color: var(--global-theme-color);
 }
 
 .highlight-org img {
@@ -189,30 +184,21 @@
 }
 
 .highlight-link {
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 600;
   line-height: 1.6;
-  color: var(--highlight-accent, var(--global-theme-color));
-  background: color-mix(in srgb, var(--highlight-accent, var(--global-theme-color)) 13%, transparent);
-  padding: 1px 8px;
-  border-radius: 4px;
-  border-bottom: 2px solid var(--highlight-accent, var(--global-theme-color));
+  color: var(--global-theme-color);
   text-decoration: none !important;
   white-space: nowrap;
-  transition: background 0.15s;
+  transition: color 0.18s ease;
 }
 
 .highlight-link:hover {
-  color: var(--highlight-accent, var(--global-theme-color));
-  background: color-mix(in srgb, var(--highlight-accent, var(--global-theme-color)) 22%, transparent);
+  color: var(--global-hover-color, #00369f);
 }
 
-/* Per-card accent colors */
-.highlight-card.hl-builder     { --highlight-accent: #e8590c; }
-.highlight-card.hl-researcher  { --highlight-accent: #1971c2; }
-.highlight-card.hl-oss         { --highlight-accent: #2f9e44; }
-.highlight-card.hl-creator     { --highlight-accent: #c2255c; }
-.highlight-card.hl-lecturer    { --highlight-accent: #6741d9; }
+/* Per-card accent colors removed (2026-07-24): one voice, theme blue.
+   --highlight-accent falls back to var(--global-theme-color) everywhere. */
 .highlight-card.hl-advisor     { --highlight-accent: #e67700; }
 
 /* ==========================================================================
@@ -242,13 +228,19 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.045);
-  color: var(--global-text-color);
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(22, 24, 29, 0.14);
+  color: var(--global-text-color-light, #828282);
   white-space: nowrap;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.interest-pill:hover {
+  color: var(--global-theme-color);
+  border-color: var(--global-theme-color);
 }
 
 .interest-pill i {
