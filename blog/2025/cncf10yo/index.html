@@ -238,7 +238,7 @@
             <br>
             <p>Red Hat 的<a href="https://x.com/RedHat_AI/status/1924801643423400138">推文《Why not just scale LLMs like any other app?》</a>对这些挑战做了深入的阐述。Nvidia 在上个月 GTC25 上推出的 <a href="https://github.com/ai-dynamo/dynamo">Dynamo</a>（开源推理框架）正与上述两阶段结构相契合，提供高吞吐与低延迟。Red Hat 的 llm-d、LMSYS.org 的 SGLang 等类似框架也在做同样的事情。</p>
             <li>
-              按请求 vs 按 Token（Per Request vs Per Token）：两类计算都采纳了无服务器（serverless）的理念，但背后有所不同。以延迟为例：在 CPU 世界，低延迟通常指从请求进入到完成的时间；而在大模型世界，度量方式有所不同，比如用 TTFT（Time to First Token，首 token 时间）来刻画第一个 token 生成前的等待。而当用户输入的上下文很长时，整体处理时间又成了另一个完全独立的挑战。另一个例子是按量付费（pay-as-you-go）。
+              按请求 vs 按 Token（Per Request vs Per Token）：两类计算都采纳了无服务计算（serverless）的理念，但背后有所不同。以延迟为例：在 CPU 世界，低延迟通常指从请求进入到完成的时间；而在大模型世界，度量方式有所不同，比如用 TTFT（Time to First Token，首 token 时间）来刻画第一个 token 生成前的等待。而当用户输入的上下文很长时，整体处理时间又成了另一个完全独立的挑战。另一个例子是按量付费（pay-as-you-go）。
             </li>
             <br>
             <p><em>Peter DeSantis</em> 在 re:Invent 2024 上做了一场精彩的主题演讲，点出了 AI 工作负载的多样化挑战。"AI 工作负载的一个很酷的地方在于，它给我们的团队带来了以全然不同的方式去创新的新机会。"Peter 说。</p>
@@ -256,7 +256,7 @@
             <p>当前，相比科学研究，底层工程技术的讨论要少得多——尽管这里正进行着大量创新。许多人低估了这一领域的重要性，但它其实是把 AI 能力交付给最终用户的"最后一公里"。研究、工程与产品密不可分。眼下最紧迫的瓶颈在工程——具体来说，是在当今算力紧缺的条件下，让模型具备高可用、高性能与成本效益。</p>
             <br>
             <h2>关键原语（或曰构建模块）</h2>
-            <p>无服务器的根基没有变。CNCF 十岁了，Kubernetes、Lambda、ECS 和 Alexa 十一岁了，Bedrock 和 Claude 两岁了。有人说 Bedrock 是"LLM 界的 Lambda"。我认为它远不止于此。正如我在 <a href="https://aws.amazon.com/serverless/10th-anniversary/">Serverless 十周年</a>期间的<a href="https://www.linkedin.com/posts/pengandy-us_fundamental-tech-activity-7256875949151924225-cYdd?utm_source=share&utm_medium=member_desktop&rcm=ACoAAA0iWrwBSLtD_x4zWdZyiXvCtbP7oTB5-_I">动态</a>中所写，serverless 在 LLM 世界继续扮演关键角色：承担繁重的底层工作，把真正的 AI/ML 价值交付给客户。这个道理，早在《Attention is All You Need》时代之前就已成立。</p>
+            <p>无服务计算的根基没有变。CNCF 十岁了，Kubernetes、Lambda、ECS 和 Alexa 十一岁了，Bedrock 和 Claude 两岁了。有人说 Bedrock 是"LLM 界的 Lambda"。我认为它远不止于此。正如我在 <a href="https://aws.amazon.com/serverless/10th-anniversary/">Serverless 十周年</a>期间的<a href="https://www.linkedin.com/posts/pengandy-us_fundamental-tech-activity-7256875949151924225-cYdd?utm_source=share&utm_medium=member_desktop&rcm=ACoAAA0iWrwBSLtD_x4zWdZyiXvCtbP7oTB5-_I">动态</a>中所写，serverless 在 LLM 世界继续扮演关键角色：承担繁重的底层工作，把真正的 AI/ML 价值交付给客户。这个道理，早在《Attention is All You Need》时代之前就已成立。</p>
             <br>
             <h2>接下来会是什么</h2>
             <p>三年多来，我一直担任 Open Source Summit 与 KubeCon + CloudNativeCon 的<a href="https://events.linuxfoundation.org/open-source-summit-north-america/program/program-committee/">程序委员会成员</a>，今年也不例外。审完所有 CFP（议题征集）之后，可以清晰地看到：2025 年的主题是"Agentic AI"，正如 2024 年的主题是"LLM"。但智能体 AI 究竟是什么？如何用它提升生产力？答案有很多。Anthropic 开源了 MCP（Model Context Protocol），一个连接 LLM 应用与外部数据源和工具的开放标准，已在业界广受欢迎。Amazon 也推出了多项创新，包括由 Amazon AGI SF Lab（前身为 Adept AI）打造的、经训练可在网页浏览器中执行操作的全新 AI 模型 <a href="https://labs.amazon.science/blog/nova-act">Nova Act</a>；用于仓库级评估编码智能体的多语言基准 <a href="https://arxiv.org/abs/2504.08703">SWE-PolyBench</a>；以及开源 AI Agents SDK <a href="https://strandsagents.com/0.1.x/">Strands Agents</a>。</p>
