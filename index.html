@@ -263,8 +263,8 @@
       .hero2-nav {
          display: grid;
          grid-template-columns: repeat(4, auto);
-         justify-content: space-between;
-         gap: 8px 28px;
+         justify-content: start;
+         gap: 8px 64px;
          margin-bottom: 64px;
       }
       .hero2-group h3,
@@ -279,9 +279,8 @@
          letter-spacing: 1.8px;
          text-transform: uppercase;
          color: var(--global-text-color-light, #828282);
-         /* No underline: the mono uppercase label is enough of a header.
-            The page keeps a single horizontal rule (.hero2-exp border-top). */
-         margin: 0 0 16px;
+         margin: 0 0 14px;
+         padding-bottom: 8px;
       }
       .hero2-group a,
       .hero2-group a span {
@@ -300,7 +299,6 @@
       .hero2-group a:hover span { color: var(--global-theme-color, #0076df) !important; }
       .hero2-exp {
          margin: 0 0 54px;
-         border-top: 1px solid rgba(22, 24, 29, 0.08);
          padding-top: 28px;
       }
       .hero2-tags {
