@@ -1714,16 +1714,12 @@
                <p class="desc"><span class="lang-en">Builder, Researcher, Technologist, Advisor.</span><span class="lang-zh" style="display: none;">构建者、研究者、技术专家、顾问。</span></p>
             </header>
             <article>
-               <!-- Bio Card -->
-               <div class="bio-card">
-                  <div class="profile float-right">
-                     <figure>
-                        <picture>
-                           <img src="assets/img/headshot icml25.png" class="img-fluid z-depth-1 rounded-circle" width="auto" height="auto" alt="headshot.jpg" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-                        </picture>
-                     </figure>
-                  </div>
-                  <div class="clearfix">
+               <!-- Bento hero: bio tile (4 cols) + borderless headshot (2 cols).
+                    Replaced the old float-right .profile layout (2026-07-24):
+                    the headshot floats free on the page background — no card,
+                    no border — vertically centered against the bio tile. -->
+               <div class="bento-hero">
+                  <div class="bento-tile bento-bio">
                      <!-- English Bio -->
                      <div class="lang-en bio-content">
                         <p class="bio-text">PNW resident (📍 Seattle, WA). Engineer, researcher, architect, and advisor. Specializing in machine learning, large-scale distributed systems and cloud computing.</p>
@@ -1745,18 +1741,6 @@
                            <span class="interest-pill"><i class="fa fa-mug-hot"></i> Magnets & mugs</span>
                         </div>
 
-                        <!-- Contact -->
-                        <div class="contact-block">
-                           <div class="contact-block-icons">
-                              <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="email"><i class="fas fa-envelope"></i></a>
-                              <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn" rel="external nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i></a>
-                              <a href="https://twitter.com/pymhq" title="Twitter" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                              <a href="https://github.com/pymhq" title="GitHub" rel="external nofollow noopener" target="_blank"><i class="fab fa-github"></i></a>
-                              <a href="https://substack.com/@pengandy" title="Substack" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-substack fa-sm"></i></a>
-                           </div>
-                           <span class="contact-block-email">pengandy [dot] build [at] gmail [dot] com</span>
-                           <a href="/office" class="contact-block-office"><i class="fa fa-map-marker-alt"></i> Office</a>
-                        </div>
                      </div>
                      <!-- Chinese Bio -->
                      <div class="lang-zh bio-content" style="display: none;">
@@ -1777,27 +1761,16 @@
                            <span class="interest-pill"><i class="fa fa-mug-hot"></i> 冰箱贴和马克杯</span>
                         </div>
 
-                        <!-- 联系方式 -->
-                        <div class="contact-block">
-                           <div class="contact-block-icons">
-                              <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="email"><i class="fas fa-envelope"></i></a>
-                              <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn" rel="external nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i></a>
-                              <a href="https://twitter.com/pymhq" title="Twitter" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                              <a href="https://www.xiaohongshu.com/user/profile/646a8ca2000000000f006c94?xhsshare=CopyLink&appuid=646a8ca2000000000f006c94&apptime=1726950888&share_id=adcee4fb2111492a953479d5aad37577" title="Xiaohongshu" rel="external nofollow noopener" target="_blank"><svg width="18" height="18" fill="currentColor" aria-hidden="true" style="vertical-align:-0.125em"><use href="#icon-xiaohongshu"/></svg></a>
-                              <a href="https://github.com/pymhq" title="GitHub" rel="external nofollow noopener" target="_blank"><i class="fab fa-github"></i></a>
-                              <a href="https://substack.com/@pengandy" title="Substack" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-substack fa-sm"></i></a>
-                           </div>
-                           <span class="contact-block-email">pengandy [dot] build [at] gmail [dot] com</span>
-                           <a href="/office" class="contact-block-office"><i class="fa fa-map-marker-alt"></i> 办公室</a>
-                        </div>
                      </div>
+                  </div>
+                  <div class="bento-photo">
+                     <img src="assets/img/headshot icml25.png" alt="Andy Peng headshot" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
                   </div>
                </div>
                <!-- Highlights Section: quick visual snapshot of different roles.
                     Distinct from Recommendations (third-party proof) and CV
                     (full chronological detail) — this is a fast overview. -->
                <div class="lang-en highlights-section">
-                  <h3 class="highlights-section-title">Snapshot</h3>
                   <div class="highlights-grid">
 
                      <div class="highlight-card hl-builder">
@@ -1925,7 +1898,6 @@
 
                <!-- Highlights Section (Chinese) -->
                <div class="lang-zh highlights-section" style="display: none;">
-                  <h3 class="highlights-section-title">背景速览</h3>
                   <div class="highlights-grid">
 
                      <div class="highlight-card hl-builder">
@@ -2006,6 +1978,7 @@
                         <div class="highlight-tags">
                            <a href="https://www.amazon.com/stores/author/B0G1JDQFSK" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-solid fa-book"></i> 图书作者</a>
                            <a href="/blog/" class="highlight-org"><i class="fa-solid fa-laptop-code"></i> 博客</a>
+                           <a href="/creativity" class="highlight-org"><i class="fa-solid fa-palette"></i> 创意</a>
                            <a href="https://www.xiaohongshu.com/user/profile/646a8ca2000000000f006c94" target="_blank" rel="external nofollow noopener" class="highlight-org"><svg width="13" height="13" fill="currentColor" aria-hidden="true"><use href="#icon-xiaohongshu"/></svg> 小红书</a>
                            <a href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener" class="highlight-org"><i class="fa-brands fa-instagram"></i> Instagram</a>
                         </div>
@@ -2050,6 +2023,46 @@
                   </div>
                </div>
 
+               <!-- Say hi — closing band. The contact block moved here from
+                    mid-bio (2026-07-24) so the page ends on a CTA instead of
+                    repeating the navbar icons above the fold. -->
+               <div class="lang-en bento-tile bento-contact">
+                  <div class="contact-lede">
+                     <p class="contact-title">Say hi <span aria-hidden="true">👋</span></p>
+                     <p class="contact-sub">Open to research collaboration, speaking, advising, and coffee in Seattle.</p>
+                  </div>
+                  <div class="contact-block">
+                     <div class="contact-block-icons">
+                        <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn" rel="external nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/pymhq" title="Twitter" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://github.com/pymhq" title="GitHub" rel="external nofollow noopener" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://substack.com/@pengandy" title="Substack" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-substack fa-sm"></i></a>
+                     </div>
+                     <span class="contact-block-email">pengandy [dot] build [at] gmail [dot] com</span>
+                     <a href="/office" class="contact-block-office"><i class="fa fa-map-marker-alt"></i> Office</a>
+                  </div>
+               </div>
+
+               <div class="lang-zh bento-tile bento-contact" style="display: none;">
+                  <div class="contact-lede">
+                     <p class="contact-title">打个招呼 <span aria-hidden="true">👋</span></p>
+                     <p class="contact-sub">欢迎交流研究合作、演讲邀请、创业咨询，或在西雅图约杯咖啡。</p>
+                  </div>
+                  <div class="contact-block">
+                     <div class="contact-block-icons">
+                        <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn" rel="external nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/pymhq" title="Twitter" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.xiaohongshu.com/user/profile/646a8ca2000000000f006c94?xhsshare=CopyLink&appuid=646a8ca2000000000f006c94&apptime=1726950888&share_id=adcee4fb2111492a953479d5aad37577" title="Xiaohongshu" rel="external nofollow noopener" target="_blank"><svg width="18" height="18" fill="currentColor" aria-hidden="true" style="vertical-align:-0.125em"><use href="#icon-xiaohongshu"/></svg></a>
+                        <a href="https://github.com/pymhq" title="GitHub" rel="external nofollow noopener" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://substack.com/@pengandy" title="Substack" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-substack fa-sm"></i></a>
+                     </div>
+                     <span class="contact-block-email">pengandy [dot] build [at] gmail [dot] com</span>
+                     <a href="/office" class="contact-block-office"><i class="fa fa-map-marker-alt"></i> 办公室</a>
+                  </div>
+               </div>
+
                <!-- Recommendations moved to the dedicated /endorsements page -->
 
             </article>
@@ -2066,6 +2079,10 @@
          function showEl(el) {
             if (el.classList.contains('blocks-container')) {
                el.style.display = 'grid';
+               return;
+            }
+            if (el.classList.contains('bento-contact')) {
+               el.style.display = 'flex';
                return;
             }
             var tag = el.tagName;

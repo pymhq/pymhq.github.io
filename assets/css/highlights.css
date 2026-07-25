@@ -321,3 +321,104 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
+
+/* ==========================================================================
+   Bento hero (added 2026-07-24) — bio tile + borderless headshot.
+   Replaces the old float-right .profile layout.
+   ========================================================================== */
+.bento-hero {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.bento-tile {
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 14px;
+  padding: 26px 28px;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Compact type scale inside the bio tile (per 2026-07-24 bento redesign). */
+.bento-bio .bio-text { font-size: 17px !important; line-height: 1.75; }
+.bento-bio .bio-motto { font-size: 17px !important; }
+.bento-bio .bio-interests { margin-top: 18px !important; margin-bottom: 0 !important; }
+.bento-bio .interests-strip-label { font-size: 14px; }
+.bento-bio .interest-pill { font-size: 12.5px; padding: 5px 12px; }
+
+/* Photo cell: no card boundary — the full headshot floats on the page
+   background, vertically centered against the bio tile. */
+.bento-photo {
+  display: flex;
+  align-items: flex-start; /* sit toward the top of the row, not dead center */
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.bento-photo img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .bento-hero {
+    grid-template-columns: 1fr;
+  }
+  .bento-photo {
+    order: -1; /* headshot first on mobile, like the old layout */
+  }
+  .bento-photo img {
+    max-width: 220px;
+  }
+}
+
+/* ==========================================================================
+   Say hi — full-width closing band (contact block moved here from mid-bio)
+   ========================================================================== */
+.bento-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 32px;
+  border-left: 3px solid var(--global-theme-color);
+  margin: 28px 0 48px 0;
+}
+
+.bento-contact .contact-lede {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bento-contact .contact-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--global-text-color);
+  margin: 0;
+}
+
+.bento-contact .contact-sub {
+  font-size: 14px;
+  color: var(--global-text-color-light);
+  margin: 0;
+}
+
+.bento-contact .contact-block {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.bento-contact .contact-block-icons { gap: 12px; }
+.bento-contact .contact-block-icons a { width: 38px; height: 38px; font-size: 16px; }
+.bento-contact .contact-block-email { font-size: 14.5px; }
