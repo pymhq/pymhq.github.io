@@ -51,7 +51,6 @@
         gap: 8px;
         padding: 12px 0;
         background: var(--global-bg-color);
-        border-bottom: 1px solid var(--global-divider-color);
       }
 
       .pub-toc a {
@@ -132,21 +131,19 @@
       }
       .venue-list li:last-child { margin-bottom: 0; }
 
-      /* the tag: venue/org name, pulled out as a small pill */
+      /* the tag: venue/org name — same pill language as the pub-toc
+         and the category chips on the Projects page */
       .venue-tag {
         display: inline-block;
-        font-size: .95rem;
-        font-weight: 600;
-        color: var(--global-theme-color);
-        background: rgba(0,0,0,.035);
+        font-size: .85rem;
+        font-weight: 400;
+        color: var(--global-text-color);
+        background: transparent;
         border: 1px solid var(--global-divider-color);
-        border-radius: 6px;
-        padding: .2rem .65rem;
+        border-radius: 16px;
+        padding: 5px 14px;
         margin-right: .5rem;
         line-height: 1.5;
-      }
-      html[data-theme='dark'] .venue-tag {
-        background: rgba(255,255,255,.06);
       }
 
       .venue-detail {

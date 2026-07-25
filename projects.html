@@ -40,8 +40,8 @@
          pointer-events: none;
    }
    h2.year {
-    color: rgba(0,0,0,.1);
-    border-top: 1px solid rgba(0,0,0,.1);
+    color: var(--global-divider-color);
+    border-top: 1px solid var(--global-divider-color);
     padding-top: 1rem;
     margin-top: 2rem;
     margin-bottom: -2rem;
@@ -199,25 +199,20 @@
       display: none;
     }
 
+    /* Category chips share the pill language of the pub-toc used on
+       the Publications and Service pages */
     ul.timeline .badge-toc {
-      font-size: 0.72rem;
-      font-weight: 600 !important;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 400 !important;
+      padding: 5px 14px;
+      border-radius: 16px;
+      color: var(--global-text-color);
+      background-color: transparent;
+      border: 1px solid var(--global-divider-color);
     }
 
-    /* Year headers: smaller footprint, still a clear visual anchor */
-    .publications h2.year {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      color: var(--global-theme-color, #B509AC);
-      opacity: 0.55;
-      border-top: 1px solid rgba(0,0,0,.08);
-      padding-top: 0.6rem;
-      margin-top: 1.4rem;
-      margin-bottom: -1.4rem;
-    }
+    /* Year headers: same visual language as the Books & Publications page
+       (faint right-aligned year with a single hairline per group) */
 
     /* Bibliography entries: tighter rows, badges no longer eat fixed width */
     .publications ol.bibliography {
@@ -225,13 +220,8 @@
     }
 
     .publications ol.bibliography li {
-      margin-bottom: 0.6rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid rgba(0,0,0,.05);
-    }
-
-    .publications ol.bibliography li:last-child {
-      border-bottom: none;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
     }
 
     .publications ol.bibliography .row {
@@ -387,8 +377,7 @@
       </div>
       <style>
          .career-summary {
-            border-top: 1px solid rgba(0,0,0,.1);
-            padding-top: 1.5rem;
+            padding-top: 1rem;
             margin-top: 0.5rem;
             margin-bottom: 1.5rem;
          }
@@ -450,6 +439,7 @@
          <li><span class="badge-toc">LLM</span></a></li>
          <li><span class="badge-toc">Amazon Science</span></a></li>
          <li><span class="badge-toc">Amazon SageMaker</span></a></li>
+         <li><span class="badge-toc">Neural Information Processing Systems (NeurIPS)</span></a></li>
          <li><span class="badge-toc">Amazon Bedrock</span></a></li>
          <li><span class="badge-toc">FDS</span></a></li>
          <li><span class="badge-toc">AWS App Runner</span></a></li>
