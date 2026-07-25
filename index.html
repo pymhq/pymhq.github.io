@@ -342,6 +342,13 @@
       .hero2-social a:hover { color: var(--global-theme-color, #0076df); }
       .hero2-sep { width: 1px; height: 16px; background: rgba(22, 24, 29, 0.15); }
       /* language toggle: classic blue/white (original site styles apply) */
+      /* align the floating copyright with the hero content column, the
+         same way other pages align it with their content container */
+      footer.fixed-bottom .container {
+         max-width: 790px;
+         margin: 0 auto;
+         padding: 0 30px;
+      }
       footer.fixed-bottom,
       footer.fixed-bottom div {
          font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
