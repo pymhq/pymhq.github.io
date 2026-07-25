@@ -460,12 +460,22 @@ nav[data-toggle="toc"] {
 .navbar.navbar-light .navbar-nav.fnv-items .nav-item.active > .nav-link:hover span {
   color: var(--global-theme-color);
 }
+/* thin stroked chevron (two hairline borders rotated 45deg) — quieter
+   and more precise than the heavy \25bc text glyph it replaced */
 .fnv-caret {
-  font-size: 0.5rem;
-  opacity: 0.55;
-  transition: transform 0.22s ease;
+  width: 7px;
+  height: 7px;
+  margin-top: -4px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.7;
+  transition: transform 0.22s ease, margin-top 0.22s ease;
 }
-.nav-item.fnv-open .fnv-caret { transform: rotate(180deg); }
+.nav-item.fnv-open .fnv-caret { transform: rotate(225deg); margin-top: 2px; }
+@media (hover: hover) {
+  .nav-item.fnv-has-dd:hover .fnv-caret { transform: rotate(225deg); margin-top: 2px; }
+}
 
 /* ---------- dropdown cards ---------- */
 .fnv-dd {
@@ -724,7 +734,7 @@ html.fnv-menu-open .fnv-overlay .fnv-col:nth-child(4) { transition-delay: 0.24s;
          <a class="navbar-brand title font-weight-lighter" href="/">Peng, <span class="font-weight-bold">Andy</span></a>
          <ul class="navbar-nav fnv-items">
             <li class="nav-item fnv-has-dd">
-               <button class="nav-link fnv-dd-btn" type="button" aria-haspopup="true" aria-expanded="false"><span class="lang-en">About</span><span class="lang-zh" style="display:none;">关于</span> <span class="fnv-caret">▼</span></button>
+               <button class="nav-link fnv-dd-btn" type="button" aria-haspopup="true" aria-expanded="false"><span class="lang-en">About</span><span class="lang-zh" style="display:none;">关于</span> <span class="fnv-caret" aria-hidden="true"></span></button>
                <div class="fnv-dd">
                   <a href="/portfolio" data-page="bio">
                      <span class="fnv-dd-title"><span class="lang-en">Bio &amp; Portfolio</span><span class="lang-zh" style="display:none;">个人简介</span></span>
@@ -745,7 +755,7 @@ html.fnv-menu-open .fnv-overlay .fnv-col:nth-child(4) { transition-delay: 0.24s;
                </div>
             </li>
             <li class="nav-item fnv-has-dd">
-               <button class="nav-link fnv-dd-btn" type="button" aria-haspopup="true" aria-expanded="false"><span class="lang-en">Books &amp; Writing</span><span class="lang-zh" style="display:none;">书籍与写作</span> <span class="fnv-caret">▼</span></button>
+               <button class="nav-link fnv-dd-btn" type="button" aria-haspopup="true" aria-expanded="false"><span class="lang-en">Books &amp; Writing</span><span class="lang-zh" style="display:none;">书籍与写作</span> <span class="fnv-caret" aria-hidden="true"></span></button>
                <div class="fnv-dd">
                   <a href="/publications" data-page="publications">
                      <span class="fnv-dd-title"><span class="lang-en">Books &amp; Publications</span><span class="lang-zh" style="display:none;">书籍 & 发表</span></span>
@@ -758,7 +768,7 @@ html.fnv-menu-open .fnv-overlay .fnv-col:nth-child(4) { transition-delay: 0.24s;
                </div>
             </li>
             <li class="nav-item fnv-has-dd">
-               <button class="nav-link fnv-dd-btn" type="button" aria-haspopup="true" aria-expanded="false"><span class="lang-en">Science &amp; Tech</span><span class="lang-zh" style="display:none;">科技</span> <span class="fnv-caret">▼</span></button>
+               <button class="nav-link fnv-dd-btn" type="button" aria-haspopup="true" aria-expanded="false"><span class="lang-en">Science &amp; Tech</span><span class="lang-zh" style="display:none;">科技</span> <span class="fnv-caret" aria-hidden="true"></span></button>
                <div class="fnv-dd">
                   <a href="/projects" data-page="projects">
                      <span class="fnv-dd-title"><span class="lang-en">Projects</span><span class="lang-zh" style="display:none;">项目</span></span>
@@ -771,7 +781,7 @@ html.fnv-menu-open .fnv-overlay .fnv-col:nth-child(4) { transition-delay: 0.24s;
                </div>
             </li>
             <li class="nav-item fnv-has-dd">
-               <button class="nav-link fnv-dd-btn" type="button" aria-haspopup="true" aria-expanded="false"><span class="lang-en">Creativity</span><span class="lang-zh" style="display:none;">创意</span> <span class="fnv-caret">▼</span></button>
+               <button class="nav-link fnv-dd-btn" type="button" aria-haspopup="true" aria-expanded="false"><span class="lang-en">Creativity</span><span class="lang-zh" style="display:none;">创意</span> <span class="fnv-caret" aria-hidden="true"></span></button>
                <div class="fnv-dd">
                   <a href="/creativity" data-page="creativity">
                      <span class="fnv-dd-title"><span class="lang-en">Design &amp; Photography</span><span class="lang-zh" style="display:none;">设计与摄影</span></span>

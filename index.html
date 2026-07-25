@@ -85,7 +85,7 @@
 
          /* Second panel reveal, like visitings' #pnw-section */
          #panel-endorse .endorse-panel-inner {
-            max-width: 780px;
+            max-width: 790px;
             margin: 0 auto;
             padding: 24px 20px 90px;
             opacity: 0;
@@ -194,197 +194,176 @@
          }
       </style>
    <style>
-      /* ============ Editorial hero (panel 1 redesign, 2026-07) ============
-         No cards: hierarchy comes from type scale and whitespace.
-         Serif display name (site display voice) · mono tagline/kickers
-         (landing signature) · single blue for every hover. */
+      /* ============ Hero v3: site-native profile header (2026-07-24) ============
+         No art-piece composition — the homepage breathes like every other
+         page. Medium centered container; horizontal identity row (avatar
+         left, brand-style sans name right); 4-column sitemap; one mono
+         metadata line; sole blue accent = CTA. Floating copyright always. */
       .hero2 {
          height: 100%;
          display: flex;
          flex-direction: column;
-         align-items: center;
-         padding: 48px 28px 30px;
+         padding: 44px 0 90px;
          overflow-y: auto;
       }
-      /* margin:auto centers the block when there is room, and degrades to
-         normal scrolling flow (no overlap) when the viewport is short */
-      .hero2-main { text-align: center; max-width: 1020px; margin: auto; }
-      .hero2-avatar {
-         width: 112px; height: 112px;
-         border-radius: 50%;
-         box-shadow: 0 8px 28px rgba(22, 24, 29, 0.12);
-         margin-bottom: 22px;
+      .hero2-main {
+         margin: auto;
+         width: 100%;
+         max-width: 790px;
+         padding: 0 30px;
+         text-align: left;
       }
+      .hero2-head {
+         display: flex;
+         align-items: center;
+         gap: 30px;
+         margin-bottom: 80px;
+      }
+      .hero2-avatar {
+         width: 104px; height: 104px;
+         border-radius: 50%;
+         box-shadow: 0 6px 20px rgba(22, 24, 29, 0.12);
+         flex: 0 0 auto;
+      }
+      .hero2-id { min-width: 0; }
+      .hero2-name,
       .hero2-name span {
-         font-family: inherit !important;
-         font-size: inherit !important;
-         line-height: inherit !important;
+         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
+         font-size: clamp(2.1rem, 4.5vw, 2.9rem) !important;
+         line-height: 1.15 !important;
       }
       .hero2-name {
-         font-family: "Palatino", "Palatino Linotype", "Songti SC", Georgia, serif !important;
-         font-size: 3.1rem !important;
-         font-weight: 400 !important;
-         letter-spacing: 0.5px;
-         color: var(--global-text-color);
-         margin: 0 0 12px;
-         line-height: 1.15;
+         font-weight: 300 !important;
+         letter-spacing: 0.2px;
+         color: var(--global-text-color, #16181d);
+         margin: 0 0 10px;
       }
-      .hero2-name .font-weight-bold { font-weight: 700; }
+      .hero2-name .font-weight-bold { font-weight: 700 !important; }
+      .hero2-tagline,
+      .hero2-tagline span {
+         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
+         font-size: 1.1rem !important;
+      }
       .hero2-tagline {
-         font-size: 12.5px !important;
-         font-weight: 500;
-         letter-spacing: 2.5px;
-         text-transform: uppercase;
-         color: var(--global-text-color-light, #828282);
+         color: var(--global-text-color-light, #6d7683);
          margin: 0;
-      }
-      .hero2-rule {
-         width: 220px; height: 1px;
-         background: rgba(22, 24, 29, 0.45);
-         margin: 26px auto 32px;
+         line-height: 1.6;
       }
       .hero2-nav {
          display: grid;
-         grid-template-columns: repeat(4, 1fr);
-         gap: 8px 44px;
-         max-width: 920px;
-         margin: 0 auto;
-         text-align: left;
+         grid-template-columns: repeat(4, auto);
+         justify-content: space-between;
+         gap: 8px 28px;
+         margin-bottom: 64px;
+      }
+      .hero2-group h3,
+      .hero2-group a { white-space: nowrap; }
+      .hero2-group h3,
+      .hero2-group h3 span {
+         font-family: "JetBrains Mono", "SF Mono", Consolas, monospace !important;
+         font-size: 11px !important;
       }
       .hero2-group h3 {
-         font-size: 11px !important;
-         font-weight: 600 !important;
-         letter-spacing: 1.8px;
-         text-transform: uppercase;
-         color: var(--global-text-color-light, #828282);
-         margin: 0 0 12px;
-      }
-      .hero2-group a,
-      .hero2-group a span {
-         font-family: "Palatino", "Palatino Linotype", "Songti SC", Georgia, serif !important;
-      }
-      .hero2-group a {
-         display: block;
-         font-size: 17px;
-         line-height: 1.45;
-         padding: 4.5px 0;
-         color: var(--global-text-color) !important;
-         text-decoration: none !important;
-         transition: color 0.18s ease, transform 0.18s ease;
-      }
-      .hero2-group a:hover {
-         color: var(--global-theme-color) !important;
-         transform: translateX(3px);
-      }
-      .hero2-exp { margin-top: 44px; }
-      .hero2-exp h3 {
-         font-size: 11px !important;
          font-weight: 600 !important;
          letter-spacing: 1.8px;
          text-transform: uppercase;
          color: var(--global-text-color-light, #828282);
          margin: 0 0 14px;
-         text-align: center;
+         padding-bottom: 8px;
+         border-bottom: 1px solid rgba(22, 24, 29, 0.08);
+      }
+      .hero2-group a,
+      .hero2-group a span {
+         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
+         font-size: 1.05rem !important;
+      }
+      .hero2-group a {
+         display: block;
+         line-height: 1.5;
+         padding: 5px 0;
+         color: var(--global-text-color, #16181d) !important;
+         text-decoration: none !important;
+         transition: color 0.18s ease;
+      }
+      .hero2-group a:hover,
+      .hero2-group a:hover span { color: var(--global-theme-color, #0076df) !important; }
+      .hero2-exp {
+         margin: 0 0 54px;
+         border-top: 1px solid rgba(22, 24, 29, 0.08);
+         padding-top: 28px;
       }
       .hero2-tags {
-         max-width: 860px;
-         margin: 0 auto;
          display: flex;
          flex-wrap: wrap;
-         justify-content: center;
-         gap: 7px;
+         gap: 9px;
       }
       .hero2-tags span {
+         font-family: "JetBrains Mono", "SF Mono", Consolas, monospace !important;
+         font-size: 11px !important;
+         line-height: 1 !important;
          white-space: nowrap;
-         font-size: 11px;
-         line-height: 1;
          padding: 6px 12px;
          border: 1px solid rgba(22, 24, 29, 0.14);
          border-radius: 999px;
          color: var(--global-text-color-light, #828282);
+         background: transparent;
          transition: color 0.18s ease, border-color 0.18s ease;
          cursor: default;
       }
       .hero2-tags span:hover {
-         color: var(--global-theme-color);
-         border-color: var(--global-theme-color);
+         color: var(--global-theme-color, #0076df);
+         border-color: var(--global-theme-color, #0076df);
       }
-      html[data-theme=dark] .hero2-tags span { border-color: rgba(255, 255, 255, 0.2); }
-      .hero2-cta,
-      .hero2-cta span {
-         color: var(--global-bg-color, #fff) !important;
-      }
-      .hero2-cta {
-         display: inline-block;
-         margin-top: 36px;
-         font-size: 12px;
-         font-weight: 600;
-         letter-spacing: 1.8px;
-         text-transform: uppercase;
-         text-decoration: none !important;
-         padding: 12px 30px;
-         background: var(--global-text-color, #16181d);
-         border: 1.5px solid var(--global-text-color, #16181d);
-         border-radius: 999px;
-         transition: background 0.2s ease, border-color 0.2s ease;
-      }
-      .hero2-cta:hover {
-         background: var(--global-theme-color);
-         border-color: var(--global-theme-color);
-      }
-      .hero2-foot {
-         flex: 0 0 auto;
+      .hero2-actions {
          display: flex;
          align-items: center;
-         justify-content: center;
-         gap: 18px;
-         margin-top: 34px;
-         padding-bottom: 18px; /* clears the fixed copyright line */
+         gap: 24px;
+         flex-wrap: wrap;
       }
-      .hero2-social { display: flex; gap: 17px; align-items: center; }
+      .hero2-cta,
+      .hero2-cta span {
+         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
+         font-size: 1.02rem !important;
+         color: var(--global-theme-color, #0076df) !important;
+      }
+      .hero2-cta {
+         font-weight: 600;
+         text-decoration: none !important;
+         transition: color 0.18s ease;
+      }
+      .hero2-cta:hover,
+      .hero2-cta:hover span { color: var(--global-hover-color, #00369f) !important; }
+      .hero2-social { display: flex; gap: 15px; align-items: center; }
       .hero2-social a {
          font-size: 15px;
          color: var(--global-text-color-light, #828282);
          transition: color 0.18s ease;
       }
-      .hero2-social a:hover { color: var(--global-theme-color); }
+      .hero2-social a:hover { color: var(--global-theme-color, #0076df); }
       .hero2-sep { width: 1px; height: 16px; background: rgba(22, 24, 29, 0.15); }
-      /* demote the language toggle: monochrome so the CTA is the only accent */
-      .hero2-foot .lang-toggle button {
-         border-color: rgba(22, 24, 29, 0.25);
-         color: var(--global-text-color-light, #828282);
+      /* language toggle: classic blue/white (original site styles apply) */
+      footer.fixed-bottom,
+      footer.fixed-bottom div {
+         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
+         font-size: 1.1rem !important;
+         color: var(--global-text-color, #16181d) !important;
       }
-      .hero2-foot .lang-toggle button.active {
-         background: var(--global-text-color, #16181d);
-         border-color: var(--global-text-color, #16181d);
-         color: var(--global-bg-color, #fff);
-      }
-      /* the site's fixed-bottom footer overlaps content on short viewports
-         (it is pinned to the viewport while the panel owns scrolling);
-         on this page the copyright lives in the flow below the hero foot */
-      footer.fixed-bottom { display: none; }
-      .hero2-copy {
-         text-align: center;
-         font-size: 10.5px !important;
-         color: var(--global-text-color-light, #828282);
-         margin: 12px 0 0;
-      }
-      @media (max-width: 900px) {
-         .hero2-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 44px; max-width: 460px; margin: 0 auto; }
-         .hero2-name { font-size: 2.5rem !important; }
+      @media (max-width: 760px) {
+         .hero2-nav { grid-template-columns: 1fr 1fr; gap: 26px 30px; }
       }
       @media (max-width: 520px) {
-         .hero2 { padding: 34px 20px 96px; }
-         .hero2-nav { gap: 34px 26px; }
-         .hero2-group a { font-size: 15.5px; }
-         .hero2-avatar { width: 92px; height: 92px; }
-         .hero2-name { font-size: 2.1rem !important; }
-         .hero2-tagline { letter-spacing: 1.5px; }
+         /* compact rhythm: the actions row must end above the floating ©
+            zone (~y890) in the initial viewport */
+         .hero2 { padding-top: 30px; padding-bottom: 120px; }
+         .hero2-main { padding: 0 22px; }
+         .hero2-head { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 26px; }
+         .hero2-avatar { width: 68px; height: 68px; }
+         .hero2-nav { grid-template-columns: 1fr 1fr; gap: 20px 20px; margin-bottom: 30px; }
+         .hero2-group a { padding: 3px 0; }
+         .hero2-exp { padding-top: 14px; margin-bottom: 24px; line-height: 1.9; }
+         .hero2-tagline { margin-bottom: 0; }
       }
-      html[data-theme=dark] .hero2-rule,
-      html[data-theme=dark] .hero2-sep { background: rgba(255, 255, 255, 0.2); }
-      html[data-theme=dark] .hero2-cta { border-color: var(--global-text-color); }
-   </style>
+      </style>
    </head>
 
    <body class="fixed-top-nav ">
@@ -392,13 +371,16 @@
          <section class="hpanel" id="panel-home">
       <div class="hero2">
       <div class="hero2-main">
-         <img class="hero2-avatar" src="assets/img/Memoji.png" alt="Andy Peng">
-         <h1 class="hero2-name"><span class="font-weight-bold">Andy</span> Peng</h1>
-         <p class="hero2-tagline">
-            <span class="lang-en">Builder · Researcher · Technologist · Advisor</span>
-            <span class="lang-zh" style="display: none;">构建者 · 研究者 · 技术专家 · 顾问</span>
-         </p>
-         <div class="hero2-rule"></div>
+         <div class="hero2-head">
+            <img class="hero2-avatar" src="assets/img/Memoji.png" alt="Peng, Andy">
+            <div class="hero2-id">
+               <h1 class="hero2-name">Peng, <span class="font-weight-bold">Andy</span></h1>
+               <p class="hero2-tagline">
+                  <span class="lang-en">Builder, researcher, technologist, advisor.</span>
+                  <span class="lang-zh" style="display: none;">构建者、研究者、技术专家、顾问。</span>
+               </p>
+            </div>
+         </div>
          <nav class="hero2-nav" aria-label="Site sections">
             <div class="hero2-group">
                <h3><span class="lang-en">About</span><span class="lang-zh" style="display: none;">关于</span></h3>
@@ -424,69 +406,67 @@
             </div>
          </nav>
          <div class="hero2-exp">
-            <h3><span class="lang-en">Expertise</span><span class="lang-zh" style="display: none;">专长</span></h3>
             <div class="hero2-tags lang-en">
-            <span>ENFJ</span>
-            <span>PNW</span>
-            <span>Large-Scale Distributed System</span>
-            <span>Technical Leadership</span>
-            <span>Engineering</span>
-            <span>The State of the Art (SOTA)</span>
-            <span>Builder</span>
-            <span>Mentoring and Counseling</span>
-            <span>Intrapreneur</span>
-            <span>Product &amp; Research</span>
-            <span>Zero to One</span>
-            <span>Be Curious</span>
-            <span>Machine Learning</span>
-            <span>Serverless</span>
-            <span>Open Source</span>
-            <span>LLM</span>
-            <span>Technical Advisor</span>
-            <span>Virtualization</span>
-            <span>Model Evaluation and Benchmark</span>
-            <span>Organizational Behavior</span>
+               <span>ENFJ</span>
+               <span>PNW</span>
+               <span>Large-Scale Distributed System</span>
+               <span>Technical Leadership</span>
+               <span>Engineering</span>
+               <span>The State of the Art (SOTA)</span>
+               <span>Builder</span>
+               <span>Mentoring and Counseling</span>
+               <span>Intrapreneur</span>
+               <span>Product &amp; Research</span>
+               <span>Zero to One</span>
+               <span>Be Curious</span>
+               <span>Machine Learning</span>
+               <span>Serverless</span>
+               <span>Open Source</span>
+               <span>LLM</span>
+               <span>Technical Advisor</span>
+               <span>Virtualization</span>
+               <span>Model Evaluation and Benchmark</span>
+               <span>Organizational Behavior</span>
             </div>
             <div class="hero2-tags lang-zh" style="display: none;">
-            <span>ENFJ</span>
-            <span>PNW</span>
-            <span>大规模分布式系统</span>
-            <span>技术领导力</span>
-            <span>工程</span>
-            <span>业界前沿 (SOTA)</span>
-            <span>构建者</span>
-            <span>辅导与指导</span>
-            <span>内部创业者</span>
-            <span>产品与研究</span>
-            <span>从零到一</span>
-            <span>保持好奇</span>
-            <span>机器学习</span>
-            <span>无服务器</span>
-            <span>开源</span>
-            <span>LLM</span>
-            <span>技术顾问</span>
-            <span>虚拟化</span>
-            <span>模型评估与基准</span>
-            <span>组织行为学</span>
+               <span>ENFJ</span>
+               <span>PNW</span>
+               <span>大规模分布式系统</span>
+               <span>技术领导力</span>
+               <span>工程</span>
+               <span>业界前沿 (SOTA)</span>
+               <span>构建者</span>
+               <span>辅导与指导</span>
+               <span>内部创业者</span>
+               <span>产品与研究</span>
+               <span>从零到一</span>
+               <span>保持好奇</span>
+               <span>机器学习</span>
+               <span>无服务器</span>
+               <span>开源</span>
+               <span>LLM</span>
+               <span>技术顾问</span>
+               <span>虚拟化</span>
+               <span>模型评估与基准</span>
+               <span>组织行为学</span>
             </div>
          </div>
-         <a class="hero2-cta" href="https://pengandy.com/studio" target="_blank" rel="noopener"><span class="lang-en">Get in touch →</span><span class="lang-zh" style="display: none;">联系 & 合作 →</span></a>
-      </div>
-      <div class="hero2-foot">
-         <div class="hero2-social">
-            <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="Email"><i class="fa fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com/pymhq" title="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://substack.com/@pengandy" title="Substack" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-substack fa-sm"></i></a>
-            <a href="/studio" title="Book"><i class="fa fa-calendar"></i></a>
+         <div class="hero2-actions">
+            <a class="hero2-cta" href="https://pengandy.com/studio" target="_blank" rel="noopener"><span class="lang-en">Get in touch →</span><span class="lang-zh" style="display: none;">联系 & 合作 →</span></a>
+            <div class="hero2-social">
+               <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="Email"><i class="fa fa-envelope"></i></a>
+               <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+               <a href="https://twitter.com/pymhq" title="Twitter"><i class="fab fa-twitter"></i></a>
+               <a href="https://substack.com/@pengandy" title="Substack" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-substack fa-sm"></i></a>
+               <a href="/studio" title="Book"><i class="fa fa-calendar"></i></a>
+            </div>
+            <span class="hero2-sep"></span>
+            <div class="lang-toggle" role="group" aria-label="Language selector">
+               <button type="button" class="active" id="btn-en" onclick="switchLanguage('en')">EN</button>
+               <button type="button" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
+            </div>
          </div>
-         <span class="hero2-sep"></span>
-         <div class="lang-toggle" role="group" aria-label="Language selector">
-            <button type="button" class="active" id="btn-en" onclick="switchLanguage('en')">EN</button>
-            <button type="button" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
-         </div>
       </div>
-      <p class="hero2-copy">© Copyright 2026 Andy Peng.</p>
    </div>
    </section>
          <section class="hpanel" id="panel-endorse">
