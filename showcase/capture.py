@@ -30,7 +30,7 @@ PAGES = [
     ("endorsements", "/endorsements.html", 10000),
     ("resume",       "/resume/",           14000),
     ("studio",       "/studio.html",       10000),
-    ("visitings",    "/visitings.html",    1000),
+    ("visitings",    "/maps.html",    1000),
     ("office",       "/office.html",       8000),
 ]
 

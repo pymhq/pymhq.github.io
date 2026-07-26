@@ -35,7 +35,7 @@ for i in range(N):
     e = t * t * (3 - 2 * t)  # smoothstep
     lam = -116.4 + (-262 - (-116.4)) * e
     phi = -39.9 + (-39.0 - (-39.9)) * e
-    p = temp("visitings.html",
+    p = temp("maps.html",
              lambda h, lam=lam, phi=phi: h.replace(
                  "projection.rotate([-116.4, -39.9, 0]);",
                  f"projection.rotate([{lam:.2f}, {phi:.2f}, 0]);"),

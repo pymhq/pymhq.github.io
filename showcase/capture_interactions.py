@@ -73,10 +73,10 @@ html,body{scroll-snap-type:none !important;}
 #globe-section{height:0 !important;min-height:0 !important;overflow:visible !important;}
 #pnw-section{opacity:1 !important;transform:none !important;height:100vh !important;}
 """
-p = temp_page("visitings.html", base_css, "__pnw1.html")
+p = temp_page("maps.html", base_css, "__pnw1.html")
 shoot(f"{BASE}/__pnw1.html", "/tmp/pnw_p1.png")
 p.unlink()
-p = temp_page("visitings.html", base_css + ".pnw-pager .pnw-panel:first-child{display:none !important;}", "__pnw2.html")
+p = temp_page("maps.html", base_css + ".pnw-pager .pnw-panel:first-child{display:none !important;}", "__pnw2.html")
 shoot(f"{BASE}/__pnw2.html", "/tmp/pnw_p2.png")
 p.unlink()
 stitch_h(["/tmp/pnw_p1.png", "/tmp/pnw_p2.png"], OUT / "pnw-wide.png")
