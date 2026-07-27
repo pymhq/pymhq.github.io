@@ -323,6 +323,12 @@ border-color: var(--global-divider-color)
 color: var(--global-card-bg-color)!important;
 background-color: var(--global-theme-color)!important
 }
+/* Bilingual badges wrap text in .lang-en/.lang-zh spans; the global
+   "span { color: var(--global-text-color) }" rule (~line 114) would
+   otherwise paint them black instead of the badge's light text. */
+.cv .card .list-group-item .badge span {
+color: var(--global-card-bg-color)!important
+}
 .table-cv-map {
 background-color: transparent;
 border: 0;
