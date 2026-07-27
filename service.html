@@ -241,6 +241,14 @@
                  const contentPlaceholder = document.getElementById('service-content-placeholder');
                  if (contentPlaceholder) {
                    contentPlaceholder.innerHTML = html;
+                   // Content arrives after the navbar has already applied the
+                   // language preference; re-apply so injected .lang-en/.lang-zh
+                   // spans respect the current language.
+                   if (window.applyGlobalLanguage) {
+                     var lang = 'en';
+                     try { lang = localStorage.getItem('preferredLanguage') || 'en'; } catch (e) {}
+                     window.applyGlobalLanguage(lang);
+                   }
                  }
                });
            }
