@@ -221,16 +221,35 @@
      .fx-mult { background: var(--fx-accent); color: #fff; border-radius: 999px; padding: 3px 12px; font: 700 .78rem/1.5 var(--fx-sans); white-space: nowrap; }
      .fx-lane.open-lane .fx-mile { border-color: var(--fx-accent); background: var(--fx-soft); }
 
-     /* ---------- closed-wraps-open cards (ppt-style) ---------- */
-     .fx-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 14px; max-width: var(--fx-prose); margin: 24px auto; }
+     /* ---------- stack cards: closed product over open primitive ---------- */
+     .fx-stackgroup { max-width: var(--fx-prose); margin: 26px auto 0; font-family: var(--fx-sans); }
+     .fx-stackgroup .glbl { display: flex; align-items: baseline; gap: 10px; padding-bottom: 8px; margin-bottom: 14px;
+       border-bottom: 1px solid var(--fx-hair); }
+     .fx-stackgroup .glbl .gname { font: 700 .74rem/1.5 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--fx-accent); }
+     .fx-stackgroup .glbl .gsub { font: 500 .74rem/1.5 var(--fx-sans); color: var(--fx-mute); }
+     .fx-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 14px; align-items: start;
+       max-width: var(--fx-prose); margin: 0 auto; }
      .fx-card { border: 1px solid var(--fx-rule); border-radius: 12px; overflow: hidden; text-align: center; font-family: var(--fx-sans); }
-     .fx-card .closed-box { padding: 10px 8px; font: 700 .82rem/1.45 var(--fx-sans); border-bottom: 1px dashed var(--fx-rule); }
-     .fx-card .wrap-tag { padding: 3px 0; font: 700 .62rem/1.6 var(--fx-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--fx-mute); }
+     .fx-card .closed-box { padding: 10px 8px; font: 700 .82rem/1.45 var(--fx-sans); }
+     .fx-card .closed-box .sub { display: block; margin-top: 2px; font: 500 .68rem/1.5 var(--fx-sans); color: var(--fx-mute); }
+     /* one chevron replaces the repeated "stacks on" label; the legend states the rule once */
+     .fx-card .sep { padding: 1px 0 2px; font: 700 .58rem/1.3 var(--fx-sans); color: var(--fx-accent);
+       border-top: 1px dashed var(--fx-rule); }
      .fx-card .open-box { padding: 10px 8px; font: 600 .8rem/1.45 var(--fx-sans); color: var(--fx-accent); background: var(--fx-soft); }
-     .fx-card .mid-box { padding: 8px 8px; font: 600 .8rem/1.45 var(--fx-sans); color: var(--fx-accent); background: var(--fx-soft); border-bottom: 1px dashed var(--fx-rule); }
+     .fx-card .mid-box { padding: 9px 8px; font: 600 .78rem/1.45 var(--fx-sans); color: var(--fx-accent); background: var(--fx-soft); }
+     .fx-card .neu-box { padding: 9px 8px; font: 600 .78rem/1.45 var(--fx-sans); }
+     .fx-card .neu-box .sub { display: block; margin-top: 2px; font: 500 .66rem/1.5 var(--fx-sans); color: var(--fx-mute); }
      .fx-card .unboxed { padding: 12px 8px; font: 600 .8rem/1.5 var(--fx-sans); font-style: italic; color: var(--fx-mute); background: transparent; }
+     .fx-card .card-cap { padding: 7px 8px; font: 700 .64rem/1.6 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase;
+       color: var(--fx-mute); border-bottom: 1px solid var(--fx-hair); }
      .fx-card.next-card { border-style: dashed; }
-     .fx-card-hero { max-width: 300px; margin: 24px auto 14px; }
+     .fx-card-hero { max-width: 300px; margin: 0 auto; }
+     .fx-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; max-width: var(--fx-prose); margin: 12px auto 24px;
+       font: 500 .74rem/1.6 var(--fx-sans); color: var(--fx-mute); }
+     .fx-legend .sw { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 6px; vertical-align: -1px;
+       border: 1px solid var(--fx-rule); }
+     .fx-legend .sw.open { border-color: var(--fx-accent); background: var(--fx-soft); }
+     .fx-legend .sw.next { border-style: dashed; }
 
      /* ---------- silicon stacks: model layer over a horizontal GPU | ASIC line ---------- */
      .fx-stacks { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px;
@@ -407,50 +426,64 @@
             </div>
             <p>Open-sourcing Kubernetes was not charity. It was strategy — the challenger opens to commoditize the leader's advantage. And it worked, for a reason Brewer named precisely: "Kubernetes won in part because it had a vast army of contributors behind it… that rate of change kind of trumps everything else." I lived the other side of that story: as a founding engineer of <a href="https://aws.amazon.com/apprunner/" target="_blank">AWS App Runner</a> (incubated from Fargate), our product went head-to-head with Google Cloud Run. Cloud Run was built on Knative, which Google open-sourced; App Runner was proprietary service engineering all the way down. Competing against a product backed by an open community teaches you viscerally what "a vast army of contributors" means.</p>
             <p>The pattern repeats across software history. Apache Kafka is my favorite example: LinkedIn open-sourced it in 2011, Confluent commercialized it, and today Kafka is the de facto event-streaming standard — with Amazon MSK and Confluent Cloud competing to run the same open protocol. The open standard grew the market; the vendors compete on operations, performance, and trust. Nobody was destroyed by openness. Linux vs Windows, MySQL vs Oracle, Kubernetes vs proprietary orchestrators — same movie, different decade.</p>
-            <p>Look closer and there is a second recurring pattern: the winning commercial product very often stacks on top of an open-source primitive. Confluent is built on Apache Kafka; AWS Lambda, Fargate and App Runner sit on Firecracker, which runs on containerd; Google Cloud Run is built on Knative, which runs on Kubernetes atop containerd; Databricks is built on Apache Spark. The open layer sets the standard and grows the market — the closed layer sells operations, reliability, and enterprise trust on top. There is no reason to believe AI will be different — artificial intelligence will be built the same way, stack 0 through stack n−1, with agents and Model-as-a-Service somewhere in between. What the lower stacks look like — open weights, closed models, or a mix — nobody knows.</p>
-            <div class="fx-card fx-card-hero next-card">
-               <div class="closed-box">Artificial Intelligence (next)</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">Stack n−1 · Applications</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">⋮</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">Agents</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">Model-as-a-Service</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">⋮</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="unboxed">Stack 0 · ?</div>
-            </div>
-            <div class="fx-cards">
-               <div class="fx-card">
-                  <div class="closed-box">Confluent</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">Apache Kafka</div>
-               </div>
-               <div class="fx-card">
-                  <div class="closed-box">AWS Lambda · Fargate · App Runner</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="mid-box">Firecracker</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">containerd</div>
-               </div>
-               <div class="fx-card">
-                  <div class="closed-box">Google Cloud Run</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="mid-box">Knative</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="mid-box">Kubernetes</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">containerd</div>
-               </div>
-               <div class="fx-card">
-                  <div class="closed-box">Databricks</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">Apache Spark</div>
+            <p>Look closer and there is a second recurring pattern: the winning commercial product very often stacks on top of an open-source primitive. Confluent is built on Apache Kafka; Databricks on Apache Spark; AWS Lambda, Fargate and App Runner sit on Firecracker, which runs on containerd; Google Cloud Run is built on Knative, which runs on Kubernetes atop containerd. The open layer sets the standard and grows the market — the closed layer sells operations, reliability, and enterprise trust on top. There is no reason to believe AI will be different — artificial intelligence will be built the same way, stack 0 through stack n−1, with agents and Model-as-a-Service somewhere in between. What the lower stacks look like — open weights, closed models, or a mix — nobody knows.</p>
+            <div class="fx-stackgroup">
+               <div class="glbl"><span class="gname">LLM Native</span><span class="gsub">the stack being built now</span></div>
+               <div class="fx-card fx-card-hero next-card">
+                  <div class="card-cap">Stack n−1 → Stack 0</div>
+                  <div class="neu-box">Applications</div>
+                  <div class="sep">▲</div>
+                  <div class="neu-box">Agents<span class="sub">MCP · tools · memory</span></div>
+                  <div class="sep">▲</div>
+                  <div class="neu-box">Model-as-a-Service<span class="sub">Bedrock · OpenRouter</span></div>
+                  <div class="sep">▲</div>
+                  <div class="neu-box">Serving runtime<span class="sub">vLLM · SGLang · Dynamo</span></div>
+                  <div class="sep">▲</div>
+                  <div class="neu-box">Models<span class="sub">open weights · closed · both</span></div>
+                  <div class="sep">▲</div>
+                  <div class="unboxed">Stack 0 · ?</div>
                </div>
             </div>
+            <div class="fx-stackgroup">
+               <div class="glbl"><span class="gname">Cloud Native</span><span class="gsub">the same pattern, the last decade</span></div>
+               <div class="fx-cards">
+                  <div class="fx-card">
+                     <div class="closed-box">Confluent Cloud<span class="sub">also Amazon MSK</span></div>
+                     <div class="sep">▲</div>
+                     <div class="open-box">Apache Kafka</div>
+                  </div>
+                  <div class="fx-card">
+                     <div class="closed-box">Databricks<span class="sub">also Amazon EMR</span></div>
+                     <div class="sep">▲</div>
+                     <div class="mid-box">Delta Lake</div>
+                     <div class="sep">▲</div>
+                     <div class="open-box">Apache Spark</div>
+                  </div>
+                  <div class="fx-card">
+                     <div class="closed-box">AWS Lambda · Fargate · App Runner</div>
+                     <div class="sep">▲</div>
+                     <div class="mid-box">Firecracker</div>
+                     <div class="sep">▲</div>
+                     <div class="open-box">containerd</div>
+                  </div>
+                  <div class="fx-card">
+                     <div class="closed-box">Google Cloud Run</div>
+                     <div class="sep">▲</div>
+                     <div class="mid-box">Knative</div>
+                     <div class="sep">▲</div>
+                     <div class="mid-box">Kubernetes</div>
+                     <div class="sep">▲</div>
+                     <div class="open-box">containerd</div>
+                  </div>
+               </div>
+            </div>
+            <div class="fx-legend">
+               <span><span class="sw open"></span>open source</span>
+               <span><span class="sw"></span>closed / commercial</span>
+               <span><span class="sw next"></span>not settled yet</span>
+               <span>▲ each layer stacks on the one below</span>
+            </div>
+            <div class="fx-dgm-note">Two of the four land on the same open primitive, and every one of them sells operations on top of a layer it does not own.</div>
             <p>So when NVIDIA — whose hardware profits from every token, open or closed — organizes an open-weights letter, and Microsoft, Meta and OpenAI sign, I do not read it as altruism. I read it as the Kubernetes playbook, replayed at the model layer: open the layer where you are not the monopolist, and compete on the layers where you are strong.</p>
 
             <h2 id="nvidia">NVIDIA Ecosystem</h2>
@@ -643,7 +676,7 @@
                <div class="pipe-mid">
                   <span class="tick">▲</span>
                   <span class="rail"></span>
-                  <span class="cap">eval-gated re-tune loop</span>
+                  <span class="cap">eval-gated optimization loop</span>
                   <span class="rail"></span>
                   <span class="tick">▼</span>
                </div>
@@ -656,7 +689,7 @@
                </div>
                <div class="pipe-out"><span class="lbl">Outputs</span><span class="up">↑</span> OTPS (output tokens/sec) · <span class="up">↓</span> TTFT · <span class="up">↓</span> $ per million tokens — at unchanged eval scores</div>
             </div>
-            <div class="fx-dgm-note">The serving-side twin of the customization loop: the same dataset that specializes a model is what tunes its economics. Steps 02–04 compound, and every point of accepted speculation or saved memory bandwidth lands directly on your cost curve rather than the vendor's margin.</div>
+            <div class="fx-dgm-note">The optimization loop: the same dataset that specializes a model is what tunes its economics. Steps 02–04 compound, and every point of accepted speculation or saved memory bandwidth lands directly on your cost curve rather than the vendor's margin.</div>
             <p>The honest caveats: closed frontier models still win on raw capability at the edge, on latency (Kimi K3 was 4x slower in that benchmark), and on turnkey enterprise features — identity integration, connectors, observability — which is much of what enterprises are actually paying for, as the a16z spend data shows. Price performance is not one number; it is a curve, and open weights now dominate the high-volume, cost-sensitive stretch of it.</p>
 
             <h2 id="openintelligence">Open Intelligence</h2>
@@ -790,50 +823,64 @@
             </div>
             <p>开源 Kubernetes 不是慈善，是战略——挑战者用开放来瓦解领先者的优势。而它成功的原因，Brewer 说得精准："Kubernetes 赢，部分是因为它背后有一支庞大的贡献者大军……那种变化速度，胜过其他一切。"这个故事的另一面，我亲身经历过：作为 <a href="https://aws.amazon.com/apprunner/" target="_blank">AWS App Runner</a>（由 Fargate 孵化）的创始工程师，我们的产品与 Google Cloud Run 正面交锋。Cloud Run 构建在 Google 开源的 Knative 之上；App Runner 则是彻头彻尾的专有服务工程。与一个有开放社区撑腰的产品竞争，会让你切身理解什么叫"庞大的贡献者大军"。</p>
             <p>这个模式在软件史上反复重演。Apache Kafka 是我最喜欢的例子：LinkedIn 在 2011 年将它开源，Confluent 将它商业化，今天 Kafka 已是事实上的事件流标准——Amazon MSK 与 Confluent Cloud 在竞争运行同一个开放协议。开放标准做大了市场，厂商在运维、性能与信任上竞争，没有谁被开放摧毁。Linux 对 Windows、MySQL 对 Oracle、Kubernetes 对各家专有编排器——同一部电影，换个年代重播。</p>
-            <p>再看深一层，还有第二个反复出现的模式：赢下市场的商业产品，往往叠在开源基础件（primitive）之上。Confluent 构建在 Apache Kafka 之上；AWS Lambda、Fargate、App Runner 以 Firecracker 为底座，Firecracker 运行于 containerd；Google Cloud Run 构建在 Knative 之上，Knative 运行于 Kubernetes，Kubernetes 运行于 containerd；Databricks 构建在 Apache Spark 之上。开放层制定标准、做大市场——闭源层在其上出售运维、可靠性与企业信任。没有理由相信 AI 会例外——人工智能将以同样的方式从 Stack 0 到 Stack n−1 一层层建起来，Agent 与 Model-as-a-Service 位列其间。至于下面那些栈层长什么样——开放权重、闭源模型，还是混合——现在没人知道。</p>
-            <div class="fx-card fx-card-hero next-card">
-               <div class="closed-box">Artificial Intelligence（下一个）</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">Stack n−1 · 应用</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">⋮</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">Agents</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">Model-as-a-Service</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="mid-box">⋮</div>
-               <div class="wrap-tag">stacks on</div>
-               <div class="unboxed">Stack 0 · ?</div>
-            </div>
-            <div class="fx-cards">
-               <div class="fx-card">
-                  <div class="closed-box">Confluent</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">Apache Kafka</div>
-               </div>
-               <div class="fx-card">
-                  <div class="closed-box">AWS Lambda · Fargate · App Runner</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="mid-box">Firecracker</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">containerd</div>
-               </div>
-               <div class="fx-card">
-                  <div class="closed-box">Google Cloud Run</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="mid-box">Knative</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="mid-box">Kubernetes</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">containerd</div>
-               </div>
-               <div class="fx-card">
-                  <div class="closed-box">Databricks</div>
-                  <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">Apache Spark</div>
+            <p>再看深一层，还有第二个反复出现的模式：赢下市场的商业产品，往往叠在开源基础件（primitive）之上。Confluent 构建在 Apache Kafka 之上；Databricks 构建在 Apache Spark 之上；AWS Lambda、Fargate、App Runner 以 Firecracker 为底座，Firecracker 运行于 containerd；Google Cloud Run 构建在 Knative 之上，Knative 运行于 Kubernetes，Kubernetes 运行于 containerd。开放层制定标准、做大市场——闭源层在其上出售运维、可靠性与企业信任。没有理由相信 AI 会例外——人工智能将以同样的方式从 Stack 0 到 Stack n−1 一层层建起来，Agent 与 Model-as-a-Service 位列其间。至于下面那些栈层长什么样——开放权重、闭源模型，还是混合——现在没人知道。</p>
+            <div class="fx-stackgroup">
+               <div class="glbl"><span class="gname">LLM Native</span><span class="gsub">正在建起来的那个栈</span></div>
+               <div class="fx-card fx-card-hero next-card">
+                  <div class="card-cap">Stack n−1 → Stack 0</div>
+                  <div class="neu-box">应用</div>
+                  <div class="sep">▲</div>
+                  <div class="neu-box">Agents<span class="sub">MCP · 工具 · 记忆</span></div>
+                  <div class="sep">▲</div>
+                  <div class="neu-box">Model-as-a-Service<span class="sub">Bedrock · OpenRouter</span></div>
+                  <div class="sep">▲</div>
+                  <div class="neu-box">推理运行时<span class="sub">vLLM · SGLang · Dynamo</span></div>
+                  <div class="sep">▲</div>
+                  <div class="neu-box">模型<span class="sub">开放权重 · 闭源 · 两者兼有</span></div>
+                  <div class="sep">▲</div>
+                  <div class="unboxed">Stack 0 · ?</div>
                </div>
             </div>
+            <div class="fx-stackgroup">
+               <div class="glbl"><span class="gname">Cloud Native</span><span class="gsub">同一个模式，过去十年</span></div>
+               <div class="fx-cards">
+                  <div class="fx-card">
+                     <div class="closed-box">Confluent Cloud<span class="sub">Amazon MSK 同理</span></div>
+                     <div class="sep">▲</div>
+                     <div class="open-box">Apache Kafka</div>
+                  </div>
+                  <div class="fx-card">
+                     <div class="closed-box">Databricks<span class="sub">Amazon EMR 同理</span></div>
+                     <div class="sep">▲</div>
+                     <div class="mid-box">Delta Lake</div>
+                     <div class="sep">▲</div>
+                     <div class="open-box">Apache Spark</div>
+                  </div>
+                  <div class="fx-card">
+                     <div class="closed-box">AWS Lambda · Fargate · App Runner</div>
+                     <div class="sep">▲</div>
+                     <div class="mid-box">Firecracker</div>
+                     <div class="sep">▲</div>
+                     <div class="open-box">containerd</div>
+                  </div>
+                  <div class="fx-card">
+                     <div class="closed-box">Google Cloud Run</div>
+                     <div class="sep">▲</div>
+                     <div class="mid-box">Knative</div>
+                     <div class="sep">▲</div>
+                     <div class="mid-box">Kubernetes</div>
+                     <div class="sep">▲</div>
+                     <div class="open-box">containerd</div>
+                  </div>
+               </div>
+            </div>
+            <div class="fx-legend">
+               <span><span class="sw open"></span>开源</span>
+               <span><span class="sw"></span>闭源 / 商业</span>
+               <span><span class="sw next"></span>尚未定型</span>
+               <span>▲ 每一层都叠在下面那一层之上</span>
+            </div>
+            <div class="fx-dgm-note">四个里有两个最终落在同一个开源基础件上；而它们每一个卖的，都是自己并不拥有的那一层之上的运维。</div>
             <p>所以当 NVIDIA——无论 token 来自开源还是闭源模型，它的硬件都赚钱——牵头组织开放权重公开信，而 Microsoft、Meta、OpenAI 纷纷签署时，我读到的不是理想主义，而是 Kubernetes 剧本在模型层的重演：在你不是垄断者的那一层开放，在你强势的那几层竞争。</p>
 
             <h2 id="nvidia-zh">NVIDIA 生态</h2>
@@ -1025,7 +1072,7 @@
                <div class="pipe-mid">
                   <span class="tick">▲</span>
                   <span class="rail"></span>
-                  <span class="cap">以评测为门禁的调优闭环</span>
+                  <span class="cap">以评测为门禁的优化闭环</span>
                   <span class="rail"></span>
                   <span class="tick">▼</span>
                </div>
@@ -1038,7 +1085,7 @@
                </div>
                <div class="pipe-out"><span class="lbl">产出</span><span class="up">↑</span> OTPS（每秒输出 token）· <span class="up">↓</span> TTFT · <span class="up">↓</span> 每百万 token 成本——而评测分数不变</div>
             </div>
-            <div class="fx-dgm-note">这是定制闭环在服务侧的孪生：让模型特化的那份数据集，同时也是调它经济性的那份数据集。02–04 的收益会叠乘，而每一分被接受的投机长度、每一点省下的显存带宽，都直接落在你的成本曲线上，而不是厂商的利润里。</div>
+            <div class="fx-dgm-note">优化闭环：让模型特化的那份数据集，同时也是调它经济性的那份数据集。02–04 的收益会叠乘，而每一分被接受的投机长度、每一点省下的显存带宽，都直接落在你的成本曲线上，而不是厂商的利润里。</div>
             <p>诚实的但书：在能力的最前沿、在延迟上（上述基准中 Kimi K3 慢 4 倍）、在开箱即用的企业功能上——身份集成、连接器、可观测性——闭源前沿模型仍然占优，而这些恰恰是企业实际付费购买的大头，正如 a16z 的支出数据所示。价格性能不是一个数字，而是一条曲线——如今在高吞吐、成本敏感的那一段，开放权重已经是主宰。</p>
 
             <h2 id="openintelligence-zh">开放的智能（Open Intelligence）</h2>
