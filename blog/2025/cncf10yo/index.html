@@ -66,6 +66,20 @@
       margin-right: auto;
       width: 50%;
     }
+     /* --- click-to-swap photo (Keukenhof <-> CNCF Ambassador profile) --- */
+     .photo-swap { text-align:center; cursor:pointer; margin:0 0 6px 0; -webkit-tap-highlight-color:transparent; }
+     .photo-swap .swap-stage { position:relative; display:inline-block; height:500px; max-width:100%; }
+     .photo-swap .swap-stage img { display:block; height:500px; width:auto; max-width:100%; transition:opacity .5s ease; }
+     .photo-swap .swap-stage img.swap-alt { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+       height:auto; width:auto; max-height:100%; max-width:100%; opacity:0;
+       box-shadow:0 2px 14px rgba(0,0,0,.18); }
+     .photo-swap.flipped .swap-stage img.swap-front { opacity:0; }
+     .photo-swap.flipped .swap-stage img.swap-alt   { opacity:1; }
+     .photo-swap figcaption { font-size:inherit; margin-top:6px; }
+     .photo-swap .cap-alt   { display:none; }
+     .photo-swap.flipped .cap-front { display:none; }
+     .photo-swap.flipped .cap-alt   { display:inline; }
+     .photo-swap .swap-hint { font-size:.8em; opacity:.55; white-space:nowrap; }
      /* update callout */
      .post-update { margin: 8px 0 24px 0; padding: 16px 22px; background: rgba(13,110,253,0.07); border-left: 4px solid #0d6efd; border-radius: 6px; }
      .post-update .u-tag { font-size: 0.74em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #0d6efd; }
@@ -147,8 +161,17 @@
             </li>
             <br>
             <h2>Naming as <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng">CNCF Ambassador</a></h2>
-            <img src="/assets/blog/cna.jpg" height="500" class="center">
-            <p>(KubeCon EU 2023 Amsterdam, Netherlands. Keukenhof, known as the Garden of Europe)</p>
+            <figure class="photo-swap" onclick="this.classList.toggle('flipped')" role="button" tabindex="0" aria-label="Toggle photo" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('flipped');}">
+              <span class="swap-stage">
+                <img src="/assets/blog/cna.jpg" class="swap-front" alt="KubeCon EU 2023, Keukenhof">
+                <img src="/assets/blog/cncf-ambassador.jpg" class="swap-alt" loading="lazy" alt="CNCF Ambassador profile of Andy Peng on cncf.io">
+              </span>
+              <figcaption>
+                <span class="cap-front">(KubeCon EU 2023 Amsterdam, Netherlands. Keukenhof, known as the Garden of Europe)</span>
+                <span class="cap-alt">(My <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" onclick="event.stopPropagation()">CNCF Ambassador profile</a> on cncf.io)</span>
+                <span class="swap-hint">· click to flip</span>
+              </figcaption>
+            </figure>
             <p>I was first named a CNCF Ambassador in late 2022, with the announcement made public during KubeCon Europe 2023 in Amsterdam. I remember at the time, only three Ambassadors were selected from Amazon, one of them was my mentor and colleague, a Principal Engineer in the same VP organization. And I was the only one based in Seattle. After completing my one-year term, I’ve been reappointed as a CNCF Ambassador for another two-year serving term in 2024. It’s a privilege to be recognized and to continue being part of the global Cloud Native community, alongside 154 fellow Ambassadors from 37 countries and 124 companies. This journey has been both unforgettable and deeply meaningful to me.</p>
             <br>
             <h2>CPU vs GPU</h2>
@@ -225,8 +248,17 @@
             </li>
             <br>
             <h2>获任 <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng">CNCF Ambassador</a></h2>
-            <img src="/assets/blog/cna.jpg" height="500" class="center">
-            <p>（KubeCon EU 2023 阿姆斯特丹，荷兰。库肯霍夫公园，被誉为"欧洲花园"）</p>
+            <figure class="photo-swap" onclick="this.classList.toggle('flipped')" role="button" tabindex="0" aria-label="切换图片" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('flipped');}">
+              <span class="swap-stage">
+                <img src="/assets/blog/cna.jpg" class="swap-front" alt="KubeCon EU 2023 库肯霍夫公园">
+                <img src="/assets/blog/cncf-ambassador.jpg" class="swap-alt" loading="lazy" alt="cncf.io 上的 Andy Peng CNCF Ambassador 档案">
+              </span>
+              <figcaption>
+                <span class="cap-front">（KubeCon EU 2023 阿姆斯特丹，荷兰。库肯霍夫公园，被誉为"欧洲花园"）</span>
+                <span class="cap-alt">（我在 cncf.io 上的 <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" onclick="event.stopPropagation()">CNCF Ambassador 档案</a>）</span>
+                <span class="swap-hint">· 点击翻转</span>
+              </figcaption>
+            </figure>
             <p>我第一次被任命为 CNCF Ambassador 是在 2022 年底，并在 2023 年阿姆斯特丹 KubeCon Europe 期间正式公布。记得当时 Amazon 只有三人入选大使，其中一位是我的导师和同事——同一 VP 组织下的一位 Principal Engineer，而我是唯一一位常驻西雅图的。一年任期结束后，我于 2024 年再次被任命为 CNCF Ambassador，开启新的两年任期。能够获得认可、并与来自 37 个国家、124 家公司的 154 位大使一起，继续成为全球云原生社区的一员，是一份殊荣。这段旅程对我而言既难忘又意义深远。</p>
             <br>
             <h2>CPU vs GPU</h2>
