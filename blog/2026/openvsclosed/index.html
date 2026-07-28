@@ -683,7 +683,7 @@
                <div class="pipe-row">
                   <div class="pipe-step hi"><span class="n">06</span><span class="t">Ship &amp; re-measure</span><span class="d">new traces feed the next round</span></div>
                   <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">05</span><span class="t">Quality gate</span><span class="d">accept only at eval parity — accuracy regressions roll back</span></div>
+                  <div class="pipe-step"><span class="n">05</span><span class="t">Benchmark &amp; quality gate</span><span class="d">OTPS, TTFT, p99 on production traffic shapes; accept only at eval parity — accuracy regressions roll back</span></div>
                   <div class="pipe-arrow">←</div>
                   <div class="pipe-step"><span class="n">04</span><span class="t">Kernel &amp; serving tuning</span><span class="d">attention/GEMM kernels, CUDA graphs, continuous batching, prefill–decode split</span></div>
                </div>
@@ -1079,7 +1079,7 @@
                <div class="pipe-row">
                   <div class="pipe-step hi"><span class="n">06</span><span class="t">上线并复测</span><span class="d">新的流量轨迹喂给下一轮</span></div>
                   <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">05</span><span class="t">质量门禁</span><span class="d">只接受评测持平的版本，精度回退即回滚</span></div>
+                  <div class="pipe-step"><span class="n">05</span><span class="t">基准测试与质量门禁</span><span class="d">按真实流量形态压测 OTPS、TTFT、p99；只接受评测持平的版本，精度回退即回滚</span></div>
                   <div class="pipe-arrow">←</div>
                   <div class="pipe-step"><span class="n">04</span><span class="t">内核与服务调优</span><span class="d">attention/GEMM 内核、CUDA Graph、连续批处理、prefill–decode 分离</span></div>
                </div>
