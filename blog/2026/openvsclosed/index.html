@@ -169,35 +169,45 @@
      .my-thought .thought-label { display: block; margin-bottom: 2px; font: 700 .68rem/1.8 var(--fx-sans);
        font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: var(--fx-mute); }
 
-     /* ---------- workflow pipelines: numbered steps, snake layout, loop rail ---------- */
-     .fx-pipe { max-width: var(--fx-prose); margin: 26px auto 6px; font-family: var(--fx-sans); }
-     .fx-pipe .pipe-row { display: grid; grid-template-columns: 1fr 26px 1fr 26px 1fr; align-items: center; }
-     .fx-pipe .pipe-row.single { grid-template-columns: 1fr; }
-     .fx-pipe .pipe-step { border: 1px solid var(--fx-rule); border-radius: 12px; padding: 9px 11px 10px; }
-     .fx-pipe .pipe-step .n { display: block; font: 700 .6rem/1.5 var(--fx-mono); letter-spacing: .1em; color: var(--fx-accent); }
-     .fx-pipe .pipe-step .t { display: block; margin: 1px 0 3px; font: 700 .79rem/1.35 var(--fx-sans); }
-     .fx-pipe .pipe-step .d { display: block; font: 500 .69rem/1.5 var(--fx-sans); color: var(--fx-mute); }
-     .fx-pipe .pipe-step.hi { border-color: var(--fx-accent); background: var(--fx-soft); }
-     .fx-pipe .pipe-step.hi .t { color: var(--fx-accent); }
-     /* parallel options: a braced column of independent choices, not a sequence */
-     .fx-pipe .pipe-par { display: flex; flex-direction: column; gap: 7px; padding-left: 9px; border-left: 2px solid var(--fx-accent); }
-     .fx-pipe .pipe-par .par-lbl { font: 700 .57rem/1.5 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--fx-accent); }
-     .fx-pipe .pipe-par .pipe-step { padding: 7px 9px 8px; }
-     .fx-pipe .pipe-arrow { display: flex; align-items: center; justify-content: center; font: 700 .95rem/1 var(--fx-sans); color: var(--fx-mute); }
-     .fx-pipe .pipe-mid { display: grid; grid-template-columns: auto 1fr auto 1fr auto; align-items: center; gap: 9px; margin: 9px 0; }
-     .fx-pipe .pipe-mid .rail { border-top: 1px dashed var(--fx-rule); }
-     .fx-pipe .pipe-mid .cap { font: 700 .63rem/1.6 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--fx-accent); }
-     .fx-pipe .pipe-mid .tick { font: 700 .8rem/1 var(--fx-sans); color: var(--fx-accent); }
-     .fx-pipe .pipe-out { margin-top: 12px; padding: 10px 14px; border-left: 3px solid var(--fx-accent); border-radius: 0 12px 12px 0;
+     /* ---------- figures: staged flow with orthogonal option panels ---------- */
+     .fx-fig { max-width: var(--fx-prose); margin: 26px auto 6px; font-family: var(--fx-sans); }
+     .fx-fig .fig-lbl { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 9px; margin: 0 0 7px; }
+     .fx-fig .fig-lbl .k { font: 700 .6rem/1.6 var(--fx-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--fx-accent); }
+     .fx-fig .fig-lbl .h { font: 500 .69rem/1.6 var(--fx-sans); color: var(--fx-mute); }
+     .fx-fig .fig-chips { display: flex; flex-wrap: wrap; gap: 9px; }
+     .fx-fig .chip { flex: 1 1 210px; border: 1px solid var(--fx-rule); border-radius: 10px; padding: 8px 11px; font: 700 .76rem/1.35 var(--fx-sans); }
+     .fx-fig .chip .d { display: block; margin-top: 2px; font: 500 .68rem/1.5 var(--fx-sans); color: var(--fx-mute); }
+     .fx-fig .chip.hi { border-color: var(--fx-accent); background: var(--fx-soft); color: var(--fx-accent); }
+     .fx-fig .fig-down { text-align: center; padding: 4px 0; font: 700 .72rem/1 var(--fx-sans); color: var(--fx-mute); }
+     /* two independent axes, joined by x — not a sequence */
+     .fx-fig .fig-panel { display: grid; grid-template-columns: 1fr 32px 1fr; align-items: start;
+       border: 1px solid var(--fx-rule); border-radius: 12px; padding: 11px 13px; }
+     .fx-fig .fig-col .ch { font: 700 .61rem/1.5 var(--fx-sans); letter-spacing: .09em; text-transform: uppercase; color: var(--global-text-color, #1a1a1a); }
+     .fx-fig .fig-col .ch em { font: 500 .63rem/1.5 var(--fx-sans); font-style: normal; text-transform: none; letter-spacing: 0; color: var(--fx-mute); }
+     .fx-fig .fig-x { display: flex; align-items: center; justify-content: center; align-self: stretch; }
+     .fx-fig .fig-x span { width: 21px; height: 21px; border: 1px solid var(--fx-rule); border-radius: 50%;
+       display: flex; align-items: center; justify-content: center; font: 700 .66rem/1 var(--fx-sans); color: var(--fx-mute); background: var(--global-bg-color, #fff); }
+     .fx-fig .item { border-left: 2px solid var(--fx-accent); padding: 3px 0 3px 9px; margin: 8px 0 0; }
+     .fx-fig .item .t { display: block; font: 700 .755rem/1.35 var(--fx-sans); }
+     .fx-fig .item .d { display: block; font: 500 .68rem/1.5 var(--fx-sans); color: var(--fx-mute); }
+     .fx-fig .item .tag { display: inline-block; margin-left: 5px; padding: 0 6px; border-radius: 999px; background: var(--fx-soft);
+       color: var(--fx-accent); font: 700 .56rem/1.65 var(--fx-sans); letter-spacing: .04em; vertical-align: 1px; }
+     .fx-fig .fig-gate { border: 1px dashed var(--fx-accent); border-radius: 12px; padding: 9px 12px; font: 700 .765rem/1.45 var(--fx-sans); }
+     .fx-fig .fig-gate .d { display: block; margin-top: 2px; font: 500 .68rem/1.5 var(--fx-sans); color: var(--fx-mute); }
+     .fx-fig .fig-out { margin-top: 10px; padding: 10px 14px; border-left: 3px solid var(--fx-accent); border-radius: 0 12px 12px 0;
        background: var(--fx-soft); font: 600 .78rem/1.6 var(--fx-sans); }
-     .fx-pipe .pipe-out .lbl { font: 700 .62rem/1.6 var(--fx-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--fx-mute); margin-right: 8px; }
-     .fx-pipe .pipe-out .up { color: var(--fx-accent); font-weight: 700; }
-     .fx-dgm-note { max-width: var(--fx-prose); margin: 0 auto 24px; font: 400 .78rem/1.6 var(--fx-sans); color: var(--fx-mute); }
+     .fx-fig .fig-out .lbl { font: 700 .61rem/1.6 var(--fx-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--fx-mute); margin-right: 8px; }
+     .fx-fig .fig-out .up { color: var(--fx-accent); font-weight: 700; }
+     .fx-fig .fig-loop { display: grid; grid-template-columns: auto 1fr auto 1fr auto; align-items: center; gap: 9px; margin: 10px 0 0; }
+     .fx-fig .fig-loop .rail { border-top: 1px dashed var(--fx-rule); }
+     .fx-fig .fig-loop .cap { font: 700 .62rem/1.6 var(--fx-sans); letter-spacing: .09em; text-transform: uppercase; color: var(--fx-accent); }
+     .fx-fig .fig-loop .tick { font: 700 .78rem/1 var(--fx-sans); color: var(--fx-accent); }
+     .fx-dgm-note { max-width: var(--fx-prose); margin: 8px auto 24px; font: 400 .78rem/1.6 var(--fx-sans); color: var(--fx-mute); }
      @media (max-width: 640px) {
-       .fx-pipe .pipe-row { grid-template-columns: 1fr; }
-       .fx-pipe .pipe-arrow { padding: 5px 0; transform: rotate(90deg); }
-       .fx-pipe .pipe-mid { grid-template-columns: auto 1fr auto; }
-       .fx-pipe .pipe-mid .cap { grid-column: 1 / -1; text-align: center; }
+       .fx-fig .fig-panel { grid-template-columns: 1fr; }
+       .fx-fig .fig-x { padding: 8px 0; }
+       .fx-fig .fig-loop { grid-template-columns: auto 1fr auto; }
+       .fx-fig .fig-loop .cap { grid-column: 1 / -1; text-align: center; }
      }
 
      /* ---------- comparison table ---------- */
@@ -299,7 +309,7 @@
          <div class="post">
             <header class="post-header">
                <h1 class="post-title"><span class="lang-en">Open vs Closed</span><span class="lang-zh">开源 vs 闭源</span></h1>
-               <p class="post-meta"><span class="lang-en"> Created in July, 2026<span class="post-readstats"> · 4,060 words · 20 min read</span> </span><span class="lang-zh"> 创建于 2026 年 7 月<span class="post-readstats"> · 约 9,600 字 · 28 分钟阅读</span> </span></p>
+               <p class="post-meta"><span class="lang-en"> Created in July, 2026<span class="post-readstats"> · 4,360 words · 22 min read</span> </span><span class="lang-zh"> 创建于 2026 年 7 月<span class="post-readstats"> · 约 10,200 字 · 30 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/archive/2026/"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a>   <a href="/blog/tag/open-weights"> <i class="fa-solid fa-hashtag fa-sm"></i> open weights</a>      ·   <a href="/blog/category/opensource"> <i class="fa-solid fa-tag fa-sm"></i> opensource</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -613,30 +623,44 @@
 
             <h2 id="customization">Model Customization: Fine-Tuning, RL &amp; Self-Improvement</h2>
             <p>Why do enterprises want weights at all? Because the frontier of value has moved from <em>prompting a general model</em> to <em>specializing a model on your own data and your own reward signal</em>. This is exactly the demand Fireworks calls "specialized intelligence" and Together monetizes through fine-tuning APIs — and it is only possible when you own or can touch the weights. The loop looks like this:</p>
-            <div class="fx-pipe">
-               <div class="pipe-row">
-                  <div class="pipe-step hi"><span class="n">01</span><span class="t">Open weights</span><span class="d">Gemma · Qwen · gpt-oss · R1 · Kimi K3</span></div>
-                  <div class="pipe-arrow">→</div>
-                  <div class="pipe-par">
-                     <div class="par-lbl">02 · parallel options</div>
-                     <div class="pipe-step"><span class="t">SFT</span><span class="d">domain data, distillation</span></div>
-                     <div class="pipe-step"><span class="t">RL post-training</span><span class="d">RLHF from humans · RLVR from verifiers</span></div>
+            <div class="fx-fig">
+               <div class="fig-lbl"><span class="k">Input</span><span class="h">what you have to own</span></div>
+               <div class="fig-chips">
+                  <div class="chip hi">Open-weight base model<span class="d">Gemma · Qwen · gpt-oss · DeepSeek R1 · Kimi K3</span></div>
+                  <div class="chip">Your data<span class="d">domain corpus · preference pairs · verifiable tasks</span></div>
+               </div>
+               <div class="fig-down">▼</div>
+               <div class="fig-lbl"><span class="k">Method</span><span class="h">two independent choices — an objective, and how much of the model it touches</span></div>
+               <div class="fig-panel">
+                  <div class="fig-col">
+                     <div class="ch">Objective <em>pick one, or chain several</em></div>
+                     <div class="item"><span class="t">SFT</span><span class="d">instruction &amp; domain data, distillation from a stronger teacher</span></div>
+                     <div class="item"><span class="t">Preference optimization</span><span class="d">DPO · ORPO · KTO · SimPO — offline, no reward model</span></div>
+                     <div class="item"><span class="t">RL post-training</span><span class="d">RLHF: PPO / GRPO against a reward model · RLVR: verifiable rewards for code and math</span></div>
                   </div>
-                  <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">03</span><span class="t">Eval &amp; benchmark</span><span class="d">task suites, guardrails, regression gates</span></div>
+                  <div class="fig-x"><span>×</span></div>
+                  <div class="fig-col">
+                     <div class="ch">Parameter scope <em>pick one</em></div>
+                     <div class="item"><span class="t">Full fine-tune</span><span class="d">every weight updated — most compute, largest shift in behavior</span></div>
+                     <div class="item"><span class="t">PEFT</span><span class="d">LoRA / QLoRA — a low-rank adapter trains a fraction of the parameters</span></div>
+                  </div>
                </div>
-               <div class="pipe-mid">
-                  <span class="tick">▲</span>
-                  <span class="rail"></span>
-                  <span class="cap">RSI / self-improvement loop</span>
-                  <span class="rail"></span>
-                  <span class="tick">▼</span>
+               <div class="fig-down">▼</div>
+               <div class="fig-lbl"><span class="k">Output</span><span class="h">whichever path you take, it lands as one of two artifacts</span></div>
+               <div class="fig-chips">
+                  <div class="chip hi">Merged checkpoint<span class="d">all weights yours — keep private, or re-share as open weights</span></div>
+                  <div class="chip">Base + adapter<span class="d">hot-swap or stack adapters per task and per tenant at serve time</span></div>
                </div>
-               <div class="pipe-row single">
-                  <div class="pipe-step hi"><span class="n">04</span><span class="t">New checkpoint — yours, private or re-shared</span><span class="d">and the data flywheel turns its own generations, graded against the verifiers, into the next round's dataset</span></div>
+               <div class="fig-down">▼</div>
+               <div class="fig-gate">Eval &amp; benchmark<span class="d">task suites, safety guardrails, regression gates — promote only on pass</span></div>
+               <div class="fig-loop">
+                  <span class="tick">▲</span><span class="rail"></span>
+                  <span class="cap">RSI · data flywheel</span>
+                  <span class="rail"></span><span class="tick">▼</span>
                </div>
+               <div class="fig-out"><span class="lbl">Return path</span>the model's own generations, graded by the same verifiers, become the next round's dataset</div>
             </div>
-            <div class="fx-dgm-note">The customization loop. SFT and RL are options, not stages — run either, or both, in any order. Every arrow needs the tensors; a closed API lets you touch none of them.</div>
+            <div class="fx-dgm-note">Objective and parameter scope are orthogonal: DPO on a LoRA adapter and RLVR on full weights are both valid corners of the same grid. Every corner needs the tensors — a closed API lets you touch none of them.</div>
             <p>Supervised fine-tuning teaches the model your domain; reinforcement learning — RLHF with human preferences, or RLVR with verifiable rewards for code and math — aligns it with your objective; and the newest turn is recursive self-improvement (RSI)-style loops, where the model generates its own training data, grades it against verifiers, and feeds the survivors back into training. Every arrow in that diagram requires access to weights. A closed API gives you, at best, the vendor's hosted fine-tuning of the vendor's model on the vendor's terms. This — not ideology — is the structural market demand behind open weights: the customization loop is where enterprise differentiation now lives, and the loop does not close without the weights.</p>
 
             <h2 id="trust-safety">Trust &amp; Safety, Evaluation, Interpretability</h2>
@@ -670,32 +694,40 @@
             <p>Read it either way — list price or cost per completed task — the shape is the same: Kimi K3 delivers 95% of Fable 5's index score at about a third of the cost per task. Put simply: much of the closed-model premium buys the platform around the model, not more intelligence.</p>
             <p>The New Stack's July benchmark made the trade explicit — <a href="https://thenewstack.io/kimi-k3-fable-coding-benchmark/" target="_blank">Claude Fable 5 vs. Kimi K3: same results, one-third the cost, 4x slower</a>. Money vs latency. And a Featherless case study puts self-hosting economics in sharp relief: a team at full utilization burning 100B tokens/month pays ~$1.56M/year on GPT-5.5 — versus a $90K/year fixed private-cloud rate running open-weight GLM 5.2, a 94% reduction.</p>
             <p>And the sticker price is only the starting point: with open weights, the optimization headroom belongs to you. Because you own the serving stack, you can train your own speculator for speculative decoding, quantize to FP8/INT4 where quality allows, and tune kernels for your hardware — quality-lossless (or near-lossless) optimizations that routinely deliver multiples of throughput. On a closed API, that headroom is the vendor's margin; on open weights, it is your cost curve. This is my day job on the open-weights side, and it is where the ten-times gap keeps widening.</p>
-            <div class="fx-pipe">
-               <div class="pipe-row">
-                  <div class="pipe-step hi"><span class="n">01</span><span class="t">Your dataset</span><span class="d">the same post-training / fine-tuning corpus, plus production traffic traces</span></div>
-                  <div class="pipe-arrow">→</div>
-                  <div class="pipe-par">
-                     <div class="par-lbl">02 · parallel options</div>
-                     <div class="pipe-step"><span class="t">Train a speculator</span><span class="d">draft heads — dFlash, EAGLE-3 — fitted to your traffic</span></div>
-                     <div class="pipe-step"><span class="t">Quantize</span><span class="d">FP8 / INT4 weights, KV-cache compression</span></div>
-                     <div class="pipe-step"><span class="t">Kernel &amp; serving tuning</span><span class="d">attention/GEMM kernels, CUDA graphs, continuous batching, prefill–decode split</span></div>
+            <div class="fx-fig">
+               <div class="fig-lbl"><span class="k">Input</span><span class="h">the same two things the loop above produced</span></div>
+               <div class="fig-chips">
+                  <div class="chip hi">Your model<span class="d">open weights — or the merged checkpoint / adapter from the customization loop</span></div>
+                  <div class="chip">Your data<span class="d">production traffic traces · the eval set that defines "no regression"</span></div>
+               </div>
+               <div class="fig-down">▼</div>
+               <div class="fig-lbl"><span class="k">Levers</span><span class="h">independent, and they compound — tags mark the phase each one attacks</span></div>
+               <div class="fig-panel">
+                  <div class="fig-col">
+                     <div class="ch">Algorithmic <em>do less work</em></div>
+                     <div class="item"><span class="t">Speculative decoding<span class="tag">decode</span></span><span class="d">train a speculator on your own traffic — dFlash, EAGLE-3 draft heads</span></div>
+                     <div class="item"><span class="t">Quantization<span class="tag">both</span></span><span class="d">FP8 / INT4 weights, KV-cache compression — AWQ, GPTQ</span></div>
+                     <div class="item"><span class="t">Prefix &amp; KV caching<span class="tag">prefill</span></span><span class="d">reuse shared system prompts across requests</span></div>
                   </div>
-                  <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">03</span><span class="t">Benchmark &amp; quality gate</span><span class="d">OTPS, TTFT, p99 on production traffic shapes; accept only at eval parity — accuracy regressions roll back</span></div>
+                  <div class="fig-x"><span>×</span></div>
+                  <div class="fig-col">
+                     <div class="ch">System &amp; kernel <em>run the work faster</em></div>
+                     <div class="item"><span class="t">Kernels<span class="tag">both</span></span><span class="d">FlashAttention, fused GEMM, CUDA graphs, tuned for your accelerator</span></div>
+                     <div class="item"><span class="t">Batching<span class="tag">decode</span></span><span class="d">continuous batching, chunked prefill, scheduler windows</span></div>
+                     <div class="item"><span class="t">Disaggregation<span class="tag">prefill</span></span><span class="d">split prefill from decode; tune tensor / expert parallelism</span></div>
+                  </div>
                </div>
-               <div class="pipe-mid">
-                  <span class="tick">▲</span>
-                  <span class="rail"></span>
+               <div class="fig-down">▼</div>
+               <div class="fig-gate">Benchmark &amp; quality gate<span class="d">TTFT, TPOT / inter-token latency, output tokens/sec and p99 on production traffic shapes — accepted only at eval parity, accuracy regressions roll back</span></div>
+               <div class="fig-out"><span class="lbl">Outputs</span><span class="up">↑</span> throughput (OTPS) · <span class="up">↓</span> TTFT · <span class="up">↓</span> $ per million tokens — at unchanged eval scores</div>
+               <div class="fig-loop">
+                  <span class="tick">▲</span><span class="rail"></span>
                   <span class="cap">eval-gated optimization loop</span>
-                  <span class="rail"></span>
-                  <span class="tick">▼</span>
+                  <span class="rail"></span><span class="tick">▼</span>
                </div>
-               <div class="pipe-row single">
-                  <div class="pipe-step hi"><span class="n">04</span><span class="t">Ship &amp; re-measure</span><span class="d">new production traces become the next round's dataset</span></div>
-               </div>
-               <div class="pipe-out"><span class="lbl">Outputs</span><span class="up">↑</span> OTPS (output tokens/sec) · <span class="up">↓</span> TTFT · <span class="up">↓</span> $ per million tokens — at unchanged eval scores</div>
+               <div class="fig-out"><span class="lbl">Return path</span>ship it, and the new production traces become the next round's tuning set</div>
             </div>
-            <div class="fx-dgm-note">The optimization loop: the same dataset that specializes a model is what tunes its economics. The three techniques are independent — adopt one or all three, and their gains compound. Every point of accepted speculation or saved memory bandwidth lands directly on your cost curve rather than the vendor's margin.</div>
+            <div class="fx-dgm-note">The optimization loop — the serving-side mirror of the one above, fed by the same dataset and the same eval set. Decode is memory-bandwidth-bound and prefill is compute-bound, which is why the levers stack instead of overlapping. On a closed API this entire grid is the vendor's margin; on open weights it is your cost curve.</div>
             <p>The honest caveats: closed frontier models still win on raw capability at the edge, on latency (Kimi K3 was 4x slower in that benchmark), and on turnkey enterprise features — identity integration, connectors, observability — which is much of what enterprises are actually paying for, as the a16z spend data shows. Price performance is not one number; it is a curve, and open weights now dominate the high-volume, cost-sensitive stretch of it.</p>
 
             <h2 id="openintelligence">Open Intelligence</h2>
@@ -1011,30 +1043,44 @@
 
             <h2 id="customization-zh">模型定制：微调、强化学习与自我改进</h2>
             <p>企业到底为什么需要权重？因为价值的前沿已经从<em>提示一个通用模型</em>转移到<em>用自己的数据和自己的奖励信号去特化一个模型</em>。这正是 Fireworks 所说的"专用智能（specialized intelligence）"、Together 靠微调 API 变现的需求——而这一切的前提是你拥有、或至少能触碰权重。这个闭环长这样：</p>
-            <div class="fx-pipe">
-               <div class="pipe-row">
-                  <div class="pipe-step hi"><span class="n">01</span><span class="t">开放权重</span><span class="d">Gemma · Qwen · gpt-oss · R1 · Kimi K3</span></div>
-                  <div class="pipe-arrow">→</div>
-                  <div class="pipe-par">
-                     <div class="par-lbl">02 · 并行选项</div>
-                     <div class="pipe-step"><span class="t">SFT 监督微调</span><span class="d">领域数据、蒸馏</span></div>
-                     <div class="pipe-step"><span class="t">RL 后训练</span><span class="d">RLHF 人类偏好 · RLVR 可验证奖励</span></div>
+            <div class="fx-fig">
+               <div class="fig-lbl"><span class="k">输入</span><span class="h">你必须拥有的两样东西</span></div>
+               <div class="fig-chips">
+                  <div class="chip hi">开放权重基座模型<span class="d">Gemma · Qwen · gpt-oss · DeepSeek R1 · Kimi K3</span></div>
+                  <div class="chip">你的数据<span class="d">领域语料 · 偏好对 · 可验证任务</span></div>
+               </div>
+               <div class="fig-down">▼</div>
+               <div class="fig-lbl"><span class="k">方法</span><span class="h">两个彼此独立的选择——用什么目标，以及动模型的多少参数</span></div>
+               <div class="fig-panel">
+                  <div class="fig-col">
+                     <div class="ch">训练目标 <em>可选其一，也可串联</em></div>
+                     <div class="item"><span class="t">SFT 监督微调</span><span class="d">指令与领域数据，从更强的教师模型蒸馏</span></div>
+                     <div class="item"><span class="t">偏好优化</span><span class="d">DPO · ORPO · KTO · SimPO——离线，无需奖励模型</span></div>
+                     <div class="item"><span class="t">RL 后训练</span><span class="d">RLHF：用 PPO / GRPO 对奖励模型优化 · RLVR：代码与数学的可验证奖励</span></div>
                   </div>
-                  <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">03</span><span class="t">评测与基准</span><span class="d">任务套件、护栏、回归门禁</span></div>
+                  <div class="fig-x"><span>×</span></div>
+                  <div class="fig-col">
+                     <div class="ch">参数范围 <em>只能选一个</em></div>
+                     <div class="item"><span class="t">全量微调</span><span class="d">更新每一个权重——算力开销最大，行为改变也最大</span></div>
+                     <div class="item"><span class="t">PEFT 参数高效微调</span><span class="d">LoRA / QLoRA——低秩适配器只训练极小一部分参数</span></div>
+                  </div>
                </div>
-               <div class="pipe-mid">
-                  <span class="tick">▲</span>
-                  <span class="rail"></span>
-                  <span class="cap">RSI / 自我改进闭环</span>
-                  <span class="rail"></span>
-                  <span class="tick">▼</span>
+               <div class="fig-down">▼</div>
+               <div class="fig-lbl"><span class="k">产出</span><span class="h">无论走哪条路，最终都落成两种产物之一</span></div>
+               <div class="fig-chips">
+                  <div class="chip hi">合并后的检查点<span class="d">全部权重归你——可以私有，也可以再开源</span></div>
+                  <div class="chip">基座 + 适配器<span class="d">在服务时按任务、按租户热插拔或叠加 adapter</span></div>
                </div>
-               <div class="pipe-row single">
-                  <div class="pipe-step hi"><span class="n">04</span><span class="t">新检查点——属于你，私有或再开源</span><span class="d">数据飞轮则把它自己生成、并由验证器打过分的数据，变成下一轮的训练集</span></div>
+               <div class="fig-down">▼</div>
+               <div class="fig-gate">评测与基准<span class="d">任务套件、安全护栏、回归门禁——只有通过才准晋级</span></div>
+               <div class="fig-loop">
+                  <span class="tick">▲</span><span class="rail"></span>
+                  <span class="cap">RSI · 数据飞轮</span>
+                  <span class="rail"></span><span class="tick">▼</span>
                </div>
+               <div class="fig-out"><span class="lbl">回流路径</span>模型自己生成、并由同一批验证器打过分的数据，成为下一轮的训练集</div>
             </div>
-            <div class="fx-dgm-note">定制闭环。SFT 与 RL 是选项，不是先后阶段——可以只做一个，也可以都做、按任意顺序。每一个箭头都需要触达张量；闭源 API 一个都不给你碰。</div>
+            <div class="fx-dgm-note">训练目标与参数范围是两个正交的维度：在 LoRA 适配器上做 DPO，与在全量权重上做 RLVR，都是同一张网格里合理的格子。而每一个格子都需要触达张量——闭源 API 一个都不给你碰。</div>
             <p>监督微调让模型学会你的领域；强化学习——用人类偏好的 RLHF，或用可验证奖励做代码与数学的 RLVR——让它对齐你的目标；而最新的一环是类 RSI（递归自我改进）的循环：模型自己生成训练数据、用验证器打分、把胜出的数据回灌训练。图里的每一个箭头都需要触达权重。闭源 API 最多给你的，是厂商在厂商的模型上、按厂商的条款提供的托管微调。这——而非意识形态——才是开放权重背后结构性的市场需求：企业的差异化如今就活在这个定制闭环里，而没有权重，闭环无法闭合。</p>
 
             <h2 id="trust-safety-zh">信任与安全、评测、可解释性</h2>
@@ -1067,32 +1113,40 @@
             <p>不管看标价还是看单任务成本，形状都一样：Kimi K3 以约三分之一的单任务成本，交付了 Fable 5 指数分的 95%。说白了：闭源模型的溢价，大部分买的是模型周边的平台，而不是更多的智能。</p>
             <p>The New Stack 七月的基准测试把这笔交换讲得很直白——<a href="https://thenewstack.io/kimi-k3-fable-coding-benchmark/" target="_blank">Claude Fable 5 对比 Kimi K3：同等结果、三分之一的成本、慢 4 倍</a>。钱换延迟。Featherless 的案例则把自托管的经济账算得更清楚：一个满负荷团队每月消耗 1000 亿 token，用 GPT-5.5 年花费约 156 万美元——而用私有云跑开放权重的 GLM 5.2，固定年费 9 万美元，节省 94%。</p>
             <p>而标价只是起点：拿到开放权重，优化的空间就归你所有。因为服务栈在你手里，你可以训练自己的投机器（speculator）做投机解码、在质量允许处做 FP8/INT4 量化、针对自己的硬件做内核调优——这些质量无损（或近乎无损）的优化，动辄带来数倍的吞吐提升。在闭源 API 上，这部分空间是厂商的利润；在开放权重上，它是你的成本曲线。这正是我在开放权重侧的日常工作——十倍的价差，就是在这里持续拉大的。</p>
-            <div class="fx-pipe">
-               <div class="pipe-row">
-                  <div class="pipe-step hi"><span class="n">01</span><span class="t">你的数据集</span><span class="d">与后训练/微调同一份语料，加上线上流量轨迹</span></div>
-                  <div class="pipe-arrow">→</div>
-                  <div class="pipe-par">
-                     <div class="par-lbl">02 · 并行选项</div>
-                     <div class="pipe-step"><span class="t">训练投机器</span><span class="d">draft head——dFlash、EAGLE-3——拟合你的流量</span></div>
-                     <div class="pipe-step"><span class="t">量化</span><span class="d">FP8 / INT4 权重、KV cache 压缩</span></div>
-                     <div class="pipe-step"><span class="t">内核与服务调优</span><span class="d">attention/GEMM 内核、CUDA Graph、连续批处理、prefill–decode 分离</span></div>
+            <div class="fx-fig">
+               <div class="fig-lbl"><span class="k">输入</span><span class="h">正是上一个闭环产出的那两样东西</span></div>
+               <div class="fig-chips">
+                  <div class="chip hi">你的模型<span class="d">开放权重——或定制闭环产出的检查点 / 适配器</span></div>
+                  <div class="chip">你的数据<span class="d">线上流量轨迹 · 定义"不许回退"的那套评测集</span></div>
+               </div>
+               <div class="fig-down">▼</div>
+               <div class="fig-lbl"><span class="k">优化杠杆</span><span class="h">彼此独立、收益叠乘——标签标出各自攻击的阶段</span></div>
+               <div class="fig-panel">
+                  <div class="fig-col">
+                     <div class="ch">算法层 <em>少做一些计算</em></div>
+                     <div class="item"><span class="t">投机解码<span class="tag">decode</span></span><span class="d">用你自己的流量训练投机器——dFlash、EAGLE-3 draft head</span></div>
+                     <div class="item"><span class="t">量化<span class="tag">both</span></span><span class="d">FP8 / INT4 权重、KV cache 压缩——AWQ、GPTQ</span></div>
+                     <div class="item"><span class="t">前缀与 KV 缓存<span class="tag">prefill</span></span><span class="d">跨请求复用共享的系统提示</span></div>
                   </div>
-                  <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">03</span><span class="t">基准测试与质量门禁</span><span class="d">按真实流量形态压测 OTPS、TTFT、p99；只接受评测持平的版本，精度回退即回滚</span></div>
+                  <div class="fig-x"><span>×</span></div>
+                  <div class="fig-col">
+                     <div class="ch">系统与内核层 <em>让同样的计算跑更快</em></div>
+                     <div class="item"><span class="t">内核<span class="tag">both</span></span><span class="d">FlashAttention、融合 GEMM、CUDA Graph，针对你的加速卡调优</span></div>
+                     <div class="item"><span class="t">批处理<span class="tag">decode</span></span><span class="d">连续批处理、chunked prefill、调度窗口</span></div>
+                     <div class="item"><span class="t">分离部署<span class="tag">prefill</span></span><span class="d">prefill 与 decode 拆开；调张量 / 专家并行</span></div>
+                  </div>
                </div>
-               <div class="pipe-mid">
-                  <span class="tick">▲</span>
-                  <span class="rail"></span>
+               <div class="fig-down">▼</div>
+               <div class="fig-gate">基准测试与质量门禁<span class="d">按真实流量形态压测 TTFT、TPOT / 逐 token 时延、每秒输出 token 与 p99——只有评测持平才准接受，精度回退即回滚</span></div>
+               <div class="fig-out"><span class="lbl">产出</span><span class="up">↑</span> 吞吐（OTPS）· <span class="up">↓</span> TTFT · <span class="up">↓</span> 每百万 token 成本——而评测分数不变</div>
+               <div class="fig-loop">
+                  <span class="tick">▲</span><span class="rail"></span>
                   <span class="cap">以评测为门禁的优化闭环</span>
-                  <span class="rail"></span>
-                  <span class="tick">▼</span>
+                  <span class="rail"></span><span class="tick">▼</span>
                </div>
-               <div class="pipe-row single">
-                  <div class="pipe-step hi"><span class="n">04</span><span class="t">上线并复测</span><span class="d">新的线上流量轨迹又成为下一轮的数据集</span></div>
-               </div>
-               <div class="pipe-out"><span class="lbl">产出</span><span class="up">↑</span> OTPS（每秒输出 token）· <span class="up">↓</span> TTFT · <span class="up">↓</span> 每百万 token 成本——而评测分数不变</div>
+               <div class="fig-out"><span class="lbl">回流路径</span>上线之后，新的线上流量轨迹又成为下一轮的调优数据</div>
             </div>
-            <div class="fx-dgm-note">优化闭环：让模型特化的那份数据集，同时也是调它经济性的那份数据集。这三项技术彼此独立——只做一项或三项全做都行，收益还会叠乘。每一分被接受的投机长度、每一点省下的显存带宽，都直接落在你的成本曲线上，而不是厂商的利润里。</div>
+            <div class="fx-dgm-note">优化闭环——上一个闭环在服务侧的镜像，吃的是同一份数据集和同一套评测集。decode 受显存带宽约束、prefill 受算力约束，所以这些杠杆是叠加而非互相重叠的。在闭源 API 上，这整张网格都是厂商的利润；在开放权重上，它是你的成本曲线。</div>
             <p>诚实的但书：在能力的最前沿、在延迟上（上述基准中 Kimi K3 慢 4 倍）、在开箱即用的企业功能上——身份集成、连接器、可观测性——闭源前沿模型仍然占优，而这些恰恰是企业实际付费购买的大头，正如 a16z 的支出数据所示。价格性能不是一个数字，而是一条曲线——如今在高吞吐、成本敏感的那一段，开放权重已经是主宰。</p>
 
             <h2 id="openintelligence-zh">开放的智能（Open Intelligence）</h2>
