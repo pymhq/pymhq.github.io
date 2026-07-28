@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HTV795ZMCP');
+</script>
+
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> Open vs Closed </title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="Blog.">
+      <meta name="keywords" content="Blog.">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Noto+Serif+SC:wght@500;600;700&display=swap">
+
+      <!-- Open Graph / LinkedIn -->
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/openvsclosed/">
+      <meta property="og:title" content="Open vs Closed">
+      <meta property="og:description" content="The open-weights war of July 2026, seen from someone who has sat at both tables — as a participant and a part-time contributor.">
+      <meta property="og:image" content="https://pengandy.com/assets/blog/2026/openvsclosed/og-card.png">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="Open vs Closed">
+      <meta name="twitter:description" content="The open-weights war of July 2026, seen from someone who has sat at both tables — as a participant and a part-time contributor.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/blog/2026/openvsclosed/og-card.png">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <link rel="stylesheet" href="/assets/css/main.css?0286170e23c3c109f66311d4c1ef1b3b">
+      <link rel="canonical" href="">
+      <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+      <script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script>
+      <script>initTheme();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+         <script src="/assets/js/components.js" defer></script>
+      <script async data-uid="92570b70d9" src="https://andy-peng.kit.com/92570b70d9/index.js"></script>
+      <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
+      <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
+      <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
+      <link rel="manifest" href="/site.webmanifest">
+   </head>
+   <style>
+     /* ================================================================
+        FLAGSHIP style layer — ported from blog/2025/llm/.
+        Style layer only. Accent = site theme blue.
+        Design language: ONE accent + left vertical bars + hairlines.
+        ================================================================ */
+     :root {
+       --fx-accent: var(--global-theme-color, #0076df);
+       --fx-soft: rgba(0, 118, 223, .06);
+       --fx-warm: rgba(180, 83, 9, .07);
+       --fx-mute: #5f6672;
+       --fx-rule: rgba(128, 128, 128, .28);
+       --fx-hair: rgba(128, 128, 128, .15);
+       --fx-warn: #b45309;
+       --fx-serif: "Source Serif 4", "Noto Serif SC", Georgia, "Songti SC", serif;
+       --fx-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+       --fx-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+       --fx-prose: 680px; --fx-wide: 880px;
+     }
+     @supports (color: color-mix(in srgb, red 5%, transparent)) {
+       :root { --fx-soft: color-mix(in srgb, var(--global-theme-color, #0076df) 7%, transparent); }
+     }
+     html[data-theme=dark] {
+       --fx-mute: #a3aab6;
+       --fx-rule: rgba(200, 200, 220, .28); --fx-hair: rgba(200, 200, 220, .14);
+       --fx-warn: #fcd34d; --fx-warm: rgba(252, 211, 77, .08);
+     }
+
+     img { pointer-events: none; }
+     .center { display: block; margin-left: auto; margin-right: auto; width: 50%; }
+     h2[id] { scroll-margin-top: 90px; }
+
+     /* ---------- layout rhythm: 880px shell, 680px prose ---------- */
+     .post { max-width: var(--fx-wide); margin: 0 auto; font-family: var(--fx-sans); }
+     .post div.lang-en > p, .post div.lang-zh > p,
+     .post .post-content p { max-width: var(--fx-prose); margin-left: auto; margin-right: auto; font-size: 1.0625rem; line-height: 1.85; }
+     .post div.lang-en a, .post div.lang-zh a { color: var(--fx-accent); text-decoration: none; border-bottom: 1px solid var(--fx-rule); transition: border-color .15s; }
+     .post div.lang-en a:hover, .post div.lang-zh a:hover { text-decoration: none; border-bottom-color: var(--fx-accent); }
+     .post div.lang-en > hr, .post div.lang-zh > hr, .post > div > hr { max-width: var(--fx-prose); margin: 10px auto; border-top: 1px solid var(--fx-hair); }
+
+     /* ---------- hero ---------- */
+     .post .post-header { max-width: var(--fx-prose); margin: 26px auto 0; }
+     .post .post-title { font-family: var(--fx-serif); font-weight: 700; font-size: clamp(2.05rem, 5.2vw, 2.9rem); line-height: 1.16; letter-spacing: -.015em; margin-bottom: 14px; }
+     .post .post-meta { font-family: var(--fx-sans); font-size: .85rem; font-weight: 500; color: var(--fx-mute); margin-bottom: 6px; }
+     .post .post-tags { font-size: .82rem; padding-bottom: 16px; margin-bottom: 0; border-bottom: 1px solid var(--fx-hair); }
+     .post .post-tags a { color: var(--fx-mute); border-bottom: none; }
+     .post .post-tags a:hover { color: var(--fx-accent); text-decoration: none; }
+     .post .post-views { max-width: var(--fx-prose); margin: 14px auto 20px !important; }
+
+     /* ---------- EN / 中文 toggle ---------- */
+     .lang-toggle { max-width: var(--fx-prose); margin: 0 auto 26px; }
+     .lang-toggle button { border: 1px solid var(--fx-rule); background: transparent; color: var(--fx-mute);
+       font: 600 .8rem/1.4 var(--fx-sans); padding: 5px 16px; cursor: pointer; }
+     .lang-toggle button:first-child { border-radius: 999px 0 0 999px; border-right: none; }
+     .lang-toggle button:last-child { border-radius: 0 999px 999px 0; }
+     .lang-toggle button.active { background: var(--fx-accent); border-color: var(--fx-accent); color: #fff; }
+     .lang-zh { display: none; }
+
+     /* ---------- contents ---------- */
+     .post .fx-toc { max-width: var(--fx-prose); margin: 38px auto 50px; padding: 22px 0 6px;
+       border-top: 1px solid var(--global-text-color, #1a1a1a); }
+     .post .fx-toc .lbl { font: 700 .72rem/1 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-mute); margin-bottom: 14px; }
+     .post .fx-toc ol { columns: 2; column-gap: 44px; margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+     .post .fx-toc li { counter-increment: toc; break-inside: avoid; padding: 7px 0; border-bottom: 1px solid var(--fx-hair); font-size: .93rem; line-height: 1.5; }
+     .post .fx-toc li::before { content: counter(toc, decimal-leading-zero); font: 600 .72rem/1 var(--fx-mono); color: var(--fx-accent); margin-right: 12px; }
+     .post .fx-toc a, .post div.lang-en .fx-toc a, .post div.lang-zh .fx-toc a { border-bottom: none; color: var(--global-text-color, #1a1a1a); }
+     .post .fx-toc a:hover, .post div.lang-en .fx-toc a:hover, .post div.lang-zh .fx-toc a:hover { color: var(--fx-accent); }
+     @media (max-width: 640px) { .post .fx-toc ol { columns: 1; } }
+
+     /* ---------- section heads: accent tick + serif h2 ---------- */
+     .post div.lang-en > h2, .post div.lang-zh > h2 { font-family: var(--fx-serif); font-weight: 700; font-size: 1.7rem; line-height: 1.3; letter-spacing: -.01em;
+       max-width: var(--fx-prose); margin: 68px auto 24px; position: relative; padding: 20px 0 0; border-bottom: none; }
+     .post div.lang-en > h2::before, .post div.lang-zh > h2::before { content: ""; position: absolute; top: 0; left: 0; width: 36px; height: 3px; border-radius: 2px; background: var(--fx-accent); }
+
+     /* ---------- timeline: thin rail + accent stops ---------- */
+     .timeline { position: relative; max-width: var(--fx-prose); margin: 32px auto 8px; padding: 4px 0 4px 30px; }
+     .timeline::before { content: ""; position: absolute; left: 4px; top: 14px; bottom: 14px; width: 1px; height: auto; background: var(--fx-rule); }
+     .timeline-item { position: relative; margin-bottom: 26px; width: 100%; }
+     .timeline-item:last-child { margin-bottom: 0; }
+     .timeline-marker { position: absolute; left: -30px; top: 6px; transform: none; width: 9px; height: 9px; border-radius: 50%;
+       background: var(--fx-accent); border: none; outline: 4px solid var(--global-bg-color, #fff); z-index: 1; }
+     .timeline-content { position: relative; margin-left: 0; padding: 0 0 0 16px; background: none; border-radius: 0; border-left: none; }
+     .timeline-date { font: 700 .74rem/1.55 var(--fx-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--fx-accent); margin-bottom: 4px; }
+     .timeline-description { color: inherit; font-size: .97rem; line-height: 1.75; }
+     .post .fx-sublist { list-style: none; max-width: var(--fx-prose); margin: 16px auto; padding-left: 4px; font-size: .97rem; line-height: 1.8; }
+     .post .fx-sublist li { position: relative; padding-left: 18px; margin: 10px 0; }
+     .post .fx-sublist li::before { content: "–"; position: absolute; left: 0; color: var(--fx-accent); font-weight: 700; }
+     .timeline-description .tl-sublist { list-style: none; margin: 6px 0 0; padding-left: 4px; }
+     .timeline-description .tl-sublist li { position: relative; padding-left: 16px; margin: 5px 0; }
+     .timeline-description .tl-sublist li::before { content: "–"; position: absolute; left: 0; color: var(--fx-accent); font-weight: 700; }
+     @media (max-width: 768px) {
+       .timeline-content { margin-left: 0; padding: 0 0 0 12px; }
+     }
+
+     /* Name and Product Styling */
+     .highlight { color: inherit; font-weight: 500; }
+
+     /* ---------- year notes: left-bar asides ---------- */
+     .comment-note-2026, .comment-note-2025 { max-width: var(--fx-prose); margin: 16px auto; padding: 13px 20px 13px 22px;
+       font-size: .93rem; line-height: 1.75; color: inherit; border-radius: 0 12px 12px 0; }
+     .comment-note-2026 { border-left: 3px solid var(--fx-accent); background: var(--fx-soft); }
+     .comment-note-2025 { border-left: 3px solid var(--fx-warn); background: var(--fx-warm); }
+     .comment-note-2026 .note-date, .comment-note-2025 .note-date { font: 700 .7rem/1.8 var(--fx-sans); letter-spacing: .07em; text-transform: uppercase; }
+     .comment-note-2026 .note-date { color: var(--fx-accent); }
+     .comment-note-2025 .note-date { color: var(--fx-warn); }
+
+     /* ---------- personal reflections: dashed-frame serif asides ---------- */
+     .my-thought { max-width: var(--fx-prose); margin: 16px auto; padding: 14px 22px;
+       font-family: var(--fx-serif); font-style: italic; font-size: .97rem; line-height: 1.85;
+       border: 1.5px dashed var(--fx-mute); border-radius: 12px; background: transparent; }
+     .my-thought .thought-label { display: block; margin-bottom: 2px; font: 700 .68rem/1.8 var(--fx-sans);
+       font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: var(--fx-mute); }
+
+     /* ---------- workflow diagram: mono flow block ---------- */
+     .fx-flow { max-width: var(--fx-prose); margin: 24px auto; padding: 18px 20px; overflow-x: auto;
+       font: 500 .78rem/1.7 var(--fx-mono); border: 1px solid var(--fx-rule); border-radius: 12px; background: var(--fx-soft); }
+     .fx-flow .fl { color: var(--fx-accent); font-weight: 700; }
+     .fx-flow .fm { color: var(--fx-mute); }
+
+     /* ---------- comparison table ---------- */
+     .fx-table { max-width: var(--fx-prose); margin: 24px auto; overflow-x: auto; }
+     .fx-table table { width: 100%; border-collapse: collapse; font: 500 .88rem/1.6 var(--fx-sans); }
+     .fx-table th { font: 700 .72rem/1.6 var(--fx-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--fx-mute);
+       text-align: left; padding: 8px 12px; border-bottom: 2px solid var(--fx-rule); }
+     .fx-table td { padding: 8px 12px; border-bottom: 1px solid var(--fx-hair); }
+     .fx-table .open-tag { color: var(--fx-accent); font-weight: 700; }
+     .fx-table .src { font: 400 .78rem/1.6 var(--fx-sans); color: var(--fx-mute); margin-top: 6px; }
+
+     /* ---------- svg line charts ---------- */
+     .fx-chart { max-width: var(--fx-prose); margin: 24px auto; }
+     .fx-chart .src { font: 400 .78rem/1.6 var(--fx-sans); color: var(--fx-mute); margin-top: 6px; }
+
+     /* ---------- valuation lanes (ppt-style milestones) ---------- */
+     .fx-lanes { max-width: var(--fx-prose); margin: 24px auto; font-family: var(--fx-sans); }
+     .fx-lane { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 0; border-bottom: 1px solid var(--fx-hair); }
+     .fx-lane:last-child { border-bottom: none; }
+     .fx-lane .lane-name { flex: 0 0 128px; font: 700 .8rem/1.4 var(--fx-sans); }
+     .fx-lane .lane-name .sub { display: block; font: 500 .68rem/1.5 var(--fx-sans); color: var(--fx-mute); }
+     .fx-mile { border: 1px solid var(--fx-rule); border-radius: 10px; padding: 6px 10px; text-align: center; min-width: 86px; }
+     .fx-mile .v { display: block; font: 700 .95rem/1.3 var(--fx-sans); }
+     .fx-mile .d { display: block; font: 500 .66rem/1.4 var(--fx-sans); color: var(--fx-mute); }
+     .fx-lane .arr { color: var(--fx-mute); font-weight: 700; }
+     .fx-mult { background: var(--fx-accent); color: #fff; border-radius: 999px; padding: 3px 12px; font: 700 .78rem/1.5 var(--fx-sans); white-space: nowrap; }
+     .fx-lane.open-lane .fx-mile { border-color: var(--fx-accent); background: var(--fx-soft); }
+
+     /* ---------- closed-wraps-open cards (ppt-style) ---------- */
+     .fx-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 14px; max-width: var(--fx-prose); margin: 24px auto; }
+     .fx-card { border: 1px solid var(--fx-rule); border-radius: 12px; overflow: hidden; text-align: center; font-family: var(--fx-sans); }
+     .fx-card .closed-box { padding: 10px 8px; font: 700 .82rem/1.45 var(--fx-sans); border-bottom: 1px dashed var(--fx-rule); }
+     .fx-card .wrap-tag { padding: 3px 0; font: 700 .62rem/1.6 var(--fx-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--fx-mute); }
+     .fx-card .open-box { padding: 10px 8px; font: 600 .8rem/1.45 var(--fx-sans); color: var(--fx-accent); background: var(--fx-soft); }
+     .fx-card .mid-box { padding: 8px 8px; font: 600 .8rem/1.45 var(--fx-sans); color: var(--fx-accent); background: var(--fx-soft); border-bottom: 1px dashed var(--fx-rule); }
+     .fx-card .unboxed { padding: 12px 8px; font: 600 .8rem/1.5 var(--fx-sans); font-style: italic; color: var(--fx-mute); background: transparent; }
+     .fx-card.next-card { border-style: dashed; }
+     .fx-card-hero { max-width: 300px; margin: 24px auto 14px; }
+
+     /* ---------- reading aids ---------- */
+     #fxbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--fx-accent); z-index: 2001; }
+     #fx-outline { display: none; position: fixed; top: 130px; left: max(18px, calc(50vw - 440px - 236px)); width: 204px;
+       font: 500 .8rem/1.5 var(--fx-sans); max-height: calc(100vh - 180px); overflow-y: auto; }
+     @media (min-width: 1200px) { #fx-outline { display: block; } }
+     #fx-outline .olbl { font: 700 .66rem/1 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-mute); margin-bottom: 10px; }
+     #fx-outline a { display: block; padding: 4px 0 4px 12px; color: var(--fx-mute); text-decoration: none;
+       border-left: 2px solid var(--fx-hair); transition: all .15s; }
+     #fx-outline a:hover { color: var(--global-text-color, #1a1a1a); text-decoration: none; }
+     #fx-outline a.on { color: var(--fx-accent); border-left-color: var(--fx-accent); font-weight: 600; }
+   </style>
+   <body class="fixed-top-nav" data-page="blog">
+      <div id="fxbar"></div>
+      <nav id="fx-outline" aria-label="On this page"></nav>
+      <div id="navbar-placeholder"></div>
+      <div class="container mt-5" role="main">
+         <div class="post">
+            <header class="post-header">
+               <h1 class="post-title"><span class="lang-en">Open vs Closed</span><span class="lang-zh">开源 vs 闭源</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in July, 2026 </span><span class="lang-zh"> 创建于 2026 年 7 月 </span></p>
+               <p class="post-tags"> <a href="/blog/archive/2026/"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a>   <a href="/blog/tag/open-weights"> <i class="fa-solid fa-hashtag fa-sm"></i> open weights</a>      ·   <a href="/blog/category/opensource"> <i class="fa-solid fa-tag fa-sm"></i> opensource</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
+            </header>
+            <div class="post-views" style="margin:14px 0 18px 0;">
+               <a href="https://hits.sh/pengandy.com/blog/2026/openvsclosed/"><img alt="Hits" src="https://hits.sh/pengandy.com/blog/2026/openvsclosed.svg?label=page%20views&color=007ec6"/></a>
+            </div>
+
+            <div class="lang-toggle">
+               <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
+               <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+            </div>
+
+            <div class="lang-en">
+
+            <article class="post-content">
+               <div id="markdown-content">
+                  <p>In the last two weeks of July 2026, the open vs closed debate went from engineering forums to the White House. As someone who has spent years on both sides of this line — building closed-model inference at Amazon, contributing part-time in open source communities — I want to write down what I saw, and why I believe what I believe.</p>
+                  <p><em>A participant, and a part-time contributor.</em></p>
+               </div>
+            </article>
+
+            <!-- ========================================== -->
+            <!-- YOUR CONTENT STARTS HERE -->
+            <!-- ========================================== -->
+
+            <nav class="fx-toc">
+               <div class="lbl">Contents</div>
+               <ol>
+                  <li><a href="#the-week">The Week Open Weights Went to Washington</a></li>
+                  <li><a href="#deja-vu">Déjà Vu: We Have Seen This Movie Before</a></li>
+                  <li><a href="#edge-contributor">A Participant and a Part-Time Contributor</a></li>
+                  <li><a href="#market">The Open-Weight Model Market</a></li>
+                  <li><a href="#china-tigers">China's Model Companies: The Tigers Go Public</a></li>
+                  <li><a href="#customization">Model Customization: Fine-Tuning, RL &amp; Self-Improvement</a></li>
+                  <li><a href="#trust-safety">Trust &amp; Safety, Evaluation, Interpretability</a></li>
+                  <li><a href="#price-performance">Price Performance</a></li>
+                  <li><a href="#ecosystem">Open Intelligence</a></li>
+               </ol>
+            </nav>
+
+            <h2 id="the-week">The Week Open Weights Went to Washington</h2>
+            <p>Reports surfaced that US officials were weighing a ban on the use of Chinese open-weights models by US companies. What followed was the fastest industry mobilization I have ever watched. Within one week, essentially every major lab and cloud declared a position on open weights.</p>
+
+            <div class="timeline">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">July 27, 2026</div>
+                     <div class="timeline-description">A busy day for the open-weights conversation:
+                        <ul class="tl-sublist">
+                           <li><em>Matt Garman</em>, AWS CEO, <a href="https://www.linkedin.com/posts/mattgarman_amazon-has-believed-in-giving-customers-choice-activity-7487653484415152128-ay__" target="_blank">posted</a> that Amazon has signed the <em>Open Weights and American AI Leadership</em> letter — "Open and closed models are complementary."</li>
+                           <li><em>Dario Amodei</em>, Anthropic CEO, posted <a href="https://www.anthropic.com/news/position-open-weights-models" target="_blank">Our Position on Open-Weights Models</a>.</li>
+                           <li>Moonshot AI <a href="https://x.com/Kimi_Moonshot/status/2081760186235289764?s=20" target="_blank">released</a> the model weights and technical report of Kimi K3.</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">July 25, 2026</div>
+                     <div class="timeline-description">Signatories doubled to 50 over the weekend:
+                        <ul class="tl-sublist">
+                           <li><em>OpenAI</em> signed — <em>Sam Altman</em>: <a href="https://officechai.com/ai/in-game-theory-twist-openai-also-signs-open-source-ai-letter-leaving-anthropic-as-most-prominent-non-signatory/" target="_blank">"i want the US to win in AI both in open source and proprietary models."</a></li>
+                           <li><em>Google</em> signed with <em>Sundar Pichai</em>'s endorsement. Google DeepMind CEO <em>Demis Hassabis</em> <a href="https://x.com/demishassabis/status/2081039623422177765?s=20" target="_blank">quote-tweeted Jensen</a>: "A strong and secure open ecosystem is important for the world to benefit from AI. We've always supported and contributed heavily to open source and science from Jax to Transformers to AlphaFold to Gemma open models" — clarifying later that Gemma 4 alone has 300M+ downloads, and the Gemma series 900M+.</li>
+                           <li><em>SpaceX</em> joined with <em>Elon Musk</em>'s support.</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">July 24, 2026</div>
+                     <div class="timeline-description">25 companies — NVIDIA, Microsoft, Meta, IBM, Dell, Palantir, Hugging Face and more — published the open letter <a href="https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf" target="_blank">Open Weights and American AI Leadership</a>. <em>Jensen Huang</em> joined X and made it his <a href="https://x.com/JensenHuang/status/2080643682408321103?s=20" target="_blank">first-ever post</a></div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">July 16, 2026</div>
+                     <div class="timeline-description">Moonshot AI released <a href="https://x.com/arena/status/2077893862778183737?s=20" target="_blank">Kimi K3</a> — open weights at the frontier; it <a href="https://thenewstack.io/kimi-k3-open-weight-coding/" target="_blank">topped Arena's coding leaderboard</a> the next day</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">July 15, 2026</div>
+                     <div class="timeline-description">Thinking Machines Lab released <a href="https://thinkingmachines.ai/news/introducing-inkling/" target="_blank">Inkling</a>, its first open-weights model trained from scratch — a 975B-parameter MoE with a 1M-token context window</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">January 20, 2025</div>
+                     <div class="timeline-description">DeepSeek came out of nowhere: <a href="https://api-docs.deepseek.com/news/news250120" target="_blank">DeepSeek-R1</a> — reasoning on par with OpenAI o1, fully open-source under MIT license</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">June 20, 2024</div>
+                     <div class="timeline-description">Anthropic released <a href="https://www.anthropic.com/news/claude-3-5-sonnet" target="_blank">Claude 3.5 Sonnet</a> — the turning point where Claude began to surpass OpenAI on coding and reasoning (closed source). <a href="https://www.anthropic.com/news/claude-3-family" target="_blank">Claude 3 Opus</a> (March 4, 2024) had set the stage as the first model to match GPT-4 and briefly top the Chatbot Arena</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">November 30, 2022</div>
+                     <div class="timeline-description">OpenAI launched <a href="https://openai.com/index/chatgpt/" target="_blank">ChatGPT</a> (GPT-3.5) — LLMs went mainstream (closed source)</div>
+                  </div>
+               </div>
+            </div>
+            <br>
+            <p>Fifty signatures in seventy-two hours. The interesting question is not who signed — it is why the coalition spans every layer of the industry at once: chipmakers like NVIDIA and Dell, clouds and closed-model labs like Microsoft — later joined by OpenAI and Google — and open platforms like Hugging Face and IBM. What do they all see in open weights? To answer that, rewind twelve years.</p>
+
+            <h2 id="deja-vu">Déjà Vu: We Have Seen This Movie Before</h2>
+            <p>In January 2022, Honeypot released <a href="https://www.youtube.com/watch?v=BE77h7dmoQU" target="_blank">Kubernetes: The Documentary</a>. It is the most honest account I know of why a giant open-sources its crown jewels. Around 2013, AWS was, in early Kubernetes engineer <em>Tim Hockin</em>'s words, "this behemoth that was on everybody's mind." Kubernetes co-founder <em>Joe Beda</em> put Google's calculus plainly:</p>
+            <div class="my-thought">
+               <span class="thought-label">From the documentary</span>
+               "How do we change things up — how do we shake the snow globe in a way that may not be all about Google, but at least gives Google a fighting chance to be able to start grabbing some of these customers, and to start being that balance against the dominance that AWS had at the time." — Joe Beda. And <em>Eric Brewer</em>: "Google had to make a bold move in the cloud space to be the long-term winner."
+            </div>
+            <p>Open-sourcing Kubernetes was not charity. It was strategy — the challenger opens to commoditize the leader's advantage. And it worked, for a reason Brewer named precisely: "Kubernetes won in part because it had a vast army of contributors behind it… that rate of change kind of trumps everything else." I lived the other side of that story: as a founding engineer of <a href="https://aws.amazon.com/apprunner/" target="_blank">AWS App Runner</a> (incubated from Fargate), our product went head-to-head with Google Cloud Run. Cloud Run was built on Knative, which Google open-sourced; App Runner was proprietary service engineering all the way down. Competing against a product backed by an open community teaches you viscerally what "a vast army of contributors" means.</p>
+            <p>The pattern repeats across software history. Kafka is my favorite example: LinkedIn open-sourced it in 2011, Confluent commercialized it, and today Kafka is the de facto event-streaming standard — with Amazon MSK and Confluent Cloud competing to run the same open protocol. The open standard grew the market; the vendors compete on operations, performance, and trust. Nobody was destroyed by openness. Linux vs Windows, MySQL vs Oracle, Kubernetes vs proprietary orchestrators — same movie, different decade.</p>
+            <p>Look closer and there is a second recurring pattern: the winning commercial product very often stacks on top of an open-source primitive. Confluent is built on Kafka; AWS Lambda, Fargate and App Runner sit on Firecracker, which runs on containerd; Google Cloud Run is built on Knative, which runs on Kubernetes atop containerd; Databricks is built on Apache Spark. The open layer sets the standard and grows the market — the closed layer sells operations, reliability, and enterprise trust on top. There is no reason to believe AI will be different — artificial intelligence will be built the same way, stack 0 through stack n−1, with agents and Model-as-a-Service somewhere in between. What the lower stacks look like — open weights, closed models, or a mix — nobody knows.</p>
+            <div class="fx-card fx-card-hero next-card">
+               <div class="closed-box">Artificial Intelligence (next)</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">Stack n−1 · Applications</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">⋮</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">Agents</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">Model-as-a-Service</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">⋮</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="unboxed">Stack 0 · ?</div>
+            </div>
+            <div class="fx-cards">
+               <div class="fx-card">
+                  <div class="closed-box">Confluent</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="open-box">Kafka</div>
+               </div>
+               <div class="fx-card">
+                  <div class="closed-box">AWS Lambda · Fargate · App Runner</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="mid-box">Firecracker</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="open-box">containerd</div>
+               </div>
+               <div class="fx-card">
+                  <div class="closed-box">Google Cloud Run</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="mid-box">Knative</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="mid-box">Kubernetes</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="open-box">containerd</div>
+               </div>
+               <div class="fx-card">
+                  <div class="closed-box">Databricks</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="open-box">Apache Spark</div>
+               </div>
+            </div>
+            <p>So when NVIDIA — whose hardware profits from every token, open or closed — organizes an open-weights letter, and Microsoft, Meta and OpenAI sign, I do not read it as altruism. I read it as the Kubernetes playbook, replayed at the model layer: open the layer where you are not the monopolist, and compete on the layers where you are strong.</p>
+            <h2 id="edge-contributor">A Participant and a Part-Time Contributor</h2>
+            <p>I call myself a participant and a part-time contributor — never the protagonist, but close enough to the engine room to feel the heat. Since 2019 I have contributed to the Linux Foundation and CNCF communities — containerd, Envoy, OpenTelemetry — served as a <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank">CNCF Ambassador</a> (first named in 2022, reappointed in 2024 and 2026), and spent four-plus years on Program Committees for PyTorchCon, KubeCon + CloudNativeCon and the Open Source Summit. I wrote about that decade of community in <a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">CNCF Turns 10</a>.</p>
+            <p>On the closed side: at AWS I built Bedrock's Anthropic inference engine from zero to one and shipped the production releases of Claude 3 Opus, 3.5 Sonnet, and 3.5 Haiku — a chapter I wrote about in <a href="https://pengandy.com/blog/2026/ant/" target="_blank">My Story with Anthropic</a>. Today I work on the open-weights model business: OpenAI's gpt-oss, Google DeepMind's Gemma, Alibaba's Qwen, and DeepSeek, plus inference optimization (speculative decoding) for open-weight models.</p>
+            <p>Both tables, one lesson. In the same year DeepSeek-R1 was released, I published <a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">my DeepSeek post</a> — open source is the way — and co-authored the book <a href="https://a.co/d/2YyiiuA" target="_blank"><em>DeepSeek in Practice</em></a>. And in <a href="https://pengandy.com/blog/2025/llmnative/" target="_blank">LLM Native</a> that the open-source LLM ecosystem — vLLM, SGLang, llm-d, Dynamo, MCP — is already in place. The through-line: <em>open source is not a product strategy, it is an ecosystem</em>. Ecosystems grow markets; they do not zero-sum them.</p>
+
+            <h2 id="market">The Open-Weight Model Market</h2>
+            <p>Follow the money, and the picture is genuinely two-sided. Capital is pouring into open-weight infrastructure:</p>
+            <p>On July 16, <a href="https://fireworks.ai/blog/series-d-announcement" target="_blank">Fireworks AI raised a $1.505B Series D at a $17.5B valuation</a> — led by Atreides, Index and TCV with Nvidia participating — crossing $1B ARR serving custom and open models for customers like Uber and Shopify. Founder <em>Lin Qiao</em> previously built PyTorch at Meta. Two weeks earlier, <a href="https://www.businesswire.com/news/home/20260701243402/en/Together-AI-Ra" target="_blank">Together AI raised an $800M Series C at $8.3B</a> — up from $3.3B just sixteen months prior — with annual bookings past $1.15B and open-source model usage tripling in twelve months. Its business model: per-token APIs over open models (roughly 30–40% of revenue, per <a href="https://sacra.com/c/together-ai/" target="_blank">Sacra</a>) plus GPU cluster rentals, serving Cursor, Cognition and Decagon.</p>
+            <p>For scale, hold the open-weight infrastructure curve against the closed-side flagship. <a href="https://www.orrick.com/en/News/2026/05/Anthropic-Raises-65B-Series-H-at-965B-Post-Money-Valuation" target="_blank">Anthropic</a>, founded in 2021, went from $4.1B (May 2023) through <a href="https://www.datacenterdynamics.com/en/news/anthropic-raises-another-35bn-at-615bn-valuation/" target="_blank">$61.5B</a> to $965B — roughly 235x in three years. Fireworks, founded in 2022, went from <a href="https://cryptobriefing.com/fireworks-ai-18b-valuation-cheaper-models/" target="_blank">$552M</a> to $17.5B in two years — ~32x. Both curves are vertical; the market is not choosing sides, it is pricing both:</p>
+<div class="fx-chart">
+               <svg viewBox="0 0 680 356" role="img" aria-label="Anthropic vs Fireworks AI — valuation since founding (log scale)" style="width:100%;height:auto;">
+                  <text x="70" y="18" font-size="12" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Anthropic vs Fireworks AI — valuation since founding (log scale)</text>
+                  <line x1="70" y1="264.0" x2="640" y2="264.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="268.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$1B</text><line x1="70" y1="192.0" x2="640" y2="192.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="196.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$10B</text><line x1="70" y1="120.0" x2="640" y2="120.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="124.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$100B</text><line x1="70" y1="48.0" x2="640" y2="48.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="52.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$1T</text><text x="70.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2021</text><text x="173.6" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2022</text><text x="277.3" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2023</text><text x="380.9" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2024</text><text x="484.5" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2025</text><text x="588.2" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2026</text>
+                  <circle cx="70.0" cy="300" r="4" fill="var(--fx-mute)"/>
+                  <text x="76.0" y="296" font-size="9.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Anthropic founded 2021</text>
+                  <circle cx="216.8" cy="300" r="4" fill="var(--fx-accent)"/>
+                  <text x="222.8" y="311" font-size="9.5" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Fireworks founded 2022</text>
+                  <polyline points="70.0,300 311.8,219.9" fill="none" stroke="var(--fx-mute)" stroke-width="1.5" stroke-dasharray="3,4"/>
+                  <polyline points="216.8,300 432.7,282.6" fill="none" stroke="var(--fx-accent)" stroke-width="1.5" stroke-dasharray="3,4"/>
+                  <polyline points="311.8,219.9 380.9,172.9 501.8,135.2 553.6,101.1 622.7,49.1" fill="none" stroke="var(--fx-mute)" stroke-width="2.5"/><polyline points="432.7,282.6 562.3,220.7 640.0,174.5" fill="none" stroke="var(--fx-accent)" stroke-width="2.5"/>
+                  <circle cx="311.8" cy="219.9" r="4.5" fill="var(--fx-mute)"/><text x="311.8" y="209.9" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4.1B</text><circle cx="380.9" cy="172.9" r="4.5" fill="var(--fx-mute)"/><text x="380.9" y="162.9" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$18.4B</text><circle cx="501.8" cy="135.2" r="4.5" fill="var(--fx-mute)"/><text x="501.8" y="125.19999999999999" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$61.5B</text><circle cx="553.6" cy="101.1" r="4.5" fill="var(--fx-mute)"/><text x="553.6" y="91.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$183B</text><circle cx="622.7" cy="49.1" r="4.5" fill="var(--fx-mute)"/><text x="622.7" y="39.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$965B</text><circle cx="432.7" cy="282.6" r="4.5" fill="var(--fx-accent)"/><text x="432.7" y="272.6" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$552M</text><circle cx="562.3" cy="220.7" r="4.5" fill="var(--fx-accent)"/><text x="562.3" y="210.7" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4B</text><circle cx="640.0" cy="174.5" r="4.5" fill="var(--fx-accent)"/><text x="640.0" y="164.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$17.5B</text>
+                  <text x="576.7" y="57.1" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Anthropic</text>
+                  <text x="626.0" y="200.5" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Fireworks AI</text>
+                  <rect x="400" y="34" rx="10" width="240" height="20" fill="var(--fx-mute)" opacity="0.15"/>
+                  <text x="520" y="48" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4.1B → $965B · 3 yrs ≈ 235x</text>
+                  <rect x="400" y="140" rx="10" width="240" height="20" fill="var(--fx-accent)"/>
+                  <text x="520" y="154" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$552M → $17.5B · 2 yrs ≈ 32x</text>
+               </svg>
+               <div class="src">Post-money valuations from disclosed rounds; founding markers on axis. Sources linked in text.</div>
+            </div>
+            <p>Usage tells the same story — straight from OpenRouter's own data. Its <a href="https://openrouter.ai/state-of-ai" target="_blank">State of AI study</a> with a16z, spanning 100+ trillion routed tokens, found open-weight models averaging 26.7% of all token volume over the year and reaching roughly one-third by late 2025 — "the equilibrium is currently reached at roughly 30%," the authors wrote. Then 2026 broke the equilibrium: per <a href="https://openrouter.ai/blog/insights/deepseek-v4-adoption/" target="_blank">OpenRouter's official June analysis</a> of 450 trillion tokens, open weights crossed into the majority of all routed tokens, and DeepSeek alone doubled from 9% to 18% to become the platform's top model author since mid-May.</p>
+<div class="fx-chart">
+               <svg viewBox="0 0 680 356" role="img" aria-label="Open vs closed — share of all tokens routed on OpenRouter" style="width:100%;height:auto;">
+                  <text x="70" y="18" font-size="12" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Open vs closed — share of all tokens routed on OpenRouter</text>
+                  <rect x="70" y="40.0" width="570" height="260" fill="var(--fx-mute)" opacity="0.18"/>
+                  <polygon points="70.0,300.0 70.0,253.2 130.0,248.0 190.0,242.8 250.0,235.0 310.0,229.8 370.0,222.0 430.0,214.2 490.0,206.4 550.0,190.8 610.0,175.2 640.0,164.8 640.0,300.0" fill="var(--fx-accent)" opacity="0.75"/>
+                  <polyline points="70.0,253.2 130.0,248.0 190.0,242.8 250.0,235.0 310.0,229.8 370.0,222.0 430.0,214.2 490.0,206.4 550.0,190.8 610.0,175.2 640.0,164.8" fill="none" stroke="var(--fx-accent)" stroke-width="2.5"/>
+                  <line x1="70" y1="235.0" x2="640" y2="235.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="239.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">25%</text><line x1="70" y1="170.0" x2="640" y2="170.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="174.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">50%</text><line x1="70" y1="105.0" x2="640" y2="105.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="109.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">75%</text><line x1="70" y1="40.0" x2="640" y2="40.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="44.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">100%</text><text x="70.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Nov '24</text><text x="190.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Mar '25</text><text x="310.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Jul '25</text><text x="430.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Nov '25</text><text x="550.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Mar '26</text><text x="640.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Jun '26</text>
+                  <circle cx="310.0" cy="229.8" r="4.5" fill="var(--fx-accent)" stroke="var(--global-bg-color, #fff)" stroke-width="2"/><text x="310.0" y="217.8" text-anchor="middle" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">26.7% ('25 avg)</text><circle cx="430.0" cy="214.2" r="4.5" fill="var(--fx-accent)" stroke="var(--global-bg-color, #fff)" stroke-width="2"/><text x="430.0" y="202.2" text-anchor="middle" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">~33%</text><circle cx="640.0" cy="164.8" r="4.5" fill="var(--fx-accent)" stroke="var(--global-bg-color, #fff)" stroke-width="2"/><text x="640.0" y="152.8" text-anchor="middle" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">50%+</text>
+                  <text x="160.0" y="276.6" font-size="12" font-weight="700" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Open-weight models</text>
+                  <text x="160.0" y="112.8" font-size="12" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Closed (proprietary) models</text>
+               </svg>
+               <div class="src">100% stacked area, in the style of OpenRouter's own "open vs closed split" figure. Anchors documented in <a href="https://openrouter.ai/state-of-ai" target="_blank">OpenRouter × a16z, State of AI</a> (open weights averaged 26.7% over Nov '24–Nov '25; ~1/3 by late 2025) and <a href="https://openrouter.ai/blog/insights/deepseek-v4-adoption/" target="_blank">OpenRouter Insights, Jun 30 2026</a> (open weights crossed 50% of routed tokens by June 2026); curve between anchors interpolated.</div>
+            </div>
+            <p>But spending flows the other way. <a href="https://a16z.com/leaders-gainers-and-unexpected-winners-in-the-enterprise-ai-arms-race/" target="_blank">a16z's survey of 100 Global 2000 CIOs</a> found open source falling from 19% to 11% of enterprise AI <em>spend</em>, with closed models climbing from 81% to 89% — even as open source's share of raw tokens rose. Read together: open weights are winning tokens and workloads; closed models are winning budgets and the last production mile. That is not a contradiction — it is a division of labor. High-volume, cost-sensitive, customizable workloads go open; frontier reasoning and turnkey enterprise features stay closed, for now.</p>
+
+            <h2 id="china-tigers">China's Model Companies: The Tigers Go Public</h2>
+            <p>No account of the open-weights market is complete without the companies actually shipping most of the open frontier. In 2026, China's "AI tigers" — DeepSeek, Moonshot AI, MiniMax, Zhipu AI, StepFun — stopped being a funding story and became a public-markets story.</p>
+            <div class="fx-chart">
+               <svg viewBox="0 0 680 380" role="img" aria-label="China's model companies — valuations &amp; IPOs (log scale)" style="width:100%;height:auto;">
+                  <text x="70" y="16" font-size="12" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">China's model companies — valuations &amp; IPOs (log scale)</text>
+                  <rect x="70" y="28" width="18" height="4" rx="2" fill="#0076df"/><text x="93" y="34" font-size="11" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Moonshot AI</text><rect x="218" y="28" width="18" height="4" rx="2" fill="#b45309"/><text x="241" y="34" font-size="11" font-weight="700" fill="#b45309" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">DeepSeek</text><rect x="339" y="28" width="18" height="4" rx="2" fill="#10b981"/><text x="362" y="34" font-size="11" font-weight="700" fill="#10b981" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">MiniMax</text><rect x="451" y="28" width="18" height="4" rx="2" fill="#8b5cf6"/><text x="474" y="34" font-size="11" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Zhipu</text><rect x="545" y="28" width="18" height="4" rx="2" fill="#ef4444"/><text x="568" y="34" font-size="11" font-weight="700" fill="#ef4444" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">StepFun</text>
+                  <line x1="70" y1="292.7" x2="640" y2="292.7" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="296.7" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$2B</text><line x1="70" y1="236.2" x2="640" y2="236.2" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="240.2" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$5B</text><line x1="70" y1="193.4" x2="640" y2="193.4" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="197.4" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$10B</text><line x1="70" y1="150.6" x2="640" y2="150.6" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="154.6" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$20B</text><line x1="70" y1="94.1" x2="640" y2="94.1" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="98.1" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$50B</text><line x1="70" y1="51.3" x2="640" y2="51.3" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="55.3" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$100B</text><text x="70.0" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Feb '24</text><text x="187.9" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Aug '24</text><text x="305.9" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Feb '25</text><text x="423.8" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Aug '25</text><text x="522.1" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Jan '26</text><text x="640.0" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Jul '26</text>
+                  <line x1="522.1" y1="44" x2="522.1" y2="330" stroke="var(--fx-mute)" stroke-width="1.5" stroke-dasharray="5,4"/>
+                  <text x="516.1" y="56" text-anchor="end" font-size="10" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">HKEX IPOs Jan 8–9 '26</text>
+                  <polyline points="129.0,267.7 522.1,212.0 640.0,51.3" fill="none" stroke="#8b5cf6" stroke-width="2.5"/><circle cx="129.0" cy="267.7" r="4" fill="#8b5cf6"/><text x="129.0" y="258.7" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$3B</text><circle cx="522.1" cy="212.0" r="4" fill="#8b5cf6"/><text x="522.1" y="203.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$7.4B</text><circle cx="640.0" cy="51.3" r="4" fill="#8b5cf6"/><text x="640.0" y="42.3" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$100B+</text>
+                  <polygon points="522.1,206.0 528.1,212.0 522.1,218.0 516.1,212.0" fill="none" stroke="#8b5cf6" stroke-width="2.2"/><text x="512.1" y="208.0" text-anchor="end" font-size="9.5" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Zhipu IPO 1/8</text>
+                  <polyline points="89.7,279.0 404.1,250.0 522.1,250.0" fill="none" stroke="#10b981" stroke-width="2.5"/><circle cx="89.7" cy="279.0" r="4" fill="#10b981"/><circle cx="404.1" cy="250.0" r="4" fill="#10b981"/><text x="404.1" y="241.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#10b981" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4B</text><circle cx="522.1" cy="250.0" r="4" fill="#10b981"/>
+                  <polygon points="522.1,244.0 528.1,250.0 522.1,256.0 516.1,250.0" fill="none" stroke="#10b981" stroke-width="2.2"/>
+                  <text x="532.1" y="266.0" font-size="9.5" fill="#10b981" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">MiniMax IPO 1/9 · +109%</text>
+                  <polyline points="70.0,279.0 187.9,261.8 502.4,245.5 541.7,193.4 600.7,150.6 640.0,119.7" fill="none" stroke="#0076df" stroke-width="2.5"/><circle cx="70.0" cy="279.0" r="4" fill="#0076df"/><text x="70.0" y="270.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$2.5B</text><circle cx="187.9" cy="261.8" r="4" fill="#0076df"/><circle cx="502.4" cy="245.5" r="4" fill="#0076df"/><text x="502.4" y="236.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4.3B</text><circle cx="541.7" cy="193.4" r="4" fill="#0076df"/><circle cx="600.7" cy="150.6" r="4" fill="#0076df"/><text x="600.7" y="141.6" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$20B</text><circle cx="640.0" cy="119.7" r="4" fill="#0076df"/><text x="640.0" y="110.7" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">~$33B</text>
+                  <polyline points="581.0,193.4 600.7,150.6 640.0,91.7" fill="none" stroke="#b45309" stroke-width="2.5"/><circle cx="581.0" cy="193.4" r="4" fill="#b45309"/><text x="581.0" y="184.4" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b45309" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$10B</text><circle cx="600.7" cy="150.6" r="4" fill="#b45309"/><circle cx="640.0" cy="91.7" r="4" fill="#b45309"/><text x="640.0" y="82.7" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b45309" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">~$52B</text>
+                  <polyline points="266.6,292.7 620.3,182.2" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,4"/><circle cx="266.6" cy="292.7" r="4" fill="#ef4444"/><text x="266.6" y="308.7" text-anchor="middle" font-size="10.5" font-weight="700" fill="#ef4444" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$2B</text><circle cx="620.3" cy="182.2" r="4" fill="#ef4444"/><text x="620.3" y="198.2" text-anchor="middle" font-size="10.5" font-weight="700" fill="#ef4444" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">~$12B</text>
+                  <polygon points="620.3,176.2 626.3,182.2 620.3,188.2 614.3,182.2" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+               </svg>
+               <div class="src">Post-money valuations from disclosed rounds and reports; diamonds = listing events (Zhipu $7.4B debut cap, +13%; MiniMax +109% debut; Zhipu >$100B market cap by Jul '26); hollow diamond = StepFun's proposed IPO valuation (filed Jun '26). ~ marks in-progress or filing-implied values. Sources linked below.</div>
+            </div>
+            <ul class="fx-sublist">
+               <li><strong>DeepSeek</strong> — the most remarkable case: founder <em>Liang Wenfeng</em> refused outside money entirely until 2026, then <a href="https://www.forbes.com/sites/anishasircar/2026/06/17/deepseek-just-raised-74-billion-heres-the-catch/" target="_blank">raised a $7.4B Series A in June</a>, investing up to 40% of it himself to keep control. A <a href="https://m.economictimes.indiatimes.com/tech/artificial-intelligence/chinese-filing-implies-deepseek-valuation-of-around-52-billion/articleshow/132447092.cms" target="_blank">July shareholder filing implies a ~$52B valuation</a>; <a href="https://amp.scmp.com/tech/tech-trends/article/3361415/kimi-k3-developer-moonshot-ai-expedites-fundraising-ahead-planned-ipo-source-says" target="_blank">reports put its next round in talks at ~$70B pre-money</a>.</li>
+               <li><strong>Moonshot AI</strong> — <a href="https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/" target="_blank">$2.5B (Feb 2024) → $4.3B (late 2025) → $10B (early 2026) → $20B (May)</a>; after Kimi K3, <a href="https://fortune.com/2026/07/23/moonshot-deepseek-great-chinese-ai-ipo-rush/" target="_blank">closing a round at just over $30B with a Hong Kong listing planned within six months</a>. Roughly 8x in a year — powered by giving the weights away.</li>
+               <li><strong>Zhipu AI</strong> — from <a href="https://en.wikipedia.org/wiki/Z.ai" target="_blank">~$3B (May 2024)</a> to a <a href="https://www.scmp.com/business/banking-finance/article/3339109/three-chinese-tech-stocks-gain-hong-kong-debuts-investors-jump-ai-robotics" target="_blank">HKEX debut on January 8, 2026 at a $7.4B market cap (+13%)</a> — then <a href="https://www.morningstar.com/news/dow-jones/20260709137/chinas-zhipu-ai-shares-surge-on-40-billion-fundraising-update" target="_blank">past $100B market cap by July, raising another $4B</a>, with a Shanghai STAR dual listing planned.</li>
+               <li><strong>MiniMax</strong> — $2.5B (March 2024) → $4B (mid-2025) → <a href="https://www.cnbc.com/2026/01/09/minimax-hong-kong-ipo-ai-tigers-zhipu.html" target="_blank">HKEX listing on January 9, 2026, doubling on debut (+109%)</a>.</li>
+               <li><strong>StepFun</strong> — ~$2B (late 2024) → <a href="https://www.msn.com/en-us/money/investment/chinese-ai-start-up-stepfun-set-to-file-for-hong-kong-ipo/ar-AA254Wlj" target="_blank">filed for a Hong Kong IPO in June at a proposed valuation of up to $12B</a>.</li>
+            </ul>
+            <p>Put this next to the a16z spend data and the picture sharpens: US enterprises may still route their budgets to closed models, but public markets — Hong Kong first — are now pricing open-weight labs as durable businesses. Giving away the weights did not destroy value. It created the fastest IPO cohort in AI.</p>
+
+            <h2 id="customization">Model Customization: Fine-Tuning, RL &amp; Self-Improvement</h2>
+            <p>Why do enterprises want weights at all? Because the frontier of value has moved from <em>prompting a general model</em> to <em>specializing a model on your own data and your own reward signal</em>. This is exactly the demand Fireworks calls "specialized intelligence" and Together monetizes through fine-tuning APIs — and it is only possible when you own or can touch the weights. The loop looks like this:</p>
+            <pre class="fx-flow">
+<span class="fm">┌────────────────┐   ┌──────────────┐   ┌──────────────────────────┐</span>
+<span class="fm">│</span> Open Weights   <span class="fm">│ → │</span> SFT          <span class="fm">│ → │</span> RL Post-Training         <span class="fm">│</span>
+<span class="fm">│</span> (Gemma, Qwen,  <span class="fm">│   │</span> domain data, <span class="fm">│   │</span> RLHF / RLVR: reward from <span class="fm">│</span>
+<span class="fm">│</span> gpt-oss, R1,K3…<span class="fm">│   │</span> distillation <span class="fm">│   │</span> humans or verifiers      <span class="fm">│</span>
+<span class="fm">└────────────────┘   └──────────────┘   └────────────┬─────────────┘</span>
+        <span class="fm">▲</span>                                            <span class="fm">│</span>
+        <span class="fm">│</span>            <span class="fl">RSI / self-improvement loop</span>       <span class="fm">▼</span>
+<span class="fm">┌───────┴────────┐   ┌──────────────┐   ┌──────────────────────────┐</span>
+<span class="fm">│</span> New checkpoint <span class="fm">│ ← │</span> Data flywheel<span class="fm">│ ← │</span> Eval &amp; Benchmark         <span class="fm">│</span>
+<span class="fm">│</span> (yours, private<span class="fm">│   │</span> model generates│  <span class="fm">│</span> task suites, guardrails, <span class="fm">│</span>
+<span class="fm">│</span> or re-shared)  <span class="fm">│   │</span> +grades data <span class="fm">│   │</span> regression gates         <span class="fm">│</span>
+<span class="fm">└────────────────┘   └──────────────┘   └──────────────────────────┘</span>
+            </pre>
+            <p>Supervised fine-tuning teaches the model your domain; reinforcement learning — RLHF with human preferences, or RLVR with verifiable rewards for code and math — aligns it with your objective; and the newest turn is recursive self-improvement (RSI)-style loops, where the model generates its own training data, grades it against verifiers, and feeds the survivors back into training. Every arrow in that diagram requires access to weights. A closed API gives you, at best, the vendor's hosted fine-tuning of the vendor's model on the vendor's terms. This — not ideology — is the structural market demand behind open weights: the customization loop is where enterprise differentiation now lives, and the loop does not close without the weights.</p>
+
+            <h2 id="trust-safety">Trust &amp; Safety, Evaluation, Interpretability</h2>
+            <p>The safety debate deserves honesty from both sides. Closed-model providers are right that released weights cannot be recalled, and guardrails on open models can be fine-tuned away. Amodei's position — mandatory pre-release testing for all sufficiently capable models, open and closed — is the most reasonable version of that argument, and I agree with testing over bans.</p>
+            <p>But openness carries its own safety advantages that the debate under-weights. You cannot audit what you cannot see: interpretability research — the field Amodei himself called urgent in <a href="https://www.darioamodei.com/post/the-urgency-of-interpretability" target="_blank">The Urgency of Interpretability</a> — overwhelmingly runs on open weights, because probing activations and circuits requires the tensors, not an API. Independent evaluation works the same way: the community can red-team, benchmark and reproduce results on Qwen or Kimi K3 without a vendor's permission, while closed models are evaluated under NDA-shaped access on the vendor's schedule. Mature deployments need both open and closed, which is one more reason bans are the wrong tool.</p>
+
+            <h2 id="price-performance">Price Performance</h2>
+            <p>The economics are now well documented. Per <a href="https://thenewstack.io/open-weight-models-frontier-costs/" target="_blank">Epoch AI data reported by The New Stack</a>, open-weight models trail closed frontier models by roughly four months in capability — at about one-tenth the token price. CNCF executive director <em>Jonathan Bryce</em>: "Paying ten times more for a four-month capability lead is not an enterprise AI strategy… it's a very expensive form of lock-in."</p>
+            <p>Independent leaderboards put numbers on the gap. On the <a href="https://artificialanalysis.ai/" target="_blank">Artificial Analysis</a> Intelligence Index (v4.1, July 2026), the best open weights sit points — not tiers — behind the closed frontier, at a fraction of the price:</p>
+            <div class="fx-chart">
+               <svg viewBox="0 0 680 240" role="img" aria-label="Cost per Intelligence Index Task — Fable 5 vs Kimi K3" style="width:100%;height:auto;">
+                  <text x="70" y="20" font-size="12.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Cost per Intelligence Index Task — Fable 5 vs Kimi K3</text>
+                  <text x="70" y="48" font-size="10.5" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Intelligence Index</text>
+                  <rect x="180" y="56" width="367.1" height="18" rx="4" fill="var(--fx-mute)" opacity="0.55"/>
+                  <text x="555.1" y="69" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">59.9 · Fable 5</text>
+                  <rect x="180" y="80" width="350.0" height="18" rx="4" fill="var(--fx-accent)"/>
+                  <text x="538.0" y="93" font-size="11" font-weight="700" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">57.1 · Kimi K3</text>
+                  <text x="70" y="132" font-size="10.5" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Cost / Index task</text>
+                  <rect x="180" y="140" width="348.3" height="18" rx="4" fill="var(--fx-mute)" opacity="0.55"/>
+                  <text x="536.3" y="153" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$2.75 · Fable 5</text>
+                  <rect x="180" y="164" width="119.1" height="18" rx="4" fill="var(--fx-accent)"/>
+                  <text x="307.1" y="177" font-size="11" font-weight="700" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$0.94 · Kimi K3</text>
+                  <text x="180" y="212" font-size="12" font-weight="700" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">95% of the intelligence · 34% of the cost per task</text>
+               </svg>
+               <div class="src">Cost to run one Artificial Analysis Intelligence Index task, as published by <a href="https://artificialanalysis.ai/" target="_blank">Artificial Analysis</a> (Jul 2026). Kimi K3: 57.1 on the index (#4 of 189), $3/$15 per M tokens; Claude Fable 5: 59.9, $10/$50.</div>
+            </div>
+            <!-- TODO(andy): screenshot the live Artificial Analysis leaderboard (artificialanalysis.ai) for visual impact,
+                 save to /assets/blog/2026/openvsclosed/artificial-analysis.png, then uncomment:
+            <img src="/assets/blog/2026/openvsclosed/artificial-analysis.png" alt="Artificial Analysis Intelligence Index leaderboard, July 2026" class="img-fluid" style="max-width: 100%; height: auto; margin: 12px auto; display: block; border: 1px solid var(--fx-hair); border-radius: 12px;">
+            -->
+            <p>Read it either way — list price or cost per completed task — the shape is the same: Kimi K3 delivers 95% of Fable 5's index score at about a third of the cost per task. Put simply: much of the closed-model premium buys the platform around the model, not more intelligence.</p>
+            <p>The New Stack's July benchmark made the trade explicit — <a href="https://thenewstack.io/kimi-k3-fable-coding-benchmark/" target="_blank">Claude Fable 5 vs. Kimi K3: same results, one-third the cost, 4x slower</a>. Money vs latency. And a Featherless case study puts self-hosting economics in sharp relief: a team at full utilization burning 100B tokens/month pays ~$1.56M/year on GPT-5.5 — versus a $90K/year fixed private-cloud rate running open-weight GLM 5.2, a 94% reduction.</p>
+            <p>And the sticker price is only the starting point: with open weights, the optimization headroom belongs to you. Because you own the serving stack, you can train your own speculator for speculative decoding, quantize to FP8/INT4 where quality allows, and tune kernels for your hardware — quality-lossless (or near-lossless) optimizations that routinely deliver multiples of throughput. On a closed API, that headroom is the vendor's margin; on open weights, it is your cost curve. This is my day job on the open-weights side, and it is where the ten-times gap keeps widening.</p>
+            <p>The honest caveats: closed frontier models still win on raw capability at the edge, on latency (Kimi K3 was 4x slower in that benchmark), and on turnkey enterprise features — identity integration, connectors, observability — which is much of what enterprises are actually paying for, as the a16z spend data shows. Price performance is not one number; it is a curve, and open weights now dominate the high-volume, cost-sensitive stretch of it.</p>
+
+            <h2 id="ecosystem">Open Intelligence</h2>
+            <p>It would be easy to close this essay the way industry essays usually close — with market share, competitive playbooks, who wins. But that framing is too small for what is actually at stake. AI is another industrial revolution, and the hardest problems ahead of us — alignment, interpretability, safety, how humans and increasingly capable AI systems coexist — are not problems any single company, or any single country, can solve alone. They are problems for humanity, and humanity works on shared problems through open ecosystems: open weights that any researcher can probe, open evaluations that anyone can reproduce, open science of the kind that produced the transformer itself.</p>
+            <p>This is why the events of July matter beyond the headlines. When fifty companies — bitter competitors on every other front — sign the same letter within seventy-two hours, they are acknowledging something deeper than commercial interest: that the path to trustworthy AI runs through openness. Interpretability research runs on open weights. Independent red-teaming runs on open weights. The global cooperation that safety testing will require — the kind even Amodei argues must include every capable lab, in every country — is only possible if the science stays open enough for everyone to participate. Open source enables innovation, research, and the democratization of AI; more than that, it is how we keep each other honest while building the most consequential technology in human history.</p>
+            <div class="my-thought">
+               <span class="thought-label">My take</span>
+               Bans protect monopolies, not leadership. Open and closed models are complementary — I have shipped both, and neither side's roadmap works without the other. But the deeper truth is bigger than business: aligning AI with humanity is a problem we can only solve together, and open ecosystems are how humanity solves problems together. Open source is the ecosystem, not the threat. And if artificial intelligence is to belong to everyone, what we build toward is <em>open intelligence</em>.
+            </div>
+            <br>
+
+            <!-- ========================================== -->
+            <!-- YOUR CONTENT ENDS HERE -->
+            <!-- ========================================== -->
+
+            </div><!-- /lang-en -->
+
+            <div class="lang-zh">
+
+            <article class="post-content">
+               <div id="markdown-content">
+                  <p>2026 年 7 月的最后两周，"开源 vs 闭源"之争从工程师论坛一路吵到了白宫。作为一个在这条分界线两侧都待过多年的人——在 Amazon 从零到一构建闭源模型推理引擎，同时利用业余时间在开源社区持续贡献——我想把这两周看到的记下来，也讲清楚我为什么相信我所相信的。</p>
+                  <p><em>一个参与者，也是一个兼职贡献者。</em></p>
+               </div>
+            </article>
+
+            <nav class="fx-toc">
+               <div class="lbl">目录</div>
+               <ol>
+                  <li><a href="#the-week-zh">开放权重走进华盛顿的一周</a></li>
+                  <li><a href="#deja-vu-zh">既视感：这部电影我们看过</a></li>
+                  <li><a href="#edge-contributor-zh">参与者，也是兼职贡献者</a></li>
+                  <li><a href="#market-zh">开源大模型的市场</a></li>
+                  <li><a href="#china-tigers-zh">中国的模型公司：四小龙上市记</a></li>
+                  <li><a href="#customization-zh">模型定制：微调、强化学习与自我改进</a></li>
+                  <li><a href="#trust-safety-zh">信任与安全、评测、可解释性</a></li>
+                  <li><a href="#price-performance-zh">价格性能</a></li>
+                  <li><a href="#ecosystem-zh">开放的智能（Open Intelligence）</a></li>
+               </ol>
+            </nav>
+
+            <h2 id="the-week-zh">开放权重走进华盛顿的一周</h2>
+            <p>有报道称，美国官员正在权衡禁止美国公司使用中国的开放权重模型。随后发生的，是我见过的最快的一次行业总动员——一周之内，几乎所有主要实验室和云厂商都对开放权重表明了立场。</p>
+
+            <div class="timeline">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 7 月 27 日</div>
+                     <div class="timeline-description">开放权重之争密集的一天：
+                        <ul class="tl-sublist">
+                           <li>AWS CEO <em>Matt Garman</em> <a href="https://www.linkedin.com/posts/mattgarman_amazon-has-believed-in-giving-customers-choice-activity-7487653484415152128-ay__" target="_blank">发文</a>宣布亚马逊已签署《开放权重与美国 AI 领导力》公开信——"开放模型与闭源模型是互补的"。</li>
+                           <li>Anthropic CEO <em>Dario Amodei</em> 发表<a href="https://www.anthropic.com/news/position-open-weights-models" target="_blank">《我们对开放权重模型的立场》</a>。</li>
+                           <li>月之暗面<a href="https://x.com/Kimi_Moonshot/status/2081760186235289764?s=20" target="_blank">发布</a>了 Kimi K3 的模型权重与技术报告。</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 7 月 25 日</div>
+                     <div class="timeline-description">周末之间联署翻倍至 50 家：
+                        <ul class="tl-sublist">
+                           <li><em>OpenAI</em> 签署——<em>Sam Altman</em>：<a href="https://officechai.com/ai/in-game-theory-twist-openai-also-signs-open-source-ai-letter-leaving-anthropic-as-most-prominent-non-signatory/" target="_blank">"我希望美国在开源和专有模型上都赢。"</a></li>
+                           <li><em>Google</em> 在 <em>Sundar Pichai</em> 背书下签署。Google DeepMind CEO <em>Demis Hassabis</em> <a href="https://x.com/demishassabis/status/2081039623422177765?s=20" target="_blank">引用转发黄仁勋</a>："一个强大而安全的开放生态系统，对让全世界受益于 AI 至关重要。从 Jax 到 Transformers、AlphaFold，再到 Gemma 开放模型，我们始终重仓支持和贡献开源与开放科学"——随后澄清：仅 Gemma 4 下载量就超 3 亿，Gemma 系列整体超 9 亿。</li>
+                           <li><em>SpaceX</em> 加入并获 <em>Elon Musk</em> 支持。</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 7 月 24 日</div>
+                     <div class="timeline-description">NVIDIA、Microsoft、Meta、IBM、Dell、Palantir、Hugging Face 等 25 家公司发布公开信<a href="https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf" target="_blank">《开放权重与美国 AI 领导力》</a>。<em>黄仁勋</em>入驻 X，将它作为<a href="https://x.com/JensenHuang/status/2080643682408321103?s=20" target="_blank">人生第一条推文</a></div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 7 月 16 日</div>
+                     <div class="timeline-description">月之暗面发布 <a href="https://x.com/arena/status/2077893862778183737?s=20" target="_blank">Kimi K3</a>——开放权重站上前沿，次日<a href="https://thenewstack.io/kimi-k3-open-weight-coding/" target="_blank">登顶 Arena 编程榜</a></div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 7 月 15 日</div>
+                     <div class="timeline-description">Thinking Machines Lab 发布首个从零训练的开放权重模型 <a href="https://thinkingmachines.ai/news/introducing-inkling/" target="_blank">Inkling</a>——9750 亿参数 MoE、100 万 token 上下文</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2025 年 1 月 20 日</div>
+                     <div class="timeline-description">DeepSeek 横空出世：<a href="https://api-docs.deepseek.com/news/news250120" target="_blank">DeepSeek-R1</a>——推理能力比肩 OpenAI o1，MIT 协议完全开源</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2024 年 6 月 20 日</div>
+                     <div class="timeline-description">Anthropic 发布 <a href="https://www.anthropic.com/news/claude-3-5-sonnet" target="_blank">Claude 3.5 Sonnet</a>——Claude 在代码与推理上开始反超 OpenAI 的转折点（闭源）。<a href="https://www.anthropic.com/news/claude-3-family" target="_blank">Claude 3 Opus</a>（2024 年 3 月 4 日）作为首个比肩 GPT-4 并短暂登顶 Chatbot Arena 的模型，为此埋下伏笔</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2022 年 11 月 30 日</div>
+                     <div class="timeline-description">OpenAI 发布 <a href="https://openai.com/index/chatgpt/" target="_blank">ChatGPT</a>（GPT-3.5）——LLM 走入大众视野（闭源）</div>
+                  </div>
+               </div>
+            </div>
+            <br>
+            <p>七十二小时，五十个签名。有意思的问题不是谁签了，而是：为什么这个联盟一次性横跨了行业的每一层——NVIDIA、Dell 这样的芯片与硬件商，Microsoft 这样的云与闭源模型厂（OpenAI、Google 随后跟进），还有 Hugging Face、IBM 这样的开放平台？它们都在开放权重里看到了什么？要回答这个问题，把时间倒回十二年。</p>
+
+            <h2 id="deja-vu-zh">既视感：这部电影我们看过</h2>
+            <p>2022 年 1 月，Honeypot 发布了<a href="https://www.youtube.com/watch?v=BE77h7dmoQU" target="_blank">《Kubernetes：纪录片》</a>。这是我所知道的、关于"巨头为什么开源自己的王冠明珠"最诚实的记录。2013 年前后，用早期 Kubernetes 工程师 <em>Tim Hockin</em> 的话说，AWS 是"压在每个人心头的庞然大物"。Kubernetes 联合创始人 <em>Joe Beda</em> 把 Google 的盘算讲得再直白不过：</p>
+            <div class="my-thought">
+               <span class="thought-label">纪录片原话</span>
+               "我们要怎么改变局面——怎么摇动这个雪花球？也许结果未必全归 Google，但至少让 Google 有一搏之力，去争取这些客户，去制衡 AWS 当时的统治地位。"——Joe Beda。<em>Eric Brewer</em> 则说："Google 必须在云上走一步大胆的棋，才能成为长期赢家。"
+            </div>
+            <p>开源 Kubernetes 不是慈善，是战略——挑战者用开放来瓦解领先者的优势。而它成功的原因，Brewer 说得精准："Kubernetes 赢，部分是因为它背后有一支庞大的贡献者大军……那种变化速度，胜过其他一切。"这个故事的另一面，我亲身经历过：作为 <a href="https://aws.amazon.com/apprunner/" target="_blank">AWS App Runner</a>（由 Fargate 孵化）的创始工程师，我们的产品与 Google Cloud Run 正面交锋。Cloud Run 构建在 Google 开源的 Knative 之上；App Runner 则是彻头彻尾的专有服务工程。与一个有开放社区撑腰的产品竞争，会让你切身理解什么叫"庞大的贡献者大军"。</p>
+            <p>这个模式在软件史上反复重演。Kafka 是我最喜欢的例子：LinkedIn 在 2011 年将它开源，Confluent 将它商业化，今天 Kafka 已是事实上的事件流标准——Amazon MSK 与 Confluent Cloud 在竞争运行同一个开放协议。开放标准做大了市场，厂商在运维、性能与信任上竞争，没有谁被开放摧毁。Linux 对 Windows、MySQL 对 Oracle、Kubernetes 对各家专有编排器——同一部电影，换个年代重播。</p>
+            <p>再看深一层，还有第二个反复出现的模式：赢下市场的商业产品，往往叠在开源基础件（primitive）之上。Confluent 构建在 Kafka 之上；AWS Lambda、Fargate、App Runner 以 Firecracker 为底座，Firecracker 运行于 containerd；Google Cloud Run 构建在 Knative 之上，Knative 运行于 Kubernetes，Kubernetes 运行于 containerd；Databricks 构建在 Apache Spark 之上。开放层制定标准、做大市场——闭源层在其上出售运维、可靠性与企业信任。没有理由相信 AI 会例外——人工智能将以同样的方式从 Stack 0 到 Stack n−1 一层层建起来，Agent 与 Model-as-a-Service 位列其间。至于下面那些栈层长什么样——开放权重、闭源模型，还是混合——现在没人知道。</p>
+            <div class="fx-card fx-card-hero next-card">
+               <div class="closed-box">Artificial Intelligence（下一个）</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">Stack n−1 · 应用</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">⋮</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">Agents</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">Model-as-a-Service</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="mid-box">⋮</div>
+               <div class="wrap-tag">stacks on</div>
+               <div class="unboxed">Stack 0 · ?</div>
+            </div>
+            <div class="fx-cards">
+               <div class="fx-card">
+                  <div class="closed-box">Confluent</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="open-box">Kafka</div>
+               </div>
+               <div class="fx-card">
+                  <div class="closed-box">AWS Lambda · Fargate · App Runner</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="mid-box">Firecracker</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="open-box">containerd</div>
+               </div>
+               <div class="fx-card">
+                  <div class="closed-box">Google Cloud Run</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="mid-box">Knative</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="mid-box">Kubernetes</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="open-box">containerd</div>
+               </div>
+               <div class="fx-card">
+                  <div class="closed-box">Databricks</div>
+                  <div class="wrap-tag">stacks on</div>
+                  <div class="open-box">Apache Spark</div>
+               </div>
+            </div>
+            <p>所以当 NVIDIA——无论 token 来自开源还是闭源模型，它的硬件都赚钱——牵头组织开放权重公开信，而 Microsoft、Meta、OpenAI 纷纷签署时，我读到的不是理想主义，而是 Kubernetes 剧本在模型层的重演：在你不是垄断者的那一层开放，在你强势的那几层竞争。</p>
+            <h2 id="edge-contributor-zh">参与者，也是兼职贡献者</h2>
+            <p>我称自己是参与者和兼职贡献者——从来不是主角，但离机舱足够近，能感受到热度。从 2019 年起，我持续在 Linux 基金会和 CNCF 社区贡献——containerd、Envoy、OpenTelemetry——担任 <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank">CNCF Ambassador</a>（2022 年首任，2024 年与 2026 年两度连任），并连续四年担任 PyTorchCon、KubeCon + CloudNativeCon 与 Open Source Summit 的程序委员会成员。关于这十年社区的故事，我写在<a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">《CNCF 十岁了》</a>。</p>
+            <p>闭源这一侧：在 AWS，我从零到一构建了 Bedrock 的 Anthropic 推理引擎，并交付了 Claude 3 Opus、3.5 Sonnet、3.5 Haiku 的生产发布——这段经历我写在<a href="https://pengandy.com/blog/2026/ant/" target="_blank">《My Story with Anthropic》</a>。如今我负责开放权重模型业务：OpenAI 的 gpt-oss、Google DeepMind 的 Gemma、阿里 Qwen、DeepSeek，以及面向开放权重模型的推理优化（投机解码）。</p>
+            <p>两张牌桌，同一个结论。在 DeepSeek-R1 发布的同一年，我发表了 <a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">DeepSeek 那篇博客</a>——开源的重要性——也合著出版了<a href="https://a.co/d/2YyiiuA" target="_blank">《DeepSeek in Practice》</a>一书。在<a href="https://pengandy.com/blog/2025/llmnative/" target="_blank">《LLM Native》</a>里写过：开源 LLM 生态——vLLM、SGLang、llm-d、Dynamo、MCP——已然成形。贯穿始终的一条线是：<em>开源不是一种产品策略，而是一个生态</em>。生态做大市场，而不是零和博弈。</p>
+
+            <h2 id="market-zh">开源大模型的市场</h2>
+            <p>跟着钱走，你会看到一幅真正两面的图景。资本正涌入开放权重基础设施：</p>
+            <p>7 月 16 日，<a href="https://fireworks.ai/blog/series-d-announcement" target="_blank">Fireworks AI 完成 15.05 亿美元 D 轮，估值 175 亿美元</a>——由 Atreides、Index、TCV 领投，Nvidia 参投——年化收入突破 10 亿美元，为 Uber、Shopify 等客户服务定制与开源模型，创始人<em>乔琳（Lin Qiao）</em>此前在 Meta 主导构建了 PyTorch。两周之前，<a href="https://www.businesswire.com/news/home/20260701243402/en/Together-AI-Ra" target="_blank">Together AI 完成 8 亿美元 C 轮，估值 83 亿美元</a>——十六个月前 B 轮估值还是 33 亿——年订单额突破 11.5 亿美元，开源模型用量十二个月内翻了三倍。其商业模式：基于开源模型的按 token API（约占收入 30–40%，据 <a href="https://sacra.com/c/together-ai/" target="_blank">Sacra</a>）加 GPU 集群租赁，客户包括 Cursor、Cognition、Decagon。</p>
+            <p>要感受这条开放权重基础设施曲线的陡峭程度，把它和闭源旗舰放在一起看。<a href="https://www.orrick.com/en/News/2026/05/Anthropic-Raises-65B-Series-H-at-965B-Post-Money-Valuation" target="_blank">Anthropic</a> 创立于 2021 年，从 2023 年 5 月的 41 亿美元，经 <a href="https://www.datacenterdynamics.com/en/news/anthropic-raises-another-35bn-at-615bn-valuation/" target="_blank">615 亿</a>涨到 9650 亿美元——三年约 235 倍。Fireworks 创立于 2022 年，用两年从 <a href="https://cryptobriefing.com/fireworks-ai-18b-valuation-cheaper-models/" target="_blank">5.52 亿美元</a>涨到 175 亿——约 32 倍。两条曲线都近乎垂直：市场没有在站队，而是在同时为两边定价：</p>
+<div class="fx-chart">
+               <svg viewBox="0 0 680 356" role="img" aria-label="Anthropic 对 Fireworks AI——创立以来的估值（对数刻度）" style="width:100%;height:auto;">
+                  <text x="70" y="18" font-size="12" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Anthropic 对 Fireworks AI——创立以来的估值（对数刻度）</text>
+                  <line x1="70" y1="264.0" x2="640" y2="264.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="268.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$1B</text><line x1="70" y1="192.0" x2="640" y2="192.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="196.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$10B</text><line x1="70" y1="120.0" x2="640" y2="120.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="124.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$100B</text><line x1="70" y1="48.0" x2="640" y2="48.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="52.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$1T</text><text x="70.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2021</text><text x="173.6" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2022</text><text x="277.3" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2023</text><text x="380.9" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2024</text><text x="484.5" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2025</text><text x="588.2" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2026</text>
+                  <circle cx="70.0" cy="300" r="4" fill="var(--fx-mute)"/>
+                  <text x="76.0" y="296" font-size="9.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Anthropic 2021 年创立</text>
+                  <circle cx="216.8" cy="300" r="4" fill="var(--fx-accent)"/>
+                  <text x="222.8" y="311" font-size="9.5" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Fireworks 2022 年创立</text>
+                  <polyline points="70.0,300 311.8,219.9" fill="none" stroke="var(--fx-mute)" stroke-width="1.5" stroke-dasharray="3,4"/>
+                  <polyline points="216.8,300 432.7,282.6" fill="none" stroke="var(--fx-accent)" stroke-width="1.5" stroke-dasharray="3,4"/>
+                  <polyline points="311.8,219.9 380.9,172.9 501.8,135.2 553.6,101.1 622.7,49.1" fill="none" stroke="var(--fx-mute)" stroke-width="2.5"/><polyline points="432.7,282.6 562.3,220.7 640.0,174.5" fill="none" stroke="var(--fx-accent)" stroke-width="2.5"/>
+                  <circle cx="311.8" cy="219.9" r="4.5" fill="var(--fx-mute)"/><text x="311.8" y="209.9" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4.1B</text><circle cx="380.9" cy="172.9" r="4.5" fill="var(--fx-mute)"/><text x="380.9" y="162.9" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$18.4B</text><circle cx="501.8" cy="135.2" r="4.5" fill="var(--fx-mute)"/><text x="501.8" y="125.19999999999999" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$61.5B</text><circle cx="553.6" cy="101.1" r="4.5" fill="var(--fx-mute)"/><text x="553.6" y="91.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$183B</text><circle cx="622.7" cy="49.1" r="4.5" fill="var(--fx-mute)"/><text x="622.7" y="39.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$965B</text><circle cx="432.7" cy="282.6" r="4.5" fill="var(--fx-accent)"/><text x="432.7" y="272.6" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$552M</text><circle cx="562.3" cy="220.7" r="4.5" fill="var(--fx-accent)"/><text x="562.3" y="210.7" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4B</text><circle cx="640.0" cy="174.5" r="4.5" fill="var(--fx-accent)"/><text x="640.0" y="164.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$17.5B</text>
+                  <text x="576.7" y="57.1" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Anthropic</text>
+                  <text x="626.0" y="200.5" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">Fireworks AI</text>
+                  <rect x="400" y="34" rx="10" width="240" height="20" fill="var(--fx-mute)" opacity="0.15"/>
+                  <text x="520" y="48" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4.1B → $965B · 3 年 ≈ 235 倍</text>
+                  <rect x="400" y="140" rx="10" width="240" height="20" fill="var(--fx-accent)"/>
+                  <text x="520" y="154" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$552M → $17.5B · 2 年 ≈ 32 倍</text>
+               </svg>
+               <div class="src">已披露轮次的投后估值；坐标轴上标注创立时间。数据来源见正文链接。</div>
+            </div>
+            <p>用量数据讲着同一个故事——而且直接来自 OpenRouter 官方。其与 a16z 合作、覆盖 100 万亿+路由 token 的<a href="https://openrouter.ai/state-of-ai" target="_blank">《State of AI》研究</a>显示：开放权重模型全年平均占全部 token 量的 26.7%，到 2025 年底达到约三分之一——作者写道，"均衡点目前落在约 30%"。而 2026 年打破了这个均衡：据 <a href="https://openrouter.ai/blog/insights/deepseek-v4-adoption/" target="_blank">OpenRouter 官方 6 月的分析</a>（覆盖 450 万亿 token），开放权重已占全部路由 token 的多数，DeepSeek 单家份额从 9% 翻倍至 18%，自 5 月中起成为全平台第一大模型厂。</p>
+<div class="fx-chart">
+               <svg viewBox="0 0 680 356" role="img" aria-label="开放 vs 闭源——OpenRouter 全部路由 token 份额" style="width:100%;height:auto;">
+                  <text x="70" y="18" font-size="12" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">开放 vs 闭源——OpenRouter 全部路由 token 份额</text>
+                  <rect x="70" y="40.0" width="570" height="260" fill="var(--fx-mute)" opacity="0.18"/>
+                  <polygon points="70.0,300.0 70.0,253.2 130.0,248.0 190.0,242.8 250.0,235.0 310.0,229.8 370.0,222.0 430.0,214.2 490.0,206.4 550.0,190.8 610.0,175.2 640.0,164.8 640.0,300.0" fill="var(--fx-accent)" opacity="0.75"/>
+                  <polyline points="70.0,253.2 130.0,248.0 190.0,242.8 250.0,235.0 310.0,229.8 370.0,222.0 430.0,214.2 490.0,206.4 550.0,190.8 610.0,175.2 640.0,164.8" fill="none" stroke="var(--fx-accent)" stroke-width="2.5"/>
+                  <line x1="70" y1="235.0" x2="640" y2="235.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="239.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">25%</text><line x1="70" y1="170.0" x2="640" y2="170.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="174.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">50%</text><line x1="70" y1="105.0" x2="640" y2="105.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="109.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">75%</text><line x1="70" y1="40.0" x2="640" y2="40.0" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="44.0" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">100%</text><text x="70.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2024/11</text><text x="190.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2025/03</text><text x="310.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2025/07</text><text x="430.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2025/11</text><text x="550.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2026/03</text><text x="640.0" y="322" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2026/06</text>
+                  <circle cx="310.0" cy="229.8" r="4.5" fill="var(--fx-accent)" stroke="var(--global-bg-color, #fff)" stroke-width="2"/><text x="310.0" y="217.8" text-anchor="middle" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">26.7%（'25 均值）</text><circle cx="430.0" cy="214.2" r="4.5" fill="var(--fx-accent)" stroke="var(--global-bg-color, #fff)" stroke-width="2"/><text x="430.0" y="202.2" text-anchor="middle" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">~33%</text><circle cx="640.0" cy="164.8" r="4.5" fill="var(--fx-accent)" stroke="var(--global-bg-color, #fff)" stroke-width="2"/><text x="640.0" y="152.8" text-anchor="middle" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">50%+</text>
+                  <text x="160.0" y="276.6" font-size="12" font-weight="700" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">开放权重模型</text>
+                  <text x="160.0" y="112.8" font-size="12" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">闭源（专有）模型</text>
+               </svg>
+               <div class="src">100% 堆叠面积图，仿 OpenRouter 官方"open vs closed split"图式。锚点数据来自 <a href="https://openrouter.ai/state-of-ai" target="_blank">OpenRouter × a16z《State of AI》</a>（2024/11–2025/11 开放权重平均 26.7%，2025 年底约三分之一）与 <a href="https://openrouter.ai/blog/insights/deepseek-v4-adoption/" target="_blank">OpenRouter 官方博客 2026/06/30</a>（2026 年 6 月开放权重超过路由 token 的 50%）；锚点之间为插值。</div>
+            </div>
+            <p>但企业的钱却流向另一边。<a href="https://a16z.com/leaders-gainers-and-unexpected-winners-in-the-enterprise-ai-arms-race/" target="_blank">a16z 对 100 位 Global 2000 CIO 的调研</a>发现：开源在企业 AI <em>支出</em>中的份额从 19% 降至 11%，闭源从 81% 升至 89%——尽管开源的 token 份额在上升。合起来读：开放权重在赢 token 和工作负载，闭源模型在赢预算和生产落地的最后一公里。这不是矛盾——这是分工。高吞吐、成本敏感、需要定制的工作负载走向开源；前沿推理与开箱即用的企业功能暂时留在闭源。</p>
+
+            <h2 id="china-tigers-zh">中国的模型公司：四小龙上市记</h2>
+            <p>讲开放权重的市场，绕不开真正在产出开源前沿的这批公司。2026 年，中国的"AI 小虎们"——DeepSeek、月之暗面、MiniMax、智谱、阶跃星辰——从融资故事变成了公开市场的故事。</p>
+            <div class="fx-chart">
+               <svg viewBox="0 0 680 380" role="img" aria-label="中国模型公司——估值与 IPO（对数刻度）" style="width:100%;height:auto;">
+                  <text x="70" y="16" font-size="12" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">中国模型公司——估值与 IPO（对数刻度）</text>
+                  <rect x="70" y="28" width="18" height="4" rx="2" fill="#0076df"/><text x="93" y="34" font-size="11" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">月之暗面</text><rect x="155" y="28" width="18" height="4" rx="2" fill="#b45309"/><text x="178" y="34" font-size="11" font-weight="700" fill="#b45309" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">DeepSeek</text><rect x="276" y="28" width="18" height="4" rx="2" fill="#10b981"/><text x="299" y="34" font-size="11" font-weight="700" fill="#10b981" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">MiniMax</text><rect x="388" y="28" width="18" height="4" rx="2" fill="#8b5cf6"/><text x="411" y="34" font-size="11" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">智谱</text><rect x="455" y="28" width="18" height="4" rx="2" fill="#ef4444"/><text x="478" y="34" font-size="11" font-weight="700" fill="#ef4444" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">阶跃星辰</text>
+                  <line x1="70" y1="292.7" x2="640" y2="292.7" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="296.7" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$2B</text><line x1="70" y1="236.2" x2="640" y2="236.2" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="240.2" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$5B</text><line x1="70" y1="193.4" x2="640" y2="193.4" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="197.4" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$10B</text><line x1="70" y1="150.6" x2="640" y2="150.6" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="154.6" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$20B</text><line x1="70" y1="94.1" x2="640" y2="94.1" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="98.1" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$50B</text><line x1="70" y1="51.3" x2="640" y2="51.3" stroke="var(--fx-hair)" stroke-width="1"/><text x="62" y="55.3" text-anchor="end" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$100B</text><text x="70.0" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2024/02</text><text x="187.9" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2024/08</text><text x="305.9" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2025/02</text><text x="423.8" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2025/08</text><text x="522.1" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2026/01</text><text x="640.0" y="348" text-anchor="middle" font-size="10.5" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">2026/07</text>
+                  <line x1="522.1" y1="44" x2="522.1" y2="330" stroke="var(--fx-mute)" stroke-width="1.5" stroke-dasharray="5,4"/>
+                  <text x="516.1" y="56" text-anchor="end" font-size="10" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">港交所 IPO 2026/1/8–9</text>
+                  <polyline points="129.0,267.7 522.1,212.0 640.0,51.3" fill="none" stroke="#8b5cf6" stroke-width="2.5"/><circle cx="129.0" cy="267.7" r="4" fill="#8b5cf6"/><text x="129.0" y="258.7" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$3B</text><circle cx="522.1" cy="212.0" r="4" fill="#8b5cf6"/><text x="522.1" y="203.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$7.4B</text><circle cx="640.0" cy="51.3" r="4" fill="#8b5cf6"/><text x="640.0" y="42.3" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$100B+</text>
+                  <polygon points="522.1,206.0 528.1,212.0 522.1,218.0 516.1,212.0" fill="none" stroke="#8b5cf6" stroke-width="2.2"/><text x="512.1" y="208.0" text-anchor="end" font-size="9.5" font-weight="700" fill="#8b5cf6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">智谱 IPO 1/8</text>
+                  <polyline points="89.7,279.0 404.1,250.0 522.1,250.0" fill="none" stroke="#10b981" stroke-width="2.5"/><circle cx="89.7" cy="279.0" r="4" fill="#10b981"/><circle cx="404.1" cy="250.0" r="4" fill="#10b981"/><text x="404.1" y="241.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#10b981" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4B</text><circle cx="522.1" cy="250.0" r="4" fill="#10b981"/>
+                  <polygon points="522.1,244.0 528.1,250.0 522.1,256.0 516.1,250.0" fill="none" stroke="#10b981" stroke-width="2.2"/>
+                  <text x="532.1" y="266.0" font-size="9.5" fill="#10b981" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">MiniMax IPO 1/9 · 首日 +109%</text>
+                  <polyline points="70.0,279.0 187.9,261.8 502.4,245.5 541.7,193.4 600.7,150.6 640.0,119.7" fill="none" stroke="#0076df" stroke-width="2.5"/><circle cx="70.0" cy="279.0" r="4" fill="#0076df"/><text x="70.0" y="270.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$2.5B</text><circle cx="187.9" cy="261.8" r="4" fill="#0076df"/><circle cx="502.4" cy="245.5" r="4" fill="#0076df"/><text x="502.4" y="236.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$4.3B</text><circle cx="541.7" cy="193.4" r="4" fill="#0076df"/><circle cx="600.7" cy="150.6" r="4" fill="#0076df"/><text x="600.7" y="141.6" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$20B</text><circle cx="640.0" cy="119.7" r="4" fill="#0076df"/><text x="640.0" y="110.7" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0076df" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">~$33B</text>
+                  <polyline points="581.0,193.4 600.7,150.6 640.0,91.7" fill="none" stroke="#b45309" stroke-width="2.5"/><circle cx="581.0" cy="193.4" r="4" fill="#b45309"/><text x="581.0" y="184.4" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b45309" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$10B</text><circle cx="600.7" cy="150.6" r="4" fill="#b45309"/><circle cx="640.0" cy="91.7" r="4" fill="#b45309"/><text x="640.0" y="82.7" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b45309" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">~$52B</text>
+                  <polyline points="266.6,292.7 620.3,182.2" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,4"/><circle cx="266.6" cy="292.7" r="4" fill="#ef4444"/><text x="266.6" y="308.7" text-anchor="middle" font-size="10.5" font-weight="700" fill="#ef4444" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$2B</text><circle cx="620.3" cy="182.2" r="4" fill="#ef4444"/><text x="620.3" y="198.2" text-anchor="middle" font-size="10.5" font-weight="700" fill="#ef4444" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">~$12B</text>
+                  <polygon points="620.3,176.2 626.3,182.2 620.3,188.2 614.3,182.2" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+               </svg>
+               <div class="src">已披露轮次与媒体报道的投后估值；菱形 = 上市事件（智谱上市市值 74 亿美元、首日 +13%；MiniMax 首日 +109%；智谱 7 月市值已超 1000 亿美元）；空心菱形 = 阶跃星辰拟议 IPO 估值（6 月递交）。~ 为进行中或推算值。来源见下文链接。</div>
+            </div>
+            <ul class="fx-sublist">
+               <li><strong>DeepSeek</strong>——最特别的一个：创始人<em>梁文锋</em>在 2026 年之前完全拒绝外部资金，之后在 <a href="https://www.forbes.com/sites/anishasircar/2026/06/17/deepseek-just-raised-74-billion-heres-the-catch/" target="_blank">6 月完成 74 亿美元 A 轮</a>，本人出资最高 40% 以保住控制权。<a href="https://m.economictimes.indiatimes.com/tech/artificial-intelligence/chinese-filing-implies-deepseek-valuation-of-around-52-billion/articleshow/132447092.cms" target="_blank">7 月一份股东申报推算其估值约 520 亿美元</a>；<a href="https://amp.scmp.com/tech/tech-trends/article/3361415/kimi-k3-developer-moonshot-ai-expedites-fundraising-ahead-planned-ipo-source-says" target="_blank">下一轮据报以约 700 亿美元投前估值洽谈中</a>。</li>
+               <li><strong>月之暗面</strong>——<a href="https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/" target="_blank">25 亿美元（2024/02）→ 43 亿（2025 年底）→ 100 亿（2026 年初）→ 200 亿（5 月）</a>；Kimi K3 发布后，正在<a href="https://fortune.com/2026/07/23/moonshot-deepseek-great-chinese-ai-ipo-rush/" target="_blank">以 300 亿美元出头的估值完成新一轮，并计划六个月内在港上市</a>。一年约 8 倍——靠的是把权重开放出去。</li>
+               <li><strong>智谱</strong>——从 <a href="https://en.wikipedia.org/wiki/Z.ai" target="_blank">约 30 亿美元（2024/05）</a>到 <a href="https://www.scmp.com/business/banking-finance/article/3339109/three-chinese-tech-stocks-gain-hong-kong-debuts-investors-jump-ai-robotics" target="_blank">2026 年 1 月 8 日登陆港交所、上市市值 74 亿美元（首日 +13%）</a>——<a href="https://www.morningstar.com/news/dow-jones/20260709137/chinas-zhipu-ai-shares-surge-on-40-billion-fundraising-update" target="_blank">7 月市值已突破 1000 亿美元，并再配售融资 40 亿</a>，同时筹划科创板二次上市。</li>
+               <li><strong>MiniMax</strong>——25 亿美元（2024/03）→ 40 亿（2025 年中）→ <a href="https://www.cnbc.com/2026/01/09/minimax-hong-kong-ipo-ai-tigers-zhipu.html" target="_blank">2026 年 1 月 9 日港交所上市，首日翻倍（+109%）</a>。</li>
+               <li><strong>阶跃星辰</strong>——约 20 亿美元（2024 年底）→ <a href="https://www.msn.com/en-us/money/investment/chinese-ai-start-up-stepfun-set-to-file-for-hong-kong-ipo/ar-AA254Wlj" target="_blank">6 月递交港股 IPO，拟议估值最高 120 亿美元</a>。</li>
+            </ul>
+            <p>把这些放在 a16z 的支出数据旁边，图景就清晰了：美国企业的预算或许仍流向闭源模型，但公开市场——香港先行——已经开始把开放权重实验室定价为可持续的生意。开放权重没有摧毁价值，反而造就了 AI 领域最快的一批 IPO。</p>
+
+            <h2 id="customization-zh">模型定制：微调、强化学习与自我改进</h2>
+            <p>企业到底为什么需要权重？因为价值的前沿已经从<em>提示一个通用模型</em>转移到<em>用自己的数据和自己的奖励信号去特化一个模型</em>。这正是 Fireworks 所说的"专用智能（specialized intelligence）"、Together 靠微调 API 变现的需求——而这一切的前提是你拥有、或至少能触碰权重。这个闭环长这样：</p>
+            <pre class="fx-flow">
+<span class="fm">┌────────────────┐   ┌──────────────┐   ┌──────────────────────────┐</span>
+<span class="fm">│</span> 开放权重       <span class="fm">│ → │</span> SFT 监督微调 <span class="fm">│ → │</span> RL 后训练                <span class="fm">│</span>
+<span class="fm">│</span> (Gemma, Qwen,  <span class="fm">│   │</span> 领域数据、   <span class="fm">│   │</span> RLHF / RLVR：来自人类    <span class="fm">│</span>
+<span class="fm">│</span> gpt-oss, R1,K3…<span class="fm">│   │</span> 蒸馏         <span class="fm">│   │</span> 或验证器的奖励           <span class="fm">│</span>
+<span class="fm">└────────────────┘   └──────────────┘   └────────────┬─────────────┘</span>
+        <span class="fm">▲</span>                                            <span class="fm">│</span>
+        <span class="fm">│</span>            <span class="fl">RSI / 自我改进闭环</span>                <span class="fm">▼</span>
+<span class="fm">┌───────┴────────┐   ┌──────────────┐   ┌──────────────────────────┐</span>
+<span class="fm">│</span> 新检查点       <span class="fm">│ ← │</span> 数据飞轮     <span class="fm">│ ← │</span> 评测与基准               <span class="fm">│</span>
+<span class="fm">│</span> (私有或再开源) <span class="fm">│   │</span> 模型自产数据 <span class="fm">│   │</span> 任务套件、护栏、         <span class="fm">│</span>
+<span class="fm">│</span>                <span class="fm">│   │</span> 并自我评分   <span class="fm">│   │</span> 回归门禁                 <span class="fm">│</span>
+<span class="fm">└────────────────┘   └──────────────┘   └──────────────────────────┘</span>
+            </pre>
+            <p>监督微调让模型学会你的领域；强化学习——用人类偏好的 RLHF，或用可验证奖励做代码与数学的 RLVR——让它对齐你的目标；而最新的一环是类 RSI（递归自我改进）的循环：模型自己生成训练数据、用验证器打分、把胜出的数据回灌训练。图里的每一个箭头都需要触达权重。闭源 API 最多给你的，是厂商在厂商的模型上、按厂商的条款提供的托管微调。这——而非意识形态——才是开放权重背后结构性的市场需求：企业的差异化如今就活在这个定制闭环里，而没有权重，闭环无法闭合。</p>
+
+            <h2 id="trust-safety-zh">信任与安全、评测、可解释性</h2>
+            <p>安全之争值得双方都诚实。闭源阵营说得对：权重一经发布无法撤回，开放模型的护栏可以被微调掉。Amodei 的立场——对所有足够强大的模型（无论开闭）做强制的发布前测试——是这个论点最讲理的版本，我同意用测试取代封禁。</p>
+            <p>但开放性自带的安全优势，在这场辩论中被低估了。看不见的东西无法审计：可解释性研究——Amodei 本人在<a href="https://www.darioamodei.com/post/the-urgency-of-interpretability" target="_blank">《可解释性的紧迫性》</a>中称之为当务之急的领域——绝大部分跑在开放权重上，因为探测激活值和回路需要的是张量，不是 API。独立评测同理：社区可以在 Qwen 或 Kimi K3 上自由地红队、跑基准、复现结果，无需厂商许可；而闭源模型的评测只能在 NDA 框定的访问权限内、按厂商的日程进行。成熟的部署开源闭源两者都需要——这也是封禁是错误工具的又一个理由。</p>
+
+            <h2 id="price-performance-zh">价格性能</h2>
+            <p>经济账如今已有充分文档。据 <a href="https://thenewstack.io/open-weight-models-frontier-costs/" target="_blank">The New Stack 报道的 Epoch AI 数据</a>，开放权重模型在能力上落后闭源前沿约四个月——token 价格约为其十分之一。CNCF 执行董事 <em>Jonathan Bryce</em>："为四个月的能力领先支付十倍的价格，不是一种企业 AI 战略……那是一种非常昂贵的锁定。"</p>
+            <p>独立榜单给这个差距标上了数字。在 <a href="https://artificialanalysis.ai/" target="_blank">Artificial Analysis</a> 智能指数（v4.1，2026 年 7 月）上，最好的开放权重模型与闭源前沿只差几个点——而不是几个档次——价格却只是零头：</p>
+            <div class="fx-chart">
+               <svg viewBox="0 0 680 240" role="img" aria-label="每 Intelligence Index 任务成本——Fable 5 对 Kimi K3" style="width:100%;height:auto;">
+                  <text x="70" y="20" font-size="12.5" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">每 Intelligence Index 任务成本——Fable 5 对 Kimi K3</text>
+                  <text x="70" y="48" font-size="10.5" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">智能指数</text>
+                  <rect x="180" y="56" width="367.1" height="18" rx="4" fill="var(--fx-mute)" opacity="0.55"/>
+                  <text x="555.1" y="69" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">59.9 · Fable 5</text>
+                  <rect x="180" y="80" width="350.0" height="18" rx="4" fill="var(--fx-accent)"/>
+                  <text x="538.0" y="93" font-size="11" font-weight="700" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">57.1 · Kimi K3</text>
+                  <text x="70" y="132" font-size="10.5" font-weight="700" fill="var(--fx-mute)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">单任务成本</text>
+                  <rect x="180" y="140" width="348.3" height="18" rx="4" fill="var(--fx-mute)" opacity="0.55"/>
+                  <text x="536.3" y="153" font-size="11" font-weight="700" fill="var(--global-text-color, #1a1a1a)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$2.75 · Fable 5</text>
+                  <rect x="180" y="164" width="119.1" height="18" rx="4" fill="var(--fx-accent)"/>
+                  <text x="307.1" y="177" font-size="11" font-weight="700" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">$0.94 · Kimi K3</text>
+                  <text x="180" y="212" font-size="12" font-weight="700" fill="var(--fx-accent)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,sans-serif">95% 的智能 · 34% 的单任务成本</text>
+               </svg>
+               <div class="src">运行一个 Artificial Analysis 智能指数任务的成本，数据由 <a href="https://artificialanalysis.ai/" target="_blank">Artificial Analysis</a> 发布（2026 年 7 月）。Kimi K3：指数 57.1（189 个中排第 4），每百万 token $3/$15；Claude Fable 5：59.9，$10/$50。</div>
+            </div>
+            <!-- TODO(andy): 截图 Artificial Analysis 榜单页(artificialanalysis.ai),存至 /assets/blog/2026/openvsclosed/artificial-analysis.png 后取消注释:
+            <img src="/assets/blog/2026/openvsclosed/artificial-analysis.png" alt="Artificial Analysis 智能指数榜单,2026 年 7 月" class="img-fluid" style="max-width: 100%; height: auto; margin: 12px auto; display: block; border: 1px solid var(--fx-hair); border-radius: 12px;">
+            -->
+            <p>不管看标价还是看单任务成本，形状都一样：Kimi K3 以约三分之一的单任务成本，交付了 Fable 5 指数分的 95%。说白了：闭源模型的溢价，大部分买的是模型周边的平台，而不是更多的智能。</p>
+            <p>The New Stack 七月的基准测试把这笔交换讲得很直白——<a href="https://thenewstack.io/kimi-k3-fable-coding-benchmark/" target="_blank">Claude Fable 5 对比 Kimi K3：同等结果、三分之一的成本、慢 4 倍</a>。钱换延迟。Featherless 的案例则把自托管的经济账算得更清楚：一个满负荷团队每月消耗 1000 亿 token，用 GPT-5.5 年花费约 156 万美元——而用私有云跑开放权重的 GLM 5.2，固定年费 9 万美元，节省 94%。</p>
+            <p>而标价只是起点：拿到开放权重，优化的空间就归你所有。因为服务栈在你手里，你可以训练自己的投机器（speculator）做投机解码、在质量允许处做 FP8/INT4 量化、针对自己的硬件做内核调优——这些质量无损（或近乎无损）的优化，动辄带来数倍的吞吐提升。在闭源 API 上，这部分空间是厂商的利润；在开放权重上，它是你的成本曲线。这正是我在开放权重侧的日常工作——十倍的价差，就是在这里持续拉大的。</p>
+            <p>诚实的但书：在能力的最前沿、在延迟上（上述基准中 Kimi K3 慢 4 倍）、在开箱即用的企业功能上——身份集成、连接器、可观测性——闭源前沿模型仍然占优，而这些恰恰是企业实际付费购买的大头，正如 a16z 的支出数据所示。价格性能不是一个数字，而是一条曲线——如今在高吞吐、成本敏感的那一段，开放权重已经是主宰。</p>
+
+            <h2 id="ecosystem-zh">开放的智能（Open Intelligence）</h2>
+            <p>按行业文章的惯例，这篇本该以市场份额、竞争策略、谁输谁赢来收尾。但那个框架，装不下真正的利害。AI 是又一次工业革命，而摆在我们前面最难的问题——对齐（alignment）、可解释性、安全、人类与能力越来越强的 AI 系统如何共处——没有任何一家公司、任何一个国家能独自解决。这些是全人类的问题，而人类解决共同问题的方式，从来是开放的生态：任何研究者都能探测的开放权重，任何人都能复现的开放评测，以及孕育出 Transformer 本身的那种开放科学。</p>
+            <p>这也是七月这些事件超越新闻头条的意义。当五十家在其他所有战线上激烈竞争的公司，在七十二小时内签下同一封信，它们承认的是比商业利益更深的东西：通往可信 AI 的路，必经开放。可解释性研究跑在开放权重上；独立红队测试跑在开放权重上；安全测试所需要的全球协作——连 Amodei 都主张必须覆盖每个国家、每一家有能力的实验室——只有在科学保持足够开放、人人可以参与时才有可能。开源推动创新、研究和 AI 的民主化；更重要的是，在建造人类历史上影响最深远的技术时，开放是我们彼此保持诚实的方式。</p>
+            <div class="my-thought">
+               <span class="thought-label">我的思考</span>
+               封禁保护的是垄断，不是领先。开源与闭源模型是互补的——两种我都交付过，任何一方的路线图离开对方都走不通。但更深的道理超越商业：让 AI 与人类对齐，是一个只能靠所有人一起解决的问题，而开放的生态正是人类一起解决问题的方式。开源是生态，不是威胁。而如果人工智能终将属于每一个人，我们所走向的，就是<em>开放的智能（open intelligence）</em>。
+            </div>
+            <br>
+
+            </div><!-- /lang-zh -->
+
+
+            <br>
+            <hr>
+            <br>
+            <div id="subscribe-placeholder"></div>
+         </div>
+         <div>
+         </div>
+      </div>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script>
+      <!-- EN / 中文 toggle logic. Writes the SAME global preference
+           (localStorage 'preferredLanguage') that the homepage button and
+           components/navbar.html use, so switching here also updates the
+           navbar immediately, without a page reload. -->
+      <script>
+      (function(){
+        function showEl(el) {
+          var tag = el.tagName;
+          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
+        }
+        function applyHere(lang) {
+          var zh = lang === 'zh';
+          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
+          if (zh) {
+            document.querySelectorAll('.lang-zh').forEach(showEl);
+            document.querySelectorAll('.lang-en').forEach(function(el){
+              var parent = el.parentElement;
+              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              if (!hasZhSibling) { showEl(el); }
+            });
+          } else {
+            document.querySelectorAll('.lang-en').forEach(showEl);
+          }
+          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
+          if (be) be.classList.toggle('active', !zh);
+          if (bz) bz.classList.toggle('active', zh);
+        }
+        function setLang(lang) {
+          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+          applyHere(lang);
+          if (typeof window.applyGlobalLanguage === 'function') {
+            window.applyGlobalLanguage(lang);
+          }
+        }
+        window.__setPostLang = setLang;
+        var initial = 'en';
+        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
+        applyHere(initial);
+      })();
+      </script>
+      <!-- reading aids (progress bar + scrollspy outline) -->
+      <script>
+      (function(){
+        addEventListener('scroll', function(){
+          var d = document.documentElement;
+          var p = d.scrollTop / (d.scrollHeight - d.clientHeight) * 100;
+          var b = document.getElementById('fxbar'); if (b) b.style.width = p + '%';
+        }, {passive:true});
+        var obs = null;
+        function build(){
+          var nav = document.getElementById('fx-outline'); if (!nav) return;
+          var lang = 'en'; try { lang = localStorage.getItem('preferredLanguage') || 'en'; } catch(e){}
+          var root = document.querySelector(lang === 'zh' ? '.post div.lang-zh' : '.post div.lang-en');
+          if (!root) return;
+          if (obs) obs.disconnect();
+          nav.innerHTML = '<div class="olbl">' + (lang === 'zh' ? '本页目录' : 'On this page') + '</div>';
+          var map = {};
+          root.querySelectorAll('h2[id]').forEach(function(h){
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = (h.childNodes[0].textContent || h.textContent).trim();
+            nav.appendChild(a); map[h.id] = a;
+          });
+          obs = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+              if (e.isIntersecting){
+                nav.querySelectorAll('a').forEach(function(a){ a.classList.remove('on'); });
+                if (map[e.target.id]) map[e.target.id].classList.add('on');
+              }
+            });
+          }, {rootMargin: '-15% 0px -75% 0px'});
+          Object.keys(map).forEach(function(id){ obs.observe(document.getElementById(id)); });
+        }
+        build();
+        var orig = window.__setPostLang;
+        if (orig) window.__setPostLang = function(l){ orig(l); build(); };
+      })();
+      </script>
+   </body>
+</html>
