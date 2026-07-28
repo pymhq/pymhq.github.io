@@ -212,6 +212,30 @@
      .fx-card.next-card { border-style: dashed; }
      .fx-card-hero { max-width: 300px; margin: 24px auto 14px; }
 
+     /* ---------- silicon stacks: model layer over a horizontal GPU | ASIC line ---------- */
+     .fx-stacks { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px;
+       max-width: var(--fx-prose); margin: 26px auto 8px; font-family: var(--fx-sans); }
+     .fx-stack { border: 1px solid var(--fx-rule); border-radius: 12px; overflow: hidden; }
+     .fx-stack .s-title { padding: 7px 8px; font: 700 .66rem/1.6 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase;
+       color: var(--fx-mute); text-align: center; border-bottom: 1px solid var(--fx-hair); }
+     .fx-stack .s-model { padding: 12px 8px; font: 700 .82rem/1.4 var(--fx-sans); text-align: center; }
+     .fx-stack .s-model .sub { display: block; margin-top: 3px; font: 500 .66rem/1.5 var(--fx-sans); color: var(--fx-mute); }
+     .fx-stack.open-stack { border-color: var(--fx-accent); }
+     .fx-stack.open-stack .s-model { color: var(--fx-accent); background: var(--fx-soft); }
+     /* thin serving-runtime strip between the model and the silicon line */
+     .fx-stack .s-rt { padding: 5px 6px; text-align: center; font: 600 .64rem/1.45 var(--fx-sans);
+       border-top: 1px solid var(--fx-hair); color: var(--fx-mute); }
+     .fx-stack.open-stack .s-rt { color: var(--fx-accent); background: var(--fx-soft); border-top-color: var(--fx-accent); }
+     .fx-stack .s-on { padding: 3px 0; text-align: center; font: 700 .58rem/1.7 var(--fx-sans); letter-spacing: .12em;
+       text-transform: uppercase; color: var(--fx-mute); border-top: 1px dashed var(--fx-rule); border-bottom: 1px dashed var(--fx-rule); }
+     .fx-stack .s-split { display: flex; }
+     .fx-stack .s-half { flex: 1 1 50%; padding: 10px 6px; text-align: center; font: 600 .74rem/1.5 var(--fx-sans); }
+     .fx-stack .s-half + .s-half { border-left: 1px solid var(--fx-rule); }
+     .fx-stack .s-half .k { display: block; margin-bottom: 3px; font: 700 .56rem/1.6 var(--fx-sans); letter-spacing: .12em;
+       text-transform: uppercase; color: var(--fx-mute); }
+     .fx-stack .s-half .nv { color: var(--fx-accent); font-weight: 700; }
+     .fx-stacks-note { max-width: var(--fx-prose); margin: 0 auto 24px; font: 400 .78rem/1.6 var(--fx-sans); color: var(--fx-mute); }
+
      /* ---------- reading aids ---------- */
      #fxbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--fx-accent); z-index: 2001; }
      #fx-outline { display: none; position: fixed; top: 130px; left: max(18px, calc(50vw - 440px - 236px)); width: 204px;
@@ -231,7 +255,7 @@
          <div class="post">
             <header class="post-header">
                <h1 class="post-title"><span class="lang-en">Open vs Closed</span><span class="lang-zh">开源 vs 闭源</span></h1>
-               <p class="post-meta"><span class="lang-en"> Created in July, 2026<span class="post-readstats"> · 3,232 words · 16 min read</span> </span><span class="lang-zh"> 创建于 2026 年 7 月<span class="post-readstats"> · 约 7,919 字 · 23 分钟阅读</span> </span></p>
+               <p class="post-meta"><span class="lang-en"> Created in July, 2026<span class="post-readstats"> · 3,890 words · 19 min read</span> </span><span class="lang-zh"> 创建于 2026 年 7 月<span class="post-readstats"> · 约 9,400 字 · 27 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/archive/2026/"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a>   <a href="/blog/tag/open-weights"> <i class="fa-solid fa-hashtag fa-sm"></i> open weights</a>      ·   <a href="/blog/category/opensource"> <i class="fa-solid fa-tag fa-sm"></i> opensource</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -261,6 +285,7 @@
                <ol>
                   <li><a href="#the-week">The Week Open Weights Went to Washington</a></li>
                   <li><a href="#deja-vu">Déjà Vu: We Have Seen This Movie Before</a></li>
+                  <li><a href="#nvidia">NVIDIA Ecosystem</a></li>
                   <li><a href="#edge-contributor">A Participant and a Part-Time Contributor</a></li>
                   <li><a href="#market">The Open-Weight Model Market</a></li>
                   <li><a href="#china-tigers">China's Model Companies: The Tigers Go Public</a></li>
@@ -361,8 +386,8 @@
                "How do we change things up — how do we shake the snow globe in a way that may not be all about Google, but at least gives Google a fighting chance to be able to start grabbing some of these customers, and to start being that balance against the dominance that AWS had at the time." — Joe Beda. And <em>Eric Brewer</em>: "Google had to make a bold move in the cloud space to be the long-term winner."
             </div>
             <p>Open-sourcing Kubernetes was not charity. It was strategy — the challenger opens to commoditize the leader's advantage. And it worked, for a reason Brewer named precisely: "Kubernetes won in part because it had a vast army of contributors behind it… that rate of change kind of trumps everything else." I lived the other side of that story: as a founding engineer of <a href="https://aws.amazon.com/apprunner/" target="_blank">AWS App Runner</a> (incubated from Fargate), our product went head-to-head with Google Cloud Run. Cloud Run was built on Knative, which Google open-sourced; App Runner was proprietary service engineering all the way down. Competing against a product backed by an open community teaches you viscerally what "a vast army of contributors" means.</p>
-            <p>The pattern repeats across software history. Kafka is my favorite example: LinkedIn open-sourced it in 2011, Confluent commercialized it, and today Kafka is the de facto event-streaming standard — with Amazon MSK and Confluent Cloud competing to run the same open protocol. The open standard grew the market; the vendors compete on operations, performance, and trust. Nobody was destroyed by openness. Linux vs Windows, MySQL vs Oracle, Kubernetes vs proprietary orchestrators — same movie, different decade.</p>
-            <p>Look closer and there is a second recurring pattern: the winning commercial product very often stacks on top of an open-source primitive. Confluent is built on Kafka; AWS Lambda, Fargate and App Runner sit on Firecracker, which runs on containerd; Google Cloud Run is built on Knative, which runs on Kubernetes atop containerd; Databricks is built on Apache Spark. The open layer sets the standard and grows the market — the closed layer sells operations, reliability, and enterprise trust on top. There is no reason to believe AI will be different — artificial intelligence will be built the same way, stack 0 through stack n−1, with agents and Model-as-a-Service somewhere in between. What the lower stacks look like — open weights, closed models, or a mix — nobody knows.</p>
+            <p>The pattern repeats across software history. Apache Kafka is my favorite example: LinkedIn open-sourced it in 2011, Confluent commercialized it, and today Kafka is the de facto event-streaming standard — with Amazon MSK and Confluent Cloud competing to run the same open protocol. The open standard grew the market; the vendors compete on operations, performance, and trust. Nobody was destroyed by openness. Linux vs Windows, MySQL vs Oracle, Kubernetes vs proprietary orchestrators — same movie, different decade.</p>
+            <p>Look closer and there is a second recurring pattern: the winning commercial product very often stacks on top of an open-source primitive. Confluent is built on Apache Kafka; AWS Lambda, Fargate and App Runner sit on Firecracker, which runs on containerd; Google Cloud Run is built on Knative, which runs on Kubernetes atop containerd; Databricks is built on Apache Spark. The open layer sets the standard and grows the market — the closed layer sells operations, reliability, and enterprise trust on top. There is no reason to believe AI will be different — artificial intelligence will be built the same way, stack 0 through stack n−1, with agents and Model-as-a-Service somewhere in between. What the lower stacks look like — open weights, closed models, or a mix — nobody knows.</p>
             <div class="fx-card fx-card-hero next-card">
                <div class="closed-box">Artificial Intelligence (next)</div>
                <div class="wrap-tag">stacks on</div>
@@ -382,7 +407,7 @@
                <div class="fx-card">
                   <div class="closed-box">Confluent</div>
                   <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">Kafka</div>
+                  <div class="open-box">Apache Kafka</div>
                </div>
                <div class="fx-card">
                   <div class="closed-box">AWS Lambda · Fargate · App Runner</div>
@@ -407,6 +432,51 @@
                </div>
             </div>
             <p>So when NVIDIA — whose hardware profits from every token, open or closed — organizes an open-weights letter, and Microsoft, Meta and OpenAI sign, I do not read it as altruism. I read it as the Kubernetes playbook, replayed at the model layer: open the layer where you are not the monopolist, and compete on the layers where you are strong.</p>
+
+            <h2 id="nvidia">NVIDIA Ecosystem</h2>
+            <p>Of the twenty-five original signatories, NVIDIA is the one that needed the letter least. It sells the shovels; every token, open or closed, is billed to an accelerator somewhere. So why spend the political capital — why does Jensen Huang join X after years of staying off it, and make an open-weights letter his first post ever?</p>
+            <p>Because NVIDIA has never been only a chip vendor. It is one of the most effective ecosystem builders in the industry's history, and it has been running the same play for twenty years: give away everything above the silicon. CUDA has been free since 2006. cuDNN, NCCL, Megatron-LM, TensorRT, Triton Inference Server, NeMo, Dynamo — all released, all designed so that somebody else's software runs best on NVIDIA hardware. It publishes its own open-weight models (Nemotron) and upstreams kernels into vLLM and SGLang. None of that is philanthropy: every open layer above the chip is a demand funnel into the chip. The more of the AI stack that is open and CUDA-shaped, the more often the default answer to "what do we run this on" is NVIDIA.</p>
+            <p>Now look at where each part of the market actually sits on silicon. The same three layers — model, serving stack, silicon — with three different bottom lines:</p>
+            <div class="fx-stacks">
+               <div class="fx-stack">
+                  <div class="s-title">Closed · OpenAI</div>
+                  <div class="s-model">GPT / o-series<span class="sub">closed weights, API only</span></div>
+                  <div class="s-rt">in-house serving stack</div>
+                  <div class="s-on">runs on</div>
+                  <div class="s-split">
+                     <div class="s-half"><span class="k">GPU</span><span class="nv">NVIDIA</span> · AMD</div>
+                     <div class="s-half"><span class="k">ASIC</span>Broadcom<br>co-designed</div>
+                  </div>
+               </div>
+               <div class="fx-stack">
+                  <div class="s-title">Closed · Anthropic</div>
+                  <div class="s-model">Claude<span class="sub">closed weights, API only</span></div>
+                  <div class="s-rt">in-house serving stack</div>
+                  <div class="s-on">runs on</div>
+                  <div class="s-split">
+                     <div class="s-half"><span class="k">GPU</span><span class="nv">NVIDIA</span></div>
+                     <div class="s-half"><span class="k">ASIC</span>Google TPU ·<br>AWS Trainium</div>
+                  </div>
+               </div>
+               <div class="fx-stack open-stack">
+                  <div class="s-title">Open weights</div>
+                  <div class="s-model">Kimi K3 · DeepSeek · Qwen<span class="sub">Gemma · gpt-oss · Nemotron</span></div>
+                  <div class="s-rt">vLLM · SGLang · Dynamo</div>
+                  <div class="s-on">runs on</div>
+                  <div class="s-split">
+                     <div class="s-half"><span class="k">GPU</span><span class="nv">NVIDIA</span> · AMD</div>
+                     <div class="s-half"><span class="k">ASIC</span>TPU · Trainium<br>where hosted</div>
+                  </div>
+               </div>
+            </div>
+            <div class="fx-stacks-note">Same stack shape, different silicon line — and a different serving layer in the middle. The closed labs run their own inference stacks; open weights run on the community's, whose kernels target CUDA first.</div>
+            <p>The asymmetry is about the shape of demand, not about ideology. Concentrated demand can afford vertical integration: a lab spending tens of billions a year on compute is exactly the customer who can fund a custom accelerator program and negotiate a second GPU source. That is why the closed frontier is the fastest-diversifying part of the market — OpenAI has added AMD capacity and a Broadcom co-designed accelerator; Anthropic trains and serves across Google TPU and AWS Trainium alongside NVIDIA. In the closed world, NVIDIA's share of its largest customers' silicon has one direction to go.</p>
+            <p>Open weights invert that shape. The demand is fragmented across thousands of enterprises, neoclouds, startups, and universities, and essentially none of them can fund an ASIC program or staff a compiler team. They run whatever the community's serving stack runs best on — and the community's kernels are written for CUDA first. Every Kimi K3, DeepSeek or Qwen release lands as a fresh wave of deployments onto NVIDIA hardware, by default, with nobody negotiating. Open weights convert one negotiated mega-contract into ten thousand unnegotiated ones.</p>
+            <p>Read that way, NVIDIA's letter is precisely the move Google made in 2014: open the layer where you are not the monopolist, defend the layer where you are. Google gave away the orchestrator to sell the cloud; NVIDIA champions open weights to sell the accelerator. The ecosystem argument and the commercial argument point the same direction — which is exactly why it is credible, and why an ecosystem builder is the natural leader of this coalition rather than a model lab.</p>
+            <div class="my-thought">
+               <span class="thought-label">The honest caveat</span>
+               Portability cuts both ways. The same openness that made CUDA the default is what makes it replaceable — vLLM and SGLang abstract the hardware, ROCm has closed much of the gap, and open serving stacks keep landing TPU and Trainium backends. Open weights erode lock-in at every layer, including NVIDIA's own. That is the real bet an ecosystem builder makes: a bigger market is worth more than a tighter moat. NVIDIA has made that bet for twenty years and has yet to lose it.
+            </div>
             <h2 id="edge-contributor">A Participant and a Part-Time Contributor</h2>
             <p>I call myself a participant and a part-time contributor — never the protagonist, but close enough to the engine room to feel the heat. Since 2019 I have contributed to the Linux Foundation and CNCF communities — containerd, Envoy, OpenTelemetry — served as a <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank">CNCF Ambassador</a> (first named in 2022, reappointed in 2024 and 2026), and spent four-plus years on Program Committees for PyTorchCon, KubeCon + CloudNativeCon and the Open Source Summit. I wrote about that decade of community in <a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">CNCF Turns 10</a>.</p>
             <p>On the closed side: at AWS I built Bedrock's Anthropic inference engine from zero to one and shipped the production releases of Claude 3 Opus, 3.5 Sonnet, and 3.5 Haiku — a chapter I wrote about in <a href="https://pengandy.com/blog/2026/ant/" target="_blank">My Story with Anthropic</a>. Today I work on the open-weights model business: OpenAI's gpt-oss, Google DeepMind's Gemma, Alibaba's Qwen, and DeepSeek, plus inference optimization (speculative decoding) for open-weight models.</p>
@@ -563,6 +633,7 @@
                <ol>
                   <li><a href="#the-week-zh">开放权重走进华盛顿的一周</a></li>
                   <li><a href="#deja-vu-zh">既视感：这部电影我们看过</a></li>
+                  <li><a href="#nvidia-zh">NVIDIA 生态</a></li>
                   <li><a href="#edge-contributor-zh">参与者，也是兼职贡献者</a></li>
                   <li><a href="#market-zh">开源大模型的市场</a></li>
                   <li><a href="#china-tigers-zh">中国的模型公司：四小龙上市记</a></li>
@@ -663,8 +734,8 @@
                "我们要怎么改变局面——怎么摇动这个雪花球？也许结果未必全归 Google，但至少让 Google 有一搏之力，去争取这些客户，去制衡 AWS 当时的统治地位。"——Joe Beda。<em>Eric Brewer</em> 则说："Google 必须在云上走一步大胆的棋，才能成为长期赢家。"
             </div>
             <p>开源 Kubernetes 不是慈善，是战略——挑战者用开放来瓦解领先者的优势。而它成功的原因，Brewer 说得精准："Kubernetes 赢，部分是因为它背后有一支庞大的贡献者大军……那种变化速度，胜过其他一切。"这个故事的另一面，我亲身经历过：作为 <a href="https://aws.amazon.com/apprunner/" target="_blank">AWS App Runner</a>（由 Fargate 孵化）的创始工程师，我们的产品与 Google Cloud Run 正面交锋。Cloud Run 构建在 Google 开源的 Knative 之上；App Runner 则是彻头彻尾的专有服务工程。与一个有开放社区撑腰的产品竞争，会让你切身理解什么叫"庞大的贡献者大军"。</p>
-            <p>这个模式在软件史上反复重演。Kafka 是我最喜欢的例子：LinkedIn 在 2011 年将它开源，Confluent 将它商业化，今天 Kafka 已是事实上的事件流标准——Amazon MSK 与 Confluent Cloud 在竞争运行同一个开放协议。开放标准做大了市场，厂商在运维、性能与信任上竞争，没有谁被开放摧毁。Linux 对 Windows、MySQL 对 Oracle、Kubernetes 对各家专有编排器——同一部电影，换个年代重播。</p>
-            <p>再看深一层，还有第二个反复出现的模式：赢下市场的商业产品，往往叠在开源基础件（primitive）之上。Confluent 构建在 Kafka 之上；AWS Lambda、Fargate、App Runner 以 Firecracker 为底座，Firecracker 运行于 containerd；Google Cloud Run 构建在 Knative 之上，Knative 运行于 Kubernetes，Kubernetes 运行于 containerd；Databricks 构建在 Apache Spark 之上。开放层制定标准、做大市场——闭源层在其上出售运维、可靠性与企业信任。没有理由相信 AI 会例外——人工智能将以同样的方式从 Stack 0 到 Stack n−1 一层层建起来，Agent 与 Model-as-a-Service 位列其间。至于下面那些栈层长什么样——开放权重、闭源模型，还是混合——现在没人知道。</p>
+            <p>这个模式在软件史上反复重演。Apache Kafka 是我最喜欢的例子：LinkedIn 在 2011 年将它开源，Confluent 将它商业化，今天 Kafka 已是事实上的事件流标准——Amazon MSK 与 Confluent Cloud 在竞争运行同一个开放协议。开放标准做大了市场，厂商在运维、性能与信任上竞争，没有谁被开放摧毁。Linux 对 Windows、MySQL 对 Oracle、Kubernetes 对各家专有编排器——同一部电影，换个年代重播。</p>
+            <p>再看深一层，还有第二个反复出现的模式：赢下市场的商业产品，往往叠在开源基础件（primitive）之上。Confluent 构建在 Apache Kafka 之上；AWS Lambda、Fargate、App Runner 以 Firecracker 为底座，Firecracker 运行于 containerd；Google Cloud Run 构建在 Knative 之上，Knative 运行于 Kubernetes，Kubernetes 运行于 containerd；Databricks 构建在 Apache Spark 之上。开放层制定标准、做大市场——闭源层在其上出售运维、可靠性与企业信任。没有理由相信 AI 会例外——人工智能将以同样的方式从 Stack 0 到 Stack n−1 一层层建起来，Agent 与 Model-as-a-Service 位列其间。至于下面那些栈层长什么样——开放权重、闭源模型，还是混合——现在没人知道。</p>
             <div class="fx-card fx-card-hero next-card">
                <div class="closed-box">Artificial Intelligence（下一个）</div>
                <div class="wrap-tag">stacks on</div>
@@ -684,7 +755,7 @@
                <div class="fx-card">
                   <div class="closed-box">Confluent</div>
                   <div class="wrap-tag">stacks on</div>
-                  <div class="open-box">Kafka</div>
+                  <div class="open-box">Apache Kafka</div>
                </div>
                <div class="fx-card">
                   <div class="closed-box">AWS Lambda · Fargate · App Runner</div>
@@ -709,6 +780,51 @@
                </div>
             </div>
             <p>所以当 NVIDIA——无论 token 来自开源还是闭源模型，它的硬件都赚钱——牵头组织开放权重公开信，而 Microsoft、Meta、OpenAI 纷纷签署时，我读到的不是理想主义，而是 Kubernetes 剧本在模型层的重演：在你不是垄断者的那一层开放，在你强势的那几层竞争。</p>
+
+            <h2 id="nvidia-zh">NVIDIA 生态</h2>
+            <p>最初的 25 家联署方里，最"不需要"这封信的就是 NVIDIA。它卖铲子——无论开源还是闭源，每一个 token 最终都记在某块加速卡上。那为什么要花这份政治资本？为什么黄仁勋在多年不用 X 之后专门入驻，并把一封开放权重公开信作为人生第一条推文？</p>
+            <p>因为 NVIDIA 从来不只是一家芯片公司。它是这个行业历史上最成功的生态建设者之一，而且二十年来一直在打同一套牌：把硅片之上的东西全部送出去。CUDA 从 2006 年起就是免费的。cuDNN、NCCL、Megatron-LM、TensorRT、Triton Inference Server、NeMo、Dynamo——全部开放，全部为了让"别人的软件"在 NVIDIA 硬件上跑得最好。它自己发布开放权重模型（Nemotron），也把算子上游贡献进 vLLM 和 SGLang。这同样不是慈善：芯片之上每一个开放层，都是通往芯片的需求漏斗。AI 栈里开放、且长成 CUDA 形状的部分越多，"这东西跑在什么上面"这个问题的默认答案就越是 NVIDIA。</p>
+            <p>再看这个市场的各个部分实际坐在什么硅片上。同样的三层——模型、推理栈、硅片——却是三条不同的底线：</p>
+            <div class="fx-stacks">
+               <div class="fx-stack">
+                  <div class="s-title">闭源 · OpenAI</div>
+                  <div class="s-model">GPT / o 系列<span class="sub">闭源权重，仅 API</span></div>
+                  <div class="s-rt">自研推理栈</div>
+                  <div class="s-on">runs on</div>
+                  <div class="s-split">
+                     <div class="s-half"><span class="k">GPU</span><span class="nv">NVIDIA</span> · AMD</div>
+                     <div class="s-half"><span class="k">ASIC</span>Broadcom<br>联合定制</div>
+                  </div>
+               </div>
+               <div class="fx-stack">
+                  <div class="s-title">闭源 · Anthropic</div>
+                  <div class="s-model">Claude<span class="sub">闭源权重，仅 API</span></div>
+                  <div class="s-rt">自研推理栈</div>
+                  <div class="s-on">runs on</div>
+                  <div class="s-split">
+                     <div class="s-half"><span class="k">GPU</span><span class="nv">NVIDIA</span></div>
+                     <div class="s-half"><span class="k">ASIC</span>Google TPU ·<br>AWS Trainium</div>
+                  </div>
+               </div>
+               <div class="fx-stack open-stack">
+                  <div class="s-title">开放权重</div>
+                  <div class="s-model">Kimi K3 · DeepSeek · Qwen<span class="sub">Gemma · gpt-oss · Nemotron</span></div>
+                  <div class="s-rt">vLLM · SGLang · Dynamo</div>
+                  <div class="s-on">runs on</div>
+                  <div class="s-split">
+                     <div class="s-half"><span class="k">GPU</span><span class="nv">NVIDIA</span> · AMD</div>
+                     <div class="s-half"><span class="k">ASIC</span>TPU · Trainium<br>取决于托管方</div>
+                  </div>
+               </div>
+            </div>
+            <div class="fx-stacks-note">同样的栈型，不同的硅片底线——中间那层推理栈也不同。闭源大厂跑自己的推理栈；开放权重跑社区的推理栈，而社区的算子首先面向 CUDA。</div>
+            <p>这种不对称关乎需求的形状，而非意识形态。集中的需求能负担垂直整合：一家每年在算力上花掉几百亿美元的实验室，恰恰是那种能养得起自研加速器项目、也能谈下第二家 GPU 供应商的客户。这就是为什么闭源前沿反而是这个市场里去 NVIDIA 化最快的一部分——OpenAI 增加了 AMD 产能，并与 Broadcom 联合定制加速器；Anthropic 在 NVIDIA 之外，也在 Google TPU 与 AWS Trainium 上训练和推理。在闭源世界里，NVIDIA 在其最大客户硅片份额中的占比，只有一个方向可走。</p>
+            <p>开放权重把这个形状彻底反转。需求碎裂在成千上万家企业、neocloud、创业公司和高校手里，其中几乎没有谁养得起一个 ASIC 项目，或组得起一支编译器团队。它们只会跑在"社区的推理栈跑得最好的地方"——而社区的算子，首先是为 CUDA 写的。每一次 Kimi K3、DeepSeek 或 Qwen 的发布，都会变成一波新的部署落到 NVIDIA 硬件上——默认发生，没有人来议价。开放权重把一份需要谈判的超级大单，换成了一万份不用谈判的小单。</p>
+            <p>这样读，NVIDIA 这封信就是 Google 2014 年那一步的翻版：在你不是垄断者的那一层开放，守住你是垄断者的那一层。Google 送出编排器去卖云；NVIDIA 力挺开放权重去卖加速卡。生态叙事和商业算盘指向同一个方向——这恰恰是它可信的原因，也是为什么这个联盟的天然领头者是一个生态建设者，而不是某家模型实验室。</p>
+            <div class="my-thought">
+               <span class="thought-label">诚实的但书</span>
+               可移植性是双向的。让 CUDA 成为默认的那种开放性，同时也让它变得可替换——vLLM 和 SGLang 已经把硬件抽象掉，ROCm 追上了大半差距，开放推理栈也在不断补齐 TPU 与 Trainium 后端。开放权重削弱每一层的锁定，包括 NVIDIA 自己那一层。这才是生态建设者真正下的那个注：一个更大的市场，比一条更深的护城河更值钱。这个注 NVIDIA 下了二十年，至今没输过。
+            </div>
             <h2 id="edge-contributor-zh">参与者，也是兼职贡献者</h2>
             <p>我称自己是参与者和兼职贡献者——从来不是主角，但离机舱足够近，能感受到热度。从 2019 年起，我持续在 Linux 基金会和 CNCF 社区贡献——containerd、Envoy、OpenTelemetry——担任 <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank">CNCF Ambassador</a>（2022 年首任，2024 年与 2026 年两度连任），并连续四年担任 PyTorchCon、KubeCon + CloudNativeCon 与 Open Source Summit 的程序委员会成员。关于这十年社区的故事，我写在<a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">《CNCF 十岁了》</a>。</p>
             <p>闭源这一侧：在 AWS，我从零到一构建了 Bedrock 的 Anthropic 推理引擎，并交付了 Claude 3 Opus、3.5 Sonnet、3.5 Haiku 的生产发布——这段经历我写在<a href="https://pengandy.com/blog/2026/ant/" target="_blank">《My Story with Anthropic》</a>。如今我负责开放权重模型业务：OpenAI 的 gpt-oss、Google DeepMind 的 Gemma、阿里 Qwen、DeepSeek，以及面向开放权重模型的推理优化（投机解码）。</p>
