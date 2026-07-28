@@ -171,13 +171,18 @@
 
      /* ---------- workflow pipelines: numbered steps, snake layout, loop rail ---------- */
      .fx-pipe { max-width: var(--fx-prose); margin: 26px auto 6px; font-family: var(--fx-sans); }
-     .fx-pipe .pipe-row { display: grid; grid-template-columns: 1fr 26px 1fr 26px 1fr; align-items: stretch; }
+     .fx-pipe .pipe-row { display: grid; grid-template-columns: 1fr 26px 1fr 26px 1fr; align-items: center; }
+     .fx-pipe .pipe-row.single { grid-template-columns: 1fr; }
      .fx-pipe .pipe-step { border: 1px solid var(--fx-rule); border-radius: 12px; padding: 9px 11px 10px; }
      .fx-pipe .pipe-step .n { display: block; font: 700 .6rem/1.5 var(--fx-mono); letter-spacing: .1em; color: var(--fx-accent); }
      .fx-pipe .pipe-step .t { display: block; margin: 1px 0 3px; font: 700 .79rem/1.35 var(--fx-sans); }
      .fx-pipe .pipe-step .d { display: block; font: 500 .69rem/1.5 var(--fx-sans); color: var(--fx-mute); }
      .fx-pipe .pipe-step.hi { border-color: var(--fx-accent); background: var(--fx-soft); }
      .fx-pipe .pipe-step.hi .t { color: var(--fx-accent); }
+     /* parallel options: a braced column of independent choices, not a sequence */
+     .fx-pipe .pipe-par { display: flex; flex-direction: column; gap: 7px; padding-left: 9px; border-left: 2px solid var(--fx-accent); }
+     .fx-pipe .pipe-par .par-lbl { font: 700 .57rem/1.5 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--fx-accent); }
+     .fx-pipe .pipe-par .pipe-step { padding: 7px 9px 8px; }
      .fx-pipe .pipe-arrow { display: flex; align-items: center; justify-content: center; font: 700 .95rem/1 var(--fx-sans); color: var(--fx-mute); }
      .fx-pipe .pipe-mid { display: grid; grid-template-columns: auto 1fr auto 1fr auto; align-items: center; gap: 9px; margin: 9px 0; }
      .fx-pipe .pipe-mid .rail { border-top: 1px dashed var(--fx-rule); }
@@ -612,9 +617,13 @@
                <div class="pipe-row">
                   <div class="pipe-step hi"><span class="n">01</span><span class="t">Open weights</span><span class="d">Gemma · Qwen · gpt-oss · R1 · Kimi K3</span></div>
                   <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">02</span><span class="t">SFT</span><span class="d">domain data, distillation</span></div>
+                  <div class="pipe-par">
+                     <div class="par-lbl">02 · parallel options</div>
+                     <div class="pipe-step"><span class="t">SFT</span><span class="d">domain data, distillation</span></div>
+                     <div class="pipe-step"><span class="t">RL post-training</span><span class="d">RLHF from humans · RLVR from verifiers</span></div>
+                  </div>
                   <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">03</span><span class="t">RL post-training</span><span class="d">RLHF from humans · RLVR from verifiers</span></div>
+                  <div class="pipe-step"><span class="n">03</span><span class="t">Eval &amp; benchmark</span><span class="d">task suites, guardrails, regression gates</span></div>
                </div>
                <div class="pipe-mid">
                   <span class="tick">▲</span>
@@ -623,15 +632,11 @@
                   <span class="rail"></span>
                   <span class="tick">▼</span>
                </div>
-               <div class="pipe-row">
-                  <div class="pipe-step hi"><span class="n">06</span><span class="t">New checkpoint</span><span class="d">yours — private or re-shared</span></div>
-                  <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">05</span><span class="t">Data flywheel</span><span class="d">model generates and grades its own data</span></div>
-                  <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">04</span><span class="t">Eval &amp; benchmark</span><span class="d">task suites, guardrails, regression gates</span></div>
+               <div class="pipe-row single">
+                  <div class="pipe-step hi"><span class="n">04</span><span class="t">New checkpoint — yours, private or re-shared</span><span class="d">and the data flywheel turns its own generations, graded against the verifiers, into the next round's dataset</span></div>
                </div>
             </div>
-            <div class="fx-dgm-note">The customization loop. Every arrow needs the tensors; a closed API lets you touch none of them.</div>
+            <div class="fx-dgm-note">The customization loop. SFT and RL are options, not stages — run either, or both, in any order. Every arrow needs the tensors; a closed API lets you touch none of them.</div>
             <p>Supervised fine-tuning teaches the model your domain; reinforcement learning — RLHF with human preferences, or RLVR with verifiable rewards for code and math — aligns it with your objective; and the newest turn is recursive self-improvement (RSI)-style loops, where the model generates its own training data, grades it against verifiers, and feeds the survivors back into training. Every arrow in that diagram requires access to weights. A closed API gives you, at best, the vendor's hosted fine-tuning of the vendor's model on the vendor's terms. This — not ideology — is the structural market demand behind open weights: the customization loop is where enterprise differentiation now lives, and the loop does not close without the weights.</p>
 
             <h2 id="trust-safety">Trust &amp; Safety, Evaluation, Interpretability</h2>
@@ -669,9 +674,14 @@
                <div class="pipe-row">
                   <div class="pipe-step hi"><span class="n">01</span><span class="t">Your dataset</span><span class="d">the same post-training / fine-tuning corpus, plus production traffic traces</span></div>
                   <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">02</span><span class="t">Train a speculator</span><span class="d">draft heads — dFlash, EAGLE-3 — fitted to your traffic distribution</span></div>
+                  <div class="pipe-par">
+                     <div class="par-lbl">02 · parallel options</div>
+                     <div class="pipe-step"><span class="t">Train a speculator</span><span class="d">draft heads — dFlash, EAGLE-3 — fitted to your traffic</span></div>
+                     <div class="pipe-step"><span class="t">Quantize</span><span class="d">FP8 / INT4 weights, KV-cache compression</span></div>
+                     <div class="pipe-step"><span class="t">Kernel &amp; serving tuning</span><span class="d">attention/GEMM kernels, CUDA graphs, continuous batching, prefill–decode split</span></div>
+                  </div>
                   <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">03</span><span class="t">Quantize</span><span class="d">FP8 / INT4 weights, KV-cache compression</span></div>
+                  <div class="pipe-step"><span class="n">03</span><span class="t">Benchmark &amp; quality gate</span><span class="d">OTPS, TTFT, p99 on production traffic shapes; accept only at eval parity — accuracy regressions roll back</span></div>
                </div>
                <div class="pipe-mid">
                   <span class="tick">▲</span>
@@ -680,16 +690,12 @@
                   <span class="rail"></span>
                   <span class="tick">▼</span>
                </div>
-               <div class="pipe-row">
-                  <div class="pipe-step hi"><span class="n">06</span><span class="t">Ship &amp; re-measure</span><span class="d">new traces feed the next round</span></div>
-                  <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">05</span><span class="t">Benchmark &amp; quality gate</span><span class="d">OTPS, TTFT, p99 on production traffic shapes; accept only at eval parity — accuracy regressions roll back</span></div>
-                  <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">04</span><span class="t">Kernel &amp; serving tuning</span><span class="d">attention/GEMM kernels, CUDA graphs, continuous batching, prefill–decode split</span></div>
+               <div class="pipe-row single">
+                  <div class="pipe-step hi"><span class="n">04</span><span class="t">Ship &amp; re-measure</span><span class="d">new production traces become the next round's dataset</span></div>
                </div>
                <div class="pipe-out"><span class="lbl">Outputs</span><span class="up">↑</span> OTPS (output tokens/sec) · <span class="up">↓</span> TTFT · <span class="up">↓</span> $ per million tokens — at unchanged eval scores</div>
             </div>
-            <div class="fx-dgm-note">The optimization loop: the same dataset that specializes a model is what tunes its economics. Steps 02–04 compound, and every point of accepted speculation or saved memory bandwidth lands directly on your cost curve rather than the vendor's margin.</div>
+            <div class="fx-dgm-note">The optimization loop: the same dataset that specializes a model is what tunes its economics. The three techniques are independent — adopt one or all three, and their gains compound. Every point of accepted speculation or saved memory bandwidth lands directly on your cost curve rather than the vendor's margin.</div>
             <p>The honest caveats: closed frontier models still win on raw capability at the edge, on latency (Kimi K3 was 4x slower in that benchmark), and on turnkey enterprise features — identity integration, connectors, observability — which is much of what enterprises are actually paying for, as the a16z spend data shows. Price performance is not one number; it is a curve, and open weights now dominate the high-volume, cost-sensitive stretch of it.</p>
 
             <h2 id="openintelligence">Open Intelligence</h2>
@@ -1009,9 +1015,13 @@
                <div class="pipe-row">
                   <div class="pipe-step hi"><span class="n">01</span><span class="t">开放权重</span><span class="d">Gemma · Qwen · gpt-oss · R1 · Kimi K3</span></div>
                   <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">02</span><span class="t">SFT 监督微调</span><span class="d">领域数据、蒸馏</span></div>
+                  <div class="pipe-par">
+                     <div class="par-lbl">02 · 并行选项</div>
+                     <div class="pipe-step"><span class="t">SFT 监督微调</span><span class="d">领域数据、蒸馏</span></div>
+                     <div class="pipe-step"><span class="t">RL 后训练</span><span class="d">RLHF 人类偏好 · RLVR 可验证奖励</span></div>
+                  </div>
                   <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">03</span><span class="t">RL 后训练</span><span class="d">RLHF 人类偏好 · RLVR 可验证奖励</span></div>
+                  <div class="pipe-step"><span class="n">03</span><span class="t">评测与基准</span><span class="d">任务套件、护栏、回归门禁</span></div>
                </div>
                <div class="pipe-mid">
                   <span class="tick">▲</span>
@@ -1020,15 +1030,11 @@
                   <span class="rail"></span>
                   <span class="tick">▼</span>
                </div>
-               <div class="pipe-row">
-                  <div class="pipe-step hi"><span class="n">06</span><span class="t">新检查点</span><span class="d">属于你——私有或再开源</span></div>
-                  <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">05</span><span class="t">数据飞轮</span><span class="d">模型自产数据并自我评分</span></div>
-                  <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">04</span><span class="t">评测与基准</span><span class="d">任务套件、护栏、回归门禁</span></div>
+               <div class="pipe-row single">
+                  <div class="pipe-step hi"><span class="n">04</span><span class="t">新检查点——属于你，私有或再开源</span><span class="d">数据飞轮则把它自己生成、并由验证器打过分的数据，变成下一轮的训练集</span></div>
                </div>
             </div>
-            <div class="fx-dgm-note">定制闭环。每一个箭头都需要触达张量；闭源 API 一个都不给你碰。</div>
+            <div class="fx-dgm-note">定制闭环。SFT 与 RL 是选项，不是先后阶段——可以只做一个，也可以都做、按任意顺序。每一个箭头都需要触达张量；闭源 API 一个都不给你碰。</div>
             <p>监督微调让模型学会你的领域；强化学习——用人类偏好的 RLHF，或用可验证奖励做代码与数学的 RLVR——让它对齐你的目标；而最新的一环是类 RSI（递归自我改进）的循环：模型自己生成训练数据、用验证器打分、把胜出的数据回灌训练。图里的每一个箭头都需要触达权重。闭源 API 最多给你的，是厂商在厂商的模型上、按厂商的条款提供的托管微调。这——而非意识形态——才是开放权重背后结构性的市场需求：企业的差异化如今就活在这个定制闭环里，而没有权重，闭环无法闭合。</p>
 
             <h2 id="trust-safety-zh">信任与安全、评测、可解释性</h2>
@@ -1065,9 +1071,14 @@
                <div class="pipe-row">
                   <div class="pipe-step hi"><span class="n">01</span><span class="t">你的数据集</span><span class="d">与后训练/微调同一份语料，加上线上流量轨迹</span></div>
                   <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">02</span><span class="t">训练投机器</span><span class="d">draft head——dFlash、EAGLE-3——拟合你的流量分布</span></div>
+                  <div class="pipe-par">
+                     <div class="par-lbl">02 · 并行选项</div>
+                     <div class="pipe-step"><span class="t">训练投机器</span><span class="d">draft head——dFlash、EAGLE-3——拟合你的流量</span></div>
+                     <div class="pipe-step"><span class="t">量化</span><span class="d">FP8 / INT4 权重、KV cache 压缩</span></div>
+                     <div class="pipe-step"><span class="t">内核与服务调优</span><span class="d">attention/GEMM 内核、CUDA Graph、连续批处理、prefill–decode 分离</span></div>
+                  </div>
                   <div class="pipe-arrow">→</div>
-                  <div class="pipe-step"><span class="n">03</span><span class="t">量化</span><span class="d">FP8 / INT4 权重、KV cache 压缩</span></div>
+                  <div class="pipe-step"><span class="n">03</span><span class="t">基准测试与质量门禁</span><span class="d">按真实流量形态压测 OTPS、TTFT、p99；只接受评测持平的版本，精度回退即回滚</span></div>
                </div>
                <div class="pipe-mid">
                   <span class="tick">▲</span>
@@ -1076,16 +1087,12 @@
                   <span class="rail"></span>
                   <span class="tick">▼</span>
                </div>
-               <div class="pipe-row">
-                  <div class="pipe-step hi"><span class="n">06</span><span class="t">上线并复测</span><span class="d">新的流量轨迹喂给下一轮</span></div>
-                  <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">05</span><span class="t">基准测试与质量门禁</span><span class="d">按真实流量形态压测 OTPS、TTFT、p99；只接受评测持平的版本，精度回退即回滚</span></div>
-                  <div class="pipe-arrow">←</div>
-                  <div class="pipe-step"><span class="n">04</span><span class="t">内核与服务调优</span><span class="d">attention/GEMM 内核、CUDA Graph、连续批处理、prefill–decode 分离</span></div>
+               <div class="pipe-row single">
+                  <div class="pipe-step hi"><span class="n">04</span><span class="t">上线并复测</span><span class="d">新的线上流量轨迹又成为下一轮的数据集</span></div>
                </div>
                <div class="pipe-out"><span class="lbl">产出</span><span class="up">↑</span> OTPS（每秒输出 token）· <span class="up">↓</span> TTFT · <span class="up">↓</span> 每百万 token 成本——而评测分数不变</div>
             </div>
-            <div class="fx-dgm-note">优化闭环：让模型特化的那份数据集，同时也是调它经济性的那份数据集。02–04 的收益会叠乘，而每一分被接受的投机长度、每一点省下的显存带宽，都直接落在你的成本曲线上，而不是厂商的利润里。</div>
+            <div class="fx-dgm-note">优化闭环：让模型特化的那份数据集，同时也是调它经济性的那份数据集。这三项技术彼此独立——只做一项或三项全做都行，收益还会叠乘。每一分被接受的投机长度、每一点省下的显存带宽，都直接落在你的成本曲线上，而不是厂商的利润里。</div>
             <p>诚实的但书：在能力的最前沿、在延迟上（上述基准中 Kimi K3 慢 4 倍）、在开箱即用的企业功能上——身份集成、连接器、可观测性——闭源前沿模型仍然占优，而这些恰恰是企业实际付费购买的大头，正如 a16z 的支出数据所示。价格性能不是一个数字，而是一条曲线——如今在高吞吐、成本敏感的那一段，开放权重已经是主宰。</p>
 
             <h2 id="openintelligence-zh">开放的智能（Open Intelligence）</h2>
