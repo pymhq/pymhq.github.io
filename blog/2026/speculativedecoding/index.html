@@ -998,7 +998,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                </div>
 
                <p>
-                  Every system above ships a <em>trained drafter</em> — an EAGLE head, an MTP head, a DFlash block. But who trains them, and on what infrastructure? The quieter half of the 2026 story is the rise of dedicated <strong>open-source training libraries</strong> that turn drafting from a research artifact into a repeatable pipeline. They all wrestle with the same core obstacle — funneling the target model's hidden states into the draft model cheaply, at scale — and each attacks it from a different angle. <strong>DeepSpec</strong>, the repo behind DSpark above, is the newest entry in a line that runs back through 2025:
+                  Every system above ships a <em>trained drafter</em> — an EAGLE head, an MTP head, a DFlash block. But who trains them, and on what infrastructure? The quieter half of the 2026 story is the rise of dedicated <strong>open-source training libraries</strong> that turn drafting from a research artifact into a repeatable pipeline. They all wrestle with the same core obstacle — funneling the target model's hidden states into the draft model cheaply, at scale — and each attacks it from a different angle. <strong>DeepSpec</strong>, the repo behind DSpark above, and Tencent's brand-new <strong>AngelSpec</strong> are the latest entries in a line that runs back through 2025:
                </p>
 
                <div class="sd-rail">
@@ -1017,6 +1017,10 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <div class="sd-stop">
                      <div class="when">Jun 2026 &mdash; DeepSpec (DeepSeek)</div>
                      <p class="what">The repo DeepSeek open-sourced alongside <strong>DSpark</strong> — shipping not just the DSpark recipe but DeepSeek's own <strong>DFlash</strong> and <strong>EAGLE-3</strong> drafter training, closing the loop from the algorithm research above to a runnable production stack.</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">Jul 2026 &mdash; AngelSpec (Tencent Hunyuan)</div>
+                     <p class="what">An <strong>end-to-end</strong> framework covering both training <em>and</em> deployment — torch-native training for <strong>MTP</strong> and block-parallel drafters, released with <strong>DFly</strong> drafter weights for Hy3-A21B. 1.98&ndash;2.40&times; end-to-end speedup at concurrency 4&ndash;64, and 10.5&ndash;11.8% higher throughput than DFlash. <a href="https://x.com/TencentHunyuan/status/2082447023626944936?s=20" target="_blank" rel="noopener">Announced on X</a>.</p>
                   </div>
                </div>
                <p class="sd-rail-cap">A year of training-library releases — the tooling that turns speculative decoding from a paper into a pipeline.</p>
@@ -1061,8 +1065,16 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <div class="plinks"><a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">GitHub: deepseek-ai/DeepSpec</a> &middot; <a href="https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf" target="_blank" rel="noopener">DSpark paper (PDF)</a></div>
                </div>
 
+               <div class="paper">
+                  <div class="ptitle">AngelSpec: A Unified, Torch-Native Training Framework for MTP and Block-Parallel Drafters <span class="badge badge-train">TRAINING</span> <span class="badge badge-serve">SERVING</span></div>
+                  <div class="pauthors">Tencent Hunyuan &mdash; <em>Tencent</em></div>
+                  <p class="psum">An <strong>end-to-end</strong> speculative decoding framework that covers both <em>training</em> and <em>deployment</em> in one stack — the first entry in this list to treat the two as a single pipeline rather than a handoff. Torch-native training for <strong>MTP</strong> and block-parallel drafters, shipped together with <strong>MTP and DFly drafter weights for Hy3-A21B</strong>, so the reported numbers are reproducible on day one. On Hy3-A21B, DFly delivers <strong>1.98&ndash;2.40&times;</strong> end-to-end speedup over autoregressive decoding across concurrency levels from 4 to 64, with <strong>10.5&ndash;11.8% higher throughput than DFlash</strong> — a direct, like-for-like comparison against DeepSeek's block-diffusion drafter discussed earlier in this post.</p>
+                  <div class="metric">1.98&ndash;2.40&times; end-to-end @ concurrency 4&ndash;64; +10.5&ndash;11.8% vs DFlash</div>
+                  <div class="plinks"><a href="https://x.com/TencentHunyuan/status/2082447023626944936?s=20" target="_blank" rel="noopener">Announcement on X</a> &middot; <a href="https://github.com/Tencent/AngelSpec" target="_blank" rel="noopener">GitHub: Tencent/AngelSpec</a> &middot; <a href="https://arxiv.org/abs/2607.25852" target="_blank" rel="noopener">Paper (arXiv:2607.25852)</a> &middot; <a href="https://angelspec.readthedocs.io" target="_blank" rel="noopener">Docs</a> &middot; <a href="https://huggingface.co/collections/AngelSlim/angelspec" target="_blank" rel="noopener">Hugging Face collection</a> &middot; <a href="https://modelscope.cn/collections/AngelSlim/AngelSpec" target="_blank" rel="noopener">ModelScope collection</a></div>
+               </div>
+
                <p>
-                  Two months, two labs, three releases, one converging idea &mdash; and beneath them, five open-source training stacks (from SGLang, vLLM/Red Hat, AWS, PyTorch&times;Mooncake, and DeepSeek) turning those drafters into a reproducible pipeline. If 2024&ndash;2025 was about <em>training</em> bigger and cheaper models, 2026 is shaping up to be the year speculative decoding became the standard way to <em>serve</em> them — on a phone, in a datacenter, and everywhere in between.
+                  Two months, two labs, three releases, one converging idea &mdash; and beneath them, six open-source training stacks (from SGLang, vLLM/Red Hat, AWS, PyTorch&times;Mooncake, DeepSeek, and Tencent Hunyuan) turning those drafters into a reproducible pipeline. If 2024&ndash;2025 was about <em>training</em> bigger and cheaper models, 2026 is shaping up to be the year speculative decoding became the standard way to <em>serve</em> them — on a phone, in a datacenter, and everywhere in between.
                </p>
 
                </div><!-- /lang-en -->
@@ -1778,7 +1790,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                </div>
 
                <p>
-                  上面每个系统都附带一个<em>训练好的草稿器</em> —— 一个 EAGLE 头、一个 MTP 头、或一个 DFlash 块。但谁来训练它们、用什么基础设施训练？2026 年故事里更安静的那一半，是一批专门的<strong>开源训练库</strong>的兴起 —— 它们把起草从研究产物变成可复用的流水线。它们都在与同一个核心障碍较劲：如何把目标模型的隐藏状态低成本、大规模地灌入草稿模型 —— 而每一个都从不同角度攻克它。上文 DSpark 背后的 <strong>DeepSpec</strong>，正是这条可上溯至 2025 年的脉络中最新的一员：
+                  上面每个系统都附带一个<em>训练好的草稿器</em> —— 一个 EAGLE 头、一个 MTP 头、或一个 DFlash 块。但谁来训练它们、用什么基础设施训练？2026 年故事里更安静的那一半，是一批专门的<strong>开源训练库</strong>的兴起 —— 它们把起草从研究产物变成可复用的流水线。它们都在与同一个核心障碍较劲：如何把目标模型的隐藏状态低成本、大规模地灌入草稿模型 —— 而每一个都从不同角度攻克它。上文 DSpark 背后的 <strong>DeepSpec</strong>，以及腾讯刚刚开源的 <strong>AngelSpec</strong>，正是这条可上溯至 2025 年的脉络中最新的成员：
                </p>
 
                <div class="sd-rail">
@@ -1797,6 +1809,10 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <div class="sd-stop">
                      <div class="when">2026 年 6 月 —— DeepSpec（DeepSeek）</div>
                      <p class="what">DeepSeek 随 <strong>DSpark</strong> 一起开源的仓库 —— 不仅给出 DSpark 配方，还附带 DeepSeek 自训的 <strong>DFlash</strong> 与 <strong>EAGLE-3</strong> 草稿器训练，把上文的算法研究与可运行的生产栈闭环起来。</p>
+                  </div>
+                  <div class="sd-stop">
+                     <div class="when">2026 年 7 月 —— AngelSpec（腾讯混元）</div>
+                     <p class="what">一个<strong>端到端</strong>框架，同时覆盖训练<em>与</em>部署 —— torch 原生地训练 <strong>MTP</strong> 与块并行草稿器，并随发布提供 Hy3-A21B 的 <strong>DFly</strong> 草稿器权重。在并发 4&ndash;64 区间取得 1.98&ndash;2.40&times; 的端到端加速，吞吐比 DFlash 高 10.5&ndash;11.8%。<a href="https://x.com/TencentHunyuan/status/2082447023626944936?s=20" target="_blank" rel="noopener">X 上的发布公告</a>。</p>
                   </div>
                </div>
                <p class="sd-rail-cap">一年的训练库发布 —— 让投机解码从一篇论文变成一条流水线的工具。</p>
@@ -1841,8 +1857,16 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <div class="plinks"><a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">GitHub: deepseek-ai/DeepSpec</a> &middot; <a href="https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf" target="_blank" rel="noopener">DSpark 论文（PDF）</a></div>
                </div>
 
+               <div class="paper">
+                  <div class="ptitle">AngelSpec: A Unified, Torch-Native Training Framework for MTP and Block-Parallel Drafters <span class="badge badge-train">TRAINING</span> <span class="badge badge-serve">SERVING</span></div>
+                  <div class="pauthors">腾讯混元 &mdash; <em>Tencent</em></div>
+                  <p class="psum">一个<strong>端到端</strong>的投机解码框架，在同一套栈里同时覆盖<em>训练</em>与<em>部署</em> —— 是本列表中第一个把两者当作一条完整流水线、而非交接棒的项目。它以 torch 原生方式训练 <strong>MTP</strong> 与块并行草稿器，并同时开源了 <strong>Hy3-A21B 的 MTP 与 DFly 草稿器权重</strong>，让公布的数字从第一天起就可复现。在 Hy3-A21B 上，DFly 相对自回归解码在并发 4 到 64 的区间内取得 <strong>1.98&ndash;2.40&times;</strong> 的端到端加速，吞吐比 <strong>DFlash 高 10.5&ndash;11.8%</strong> —— 这是与本文前面讨论的 DeepSeek 块扩散草稿器的一次同条件正面对比。</p>
+                  <div class="metric">并发 4&ndash;64 下端到端 1.98&ndash;2.40&times;；相对 DFlash +10.5&ndash;11.8%</div>
+                  <div class="plinks"><a href="https://x.com/TencentHunyuan/status/2082447023626944936?s=20" target="_blank" rel="noopener">X 上的发布公告</a> &middot; <a href="https://github.com/Tencent/AngelSpec" target="_blank" rel="noopener">GitHub: Tencent/AngelSpec</a> &middot; <a href="https://arxiv.org/abs/2607.25852" target="_blank" rel="noopener">论文（arXiv:2607.25852）</a> &middot; <a href="https://angelspec.readthedocs.io" target="_blank" rel="noopener">文档</a> &middot; <a href="https://huggingface.co/collections/AngelSlim/angelspec" target="_blank" rel="noopener">Hugging Face 合集</a> &middot; <a href="https://modelscope.cn/collections/AngelSlim/AngelSpec" target="_blank" rel="noopener">ModelScope 合集</a></div>
+               </div>
+
                <p>
-                  两个月，两家实验室，三次发布，一个收敛的思想 —— 而在它们之下，还有五套开源训练栈（来自 SGLang、vLLM/Red Hat、AWS、PyTorch&times;Mooncake 与 DeepSeek），把这些草稿器变成可复现的流水线。如果说 2024&ndash;2025 是关于<em>训练</em>更大更便宜的模型，那么 2026 正在成为投机解码成为<em>服务</em>它们之标准方式的一年 —— 在手机上、在数据中心里、以及介于两者之间的一切地方。
+                  两个月，两家实验室，三次发布，一个收敛的思想 —— 而在它们之下，还有六套开源训练栈（来自 SGLang、vLLM/Red Hat、AWS、PyTorch&times;Mooncake、DeepSeek 与腾讯混元），把这些草稿器变成可复现的流水线。如果说 2024&ndash;2025 是关于<em>训练</em>更大更便宜的模型，那么 2026 正在成为投机解码成为<em>服务</em>它们之标准方式的一年 —— 在手机上、在数据中心里、以及介于两者之间的一切地方。
                </p>
 
                </div><!-- /lang-zh -->
