@@ -219,6 +219,29 @@
      .fx-table .open-tag { color: var(--fx-accent); font-weight: 700; }
      .fx-table .src { font: 400 .78rem/1.6 var(--fx-sans); color: var(--fx-mute); margin-top: 6px; }
 
+     /* ---------- K3 disclosure ledger ---------- */
+     .k3-ledger { max-width: var(--fx-prose); margin: 26px auto 0; font-family: var(--fx-sans);
+       border: 1px solid var(--fx-rule); border-radius: 14px; overflow: hidden; }
+     .k3-ledger table { width: 100%; border-collapse: collapse; margin: 0; }
+     .k3-ledger th { font: 700 .66rem/1.6 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase;
+       color: var(--fx-mute); text-align: left; padding: 12px 16px 10px; border-bottom: 1px solid var(--fx-rule); background: transparent; }
+     .k3-ledger td { font: 500 .86rem/1.6 var(--fx-sans); color: var(--global-text-color, #1a1a1a);
+       padding: 10px 16px; border-bottom: 1px solid var(--fx-hair); vertical-align: top; }
+     .k3-ledger tbody tr:last-child td { border-bottom: none; }
+     .k3-ledger td .d { display: block; margin-top: 2px; font: 400 .73rem/1.55 var(--fx-sans); color: var(--fx-mute); }
+     .k3-ledger td.note { font: 400 .78rem/1.6 var(--fx-sans); color: var(--fx-mute); }
+     .k3-ledger .grp td { font: 700 .64rem/1.6 var(--fx-sans); letter-spacing: .12em; text-transform: uppercase;
+       color: var(--fx-accent); background: var(--fx-soft); padding: 7px 16px; }
+     .k3-ledger .sub td:first-child { padding-left: 32px; position: relative; }
+     .k3-ledger .sub td:first-child::before { content: "–"; position: absolute; left: 16px; color: var(--fx-accent); font-weight: 700; }
+     .k3-pill { display: inline-block; padding: 1px 10px; border-radius: 999px; white-space: nowrap;
+       font: 700 .67rem/1.7 var(--fx-sans); letter-spacing: .04em; }
+     .k3-pill.pub { color: var(--fx-accent); background: var(--fx-soft); border: 1px solid var(--fx-accent); }
+     .k3-pill.no { color: var(--fx-warn); background: var(--fx-warm); border: 1px solid var(--fx-warn); }
+     .k3-pill.mid { color: var(--fx-mute); background: transparent; border: 1px dashed var(--fx-mute); }
+     .k3-ledger-src { max-width: var(--fx-prose); margin: 8px auto 24px; font: 400 .78rem/1.6 var(--fx-sans); color: var(--fx-mute); }
+     @media (max-width: 640px) { .k3-ledger { overflow-x: auto; } .k3-ledger table { min-width: 560px; } }
+
      /* ---------- svg line charts ---------- */
      .fx-chart { max-width: var(--fx-prose); margin: 24px auto; }
      .fx-chart .src { font: 400 .78rem/1.6 var(--fx-sans); color: var(--fx-mute); margin-top: 6px; }
@@ -338,6 +361,7 @@
                <div class="lbl">Contents</div>
                <ol>
                   <li><a href="#the-week">The Week Open Weights Went to Washington</a></li>
+                  <li><a href="#weights-vs-source">Open Weights vs Open Source</a></li>
                   <li><a href="#deja-vu">Déjà Vu: We Have Seen This Movie Before</a></li>
                   <li><a href="#nvidia">NVIDIA Ecosystem</a></li>
                   <li><a href="#edge-contributor">A Participant and a Part-Time Contributor</a></li>
@@ -432,6 +456,40 @@
             </div>
             <br>
             <p>Fifty signatures in seventy-two hours. The interesting question is not who signed — it is why the coalition spans every layer of the industry at once: chipmakers like NVIDIA and Dell, clouds and closed-model labs like Microsoft — later joined by OpenAI and Google — and open platforms like Hugging Face and IBM. What do they all see in open weights? To answer that, rewind twelve years.</p>
+
+            <h2 id="weights-vs-source">Open Weights vs Open Source</h2>
+            <p>Before going further, one terminology correction the debate keeps stumbling over: almost none of the "open source" models in the headlines are open source in the sense the software world has used the term for twenty-five years. They are <em>open weights</em>. The letter fifty companies signed says "open weights" in its title for a reason, and the distinction is not pedantry — it decides what you can actually do with the model.</p>
+            <p>In classic open source, you get the <em>source</em> — everything needed to study, reproduce, and modify the artifact. For a model, the "source" is not just the final tensors; it is the training data, the data processing pipeline, the training code, and the recipe that turns compute into a checkpoint. An open-weights release gives you the compiled output — the trained parameters — under a license that lets you run, fine-tune, and redistribute it. You can customize the artifact; you cannot rebuild it from scratch.</p>
+            <p>Kimi K3 — the release that anchored the week of July 27 — is the perfect example, because Moonshot AI opened up unusually <em>much</em> and the gap is still visible. Here is what is public and what is not:</p>
+            <div class="k3-ledger">
+               <table>
+                  <thead>
+                     <tr><th style="width:50%">Component</th><th style="width:15%">Status</th><th>Where / Notes</th></tr>
+                  </thead>
+                  <tbody>
+                     <tr class="grp"><td colspan="3">Released with Kimi K3</td></tr>
+                     <tr><td>Model weights<span class="d">2.8T params · MXFP4 quantization-aware</span></td><td><span class="k3-pill pub">Public</span></td><td class="note"><a href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank">Hugging Face</a></td></tr>
+                     <tr><td>Architecture<span class="d">KDA · AttnRes · Stable LatentMoE · 16-of-896 experts</span></td><td><span class="k3-pill pub">Public</span></td><td class="note">Model card &amp; <a href="https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf" target="_blank">tech report</a></td></tr>
+                     <tr><td>Technical report &amp; evaluation results</td><td><span class="k3-pill pub">Public</span></td><td class="note"><a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank">GitHub</a></td></tr>
+                     <tr><td>Systems stack<span class="d">attention kernels · MoE communication library · agent-environment infrastructure</span></td><td><span class="k3-pill pub">Public</span></td><td class="note"><a href="https://x.com/Kimi_Moonshot/status/2081760186235289764?s=20" target="_blank">opened alongside K3</a></td></tr>
+                     <tr><td>Inference integration<span class="d">vLLM · SGLang · Transformers</span></td><td><span class="k3-pill pub">Public</span></td><td class="note">community serving stacks</td></tr>
+                     <tr class="grp"><td colspan="3">The model's "source" — held back</td></tr>
+                     <tr><td>Pre-training data &amp; data processing pipeline</td><td><span class="k3-pill no">Not public</span></td><td class="note">—</td></tr>
+                     <tr><td>Training code &amp; distributed training framework</td><td><span class="k3-pill no">Not public</span></td><td class="note">—</td></tr>
+                     <tr class="grp"><td colspan="3">Post-training recipe — piece by piece</td></tr>
+                     <tr class="sub"><td>Methodology write-up<span class="d">SFT → RL pipeline, described at a high level</span></td><td><span class="k3-pill pub">Public</span></td><td class="note">tech report</td></tr>
+                     <tr class="sub"><td>SFT / instruction-tuning datasets</td><td><span class="k3-pill no">Not public</span></td><td class="note">—</td></tr>
+                     <tr class="sub"><td>RL environments &amp; verifiable-reward tasks</td><td><span class="k3-pill no">Not public</span></td><td class="note">the infrastructure to <em>run</em> agent environments is open; the environments and tasks themselves are not</td></tr>
+                     <tr class="sub"><td>Reward models &amp; graders</td><td><span class="k3-pill no">Not public</span></td><td class="note">—</td></tr>
+                     <tr class="grp"><td colspan="3">Terms</td></tr>
+                     <tr><td>License<span class="d">custom "Kimi K3 License" — permissive, but not an OSI-approved open-source license</span></td><td><span class="k3-pill mid">Custom</span></td><td class="note"><a href="https://huggingface.co/moonshotai/Kimi-K3/blob/main/LICENSE" target="_blank">LICENSE</a></td></tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="k3-ledger-src">Compiled from the <a href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank">Kimi K3 model card</a>, the <a href="https://www.kimi.com/blog/kimi-k3" target="_blank">tech blog</a>, and Moonshot's <a href="https://x.com/Kimi_Moonshot/status/2081760186235289764?s=20" target="_blank">release announcement</a>.</div>
+            <p>The software analogy: an open-weights model is a freely redistributable <em>binary</em> — you can run it anywhere, patch it (fine-tune), even ship modified copies — but the <em>source tree</em> (data, pipeline, training code) stays in-house. By the <a href="https://opensource.org/ai/open-source-ai-definition" target="_blank">OSI's Open Source AI Definition</a>, which requires data information, training code, and weights all under open terms, K3 does not qualify — and neither do Llama, Gemma, or gpt-oss. The rare models that come close are efforts like AI2's OLMo, which release data, code, and checkpoints together. DeepSeek-R1 sits in between: MIT-licensed weights — a genuinely open-source <em>license</em> — but still no training data or pipeline.</p>
+            <p>Two honest observations follow. First, the gap is not hypocrisy; it is physics and economics. The training corpus embeds licensing liabilities no lab can fully clear, and the data pipeline <em>is</em> the crown jewel — more than architecture, it is where frontier labs differ. Second, the gap matters less than purists claim for most practical purposes: the customization loop later in this essay — fine-tuning, RL post-training, speculative decoding, quantization — needs the tensors, not the corpus. What you cannot do without the source is <em>reproduce</em> or fully <em>audit</em> the model — which is exactly why the interpretability and evaluation arguments in the trust &amp; safety section run on weights, and why true open-source models remain scientifically precious even when they trail the frontier.</p>
+            <p>So throughout this essay I say "open weights" when I mean releases like Kimi K3, and reserve "open source" for the ecosystem — vLLM, SGLang, Kubernetes, Kafka — where the term actually applies. The July letter got the terminology right; most of the coverage did not.</p>
 
             <h2 id="deja-vu">Déjà Vu: We Have Seen This Movie Before</h2>
             <p>In January 2022, Honeypot released <a href="https://www.youtube.com/watch?v=BE77h7dmoQU" target="_blank">Kubernetes: The Documentary</a>. It is the most honest account I know of why a giant open-sources its crown jewels. Around 2013, AWS was, in early Kubernetes engineer <em>Tim Hockin</em>'s words, "this behemoth that was on everybody's mind." Kubernetes co-founder <em>Joe Beda</em> put Google's calculus plainly:</p>
@@ -758,6 +816,7 @@
                <div class="lbl">目录</div>
                <ol>
                   <li><a href="#the-week-zh">开放权重走进华盛顿的一周</a></li>
+                  <li><a href="#weights-vs-source-zh">开放权重不等于开源</a></li>
                   <li><a href="#deja-vu-zh">既视感：这部电影我们看过</a></li>
                   <li><a href="#nvidia-zh">NVIDIA 生态</a></li>
                   <li><a href="#edge-contributor-zh">参与者，也是兼职贡献者</a></li>
@@ -852,6 +911,40 @@
             </div>
             <br>
             <p>七十二小时，五十个签名。有意思的问题不是谁签了，而是：为什么这个联盟一次性横跨了行业的每一层——NVIDIA、Dell 这样的芯片与硬件商，Microsoft 这样的云与闭源模型厂（OpenAI、Google 随后跟进），还有 Hugging Face、IBM 这样的开放平台？它们都在开放权重里看到了什么？要回答这个问题，把时间倒回十二年。</p>
+
+            <h2 id="weights-vs-source-zh">开放权重不等于开源</h2>
+            <p>往下写之前，先纠正一个这场辩论反复踩到的术语问题：新闻头条里的"开源"模型，几乎没有一个符合软件世界沿用了二十五年的"开源"定义。它们是<em>开放权重（open weights）</em>。五十家公司签署的那封信，标题写的就是"open weights"，这不是偶然——这个区分也不是咬文嚼字，它直接决定了你拿到模型之后能做什么。</p>
+            <p>经典的开源，给你的是<em>源代码</em>——研究、复现、修改这个软件所需要的一切。对一个模型而言，"源代码"不只是最终的那堆张量，而是训练数据、数据处理管线、训练代码，以及把算力变成检查点的那套配方。而开放权重的发布，给你的是编译产物——训练好的参数——外加一份允许你运行、微调、再分发的许可。你可以定制这个产物，但你无法从零重建它。</p>
+            <p>Kimi K3——锚定 7 月 27 日那一周的发布——是最好的例子，因为月之暗面开放的东西已经异常地<em>多</em>，而那道缺口依然清晰可见。哪些公开了，哪些没有：</p>
+            <div class="k3-ledger">
+               <table>
+                  <thead>
+                     <tr><th style="width:50%">组件</th><th style="width:15%">状态</th><th>位置 / 说明</th></tr>
+                  </thead>
+                  <tbody>
+                     <tr class="grp"><td colspan="3">随 Kimi K3 发布</td></tr>
+                     <tr><td>模型权重<span class="d">2.8 万亿参数 · MXFP4 量化感知训练</span></td><td><span class="k3-pill pub">公开</span></td><td class="note"><a href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank">Hugging Face</a></td></tr>
+                     <tr><td>架构<span class="d">KDA · AttnRes · Stable LatentMoE · 896 选 16 专家</span></td><td><span class="k3-pill pub">公开</span></td><td class="note">模型卡与<a href="https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf" target="_blank">技术报告</a></td></tr>
+                     <tr><td>技术报告与评测结果</td><td><span class="k3-pill pub">公开</span></td><td class="note"><a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank">GitHub</a></td></tr>
+                     <tr><td>系统栈<span class="d">注意力内核 · MoE 通信库 · Agent 环境基础设施</span></td><td><span class="k3-pill pub">公开</span></td><td class="note"><a href="https://x.com/Kimi_Moonshot/status/2081760186235289764?s=20" target="_blank">随 K3 一同开放</a></td></tr>
+                     <tr><td>推理集成<span class="d">vLLM · SGLang · Transformers</span></td><td><span class="k3-pill pub">公开</span></td><td class="note">社区推理栈</td></tr>
+                     <tr class="grp"><td colspan="3">模型的"源代码"——未随发布公开</td></tr>
+                     <tr><td>预训练数据与数据处理管线</td><td><span class="k3-pill no">未公开</span></td><td class="note">—</td></tr>
+                     <tr><td>训练代码与分布式训练框架</td><td><span class="k3-pill no">未公开</span></td><td class="note">—</td></tr>
+                     <tr class="grp"><td colspan="3">后训练配方——逐项拆解</td></tr>
+                     <tr class="sub"><td>方法论述<span class="d">SFT → RL 流程，报告中做了概要描述</span></td><td><span class="k3-pill pub">公开</span></td><td class="note">技术报告</td></tr>
+                     <tr class="sub"><td>SFT / 指令微调数据集</td><td><span class="k3-pill no">未公开</span></td><td class="note">—</td></tr>
+                     <tr class="sub"><td>RL 训练环境与可验证奖励任务</td><td><span class="k3-pill no">未公开</span></td><td class="note"><em>运行</em> Agent 环境的基础设施已开放，但环境与任务本身没有</td></tr>
+                     <tr class="sub"><td>奖励模型与评分器</td><td><span class="k3-pill no">未公开</span></td><td class="note">—</td></tr>
+                     <tr class="grp"><td colspan="3">使用条款</td></tr>
+                     <tr><td>许可证<span class="d">自定义"Kimi K3 License"——宽松，但不是 OSI 认证的开源许可证</span></td><td><span class="k3-pill mid">自定义</span></td><td class="note"><a href="https://huggingface.co/moonshotai/Kimi-K3/blob/main/LICENSE" target="_blank">LICENSE</a></td></tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="k3-ledger-src">整理自 <a href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank">Kimi K3 模型卡</a>、<a href="https://www.kimi.com/blog/kimi-k3" target="_blank">技术博客</a>与月之暗面的<a href="https://x.com/Kimi_Moonshot/status/2081760186235289764?s=20" target="_blank">发布公告</a>。</div>
+            <p>用软件打比方：开放权重的模型是一个可自由再分发的<em>二进制文件</em>——你可以随处运行它、给它打补丁（微调）、甚至发布修改后的副本——但<em>源码树</em>（数据、管线、训练代码）留在了厂商内部。按 <a href="https://opensource.org/ai/open-source-ai-definition" target="_blank">OSI 的开源 AI 定义</a>——要求数据信息、训练代码、权重全部以开放条款发布——K3 并不合格，Llama、Gemma、gpt-oss 也都不合格。真正接近的是 AI2 的 OLMo 这类项目：数据、代码、检查点一并发布。DeepSeek-R1 则在两者之间：MIT 许可的权重——一份货真价实的开源<em>许可证</em>——但训练数据和管线同样没有公开。</p>
+            <p>由此得出两个诚实的观察。第一，这道缺口不是虚伪，而是物理与经济规律：训练语料里嵌着任何实验室都无法完全厘清的授权责任，而数据管线本身就是王冠明珠——前沿实验室之间真正的差异，与其说在架构，不如说在这里。第二，对多数实际用途而言，这道缺口没有纯粹主义者说的那么要命：本文后面讲的定制闭环——微调、RL 后训练、投机解码、量化——需要的是张量，不是语料。没有"源代码"你做不到的，是<em>复现</em>和彻底<em>审计</em>这个模型——这恰恰是信任与安全一节里可解释性与独立评测论证的出发点，也是为什么真正的开源模型即便落后于前沿，在科学上依然珍贵。</p>
+            <p>所以在这篇文章里，凡是指 Kimi K3 这类发布，我都说"开放权重"；"开源"一词留给它真正适用的地方——vLLM、SGLang、Kubernetes、Kafka 这些生态。七月那封信在术语上是对的；大部分报道不是。</p>
 
             <h2 id="deja-vu-zh">既视感：这部电影我们看过</h2>
             <p>2022 年 1 月，Honeypot 发布了<a href="https://www.youtube.com/watch?v=BE77h7dmoQU" target="_blank">《Kubernetes：纪录片》</a>。这是我所知道的、关于"巨头为什么开源自己的王冠明珠"最诚实的记录。2013 年前后，用早期 Kubernetes 工程师 <em>Tim Hockin</em> 的话说，AWS 是"压在每个人心头的庞然大物"。Kubernetes 联合创始人 <em>Joe Beda</em> 把 Google 的盘算讲得再直白不过：</p>
