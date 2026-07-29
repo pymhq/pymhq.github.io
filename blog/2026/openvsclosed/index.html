@@ -26,13 +26,13 @@
       <meta property="og:type" content="article">
       <meta property="og:url" content="https://pengandy.com/blog/2026/openvsclosed/">
       <meta property="og:title" content="Open vs Closed">
-      <meta property="og:description" content="The open-weights war of July 2026, seen from someone who has sat at both tables — as a participant and a part-time contributor.">
+      <meta property="og:description" content="The open-weights war of July 2026, seen from someone who has sat at both tables — as a side contributor on the fringes of open source.">
       <meta property="og:image" content="https://pengandy.com/assets/blog/2026/openvsclosed/og-card.png">
 
       <!-- Twitter -->
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:title" content="Open vs Closed">
-      <meta name="twitter:description" content="The open-weights war of July 2026, seen from someone who has sat at both tables — as a participant and a part-time contributor.">
+      <meta name="twitter:description" content="The open-weights war of July 2026, seen from someone who has sat at both tables — as a side contributor on the fringes of open source.">
       <meta name="twitter:image" content="https://pengandy.com/assets/blog/2026/openvsclosed/og-card.png">
       <meta name="twitter:site" content="@pymhq">
       <meta name="twitter:creator" content="@pymhq">
@@ -309,7 +309,7 @@
          <div class="post">
             <header class="post-header">
                <h1 class="post-title"><span class="lang-en">Open vs Closed</span><span class="lang-zh">开源 vs 闭源</span></h1>
-               <p class="post-meta"><span class="lang-en"> Created in July, 2026<span class="post-readstats"> · 4,370 words · 22 min read</span> </span><span class="lang-zh"> 创建于 2026 年 7 月<span class="post-readstats"> · 约 8,100 字 · 23 分钟阅读</span> </span></p>
+               <p class="post-meta"><span class="lang-en"> Created in July, 2026<span class="post-readstats"> · 4,450 words · 22 min read</span> </span><span class="lang-zh"> 创建于 2026 年 7 月<span class="post-readstats"> · 约 8,200 字 · 23 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/archive/2026/"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a>   <a href="/blog/tag/open-weights"> <i class="fa-solid fa-hashtag fa-sm"></i> open weights</a>      ·   <a href="/blog/category/opensource"> <i class="fa-solid fa-tag fa-sm"></i> opensource</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -326,7 +326,7 @@
             <article class="post-content">
                <div id="markdown-content">
                   <p>In the last two weeks of July 2026, the open vs closed debate went from engineering forums to the White House. As someone who has spent years on both sides of this line — building closed-model inference at Amazon, contributing part-time in open source communities — I want to write down what I saw, and why I believe what I believe.</p>
-                  <p><em>A participant, and a part-time contributor.</em></p>
+                  <p><em>A side contributor, on the fringes of open source.</em></p>
                </div>
             </article>
 
@@ -546,9 +546,9 @@
                Portability cuts both ways. The same openness that made CUDA the default is what makes it replaceable — vLLM and SGLang abstract the hardware, ROCm has closed much of the gap, and open serving stacks keep landing TPU and Trainium backends. Open weights erode lock-in at every layer, including NVIDIA's own. That is the real bet an ecosystem builder makes: a bigger market is worth more than a tighter moat. NVIDIA has made that bet for twenty years and has yet to lose it.
             </div>
             <h2 id="edge-contributor">A Participant and a Part-Time Contributor</h2>
-            <p>I call myself a participant and a part-time contributor — never the protagonist, but close enough to the engine room to feel the heat. Since 2019 I have contributed to the Linux Foundation and CNCF communities — containerd, Envoy, OpenTelemetry — served as a <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank">CNCF Ambassador</a> (first named in 2022, reappointed in 2024 and 2026), and spent four-plus years on Program Committees for PyTorchCon, KubeCon + CloudNativeCon and the Open Source Summit. I wrote about that decade of community in <a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">CNCF Turns 10</a>.</p>
+            <p>I should be honest about where I sit in open source: on the fringes, not in the inner circle. As a co-creator of <a href="https://aws.amazon.com/apprunner/" target="_blank">AWS App Runner</a>, I had the chance to work deeply with the open source programs the service is built on — containerd, Envoy, OpenTelemetry, Kafka — and that access is where my understanding of these communities comes from (<a href="https://pengandy.com/blog/2026/curiosity-driven-builder/#c3-en" target="_blank">I wrote about that path here</a>). It is also why I call myself a side contributor rather than a committer: unlike the people who write upstream code every day and carry those projects, my work at corporate ultimately shipped to users as a managed service. Since 2019 I have contributed where I could across the Linux Foundation and CNCF communities, served as a <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank">CNCF Ambassador</a> (until 2027 term), and spent four-plus years on Program Committees for PyTorchCon, CloudNativeCon and the Open Source Summit. I wrote about that decade of community in <a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">CNCF Turns 10</a>.</p>
             <p>On the closed side: at AWS I built Bedrock's Anthropic inference engine from zero to one and shipped the production releases of Claude 3 Opus, 3.5 Sonnet, and 3.5 Haiku — a chapter I wrote about in <a href="https://pengandy.com/blog/2026/ant/" target="_blank">My Story with Anthropic</a>. Today I work on the open-weights model business: OpenAI's gpt-oss, Google DeepMind's Gemma, Alibaba's Qwen, and DeepSeek, plus inference optimization (speculative decoding) for open-weight models.</p>
-            <p>Both tables, one lesson. In the same year DeepSeek-R1 was released, I published <a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">my DeepSeek post</a> — open source is the way — and co-authored the book <a href="https://a.co/d/2YyiiuA" target="_blank"><em>DeepSeek in Practice</em></a>. And in <a href="https://pengandy.com/blog/2025/llmnative/" target="_blank">LLM Native</a> that the open-source LLM ecosystem — vLLM, SGLang, llm-d, Dynamo, MCP — is already in place. The through-line: <em>open source is not a product strategy, it is an ecosystem</em>. Ecosystems grow markets; they do not zero-sum them.</p>
+            <p>Both tables, one lesson. In the same year DeepSeek-R1 was released, I wrote down my read in <a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">my DeepSeek post</a> — open source is the way — and co-authored the book <a href="https://a.co/d/2YyiiuA" target="_blank"><em>DeepSeek in Practice</em></a>. And I noted in <a href="https://pengandy.com/blog/2025/llmnative/" target="_blank">LLM Native</a> that the open-source LLM ecosystem — vLLM, SGLang, llm-d, Dynamo, MCP — is already in place. The through-line: <em>open source is not a product strategy, it is an ecosystem</em>. Ecosystems grow markets; they do not zero-sum them.</p>
 
             <h2 id="market">The Open-Weight Model Market</h2>
             <p>Follow the money, and the picture is genuinely two-sided. Capital is pouring into open-weight infrastructure:</p>
@@ -735,7 +735,7 @@
             <p>This is why the events of July matter beyond the headlines. When fifty companies — bitter competitors on every other front — sign the same letter within seventy-two hours, they are acknowledging something deeper than commercial interest: that the path to trustworthy AI runs through openness. Interpretability research runs on open weights. Independent red-teaming runs on open weights. The global cooperation that safety testing will require — the kind even Amodei argues must include every capable lab, in every country — is only possible if the science stays open enough for everyone to participate. Open source enables innovation, research, and the democratization of AI; more than that, it is how we keep each other honest while building the most consequential technology in human history.</p>
             <div class="my-thought">
                <span class="thought-label">My take</span>
-               Bans protect monopolies, not leadership. Open and closed models are complementary — I have shipped both, and neither side's roadmap works without the other. But the deeper truth is bigger than business: aligning AI with humanity is a problem we can only solve together, and open ecosystems are how humanity solves problems together. Open source is the ecosystem, not the threat. And if artificial intelligence is to belong to everyone, what we build toward is <em>open intelligence</em>.
+               Bans protect monopolies, not leadership. Open and closed models are complementary — I have worked on both sides, and neither side's roadmap works without the other. But the deeper truth is bigger than business: aligning AI with humanity is a problem we can only solve together, and open ecosystems are how humanity solves problems together. Open source is the ecosystem, not the threat. And if artificial intelligence is to belong to everyone, what we build toward is <em>open intelligence</em>.
             </div>
             <br>
 
@@ -750,7 +750,7 @@
             <article class="post-content">
                <div id="markdown-content">
                   <p>2026 年 7 月的最后两周，"开源 vs 闭源"之争从工程师论坛一路吵到了白宫。作为一个在这条分界线两侧都待过多年的人——在 Amazon 从零到一构建闭源模型推理引擎，同时利用业余时间在开源社区持续贡献——我想把这两周看到的记下来，也讲清楚我为什么相信我所相信的。</p>
-                  <p><em>一个参与者，也是一个兼职贡献者。</em></p>
+                  <p><em>一个开源社区的边缘人。</em></p>
                </div>
             </article>
 
@@ -966,9 +966,9 @@
                可移植性是双向的。让 CUDA 成为默认的那种开放性，同时也让它变得可替换——vLLM 和 SGLang 已经把硬件抽象掉，ROCm 追上了大半差距，开放推理栈也在不断补齐 TPU 与 Trainium 后端。开放权重削弱每一层的锁定，包括 NVIDIA 自己那一层。这才是生态建设者真正下的那个注：一个更大的市场，比一条更深的护城河更值钱。这个注 NVIDIA 下了二十年，至今没输过。
             </div>
             <h2 id="edge-contributor-zh">参与者，也是兼职贡献者</h2>
-            <p>我称自己是参与者和兼职贡献者——从来不是主角，但离机舱足够近，能感受到热度。从 2019 年起，我持续在 Linux 基金会和 CNCF 社区贡献——containerd、Envoy、OpenTelemetry——担任 <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank">CNCF Ambassador</a>（2022 年首任，2024 年与 2026 年两度连任），并连续四年担任 PyTorchCon、KubeCon + CloudNativeCon 与 Open Source Summit 的程序委员会成员。关于这十年社区的故事，我写在<a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">《CNCF 十岁了》</a>。</p>
+            <p>关于我在开源里的位置，我想说得诚实一点：我在边缘，不在核心圈。作为 <a href="https://aws.amazon.com/apprunner/" target="_blank">AWS App Runner</a> 的共同创造者之一，我有机会深入接触这个服务所依赖的开源项目——containerd、Envoy、OpenTelemetry、Kafka——我对这些社区的理解正是从那里来的（<a href="https://pengandy.com/blog/2026/curiosity-driven-builder/#c3-en" target="_blank">这段经历我写在这里</a>）。也正因如此，我称自己是开源社区的边缘人，而不是 committer：不像那些每天直接向上游写代码、真正扛起项目的人，我在公司的工作最终是以托管服务的形态交付给用户的。从 2019 年起，我在 Linux 基金会和 CNCF 社区里做力所能及的贡献，担任 <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank">CNCF Ambassador</a>（任期至 2027），并连续四年多担任 PyTorchCon、CloudNativeCon 与 Open Source Summit 的程序委员会成员。关于这十年社区的故事，我写在<a href="https://pengandy.com/blog/2025/cncf10yo/" target="_blank">《CNCF 十岁了》</a>。</p>
             <p>闭源这一侧：在 AWS，我从零到一构建了 Bedrock 的 Anthropic 推理引擎，并交付了 Claude 3 Opus、3.5 Sonnet、3.5 Haiku 的生产发布——这段经历我写在<a href="https://pengandy.com/blog/2026/ant/" target="_blank">《My Story with Anthropic》</a>。如今我负责开放权重模型业务：OpenAI 的 gpt-oss、Google DeepMind 的 Gemma、阿里 Qwen、DeepSeek，以及面向开放权重模型的推理优化（投机解码）。</p>
-            <p>两张牌桌，同一个结论。在 DeepSeek-R1 发布的同一年，我发表了 <a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">DeepSeek 那篇博客</a>——开源的重要性——也合著出版了<a href="https://a.co/d/2YyiiuA" target="_blank">《DeepSeek in Practice》</a>一书。在<a href="https://pengandy.com/blog/2025/llmnative/" target="_blank">《LLM Native》</a>里写过：开源 LLM 生态——vLLM、SGLang、llm-d、Dynamo、MCP——已然成形。贯穿始终的一条线是：<em>开源不是一种产品策略，而是一个生态</em>。生态做大市场，而不是零和博弈。</p>
+            <p>两张牌桌，同一个结论。在 DeepSeek-R1 发布的同一年，我把自己的判断写进了 <a href="https://pengandy.com/blog/2025/deepseek/" target="_blank">DeepSeek 那篇博客</a>——开源的重要性——也合著出版了<a href="https://a.co/d/2YyiiuA" target="_blank">《DeepSeek in Practice》</a>一书。我也在<a href="https://pengandy.com/blog/2025/llmnative/" target="_blank">《LLM Native》</a>里写过：开源 LLM 生态——vLLM、SGLang、llm-d、Dynamo、MCP——已然成形。贯穿始终的一条线是：<em>开源不是一种产品策略，而是一个生态</em>。生态做大市场，而不是零和博弈。</p>
 
             <h2 id="market-zh">开源大模型的市场</h2>
             <p>跟着钱走，你会看到一幅真正两面的图景。资本正涌入开放权重基础设施：</p>
@@ -1154,7 +1154,7 @@
             <p>这也是七月这些事件超越新闻头条的意义。当五十家在其他所有战线上激烈竞争的公司，在七十二小时内签下同一封信，它们承认的是比商业利益更深的东西：通往可信 AI 的路，必经开放。可解释性研究跑在开放权重上；独立红队测试跑在开放权重上；安全测试所需要的全球协作——连 Amodei 都主张必须覆盖每个国家、每一家有能力的实验室——只有在科学保持足够开放、人人可以参与时才有可能。开源推动创新、研究和 AI 的民主化；更重要的是，在建造人类历史上影响最深远的技术时，开放是我们彼此保持诚实的方式。</p>
             <div class="my-thought">
                <span class="thought-label">我的思考</span>
-               封禁保护的是垄断，不是领先。开源与闭源模型是互补的——两种我都交付过，任何一方的路线图离开对方都走不通。但更深的道理超越商业：让 AI 与人类对齐，是一个只能靠所有人一起解决的问题，而开放的生态正是人类一起解决问题的方式。开源是生态，不是威胁。而如果人工智能终将属于每一个人，我们所走向的，就是<em>开放的智能（open intelligence）</em>。
+               封禁保护的是垄断，不是领先。开源与闭源模型是互补的——两边我都参与过，任何一方的路线图离开对方都走不通。但更深的道理超越商业：让 AI 与人类对齐，是一个只能靠所有人一起解决的问题，而开放的生态正是人类一起解决问题的方式。开源是生态，不是威胁。而如果人工智能终将属于每一个人，我们所走向的，就是<em>开放的智能（open intelligence）</em>。
             </div>
             <br>
 
