@@ -99,17 +99,9 @@
      /* ── FIFA World Cup 2026™ champion update banner ── */
      .champ-update {
        position: relative; overflow: hidden; cursor: pointer;
-       margin: 18px 0 26px 0; padding: 16px 104px 16px 20px;
+       margin: 18px 0 26px 0; padding: 16px 20px;
        background: linear-gradient(135deg, rgba(218,165,32,0.10), rgba(200,16,46,0.07) 55%, rgba(255,196,0,0.10));
        border: 1px solid rgba(218,165,32,0.45); border-radius: 12px;
-     }
-     .champ-update .cu-fireworks {
-       position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
-       width: 72px; height: 72px; pointer-events: none;
-     }
-     @media (max-width: 480px) {
-       .champ-update { padding-right: 84px; }
-       .champ-update .cu-fireworks { width: 58px; height: 58px; right: 12px; }
      }
      .champ-update .cu-tag {
        display: inline-block; font-size: 0.72em; font-weight: 700;
@@ -214,30 +206,6 @@
             <stop offset="45%" stop-color="#9b59b6"/>
             <stop offset="100%" stop-color="#e0559b"/>
           </linearGradient>
-
-          <!-- hand-drawn fireworks badge (Google World Cup doodle style) -->
-          <!-- soft 9-lobe blob, gentle undulation -->
-          <path id="fw-scallop" d="M 28.2 10.3 Q 26.4 22.2 15 26 Q 6 34 -5.2 29.5 Q -17.3 29.9 -23 19.3 Q -32.4 11.8 -30 0 Q -32.4 -11.8 -23 -19.3 Q -17.3 -29.9 -5.2 -29.5 Q 6 -34 15 -26 Q 26.4 -22.2 28.2 -10.3 Q 34.5 0 28.2 10.3 Z"/>
-          <!-- slim comet blade: round tip, tapers to a point at the base (origin) -->
-          <path id="fw-blade" d="M 0 0 C -0.9 -5.5, -1.8 -11.5, -1.3 -17 A 1.35 1.35 0 1 1 1.5 -16.8 C 1 -11.5, 0.5 -5.5, 0 0 Z"/>
-          <!-- five-point star, outer radius 5 -->
-          <path id="fw-star" d="M 0 -5 L 1.18 -1.62 L 4.76 -1.55 L 1.9 0.62 L 2.94 4.05 L 0 2 L -2.94 4.05 L -1.9 0.62 L -4.76 -1.55 L -1.18 -1.62 Z"/>
-          <!-- assembled badge: five blades radiating from one base point, five stars -->
-          <g id="fw-badge">
-            <use href="#fw-scallop" fill="#f8d9c7"/>
-            <g fill="#9c4a24">
-              <use href="#fw-blade" transform="translate(0.5, 14) scale(1.25)"/>
-              <use href="#fw-blade" transform="translate(-4.5, 13) rotate(-18)"/>
-              <use href="#fw-blade" transform="translate(-9.5, 11) rotate(-38) scale(0.72)"/>
-              <use href="#fw-blade" transform="translate(5.5, 12.5) scale(-1, 1) rotate(-16)"/>
-              <use href="#fw-blade" transform="translate(10.5, 9.5) scale(-0.72, 0.72) rotate(-36)"/>
-              <use href="#fw-star" transform="translate(-15.5, -12) scale(1.35) rotate(-18)"/>
-              <use href="#fw-star" transform="translate(0.5, -15.5) scale(0.8) rotate(12)"/>
-              <use href="#fw-star" transform="translate(12, -10) scale(1.1) rotate(22)"/>
-              <use href="#fw-star" transform="translate(-19, 6) scale(0.68)"/>
-              <use href="#fw-star" transform="translate(18, 6) scale(0.75) rotate(10)"/>
-            </g>
-          </g>
         </defs>
       </svg>
 
@@ -265,7 +233,6 @@
 
                   <div class="champ-update" id="champ-en" role="button" tabindex="0" aria-label="Spain are FIFA World Cup 2026 champions — tap for confetti">
                     <span class="cu-confetti" aria-hidden="true"></span>
-                    <svg class="cu-fireworks" viewBox="-38 -38 76 76" aria-hidden="true"><use href="#fw-badge"/></svg>
                     <span class="cu-tag">Update · Jul 19, 2026</span>
                     <div class="cu-line"><span class="cu-trophy">🏆</span><span class="ss-flag">🇪🇸</span>Spain — FIFA World Cup 2026 Champions</div>
                   </div>
@@ -465,7 +432,6 @@
 
                   <div class="champ-update" id="champ-zh" role="button" tabindex="0" aria-label="西班牙夺得 2026 世界杯冠军——点按放彩带">
                     <span class="cu-confetti" aria-hidden="true"></span>
-                    <svg class="cu-fireworks" viewBox="-38 -38 76 76" aria-hidden="true"><use href="#fw-badge"/></svg>
                     <span class="cu-tag">更新 · 2026 年 7 月 19 日</span>
                     <div class="cu-line"><span class="cu-trophy">🏆</span><span class="ss-flag">🇪🇸</span>西班牙 —— 2026 世界杯冠军</div>
                   </div>
