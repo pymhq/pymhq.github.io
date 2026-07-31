@@ -195,20 +195,53 @@
 
    <script>
    (function () {
-      // Counters are keyed by referral code, not by race:
-      // key = (signup|page) + "-" + raceRefCode, extracted from each link.
-      // Swapping a code/link later automatically starts a fresh counter,
-      // while the old code's numbers stay archived in Abacus forever.
+      // Counters keyed by referral code: (signup|page) + "-" + raceRefCode.
+      // Swapping a code later starts a fresh counter automatically; the old
+      // code's numbers stay archived in Abacus under the old key.
+      //
+      // Abacus allows 30 requests / 10s / IP, so all calls go through a
+      // spaced queue with retry on 429, and counts are cached in
+      // localStorage so refreshes show stable numbers instantly.
       var API = "https://abacus.jasoncameron.dev";
       var NS = "pengandy-races";
-      function getJSON(url, cb) {
-         fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function () {});
+      var GAP = 400, TRIES = 5;
+
+      var queue = [], running = false;
+      function enqueue(path, cb, front) {
+         queue[front ? "unshift" : "push"]({ path: path, cb: cb, tries: 0 });
+         if (!running) { running = true; setTimeout(pump, 0); }
       }
-      // page visits: count once, show in footer
-      getJSON(API + "/hit/" + NS + "/pageviews", function (d) {
-         var el = document.getElementById("visits");
-         if (el && d.value) el.textContent = " · " + d.value.toLocaleString() + " visits";
+      function pump() {
+         var job = queue.shift();
+         if (!job) { running = false; return; }
+         fetch(API + job.path, { keepalive: true })
+            .then(function (r) {
+               if (r.status === 429) throw new Error("429");
+               return r.json();
+            })
+            .then(function (d) { if (job.cb) job.cb(d); setTimeout(pump, GAP); })
+            .catch(function () {
+               if (++job.tries < TRIES) queue.push(job);
+               setTimeout(pump, GAP * (1 + job.tries));
+            });
+      }
+
+      function cacheGet(k) {
+         try { var v = localStorage.getItem("abx-" + k); return v === null ? null : parseInt(v, 10); }
+         catch (e) { return null; }
+      }
+      function cacheSet(k, v) { try { localStorage.setItem("abx-" + k, String(v)); } catch (e) {} }
+
+      // page visits: count once, show cached immediately, update when confirmed
+      var visitsEl = document.getElementById("visits");
+      function showVisits(v) {
+         if (visitsEl && v) visitsEl.textContent = " · " + v.toLocaleString() + " visits";
+      }
+      showVisits(cacheGet("pageviews"));
+      enqueue("/hit/" + NS + "/pageviews", function (d) {
+         if (d && d.value) { cacheSet("pageviews", d.value); showVisits(d.value); }
       });
+
       // click counts on every referral link (upcoming and past)
       document.querySelectorAll('a[href*="raceRefCode="]').forEach(function (a) {
          var code;
@@ -218,21 +251,27 @@
          var key = type + "-" + code;
          var el = null;
          function show(v) {
+            if (!v) return;
             if (!el) {
                el = document.createElement("span");
                el.className = "cc";
                a.insertAdjacentText("afterend", " ");
                a.nextSibling.after(el);
             }
-            el.dataset.v = v;
             el.textContent = v.toLocaleString() + (v === 1 ? " click" : " clicks");
          }
-         getJSON(API + "/get/" + NS + "/" + key, function (d) {
-            if (d.value > 0) show(d.value);
+         show(cacheGet(key));
+         enqueue("/get/" + NS + "/" + key, function (d) {
+            if (d && typeof d.value === "number") { cacheSet(key, d.value); show(d.value); }
          });
          a.addEventListener("click", function () {
-            fetch(API + "/hit/" + NS + "/" + key, { keepalive: true }).catch(function () {});
-            show((el ? parseInt(el.dataset.v, 10) : 0) + 1);
+            // optimistic update; queued at the front with retries so the
+            // hit survives rate-limit windows (tab stays open, _blank)
+            var guess = (cacheGet(key) || 0) + 1;
+            cacheSet(key, guess); show(guess);
+            enqueue("/hit/" + NS + "/" + key, function (d) {
+               if (d && d.value) { cacheSet(key, d.value); show(d.value); }
+            }, true);
          });
       });
    })();
