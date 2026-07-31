@@ -289,6 +289,39 @@
      .fx-legend .sw.open { border-color: var(--fx-accent); background: var(--fx-soft); }
      .fx-legend .sw.next { border-style: dashed; }
 
+     /* ---------- lifecycle pipeline: who can customize each stage ---------- */
+     .fx-pipe { max-width: var(--fx-wide); margin: 26px auto 0; font-family: var(--fx-sans); }
+     .fx-pipe .pipe-lbl { display: flex; align-items: baseline; gap: 10px; padding-bottom: 8px; margin-bottom: 14px;
+       border-bottom: 1px solid var(--fx-hair); }
+     .fx-pipe .pipe-lbl .k { font: 700 .74rem/1.5 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--fx-accent); }
+     .fx-pipe .pipe-lbl .h { font: 500 .74rem/1.5 var(--fx-sans); color: var(--fx-mute); }
+     .fx-pipe .pipe-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+     .fx-pipe .pipe-stage { position: relative; border: 1px solid var(--fx-rule); border-radius: 12px;
+       padding: 9px 8px 10px; text-align: center; display: flex; flex-direction: column; }
+     .fx-pipe .pipe-stage:not(:last-child)::after { content: "▶"; position: absolute; right: -18px; top: 50%;
+       transform: translateY(-50%); font: 700 .6rem/1 var(--fx-sans); color: var(--fx-accent); }
+     .fx-pipe .pipe-stage.adj { border-color: var(--fx-accent); }
+     .fx-pipe .pipe-stage.part { border-color: var(--fx-accent); border-style: dashed; }
+     .fx-pipe .ps-cap { font: 700 .6rem/1.5 var(--fx-sans); letter-spacing: .12em; color: var(--fx-mute); }
+     .fx-pipe .ps-name { font: 700 .78rem/1.35 var(--fx-sans); margin-top: 1px; }
+     .fx-pipe .ps-sub { font: 500 .64rem/1.5 var(--fx-sans); color: var(--fx-mute); margin: 2px 0 8px; flex: 1; }
+     .fx-pipe .ps-marks { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+     .fx-pipe .pm { display: inline-block; padding: 0 8px; border-radius: 999px; white-space: nowrap;
+       font: 700 .6rem/1.7 var(--fx-sans); letter-spacing: .03em; }
+     .fx-pipe .pm.yes { color: var(--fx-accent); background: var(--fx-soft); border: 1px solid var(--fx-accent); }
+     .fx-pipe .pm.part { color: var(--fx-mute); background: transparent; border: 1px dashed var(--fx-mute); }
+     .fx-pipe .pm.no { color: var(--fx-warn); background: var(--fx-warm); border: 1px solid var(--fx-warn); }
+     .fx-pipe + .fx-legend { margin-top: 12px; }
+     .fx-legend .pm { display: inline-block; padding: 0 7px; border-radius: 999px; margin-right: 6px;
+       font: 700 .6rem/1.7 var(--fx-sans); }
+     .fx-legend .pm.yes { color: var(--fx-accent); background: var(--fx-soft); border: 1px solid var(--fx-accent); }
+     .fx-legend .pm.part { color: var(--fx-mute); border: 1px dashed var(--fx-mute); }
+     .fx-legend .pm.no { color: var(--fx-warn); background: var(--fx-warm); border: 1px solid var(--fx-warn); }
+     @media (max-width: 760px) {
+       .fx-pipe .pipe-row { grid-template-columns: 1fr 1fr; gap: 14px; }
+       .fx-pipe .pipe-stage:not(:last-child)::after { content: none; }
+     }
+
      /* ---------- silicon stacks: model layer over a horizontal GPU | ASIC line ---------- */
      .fx-stacks { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px;
        max-width: var(--fx-prose); margin: 26px auto 8px; font-family: var(--fx-sans); }
@@ -680,6 +713,55 @@
             <p>Put this next to the a16z spend data and the picture sharpens: US enterprises may still route their budgets to closed models, but public markets — Hong Kong first — are now pricing open-weight labs as durable businesses. Giving away the weights did not destroy value. It created the fastest IPO cohort in AI.</p>
 
             <h2 id="customization">Model Customization: Fine-Tuning, RL &amp; Self-Improvement</h2>
+            <p>First, the macro view. A frontier model's lifecycle runs from data through pre-training, mid-training, post-training, evaluation, and release. Who gets to customize each stage is the open-vs-closed debate in a single picture:</p>
+            <div class="fx-pipe" id="lifecycle">
+               <div class="pipe-lbl"><span class="k">Model lifecycle</span><span class="h">who can customize each stage — open weights vs closed API</span></div>
+               <div class="pipe-row">
+                  <div class="pipe-stage">
+                     <div class="ps-cap">01</div>
+                     <div class="ps-name">Data</div>
+                     <div class="ps-sub">corpus · cleaning · mixture recipe</div>
+                     <div class="ps-marks"><span class="pm no">open ✕</span><span class="pm no">closed ✕</span></div>
+                  </div>
+                  <div class="pipe-stage">
+                     <div class="ps-cap">02</div>
+                     <div class="ps-name">Pre-training</div>
+                     <div class="ps-sub">trillions of tokens · base capability</div>
+                     <div class="ps-marks"><span class="pm no">open ✕</span><span class="pm no">closed ✕</span></div>
+                  </div>
+                  <div class="pipe-stage part">
+                     <div class="ps-cap">03</div>
+                     <div class="ps-name">Mid-training</div>
+                     <div class="ps-sub">context extension · data annealing</div>
+                     <div class="ps-marks"><span class="pm part">open ◐</span><span class="pm no">closed ✕</span></div>
+                  </div>
+                  <div class="pipe-stage adj">
+                     <div class="ps-cap">04</div>
+                     <div class="ps-name">Post-training</div>
+                     <div class="ps-sub">SFT · preference · RL</div>
+                     <div class="ps-marks"><span class="pm yes">open ✓</span><span class="pm part">closed ◐</span></div>
+                  </div>
+                  <div class="pipe-stage adj">
+                     <div class="ps-cap">05</div>
+                     <div class="ps-name">Evaluation</div>
+                     <div class="ps-sub">benchmarks · red-teaming · gates</div>
+                     <div class="ps-marks"><span class="pm yes">open ✓</span><span class="pm part">closed ◐</span></div>
+                  </div>
+                  <div class="pipe-stage adj">
+                     <div class="ps-cap">06</div>
+                     <div class="ps-name">Release &amp; serving</div>
+                     <div class="ps-sub">quantize · spec decode · kernels</div>
+                     <div class="ps-marks"><span class="pm yes">open ✓</span><span class="pm no">closed ✕</span></div>
+                  </div>
+               </div>
+               <div class="fx-legend">
+                  <span><span class="pm yes">✓</span>yours to customize</span>
+                  <span><span class="pm part">◐</span>partial access</span>
+                  <span><span class="pm no">✕</span>cannot touch</span>
+                  <span>▶ each stage feeds the next</span>
+               </div>
+            </div>
+            <div class="fx-dgm-note">Everything upstream of the released checkpoint (01–02) is frozen without the source — for open and closed alike. ◐ marks partial access: with open weights you can resume continued pre-training from the checkpoint (03); on a closed API, post-training means the vendor's hosted fine-tuning on the vendor's terms (04) and evaluation means black-box probing over the API (05). The two loops in this essay zoom into the accent-bordered stages: the customization loop below lives in 04–05, and the optimization loop in the <a href="#price-performance">Price Performance</a> section lives in 06.</div>
             <p>Why do enterprises want weights at all? Because the frontier of value has moved from <em>prompting a general model</em> to <em>specializing a model on your own data and your own reward signal</em>. This is exactly the demand Fireworks calls "specialized intelligence" and Together monetizes through fine-tuning APIs — and it is only possible when you own or can touch the weights. The loop looks like this:</p>
             <div class="fx-fig">
                <div class="fig-lbl"><span class="k">Input</span><span class="h">what you have to own</span></div>
@@ -751,7 +833,7 @@
             -->
             <p>Read it either way — list price or cost per completed task — the shape is the same: Kimi K3 delivers 95% of Fable 5's index score at about a third of the cost per task. Put simply: much of the closed-model premium buys the platform around the model, not more intelligence.</p>
             <p>The New Stack's July benchmark made the trade explicit — <a href="https://thenewstack.io/kimi-k3-fable-coding-benchmark/" target="_blank">Claude Fable 5 vs. Kimi K3: same results, one-third the cost, 4x slower</a>. Money vs latency. And a Featherless case study puts self-hosting economics in sharp relief: a team at full utilization burning 100B tokens/month pays ~$1.56M/year on GPT-5.5 — versus a $90K/year fixed private-cloud rate running open-weight GLM 5.2, a 94% reduction.</p>
-            <p>And the sticker price is only the starting point: with open weights, the optimization headroom belongs to you. Because you own the serving stack, you can train your own speculator for speculative decoding, quantize to FP8/INT4 where quality allows, and tune kernels for your hardware — quality-lossless (or near-lossless) optimizations that routinely deliver multiples of throughput. On a closed API, that headroom is the vendor's margin; on open weights, it is your cost curve. This is my day job on the open-weights side, and it is where the ten-times gap keeps widening.</p>
+            <p>And the sticker price is only the starting point: with open weights, the optimization headroom belongs to you. This is stage 06 of the <a href="#lifecycle">lifecycle pipeline</a> above — the stage a closed API never lets you touch. Because you own the serving stack, you can train your own speculator for speculative decoding, quantize to FP8/INT4 where quality allows, and tune kernels for your hardware — quality-lossless (or near-lossless) optimizations that routinely deliver multiples of throughput. On a closed API, that headroom is the vendor's margin; on open weights, it is your cost curve. This is my day job on the open-weights side, and it is where the ten-times gap keeps widening.</p>
             <div class="fx-fig">
                <div class="fig-lbl"><span class="k">Input</span><span class="h">the same two things the loop above produced</span></div>
                <div class="fig-chips">
@@ -1135,6 +1217,55 @@
             <p>把这些放在 a16z 的支出数据旁边，图景就清晰了：美国企业的预算或许仍流向闭源模型，但公开市场——香港先行——已经开始把开放权重实验室定价为可持续的生意。开放权重没有摧毁价值，反而造就了 AI 领域最快的一批 IPO。</p>
 
             <h2 id="customization-zh">模型定制：微调、强化学习与自我改进</h2>
+            <p>先看宏观全景。一个前沿模型的生命周期，从数据出发，经过预训练、中期训练、后训练、评测，最终发布上线。谁有权定制哪个环节——一张图就是整场开闭之争：</p>
+            <div class="fx-pipe" id="lifecycle-zh">
+               <div class="pipe-lbl"><span class="k">模型生命周期</span><span class="h">每个环节谁能定制——开放权重 vs 闭源 API</span></div>
+               <div class="pipe-row">
+                  <div class="pipe-stage">
+                     <div class="ps-cap">01</div>
+                     <div class="ps-name">数据</div>
+                     <div class="ps-sub">语料 · 清洗 · 配比方案</div>
+                     <div class="ps-marks"><span class="pm no">开放 ✕</span><span class="pm no">闭源 ✕</span></div>
+                  </div>
+                  <div class="pipe-stage">
+                     <div class="ps-cap">02</div>
+                     <div class="ps-name">预训练</div>
+                     <div class="ps-sub">数万亿 token · 基座能力</div>
+                     <div class="ps-marks"><span class="pm no">开放 ✕</span><span class="pm no">闭源 ✕</span></div>
+                  </div>
+                  <div class="pipe-stage part">
+                     <div class="ps-cap">03</div>
+                     <div class="ps-name">中期训练</div>
+                     <div class="ps-sub">长上下文扩展 · 数据退火</div>
+                     <div class="ps-marks"><span class="pm part">开放 ◐</span><span class="pm no">闭源 ✕</span></div>
+                  </div>
+                  <div class="pipe-stage adj">
+                     <div class="ps-cap">04</div>
+                     <div class="ps-name">后训练</div>
+                     <div class="ps-sub">SFT · 偏好优化 · 强化学习</div>
+                     <div class="ps-marks"><span class="pm yes">开放 ✓</span><span class="pm part">闭源 ◐</span></div>
+                  </div>
+                  <div class="pipe-stage adj">
+                     <div class="ps-cap">05</div>
+                     <div class="ps-name">评测</div>
+                     <div class="ps-sub">基准 · 红队 · 回归门禁</div>
+                     <div class="ps-marks"><span class="pm yes">开放 ✓</span><span class="pm part">闭源 ◐</span></div>
+                  </div>
+                  <div class="pipe-stage adj">
+                     <div class="ps-cap">06</div>
+                     <div class="ps-name">发布与推理服务</div>
+                     <div class="ps-sub">量化 · 投机解码 · 内核调优</div>
+                     <div class="ps-marks"><span class="pm yes">开放 ✓</span><span class="pm no">闭源 ✕</span></div>
+                  </div>
+               </div>
+               <div class="fx-legend">
+                  <span><span class="pm yes">✓</span>可自主定制</span>
+                  <span><span class="pm part">◐</span>部分可调</span>
+                  <span><span class="pm no">✕</span>无法触碰</span>
+                  <span>▶ 每个环节向下一个输送</span>
+               </div>
+            </div>
+            <div class="fx-dgm-note">检查点上游的一切（01–02）没有"源码"就无法改动——开放与闭源皆然。◐ 表示部分可调：拿到开放权重后，你可以从检查点继续做增量预训练（03）；而在闭源 API 上，后训练只有厂商按厂商条款提供的托管微调（04），评测也只能隔着 API 做黑盒探测（05）。本文的两个闭环正是对高亮边框环节的放大：下方的定制闭环活在 04–05，<a href="#price-performance-zh">价格性能</a>一节的优化闭环活在 06。</div>
             <p>企业到底为什么需要权重？因为价值的前沿已经从<em>提示一个通用模型</em>转移到<em>用自己的数据和自己的奖励信号去特化一个模型</em>。这正是 Fireworks 所说的"专用智能（specialized intelligence）"、Together 靠微调 API 变现的需求——而这一切的前提是你拥有、或至少能触碰权重。这个闭环长这样：</p>
             <div class="fx-fig">
                <div class="fig-lbl"><span class="k">输入</span><span class="h">你必须拥有的两样东西</span></div>
@@ -1205,7 +1336,7 @@
             -->
             <p>不管看标价还是看单任务成本，形状都一样：Kimi K3 以约三分之一的单任务成本，交付了 Fable 5 指数分的 95%。说白了：闭源模型的溢价，大部分买的是模型周边的平台，而不是更多的智能。</p>
             <p>The New Stack 七月的基准测试把这笔交换讲得很直白——<a href="https://thenewstack.io/kimi-k3-fable-coding-benchmark/" target="_blank">Claude Fable 5 对比 Kimi K3：同等结果、三分之一的成本、慢 4 倍</a>。钱换延迟。Featherless 的案例则把自托管的经济账算得更清楚：一个满负荷团队每月消耗 1000 亿 token，用 GPT-5.5 年花费约 156 万美元——而用私有云跑开放权重的 GLM 5.2，固定年费 9 万美元，节省 94%。</p>
-            <p>而标价只是起点：拿到开放权重，优化的空间就归你所有。因为服务栈在你手里，你可以训练自己的投机器（speculator）做投机解码、在质量允许处做 FP8/INT4 量化、针对自己的硬件做内核调优——这些质量无损（或近乎无损）的优化，动辄带来数倍的吞吐提升。在闭源 API 上，这部分空间是厂商的利润；在开放权重上，它是你的成本曲线。这正是我在开放权重侧的日常工作——十倍的价差，就是在这里持续拉大的。</p>
+            <p>而标价只是起点：拿到开放权重，优化的空间就归你所有。这正是上面<a href="#lifecycle-zh">生命周期流水线</a>的第 06 环——闭源 API 永远不让你碰的那一环。因为服务栈在你手里，你可以训练自己的投机器（speculator）做投机解码、在质量允许处做 FP8/INT4 量化、针对自己的硬件做内核调优——这些质量无损（或近乎无损）的优化，动辄带来数倍的吞吐提升。在闭源 API 上，这部分空间是厂商的利润；在开放权重上，它是你的成本曲线。这正是我在开放权重侧的日常工作——十倍的价差，就是在这里持续拉大的。</p>
             <div class="fx-fig">
                <div class="fig-lbl"><span class="k">输入</span><span class="h">正是上一个闭环产出的那两样东西</span></div>
                <div class="fig-chips">
