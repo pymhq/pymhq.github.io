@@ -41,7 +41,23 @@
       h1 { font: 700 2.1rem/1.15 var(--serif); letter-spacing: -0.015em; }
       .intro { margin: 12px 0 0; color: var(--mute); font-size: .92rem; line-height: 1.75; }
 
-      .races { margin-top: 38px; display: flex; flex-direction: column; gap: 18px; }
+      .races { margin-top: 16px; display: flex; flex-direction: column; gap: 18px; }
+
+      .sec { margin: 42px 0 0; font: 700 .72rem/1.6 var(--sans); letter-spacing: .12em;
+             text-transform: uppercase; color: var(--accent); padding-bottom: 7px; border-bottom: 1px solid var(--hair); }
+      .secnote { margin: 10px 0 0; color: var(--mute); font-size: .82rem; line-height: 1.7; }
+
+      .past { margin-top: 6px; }
+      .pr { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px;
+            padding: 12px 2px; border-bottom: 1px solid var(--hair); }
+      .pr:last-child { border-bottom: none; }
+      .pr .pdate { flex: 0 0 92px; font: 700 .68rem/1.7 var(--sans); letter-spacing: .08em;
+                   text-transform: uppercase; color: var(--mute); }
+      .pr .pname { font: 600 .9rem/1.5 var(--sans); color: var(--mute); }
+      .pr .plinks { margin-left: auto; font: 600 .78rem/1.6 var(--sans); }
+      .pr .plinks a { color: var(--accent); text-decoration: none; }
+      .pr .plinks a:hover { text-decoration: underline; }
+      .pr .plinks .sep { color: var(--mute); margin: 0 4px; font-weight: 400; }
       .race { border: 1px solid var(--rule); border-radius: 14px; padding: 18px 20px 16px; }
       .race .date { font: 700 .7rem/1.6 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
       .race .name { font: 700 1.08rem/1.4 var(--sans); margin-top: 2px; }
@@ -73,6 +89,7 @@
       <h1>Races</h1>
       <p class="intro">Referral codes for Seattle-area races I'm signed up for. Registering through a link below usually gives you a discount at checkout — and after a couple of referred registrations, RunSignUp refunds part of my entry. Everybody wins.</p>
 
+      <h2 class="sec">Upcoming races</h2>
       <div class="races">
          <div class="race">
             <div class="date">Aug 2, 2026</div>
@@ -152,6 +169,21 @@
                <a class="page" data-pc="kirklandhalf" href="https://runsignup.com/Race/WA/Kirkland/KirklandHalf5k?raceRefCode=HPVklFPt" target="_blank" rel="noopener">Race page ↗</a> <span class="cc" id="pc-kirklandhalf">·</span>
                <span class="code">HPVklFPt</span>
             </div>
+         </div>
+      </div>
+
+      <h2 class="sec">Past races</h2>
+      <p class="secnote">Already run this year — the referral codes typically still work when registration opens for the next edition.</p>
+      <div class="past">
+         <div class="pr">
+            <span class="pdate">Jun 7, 2026</span>
+            <span class="pname">The Great Ferry Race · Bainbridge Island</span>
+            <span class="plinks"><a href="https://runsignup.com/Race/WA/BainbridgeIsland/TheGreatFerryRace?raceRefCode=3zZ4puf5" target="_blank" rel="noopener">race page ↗</a><span class="sep">·</span><a href="https://runsignup.com/Race/Register?raceId=51828&amp;raceRefCode=3zZ4puf5" target="_blank" rel="noopener">sign up</a></span>
+         </div>
+         <div class="pr">
+            <span class="pdate">Apr 18, 2026</span>
+            <span class="pname">Seattle Cherry Blossom Run · Seattle</span>
+            <span class="plinks"><a href="https://runsignup.com/Race/WA/Seattle/CherryBlossomRun?raceRefCode=9fRZgYU9" target="_blank" rel="noopener">race page ↗</a><span class="sep">·</span><a href="https://runsignup.com/Race/Register?raceId=71768&amp;raceRefCode=9fRZgYU9" target="_blank" rel="noopener">sign up</a></span>
          </div>
       </div>
 
