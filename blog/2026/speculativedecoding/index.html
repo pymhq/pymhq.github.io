@@ -148,6 +148,12 @@
      .post .post-content .sd-band h2 { margin: 10px 0 0; padding: 0; }
      .post .post-content .sd-band h2::before { display: none; }
 
+     /* ---------- subsection heads: shorter tick + serif h3 ---------- */
+     .post .post-content h3 { font-family: var(--fx-serif); font-weight: 600; font-size: 1.28rem; line-height: 1.35; letter-spacing: -.005em;
+       max-width: var(--fx-prose); margin: 54px auto 18px; position: relative; padding: 14px 0 0; }
+     .post .post-content h3::before { content: ""; position: absolute; top: 0; left: 0; width: 20px; height: 2px; border-radius: 2px; background: var(--fx-accent); opacity: .65; }
+     .post .post-content h3 span { font-weight: 400; font-size: .92em; color: var(--fx-mute); }
+
      /* ---------- timeline rail ---------- */
      .post .post-content .sd-rail { max-width: var(--fx-prose); margin: 32px auto 8px; position: relative; padding-left: 30px; }
      .post .post-content .sd-rail::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 1px; background: var(--fx-rule); }
@@ -244,6 +250,26 @@
      .metric { display: inline-block; margin-top: 8px; padding: 2px 10px; border-radius: 999px; background: transparent;
        font: 600 .78rem/1.6 var(--fx-mono); color: var(--fx-yes); border: 1px solid var(--fx-yes); }
 
+     /* ---------- adoption ledger: waterfall breakdown chart ---------- */
+     .post .post-content .sd-bd { max-width: var(--fx-prose); margin: 28px auto 6px; }
+     .post .post-content .sd-bd .lbl { font: 700 .72rem/1.5 var(--fx-sans); letter-spacing: .12em; text-transform: uppercase;
+       color: var(--fx-mute); padding-bottom: 8px; margin-bottom: 10px; border-bottom: 1px solid var(--fx-rule); }
+     .post .post-content .sd-bd .row { display: grid; grid-template-columns: 170px 1fr 58px; align-items: center; gap: 12px; padding: 5px 0; }
+     .post .post-content .sd-bd .name { font: 500 .8rem/1.3 var(--fx-sans); color: var(--fx-mute); }
+     .post .post-content .sd-bd .track { position: relative; height: 14px; }
+     .post .post-content .sd-bd .bar { position: absolute; top: 0; height: 100%; border-radius: 3px; background: var(--fx-accent); }
+     .post .post-content .sd-bd .bar.base { background: var(--fx-rule); }
+     .post .post-content .sd-bd .bar.g { opacity: .38; }
+     .post .post-content .sd-bd .bar.total { background: var(--global-text-color, #1a1a1a); opacity: .8; }
+     .post .post-content .sd-bd .val { font: 600 .78rem/1 var(--fx-mono); text-align: right; color: var(--fx-mute); }
+     .post .post-content .sd-bd .row.hot .name, .post .post-content .sd-bd .row.hot .val { color: var(--fx-accent); font-weight: 700; }
+     .post .post-content .sd-bd .row.sum { border-top: 1px solid var(--fx-hair); margin-top: 4px; padding-top: 9px; }
+     .post .post-content .sd-bd .row.sum .name, .post .post-content .sd-bd .row.sum .val { color: var(--global-text-color, #1a1a1a); font-weight: 700; }
+     @media (max-width: 560px) {
+       .post .post-content .sd-bd .row { grid-template-columns: 1fr 52px; }
+       .post .post-content .sd-bd .name { grid-column: 1 / -1; padding-top: 2px; }
+     }
+
      /* ---------- reading aids ---------- */
      #fxbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--fx-accent); z-index: 2001; }
      #fx-outline { display: none; position: fixed; top: 130px; left: max(18px, calc(50vw - 440px - 236px)); width: 204px;
@@ -263,7 +289,7 @@
          <div class="post">
             <header class="post-header">
                <h1 class="post-title"><span class="lang-en">Trendings on Speculative Decoding</span><span class="lang-zh">投机解码的趋势</span></h1>
-               <p class="post-meta"><span class="lang-en"> Created in June 2026<span class="post-readstats"> · 5,473 words · 28 min read</span> </span><span class="lang-zh"> 创建于 2026 年 6 月<span class="post-readstats"> · 约 8,885 字 · 26 分钟阅读</span> </span></p>
+               <p class="post-meta"><span class="lang-en"> Created in June 2026<span class="post-readstats"> · 5,900 words · 30 min read</span> </span><span class="lang-zh"> 创建于 2026 年 6 月<span class="post-readstats"> · 约 9,400 字 · 28 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/archive/2026/"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>   <a href="/blog/tag/mtp"> <i class="fa-solid fa-hashtag fa-sm"></i> mtp</a>   <a href="/blog/tag/inference"> <i class="fa-solid fa-hashtag fa-sm"></i> inference</a>   <a href="/blog/tag/eagle"> <i class="fa-solid fa-hashtag fa-sm"></i> eagle</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -288,7 +314,7 @@
                </p>
 
                <p>
-                  In my own writing on the LLM space — from my <a href="https://pengandy.com/blog/2025/llm/" target="_blank" rel="noopener">LLM Year in Review</a> to my <a href="https://pengandy.com/blog/2026/mlsys/" target="_blank" rel="noopener">MLSys 2026 recap</a> — I've watched this technique go from a clever trick to a production necessity. What's striking about <strong>2026</strong> is how the whole field converged on the same answer in the span of two months — and from three very different angles: Google's open <strong>Gemma 4</strong> drafters, Google's on-device <strong>Gemini Nano</strong> frozen Multi-Token Prediction, and DeepSeek's server-scale <strong>DSpark</strong>. This post walks that timeline, summarizes each, and lays them side by side.
+                  In my own writing on the LLM space — from my <a href="https://pengandy.com/blog/2025/llm/" target="_blank" rel="noopener">LLM Year in Review</a> to my <a href="https://pengandy.com/blog/2026/mlsys/" target="_blank" rel="noopener">MLSys 2026 recap</a> — I've watched this technique go from a clever trick to a production necessity. What's striking about <strong>2026</strong> is how the whole field converged on the same answer in the span of two months — and from three very different angles: DeepSeek's server-scale <strong>DSpark</strong>, Google's open <strong>Gemma 4</strong> drafters, and Google's on-device <strong>Gemini Nano</strong> frozen Multi-Token Prediction. This post walks that timeline, summarizes each, lays them side by side — and keeps a running ledger of where they land in production.
                </p>
 
                <nav class="fx-toc">
@@ -296,12 +322,10 @@
                   <ol>
                      <li><a href="#timeline">The 2026 Wave, at a Glance</a></li>
                      <li><a href="#terms">Key Terms in Plain English &mdash; EAGLE, MTP, DFlash</a></li>
-                     <li><a href="#ar-vs-parallel">Autoregressive vs. Parallel Drafting</a></li>
-                     <li><a href="#deepseek">DeepSeek DSpark &mdash; speculative decoding at hyperscale</a></li>
-                     <li><a href="#thread">Dmytro's Thread, Idea by Idea</a></li>
-                     <li><a href="#gemini">Gemini Nano Frozen MTP &mdash; at the edge</a></li>
-                     <li><a href="#gemma4">Gemma 4 Assistant &mdash; for everyone</a></li>
+                     <li><a href="#deepseek">DeepSeek DSpark &mdash; at hyperscale, in ten ideas</a></li>
+                     <li><a href="#gemma4">Gemma 4 Assistant &amp; Gemini Nano &mdash; open weights to the edge</a></li>
                      <li><a href="#comparison">Comparison &mdash; three angles on one idea</a></li>
+                     <li><a href="#in-the-wild">Seen in Production &mdash; the adoption ledger</a></li>
                      <li><a href="#papers">Papers &mdash; the lineage behind the wave</a></li>
                      <li><a href="#training-libs">Where the Drafters Come From &mdash; the training libraries</a></li>
                   </ol>
@@ -313,9 +337,9 @@
 
                <p class="sd-rail-lbl">Speculator Releases <span>&mdash; three launches, eight weeks &middot; newest first</span></p>
                <div class="sd-rail">
-                  <div class="sd-stop future">
-                     <div class="when">Next &mdash; Branching &amp; Lenient Verification</div>
-                     <p class="what">Everyone is converging on the same frontier: parallel/branching drafts, auxiliary-head-free designs, and <em>relaxed</em> (non-exact-match) verification to push acceptance even higher. The chapter still being written.</p>
+                  <div class="sd-stop">
+                     <div class="when">Update &mdash; July 28, 2026 &mdash; Intent Lab &times; DSpark drafters (autonomous adoption)</div>
+                     <p class="what">Intent Lab's agent fleet <a href="https://intentlab.ai/blog/turn-your-intent-into-production-systems" target="_blank" rel="noopener">re-engineers TensorRT-LLM for GLM 5.2</a> on Grace Blackwell — <strong>6.3&times;</strong> end to end, with <strong>speculative decoding the single largest slice at &times;4.0</strong> via optimized <strong>DSpark drafters</strong>, reaching 647 tok/s. Full breakdown in the <a href="#in-the-wild">adoption ledger</a>.</p>
                   </div>
                   <div class="sd-stop">
                      <div class="when">Update &mdash; July 15, 2026 &mdash; Inkling &times; DFlash on Modal (production adoption)</div>
@@ -334,7 +358,7 @@
                      <p class="what">Google ships a companion line of autoregressive <strong>drafter</strong> models — officially the <strong>"Gemma 4 Assistant"</strong> (the <code>-assistant</code> checkpoints) — plus an <strong>MTP</strong> head for the Gemma 4 family. Up to <strong>3&times;</strong> faster inference, lossless, Apache-2.0, and supported in Transformers, MLX, vLLM, SGLang and Ollama from day one.</p>
                   </div>
                </div>
-               <p class="sd-rail-cap">The 2026 speculative-decoding wave, newest first — the hollow, dashed node is where the research is heading next.</p>
+               <p class="sd-rail-cap">The 2026 speculative-decoding wave, newest first — three launches and the production adoption that followed.</p>
 
                <p class="sd-rail-lbl">Speculator Trainers <span>&mdash; exactly one year, Jul 2025 &ndash; Jul 2026 &middot; newest first</span></p>
                <div class="sd-rail">
@@ -465,10 +489,7 @@
                </div>
 
                <!-- ===== Autoregressive vs Parallel ===== -->
-               <div class="sd-band">
-                  <div class="yr">The Core Trade-off</div>
-                  <h2 id="ar-vs-parallel">Autoregressive Decoding vs. Parallel Drafting <span>&mdash; the axis every method lives on</span></h2>
-               </div>
+               <h3 id="ar-vs-parallel">Autoregressive Decoding vs. Parallel Drafting <span>&mdash; the axis every method lives on</span></h3>
 
                <p>
                   Underneath all three releases is a single tension. A drafter can produce its guesses <strong>autoregressively</strong> (one token at a time, each guess conditioned on the last) or by <strong>parallel drafting</strong> (predicting a whole block of tokens in one shot). They fail in opposite ways — and the 2026 systems are essentially different bets on how to combine them.
@@ -535,7 +556,7 @@
 
                <!-- ===== DeepSeek ===== -->
                <div class="sd-band">
-                  <div class="yr">Summary 1 &nbsp;·&nbsp; June 27, 2026</div>
+                  <div class="yr">The Headline Release &nbsp;·&nbsp; June 27, 2026</div>
                   <h2 id="deepseek">DeepSeek DSpark <span>&mdash; speculative decoding at hyperscale</span></h2>
                </div>
 
@@ -554,19 +575,12 @@
                   <li>Released as a full paper (33 authors from <strong>Peking University &amp; DeepSeek-AI</strong>, led by Xin Cheng et al., with <strong>Wenfeng Liang</strong> as senior author) plus the open <a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">DeepSpec</a> training repo and public checkpoints (<code>deepseek-ai/dspark_qwen3_4b_block7</code>, etc.).</li>
                </ul>
 
-               <blockquote class="sd-pq">
-                  "DSpark ... ingeniously integrates many speculative decoding ideas to achieve 1.5x to 5x higher throughput in a real production system." — @dzhulgakov
-               </blockquote>
-
                <p>
-                  The enthusiasm wasn't confined to DeepSeek's research org. <strong>Tianyi Cui</strong> (崔添翼) — the former Jane Street quant who joined DeepSeek in March 2026 to lead its <strong>Harness</strong> team building DeepSeek's agent stack — <a href="https://weibo.com/7542534202/5314445553436842" target="_blank" rel="noopener">spotlighted the open-source DeepSpec repo and DSpark on Weibo</a>. It's a small but telling signal of how broadly the company is leaning on speculative decoding — not just to serve V4 cheaply, but as table-stakes infrastructure for the latency-sensitive agent products the Harness team is racing to ship.
+                  The enthusiasm wasn't confined to DeepSeek's research org. <strong>Tianyi Cui</strong> (崔添翼) — the former Jane Street quant who joined DeepSeek in March 2026 to lead its <strong>Harness</strong> team building DeepSeek's agent stack — <a href="https://weibo.com/7542534202/5314445553436842" target="_blank" rel="noopener">spotlighted the open-source DeepSpec repo and DSpark on Weibo</a>. It's a small but telling signal of how broadly the company is leaning on speculative decoding — not just to serve V4 cheaply, but as table-stakes infrastructure for the latency-sensitive agent products the Harness team is racing to ship. And the adoption didn't stop at DeepSeek's own walls: a month later, <strong>optimized DSpark drafters</strong> turned up as the single largest slice of Intent Lab's autonomous 6.3&times; TensorRT-LLM speedup (<a href="#in-the-wild">see the adoption ledger below</a>).
                </p>
 
                <!-- ===== Thread walkthrough ===== -->
-               <div class="sd-band">
-                  <div class="yr">Deep Dive</div>
-                  <h2 id="thread">Dmytro's Thread, Idea by Idea <span>&mdash; the 10-step walkthrough</span></h2>
-               </div>
+               <h3 id="thread">DSpark in Ten Ideas <span>&mdash; Dmytro's thread, walked through</span></h3>
 
                <p>
                   Dmytro Dzhulgakov (Fireworks AI) explained DSpark as a <strong>"10 ideas"</strong> thread that builds up from the very basics of LLM decoding to the full DSpark design. Here is that thread walked through step by step, each with its original diagram. Every card links back to the source tweet.
@@ -698,30 +712,9 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
 
                </div>
 
-               <!-- ===== Gemini ===== -->
-               <div class="sd-band">
-                  <div class="yr">Summary 2 &nbsp;·&nbsp; June 26, 2026</div>
-                  <h2 id="gemini">Gemini Nano Frozen MTP <span>&mdash; speculative decoding at the edge</span></h2>
-               </div>
-
-               <p>
-                  Google Research tackled the opposite extreme from DeepSeek: not a datacenter, but a phone. Mobile inference lives under hard RAM and energy budgets, and a standard speculative-decoding setup wants a <em>separate</em> drafter model (e.g. 128M params) that competes for memory and is "blind" to the main model's internal state. Their answer, <a href="https://research.google/blog/accelerating-gemini-nano-models-on-pixel-with-frozen-multi-token-prediction/" target="_blank" rel="noopener">detailed on the Google Research blog</a>, is to retrofit <strong>Multi-Token Prediction onto a frozen Gemini Nano v3</strong> — already deployed on Pixel 9 and 10.
-               </p>
-
-               <p>The design rests on three moves:</p>
-               <ul>
-                  <li><strong>Late-exit MTP head.</strong> Instead of a standalone drafter, a lightweight Transformer head is appended to the final layers of the main model and predicts future tokens from the backbone's high-dimensional hidden states.</li>
-                  <li><strong>Frozen backbone.</strong> The base model's weights are frozen; only the head is trained. This guarantees <strong>zero degradation</strong> in capability or safety alignment, and lets efficiency updates roll out with full backward compatibility — output stays bit-for-bit identical.</li>
-                  <li><strong>Zero-copy architecture.</strong> The head <em>cross-attends directly to the main model's frozen KV cache</em> instead of maintaining its own. This eliminates drafter prefill latency and saves <strong>~130&nbsp;MB</strong> per instance versus a standalone drafter.</li>
-               </ul>
-
-               <p>
-                  In production workloads like AI Notification Summaries and Proofread, MTP correctly predicts <strong>nearly two additional tokens per pass</strong>, yielding <strong>50%+ speedups</strong> on Pixel 9 and up to <strong>55% better token acceptance</strong> on highly structured tasks (e.g. smart replies) — while cutting energy use by waking heavy processors less often. The work explicitly builds on the <strong>EAGLE</strong> framework and <strong>CALM</strong> (Confident Adaptive Language Modeling), and points ahead to branching/parallel decoding and "verification leniency."
-               </p>
-
                <!-- ===== Gemma 4 ===== -->
                <div class="sd-band">
-                  <div class="yr">Summary 3 &nbsp;·&nbsp; May 5, 2026</div>
+                  <div class="yr">The Google Pair &nbsp;·&nbsp; May 5 &amp; June 26, 2026</div>
                   <h2 id="gemma4">Gemma 4 Assistant <span>&mdash; speculative decoding for everyone</span></h2>
                </div>
 
@@ -737,7 +730,25 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                </ul>
 
                <p>
-                  One honest caveat from the docs: for the <strong>MoE</strong> model (Gemma 4 26B A4B), verifying drafted tokens can require loading additional expert weights, which can offset the gains at <strong>batch size 1</strong> on hardware without good parallelism. Higher batch sizes recover the win as expert activations overlap. This Gemma 4 release is the direct ancestor of the Gemini Nano work — the blog explicitly notes the frozen-MTP effort builds on "accelerating Gemma 4 with MTP."
+                  One honest caveat from the docs: for the <strong>MoE</strong> model (Gemma 4 26B A4B), verifying drafted tokens can require loading additional expert weights, which can offset the gains at <strong>batch size 1</strong> on hardware without good parallelism. Higher batch sizes recover the win as expert activations overlap. This Gemma 4 release is the direct ancestor of the Gemini Nano work that follows — Google's own blog notes the frozen-MTP effort builds on "accelerating Gemma 4 with MTP."
+               </p>
+
+               <!-- ===== Gemini ===== -->
+               <h3 id="gemini">Gemini Nano Frozen MTP <span>&mdash; June 26: the same idea, at the edge</span></h3>
+
+               <p>
+                  Seven weeks after the Gemma 4 launch, Google Research took the same idea to the far end of the deployment spectrum: not a datacenter, but a phone. Mobile inference lives under hard RAM and energy budgets, and a standard speculative-decoding setup wants a <em>separate</em> drafter model (e.g. 128M params) that competes for memory and is "blind" to the main model's internal state. Their answer, <a href="https://research.google/blog/accelerating-gemini-nano-models-on-pixel-with-frozen-multi-token-prediction/" target="_blank" rel="noopener">detailed on the Google Research blog</a>, is to retrofit <strong>Multi-Token Prediction onto a frozen Gemini Nano v3</strong> — already deployed on Pixel 9 and 10.
+               </p>
+
+               <p>The design rests on three moves:</p>
+               <ul>
+                  <li><strong>Late-exit MTP head.</strong> Instead of a standalone drafter, a lightweight Transformer head is appended to the final layers of the main model and predicts future tokens from the backbone's high-dimensional hidden states.</li>
+                  <li><strong>Frozen backbone.</strong> The base model's weights are frozen; only the head is trained. This guarantees <strong>zero degradation</strong> in capability or safety alignment, and lets efficiency updates roll out with full backward compatibility — output stays bit-for-bit identical.</li>
+                  <li><strong>Zero-copy architecture.</strong> The head <em>cross-attends directly to the main model's frozen KV cache</em> instead of maintaining its own. This eliminates drafter prefill latency and saves <strong>~130&nbsp;MB</strong> per instance versus a standalone drafter.</li>
+               </ul>
+
+               <p>
+                  In production workloads like AI Notification Summaries and Proofread, MTP correctly predicts <strong>nearly two additional tokens per pass</strong>, yielding <strong>50%+ speedups</strong> on Pixel 9 and up to <strong>55% better token acceptance</strong> on highly structured tasks (e.g. smart replies) — while cutting energy use by waking heavy processors less often. The work explicitly builds on the <strong>EAGLE</strong> framework and <strong>CALM</strong> (Confident Adaptive Language Modeling), and points ahead to branching/parallel decoding and "verification leniency."
                </p>
 
                <!-- ===== Comparison ===== -->
@@ -861,7 +872,44 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   The throughline: all three keep output <strong>lossless</strong>, all three move <em>away</em> from standalone drafters toward heads that reuse the backbone's own state (embeddings, activations, or KV cache), and all three are converging on the same next frontier — branching drafts and relaxed verification. The difference is purely environmental: Gemma 4 optimizes for <em>reach</em>, Gemini Nano for <em>memory and energy</em>, and DSpark for <em>throughput under load</em>.
                </p>
 
-               <!-- ===== Papers ===== -->
+               <!-- ===== In the Wild ===== -->
+               <div class="sd-band">
+                  <div class="yr">Adoption Ledger</div>
+                  <h2 id="in-the-wild">Seen in Production <span>&mdash; a running ledger of adoption</span></h2>
+               </div>
+
+               <p>
+                  The real test of any inference technique is production traffic. The deployments below shipped with the speculators covered above — each entry records what ran, where it ran, and the numbers reported, newest first.
+               </p>
+
+               <div class="paper">
+                  <div class="ptitle">Intent Lab — DSpark drafters inside an autonomous 6.3&times; TensorRT-LLM speedup <span class="badge badge-serve">JUL 28, 2026</span></div>
+                  <div class="pauthors">Intent Lab</div>
+                  <p class="psum">In <a href="https://intentlab.ai/blog/turn-your-intent-into-production-systems" target="_blank" rel="noopener">"Turn your intent into production systems"</a>, Intent Lab's agent fleet re-engineered <strong>TensorRT-LLM</strong> to run <strong>GLM 5.2</strong> on Grace Blackwell nodes — end to end, with no human intervention. Of the four optimization categories behind the overall <strong>6.3&times;</strong> speedup (+534%), <strong>speculative decoding is by far the largest slice: &times;4.0 on its own</strong> — "combining optimized <strong>DSpark</strong> drafters to propose multiple tokens per step and verify them in one pass, the engine reaches a 647 tok/s speed." Kernel (+24%), runtime (+16%), and communication (+18%) work compound the rest. Notably, when an autonomous system went hunting for inference speed, it reached for the same drafter DeepSeek ships.</p>
+                  <div class="metric">&times;4.0 from speculative decoding &middot; 647 tok/s</div>
+                  <div class="plinks"><a href="https://intentlab.ai/blog/turn-your-intent-into-production-systems" target="_blank" rel="noopener">Intent Lab blog</a></div>
+               </div>
+
+               <div class="sd-bd" role="img" aria-label="Breakdown of Intent Lab's performance gains: stock TensorRT-LLM baseline, plus 24% kernel, plus 16% runtime, plus 18% communication, times 4.0 speculative decoding, 534% end to end">
+                  <div class="lbl">Breakdown of performance gains</div>
+                  <div class="row"><span class="name">Stock TensorRT-LLM</span><span class="track"><span class="bar base" style="left:0;width:30%"></span></span><span class="val">baseline</span></div>
+                  <div class="row"><span class="name">+ Kernel</span><span class="track"><span class="bar g" style="left:30%;width:12%"></span></span><span class="val">+24%</span></div>
+                  <div class="row"><span class="name">+ Runtime</span><span class="track"><span class="bar g" style="left:42%;width:12%"></span></span><span class="val">+16%</span></div>
+                  <div class="row"><span class="name">+ Communication</span><span class="track"><span class="bar g" style="left:54%;width:12%"></span></span><span class="val">+18%</span></div>
+                  <div class="row hot"><span class="name">+ Speculative decoding</span><span class="track"><span class="bar" style="left:66%;width:34%"></span></span><span class="val">&times;4.0</span></div>
+                  <div class="row sum"><span class="name">End to end</span><span class="track"><span class="bar total" style="left:0;width:100%"></span></span><span class="val">+534%</span></div>
+               </div>
+               <p class="sd-rail-cap">Redrawn from Intent Lab's "Breakdown of performance gains" chart — speculative decoding dwarfs every other category combined.</p>
+
+               <div class="paper">
+                  <div class="ptitle">Modal &times; Inkling — a DFlash speculator behind a day-0 frontier release <span class="badge badge-serve">JUL 15, 2026</span></div>
+                  <div class="pauthors">Modal &middot; Thinking Machines Lab</div>
+                  <p class="psum"><a href="https://modal.com/blog/inkling-by-thinking-machines-labs-now-available-on-modal" target="_blank" rel="noopener">Modal serves Thinking Machines' Inkling</a> backed by a custom-trained <strong>DFlash speculator</strong> on Modal Auto Endpoints with SGLang — the block-diffusion drafter from the <a href="#terms">glossary</a>, in production on day one of a frontier release. <a href="https://x.com/soumithchintala/status/2077500083407667569?s=20" target="_blank" rel="noopener">Soumith Chintala</a>: "Modal trained a DFlash speculator that's much faster than MTP, making it a great boost for inference speeds!"</p>
+                  <div class="metric">+67% throughput &amp; interactivity</div>
+                  <div class="plinks"><a href="https://modal.com/blog/inkling-by-thinking-machines-labs-now-available-on-modal" target="_blank" rel="noopener">Modal blog</a> &middot; <a href="https://x.com/soumithchintala/status/2077500083407667569?s=20" target="_blank" rel="noopener">Post on X</a></div>
+               </div>
+
+                              <!-- ===== Papers ===== -->
                <div class="sd-band">
                   <div class="yr">References</div>
                   <h2 id="papers">Papers <span>&mdash; the lineage behind the wave</span></h2>
@@ -1064,7 +1112,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                </p>
 
                <p>
-                  在我自己关于 LLM 领域的写作中——从 <a href="https://pengandy.com/blog/2025/llm/" target="_blank" rel="noopener">LLM 年度回顾</a> 到 <a href="https://pengandy.com/blog/2026/mlsys/" target="_blank" rel="noopener">MLSys 2026 回顾</a>——我看着这项技术从一个巧妙的小技巧变成了生产环境的刚需。<strong>2026 年</strong>引人注目之处，在于整个领域在短短两个月内、从三个截然不同的角度收敛到了同一个答案：谷歌开源的 <strong>Gemma 4 Assistant</strong>、谷歌端侧的 <strong>Gemini Nano</strong> 冻结式 Multi-Token Prediction，以及 DeepSeek 服务器规模的 <strong>DSpark</strong>。本文沿着时间线梳理，逐一总结，并把它们并排对比。
+                  在我自己关于 LLM 领域的写作中——从 <a href="https://pengandy.com/blog/2025/llm/" target="_blank" rel="noopener">LLM 年度回顾</a> 到 <a href="https://pengandy.com/blog/2026/mlsys/" target="_blank" rel="noopener">MLSys 2026 回顾</a>——我看着这项技术从一个巧妙的小技巧变成了生产环境的刚需。<strong>2026 年</strong>引人注目之处，在于整个领域在短短两个月内、从三个截然不同的角度收敛到了同一个答案：DeepSeek 服务器规模的 <strong>DSpark</strong>、谷歌开源的 <strong>Gemma 4 Assistant</strong>，以及谷歌端侧的 <strong>Gemini Nano</strong> 冻结式 Multi-Token Prediction。本文沿着时间线梳理，逐一总结，把它们并排对比 —— 并持续记录它们在生产环境中的落地。
                </p>
 
                <nav class="fx-toc">
@@ -1072,12 +1120,10 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <ol>
                      <li><a href="#timeline-zh">2026 浪潮一览</a></li>
                      <li><a href="#terms-zh">用大白话讲关键术语 &mdash; EAGLE、MTP、DFlash</a></li>
-                     <li><a href="#ar-vs-parallel-zh">自回归解码 vs. 并行草稿</a></li>
-                     <li><a href="#deepseek-zh">DeepSeek DSpark &mdash; 超大规模下的投机解码</a></li>
-                     <li><a href="#thread-zh">Dmytro 的长帖，逐条解读</a></li>
-                     <li><a href="#gemini-zh">Gemini Nano 冻结式 MTP &mdash; 端侧</a></li>
-                     <li><a href="#gemma4-zh">Gemma 4 Assistant &mdash; 人人可用</a></li>
+                     <li><a href="#deepseek-zh">DeepSeek DSpark &mdash; 超大规模，十个想法讲透</a></li>
+                     <li><a href="#gemma4-zh">Gemma 4 Assistant 与 Gemini Nano &mdash; 从开源到端侧</a></li>
                      <li><a href="#comparison-zh">对比 &mdash; 同一思想的三个角度</a></li>
+                     <li><a href="#in-the-wild-zh">生产实录 &mdash; 落地台账</a></li>
                      <li><a href="#papers-zh">论文 &mdash; 这股浪潮背后的谱系</a></li>
                      <li><a href="#training-libs-zh">草稿器从哪里来 &mdash; 开源训练库</a></li>
                   </ol>
@@ -1089,9 +1135,9 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
 
                <p class="sd-rail-lbl">投机器发布 <span>&mdash; 三次发布，八周时间 &middot; 最新在前</span></p>
                <div class="sd-rail">
-                  <div class="sd-stop future">
-                     <div class="when">下一步 —— 分支式草稿与宽松验证</div>
-                     <p class="what">所有人都在朝同一个前沿收敛：并行/分支式草稿、无需辅助头的设计，以及<em>放宽</em>（非精确匹配）的验证以进一步提高接受率。这一章仍在书写中。</p>
+                  <div class="sd-stop">
+                     <div class="when">更新 —— 2026 年 7 月 28 日 —— Intent Lab × DSpark 草稿器（自主落地）</div>
+                     <p class="what">Intent Lab 的 Agent 舰队<a href="https://intentlab.ai/blog/turn-your-intent-into-production-systems" target="_blank" rel="noopener">为 GLM 5.2 重构 TensorRT-LLM</a>（Grace Blackwell 节点）—— 端到端 <strong>6.3&times;</strong>，其中<strong>投机解码是最大的一块（&times;4.0）</strong>，由优化过的 <strong>DSpark 草稿器</strong>驱动，达到 647 tok/s。完整拆解见<a href="#in-the-wild-zh">落地台账</a>。</p>
                   </div>
                   <div class="sd-stop">
                      <div class="when">更新 —— 2026 年 7 月 15 日 —— Inkling × DFlash 登陆 Modal（生产落地）</div>
@@ -1110,7 +1156,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                      <p class="what">谷歌发布了一系列自回归<strong>草稿</strong>模型 —— 官方称为 <strong>"Gemma 4 Assistant"</strong>（即 <code>-assistant</code> 检查点）—— 外加为 Gemma 4 家族准备的 <strong>MTP</strong> 头。推理最高提速 <strong>3&times;</strong>、无损、Apache-2.0，并自首日起支持 Transformers、MLX、vLLM、SGLang 与 Ollama。</p>
                   </div>
                </div>
-               <p class="sd-rail-cap">2026 年投机解码浪潮（最新在前）—— 空心虚线节点是研究正在走向的下一步。</p>
+               <p class="sd-rail-cap">2026 年投机解码浪潮（最新在前）—— 三次发布，以及随之而来的生产落地。</p>
 
                <p class="sd-rail-lbl">投机器训练器 <span>&mdash; 恰好一年：2025 年 7 月 &ndash; 2026 年 7 月 &middot; 最新在前</span></p>
                <div class="sd-rail">
@@ -1239,10 +1285,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <strong>在 DSpark 中：</strong> DeepSeek 的 DSpark 把 DFlash 的<em>并行块</em>（块开头强）与一个<em>自回归</em>的 EAGLE-3/MTP 步骤（长草稿深处连贯）融合，胜过任一单独方法。所以 DFlash 是一种通用、与模型无关的起草方法；DSpark 则是把它用作其两半之一的一个生产系统。
                </div>
 
-               <div class="sd-band">
-                  <div class="yr">核心权衡</div>
-                  <h2 id="ar-vs-parallel-zh">自回归解码 vs. 并行草稿 <span>&mdash; 每种方法都落在这条轴上</span></h2>
-               </div>
+               <h3 id="ar-vs-parallel-zh">自回归解码 vs. 并行草稿 <span>&mdash; 每种方法都落在这条轴上</span></h3>
 
                <p>
                   三次发布之下都藏着同一组张力。草稿模型可以<strong>自回归</strong>地产出猜测（一次一个 token，每个猜测以上一个为条件），也可以<strong>并行草稿</strong>（一次预测一整块 token）。它们以相反的方式失效 —— 而 2026 年的这些系统，本质上是关于如何把两者结合的不同押注。
@@ -1308,7 +1351,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                </div>
 
                <div class="sd-band">
-                  <div class="yr">总结 1 &nbsp;·&nbsp; 2026 年 6 月 27 日</div>
+                  <div class="yr">头条发布 &nbsp;·&nbsp; 2026 年 6 月 27 日</div>
                   <h2 id="deepseek-zh">DeepSeek DSpark <span>&mdash; 超大规模下的投机解码</span></h2>
                </div>
 
@@ -1327,18 +1370,11 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <li>以完整论文发布（33 位作者，来自<strong>北京大学与 DeepSeek-AI</strong>，由 Xin Cheng 等领衔，<strong>梁文锋（Wenfeng Liang）</strong>为资深作者），并附开源的 <a href="https://github.com/deepseek-ai/DeepSpec" target="_blank" rel="noopener">DeepSpec</a> 训练仓库与公开检查点（<code>deepseek-ai/dspark_qwen3_4b_block7</code> 等）。</li>
                </ul>
 
-               <blockquote class="sd-pq">
-                  "DSpark …… 巧妙地整合了许多投机解码思想，在真实生产系统中实现 1.5x 到 5x 的吞吐提升。" —— @dzhulgakov
-               </blockquote>
-
                <p>
-                  热度并不止于 DeepSeek 的研究团队内部。<strong>崔添翼（Tianyi Cui）</strong> —— 这位前 Jane Street 量化工程师于 2026 年 3 月加入 DeepSeek，领衔打造其 Agent 技术栈的 <strong>Harness</strong> 团队 —— 也在 <a href="https://weibo.com/7542534202/5314445553436842" target="_blank" rel="noopener">微博上推介了开源的 DeepSpec 仓库与 DSpark</a>。这是一个细微却说明问题的信号：这家公司对投机解码的倚重之广 —— 不仅是为了低成本地服务 V4，更是把它当作 Harness 团队正全力推出的、对延迟敏感的 Agent 产品的基础设施。
+                  热度并不止于 DeepSeek 的研究团队内部。<strong>崔添翼（Tianyi Cui）</strong> —— 这位前 Jane Street 量化工程师于 2026 年 3 月加入 DeepSeek，领衔打造其 Agent 技术栈的 <strong>Harness</strong> 团队 —— 也在 <a href="https://weibo.com/7542534202/5314445553436842" target="_blank" rel="noopener">微博上推介了开源的 DeepSpec 仓库与 DSpark</a>。这是一个细微却说明问题的信号：这家公司对投机解码的倚重之广 —— 不仅是为了低成本地服务 V4，更是把它当作 Harness 团队正全力推出的、对延迟敏感的 Agent 产品的基础设施。而且这波采用并未止步于 DeepSeek 自家院墙：一个月后，<strong>优化过的 DSpark 草稿器</strong>成为 Intent Lab 自主完成的 6.3&times; TensorRT-LLM 加速中最大的一块（<a href="#in-the-wild-zh">见下文落地台账</a>）。
                </p>
 
-               <div class="sd-band">
-                  <div class="yr">深入</div>
-                  <h2 id="thread-zh">Dmytro 的长帖，逐条解读 <span>&mdash; 10 步走读</span></h2>
-               </div>
+               <h3 id="thread-zh">用十个想法讲透 DSpark <span>&mdash; Dmytro 长帖逐条走读</span></h3>
 
                <p>
                   Dmytro Dzhulgakov（Fireworks AI）以一条 <strong>"10 个想法"</strong> 的长帖解释了 DSpark，从 LLM 解码的最基础概念一路搭建到完整的 DSpark 设计。下面逐步走读这条长帖，每条都附上原始示意图。每张卡片都链接回原推文。
@@ -1469,27 +1505,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                </div>
 
                <div class="sd-band">
-                  <div class="yr">总结 2 &nbsp;·&nbsp; 2026 年 6 月 26 日</div>
-                  <h2 id="gemini-zh">Gemini Nano 冻结式 MTP <span>&mdash; 端侧的投机解码</span></h2>
-               </div>
-
-               <p>
-                  谷歌研究院攻克的是与 DeepSeek 相反的极端：不是数据中心，而是一部手机。移动推理受制于严苛的内存与能耗预算，而标准投机解码需要一个<em>独立的</em>草稿模型（如 128M 参数），它既争抢内存，又对主模型的内部状态"视而不见"。他们的答案（详见 <a href="https://research.google/blog/accelerating-gemini-nano-models-on-pixel-with-frozen-multi-token-prediction/" target="_blank" rel="noopener">Google Research 博客</a>）是把 Multi-Token Prediction 改造性地装到<strong>冻结的 Gemini Nano v3</strong> 上 —— 该模型已部署在 Pixel 9 与 10 上。
-               </p>
-
-               <p>设计依赖三步：</p>
-               <ul>
-                  <li><strong>晚退出（late-exit）MTP 头。</strong> 不用独立草稿器，而是在主模型的最后若干层上加一个轻量 Transformer 头，从骨干的高维隐藏状态预测未来 token。</li>
-                  <li><strong>冻结骨干。</strong> 基座权重冻结，只训练这个头。这保证能力与安全对齐<strong>零退化</strong>，并能以完全向后兼容的方式推送效率更新 —— 输出逐比特一致。</li>
-                  <li><strong>零拷贝架构。</strong> 该头<em>直接交叉注意力到主模型冻结的 KV cache</em>，而不维护自己的 cache。这消除了草稿器的 prefill 延迟，相比独立草稿器每实例节省约 <strong>130&nbsp;MB</strong>。</li>
-               </ul>
-
-               <p>
-                  在 AI 通知摘要、校对等生产工作负载中，MTP 平均每次前向多正确预测<strong>近两个 token</strong>，在 Pixel 9 上带来 <strong>50%+ 的提速</strong>，在结构性强的任务（如智能回复）上 token 接受率最高提升 <strong>55%</strong> —— 同时因更少唤醒重型处理器而降低能耗。该工作明确构建于 <strong>EAGLE</strong> 框架与 <strong>CALM</strong>（Confident Adaptive Language Modeling）之上，并展望了分支/并行解码与"验证宽松化"。
-               </p>
-
-               <div class="sd-band">
-                  <div class="yr">总结 3 &nbsp;·&nbsp; 2026 年 5 月 5 日</div>
+                  <div class="yr">谷歌双发 &nbsp;·&nbsp; 2026 年 5 月 5 日与 6 月 26 日</div>
                   <h2 id="gemma4-zh">Gemma 4 Assistant <span>&mdash; 人人可用的投机解码</span></h2>
                </div>
 
@@ -1505,7 +1521,24 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                </ul>
 
                <p>
-                  文档中一个诚实的注意点：对 <strong>MoE</strong> 模型（Gemma 4 26B A4B），验证草稿 token 可能需要加载额外的专家权重，这在<strong>批大小为 1</strong>、且硬件并行性不佳时会抵消收益。批大小更大时，专家激活重叠增多，收益得以恢复。这次 Gemma 4 发布是 Gemini Nano 工作的直接前身 —— 博客明确指出冻结式 MTP 工作构建于"用 MTP 加速 Gemma 4"之上。
+                  文档中一个诚实的注意点：对 <strong>MoE</strong> 模型（Gemma 4 26B A4B），验证草稿 token 可能需要加载额外的专家权重，这在<strong>批大小为 1</strong>、且硬件并行性不佳时会抵消收益。批大小更大时，专家激活重叠增多，收益得以恢复。这次 Gemma 4 发布是紧随其后的 Gemini Nano 工作的直接前身 —— 谷歌自己的博客明确指出冻结式 MTP 工作构建于"用 MTP 加速 Gemma 4"之上。
+               </p>
+
+               <h3 id="gemini-zh">Gemini Nano 冻结式 MTP <span>&mdash; 6 月 26 日：同一思想，落到端侧</span></h3>
+
+               <p>
+                  Gemma 4 发布七周之后，谷歌研究院把同一思想推向部署光谱的另一端：不是数据中心，而是一部手机。移动推理受制于严苛的内存与能耗预算，而标准投机解码需要一个<em>独立的</em>草稿模型（如 128M 参数），它既争抢内存，又对主模型的内部状态"视而不见"。他们的答案（详见 <a href="https://research.google/blog/accelerating-gemini-nano-models-on-pixel-with-frozen-multi-token-prediction/" target="_blank" rel="noopener">Google Research 博客</a>）是把 Multi-Token Prediction 改造性地装到<strong>冻结的 Gemini Nano v3</strong> 上 —— 该模型已部署在 Pixel 9 与 10 上。
+               </p>
+
+               <p>设计依赖三步：</p>
+               <ul>
+                  <li><strong>晚退出（late-exit）MTP 头。</strong> 不用独立草稿器，而是在主模型的最后若干层上加一个轻量 Transformer 头，从骨干的高维隐藏状态预测未来 token。</li>
+                  <li><strong>冻结骨干。</strong> 基座权重冻结，只训练这个头。这保证能力与安全对齐<strong>零退化</strong>，并能以完全向后兼容的方式推送效率更新 —— 输出逐比特一致。</li>
+                  <li><strong>零拷贝架构。</strong> 该头<em>直接交叉注意力到主模型冻结的 KV cache</em>，而不维护自己的 cache。这消除了草稿器的 prefill 延迟，相比独立草稿器每实例节省约 <strong>130&nbsp;MB</strong>。</li>
+               </ul>
+
+               <p>
+                  在 AI 通知摘要、校对等生产工作负载中，MTP 平均每次前向多正确预测<strong>近两个 token</strong>，在 Pixel 9 上带来 <strong>50%+ 的提速</strong>，在结构性强的任务（如智能回复）上 token 接受率最高提升 <strong>55%</strong> —— 同时因更少唤醒重型处理器而降低能耗。该工作明确构建于 <strong>EAGLE</strong> 框架与 <strong>CALM</strong>（Confident Adaptive Language Modeling）之上，并展望了分支/并行解码与"验证宽松化"。
                </p>
 
                <div class="sd-band">
@@ -1629,6 +1662,42 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                </p>
 
                <div class="sd-band">
+                  <div class="yr">落地台账</div>
+                  <h2 id="in-the-wild-zh">生产实录 <span>&mdash; 一份持续更新的落地台账</span></h2>
+               </div>
+
+               <p>
+                  任何推理技术的真正试金石都是生产流量。下面这些部署搭载着上文介绍的投机器上线 —— 每条记录它们跑了什么、跑在哪里、公布了什么数字，按最新在前排列。
+               </p>
+
+               <div class="paper">
+                  <div class="ptitle">Intent Lab —— 自主完成的 6.3&times; TensorRT-LLM 加速中的 DSpark 草稿器 <span class="badge badge-serve">2026-07-28</span></div>
+                  <div class="pauthors">Intent Lab</div>
+                  <p class="psum">在<a href="https://intentlab.ai/blog/turn-your-intent-into-production-systems" target="_blank" rel="noopener">《Turn your intent into production systems》</a>一文中，Intent Lab 的 Agent 舰队端到端、全程无人干预地为 <strong>GLM 5.2</strong> 在 Grace Blackwell 节点上重构了 <strong>TensorRT-LLM</strong>。在总计 <strong>6.3&times;</strong>（+534%）加速的四类优化中，<strong>投机解码是遥遥领先的最大一块：单独贡献 &times;4.0</strong> —— "结合优化过的 <strong>DSpark</strong> 草稿器，每步提出多个 token 并在一次前向中完成验证，引擎达到 647 tok/s。"内核（+24%）、运行时（+16%）与通信（+18%）优化叠加其余部分。值得注意的是：当一个自主系统去寻找推理速度时，它拿起的正是 DeepSeek 出品的那个草稿器。</p>
+                  <div class="metric">投机解码贡献 &times;4.0 &middot; 647 tok/s</div>
+                  <div class="plinks"><a href="https://intentlab.ai/blog/turn-your-intent-into-production-systems" target="_blank" rel="noopener">Intent Lab 博客</a></div>
+               </div>
+
+               <div class="sd-bd" role="img" aria-label="Intent Lab 性能收益拆解：TensorRT-LLM 基线，内核 +24%，运行时 +16%，通信 +18%，投机解码 ×4.0，端到端 +534%">
+                  <div class="lbl">性能收益拆解（Breakdown of performance gains）</div>
+                  <div class="row"><span class="name">原版 TensorRT-LLM</span><span class="track"><span class="bar base" style="left:0;width:30%"></span></span><span class="val">基线</span></div>
+                  <div class="row"><span class="name">+ 内核</span><span class="track"><span class="bar g" style="left:30%;width:12%"></span></span><span class="val">+24%</span></div>
+                  <div class="row"><span class="name">+ 运行时</span><span class="track"><span class="bar g" style="left:42%;width:12%"></span></span><span class="val">+16%</span></div>
+                  <div class="row"><span class="name">+ 通信</span><span class="track"><span class="bar g" style="left:54%;width:12%"></span></span><span class="val">+18%</span></div>
+                  <div class="row hot"><span class="name">+ 投机解码</span><span class="track"><span class="bar" style="left:66%;width:34%"></span></span><span class="val">&times;4.0</span></div>
+                  <div class="row sum"><span class="name">端到端</span><span class="track"><span class="bar total" style="left:0;width:100%"></span></span><span class="val">+534%</span></div>
+               </div>
+               <p class="sd-rail-cap">依据 Intent Lab 的"性能收益拆解"图重绘 —— 投机解码一项，超过其余所有类别之和。</p>
+
+               <div class="paper">
+                  <div class="ptitle">Modal &times; Inkling —— 前沿模型首日发布背后的 DFlash 投机器 <span class="badge badge-serve">2026-07-15</span></div>
+                  <div class="pauthors">Modal &middot; Thinking Machines Lab</div>
+                  <p class="psum"><a href="https://modal.com/blog/inkling-by-thinking-machines-labs-now-available-on-modal" target="_blank" rel="noopener">Modal 上线 Thinking Machines 的 Inkling</a>，由定制训练的 <strong>DFlash 投机器</strong>加持，运行于 Modal Auto Endpoints 与 SGLang —— 正是<a href="#terms-zh">术语表</a>里的那个块扩散草稿器，在前沿模型发布的第一天就进入生产。<a href="https://x.com/soumithchintala/status/2077500083407667569?s=20" target="_blank" rel="noopener">Soumith Chintala</a>："Modal 训练的 DFlash 投机器比 MTP 快得多，是推理速度的一大助力！"</p>
+                  <div class="metric">吞吐与交互性 +67%</div>
+                  <div class="plinks"><a href="https://modal.com/blog/inkling-by-thinking-machines-labs-now-available-on-modal" target="_blank" rel="noopener">Modal 博客</a> &middot; <a href="https://x.com/soumithchintala/status/2077500083407667569?s=20" target="_blank" rel="noopener">X 上的帖子</a></div>
+               </div>
+
+                              <div class="sd-band">
                   <div class="yr">参考文献</div>
                   <h2 id="papers-zh">论文 <span>&mdash; 这股浪潮背后的谱系</span></h2>
                </div>
