@@ -566,7 +566,7 @@
                <div class="fx-eco">
                   <div class="fx-eco-col">
                      <div class="eco-cap">Build · training &amp; runtime verticals</div>
-                     <div class="eco-box">Agent sandboxes<span class="sub">E2B · K8s agent-sandbox — on Firecracker</span><span class="tgt">feeds agents ▸</span></div>
+                     <div class="eco-box">Agent sandboxes<span class="sub">E2B · K8s agent-sandbox — Firecracker · gVisor · Kata</span><span class="tgt">feeds agents ▸</span></div>
                      <div class="eco-box">Speculator training<span class="sub">SpecForge · speculators · <a href="/blog/2026/speculativedecoding/">my deep dive</a></span><span class="tgt">feeds serving runtime ▸</span></div>
                      <div class="eco-box">Pre-training<span class="sub">Megatron-LM · torchtitan · DeepSpeed</span><span class="tgt">feeds models ▸</span></div>
                      <div class="eco-box">Post-training · RL<span class="sub">verl · OpenRLHF · slime</span><span class="tgt">feeds models ▸</span></div>
@@ -592,7 +592,7 @@
                      <div class="eco-box">Live arenas &amp; leaderboards<span class="sub">LMArena · Open LLM Leaderboard</span><span class="tgt">◂ ranks the frontier</span></div>
                   </div>
                </div>
-               <div class="fx-dgm-note">The serving spine is only the trunk. Around it, an ecosystem of verticals is already growing: sandboxes that give agents a safe place to act, training and RL frameworks that make the models, speculator trainers that speed up the runtime, and quality and performance harnesses that keep score. Every flanking box above is open source today — and the agent sandboxes run on Firecracker, the same open primitive under AWS Lambda in the cloud-native column below.</div>
+               <div class="fx-dgm-note">The serving spine is only the trunk. Around it, an ecosystem of verticals is already growing: sandboxes that give agents a safe place to act, training and RL frameworks that make the models, speculator trainers that speed up the runtime, and quality and performance harnesses that keep score. Every flanking box above is open source today — and the leading agent sandboxes isolate with Firecracker (E2B natively; K8s agent-sandbox via Kata, alongside gVisor), the same open primitive under AWS Lambda in the cloud-native column below.</div>
             </div>
             <div class="fx-stackgroup">
                <div class="glbl"><span class="gname">Cloud Native</span><span class="gsub">the same pattern, the last decade</span></div>
@@ -1117,7 +1117,7 @@
                <div class="fx-eco">
                   <div class="fx-eco-col">
                      <div class="eco-cap">构建 · 训练与运行时纵向</div>
-                     <div class="eco-box">Agent 沙箱<span class="sub">E2B · K8s agent-sandbox——基于 Firecracker</span><span class="tgt">喂给 Agents 层 ▸</span></div>
+                     <div class="eco-box">Agent 沙箱<span class="sub">E2B · K8s agent-sandbox——Firecracker · gVisor · Kata</span><span class="tgt">喂给 Agents 层 ▸</span></div>
                      <div class="eco-box">Speculator 训练<span class="sub">SpecForge · speculators · <a href="/blog/2026/speculativedecoding/">我的专文</a></span><span class="tgt">喂给推理运行时 ▸</span></div>
                      <div class="eco-box">预训练<span class="sub">Megatron-LM · torchtitan · DeepSpeed</span><span class="tgt">喂给模型层 ▸</span></div>
                      <div class="eco-box">后训练 · 强化学习<span class="sub">verl · OpenRLHF · slime</span><span class="tgt">喂给模型层 ▸</span></div>
@@ -1143,7 +1143,7 @@
                      <div class="eco-box">实时竞技场与榜单<span class="sub">LMArena · Open LLM Leaderboard</span><span class="tgt">◂ 为前沿排名</span></div>
                   </div>
                </div>
-               <div class="fx-dgm-note">推理主干只是树干。它周围已经长出一圈纵向生态：给 Agent 提供安全执行环境的沙箱、造模型的训练与强化学习框架、给运行时提速的 speculator 训练器、以及负责记分的质量与性能评测体系。图中两翼的每一个框，今天都是开源的——而且 Agent 沙箱跑在 Firecracker 之上，正是下方 Cloud Native 那一列里 AWS Lambda 脚下的同一个开源基础件。</div>
+               <div class="fx-dgm-note">推理主干只是树干。它周围已经长出一圈纵向生态：给 Agent 提供安全执行环境的沙箱、造模型的训练与强化学习框架、给运行时提速的 speculator 训练器、以及负责记分的质量与性能评测体系。图中两翼的每一个框，今天都是开源的——而且主流 Agent 沙箱多以 Firecracker 做隔离（E2B 原生基于它；K8s agent-sandbox 经由 Kata，另支持 gVisor），正是下方 Cloud Native 那一列里 AWS Lambda 脚下的同一个开源基础件。</div>
             </div>
             <div class="fx-stackgroup">
                <div class="glbl"><span class="gname">Cloud Native</span><span class="gsub">同一个模式，过去十年</span></div>
