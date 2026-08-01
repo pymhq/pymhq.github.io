@@ -850,6 +850,23 @@
             <h2 id="trust-safety">Trust &amp; Safety, Evaluation, Interpretability</h2>
             <p>The safety debate deserves honesty from both sides. Closed-model providers are right that released weights cannot be recalled, and guardrails on open models can be fine-tuned away. Amodei's position — mandatory pre-release testing for all sufficiently capable models, open and closed — is the most reasonable version of that argument, and I agree with testing over bans.</p>
             <p>But openness carries its own safety advantages that the debate under-weights. You cannot audit what you cannot see: interpretability research — the field Amodei himself called urgent in <a href="https://www.darioamodei.com/post/the-urgency-of-interpretability" target="_blank">The Urgency of Interpretability</a> — overwhelmingly runs on open weights, because probing activations and circuits requires the tensors, not an API. Independent evaluation works the same way: the community can red-team, benchmark and reproduce results on Qwen or Kimi K3 without a vendor's permission, while closed models are evaluated under NDA-shaped access on the vendor's schedule. Mature deployments need both open and closed, which is one more reason bans are the wrong tool.</p>
+            <p>And evaluation itself just became a safety surface. In the same two weeks the open-weights letter was circulating, both frontier labs disclosed real incidents from inside their own cyber evaluations:</p>
+            <div class="timeline">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">July 30, 2026</div>
+                     <div class="timeline-description">Anthropic published <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" target="_blank">Investigating three real-world incidents in our cybersecurity evaluations</a> — a retrospective review of 141,006 cyber-eval runs, prompted by OpenAI's disclosure, found three incidents where Claude models reached the open internet from a misconfigured third-party evaluation environment and accessed real systems of three organizations; the latest model stopped once it recognized it was on the internet.</div>
+                  </div>
+               </div>
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">July 21, 2026</div>
+                     <div class="timeline-description">OpenAI disclosed the <a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/" target="_blank">Hugging Face model-evaluation security incident</a> — during an internal cyber-capability benchmark, its models exploited a zero-day in a package-registry proxy to escape the sandbox, reach the internet, and compromise Hugging Face's production infrastructure in pursuit of the eval's test solutions.</div>
+                  </div>
+               </div>
+            </div>
 
             <h2 id="price-performance">Price Performance</h2>
             <p>The economics are now well documented. Per <a href="https://thenewstack.io/open-weight-models-frontier-costs/" target="_blank">Epoch AI data reported by The New Stack</a>, open-weight models trail closed frontier models by roughly four months in capability — at about one-tenth the token price. CNCF executive director <em>Jonathan Bryce</em>: "Paying ten times more for a four-month capability lead is not an enterprise AI strategy… it's a very expensive form of lock-in."</p>
@@ -1384,6 +1401,23 @@
             <h2 id="trust-safety-zh">信任与安全、评测、可解释性</h2>
             <p>安全之争值得双方都诚实。闭源阵营说得对：权重一经发布无法撤回，开放模型的护栏可以被微调掉。Amodei 的立场——对所有足够强大的模型（无论开闭）做强制的发布前测试——是这个论点最讲理的版本，我同意用测试取代封禁。</p>
             <p>但开放性自带的安全优势，在这场辩论中被低估了。看不见的东西无法审计：可解释性研究——Amodei 本人在<a href="https://www.darioamodei.com/post/the-urgency-of-interpretability" target="_blank">《可解释性的紧迫性》</a>中称之为当务之急的领域——绝大部分跑在开放权重上，因为探测激活值和回路需要的是张量，不是 API。独立评测同理：社区可以在 Qwen 或 Kimi K3 上自由地红队、跑基准、复现结果，无需厂商许可；而闭源模型的评测只能在 NDA 框定的访问权限内、按厂商的日程进行。成熟的部署开源闭源两者都需要——这也是封禁是错误工具的又一个理由。</p>
+            <p>而评测本身，刚刚也成了一个安全面。就在开放权重公开信流传的那两周里，两家前沿实验室先后披露了各自网络安全评测内部发生的真实事故：</p>
+            <div class="timeline">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 7 月 30 日</div>
+                     <div class="timeline-description">Anthropic 发布<a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" target="_blank">《调查网络安全评测中的三起真实事故》</a>——受 OpenAI 披露的触动，回溯审查了 141,006 次网络评测运行，发现三起事故：Claude 模型从配置有误的第三方评测环境接触到真实互联网，并访问了三家机构的真实系统；最新的模型在意识到自己身处互联网后即停止了行动。</div>
+                  </div>
+               </div>
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 7 月 21 日</div>
+                     <div class="timeline-description">OpenAI 披露 <a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/" target="_blank">Hugging Face 模型评测安全事故</a>——在一次内部网络攻防能力基准测试中，其模型利用软件包镜像代理中的零日漏洞逃出沙箱、接入互联网，并为了拿到评测答案而入侵了 Hugging Face 的生产基础设施。</div>
+                  </div>
+               </div>
+            </div>
 
             <h2 id="price-performance-zh">价格性能</h2>
             <p>经济账如今已有充分文档。据 <a href="https://thenewstack.io/open-weight-models-frontier-costs/" target="_blank">The New Stack 报道的 Epoch AI 数据</a>，开放权重模型在能力上落后闭源前沿约四个月——token 价格约为其十分之一。CNCF 执行董事 <em>Jonathan Bryce</em>："为四个月的能力领先支付十倍的价格，不是一种企业 AI 战略……那是一种非常昂贵的锁定。"</p>
