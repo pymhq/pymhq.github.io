@@ -827,6 +827,46 @@
 
         .rt-ship, .rt-orca { fill: #35506b; }
 
+        /* --- race routes chart (panel 3) --- */
+        .rt-race-line {
+            fill: none;
+            stroke: #b3542e;
+            stroke-width: 2.4px;
+            stroke-dasharray: 6 4;
+            stroke-linecap: round;
+            opacity: 0.85;
+        }
+
+        .rt-lake {
+            fill: #eef2ea;
+            stroke: #8fb0be;
+            stroke-width: 1.3px;
+            stroke-linejoin: round;
+        }
+
+        .rt-canal {
+            fill: none;
+            stroke: #eef2ea;
+            stroke-width: 9px;
+            stroke-linecap: round;
+        }
+
+        .rt-river {
+            fill: none;
+            stroke: #aac4d1;
+            stroke-width: 4.5px;
+            stroke-linecap: round;
+            opacity: 0.75;
+        }
+
+        .rc-chip-num {
+            font-size: 9.5px;
+            font-weight: 700;
+            fill: #4a3f2c;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+
         .rt-compass { stroke: #8ba3ae; fill: #8ba3ae; }
         .rt-compass text { font-size: 10px; font-weight: 700; fill: #7d95a0; stroke: none; }
 
@@ -1601,6 +1641,284 @@
                                 <text class="rt-quest-item" x="56" y="92">Ferry terminal</text>
                                 <path class="rt-border" d="M 14 106 h 34"/>
                                 <text class="rt-quest-item" x="56" y="110">International boundary</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 3: Race routes — every start line since 2025 -->
+            <div class="pnw-panel" aria-label="Race routes chart">
+                <div class="pnw-section-inner">
+                    <div class="pnw-route-card">
+                        <svg viewBox="0 0 900 700" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustrated chart of Seattle-area race routes">
+                            <defs>
+                                <!-- cherry blossom -->
+                                <g id="rc-blossom">
+                                    <g class="rt-doodle" fill="#f0c4d0" stroke-width="1.2">
+                                        <circle cx="0" cy="-5" r="3.4"/>
+                                        <circle cx="4.8" cy="-1.5" r="3.4"/>
+                                        <circle cx="3" cy="4.2" r="3.4"/>
+                                        <circle cx="-3" cy="4.2" r="3.4"/>
+                                        <circle cx="-4.8" cy="-1.5" r="3.4"/>
+                                    </g>
+                                    <circle cx="0" cy="0" r="1.8" fill="#b3542e"/>
+                                </g>
+                                <!-- pumpkin -->
+                                <g id="rc-pumpkin">
+                                    <path class="rt-doodle" fill="none" d="M 0 -7 C 0.5 -9, 1.5 -10, 3 -10.5"/>
+                                    <path class="rt-doodle" fill="#d97742" d="M -8 0 C -8 -5, -4 -7, 0 -7 C 4 -7, 8 -5, 8 0 C 8 5, 4 7.5, 0 7.5 C -4 7.5, -8 5, -8 0 Z"/>
+                                    <path class="rt-doodle" fill="none" stroke-width="1.2" d="M -3 -6.4 C -4.5 -2, -4.5 3, -3 6.9 M 3 -6.4 C 4.5 -2, 4.5 3, 3 6.9"/>
+                                </g>
+                                <!-- beer mug (craft classic) -->
+                                <g id="rc-mug">
+                                    <path class="rt-doodle" fill="none" d="M 5 -4 C 9.5 -4, 9.5 3.5, 4.6 3.5"/>
+                                    <path class="rt-doodle" fill="#e8b84a" d="M -5 -7 L 5 -7 L 4.2 8 L -4.2 8 Z"/>
+                                    <path class="rt-doodle" fill="#f7f1e0" d="M -5 -7 Q -3.5 -9.5 -1.8 -8 Q 0 -10.5 1.8 -8 Q 3.5 -9.5 5 -7 Q 2.5 -5.2 0 -5.6 Q -2.5 -5.2 -5 -7 Z"/>
+                                </g>
+                                <!-- cocoa mug (hot chocolate) -->
+                                <g id="rc-cocoa">
+                                    <path class="rt-doodle" fill="none" d="M 6 -2 C 10 -2, 10 4.5, 5.2 4.5"/>
+                                    <path class="rt-doodle" fill="#8a5a3a" d="M -6 -4 L 6 -4 L 4.8 8 L -4.8 8 Z"/>
+                                    <path class="rt-doodle" fill="none" stroke-width="1.1" d="M -2.5 -7 q 1.2 -2 0 -4 M 2 -7 q 1.2 -2 0 -4"/>
+                                </g>
+                                <!-- space needle -->
+                                <g id="rc-needle">
+                                    <path class="rt-doodle" fill="none" d="M -7 9 C -3.5 1, -1.8 -5, -1.3 -11 M 7 9 C 3.5 1, 1.8 -5, 1.3 -11 M 0 6 L 0 -5"/>
+                                    <path class="rt-doodle" fill="#f7f1e0" d="M -9.5 -11 L 9.5 -11 L 5 -17 L -5 -17 Z"/>
+                                    <path class="rt-doodle" fill="none" d="M 0 -17 L 0 -24"/>
+                                </g>
+                                <!-- start flag -->
+                                <g id="rc-flag">
+                                    <path class="rt-ic" d="M 0 7 L 0 -9"/>
+                                    <path class="rt-ic-fill" d="M 0 -9 L 8 -6.5 L 0 -4 Z"/>
+                                </g>
+                                <!-- anchor (marina) -->
+                                <g id="rc-anchor" class="rt-ic">
+                                    <circle cx="0" cy="-5.5" r="1.7"/>
+                                    <path d="M 0 -3.8 L 0 6"/>
+                                    <path d="M -3.5 -1 L 3.5 -1"/>
+                                    <path d="M -5.5 1 Q -5 6 0 6.6 Q 5 6 5.5 1"/>
+                                </g>
+                                <!-- runner -->
+                                <g id="rc-runner" class="rt-ic">
+                                    <circle cx="4" cy="-9.5" r="2.4"/>
+                                    <path d="M 3 -7 C 1 -4, 0 -2, -1 1"/>
+                                    <path d="M 2.2 -4.8 L 7 -2.6 M 1.2 -3.6 L -3.6 -5.8"/>
+                                    <path d="M -1 1 L 3.6 4 L 5 8.5 M -1 1 C -3 3.6, -5.8 5.2, -8.6 5.6"/>
+                                </g>
+                            </defs>
+
+                            <!-- chart grid -->
+                            <g class="rt-grid" opacity="0.7">
+                                <path d="M 0 100 H 900 M 0 200 H 900 M 0 300 H 900 M 0 400 H 900 M 0 500 H 900 M 0 600 H 900"/>
+                                <path d="M 100 0 V 700 M 200 0 V 700 M 300 0 V 700 M 400 0 V 700 M 500 0 V 700 M 600 0 V 700 M 700 0 V 700 M 800 0 V 700"/>
+                            </g>
+
+                            <!-- ================= land ================= -->
+                            <!-- one mass: Puget Sound to the west, Elliott Bay notch, lakes cut out on top -->
+                            <path class="rt-coast-glow" d="M 262 0 C 254 45, 246 85, 240 125 C 236 155, 226 175, 228 200 C 229 220, 220 236, 224 252 C 228 288, 242 315, 250 340 C 255 355, 268 364, 279 373 C 288 382, 286 396, 278 407 C 270 418, 256 427, 244 433 C 228 440, 208 443, 197 452 C 189 472, 193 505, 200 535 C 206 570, 205 630, 209 700"/>
+                            <path class="rt-island" d="M 262 0 C 254 45, 246 85, 240 125 C 236 155, 226 175, 228 200 C 229 220, 220 236, 224 252 C 228 288, 242 315, 250 340 C 255 355, 268 364, 279 373 C 288 382, 286 396, 278 407 C 270 418, 256 427, 244 433 C 228 440, 208 443, 197 452 C 189 472, 193 505, 200 535 C 206 570, 205 630, 209 700 L 900 700 L 900 0 Z"/>
+
+                            <!-- Lake Washington -->
+                            <path class="rt-lake" d="M 505 85 C 496 105, 490 135, 487 160 C 485 180, 496 190, 507 198 C 514 204, 512 216, 498 224 C 486 232, 479 248, 478 264 C 477 288, 477 310, 480 335 C 482 362, 485 395, 489 425 C 491 448, 495 470, 499 486 C 516 488, 531 500, 533 518 C 534 533, 521 543, 507 541 C 503 552, 505 572, 512 592 C 519 612, 530 626, 543 628 C 562 626, 577 604, 586 576 C 596 544, 602 512, 606 478 C 610 448, 611 415, 605 385 C 601 362, 606 335, 611 308 C 614 285, 615 262, 612 242 C 608 224, 594 218, 588 204 C 592 185, 598 170, 596 152 C 585 125, 545 100, 505 85 Z"/>
+
+                            <!-- Mercer Island -->
+                            <path class="rt-island" d="M 555 478 C 572 474, 586 484, 590 502 C 594 522, 588 544, 574 552 C 560 558, 548 548, 545 530 C 542 510, 544 486, 555 478 Z"/>
+                            <text class="rt-sub" x="568" y="519" text-anchor="middle">Mercer I.</text>
+
+                            <!-- Lake Union + ship canal -->
+                            <path class="rt-canal" d="M 226 251 C 258 254, 280 251, 300 254"/>
+                            <path class="rt-canal" d="M 348 274 C 395 272, 440 268, 479 265"/>
+                            <path class="rt-lake" d="M 306 242 C 318 232, 336 233, 345 244 C 353 254, 352 272, 349 287 C 346 300, 333 307, 320 302 C 307 297, 300 284, 301 268 C 302 256, 300 250, 306 242 Z"/>
+                            <text class="rt-sub" x="326" y="274" text-anchor="middle">L. Union</text>
+
+                            <!-- Green Lake -->
+                            <ellipse class="rt-lake" cx="316" cy="158" rx="24" ry="15"/>
+                            <text class="rt-sub" x="316" y="188" text-anchor="middle">Green Lake</text>
+
+                            <!-- Lake Sammamish + Sammamish River -->
+                            <path class="rt-river" d="M 797 422 C 786 398, 770 382, 760 358 C 744 322, 750 275, 726 235 C 704 198, 662 168, 622 148 C 585 130, 543 108, 510 90"/>
+                            <path class="rt-lake" d="M 800 425 C 815 428, 826 448, 830 482 C 833 520, 830 555, 820 580 C 812 597, 796 594, 790 576 C 781 546, 780 505, 785 468 C 788 445, 790 428, 800 425 Z"/>
+                            <text class="rt-label water" x="812" y="510" text-anchor="middle" transform="rotate(-83 812 510)">L. Sammamish</text>
+                            <text class="rt-flavor" x="688" y="182" text-anchor="middle" transform="rotate(-33 688 182)">Sammamish River</text>
+
+                            <!-- floating bridges -->
+                            <path class="rt-drive-line" d="M 479 270 C 520 280, 560 292, 604 302"/>
+                            <text class="rt-sub" x="542" y="272" text-anchor="middle">SR-520</text>
+                            <path class="rt-drive-line" d="M 491 433 C 509 448, 528 462, 545 476"/>
+                            <path class="rt-drive-line" d="M 590 505 C 596 500, 601 493, 605 485"/>
+                            <text class="rt-sub" x="512" y="428" text-anchor="middle">I-90</text>
+
+                            <!-- water taxi to West Seattle -->
+                            <path class="rt-ferry-line" d="M 272 418 C 248 430, 226 438, 206 446"/>
+
+                            <!-- water labels & decorations -->
+                            <text class="rt-label water" x="85" y="260" text-anchor="middle" transform="rotate(-80 85 260)">Puget Sound</text>
+                            <text class="rt-label water" x="552" y="360" text-anchor="middle" transform="rotate(-87 552 360)">Lake Washington</text>
+                            <text class="rt-sub" x="225" y="368" text-anchor="middle">Elliott Bay</text>
+                            <g class="rt-water-deco">
+                                <path d="M 100 150 q 6 -6 12 0 q 6 6 12 0"/>
+                                <path d="M 60 320 q 6 -6 12 0 q 6 6 12 0"/>
+                                <path d="M 140 400 q 6 -6 12 0 q 6 6 12 0"/>
+                                <path d="M 538 208 q 6 -6 12 0 q 6 6 12 0"/>
+                                <path d="M 545 430 q 6 -6 12 0 q 6 6 12 0"/>
+                                <path d="M 555 600 q 6 -6 12 0 q 6 6 12 0"/>
+                                <path d="M 795 545 q 5 -5 10 0 q 5 5 10 0"/>
+                            </g>
+
+                            <!-- gulls -->
+                            <g class="rt-doodle" fill="none" stroke-width="1.2">
+                                <path d="M 88 108 Q 90 105 92 108 Q 94 105 96 108"/>
+                                <path d="M 112 96 Q 114 93 116 96 Q 118 93 120 96"/>
+                                <path d="M 60 84 Q 62 81 64 84 Q 66 81 68 84"/>
+                            </g>
+
+                            <!-- ferry in the sound -->
+                            <g class="rt-ship" transform="translate(130, 318)">
+                                <path d="M -9 3 L 9 3 L 5.5 7 L -5.5 7 Z"/>
+                                <path d="M -0.5 3 L -0.5 -9 L 0.5 -9 L 0.5 3 Z"/>
+                                <path d="M 1 -9 Q 8 -4.5 1 0 Z"/>
+                                <path d="M -1 -7.5 Q -6.5 -4 -1 -0.5 Z"/>
+                            </g>
+
+                            <!-- here be runners -->
+                            <use href="#rc-runner" transform="translate(150, 218) scale(1.4)"/>
+                            <text class="rt-flavor" x="152" y="248" text-anchor="middle">· here be runners ·</text>
+                            <text class="rt-flavor" x="132" y="172" text-anchor="middle">· Emerald City ·</text>
+
+                            <!-- city labels -->
+                            <text class="rt-label" x="370" y="398" text-anchor="middle" style="letter-spacing:2px;">SEATTLE</text>
+                            <text class="rt-label" x="665" y="468" text-anchor="middle" style="letter-spacing:1.5px;">BELLEVUE</text>
+                            <text class="rt-label" x="806" y="330" text-anchor="middle" style="letter-spacing:1.5px;">REDMOND</text>
+
+                            <!-- Mt. Rainier — sentinel of the south -->
+                            <g transform="translate(840, 632)">
+                                <path class="rt-doodle" fill="#7d8f5c" d="M -40 26 C -26 4, -17 -12, -7 -24 C -2.5 -30, 2.5 -30, 7 -24 C 17 -12, 26 4, 40 26 Z"/>
+                                <path class="rt-doodle" fill="#f7f1e0" d="M -13 -15 C -9 -20.5, -4.5 -25, 0 -25 C 4.5 -25, 9 -20.5, 13 -15 C 8.5 -11, 4.5 -14, 0 -11.5 C -4.5 -14, -8.5 -11, -13 -15 Z"/>
+                                <path class="rt-doodle" fill="none" stroke-width="1.1" d="M -6 -12.5 q 1.2 3.6 0 6.6 M 6 -12.5 q 1.2 3.6 0 6.6"/>
+                            </g>
+                            <text class="rt-sub" x="840" y="674" text-anchor="middle">Mt. Rainier · 14,411 ft</text>
+
+                            <!-- ================= race courses ================= -->
+                            <!-- 1·6·8 Seward Park loop + Lake Washington Blvd -->
+                            <path class="rt-race-line" d="M 503 492 C 517 492, 529 502, 531 517 C 532 530, 522 539, 509 538"/>
+                            <path class="rt-race-line" d="M 494 486 C 489 470, 486 458, 484 445"/>
+                            <!-- 2·9 Kirkland — Marina Park south along the boulevard -->
+                            <path class="rt-race-line" d="M 612 248 C 610 268, 608 288, 604 305"/>
+                            <!-- 3 Waterfront — Pier 62 north to Myrtle Edwards -->
+                            <path class="rt-race-line" d="M 276 410 C 282 398, 286 388, 289 376 C 292 366, 293 358, 291 350"/>
+                            <!-- 4 Craft Classic — Sammamish River Trail out-and-back -->
+                            <path class="rt-race-line" d="M 790 412 C 780 396, 770 386, 760 370 C 754 360, 750 352, 747 344"/>
+                            <!-- 5 Lake Union 10K — full loop -->
+                            <path class="rt-race-line" d="M 326 234 C 344 235, 356 250, 354 272 C 353 292, 342 309, 322 306 C 304 303, 296 288, 297 267 C 298 250, 308 236, 326 234 Z"/>
+                            <!-- 7 Hot Chocolate — downtown loop from Seattle Center -->
+                            <path class="rt-race-line" d="M 300 352 C 296 364, 296 376, 302 386 C 307 393, 313 391, 315 384"/>
+
+                            <!-- ================= start lines ================= -->
+                            <!-- Seward Park: cherry blossom ×2 + pumpkin dash -->
+                            <path class="rt-leader" d="M 466 512 C 478 512, 487 512, 495 512"/>
+                            <g class="rt-poi" data-name="Seward Park — Cherry Blossom Run ’25 & ’26 · Pumpkin Dash ’25" transform="translate(436, 506)">
+                                <use href="#rc-blossom" transform="translate(-15, -14)"/>
+                                <use href="#rc-pumpkin" transform="translate(13, -13) scale(0.9)"/>
+                                <circle class="rt-hit" r="34"/>
+                                <text class="rt-sub" x="0" y="12" text-anchor="middle">Seward Park</text>
+                                <g transform="translate(-17, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">1</text></g>
+                                <g transform="translate(0, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">6</text></g>
+                                <g transform="translate(17, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">8</text></g>
+                                <text class="rt-poi-label" x="0" y="46" text-anchor="middle">Mar ’25 · Oct ’25 · Apr ’26</text>
+                            </g>
+
+                            <!-- Kirkland: Marina Park -->
+                            <g class="rt-poi" data-name="Marina Park, Kirkland — Kirkland Half 5K ’25 & ’26" transform="translate(612, 243)">
+                                <use href="#rc-anchor" transform="scale(0.85)"/>
+                                <circle class="rt-hit" r="14"/>
+                                <text class="rt-sub" x="13" y="-10" text-anchor="start">Marina Park · Kirkland</text>
+                                <g transform="translate(18, 6)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">2</text></g>
+                                <g transform="translate(35, 6)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">9</text></g>
+                                <text class="rt-poi-label" x="13" y="26" text-anchor="start">May ’25 · May ’26</text>
+                            </g>
+
+                            <!-- Pier 62: Waterfront Park -->
+                            <g class="rt-poi" data-name="Waterfront Park, Pier 62 — Meet Me at Waterfront Park 5K ’25" transform="translate(283, 392)">
+                                <use href="#rc-flag"/>
+                                <circle class="rt-hit" r="12"/>
+                                <text class="rt-sub" x="-26" y="4" text-anchor="end">Waterfront Park · Pier 62</text>
+                                <g transform="translate(-16, 16)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">3</text></g>
+                                <text class="rt-poi-label" x="-26" y="24" text-anchor="end">May ’25</text>
+                            </g>
+
+                            <!-- Redmond: Sammamish River Trail -->
+                            <g class="rt-poi" data-name="Sammamish River Trail, Redmond — Craft Classic 5K ’25" transform="translate(738, 362)">
+                                <use href="#rc-mug"/>
+                                <circle class="rt-hit" r="14"/>
+                                <g transform="translate(-20, 0)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">4</text></g>
+                                <text class="rt-sub" x="-2" y="24" text-anchor="middle">Sammamish River Trail</text>
+                                <text class="rt-poi-label" x="-2" y="40" text-anchor="middle">Jul ’25</text>
+                            </g>
+
+                            <!-- Gas Works Park: Lake Union 10K -->
+                            <g class="rt-poi" data-name="Gas Works Park — Lake Union 10K ’25" transform="translate(326, 228)">
+                                <use href="#rc-flag"/>
+                                <circle class="rt-hit" r="12"/>
+                                <text class="rt-sub" x="14" y="-4" text-anchor="start">Gas Works Park</text>
+                                <g transform="translate(20, 10)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">5</text></g>
+                                <text class="rt-poi-label" x="14" y="28" text-anchor="start">Aug ’25</text>
+                            </g>
+
+                            <!-- Seattle Center: Hot Chocolate Run -->
+                            <g class="rt-poi" data-name="Seattle Center — SKECHERS Hot Chocolate Run 5K ’26" transform="translate(298, 342)">
+                                <use href="#rc-needle"/>
+                                <circle class="rt-hit" r="18"/>
+                                <text class="rt-sub" x="14" y="2" text-anchor="start">Seattle Center</text>
+                                <use href="#rc-cocoa" transform="translate(18, 16) scale(0.85)"/>
+                                <g transform="translate(37, 16)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">7</text></g>
+                                <text class="rt-poi-label" x="14" y="34" text-anchor="start">Feb ’26</text>
+                            </g>
+
+                            <!-- compass -->
+                            <g class="rt-compass" transform="translate(852, 56)">
+                                <circle r="15" fill="none" stroke-width="1.2"/>
+                                <path d="M 0 -12 L 3 0 L 0 12 L -3 0 Z"/>
+                                <text x="0" y="-21" text-anchor="middle">N</text>
+                            </g>
+
+                            <!-- ================= title & legend ================= -->
+                            <text class="rt-label big" x="28" y="38" text-anchor="start" style="font-size:16px; letter-spacing:0.6px;">RACE ROUTES</text>
+                            <text class="rt-sub" x="28" y="57" text-anchor="start">every start line since 2025 · Seattle — Kirkland — Redmond</text>
+
+                            <g transform="translate(28, 72)">
+                                <rect class="rt-quest-card" x="0" y="0" width="196" height="74" rx="10"/>
+                                <path class="rt-race-line" d="M 14 18 h 34"/>
+                                <text class="rt-quest-item" x="56" y="22">Race course</text>
+                                <path class="rt-drive-line" d="M 14 38 h 34"/>
+                                <text class="rt-quest-item" x="56" y="42">Floating bridge</text>
+                                <path class="rt-river" d="M 14 58 h 34"/>
+                                <text class="rt-quest-item" x="56" y="62">River &amp; canal</text>
+                            </g>
+
+                            <!-- race log -->
+                            <g transform="translate(24, 462)">
+                                <rect class="rt-quest-card" x="0" y="0" width="262" height="204" rx="10"/>
+                                <text class="rt-quest-title" x="14" y="22">Race log · 9 starts</text>
+                                <g transform="translate(22, 40)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">1</text></g>
+                                <text class="rt-quest-item" x="36" y="44">Mar 22 ’25 · Cherry Blossom Run 5K</text>
+                                <g transform="translate(22, 58)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">2</text></g>
+                                <text class="rt-quest-item" x="36" y="62">May 4 ’25 · Kirkland Half — 5K</text>
+                                <g transform="translate(22, 76)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">3</text></g>
+                                <text class="rt-quest-item" x="36" y="80">May 31 ’25 · Waterfront Park 5K</text>
+                                <g transform="translate(22, 94)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">4</text></g>
+                                <text class="rt-quest-item" x="36" y="98">Jul 27 ’25 · Craft Classic 5K</text>
+                                <g transform="translate(22, 112)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">5</text></g>
+                                <text class="rt-quest-item" x="36" y="116">Aug 10 ’25 · Lake Union 10K</text>
+                                <g transform="translate(22, 130)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">6</text></g>
+                                <text class="rt-quest-item" x="36" y="134">Oct 12 ’25 · Pumpkin Dash 1 Mile</text>
+                                <g transform="translate(22, 148)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">7</text></g>
+                                <text class="rt-quest-item" x="36" y="152">Feb 28 ’26 · Hot Chocolate Run 5K</text>
+                                <g transform="translate(22, 166)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">8</text></g>
+                                <text class="rt-quest-item" x="36" y="170">Apr 18 ’26 · Cherry Blossom Run 5K</text>
+                                <g transform="translate(22, 184)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">9</text></g>
+                                <text class="rt-quest-item" x="36" y="188">May 3 ’26 · Kirkland Half — 5K</text>
                             </g>
                         </svg>
                     </div>
