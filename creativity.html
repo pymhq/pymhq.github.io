@@ -788,7 +788,68 @@
             padding: 2px 9px;
         }
 
+        /* Instagram call-to-action card — last tile in the reel row */
+        .reel-cta {
+            text-decoration: none;
+            color: #fff;
+            flex-direction: column;
+            gap: 12px;
+            padding: 18px 14px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            cursor: pointer;
+        }
+        .reel-cta > * { position: relative; z-index: 2; }
+        .reel-cta:hover { transform: translateY(-4px); }
+
+        .reel-cta .cta-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.55rem;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(3px);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .reel-cta:hover .cta-icon { background: rgba(255, 255, 255, 0.3); transform: scale(1.06); }
+
+        .reel-cta .cta-kicker {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.82);
+        }
+        .reel-cta .cta-handle {
+            font-size: 0.86rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+            word-break: break-all;
+        }
+        .reel-cta .cta-go {
+            font-size: 0.62rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-radius: 999px;
+            padding: 4px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s ease;
+        }
+        .reel-cta:hover .cta-go { background: rgba(255, 255, 255, 0.18); }
+        .reel-cta .cta-go i { font-size: 0.55rem; }
+
         .reels-note { font-size: 0.72rem; color: #6d7683; text-align: center; }
+        .reels-note a { color: #ff7f96; text-decoration: none; font-weight: 600; }
+        .reels-note a:hover { text-decoration: underline; }
 
         /* footer strip on last section */
         .creativity-footer {
@@ -1233,11 +1294,6 @@
                     <div class="reel-play"><i class="fa-solid fa-play"></i></div>
                     <div class="reel-meta"><span class="rl-title"><span class="lang-en">World Cup 2026</span><span class="lang-zh">2026 世界杯</span></span><span class="rl-sub"><span class="lang-en">lumen field · 1:03</span><span class="lang-zh">流明球场 · 1:03</span></span></div>
                 </div>
-                <div class="reel-card r1 playable" data-video>
-                    <video src="/assets/creativity/reels/71c3e8d5.mp4" poster="/assets/creativity/reels/71c3e8d5-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
-                    <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Sketching Hokusai</span><span class="lang-zh">速写北斋</span></span><span class="rl-sub"><span class="lang-en">seattle art museum · 0:26</span><span class="lang-zh">西雅图艺术博物馆 · 0:26</span></span></div>
-                </div>
                 <div class="reel-card r5 playable" data-video>
                     <video src="/assets/creativity/reels/8d15c7a3.mp4" poster="/assets/creativity/reels/8d15c7a3-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
                     <div class="reel-play"><i class="fa-solid fa-play"></i></div>
@@ -1253,13 +1309,19 @@
                     <div class="reel-play"><i class="fa-solid fa-play"></i></div>
                     <div class="reel-meta"><span class="rl-title"><span class="lang-en">Gelato paradiso</span><span class="lang-zh">冰淇淋天堂</span></span><span class="rl-sub"><span class="lang-en">street corner · 1:16</span><span class="lang-zh">街角 · 1:16</span></span></div>
                 </div>
-                <div class="reel-card r4">
-                    <span class="reel-badge"><span class="lang-en">SOON</span><span class="lang-zh">敬请期待</span></span>
-                    <div class="reel-play"><i class="fa-solid fa-film"></i></div>
-                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">More rolling in</span><span class="lang-zh">更多短片制作中</span></span><span class="rl-sub"><span class="lang-en">stay tuned</span><span class="lang-zh">敬请期待</span></span></div>
+                <div class="reel-card r1 playable" data-video>
+                    <video src="/assets/creativity/reels/71c3e8d5.mp4" poster="/assets/creativity/reels/71c3e8d5-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
+                    <div class="reel-play"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Sketching Hokusai</span><span class="lang-zh">速写北斋</span></span><span class="rl-sub"><span class="lang-en">seattle art museum · 0:26</span><span class="lang-zh">西雅图艺术博物馆 · 0:26</span></span></div>
                 </div>
+                <a class="reel-card r4 reel-cta" href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener" aria-label="More reels on Instagram @lazypppppppp">
+                    <span class="cta-icon"><i class="fa-brands fa-instagram"></i></span>
+                    <span class="cta-kicker"><span class="lang-en">More reels</span><span class="lang-zh">更多短片</span></span>
+                    <span class="cta-handle">@lazypppppppp</span>
+                    <span class="cta-go"><span class="lang-en">Instagram</span><span class="lang-zh">Instagram</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </a>
             </div>
-            <p class="reels-note"><i class="fa-solid fa-clapperboard"></i> <span class="lang-en">Tap a card to play · muted by default.</span><span class="lang-zh">点按卡片播放 · 默认静音。</span></p>
+            <p class="reels-note"><i class="fa-solid fa-clapperboard"></i> <span class="lang-en">Tap a card to play · muted by default · more in <a href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener">@lazypppppppp</a>.</span><span class="lang-zh">点按卡片播放 · 默认静音 · 更多短片见 <a href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener">@lazypppppppp</a>。</span></p>
 
             <div class="creativity-footer">
                 <button class="back-to-top" type="button" id="backToTop">
