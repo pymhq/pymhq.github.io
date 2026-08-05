@@ -162,6 +162,20 @@
      .comment-note-2026 .note-sublist li::before { content: "–"; position: absolute; left: 0; color: var(--fx-accent); font-weight: 700; }
      .comment-note-2025 .note-sublist li::before { content: "–"; position: absolute; left: 0; color: var(--fx-warn); font-weight: 700; }
 
+     /* ---------- 2026 layer: teal marks sections new for the 2026 review.
+        System: blue = article + 2026 notes · amber = 2025 notes · teal = 2026 sections. ---------- */
+     :root { --fx-26: #0d9488; --fx-26-soft: rgba(13, 148, 136, .08); }
+     html[data-theme=dark] { --fx-26: #2dd4bf; --fx-26-soft: rgba(45, 212, 191, .1); }
+     .post div.lang-en > h2.h2-2026::before, .post div.lang-zh > h2.h2-2026::before { background: var(--fx-26); }
+     .yr-chip { display: inline-block; vertical-align: 3px; margin-left: 12px; padding: 1px 10px; border-radius: 999px;
+       font: 700 .6rem/1.7 var(--fx-sans); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+       color: var(--fx-26); border: 1px solid var(--fx-26); background: var(--fx-26-soft); }
+     .fx-toc .t26 { display: inline-block; margin-left: 7px; padding: 0 7px; border-radius: 999px;
+       font: 700 .58rem/1.7 var(--fx-sans); letter-spacing: .1em; vertical-align: 1px;
+       color: var(--fx-26); border: 1px solid var(--fx-26); background: var(--fx-26-soft); }
+     .timeline.tl-2026 .timeline-marker { background: var(--fx-26); }
+     .timeline.tl-2026 .timeline-date { color: var(--fx-26); }
+
      /* ---------- personal reflections: dashed-frame serif asides ---------- */
      .my-thought { max-width: var(--fx-prose); margin: 16px auto; padding: 14px 22px;
        font-family: var(--fx-serif); font-style: italic; font-size: .97rem; line-height: 1.85;
@@ -221,10 +235,12 @@
                <ol>
                   <li><a href="#foundation-model">Foundation Model: Open vs Closed</a></li>
                   <li><a href="#academia-industry">Academia vs Industry Fusion</a></li>
+                  <li><a href="#neo-labs">Neo Labs<span class="t26">2026</span></a></li>
                   <li><a href="#llm-native">LLM Native: Open Source Ecosystem in Place</a></li>
                   <li><a href="#agentic-ai">Agentic AI: Moving Fast</a></li>
                   <li><a href="#partnerships">Expanded Cross-Company Partnerships</a></li>
                   <li><a href="#data-center">More and More Data Center</a></li>
+                  <li><a href="#post-training-rl">Post-Training RL<span class="t26">2026</span></a></li>
                   <li><a href="#performance">Faster and Faster Performance Optimization</a></li>
                   <li><a href="#trust-safety">Evaluation, Alignment, Interpretability, Trust &amp; Safety</a></li>
                   <li><a href="#pitch">Pitch Over Performance</a></li>
@@ -328,6 +344,36 @@
             </div>
             <br>
 
+            <h2 id="neo-labs" class="h2-2026">Neo Labs<span class="yr-chip">New · 2026</span></h2>
+            <p>If 2025 was the year young researchers became executives, 2026 is the year the veterans left to found their own labs. The academia–industry fusion has entered a new phase: instead of joining existing giants, the most senior scientists are spinning up "neo labs" — small, research-first, thesis-driven companies, each betting on a different path beyond today's LLMs.</p>
+
+            <div class="timeline tl-2026">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">August 5, 2026</div>
+                     <div class="timeline-description"><em>Jeff Dean</em> left Google after 27 years — together with <em>Sanjay Ghemawat</em> and two other senior scientists — to co-found <a href="https://www.wired.com/story/jeff-dean-google-discovery-loop-startup/" target="_blank">Discovery Loop</a>, a public benefit corporation automating the loop of scientific research: propose, run, evaluate, iterate. Google is a founding investor and cloud partner; in the same reshuffle, <em>Demis Hassabis</em> became chair of Google DeepMind and chief scientist of Alphabet</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">May 13, 2026</div>
+                     <div class="timeline-description"><em>Yuandong Tian</em> (田渊栋), former Meta FAIR research scientist director, emerged from stealth as co-founder of <a href="https://www.scmp.com/tech/big-tech/article/3353576/ex-meta-chinese-star-researcher-joins-race-self-improving-ai-us46b-start" target="_blank">Recursive Superintelligence (RSI)</a> — $650M raised at a $4.65B valuation, betting on self-improving AI systems that autonomously refine their own code and reasoning</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">November 2025</div>
+                     <div class="timeline-description"><em>Yann LeCun</em> left Meta after 12 years as Chief AI Scientist to co-found <a href="https://techcrunch.com/2026/01/23/whos-behind-ami-labs-yann-lecuns-world-model-startup/" target="_blank">AMI Labs</a> (Advanced Machine Intelligence) — convinced LLMs are a dead end, betting on JEPA-based world models; raised <a href="https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/" target="_blank">$1.03B at a $3.5B pre-money valuation</a> in March 2026</div>
+                  </div>
+               </div>
+            </div>
+            <br>
+
             <h2 id="llm-native"><a href="https://pengandy.com/blog/2025/llmnative/">LLM Native</a>: Open Source Ecosystem in Place</h2>
             <p>The shift toward GPU-CPU Native infrastructure has accelerated dramatically. Key projects driving this revolution include vLLM, SGLang, llm-d, Nvidia's Dynamo, and LMCache. Looking back at GTC 25, there was no "public" concept of disaggregated inference at all. Just one year later, industry standards have emerged and are growing rapidly. There's also an interesting discussion on customizing popular open-source libraries—check out <a href="https://blog.vllm.ai/2025/11/20/vllm-plugin-system.html">this article</a>.</p>
             <div class="comment-note-2026">
@@ -409,6 +455,11 @@
             <div class="comment-note-2026">
                <span class="note-date">2026/03/10 ·</span> <a href="https://blogs.nvidia.com/blog/ai-5-layer-cake/" target="_blank">The AI "5-Layer Cake"</a> by <em>Jensen Huang</em>, Nvidia CEO.
             </div>
+            <br>
+
+            <h2 id="post-training-rl" class="h2-2026">Post-Training RL<span class="yr-chip">New · 2026</span></h2>
+            <p>Barto and Sutton's Turing Award proved prescient. In 2026, reinforcement learning is no longer just the final alignment step — post-training RL has become the main engine of capability gains. Reinforcement Learning with Verifiable Rewards (RLVR) and GRPO-style recipes, popularized by DeepSeek-R1, are now the <a href="https://llm-stats.com/blog/research/post-training-techniques-2026" target="_blank">standard post-training paradigm</a> across frontier and open-weights labs alike.</p>
+            <p>The frontier has shifted from static reward datasets to <em>environments</em>: agentic RL trains models inside sandboxes with tools, code execution, and multi-step tasks, where feedback comes from the environment rather than a human label. Environments are becoming the new data — and building good ones is becoming its own discipline (see NVIDIA's <a href="https://developer.nvidia.com/blog/mastering-agentic-techniques-ai-agent-reinforcement-learning/" target="_blank">agentic RL techniques</a> write-up and the growing <a href="https://arxiv.org/abs/2605.02913" target="_blank">systems literature on scaling RL post-training</a>).</p>
             <br>
 
             <h2 id="performance">Faster and Faster Performance Optimization</h2>
@@ -528,10 +579,12 @@
                <ol>
                   <li><a href="#foundation-model-zh">基础模型：开权 vs 闭源</a></li>
                   <li><a href="#academia-industry-zh">学术界与产业界的融合</a></li>
+                  <li><a href="#neo-labs-zh">新型实验室<span class="t26">2026</span></a></li>
                   <li><a href="#llm-native-zh">LLM Native：开源生态已然成形</a></li>
                   <li><a href="#agentic-ai-zh">智能体 AI：高速前进</a></li>
                   <li><a href="#partnerships-zh">跨公司合作不断扩展</a></li>
                   <li><a href="#data-center-zh">越来越多的数据中心</a></li>
+                  <li><a href="#post-training-rl-zh">后训练强化学习<span class="t26">2026</span></a></li>
                   <li><a href="#performance-zh">越来越快的性能优化</a></li>
                   <li><a href="#trust-safety-zh">评测、对齐、可解释性、信任与安全</a></li>
                   <li><a href="#pitch-zh">叙事胜于性能</a></li>
@@ -635,6 +688,36 @@
             </div>
             <br>
 
+            <h2 id="neo-labs-zh" class="h2-2026">新型实验室<span class="yr-chip">新 · 2026</span></h2>
+            <p>如果说 2025 年是年轻研究者走上高管岗位的一年，那么 2026 年就是行业元老纷纷出走、创办自己实验室的一年。学术界与产业界的融合进入了新阶段：最资深的科学家不再加入现有巨头，而是创建"新型实验室"（Neo Labs）——小而精、研究至上、由核心命题驱动的公司，各自押注一条超越今日 LLM 的路径。</p>
+
+            <div class="timeline tl-2026">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 8 月 5 日</div>
+                     <div class="timeline-description"><em>Jeff Dean</em> 在效力 27 年后离开 Google——与 <em>Sanjay Ghemawat</em> 及另外两位资深科学家共同创办 <a href="https://www.wired.com/story/jeff-dean-google-discovery-loop-startup/" target="_blank">Discovery Loop</a>，一家致力于自动化科学研究闭环（提出实验、运行、评估、迭代）的公益公司（PBC）。Google 是创始投资方和云合作伙伴；在同一次调整中，<em>Demis Hassabis</em> 出任 Google DeepMind 董事长兼 Alphabet 首席科学家</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 5 月 13 日</div>
+                     <div class="timeline-description">前 Meta FAIR 研究总监<em>田渊栋</em>（Yuandong Tian）以联合创始人身份携 <a href="https://www.scmp.com/tech/big-tech/article/3353576/ex-meta-chinese-star-researcher-joins-race-self-improving-ai-us46b-start" target="_blank">Recursive Superintelligence（RSI）</a>走出隐身模式——融资 6.5 亿美元、估值 46.5 亿美元，押注能够自主改进自身代码与推理的自我进化 AI 系统</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2025 年 11 月</div>
+                     <div class="timeline-description"><em>Yann LeCun</em> 在担任首席 AI 科学家 12 年后离开 Meta，联合创办 <a href="https://techcrunch.com/2026/01/23/whos-behind-ami-labs-yann-lecuns-world-model-startup/" target="_blank">AMI Labs</a>（Advanced Machine Intelligence）——他坚信 LLM 是死胡同，押注基于 JEPA 的世界模型；2026 年 3 月<a href="https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/" target="_blank">以 35 亿美元投前估值融资 10.3 亿美元</a></div>
+                  </div>
+               </div>
+            </div>
+            <br>
+
             <h2 id="llm-native-zh"><a href="https://pengandy.com/blog/2025/llmnative/">LLM Native</a>：开源生态已然成形</h2>
             <p>向 GPU-CPU 原生基础设施的转变正在急剧加速。推动这场变革的关键项目包括 vLLM、SGLang、llm-d、Nvidia 的 Dynamo，以及 LMCache。回顾 GTC 25，当时业界对"分离式推理"还完全没有任何"公开"的概念。仅仅一年之后，行业标准已经涌现并迅速壮大。关于如何定制热门开源库，也出现了一场有趣的讨论——可参见<a href="https://blog.vllm.ai/2025/11/20/vllm-plugin-system.html">这篇文章</a>。</p>
             <div class="comment-note-2026">
@@ -716,6 +799,11 @@
             <div class="comment-note-2026">
                <span class="note-date">2026/03/10 ·</span> Nvidia CEO <em>Jensen Huang</em>（黄仁勋）提出的<a href="https://blogs.nvidia.com/blog/ai-5-layer-cake/" target="_blank">"AI 五层蛋糕"</a>。
             </div>
+            <br>
+
+            <h2 id="post-training-rl-zh" class="h2-2026">后训练强化学习<span class="yr-chip">新 · 2026</span></h2>
+            <p>Barto 与 Sutton 的图灵奖颇有先见之明。到了 2026 年，强化学习不再只是最后的对齐环节——后训练强化学习（Post-Training RL）已成为模型能力提升的主引擎。由 DeepSeek-R1 带火的可验证奖励强化学习（RLVR）与 GRPO 式训练配方，如今已是前沿实验室与开源权重实验室共同采用的<a href="https://llm-stats.com/blog/research/post-training-techniques-2026" target="_blank">标准后训练范式</a>。</p>
+            <p>前沿正从静态奖励数据集转向<em>环境（environments）</em>：智能体强化学习让模型在带工具、代码执行与多步任务的沙箱中训练，反馈来自环境而非人工标注。环境正在成为新的数据——而构建高质量环境本身也正在成为一门学问（可参见 NVIDIA 的<a href="https://developer.nvidia.com/blog/mastering-agentic-techniques-ai-agent-reinforcement-learning/" target="_blank">智能体强化学习技术</a>一文，以及日益增多的<a href="https://arxiv.org/abs/2605.02913" target="_blank">RL 后训练规模化系统研究</a>）。</p>
             <br>
 
             <h2 id="performance-zh">越来越快的性能优化</h2>
