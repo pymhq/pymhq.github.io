@@ -1,0 +1,293 @@
+/* ============================================================
+   plana / shell.js — behaviour shared by every page.
+   Replaces jQuery + Bootstrap JS + MDBootstrap JS + components.js.
+   No dependencies.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  // Site root. Was '/plana' while the rebuild lived in a draft folder.
+  var BASE = '';
+
+  /* ------------------------------------------------------------
+     Primary navigation — one source, injected into every page, so the
+     chrome cannot drift between pages.
+
+     Labels are deliberately durable. Nothing here names an employer, a
+     team, or a current specialism: a personal site should outlive any
+     one job.
+     ------------------------------------------------------------ */
+  /* Three items only. Work and Creativity are reached from the footer
+     directory, which lists every destination — so dropping them from the top
+     bar costs no reachability. */
+  var NAV = [
+    [BASE + '/blog/', 'Writing', '写作'],
+    [BASE + '/publications.html', 'Publications', '出版'],
+    [BASE + '/contact.html', 'Contact', '联系', 'cta']
+  ];
+
+  /* ------------------------------------------------------------
+     Footer directory — every public destination.
+
+     Private material is deliberately absent: notes/papers, notes/LP and
+     cv/amzn are personal notes and an internal CV, not publications.
+     Offices is likewise omitted here — it is a personal curiosity, not a
+     credential, and stays reachable from the sitemap.
+     ------------------------------------------------------------ */
+  var DIRECTORY = [
+    {
+      en: 'Tech & Science', zh: '科技',
+      links: [
+        [BASE + '/work.html', 'Work', '作品'],
+        [BASE + '/publications.html', 'Books & papers', '书籍与论文'],
+        [BASE + '/speaking.html', 'Talks & lectures', '演讲与讲座'],
+        [BASE + '/service.html', 'Academic service', '学术服务']
+      ]
+    },
+    {
+      en: 'Writing', zh: '写作',
+      links: [
+        [BASE + '/blog/', 'Blog', '博客'],
+        ['/feed.xml', 'RSS feed', 'RSS']
+      ]
+    },
+    {
+      en: 'Creativity', zh: '创作',
+      links: [
+        [BASE + '/creativity.html', 'Design & photography', '设计与摄影'],
+        [BASE + '/maps.html', 'Maps', '地图']
+      ]
+    },
+    {
+      en: 'About', zh: '关于',
+      links: [
+        [BASE + '/experience.html', 'Experience', '经历'],
+        [BASE + '/endorsements.html', 'Endorsements', '行业背书'],
+        [BASE + '/news.html', 'News', '动态']
+      ]
+    },
+    {
+      en: 'Elsewhere', zh: '其他',
+      links: [
+        ['https://www.linkedin.com/in/pengandy-us', 'LinkedIn', 'LinkedIn'],
+        ['https://substack.com/@pengandy', 'Substack', 'Substack'],
+        ['https://twitter.com/pymhq', 'Twitter', 'Twitter'],
+        [BASE + '/sitemap.html', 'Sitemap', '站点地图']
+      ]
+    }
+  ];
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  }
+
+  function bi(en, zh) {
+    return (
+      '<span class="lang-en">' + esc(en) + '</span>' +
+      '<span class="lang-zh" hidden>' + esc(zh) + '</span>'
+    );
+  }
+
+  function extAttrs(href) {
+    return /^https?:/.test(href) ? ' target="_blank" rel="noopener"' : '';
+  }
+
+  /* ---------------- nav ---------------- */
+  function buildNav() {
+    var mount = document.querySelector('[data-shell-nav]');
+    if (!mount) return;
+    var links = NAV.map(function (n) {
+      return (
+        '<a href="' + esc(n[0]) + '"' +
+        (n[3] ? ' class="' + n[3] + '"' : '') + '>' +
+        bi(n[1], n[2]) + '</a>'
+      );
+    }).join('');
+
+    mount.innerHTML =
+      '<div class="nav-in">' +
+      '<a class="nav-mark" href="' + BASE + '/">Peng, Andy</a>' +
+      '<div class="nav-links">' + links + '</div>' +
+      '</div>';
+
+    // mark the current page
+    var here = location.pathname.replace(/index\.html$/, '');
+    mount.querySelectorAll('.nav-links a').forEach(function (a) {
+      var path = (a.getAttribute('href') || '').split(/[?#]/)[0];
+      var self = document.body.dataset.navMatch;
+      if (path === here || (self && path.indexOf(self) !== -1)) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+
+  /* ---------------- footer ---------------- */
+  function buildFooter() {
+    var mount = document.querySelector('[data-shell-footer]');
+    if (!mount) return;
+
+    var cols = DIRECTORY.map(function (g) {
+      var items = g.links.map(function (l) {
+        return (
+          '<li><a href="' + esc(l[0]) + '"' + extAttrs(l[0]) + '>' +
+          bi(l[1], l[2]) + '</a></li>'
+        );
+      }).join('');
+      return '<div><h4>' + bi(g.en, g.zh) + '</h4><ul>' + items + '</ul></div>';
+    }).join('');
+
+    mount.innerHTML =
+      '<div class="shell">' +
+      '<div class="dir">' + cols + '</div>' +
+      '<div class="foot-bar">' +
+      '<span>© ' + new Date().getFullYear() + ' Andy Peng</span>' +
+      '<div class="foot-tools">' +
+      '<div class="seg" role="group" aria-label="Language">' +
+      '<button type="button" data-lang="en">EN</button>' +
+      '<button type="button" data-lang="zh">中文</button>' +
+      '</div>' +
+      '<div class="seg" role="group" aria-label="Appearance">' +
+      '<button type="button" data-theme-set="light" title="Light">Light</button>' +
+      '<button type="button" data-theme-set="dark" title="Dark">Dark</button>' +
+      '</div>' +
+      '</div></div></div>';
+
+    mount.querySelectorAll('[data-lang]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        switchLanguage(b.dataset.lang);
+      });
+    });
+    mount.querySelectorAll('[data-theme-set]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        setTheme(b.dataset.themeSet);
+      });
+    });
+  }
+
+  /* ---------------- theme ----------------
+     Reuses the site's existing contract: localStorage "theme" plus
+     html[data-theme], the same pair assets/js/theme.js uses, so the
+     preference carries to pages that still run theme.js. */
+  function setTheme(mode) {
+    localStorage.setItem('theme', mode);
+    applyTheme(mode);
+  }
+
+  function applyTheme(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.themeSet === mode);
+    });
+  }
+
+  function currentTheme() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+    return window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  }
+
+  /* ---------------- language ----------------
+     Same localStorage key as the live site so the choice carries across.
+     ?lang=en|zh overrides it, which also makes Chinese links shareable. */
+  window.applyLanguage = function (lang) {
+    var zh = lang === 'zh';
+    document.querySelectorAll('.lang-en').forEach(function (el) {
+      // keep English visible where no translation exists on this page
+      var p = el.parentElement;
+      var hasZh = p && p.querySelector('.lang-zh');
+      el.hidden = zh && !!hasZh;
+    });
+    document.querySelectorAll('.lang-zh').forEach(function (el) {
+      el.hidden = !zh;
+    });
+    document.querySelectorAll('[data-lang]').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    document.documentElement.lang = zh ? 'zh-Hans' : 'en';
+  };
+
+  window.switchLanguage = function (lang) {
+    localStorage.setItem('preferredLanguage', lang);
+    window.applyLanguage(lang);
+  };
+
+  function currentLang() {
+    var forced = new URLSearchParams(location.search).get('lang');
+    if (forced === 'zh' || forced === 'en') return forced;
+    return localStorage.getItem('preferredLanguage') || 'en';
+  }
+
+  /* ---------------- sticky nav ---------------- */
+  function stickyNav() {
+    var nav = document.querySelector('.nav');
+    if (!nav) return;
+    var probe = document.createElement('div');
+    probe.style.cssText = 'position:absolute;top:0;height:1px;width:1px';
+    document.body.prepend(probe);
+    if (!('IntersectionObserver' in window)) {
+      nav.classList.add('is-stuck');
+      return;
+    }
+    new IntersectionObserver(
+      function (e) {
+        nav.classList.toggle('is-stuck', !e[0].isIntersecting);
+      },
+      { rootMargin: '-72px 0px 0px 0px' }
+    ).observe(probe);
+  }
+
+  /* ---------------- reveal ---------------- */
+  function reveal() {
+    var targets = document.querySelectorAll('.rise:not(.in)');
+    if (!targets.length) return;
+
+    var showAll = function () {
+      document.querySelectorAll('.rise:not(.in)').forEach(function (el) {
+        el.classList.add('in');
+      });
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      showAll();
+      return;
+    }
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.02 }
+    );
+
+    targets.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        el.classList.add('in'); // already on screen: no animation
+      } else {
+        io.observe(el);
+      }
+    });
+
+    clearTimeout(reveal._t);
+    reveal._t = setTimeout(showAll, 2500); // failsafe
+  }
+
+  /* ---------------- boot ---------------- */
+  applyTheme(currentTheme()); // before paint work, to avoid a flash
+  document.addEventListener('DOMContentLoaded', function () {
+    buildNav();
+    buildFooter();
+    applyTheme(currentTheme());
+    window.applyLanguage(currentLang());
+    stickyNav();
+    reveal();
+  });
+})();

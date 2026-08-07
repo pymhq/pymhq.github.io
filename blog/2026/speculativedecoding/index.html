@@ -1,63 +1,49 @@
-<!DOCTYPE html> 
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-HTV795ZMCP');
-</script>
-
+<!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title> Trendings on Speculative Decoding </title>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Noto+Serif+SC:wght@500;600;700&display=swap">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Trendings on Speculative Decoding — Peng, Andy</title>
       <meta name="author" content="Peng, Andy">
-      <meta name="description" content="A timeline of 2026's speculative decoding wave — Gemma 4 Assistant drafters, Gemini Nano's frozen Multi-Token Prediction on Pixel, and DeepSeek's DSpark — with summaries, a side-by-side comparison table, and the papers behind them.">
-      <meta name="keywords" content="speculative decoding, multi-token prediction, MTP, DeepSeek DSpark, Gemini Nano, Gemma 4, Gemma 4 Assistant, EAGLE, LLM inference, drafter">
+      <meta name="description" content="Trendings on Speculative Decoding">
+      <link rel="canonical" href="https://pengandy.com/blog/2026/speculativedecoding">
 
-      <!-- Open Graph / LinkedIn -->
-      <meta property="og:type" content="article">
-      <meta property="og:url" content="https://pengandy.com/blog/2026/speculativedecoding/">
-      <meta property="og:title" content="Trendings on Speculative Decoding">
-      <meta property="og:description" content="A 2026 timeline of speculative decoding: Gemma 4 Assistant drafters, Gemini Nano frozen MTP, and DeepSeek DSpark — summarized and compared.">
-      <meta property="og:image" content="https://pengandy.com/assets/blog/2026/speculativedecoding/og-card.png">
-
-      <!-- Twitter -->
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="https://pengandy.com/blog/2026/speculativedecoding">
+      <meta property="og:title" content="Trendings on Speculative Decoding — Peng, Andy">
+      <meta property="og:description" content="Trendings on Speculative Decoding">
+      <meta property="og:image" content="https://pengandy.com/assets/brand/icon-512.png">
       <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:title" content="Trendings on Speculative Decoding">
-      <meta name="twitter:description" content="A 2026 timeline of speculative decoding: Gemma 4 Assistant drafters, Gemini Nano frozen MTP, and DeepSeek DSpark — summarized and compared.">
-      <meta name="twitter:image" content="https://pengandy.com/assets/blog/2026/speculativedecoding/og-card.png">
       <meta name="twitter:site" content="@pymhq">
       <meta name="twitter:creator" content="@pymhq">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
-      <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
-      <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+      <meta name="twitter:title" content="Trendings on Speculative Decoding — Peng, Andy">
+      <meta name="twitter:description" content="Trendings on Speculative Decoding">
+      <meta name="twitter:image" content="https://pengandy.com/assets/brand/icon-512.png">
+
       <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
       <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
       <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
       <link rel="manifest" href="/site.webmanifest">
-      <link rel="stylesheet" href="/assets/css/main.css?0286170e23c3c109f66311d4c1ef1b3b">
-      <link rel="canonical" href="https://pengandy.com/blog/2026/speculativedecoding/">
-      <link rel="alternate" type="application/rss+xml" title="Puget Sound Journal" href="https://pengandy.com/feed.xml">
-      <script src="/assets/js/theme.js"></script>
-      <script src="/assets/js/dark_mode.js"></script>
-      <script src="/assets/js/components.js" defer></script>
-      <script async data-uid="92570b70d9" src="https://andy-peng.kit.com/92570b70d9/index.js"></script>
-      <script>initTheme();</script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
-   </head>
-   <style>
-     /* ================================================================
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="/assets/css/shell.css">
+      <script src="/assets/js/shell.js" defer></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-HTV795ZMCP');
+      </script>
+   
+      <style>
+/* Style layer carried over verbatim from the published post so its
+   typography, reading aids and components are preserved. */
+/* ================================================================
         FLAGSHIP REDESIGN v2 — style layer only; markup/content untouched.
         Accent = the site theme blue (light #0076df / dark #2698ba via
         --global-theme-color), so the article matches the whole site.
@@ -112,12 +98,8 @@
 
      /* ---------- EN / 中文 toggle ---------- */
      .lang-toggle { max-width: var(--fx-prose); margin: 0 auto 26px; }
-     .lang-toggle button { border: 1px solid var(--fx-rule); background: transparent; color: var(--fx-mute);
-       font: 600 .8rem/1.4 var(--fx-sans); padding: 5px 16px; cursor: pointer; }
      .lang-toggle button:first-child { border-radius: 999px 0 0 999px; border-right: none; }
-     .lang-toggle button:last-child { border-radius: 0 999px 999px 0; }
      .lang-toggle button.active { background: var(--fx-accent); border-color: var(--fx-accent); color: #fff; }
-     .lang-zh { display: none; }
 
      /* ---------- opening quote: left-bar pull quote ---------- */
      .post .post-content .sd-quote { max-width: calc(var(--fx-prose) - 30px); margin: 40px auto 42px; padding: 2px 0 2px 26px;
@@ -280,16 +262,26 @@
        border-left: 2px solid var(--fx-hair); transition: all .15s; }
      #fx-outline a:hover { color: var(--global-text-color, #1a1a1a); text-decoration: none; }
      #fx-outline a.on { color: var(--fx-accent); border-left-color: var(--fx-accent); font-weight: 600; }
-   </style>
-   <body class="fixed-top-nav" data-page="blog">
-      <div id="fxbar"></div>
+      </style>
+   </head>
+
+   <body data-nav-match="blog/2026/speculativedecoding">
+      <a class="skip" href="#main">Skip to content</a>
+      <nav class="nav" aria-label="Primary" data-shell-nav></nav>
+
+      <header class="shell" style="padding-top:clamp(24px,2.6vw,42px)">
+         <a class="post-back" href="/blog/"><span class="lang-en">← Writing</span><span class="lang-zh" hidden>← 写作</span></a>
+      </header>
+
+      <main class="shell" id="main" style="padding-bottom:var(--movement)">
+         <div id="fxbar"></div>
       <nav id="fx-outline" aria-label="On this page"></nav>
-      <div id="navbar-placeholder"></div>
-      <div class="container mt-5" role="main">
+      
+      <div>
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title"><span class="lang-en">Trendings on Speculative Decoding</span><span class="lang-zh">投机解码的趋势</span></h1>
-               <p class="post-meta"><span class="lang-en"> Created in June 2026<span class="post-readstats"> · 5,900 words · 30 min read</span> </span><span class="lang-zh"> 创建于 2026 年 6 月<span class="post-readstats"> · 约 9,400 字 · 28 分钟阅读</span> </span></p>
+               <h1 class="post-title"><span class="lang-en">Trendings on Speculative Decoding</span><span class="lang-zh" hidden>投机解码的趋势</span></h1>
+               <p class="post-meta"><span class="lang-en"> Created in June 2026<span class="post-readstats"> · 5,900 words · 30 min read</span> </span><span class="lang-zh" hidden> 创建于 2026 年 6 月<span class="post-readstats"> · 约 9,400 字 · 28 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/archive/2026/"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>   <a href="/blog/tag/mtp"> <i class="fa-solid fa-hashtag fa-sm"></i> mtp</a>   <a href="/blog/tag/inference"> <i class="fa-solid fa-hashtag fa-sm"></i> inference</a>   <a href="/blog/tag/eagle"> <i class="fa-solid fa-hashtag fa-sm"></i> eagle</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -297,10 +289,7 @@
             </div>
             <article class="post-content">
 
-               <div class="lang-toggle">
-                  <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
-                  <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
-               </div>
+               
 
                <div class="lang-en">
 
@@ -1100,7 +1089,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
 
                </div><!-- /lang-en -->
 
-               <div class="lang-zh">
+               <div class="lang-zh" hidden>
 
                <div class="sd-quote">
                   <p class="q">"最快的 token，是你永远不必生成第二次的那个。"</p>
@@ -1891,17 +1880,17 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
             <br> 
             <hr>
             <br> 
-            <div id="subscribe-placeholder"></div>
+            
          </div>
          <div>
          </div>
       </div>
 
-      <div id="footer-placeholder"></div>
+      
 
       <!-- Scripts -->
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+      
+      
       <!-- EN / 中文 toggle logic. Writes the SAME global preference
            (localStorage 'preferredLanguage') that the homepage button and
            components/navbar.html use, so switching here also updates the
@@ -1980,5 +1969,9 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
         if (orig) window.__setPostLang = function(l){ orig(l); build(); };
       })();
       </script>
+   
+      </main>
+
+      <footer class="foot" data-shell-footer></footer>
    </body>
 </html>

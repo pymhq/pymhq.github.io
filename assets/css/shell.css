@@ -1,0 +1,1748 @@
+/* ============================================================
+   plana / shell.css — the design system for every page
+   ------------------------------------------------------------
+   One stylesheet, every page. Replaces, per page: Bootstrap 4.6 +
+   MDBootstrap 4.20 + FontAwesome + academicons + bootstrap-quotes +
+   two Pygments themes + Roboto from CDN.
+
+   Brand continuity is deliberate: display face is Source Serif 4 and
+   the palette is ink #16181d + site blue #0076df, exactly as fixed in
+   OG-CARD-SOP.md. Two colour layers, no third.
+
+   Scale is the point. Earlier drafts were cramped — 720px measure,
+   1.04rem body, hairline rules everywhere, 11px monospace labels.
+   Gravitas comes from size and negative space, not more elements.
+   ============================================================ */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* ---------------- tokens ---------------- */
+:root {
+  --ink: #16181d;
+  --ink-2: #3c4148;
+  --ink-3: #6b7280;
+  --accent: #0076df;
+  --paper: #fff;
+  --paper-2: #f7f6f4;
+  --rule: rgba(22, 24, 29, 0.1);
+  --rule-2: rgba(22, 24, 29, 0.18);
+
+  --serif: "Source Serif 4", "Source Serif Pro", Georgia, "Songti SC",
+    "Noto Serif SC", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+    "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
+
+  --t-display: clamp(3.1rem, 8.4vw, 7.5rem);
+  --t-h1: clamp(2.4rem, 5.6vw, 4.2rem);
+  --t-h2: clamp(1.85rem, 3.6vw, 2.9rem);
+  --t-h3: clamp(1.35rem, 2.1vw, 1.85rem);
+  --t-lede: clamp(1.28rem, 2vw, 1.8rem);
+  --t-body: 1.19rem;
+  --t-small: 0.95rem;
+  --t-eyebrow: 0.78rem;
+
+  --shell: 1280px;
+  --gutter: clamp(24px, 5.5vw, 88px);
+  --movement: clamp(88px, 12vw, 184px);
+  --read: 62ch;
+
+  /* Aliases for the tokens the blog posts' own style layers reference.
+     Those layers were written against main.css; mapping them here lets each
+     post keep its original typography without loading the old stylesheet,
+     and makes them follow this site's dark mode automatically. */
+  --global-theme-color: var(--accent);
+  --global-text-color: var(--ink);
+  --global-text-color-light: var(--ink-3);
+  --global-bg-color: var(--paper);
+  --global-card-bg-color: var(--paper-2);
+  --global-code-bg-color: var(--paper-2);
+  --global-divider-color: var(--rule);
+  --global-hover-color: var(--accent);
+}
+
+/* Dark mode honours the site's existing contract: theme.js writes
+   localStorage "theme" and sets html[data-theme]. shell.js reuses both,
+   so the preference carries to pages that still use theme.js. */
+[data-theme="dark"] {
+  --ink: #ececed;
+  --ink-2: #b9bcc2;
+  --ink-3: #8b9099;
+  --accent: #55b3ee;
+  --paper: #131417;
+  --paper-2: #191b1f;
+  --rule: rgba(236, 236, 237, 0.12);
+  --rule-2: rgba(236, 236, 237, 0.22);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  /* clip, not hidden: hidden creates a scroll container and breaks
+     position:sticky on the nav */
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip:focus {
+  left: var(--gutter);
+  top: 8px;
+  z-index: 100;
+  background: var(--paper);
+  padding: 10px 16px;
+  border: 1px solid var(--ink);
+}
+
+/* ---------------- layout ---------------- */
+.shell {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.band {
+  padding-block: var(--movement);
+}
+
+.band--tight {
+  padding-block: clamp(56px, 7vw, 104px);
+}
+
+.band--tint {
+  background: var(--paper-2);
+}
+
+.band--ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+[data-theme="dark"] .band--ink {
+  background: #0b0c0e;
+}
+
+.read {
+  max-width: var(--read);
+}
+
+/* ---------------- eyebrow ----------------
+   Small-caps sans with real tracking. Replaces the 11px uppercase
+   monospace labels of earlier drafts, which read as variable names. */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+.band--ink .eyebrow {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------------- nav ---------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  view-transition-name: sitenav;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.nav.is-stuck {
+  background: color-mix(in srgb, var(--paper) 84%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom-color: var(--rule);
+}
+
+.nav-in {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 22px var(--gutter);
+  display: flex;
+  align-items: baseline;
+  gap: clamp(20px, 3vw, 48px);
+}
+
+.nav-mark {
+  font-family: var(--serif);
+  font-size: 1.32rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(16px, 2.2vw, 36px);
+  margin-left: auto;
+}
+
+.nav-links a {
+  font-size: var(--t-small);
+  color: var(--ink-2);
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.nav-links a.cta {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.nav-links a.cta:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* ---------------- hero (home) ---------------- */
+.hero {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  padding-block: clamp(36px, 6vw, 88px) var(--movement);
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+  min-height: min(82vh, 860px);
+}
+
+.hero-name {
+  font-size: var(--t-display);
+  line-height: 0.94;
+  margin: 0 0 clamp(22px, 2.8vw, 38px);
+}
+
+.hero-name b {
+  font-weight: 600;
+}
+
+.hero-pinyin {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.17em;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 0.5em;
+}
+
+.hero-lede {
+  font-family: var(--serif);
+  font-size: var(--t-lede);
+  line-height: 1.4;
+  margin: 0 0 clamp(18px, 2vw, 26px);
+  max-width: 24em;
+}
+
+.hero-sub {
+  font-size: 1.12rem;
+  line-height: 1.62;
+  color: var(--ink-2);
+  max-width: 34em;
+  margin: 0 0 clamp(26px, 3vw, 40px);
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  font-size: var(--t-small);
+  color: var(--ink-3);
+}
+
+.hero-meta .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--rule-2);
+}
+
+/* Portrait: assets/img/headshot icml25.png is a 1574x1574 cutout WITH an
+   alpha channel. Any rectangular frame plus zoom exposes the alpha mask
+   as a hard polygon, so the figure stands free on a tinted disc. */
+.portrait {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  display: grid;
+  place-items: end center;
+  isolation: isolate;
+}
+
+.portrait::before {
+  content: "";
+  position: absolute;
+  inset: 6% 4% 10%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 42%,
+    var(--paper-2) 0%,
+    var(--paper-2) 62%,
+    transparent 100%
+  );
+  z-index: -1;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  filter: saturate(0.97) contrast(1.02);
+}
+
+/* ---------------- practice (home) ---------------- */
+.practice {
+  list-style: none;
+  margin: clamp(30px, 3.4vw, 52px) 0 0;
+  padding: 0;
+}
+
+.practice > li {
+  border-top: 1px solid var(--rule-2);
+  padding-block: clamp(28px, 3vw, 46px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
+  gap: clamp(10px, 4vw, 64px);
+  align-items: start;
+}
+
+.practice > li:last-child {
+  border-bottom: 1px solid var(--rule-2);
+}
+
+.practice h2 {
+  font-size: var(--t-h2);
+  line-height: 1.06;
+}
+
+.practice p {
+  margin: 0;
+  font-size: 1.14rem;
+  line-height: 1.62;
+  color: var(--ink-2);
+  max-width: 36em;
+}
+
+.practice p + p {
+  margin-top: 12px;
+}
+
+.practice a {
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule-2);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.practice a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------------- inner page head ---------------- */
+.page-head {
+  padding-block: clamp(48px, 6vw, 104px) clamp(34px, 4vw, 60px);
+}
+
+.page-title {
+  font-size: var(--t-h1);
+  line-height: 1.02;
+  margin: clamp(14px, 1.6vw, 22px) 0 clamp(16px, 1.8vw, 24px);
+}
+
+.page-lede {
+  font-family: var(--serif);
+  font-size: var(--t-lede);
+  line-height: 1.42;
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 28em;
+}
+
+.page-actions {
+  margin: clamp(22px, 2.4vw, 34px) 0 0;
+}
+
+/* ---------------- record: year-grouped entries ----------------
+   Projects, publications, CV. One component so these pages read as
+   chapters of one document instead of three unrelated designs. */
+.record {
+  margin-top: clamp(40px, 4.6vw, 72px);
+}
+
+.record-group + .record-group {
+  margin-top: clamp(48px, 5.4vw, 88px);
+}
+
+.record-year {
+  font-family: var(--serif);
+  font-size: var(--t-h2);
+  line-height: 1;
+  color: var(--ink-3);
+  margin: 0 0 clamp(18px, 2vw, 28px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule-2);
+}
+
+.record-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.record-list > li {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 1.58fr);
+  gap: 6px clamp(20px, 3.4vw, 56px);
+  padding-block: clamp(16px, 1.8vw, 24px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.record-key {
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.record-key small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  margin-top: 3px;
+}
+
+.record-val {
+  color: var(--ink-2);
+  font-size: 1.06rem;
+}
+
+.record-val a {
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule-2);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.record-val a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.record-val p {
+  margin: 0 0 8px;
+}
+
+.record-val p:last-child {
+  margin-bottom: 0;
+}
+
+/* Entries on the work page carry every source, announcement and talk the
+   original page listed — often a dozen per item. Stacked block links keep
+   long titles readable instead of running them together as prose. */
+.record-links {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.record-links a {
+  font-size: 0.99rem;
+  line-height: 1.45;
+  color: var(--ink-2);
+  border-bottom: none;
+  padding-left: 15px;
+  position: relative;
+}
+
+.record-links a::before {
+  content: "↗";
+  position: absolute;
+  left: 0;
+  color: var(--ink-3);
+  font-size: 0.82em;
+}
+
+.record-links a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.record-links a:hover::before {
+  color: var(--accent);
+}
+
+.muted {
+  color: var(--ink-3);
+}
+
+/* Some work entries describe their result in prose with no link at all; an
+   anchors-only extraction discarded those outright, so they get their own
+   treatment here rather than being squeezed into the link list. */
+.record-note {
+  margin: 0 0 10px;
+  color: var(--ink-2);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  max-width: 46em;
+}
+
+/* Executive notes attached to a project. Collapsed, because they are
+   third-party remarks rather than a description of the work. */
+.record-notes {
+  margin-top: 12px;
+}
+
+.record-notes summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.record-notes summary::-webkit-details-marker {
+  display: none;
+}
+
+.record-notes summary::after {
+  content: "+";
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.record-notes[open] summary::after {
+  content: "\2212";
+}
+
+.record-notes summary:hover {
+  color: var(--accent);
+}
+
+.record-notes ul {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  border-left: 2px solid var(--rule);
+}
+
+.record-notes li {
+  padding: 0 0 14px 16px;
+}
+
+.record-notes li:last-child {
+  padding-bottom: 0;
+}
+
+.note-who {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  margin-bottom: 3px;
+}
+
+.note-body {
+  display: block;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* ---------------- entries: title-forward list ----------------
+   Blog posts, news, talks. */
+.entries {
+  list-style: none;
+  margin: clamp(34px, 4vw, 60px) 0 0;
+  padding: 0;
+}
+
+.entries > li {
+  border-top: 1px solid var(--rule);
+}
+
+.entries > li:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.entries a,
+.entries .row {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr) auto;
+  gap: clamp(10px, 2.6vw, 40px);
+  align-items: baseline;
+  padding-block: clamp(20px, 2.2vw, 32px);
+}
+
+.entries .when {
+  font-size: var(--t-small);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.entries .what {
+  font-family: var(--serif);
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.entries .note {
+  display: block;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-3);
+  margin-top: 6px;
+  max-width: 46em;
+}
+
+.entries .arrow {
+  color: var(--ink-3);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.entries a:hover .what {
+  color: var(--accent);
+}
+
+.entries a:hover .arrow {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+
+/* ---------------- quotes ---------------- */
+.quotes {
+  margin-top: clamp(44px, 5.4vw, 84px);
+  display: grid;
+  gap: clamp(48px, 6vw, 88px);
+}
+
+.quote {
+  margin: 0;
+}
+
+.quote blockquote {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+  line-height: 1.42;
+  letter-spacing: -0.015em;
+  margin: 0 0 clamp(18px, 2vw, 28px);
+  max-width: 34em;
+}
+
+.quote figcaption {
+  font-size: var(--t-small);
+  color: var(--ink-3);
+  line-height: 1.55;
+  max-width: 42em;
+}
+
+.quote figcaption b,
+.quote figcaption .who {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1.04rem;
+  margin-bottom: 2px;
+}
+
+.quote-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: clamp(18px, 2vw, 26px);
+}
+
+.quote-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: 0 0 auto;
+  background: var(--paper-2);
+}
+
+.quote-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------------- prose ---------------- */
+.prose {
+  max-width: var(--read);
+  font-size: 1.16rem;
+  line-height: 1.75;
+}
+
+.prose > * + * {
+  margin-top: 1.1em;
+}
+
+.prose h2 {
+  font-size: var(--t-h2);
+  line-height: 1.1;
+  margin-top: 2.4em;
+}
+
+.prose h3 {
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  margin-top: 2em;
+}
+
+.prose a {
+  color: var(--accent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.prose a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+}
+
+.prose li + li {
+  margin-top: 0.5em;
+}
+
+.prose blockquote {
+  margin: 1.6em 0;
+  padding-left: 1.3em;
+  border-left: 2px solid var(--rule-2);
+  font-family: var(--serif);
+  font-size: 1.24rem;
+  color: var(--ink-2);
+}
+
+/* ---------------- pairs: label / value rows ----------------
+   Office locations, certificates, education, simple metadata. */
+.pairs {
+  list-style: none;
+  margin: clamp(30px, 3.4vw, 52px) 0 0;
+  padding: 0;
+  max-width: 760px;
+}
+
+.pairs > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding-block: 15px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.pairs .k {
+  font-size: 1.1rem;
+}
+
+.pairs .v {
+  font-size: var(--t-small);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* first row is current, the rest are history */
+.pairs--current > li:not(:first-child) .k {
+  color: var(--ink-3);
+}
+
+
+/* ---------------- experience page details ----------------
+   Role periods inside one employer are subordinate detail, not four
+   separate jobs — so they sit lighter than the employer line. The
+   university's "Project 211 / 985 / Double First-Class" designation is a
+   footnote about the institution, not part of the degree name. */
+.role-periods {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.role-periods li {
+  font-size: 0.98rem;
+  color: var(--ink-3);
+  padding-left: 14px;
+  position: relative;
+}
+
+.role-periods li + li {
+  margin-top: 5px;
+}
+
+/* the current role carries full ink; the three past ones stay quiet, so the
+   hierarchy is legible at a glance */
+.role-periods li.is-current {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.role-periods li.is-current::before {
+  background: var(--accent);
+  height: 2px;
+  top: 0.68em;
+}
+
+.role-periods li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 5px;
+  height: 1px;
+  background: var(--rule-2);
+}
+
+.qualifier {
+  display: block;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+  margin-top: 3px;
+  font-weight: 400;
+}
+
+/* ---------------- gallery ---------------- */
+.gallery {
+  margin-top: clamp(40px, 4.6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: clamp(14px, 1.6vw, 24px);
+}
+
+.gallery figure {
+  margin: 0;
+}
+
+.gallery img {
+  /* height:auto, not 100%: inside a stretched grid item a percentage
+     height can resolve against an indefinite container and collapse the
+     image to zero. aspect-ratio alone gives a reliable box. */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--paper-2);
+}
+
+.gallery figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-3);
+  margin-top: 8px;
+}
+
+.gallery--wide img {
+  aspect-ratio: 16 / 10;
+}
+
+.gallery video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background: var(--paper-2);
+  display: block;
+}
+
+/* ---------------- blog post baseline ----------------
+   Deliberately低-specificity, single-class selectors only.
+
+   22 of the 29 posts ship their own style layer (the "flagship" layer:
+   --fx-* tokens, an 880px shell over a 680px prose column, serif h2 with
+   an accent tick, timeline and callout components). Those layers are
+   carried across verbatim and target `.post ...`, so they are more
+   specific than everything here and win. This block is therefore only a
+   fallback for the posts that bring nothing of their own — and it copies
+   the flagship's rhythm (680px prose, 1.0625rem / 1.85) so that all
+   posts read alike.
+
+   The old build's Bootstrap and FontAwesome class names survive in the
+   markup; those stylesheets are not loaded, so they are inert. */
+.post {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* Centre the prose column on DIRECT children only.
+   The flagship layer does the same (`.post div.lang-en > p`), and matching
+   it matters: a broader `.post p` also caught paragraphs nested inside
+   component wrappers — pull-quotes, callouts, cards — many of which carry
+   an inline `margin: 0`. That shorthand overrides margin-left/right:auto,
+   so the quote centred while its attribution sat flush left. Nested blocks
+   must inherit their wrapper's width instead. */
+.post > p,
+.post > ul,
+.post > ol,
+.post > blockquote,
+.post > pre,
+.post > table,
+.post > hr,
+.post > .fx-toc,
+.post > div > p,
+.post > div > ul,
+.post > div > ol,
+.post > div > blockquote,
+.post > div > pre,
+.post > div > table,
+.post > div > hr,
+.post > div > .fx-toc,
+.post .post-content > p,
+.post .post-content > ul,
+.post .post-content > ol {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post p {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  margin-block: 0 1.15em;
+}
+
+.post li {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.post li + li {
+  margin-top: 0.4em;
+}
+
+.post h1,
+.post h2,
+.post h3,
+.post h4 {
+  font-family: var(--serif);
+  letter-spacing: -0.015em;
+}
+
+.post > h1, .post > h2, .post > h3, .post > h4,
+.post > div > h1, .post > div > h2, .post > div > h3, .post > div > h4 {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post h2 {
+  font-weight: 700;
+  font-size: 1.7rem;
+  line-height: 1.3;
+  margin: 62px auto 22px;
+}
+
+.post h3 {
+  font-weight: 600;
+  font-size: 1.32rem;
+  line-height: 1.35;
+  margin: 40px auto 16px;
+}
+
+.post h4 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.04rem;
+  margin: 30px auto 12px;
+}
+
+.post a {
+  color: var(--accent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.post a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.post img {
+  max-width: 100%;
+  height: auto;
+  margin-block: 1.7em;
+}
+
+.post figure {
+  margin: 1.7em auto;
+  max-width: 880px;
+}
+
+.post figcaption {
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  margin-top: 10px;
+}
+
+.post blockquote {
+  padding-left: 1.3em;
+  border-left: 2px solid var(--rule-2);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--ink-2);
+}
+
+.post hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin-block: 2.4em;
+}
+
+.post code {
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--paper-2);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+.post pre {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.post pre code {
+  background: none;
+  padding: 0;
+}
+
+.post table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.post th,
+.post td {
+  text-align: left;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.post th {
+  font-weight: 600;
+  border-bottom-color: var(--rule-2);
+}
+
+/* the post's own title / meta / tags block, kept from the source markup */
+.post .post-header {
+  max-width: 680px;
+  margin: 0 auto clamp(28px, 3.2vw, 44px);
+}
+
+.post .post-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(2.05rem, 5.2vw, 2.9rem);
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  margin: 0 0 14px;
+}
+
+.post .post-meta,
+.post .post-tags {
+  font-size: 0.875rem;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+.post .post-tags {
+  padding-top: 4px;
+}
+
+.post .post-tags a,
+.post .post-meta a {
+  color: var(--ink-3);
+  border-bottom: none;
+}
+
+.post .post-tags a:hover,
+.post .post-meta a:hover {
+  color: var(--accent);
+}
+
+.post .post-views {
+  max-width: 680px;
+  margin: 14px auto 18px;
+}
+
+.post .post-views img {
+  margin: 0;
+  display: inline-block;
+}
+
+/* FontAwesome markup is inert without its font; collapse the empty tags. */
+.post i[class*="fa-"]:empty,
+.post i[class*="ai-"]:empty {
+  display: none;
+}
+
+.post-back {
+  font-size: var(--t-small);
+  color: var(--ink-3);
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.post-back:hover {
+  color: var(--accent);
+}
+
+
+/* ---------------- facets: categories & tags ----------------
+   Mirrors the live blog index, which browses by both. Categories are few
+   and get real weight; tags are many, so they are set smaller and quieter
+   — otherwise 90-odd chips shout louder than the posts. */
+.facets {
+  margin: clamp(30px, 3.4vw, 48px) 0 clamp(10px, 1.4vw, 20px);
+  display: grid;
+  gap: 18px;
+}
+
+.facet {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 6px clamp(10px, 2.6vw, 40px);
+  align-items: baseline;
+}
+
+.facet-label {
+  font-family: var(--sans);
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.facet-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.facet-items a {
+  font-size: 1rem;
+  color: var(--ink-2);
+}
+
+.facet-items a:hover {
+  color: var(--accent);
+}
+
+.facet-items--tags a {
+  font-size: 0.88rem;
+  color: var(--ink-3);
+}
+
+/* ---------------- post list extras ---------------- */
+.entries--posts .what {
+  font-size: clamp(1.28rem, 1.9vw, 1.62rem);
+}
+
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin-top: 10px;
+}
+
+.entry-tags a {
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.entry-tags a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.entry-tags span {
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .facet {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------- archive ----------------
+   Older posts stay reachable but visually quiet: collapsed by default so
+   they do not compete with current writing. Nothing is hidden from
+   crawlers — <details> content is in the DOM either way. */
+.archive {
+  margin-top: clamp(48px, 5vw, 80px);
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(22px, 2.4vw, 32px);
+}
+
+.archive summary {
+  cursor: pointer;
+  font-size: var(--t-small);
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.archive summary::-webkit-details-marker {
+  display: none;
+}
+
+.archive summary::after {
+  content: "+";
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
+.archive[open] summary::after {
+  content: "−";
+}
+
+.archive summary:hover {
+  color: var(--ink);
+}
+
+.archive .entries {
+  margin-top: clamp(18px, 2vw, 28px);
+}
+
+.archive .entries .what {
+  font-size: 1.15rem;
+}
+
+/* ---------------- subscribe ----------------
+   Posts to the same Kit endpoint the live blog uses, but styled in the
+   shell's language instead of importing the vendor's 13KB stylesheet. */
+.subscribe {
+  margin-top: clamp(56px, 6vw, 96px);
+  padding-top: clamp(32px, 3.6vw, 52px);
+  border-top: 1px solid var(--rule-2);
+  max-width: 620px;
+}
+
+.subscribe h2 {
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.subscribe p {
+  color: var(--ink-2);
+  margin: 0 0 22px;
+}
+
+.subscribe form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.subscribe input[type="email"] {
+  flex: 1 1 240px;
+  font: 400 1rem var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule-2);
+  padding: 13px 16px;
+}
+
+.subscribe input[type="email"]:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.subscribe button {
+  font: 500 1rem var(--sans);
+  padding: 13px 26px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.subscribe button:hover {
+  opacity: 0.84;
+}
+
+.subscribe small {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.86rem;
+  color: var(--ink-3);
+}
+
+/* ---------------- figure ---------------- */
+.figure {
+  margin: clamp(36px, 4vw, 64px) 0 0;
+}
+
+.figure img {
+  width: 100%;
+  background: var(--paper-2);
+}
+
+.figure figcaption {
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  margin-top: 12px;
+  max-width: var(--read);
+}
+
+/* ---------------- swatches (design language page) ---------------- */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 14px;
+  margin-top: clamp(28px, 3vw, 44px);
+  list-style: none;
+  padding: 0;
+}
+
+.swatch-chip {
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--rule);
+}
+
+.swatch-name {
+  font-size: 0.84rem;
+  margin-top: 8px;
+}
+
+.swatch-hex {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+
+/* ---------------- links / buttons ---------------- */
+.link {
+  color: var(--accent);
+  font-weight: 500;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: border-color 0.2s ease;
+}
+
+.link:hover {
+  border-bottom-color: var(--accent);
+}
+
+.band--ink .link {
+  color: var(--paper);
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+
+.band--ink .link:hover {
+  border-bottom-color: var(--paper);
+}
+
+.more {
+  margin: clamp(36px, 4vw, 60px) 0 0;
+}
+
+.btn {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 13px 26px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.band--ink .btn {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--paper);
+}
+
+.band--ink .btn:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* ---------------- contact band ---------------- */
+.contact h2 {
+  font-size: var(--t-h2);
+  line-height: 1.1;
+  max-width: 26em;
+  margin: clamp(16px, 1.8vw, 26px) 0 clamp(28px, 3.2vw, 46px);
+}
+
+.contact-mail {
+  font-family: var(--serif);
+  font-size: clamp(1.45rem, 3.2vw, 2.5rem);
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  padding-bottom: 4px;
+  transition: border-color 0.25s ease;
+}
+
+.contact-mail:hover {
+  border-bottom-color: var(--paper);
+}
+
+.contact-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: clamp(34px, 3.8vw, 54px);
+  font-size: var(--t-small);
+}
+
+.contact-social a {
+  color: rgba(255, 255, 255, 0.66);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-social a:hover {
+  color: var(--paper);
+  border-bottom-color: var(--paper);
+}
+
+/* ---------------- footer ---------------- */
+.foot {
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(52px, 5.6vw, 84px) clamp(30px, 3vw, 44px);
+  view-transition-name: sitefoot;
+}
+
+.dir {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: clamp(30px, 3.6vw, 52px);
+}
+
+.dir h4 {
+  font-family: var(--sans);
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 16px;
+}
+
+.dir ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dir li + li {
+  margin-top: 9px;
+}
+
+.dir a {
+  font-size: 1rem;
+  color: var(--ink-2);
+  transition: color 0.2s ease;
+}
+
+.dir a:hover {
+  color: var(--accent);
+}
+
+.foot-bar {
+  margin-top: clamp(44px, 4.6vw, 70px);
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: var(--t-small);
+  color: var(--ink-3);
+}
+
+.foot-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.seg {
+  display: inline-flex;
+}
+
+.seg button {
+  font: 600 0.78rem/1.4 var(--sans);
+  letter-spacing: 0.04em;
+  border: 1px solid var(--rule-2);
+  background: none;
+  color: var(--ink-3);
+  padding: 6px 15px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.seg button + button {
+  border-left: none;
+}
+
+.seg button:hover {
+  color: var(--ink);
+}
+
+.seg button.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------------- reveal ----------------
+   Progressive enhancement only. Content that needs an animation to
+   become visible is content that can vanish, so: anything already on
+   screen shows immediately, and a timer force-reveals everything. */
+.rise {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rise.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* ---------------- responsive ---------------- */
+
+/* Below this the nav cannot share a line with the wordmark. Unhandled it
+   widens the document past the viewport and clips every other section,
+   so it wraps to its own line and scrolls horizontally instead. */
+@media (max-width: 820px) {
+  .nav-in {
+    flex-wrap: wrap;
+    padding-block: 14px;
+    gap: 10px;
+  }
+
+  .nav-links {
+    margin-left: 0;
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: clamp(28px, 6vw, 48px);
+  }
+
+  .portrait {
+    order: -1;
+    max-width: min(72vw, 360px);
+    margin-inline: auto;
+  }
+
+  .portrait::before {
+    inset: 4% 2% 8%;
+  }
+
+  .practice > li,
+  .record-list > li {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .entries a,
+  .entries .row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .entries .when {
+    grid-column: 1 / -1;
+    margin-bottom: 2px;
+  }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --t-body: 1.08rem;
+  }
+
+  .nav-mark {
+    font-size: 1.1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.88rem;
+  }
+
+  .pairs > li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .pairs .v {
+    white-space: normal;
+  }
+}
+
+@media print {
+  .nav,
+  .foot,
+  .band--ink {
+    display: none;
+  }
+
+  .rise {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------- reading aids ----------------
+   #fxbar (scroll progress) and #fx-outline (floating table of contents) are
+   the post's own widgets, carried over with their markup, CSS and scripts.
+   The outline positions itself with calc(50vw …) against an 880px article, so
+   it lines up with this shell too; below that width the post's own media
+   query already hides it. */
+#fx-outline {
+  z-index: 30;
+}
+
+#fxbar {
+  z-index: 70;
+}
+
+@media (max-width: 1180px) {
+  #fx-outline {
+    display: none !important;
+  }
+}

@@ -1,756 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-HTV795ZMCP');
-</script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Books & Publications</title>
-<meta name="author" content="Peng, Andy">
-<meta name="description" content="Books, papers, AWS blogs, invited talks, guest lectures, and media coverage.">
-<meta name="keywords" content="Books, Publications, Papers, AWS Blogs, Invited Talks">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
-<link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media id="highlight_theme_light">
-<link rel="stylesheet" href="/assets/css/main.css?0286170e23c3c109f66311d4c1ef1b3b">
-<link rel="canonical" href="https://pengandy.com/publications">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
-<script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script>
-<script src="/assets/js/components.js" defer></script>
-   <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
-   <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
-   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
-   <link rel="manifest" href="/site.webmanifest">
-</head>
-<style>
-	/* Books & Publications page (merged from Books & Invited Talks + Publications) */
-	html {
-	    scroll-behavior: smooth;
-	}
-
-	.button {
-	    display: inline-block;
-	    height: 28px;
-	    padding: 0 12px;
-	    color: #555;
-	    text-align: center;
-	    font-size: 11px;
-	    font-weight: 600;
-	    line-height: 26px;
-	    letter-spacing: .1rem;
-	    text-decoration: none;
-	    white-space: nowrap;
-	    background-color: transparent;
-	    border-radius: 4px;
-	    border: 1px solid #bbb;
-	    cursor: pointer;
-	    box-sizing: border-box;
-	}
-
-	.button:hover {
-	    background-color: rgba(0, 0, 0, 0.03);
-	}
-
-	/* Publication styles inspired by al-folio */
-	.publication-item {
-	    display: flex;
-	    margin-bottom: 2rem;
-	    padding: 1rem 0;
-	}
-
-	.publication-image {
-	    flex-shrink: 0;
-	    width: 200px;
-	    height: 150px;
-	    margin-right: 1.5rem;
-	    object-fit: cover;
-	    border-radius: 8px;
-	    background-color: #f5f5f5;
-	    display: flex;
-	    align-items: center;
-	    justify-content: center;
-	    overflow: hidden;
-	}
-
-	.publication-image img {
-	    width: 100%;
-	    height: 100%;
-	    object-fit: cover;
-	}
-
-	.publication-image.no-image {
-	    background: linear-gradient(135deg, #a8b8d8 0%, #8ba4c7 100%);
-	    color: white;
-	    font-size: 14px;
-	    text-align: center;
-	    padding: 1rem;
-	}
-
-	/* Book-specific styles - show complete cover image */
-	.publication-item.book-item {
-	    align-items: flex-start;
-	}
-
-	.publication-item.book-item .publication-image {
-	    width: 200px;
-	    height: 280px;
-	    background-color: #ffffff;
-	    align-items: flex-start;
-	    }
-
-	.publication-item.book-item .publication-image img {
-	    object-fit: contain;
-	    object-position: top center;
-	    width: 100%;
-	    height: 100%;
-	}
-
-	.publication-content {
-	    flex: 1;
-	}
-
-	h2.year {
-	    color: var(--global-divider-color);
-	    border-top: 1px solid var(--global-divider-color);
-	    padding-top: 1rem;
-	    margin-top: 2rem;
-	    margin-bottom: -2rem;
-	    text-align: right;
-	}
-
-	.section-header {
-	    font-size: 1.75rem;
-	    font-weight: 600;
-	    color: var(--global-theme-color);
-	    margin: 2rem 0 1rem 0;
-	    letter-spacing: 0.05rem;
-	}
-
-	/* Anchor sections shouldn't hide under the fixed navbar + sticky TOC */
-	.docs-section {
-	    scroll-margin-top: 130px;
-	}
-
-	.paper .title {
-	    font-size: 1.1rem;
-	    line-height: 1.5;
-	    margin-bottom: 0.5rem;
-	    color: #000;
-	    max-width: 90%;
-	    word-wrap: break-word;
-	}
-
-	.paper .title b {
-	    font-weight: 600;
-	}
-
-	.paper p {
-	    margin-bottom: 0.4rem;
-	    color: var(--global-text-color);
-	}
-
-	.paper .info-line {
-	    margin-bottom: 0.3rem;
-	    color: var(--global-text-color);
-	}
-
-	.paper .venue-line {
-	    font-style: italic;
-	    color: #666;
-	    margin-top: 0.2rem;
-	}
-
-	.paper .category-badge {
-	    display: inline-block;
-	    padding: 2px 8px;
-	    font-size: 0.85em;
-	    font-style: italic;
-	    color: #666;
-	    background-color: #f0f0f0;
-	    border-radius: 3px;
-	    margin-top: 0.3rem;
-	}
-
-	.paper .button {
-	    margin-right: 0.5rem;
-	    margin-top: 0.5rem;
-	    transition: all 0.3s ease;
-	    border-color: var(--global-theme-color);
-	    color: var(--global-theme-color);
-	}
-
-	.paper .button:hover {
-	    background-color: var(--global-theme-color);
-	    color: white;
-	    transform: translateY(-2px);
-	    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
-	}
-
-	/* Gentle placeholder for sections whose content is on its way */
-	.upcoming-note {
-	    display: flex;
-	    align-items: center;
-	    justify-content: center;
-	    gap: 12px;
-	    margin: 1.25rem 0 2rem;
-	    padding: 2rem 1.5rem;
-	    border: 1.5px dashed var(--global-divider-color);
-	    border-radius: 10px;
-	    color: var(--global-text-color-light);
-	    font-size: 1rem;
-	    font-style: italic;
-	}
-
-	.upcoming-note i {
-	    color: var(--global-theme-color);
-	    opacity: 0.6;
-	    font-size: 1.2rem;
-	}
-
-	/* ===== Table of contents: sticky pill bar so readers see the whole
-	   map of the page up front and can jump to any section ===== */
-	.pub-toc {
-	    position: sticky;
-	    top: 58px;
-	    z-index: 100;
-	    display: flex;
-	    flex-wrap: wrap;
-	    gap: 8px;
-	    padding: 12px 0;
-	    background: var(--global-bg-color);
-	}
-
-	.pub-toc a {
-	    display: inline-block;
-	    padding: 5px 14px;
-	    border: 1px solid var(--global-divider-color);
-	    border-radius: 16px;
-	    font-size: 0.85rem;
-	    color: var(--global-text-color);
-	    text-decoration: none !important;
-	    transition: all 0.2s ease;
-	    white-space: nowrap;
-	}
-
-	.pub-toc a:hover {
-	    border-color: var(--global-theme-color);
-	    color: var(--global-theme-color);
-	}
-
-	.pub-toc a.active {
-	    background: var(--global-theme-color);
-	    border-color: var(--global-theme-color);
-	    color: #fff;
-	}
-
-	.pub-toc a.active span {
-	    color: #fff;
-	}
-
-	@media (max-width: 768px) {
-	    .publication-item {
-	        flex-direction: column;
-	    }
-
-	    .publication-image {
-	        width: 100%;
-	        height: 200px;
-	        margin-right: 0;
-	        margin-bottom: 1rem;
-	    }
-
-	    /* Book items on mobile - maintain aspect ratio */
-	    .publication-item.book-item .publication-image {
-	        width: 100%;
-	        height: 350px;
-	        max-width: 250px;
-	        margin-left: auto;
-	        margin-right: auto;
-	    }
-
-	    .pub-toc {
-	        overflow-x: auto;
-	        flex-wrap: nowrap;
-	        -webkit-overflow-scrolling: touch;
-	    }
-	}
-
-	/* Image protection */
-	.publication-image img {
-	    -webkit-user-select: none;
-	    -moz-user-select: none;
-	    -ms-user-select: none;
-	    user-select: none;
-	    -webkit-user-drag: none;
-	    -khtml-user-drag: none;
-	    -moz-user-drag: none;
-	    -o-user-drag: none;
-	    pointer-events: none;
-	}
-
-	.publication-image {
-	    pointer-events: auto;
-	}
-</style>
-
-<body class="fixed-top-nav" data-page="publications">
-      <div id="navbar-placeholder"></div>
-
-<div class="container mt-5">
-<article>
-
-<!-- Table of contents: full map of the page, always visible -->
-<nav class="pub-toc" id="pub-toc" aria-label="Page contents">
-  <a href="#books"><span class="lang-en">Books</span><span class="lang-zh" style="display:none;">书籍</span></a>
-  <a href="#papers"><span class="lang-en">Papers</span><span class="lang-zh" style="display:none;">论文</span></a>
-  <a href="#aws-blogs"><span class="lang-en">AWS Blogs</span><span class="lang-zh" style="display:none;">亚马逊云科技官方博客</span></a>
-  <a href="#invited-talks"><span class="lang-en">Invited Talks</span><span class="lang-zh" style="display:none;">邀请演讲</span></a>
-  <a href="#guest-lectures"><span class="lang-en">Guest Lectures</span><span class="lang-zh" style="display:none;">客座讲座</span></a>
-  <a href="#media-coverage"><span class="lang-en">Media Coverage</span><span class="lang-zh" style="display:none;">媒体报道</span></a>
-</nav>
-
-<div class="docs-section" id="books">
-  <h2 class="section-header"><span class="lang-en">Books</span><span class="lang-zh" style="display:none;">书籍</span></h2>
-
-  <h2 class="year">2025</h2>
-
-  <div class="publication-item book-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/packt ds.jpg" alt="DeepSeek Essentials Book Cover" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>DeepSeek Essentials</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">DeepSeek in Practice: From basics to fine-tuning, distillation, agent design, and prompt engineering of open source LLM</span><span class="lang-zh" style="display:none;">《DeepSeek 实战：开源大语言模型的基础、微调、蒸馏、智能体设计与提示工程》</span></b>
-          <a class="button" href="https://a.co/d/2YyiiuA" target="_blank">Amazon US</a>
-		  <a class="button" href="https://www.packtpub.com/en-us/product/deepseek-in-practice-9781806020850" target="_blank">Packt Website</a>
-        </p>
-        <p><span class="lang-en">Authors: Andy Peng, Alex Strick van Linschoten, Duarte Carmo</span><span class="lang-zh" style="display:none;">作者：Andy Peng、Alex Strick van Linschoten、Duarte Carmo</span></p>
-        <p><i>Packt</i></p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="docs-section" id="papers">
-  <h2 class="section-header"><span class="lang-en">Papers</span><span class="lang-zh" style="display:none;">论文</span></h2>
-  <div class="upcoming-note">
-    <i class="fa-regular fa-hourglass-half"></i>
-    <span class="lang-en">In the pipeline — stay tuned.</span><span class="lang-zh" style="display:none;">正在筹备中，敬请期待。</span>
-  </div>
-</div>
-
-<div class="docs-section" id="aws-blogs">
-  <h2 class="section-header"><span class="lang-en">AWS Blogs</span><span class="lang-zh" style="display:none;">亚马逊云科技官方博客</span></h2>
-  <h2 class="year">2026</h2>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/peagle.jpg" alt="Parallelize speculative decoding with P-EAGLE on Amazon SageMaker AI" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>AWS Blog</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Parallelize speculative decoding with P-EAGLE on Amazon SageMaker AI</span><span class="lang-zh" style="display:none;">在 Amazon SageMaker AI 上使用 P-EAGLE 并行化投机解码</span></b>
-          <a class="button" href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank">HTML</a>
-        </p>
-        <p><span class="lang-en">Authors: Andy Peng, Daniel Quang, Dan Ferguson, Siddharth Shah</span><span class="lang-zh" style="display:none;">作者：Andy Peng、Daniel Quang、Dan Ferguson、Siddharth Shah</span></p>
-        <p><span class="category-badge">Artificial Intelligence</span></p>
-      </div>
-    </div>
-  </div>
-
-  <h2 class="year">2025</h2>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/smai_eagle.png" alt="Amazon SageMaker AI introduces EAGLE based adaptive speculative decoding" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>AWS Blog</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Amazon SageMaker AI introduces EAGLE based adaptive speculative decoding to accelerate generative AI inference</span><span class="lang-zh" style="display:none;">Amazon SageMaker AI 推出基于 EAGLE 的自适应投机解码，加速生成式人工智能推理</span></b>
-          <a class="button" href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-introduces-eagle-based-adaptive-speculative-decoding-to-accelerate-generative-ai-inference/" target="_blank">HTML</a>
-        </p>
-        <p><span class="lang-en">Authors: Andy Peng, Kareem Syed-Mohammed, Ram Vegiraju, Vinay Arora, Xu Deng, Siddharth Shah, Johna Liu, Anisha Kolla</span><span class="lang-zh" style="display:none;">作者：Andy Peng、Kareem Syed-Mohammed、Ram Vegiraju、Vinay Arora、Xu Deng、Siddharth Shah、Johna Liu、Anisha Kolla</span></p>
-        <p><span class="category-badge">Artificial Intelligence</span></p>
-      </div>
-    </div>
-  </div>
-
-  <h2 class="year">2022</h2>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/blogpostmedium.png" alt="Horizontal Auto Scaling in Serverless Containers" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Medium</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Horizontal Auto Scaling in Serverless Containers</span><span class="lang-zh" style="display:none;">无服务计算容器中的水平自动扩缩容</span></b>
-          <a class="button" href="https://medium.com/@pymhq/horizontal-auto-scaling-in-serverless-containers-857bb5c6a368" target="_blank">HTML</a>
-        </p>
-        <p><span class="lang-en">Author: Andy Peng</span><span class="lang-zh" style="display:none;">作者：Andy Peng</span></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/apprunner461_001.png" alt="Enabling AWS X-Ray tracing for AWS App Runner" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>AWS Blog</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Enabling AWS X-Ray tracing for AWS App Runner service using AWS Copilot CLI</span><span class="lang-zh" style="display:none;">使用 AWS Copilot CLI 为 AWS App Runner 服务启用 AWS X-Ray 链路追踪</span></b>
-          <a class="button" href="https://aws.amazon.com/cn/blogs/containers/enabling-aws-x-ray-tracing-for-aws-app-runner-service-using-aws-copilot-cli/" target="_blank">HTML</a>
-        </p>
-        <p><span class="lang-en">Authors: Yang Wanxian and Andy Peng</span><span class="lang-zh" style="display:none;">作者：Yang Wanxian、Andy Peng</span></p>
-        <p><span class="category-badge">Containers</span></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/apprunner1.jpg" alt="Observability for AWS App Runner VPC networking" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>AWS Blog</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Observability for AWS App Runner VPC networking</span><span class="lang-zh" style="display:none;">AWS App Runner VPC 网络的可观测性</span></b>
-          <a class="button" href="https://aws.amazon.com/blogs/containers/observability-for-aws-app-runner-vpc-networking/" target="_blank">HTML</a>
-        </p>
-        <p><span class="lang-en">Author: Andy Peng</span><span class="lang-zh" style="display:none;">作者：Andy Peng</span></p>
-        <p><span class="category-badge">Containers</span></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/app-runner-1.png" alt="Tracing an AWS App Runner service using AWS X-Ray with OpenTelemetry" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>AWS Blog</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Tracing an AWS App Runner service using AWS X-Ray with OpenTelemetry</span><span class="lang-zh" style="display:none;">使用 AWS X-Ray 与 OpenTelemetry 追踪 AWS App Runner 服务</span></b>
-          <a class="button" href="https://aws.amazon.com/blogs/containers/tracing-an-aws-app-runner-service-using-aws-x-ray-with-opentelemetry/" target="_blank">HTML</a>
-        </p>
-        <p><span class="lang-en">Author: Andy Peng</span><span class="lang-zh" style="display:none;">作者：Andy Peng</span></p>
-        <p><span class="category-badge">Containers</span></p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="docs-section" id="invited-talks">
-  <h2 class="section-header"><span class="lang-en">Invited Talks</span><span class="lang-zh" style="display:none;">邀请演讲</span></h2>
-
-  <h2 class="year">2025</h2>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/uwaisummit2025.jpg" alt="UW AI & Robotics Data Summit 2025" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>UW AI & Robotics Data Summit</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">LLM Native Primitives: Next Golden Path</span><span class="lang-zh" style="display:none;">LLM 原生原语：下一条黄金路径</span></b>
-          <a class="button" href="https://luma.com/iqjrwcal" target="_blank">Event Page</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Keynote Speaker: Andy Peng (Amazon)</span><span class="lang-zh" style="display:none;">主旨演讲嘉宾：Andy Peng（亚马逊）</span></p>
-		<p class="info-line"><span class="lang-en">Hosted by Xu Chen (Associate Professor at University of Washington, Director of Boeing Advanced Research Collaboration at UW)</span><span class="lang-zh" style="display:none;">主办：Xu Chen（华盛顿大学副教授，UW 波音先进研究合作中心主任）</span></p>
-        <p class="venue-line">UW AI & Robotics Data Summit 2025</p>
-        <p class="venue-line">Boeing Advanced Research Center, University of Washington</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/Andy Peng - Banner.png" alt="Packt GenAI Summit 2025" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Packt GenAI Summit</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">State of Open Source LLM</span><span class="lang-zh" style="display:none;">开源大语言模型现状</span></b>
-          <a class="button" href="https://www.eventbrite.com/e/deepseek-in-production-tickets-1436251630289?aff=andy" target="_blank">HTML</a>
-          <a class="button" href="https://www.linkedin.com/events/deepseekdemystifiedsummit7349071392195104771/" target="_blank">Event Page</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Keynote Speaker: Andy Peng (Amazon)</span><span class="lang-zh" style="display:none;">主旨演讲嘉宾：Andy Peng（亚马逊）</span></p>
-        <p class="venue-line">Packt GenAI Summit 2025</p>
-      </div>
-    </div>
-  </div>
-
-  <h2 class="year">2024</h2>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/Onboard.jpg" alt="OnBoard! Podcast" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>OnBoard! Podcast</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b>LLM 时代需要怎样的软件开发新范式</b>
-          <a class="button" href="https://www.xiaoyuzhoufm.com/episode/676054e37d8426f6929d67cb?s=eyJ1IjogIjYwYjVhNzYxZTBmNWU3MjNiYjU4ZmNlYSJ9" target="_blank">Podcast</a>
-          <a class="button" href="https://mp.weixin.qq.com/s/wOZknRagMGyp8AluNqAzYg" target="_blank">HTML</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Panelists: 黄东旭 (PingCAP co-founder & CTO), 贾扬清 (VP Nvidia, Lepton AI co-founder & CEO), Andy Peng (Amazon)</span><span class="lang-zh" style="display:none;">座谈嘉宾：黄东旭（PingCAP 联合创始人 & CTO）、贾扬清（英伟达副总裁，Lepton AI 联合创始人 & CEO）、Andy Peng（亚马逊）</span></p>
-        <p class="info-line"><span class="lang-en">Moderator: Monica Xie (Head of BizOps & Partnership, Dyna Robotics)</span><span class="lang-zh" style="display:none;">主持人：Monica Xie（Dyna Robotics 商业运营与合作负责人）</span></p>
-        <p class="venue-line">OnBoard! Podcast</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/smile24.JPG" alt="SMILE GenAI Panel" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>SMILE GenAI Panel</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b>GenAI 茶话会</b>
-          <a class="button" href="https://www.xiaohongshu.com/discovery/item/6688bd8b000000001c0250fe?source=webshare&xhsshare=pc_web&xsec_token=ABKX1wuwAQJwr-A9ZoGU-cldn7AEkGNosdYsdMrzpMeqg=&xsec_source=pc_share" target="_blank">Rednote Post</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Panelists: Andy Peng (Senior Research Engineer, AWS Bedrock), Xiaopeng Li (Senior Applied Scientist, AWS NDGE Science), Raphael Shu (Senior Applied Scientist, AWS Bedrock)</span><span class="lang-zh" style="display:none;">座谈嘉宾：Andy Peng（亚马逊云科技 Bedrock 高级研究工程师）、Xiaopeng Li（亚马逊云科技 NDGE Science 高级应用科学家）、Raphael Shu（亚马逊云科技 Bedrock 高级应用科学家）</span></p>
-        <p class="venue-line">SMILE: Seattle Amazonian Chinese League</p>
-      </div>
-    </div>
-  </div>
-
-  <h2 class="year">2023</h2>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/wit23.JPG" alt="Myth-Busting Tech Trends" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Women in Tech Regatta</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Myth-Busting Tech Trends</span><span class="lang-zh" style="display:none;">破解科技趋势迷思</span></b>
-          <a class="button" href="https://seattleregatta2023.sched.com/event/1LEF6/myth-busting-tech-trends-supported-by-northeastern-university" target="_blank">HTML</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Panelists: <a href="https://seattleregatta2023.sched.com/speaker/yiming_peng.2589xy9k?iframe=no" style="color:#3A3B3C">Andy Peng (Amazon)</a>, <a href="https://seattleregatta2023.sched.com/speaker/morganziondesigns" style="color:#3A3B3C">Morgan Zion (CEO, Alpha Girl Club)</a>, <a href="https://seattleregatta2023.sched.com/speaker/caroline542" style="color:#3A3B3C">Caroline Williams (Founder, The Do Good Only Company)</a></span><span class="lang-zh" style="display:none;">座谈嘉宾：<a href="https://seattleregatta2023.sched.com/speaker/yiming_peng.2589xy9k?iframe=no" style="color:#3A3B3C">Andy Peng（亚马逊）</a>、<a href="https://seattleregatta2023.sched.com/speaker/morganziondesigns" style="color:#3A3B3C">Morgan Zion（Alpha Girl Club CEO）</a>、<a href="https://seattleregatta2023.sched.com/speaker/caroline542" style="color:#3A3B3C">Caroline Williams（The Do Good Only Company 创始人）</a></span></p>
-        <p class="info-line"><span class="lang-en">Moderator: <a href="https://seattleregatta2023.sched.com/moderator/pvrudhula" style="color:#3A3B3C">Padmaja Vrudhula (VP Industry Vertical Workload Solutions, Snowflake)</a></span><span class="lang-zh" style="display:none;">主持人：<a href="https://seattleregatta2023.sched.com/moderator/pvrudhula" style="color:#3A3B3C">Padmaja Vrudhula（Snowflake 行业垂直负载解决方案副总裁）</a></span></p>
-        <p class="venue-line">Seattle Women in Tech Regatta 2023</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/cncf23.jpeg" alt="KubeCon + CloudNativeCon Europe 2023" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>KubeCon Europe</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">The open-source community at AWS: containerd and Envoy</span><span class="lang-zh" style="display:none;">亚马逊云科技的开源社区：containerd 与 Envoy</span></b>
-          <a class="button" href="https://twitter.com/AWSOpen/status/1647989049305575428?s=20" target="_blank">Tweet</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Presenters: Andy Peng (Sr. Engineer, AWS), Phil Estes (Principal Engineer, AWS)</span><span class="lang-zh" style="display:none;">演讲者：Andy Peng（亚马逊云科技高级工程师）、Phil Estes（亚马逊云科技首席工程师）</span></p>
-        <p class="venue-line">KubeCon + CloudNativeCon Europe 2023</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/cuc23.jpg" alt="CUC Meetup" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>CUC Meetup</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Technical Leadership in Team Management</span><span class="lang-zh" style="display:none;">团队管理中的技术领导力</span></b>
-          <a class="button" href="https://mp.weixin.qq.com/s/NkG306k-7dw1jLEvaBBw0A" target="_blank">HTML</a>
-          <a class="button" href="https://youtu.be/F24kUu2nFDY" target="_blank">YouTube</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Speaker: Andy Peng (Amazon)</span><span class="lang-zh" style="display:none;">演讲者：Andy Peng（亚马逊）</span></p>
-        <p class="info-line"><span class="lang-en">Moderator: Zheng Luo (Microsoft Azure)</span><span class="lang-zh" style="display:none;">主持人：Zheng Luo（微软 Azure）</span></p>
-        <p class="venue-line">CUC Meetup</p>
-      </div>
-    </div>
-  </div>
-
-  <h2 class="year">2022</h2>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/kubeconna22.png" alt="KubeCon + CloudNativeCon North America 2022" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>KubeCon North America</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Building Multi-Tenant Routing And Scaling With Envoy</span><span class="lang-zh" style="display:none;">使用 Envoy 构建多租户路由与弹性伸缩</span></b>
-          <a class="button" href="https://kccncna2022.sched.com/event/182KU/building-multi-tenant-routing-and-scaling-with-envoy-yiming-peng-amazon-web-services-inc" target="_blank">HTML</a>
-          <a class="button" href="https://www.youtube.com/watch?v=6-akjOASvxc" target="_blank">YouTube</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Presenter: Andy Peng (Amazon)</span><span class="lang-zh" style="display:none;">演讲者：Andy Peng（亚马逊）</span></p>
-        <p class="venue-line">KubeCon + CloudNativeCon North America 2022</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/thumbnail03.jpg" alt="DockerCon 2022" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>DockerCon</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">How Developers can get to production web applications at scale easily</span><span class="lang-zh" style="display:none;">开发者如何轻松将 Web 应用大规模投入生产</span></b>
-          <a class="button" href="https://awscontainerdaydocker.splashthat.com/" target="_blank">HTML</a>
-          <a class="button" href="https://www.youtube.com/watch?v=Iyp9Ugk9oRs" target="_blank">YouTube</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Presenters: Inbal Shani (CPO, Twilio; former CPO, GitHub; former GM, AWS), Andy Peng (Sr. Engineer, AWS), Clarinda Mascarenhas (Sr. Container Specialist, AWS)</span><span class="lang-zh" style="display:none;">演讲者：Inbal Shani（Twilio 首席产品官；前 GitHub 首席产品官；前亚马逊云科技总经理）、Andy Peng（亚马逊云科技高级工程师）、Clarinda Mascarenhas（亚马逊云科技高级容器专家）</span></p>
-        <p class="venue-line">DockerCon 2022</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/thumbnail22.jpg" alt="AWS App Runner X-Ray Integration" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Containers from the Couch</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">AWS App Runner X-Ray Integration</span><span class="lang-zh" style="display:none;">AWS App Runner 与 X-Ray 集成</span></b>
-          <a class="button" href="https://twitter.com/realadamjkeller/status/1513965561671151617?s=20" target="_blank">Tweet</a>
-          <a class="button" href="https://youtu.be/cVr8N7enCMM" target="_blank">YouTube</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Speaker: Andy Peng (Sr. Engineer, AWS)</span><span class="lang-zh" style="display:none;">演讲者：Andy Peng（亚马逊云科技高级工程师）</span></p>
-        <p class="info-line"><span class="lang-en">Moderator: Adam Keller (Sr. Technologist, AWS)</span><span class="lang-zh" style="display:none;">主持人：Adam Keller（亚马逊云科技高级技术专家）</span></p>
-        <p class="venue-line">Containers from the Couch</p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="docs-section" id="guest-lectures">
-  <h2 class="section-header"><span class="lang-en">Guest Lectures</span><span class="lang-zh" style="display:none;">客座讲座</span></h2>
-
-  <h2 class="year">2024</h2>
-
-  <div class="publication-item">
-    <div class="publication-image no-image">
-      UW Guest Lecture
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Transforming AI: Modern Business Redefine</span><span class="lang-zh" style="display:none;">变革人工智能：重新定义现代商业</span></b>
-          <a class="button" href="https://www.linkedin.com/posts/margaretmz_it-has-been-a-wonderful-experience-teaching-ugcPost-7190422362406735872-K7Bs?utm_source=share&utm_medium=member_desktop" target="_blank">Linkedin Post</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Guest Lecturer: Andy Peng (Amazon)</span><span class="lang-zh" style="display:none;">客座讲师：Andy Peng（亚马逊）</span></p>
-        <p class="venue-line">MSIS 549 (2): Machine Learning and Artificial Intelligence for Business Applications</p>
-        <p class="venue-line">University of Washington</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="publication-item">
-    <div class="publication-image no-image">
-      UW Guest Lecture
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">New Era of Generative AI and Building in the Cloud</span><span class="lang-zh" style="display:none;">生成式人工智能新时代与云上构建</span></b>
-          <a class="button" href="https://www.linkedin.com/posts/uw-foster-msis_msis-genai-demoday-ugcPost-7173432871800483841-wW0C?utm_source=share&utm_medium=member_desktop" target="_blank">UW Foster MSIS Post</a>
-          <a class="button" href="https://www.linkedin.com/posts/leonard-boussioux_forging-ai-champions-a-transformative-ugcPost-7188941809279000576-ZKov?utm_source=share&utm_medium=member_desktop" target="_blank">Linkedin Post</a>
-        </p>
-        <p class="info-line"><span class="lang-en">Guest Lecturer: Andy Peng (Amazon)</span><span class="lang-zh" style="display:none;">客座讲师：Andy Peng（亚马逊）</span></p>
-        <p class="info-line"><span class="lang-en">Hosted by Léonard Boussioux (Professor, University of Washington - Foster, Allen CSE). Co-present with Jay Bartot (Affiliate Professor, University of Washington and Partner, Madrona Venture Labs)</span><span class="lang-zh" style="display:none;">邀请人：Léonard Boussioux（华盛顿大学 Foster 商学院 & Allen 计算机学院教授）。与 Jay Bartot（华盛顿大学客座教授，Madrona Venture Labs 合伙人）共同演讲</span></p>
-        <p class="venue-line">MSIS 547 (2): Managing in the Era of Cloud Computing</p>
-        <p class="venue-line">University of Washington</p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="docs-section" id="media-coverage">
-  <h2 class="section-header"><span class="lang-en">Media Coverage</span><span class="lang-zh" style="display:none;">媒体报道</span></h2>
-
-  <h2 class="year">2025</h2>
-
-  <div class="publication-item">
-    <div class="publication-image no-image">
-      QQ News
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b>86 条 DeepSeek 的关键思考｜Best Ideas 开源</b>
-          <a class="button" href="https://news.qq.com/rain/a/20250128A06C5U00?suid=&media_id=" target="_blank">HTML</a>
-        </p>
-      </div>
-    </div>
-  </div>
-  <h2 class="year">2023</h2>
-
-  <div class="publication-item">
-    <div class="publication-image">
-      <img src="assets/invited-talks/thumbnail05.jpg" alt="Meet the Ambassadors" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>KubeCon + CloudNativeCon Europe 2023</div>'">
-    </div>
-    <div class="publication-content">
-      <div class="paper">
-        <p class="title"><b><span class="lang-en">Meet the Ambassadors</span><span class="lang-zh" style="display:none;">走近云原生大使</span></b>
-          <a class="button" href="https://youtu.be/uS698pTnw1I?si=j7xdt1GVic_jmqSG" target="_blank">YouTube</a>
-        </p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-</article>
-</div>
-
-      <!-- TOC active-section highlighting -->
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Publications — Peng, Andy</title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="Books and blog engineering writing by Andy Peng — DeepSeek in Practice with Packt, and posts on the official AWS blogs.">
+      <link rel="canonical" href="https://pengandy.com/publications">
+
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="https://pengandy.com/publications">
+      <meta property="og:title" content="Publications — Peng, Andy">
+      <meta property="og:description" content="Books and blog engineering writing by Andy Peng — DeepSeek in Practice with Packt, and posts on the official AWS blogs.">
+      <meta property="og:image" content="https://pengandy.com/assets/brand/icon-512.png">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <meta name="twitter:title" content="Publications — Peng, Andy">
+      <meta name="twitter:description" content="Books and blog engineering writing by Andy Peng — DeepSeek in Practice with Packt, and posts on the official AWS blogs.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/brand/icon-512.png">
+
+      <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
+      <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
+      <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
+      <link rel="manifest" href="/site.webmanifest">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="/assets/css/shell.css">
+      <script src="/assets/js/shell.js" defer></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
       <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var links = document.querySelectorAll('.pub-toc a');
-          var sections = Array.prototype.map.call(links, function(a) {
-            return document.querySelector(a.getAttribute('href'));
-          });
-          function refresh() {
-            var fromTop = window.scrollY + 140;
-            var current = 0;
-            sections.forEach(function(sec, i) {
-              if (sec && sec.offsetTop <= fromTop) { current = i; }
-            });
-            links.forEach(function(a, i) {
-              a.classList.toggle('active', i === current);
-            });
-          }
-          window.addEventListener('scroll', refresh, { passive: true });
-          refresh();
-        });
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-HTV795ZMCP');
       </script>
+   </head>
 
-      <!-- Image Protection Script -->
-      <script>
-        document.addEventListener('contextmenu', function(e) {
-          if (e.target.tagName === 'IMG') {
-            e.preventDefault();
-            return false;
-          }
-        });
+   <body data-nav-match="publications">
+      <a class="skip" href="#main">Skip to content</a>
+      <nav class="nav" aria-label="Primary" data-shell-nav></nav>
 
-        document.addEventListener('dragstart', function(e) {
-          if (e.target.tagName === 'IMG') {
-            e.preventDefault();
-            return false;
-          }
-        });
+      <header class="shell page-head">
+         <p class="eyebrow">
+            <span class="lang-en">Work</span>
+            <span class="lang-zh" hidden>工作</span>
+         </p>
+         <h1 class="page-title">
+            <span class="lang-en">Publications</span>
+            <span class="lang-zh" hidden>出版</span>
+         </h1>
+         <p class="page-lede">
+            <span class="lang-en">A book with Packt, and engineering writing on the official AWS blogs.</span>
+            <span class="lang-zh" hidden>一本与 Packt 合作出版的书，以及发表于亚马逊云科技官方博客的工程文章。</span>
+         </p>
+      </header>
 
-        window.addEventListener('load', function() {
-          const images = document.querySelectorAll('.publication-image img');
-          images.forEach(function(img) {
-            img.setAttribute('oncontextmenu', 'return false;');
-            img.setAttribute('ondragstart', 'return false;');
-          });
-        });
-      </script>
+      <main class="shell" id="main" style="padding-bottom:var(--movement)">
+         <div class="record">
 
-      <div id="footer-placeholder"></div>
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script> <script type="text/javascript">function progressBarSetup(){"max"in document.createElement("progress")?(initializeProgressElement(),$(document).on("scroll",function(){progressBar.attr({value:getCurrentScrollPosition()})}),$(window).on("resize",initializeProgressElement)):(resizeProgressBar(),$(document).on("scroll",resizeProgressBar),$(window).on("resize",resizeProgressBar))}function getCurrentScrollPosition(){return $(window).scrollTop()}function initializeProgressElement(){let e=$("#navbar").outerHeight(!0);$("body").css({"padding-top":e}),$("progress-container").css({"padding-top":e}),progressBar.css({top:e}),progressBar.attr({max:getDistanceToScroll(),value:getCurrentScrollPosition()})}function getDistanceToScroll(){return $(document).height()-$(window).height()}function resizeProgressBar(){progressBar.css({width:getWidthPercentage()+"%"})}function getWidthPercentage(){return getCurrentScrollPosition()/getDistanceToScroll()*100}const progressBar=$("#progress");window.onload=function(){setTimeout(progressBarSetup,50)};</script>
+            <!-- Sections carry the record-year slot (Books, AWS Blogs);
+                 the year itself lives in each entry's record-key. -->
+            <section class="record-group rise" id="books">
+               <h2 class="record-year">
+                  <span class="lang-en">Books</span>
+                  <span class="lang-zh" hidden>书籍</span>
+               </h2>
+               <ul class="record-list">
+                  <li>
+                     <div class="record-key">2025<small>Packt</small></div>
+                     <div class="record-val">
+                        <p>
+                           <a href="https://a.co/d/2YyiiuA" target="_blank" rel="noopener">
+                              <span class="lang-en">DeepSeek in Practice: From basics to fine-tuning, distillation, agent design, and prompt engineering of open source LLM</span>
+                              <span class="lang-zh" hidden>《DeepSeek 实战：开源大语言模型的基础、微调、蒸馏、智能体设计与提示工程》</span>
+                           </a>
+                        </p>
+                        <p>
+                           <span class="lang-en">Authors: Andy Peng, Alex Strick van Linschoten, Duarte Carmo</span>
+                           <span class="lang-zh" hidden>作者：Andy Peng、Alex Strick van Linschoten、Duarte Carmo</span>
+                        </p>
+                        <p>
+                           <a href="https://a.co/d/2YyiiuA" target="_blank" rel="noopener">Amazon US</a> ·
+                           <a href="https://www.packtpub.com/en-us/product/deepseek-in-practice-9781806020850" target="_blank" rel="noopener">Packt Website</a>
+                        </p>
+                     </div>
+                  </li>
+               </ul>
+            </section>
+
+            <section class="record-group rise" id="aws-blogs">
+               <h2 class="record-year">
+                  <span class="lang-en">AWS Blogs</span>
+                  <span class="lang-zh" hidden>亚马逊云科技官方博客</span>
+               </h2>
+               <ul class="record-list">
+                  <li>
+                     <div class="record-key">2026<small>Artificial Intelligence</small></div>
+                     <div class="record-val">
+                        <p>
+                           <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">
+                              <span class="lang-en">Parallelize speculative decoding with P-EAGLE on Amazon SageMaker AI</span>
+                              <span class="lang-zh" hidden>在 Amazon SageMaker AI 上使用 P-EAGLE 并行化投机解码</span>
+                           </a>
+                        </p>
+                        <p>
+                           <span class="lang-en">Authors: Andy Peng, Daniel Quang, Dan Ferguson, Siddharth Shah</span>
+                           <span class="lang-zh" hidden>作者：Andy Peng、Daniel Quang、Dan Ferguson、Siddharth Shah</span>
+                        </p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="record-key">2025<small>Artificial Intelligence</small></div>
+                     <div class="record-val">
+                        <p>
+                           <a href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-introduces-eagle-based-adaptive-speculative-decoding-to-accelerate-generative-ai-inference/" target="_blank" rel="noopener">
+                              <span class="lang-en">Amazon SageMaker AI introduces EAGLE based adaptive speculative decoding to accelerate generative AI inference</span>
+                              <span class="lang-zh" hidden>Amazon SageMaker AI 推出基于 EAGLE 的自适应投机解码，加速生成式人工智能推理</span>
+                           </a>
+                        </p>
+                        <p>
+                           <span class="lang-en">Authors: Andy Peng, Kareem Syed-Mohammed, Ram Vegiraju, Vinay Arora, Xu Deng, Siddharth Shah, Johna Liu, Anisha Kolla</span>
+                           <span class="lang-zh" hidden>作者：Andy Peng、Kareem Syed-Mohammed、Ram Vegiraju、Vinay Arora、Xu Deng、Siddharth Shah、Johna Liu、Anisha Kolla</span>
+                        </p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="record-key">2022<small>Medium</small></div>
+                     <div class="record-val">
+                        <p>
+                           <a href="https://medium.com/@pymhq/horizontal-auto-scaling-in-serverless-containers-857bb5c6a368" target="_blank" rel="noopener">
+                              <span class="lang-en">Horizontal Auto Scaling in Serverless Containers</span>
+                              <span class="lang-zh" hidden>无服务计算容器中的水平自动扩缩容</span>
+                           </a>
+                        </p>
+                        <p>
+                           <span class="lang-en">Author: Andy Peng</span>
+                           <span class="lang-zh" hidden>作者：Andy Peng</span>
+                        </p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="record-key">2022<small>Containers</small></div>
+                     <div class="record-val">
+                        <p>
+                           <a href="https://aws.amazon.com/cn/blogs/containers/enabling-aws-x-ray-tracing-for-aws-app-runner-service-using-aws-copilot-cli/" target="_blank" rel="noopener">
+                              <span class="lang-en">Enabling AWS X-Ray tracing for AWS App Runner service using AWS Copilot CLI</span>
+                              <span class="lang-zh" hidden>使用 AWS Copilot CLI 为 AWS App Runner 服务启用 AWS X-Ray 链路追踪</span>
+                           </a>
+                        </p>
+                        <p>
+                           <span class="lang-en">Authors: Yang Wanxian and Andy Peng</span>
+                           <span class="lang-zh" hidden>作者：Yang Wanxian、Andy Peng</span>
+                        </p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="record-key">2022<small>Containers</small></div>
+                     <div class="record-val">
+                        <p>
+                           <a href="https://aws.amazon.com/blogs/containers/observability-for-aws-app-runner-vpc-networking/" target="_blank" rel="noopener">
+                              <span class="lang-en">Observability for AWS App Runner VPC networking</span>
+                              <span class="lang-zh" hidden>AWS App Runner VPC 网络的可观测性</span>
+                           </a>
+                        </p>
+                        <p>
+                           <span class="lang-en">Author: Andy Peng</span>
+                           <span class="lang-zh" hidden>作者：Andy Peng</span>
+                        </p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="record-key">2022<small>Containers</small></div>
+                     <div class="record-val">
+                        <p>
+                           <a href="https://aws.amazon.com/blogs/containers/tracing-an-aws-app-runner-service-using-aws-x-ray-with-opentelemetry/" target="_blank" rel="noopener">
+                              <span class="lang-en">Tracing an AWS App Runner service using AWS X-Ray with OpenTelemetry</span>
+                              <span class="lang-zh" hidden>使用 AWS X-Ray 与 OpenTelemetry 追踪 AWS App Runner 服务</span>
+                           </a>
+                        </p>
+                        <p>
+                           <span class="lang-en">Author: Andy Peng</span>
+                           <span class="lang-zh" hidden>作者：Andy Peng</span>
+                        </p>
+                     </div>
+                  </li>
+               </ul>
+            </section>
+
+         </div>
+
+         <p class="more rise">
+            <a class="link" href="/speaking.html">
+               <span class="lang-en">Invited talks, guest lectures &amp; media coverage</span><span class="lang-zh" hidden>邀请演讲、客座讲座与媒体报道</span> →
+            </a>
+         </p>
+      </main>
+
+      <footer class="foot" data-shell-footer></footer>
    </body>
 </html>

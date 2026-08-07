@@ -1,1532 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-HTV795ZMCP');
-    </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Creativity — Peng Andy</title>
-    <meta name="author" content="Peng, Andy">
-    <meta name="description" content="Creativity portfolio: design language, cartography, photography and reels by Andy Peng.">
-    <meta name="keywords" content="Creativity, Design, Cartography, Photography, Reels, Peng, Andy">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://pengandy.com/creativity">
-    <meta property="og:title" content="Creativity — Peng Andy">
-    <meta property="og:description" content="Design language, cartography, photography and reels.">
-    <meta property="og:image" content="https://pengandy.com/assets/creativity/og-card.png">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Creativity — Peng Andy">
-    <meta name="twitter:description" content="Design language, cartography, photography and reels.">
-    <meta name="twitter:image" content="https://pengandy.com/assets/creativity/og-card.png">
-
-    <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
-    <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="canonical" href="https://pengandy.com/creativity">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" />
-
-    <style>
-        /* ============================================================
-           Creativity — a page about how things on this site are made.
-           Interaction model borrowed from /visitings:
-           vertical snap sections + horizontal pagers with dots.
-           Typography borrowed from the homepage: code-style monospace.
-           ============================================================ */
-        :root {
-            --bg: #ffffff;
-            --text: #1c1c1d;
-            --text-light: #828282;
-            --divider: rgba(0, 0, 0, 0.1);
-            --card-bg: #ffffff;
-            --theme: #0076df;          /* site blue */
-            --moss: #556b2f;           /* visitings olive */
-            --moss-bg: #f4f6f1;
-            --moss-card: #eef2ea;
-            --moss-border: #e2e7da;
-            --amber: #ffc24d;          /* visitings glow dot */
-            --warm: #b3542e;           /* photo section rust */
-            --warm-bg: #faf6f0;
-            --ink: #16181d;            /* reels section */
-            --mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-snap-type: y proximity;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--mono);
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-        }
-
-        /* ------------------------------------------------------------
-           Full-viewport snap sections (visitings pattern)
-           ------------------------------------------------------------ */
-        .panel-section {
-            min-height: 100vh;
-            scroll-snap-align: start;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 56px 0;
-        }
-
-        .section-inner {
-            width: min(92vw, 960px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .panel-section.revealed .section-inner {
-            opacity: 1;
-            transform: none;
-        }
-
-        .panel-section h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: 0.2px;
-        }
-
-        .panel-section h2 .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            flex: 0 0 auto;
-        }
-
-        .section-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-top: -8px;
-            text-align: center;
-        }
-
-        .section-index {
-            position: absolute;
-            top: 20px;
-            right: 22px;
-            font-size: 0.72rem;
-            color: var(--text-light);
-            letter-spacing: 1px;
-        }
-
-        /* ------------------------------------------------------------
-           Home link (visitings pattern)
-           ------------------------------------------------------------ */
-        .home-link {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--card-bg);
-            border: 2px solid #e0e0e0;
-            border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            color: var(--theme);
-            font-size: 1.05rem;
-            text-decoration: none;
-            z-index: 1000;
-            transition: background 0.15s ease, transform 0.15s ease;
-        }
-        .home-link:hover { background: #f0f6ff; transform: scale(1.06); }
-
-        /* ------------------------------------------------------------
-           Scroll cue (visitings pattern)
-           ------------------------------------------------------------ */
-        .scroll-cue {
-            position: absolute;
-            bottom: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: #9aa3ad;
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 0.4px;
-            cursor: pointer;
-            -webkit-user-select: none;
-            user-select: none;
-            animation: cueBob 2.2s ease-in-out infinite;
-            z-index: 10;
-        }
-        .scroll-cue i { font-size: 1rem; }
-        @keyframes cueBob {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50%      { transform: translateX(-50%) translateY(6px); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .scroll-cue { animation: none; }
-            html { scroll-behavior: auto; }
-        }
-
-        /* ------------------------------------------------------------
-           Section 1 — Hero
-           ------------------------------------------------------------ */
-        #hero { background: var(--bg); }
-
-        .hero-card {
-            background: var(--card-bg);
-            border: 1px solid var(--divider);
-            border-radius: 12px;
-            padding: 40px 36px 34px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            max-width: 620px;
-            transition: box-shadow 0.3s ease;
-        }
-        .hero-card:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); }
-
-        .hero-kicker {
-            font-size: 0.72rem;
-            letter-spacing: 2px;
-            color: var(--text-light);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .hero-card h1 {
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .hero-card h1 .accent { color: var(--theme); }
-        .hero-card h1 .cursor {
-            display: inline-block;
-            width: 0.55em;
-            height: 1.05em;
-            background: var(--theme);
-            vertical-align: text-bottom;
-            margin-left: 4px;
-            animation: blink 1.1s steps(1) infinite;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        .hero-sub {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 26px;
-        }
-
-        .hero-chapters {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .chapter-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid var(--divider);
-            border-radius: 999px;
-            padding: 7px 16px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text);
-            text-decoration: none;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-            background: var(--card-bg);
-        }
-        .chapter-chip:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .chapter-chip .chip-dot { width: 8px; height: 8px; border-radius: 50%; }
-
-        /* ------------------------------------------------------------
-           Horizontal pager (visitings PNW pattern, reused per section)
-           ------------------------------------------------------------ */
-        .pager-frame {
-            position: relative;
-            width: 100%;
-        }
-
-        .pager {
-            display: flex;
-            width: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-        }
-        .pager::-webkit-scrollbar { display: none; }
-
-        .pager-panel {
-            flex: 0 0 100%;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            display: flex;
-            align-items: stretch;
-            justify-content: center;
-            padding: 4px 6px 8px;
-        }
-
-        .pager-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 6;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #e0e0e0;
-            background: #ffffff;
-            color: var(--text);
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transition: opacity 0.2s ease, background 0.2s ease;
-        }
-        .pager-nav:hover { background: #f4f4f4; }
-        .pager-nav.prev { left: -14px; }
-        .pager-nav.next { right: -14px; }
-        .pager-nav[disabled] { opacity: 0; pointer-events: none; }
-
-        .pager-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 12px;
-        }
-        .pager-dots button {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            border: none;
-            background: #c9cdd3;
-            cursor: pointer;
-            padding: 0;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-        .pager-dots button.active { background: var(--theme); transform: scale(1.25); }
-
-        /* ------------------------------------------------------------
-           Section 2 — Design language
-           ------------------------------------------------------------ */
-        #design { background: #f7f9fc; }
-        #design h2 .dot { background: var(--theme); box-shadow: 0 0 8px 3px rgba(0, 118, 223, 0.4); }
-        #design .pager-dots button.active { background: var(--theme); }
-
-        .spec-card {
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--divider);
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-            padding: 26px 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .spec-card h3 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .spec-card h3 i { color: var(--theme); font-size: 0.85rem; }
-
-        .spec-note {
-            font-size: 0.78rem;
-            color: var(--text-light);
-            margin-top: -12px;
-        }
-
-        /* token swatches */
-        .swatch-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 12px;
-        }
-        .swatch {
-            border: 1px solid var(--divider);
-            border-radius: 10px;
-            overflow: hidden;
-            font-size: 0.68rem;
-        }
-        .swatch .chip { height: 52px; }
-        .swatch .meta { padding: 8px 10px; background: var(--card-bg); }
-        .swatch .meta .name { font-weight: 700; display: block; }
-        .swatch .meta .val { color: var(--text-light); }
-
-        /* type specimen */
-        .type-specimen { display: flex; flex-direction: column; gap: 6px; }
-        .type-specimen .t-h1 { font-size: 26px; font-weight: 700; }
-        .type-specimen .t-h1 b { color: var(--theme); }
-        .type-specimen .t-sub { font-size: 13px; color: var(--text-light); }
-        .type-specimen .t-code {
-            font-size: 12px;
-            background: rgba(0, 118, 223, 0.06);
-            border: 1px solid rgba(0, 118, 223, 0.15);
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: var(--text);
-            white-space: pre-wrap;
-        }
-        .type-specimen .t-code .k { color: var(--theme); font-weight: 700; }
-        .type-specimen .t-code .s { color: var(--moss); }
-
-        /* interaction demo: a miniature of the panel system itself */
-        .mini-viewport {
-            border: 1px solid var(--divider);
-            border-radius: 12px;
-            background: #f2f5f9;
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .mini-track {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            border-radius: 8px;
-        }
-        .mini-track::-webkit-scrollbar { display: none; }
-        .mini-slide {
-            flex: 0 0 100%;
-            scroll-snap-align: start;
-            border-radius: 8px;
-            padding: 18px 16px;
-            font-size: 0.78rem;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 4px;
-            min-height: 110px;
-        }
-        .mini-slide b { font-size: 0.9rem; }
-        .mini-slide.s1 { background: linear-gradient(135deg, #0076df, #00369f); }
-        .mini-slide.s2 { background: linear-gradient(135deg, #556b2f, #3c4a22); }
-        .mini-slide.s3 { background: linear-gradient(135deg, #b3542e, #7d3a20); }
-        .mini-hint {
-            font-size: 0.68rem;
-            color: var(--text-light);
-            text-align: center;
-        }
-
-        /* principles list */
-        .principles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-            list-style: none;
-        }
-        .principles li {
-            border: 1px solid var(--divider);
-            border-radius: 10px;
-            padding: 14px 16px;
-            font-size: 0.78rem;
-            background: var(--card-bg);
-        }
-        .principles li b {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 0.82rem;
-            margin-bottom: 4px;
-        }
-        .principles li b i { color: var(--theme); font-size: 0.78rem; }
-        .principles li span { color: var(--text-light); }
-
-        /* ------------------------------------------------------------
-           Section 3 — Cartography (visitings map design)
-           ------------------------------------------------------------ */
-        #maps { background: var(--moss-bg); }
-        #maps h2 { color: #4a5636; }
-        #maps h2 .dot { background: var(--amber); box-shadow: 0 0 8px 3px rgba(255, 194, 77, 0.55); }
-        #maps .section-subtitle { color: #8a9478; }
-        #maps .pager-nav { color: var(--moss); }
-        #maps .pager-nav:hover { background: var(--moss-bg); }
-        #maps .pager-dots button { background: #c6cdbd; }
-        #maps .pager-dots button.active { background: var(--moss); }
-
-        .map-card {
-            width: 100%;
-            border-radius: 16px;
-            background: var(--moss-card);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            border: 2px solid var(--moss-border);
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-        .map-card svg { display: block; width: 100%; height: auto; }
-
-        .map-caption {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 12px 18px;
-            border-top: 2px solid var(--moss-border);
-            background: rgba(255, 255, 255, 0.55);
-            font-size: 0.75rem;
-            color: #5a6650;
-        }
-        .map-caption b { color: #3c4530; }
-
-        .map-visit-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #ffffff;
-            border: 2px solid #e0e0e0;
-            border-radius: 999px;
-            padding: 7px 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            font-family: var(--mono);
-            color: var(--moss);
-            text-decoration: none;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            white-space: nowrap;
-            transition: background 0.15s ease;
-        }
-        .map-visit-link:hover { background: var(--moss-bg); }
-
-        /* hand-drawn map styling, sampled from visitings */
-        .land { fill: #8d9b63; stroke: #6f7e4a; stroke-width: 0.7; stroke-linejoin: round; }
-        .state-border { fill: none; stroke: #ffffff; stroke-width: 1.4; stroke-dasharray: 4 3; }
-        .water { fill: #cfe3ec; }
-        .river { fill: none; stroke: #8fb8cc; stroke-width: 1.7; stroke-linecap: round; opacity: 0.9; }
-        .peak-body { fill: #6b7a48; stroke: #46503a; stroke-width: 1.2; stroke-linejoin: round; }
-        .peak-snow { fill: #f7f4ea; stroke: #46503a; stroke-width: 1; stroke-linejoin: round; }
-        .peak-label { font-size: 9.5px; font-weight: 700; fill: #2f3626; paint-order: stroke; stroke: rgba(244,246,241,0.7); stroke-width: 2.5; font-family: var(--mono); }
-        .water-label { font-size: 9px; font-style: italic; font-weight: 600; fill: #2a5d80; font-family: var(--mono); }
-        .marker-core { fill: #1565C0; stroke: #ffffff; stroke-width: 2; }
-        .marker-label { font-size: 11px; font-weight: 600; fill: #3c4530; font-family: var(--mono); }
-        .doodle { fill: none; stroke: #4a3f2c; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-        .route-dash { fill: none; stroke: #b3542e; stroke-width: 1.8; stroke-dasharray: 5 4; stroke-linecap: round; }
-
-        .anatomy-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            font-size: 0.78rem;
-            color: #5a6650;
-        }
-        .anatomy-list li { display: flex; gap: 10px; align-items: baseline; }
-        .anatomy-list li .n {
-            flex: 0 0 auto;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--moss);
-            color: #fff;
-            font-size: 0.65rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transform: translateY(3px);
-        }
-        .anatomy-list li b { color: #3c4530; }
-
-        .map-anatomy-card {
-            width: 100%;
-            border-radius: 16px;
-            background: var(--moss-card);
-            border: 2px solid var(--moss-border);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            padding: 24px 26px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .map-anatomy-card h3 {
-            font-size: 0.95rem;
-            color: #4a5636;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .map-anatomy-card h3 i { color: var(--moss); font-size: 0.85rem; }
-
-        /* ------------------------------------------------------------
-           Section 4 — Photography (placeholders)
-           ------------------------------------------------------------ */
-        #photo { background: var(--warm-bg); }
-        #photo h2 { color: #6b3a20; }
-        #photo h2 .dot { background: var(--warm); box-shadow: 0 0 8px 3px rgba(179, 84, 46, 0.35); }
-        #photo .section-subtitle { color: #a98a72; }
-
-        .photo-grid {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1.25fr 1fr 1fr;
-            grid-auto-rows: 235px;
-            gap: 14px;
-        }
-
-        /* four-frame editorial mosaic */
-        .photo-tile.ph-hero { grid-row: span 2; }
-        .photo-tile.ph-wide { grid-column: span 2; }
-
-        .photo-tile {
-            border-radius: 12px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            cursor: default;
-        }
-        .photo-tile:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
-
-        .photo-tile img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.35s ease;
-        }
-        .photo-tile:hover img { transform: scale(1.04); }
-        .photo-tile .ph-label { z-index: 2; }
-
-        .photo-tile .ph-icon { font-size: 1.4rem; opacity: 0.85; }
-        .photo-tile .ph-num {
-            position: absolute;
-            top: 10px;
-            left: 12px;
-            z-index: 2;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.85);
-            background: rgba(0, 0, 0, 0.32);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 999px;
-            padding: 2px 9px;
-            backdrop-filter: blur(3px);
-        }
-        .photo-tile .ph-label {
-            position: absolute;
-            left: 12px;
-            bottom: 10px;
-            font-size: 0.68rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-        }
-        .photo-tile .ph-badge {
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            font-size: 0.58rem;
-            font-weight: 700;
-            background: rgba(0, 0, 0, 0.28);
-            border-radius: 999px;
-            padding: 2px 8px;
-            letter-spacing: 0.8px;
-        }
-
-        .photo-tile.tall  { grid-row: span 2; }
-        .photo-tile.wide  { grid-column: span 2; }
-        .photo-tile.big   { grid-column: span 2; grid-row: span 2; }
-
-        .g1 { background: linear-gradient(160deg, #274b63, #6da3bd); }
-        .g2 { background: linear-gradient(160deg, #556b2f, #9fb36a); }
-        .g3 { background: linear-gradient(160deg, #b3542e, #e8a06a); }
-        .g4 { background: linear-gradient(160deg, #4a3f6b, #9a8fc2); }
-        .g5 { background: linear-gradient(160deg, #1c3d33, #5f9c85); }
-        .g6 { background: linear-gradient(160deg, #7a5c2e, #d8b96a); }
-        .g7 { background: linear-gradient(160deg, #3a3f47, #8b94a3); }
-
-        .photo-note {
-            font-size: 0.72rem;
-            color: #a98a72;
-            text-align: center;
-        }
-
-        /* ------------------------------------------------------------
-           Section 5 — Reels (placeholders)
-           ------------------------------------------------------------ */
-        #reels { background: var(--ink); }
-        #reels h2 { color: #f2f3f5; }
-        #reels h2 .dot { background: #ff5470; box-shadow: 0 0 8px 3px rgba(255, 84, 112, 0.45); }
-        #reels .section-subtitle { color: #8b94a3; }
-
-        .reel-row {
-            width: 100%;
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            padding: 6px 4px 14px;
-            scroll-snap-type: x proximity;
-            scrollbar-width: none;
-        }
-        .reel-row::-webkit-scrollbar { display: none; }
-
-        .reel-card {
-            flex: 0 0 190px;
-            aspect-ratio: 9 / 16;
-            border-radius: 16px;
-            position: relative;
-            overflow: hidden;
-            scroll-snap-align: start;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
-            cursor: default;
-        }
-        .reel-card:hover { transform: translateY(-4px); }
-        .reel-card.playable { cursor: pointer; }
-
-        .reel-card video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .reel-card .reel-play,
-        .reel-card .reel-meta,
-        .reel-card .reel-badge { z-index: 2; }
-        .reel-card.playing .reel-play { opacity: 0; }
-        .reel-card .reel-play { transition: opacity 0.25s ease; }
-        .reel-card .reel-meta { text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); }
-
-        .r1 { background: linear-gradient(200deg, #17364d, #071f30); }
-        .r2 { background: linear-gradient(200deg, #3c4a22, #141c08); }
-        .r3 { background: linear-gradient(200deg, #5d2a17, #260f06); }
-        .r4 { background: linear-gradient(200deg, #1d4e89, #0a1f3d); }
-        .r5 { background: linear-gradient(200deg, #433a1e, #1d1808); }
-
-        .reel-play {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.14);
-            border: 1.5px solid rgba(255, 255, 255, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.92);
-            font-size: 0.95rem;
-            backdrop-filter: blur(3px);
-        }
-        .reel-card:hover .reel-play { background: rgba(255, 255, 255, 0.26); }
-
-        .reel-meta {
-            position: absolute;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            color: #e8eaee;
-        }
-        .reel-meta .rl-title { font-size: 0.72rem; font-weight: 700; display: block; }
-        .reel-meta .rl-sub { font-size: 0.62rem; color: #9aa3ad; }
-
-        .reel-badge {
-            position: absolute;
-            top: 10px;
-            left: 12px;
-            font-size: 0.58rem;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            color: #d7dae0;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 999px;
-            padding: 2px 9px;
-        }
-
-        /* Instagram call-to-action card — last tile in the reel row */
-        .reel-cta {
-            text-decoration: none;
-            color: #fff;
-            flex-direction: column;
-            gap: 12px;
-            padding: 18px 14px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            cursor: pointer;
-        }
-        .reel-cta > * { position: relative; z-index: 2; }
-        .reel-cta:hover { transform: translateY(-4px); }
-
-        .reel-cta .cta-icon {
-            width: 54px;
-            height: 54px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.55rem;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.16);
-            border: 1.5px solid rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(3px);
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-        .reel-cta:hover .cta-icon { background: rgba(255, 255, 255, 0.3); transform: scale(1.06); }
-
-        .reel-cta .cta-kicker {
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 1.4px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.82);
-        }
-        .reel-cta .cta-handle {
-            font-size: 0.86rem;
-            font-weight: 700;
-            letter-spacing: 0.2px;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-            word-break: break-all;
-        }
-        .reel-cta .cta-go {
-            font-size: 0.62rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            border-radius: 999px;
-            padding: 4px 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: background 0.2s ease;
-        }
-        .reel-cta:hover .cta-go { background: rgba(255, 255, 255, 0.18); }
-        .reel-cta .cta-go i { font-size: 0.55rem; }
-
-        .reels-note { font-size: 0.72rem; color: #6d7683; text-align: center; }
-        .reels-note a { color: #ff7f96; text-decoration: none; font-weight: 600; }
-        .reels-note a:hover { text-decoration: underline; }
-
-        /* footer strip on last section */
-        .creativity-footer {
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-size: 0.72rem;
-            color: #6d7683;
-        }
-        .creativity-footer a { color: #9aa3ad; text-decoration: none; border-bottom: 1px dotted #555c66; }
-        .creativity-footer a:hover { color: #fff; }
-
-        .back-to-top {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            border-radius: 999px;
-            padding: 7px 16px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            font-family: var(--mono);
-            color: #e8eaee;
-            cursor: pointer;
-            transition: background 0.15s ease;
-        }
-        .back-to-top:hover { background: rgba(255, 255, 255, 0.16); }
-
-        /* ------------------------------------------------------------
-           Language toggle (shares 'preferredLanguage' with the rest of
-           the site). .lang-zh hidden by default so text isn't stacked
-           before JS applies the saved preference.
-           ------------------------------------------------------------ */
-        .lang-zh { display: none; }
-        .lang-toggle-fixed {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            display: flex;
-            align-items: center;
-            gap: 0;
-            background: var(--card-bg);
-            border: 2px solid #e0e0e0;
-            border-radius: 999px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            z-index: 1000;
-        }
-        .lang-toggle-fixed button {
-            border: none;
-            background: transparent;
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: #6a7280;
-            padding: 9px 13px;
-            cursor: pointer;
-            transition: background 0.15s ease, color 0.15s ease;
-        }
-        .lang-toggle-fixed button:hover { background: #f0f6ff; }
-        .lang-toggle-fixed button.active {
-            background: var(--theme);
-            color: #fff;
-        }
-
-        /* ------------------------------------------------------------
-           Media protection (best-effort): block right-click save, drag,
-           long-press and text-select on photos & reels.
-           ------------------------------------------------------------ */
-        .photo-tile, .photo-tile img,
-        .reel-card, .reel-card video {
-            -webkit-user-select: none;
-            user-select: none;
-            -webkit-user-drag: none;
-            -webkit-touch-callout: none;
-        }
-        .photo-tile::after,
-        .reel-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 3;
-        }
-
-        /* ------------------------------------------------------------
-           Hero panel 2 — site-film portal (swipe right to enter)
-           ------------------------------------------------------------ */
-        .film-portal {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            width: min(92%, 640px);
-            padding: 44px 28px;
-            border-radius: 18px;
-            text-decoration: none;
-            background: radial-gradient(600px 300px at 50% -20%, rgba(88,166,255,0.16), transparent 60%), #101012;
-            border: 1px solid rgba(88, 166, 255, 0.28);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
-            text-align: center;
-        }
-        .film-portal .fp-kicker { font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; color: #58a6ff; }
-        .film-portal .fp-title { font-size: 2rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
-        .film-portal .fp-title .fp-zh { display: block; font-size: 0.95rem; font-weight: 400; color: #9a9aa0; margin-top: 4px; }
-        .film-portal .fp-sub { font-size: 0.8rem; color: #8b94a3; max-width: 440px; line-height: 1.7; }
-        .film-portal .fp-play {
-            width: 58px; height: 58px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: #58a6ff; font-size: 1.15rem;
-            border: 2px solid rgba(88, 166, 255, 0.55);
-            animation: fp-pulse 1.8s ease-in-out infinite;
-        }
-        @keyframes fp-pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.35); }
-            50% { box-shadow: 0 0 0 12px rgba(88, 166, 255, 0); }
-        }
-        .film-portal .fp-note { font-size: 0.72rem; color: #58a6ff; opacity: 0; transition: opacity 0.3s ease; }
-        .film-portal.arming .fp-note { opacity: 1; }
-
-        /* ------------------------------------------------------------
-           Responsive
-           ------------------------------------------------------------ */
-        @media (max-width: 768px) {
-            .photo-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
-            .photo-tile.ph-hero { grid-row: span 2; }
-            .photo-tile.ph-wide { grid-column: span 1; }
-            .pager-nav.prev { left: 4px; }
-            .pager-nav.next { right: 4px; }
-            .spec-card { padding: 20px 18px; }
-            .hero-card { padding: 30px 22px 26px; }
-            .hero-card h1 { font-size: 24px; }
-            .section-index { display: none; }
-            .reel-card { flex-basis: 160px; }
-        }
-    </style>
-</head>
-<body>
-
-    <a class="home-link" href="/" aria-label="Back to home">
-        <i class="fa-solid fa-house"></i>
-    </a>
-
-    <div class="lang-toggle-fixed" role="group" aria-label="Language selector">
-        <button type="button" class="active" id="btn-en" onclick="switchLanguage('en')">EN</button>
-        <button type="button" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
-    </div>
-
-    <!-- ============================================================
-         01 · Hero
-         ============================================================ -->
-    <section class="panel-section" id="hero">
-        <span class="section-index">01 / 05</span>
-        <div class="section-inner">
-            <div class="pager-frame">
-                <button class="pager-nav prev" type="button" aria-label="Previous panel" disabled>
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <button class="pager-nav next" type="button" aria-label="Next panel">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-
-                <div class="pager">
-                    <!-- Panel 1: the original hero card -->
-                    <div class="pager-panel" aria-label="Creativity intro">
-            <div class="hero-card">
-                <div class="hero-kicker">pengandy.com / creativity</div>
-                <h1><span class="accent">Creativity</span><span class="cursor" aria-hidden="true"></span></h1>
-                <p class="hero-sub"><span class="lang-en">Things I design, draw, shoot, and cut — the craft behind this site and beyond.</span><span class="lang-zh">我设计、绘制、拍摄与剪辑的作品 —— 这个网站背后的思考，以及更多。</span></p>
-                <nav class="hero-chapters" aria-label="Chapters">
-                    <a class="chapter-chip" href="#design"><span class="chip-dot" style="background:#0076df"></span><span class="lang-en">Design Language</span><span class="lang-zh">设计语言</span></a>
-                    <a class="chapter-chip" href="#maps"><span class="chip-dot" style="background:#ffc24d"></span><span class="lang-en">Cartography</span><span class="lang-zh">地图绘制</span></a>
-                    <a class="chapter-chip" href="#photo"><span class="chip-dot" style="background:#b3542e"></span><span class="lang-en">Photography</span><span class="lang-zh">摄影</span></a>
-                    <a class="chapter-chip" href="#reels"><span class="chip-dot" style="background:#ff5470"></span><span class="lang-en">Reels</span><span class="lang-zh">短片</span></a>
-                </nav>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Creativity — Peng, Andy</title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="Design language, cartography, photography and reels.">
+      <link rel="canonical" href="https://pengandy.com/creativity">
+
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="https://pengandy.com/creativity">
+      <meta property="og:title" content="Creativity — Peng, Andy">
+      <meta property="og:description" content="Design language, cartography, photography and reels.">
+      <meta property="og:image" content="https://pengandy.com/assets/brand/icon-512.png">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <meta name="twitter:title" content="Creativity — Peng, Andy">
+      <meta name="twitter:description" content="Design language, cartography, photography and reels.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/brand/icon-512.png">
+
+      <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
+      <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
+      <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
+      <link rel="manifest" href="/site.webmanifest">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="/assets/css/shell.css">
+      <script src="/assets/js/shell.js" defer></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-HTV795ZMCP');
+      </script>
+   </head>
+
+   <body data-nav-match="creativity">
+      <a class="skip" href="#main">Skip to content</a>
+      <nav class="nav" aria-label="Primary" data-shell-nav></nav>
+
+      <header class="shell page-head">
+         <p class="eyebrow">
+            <span class="lang-en">Creativity</span>
+            <span class="lang-zh" hidden>创作</span>
+         </p>
+         <h1 class="page-title">
+            <span class="lang-en">Creativity</span>
+            <span class="lang-zh" hidden>创作</span>
+         </h1>
+         <p class="page-lede">
+            <span class="lang-en">Things I design, draw, shoot, and cut — the craft behind this site and beyond.</span>
+            <span class="lang-zh" hidden>我设计、绘制、拍摄与剪辑的作品 —— 这个网站背后的思考，以及更多。</span>
+         </p>
+      </header>
+
+      <main class="shell" id="main" style="padding-bottom:var(--movement)">
+
+         <!-- ============================================================
+              DESIGN LANGUAGE — the system behind the live site.
+              ============================================================ -->
+         <section class="band--tight rise" id="design">
+            <p class="eyebrow">
+               <span class="lang-en">Design language</span>
+               <span class="lang-zh" hidden>设计语言</span>
+            </p>
+
+            <div class="prose">
+               <p>
+                  <span class="lang-en">The system behind pengandy.com — code-style typography, soft cards, snap panels.</span>
+                  <span class="lang-zh" hidden>pengandy.com 背后的设计系统 —— 代码风格排版、柔和卡片、吸附式面板。</span>
+               </p>
+
+               <h2>
+                  <span class="lang-en">Tokens</span>
+                  <span class="lang-zh" hidden>设计令牌</span>
+               </h2>
+               <p>
+                  <span class="lang-en">One palette, many moods — each surface of the site keeps its own accent while sharing the same bones.</span>
+                  <span class="lang-zh" hidden>一套色板，多种气质 —— 网站的每个页面都有自己的主题色，却共享同一副骨架。</span>
+               </p>
             </div>
-                    </div>
 
-                    <!-- Panel 2: site-film portal — settling here enters /showcase -->
-                    <div class="pager-panel" aria-label="Site film portal">
-                        <a class="film-portal" href="/showcase/">
-                            <div class="fp-kicker">pengandy.com · site film</div>
-                            <div class="fp-title">Site Film<span class="fp-zh">全站漫游</span></div>
-                            <p class="fp-sub"><span class="lang-en">A guided tour of every page — cursor, clicks and all · 2:23</span><span class="lang-zh">一部走遍全站的导览短片 —— 光标、点击、一镜到底 · 2:23</span></p>
-                            <div class="fp-play"><i class="fa-solid fa-play"></i></div>
-                            <div class="fp-note"><span class="lang-en">entering the film…</span><span class="lang-zh">正在进入短片…</span></div>
-                        </a>
-                    </div>
-                </div>
-                <div class="pager-dots" role="tablist" aria-label="Hero panels"></div>
+            <ul class="swatches">
+               <li>
+                  <div class="swatch-chip" style="background:#0076df"></div>
+                  <div class="swatch-name">--theme</div>
+                  <div class="swatch-hex">#0076df</div>
+               </li>
+               <li>
+                  <div class="swatch-chip" style="background:#556b2f"></div>
+                  <div class="swatch-name">--moss</div>
+                  <div class="swatch-hex">#556b2f</div>
+               </li>
+               <li>
+                  <div class="swatch-chip" style="background:#ffc24d"></div>
+                  <div class="swatch-name">--amber</div>
+                  <div class="swatch-hex">#ffc24d</div>
+               </li>
+               <li>
+                  <div class="swatch-chip" style="background:#b3542e"></div>
+                  <div class="swatch-name">--warm</div>
+                  <div class="swatch-hex">#b3542e</div>
+               </li>
+               <li>
+                  <div class="swatch-chip" style="background:#16181d"></div>
+                  <div class="swatch-name">--ink</div>
+                  <div class="swatch-hex">#16181d</div>
+               </li>
+            </ul>
+
+            <div class="prose">
+               <h2>
+                  <span class="lang-en">The Panel System</span>
+                  <span class="lang-zh" hidden>面板系统</span>
+               </h2>
+               <p>
+                  <span class="lang-en">Native scroll + snap, two axes: vertical between chapters, horizontal within them.</span>
+                  <span class="lang-zh" hidden>原生滚动 + 吸附，两个方向：章节间纵向滚动，章节内横向翻页。</span>
+               </p>
+               <ul>
+                  <li>
+                     <code>scroll-snap-type: x mandatory</code> —
+                     <span class="lang-en">the browser does the physics — no carousel library.</span>
+                     <span class="lang-zh" hidden>物理效果全靠浏览器 —— 不用轮播库。</span>
+                  </li>
+                  <li>
+                     <code>scroll-snap-align: start</code> —
+                     <span class="lang-en">every panel lands exactly where it should.</span>
+                     <span class="lang-zh" hidden>每个面板都精准停在该停的位置。</span>
+                  </li>
+                  <li>
+                     <code>overscroll-behavior: contain</code> —
+                     <span class="lang-en">no accidental back-swipe, ever.</span>
+                     <span class="lang-zh" hidden>永远不会误触返回手势。</span>
+                  </li>
+               </ul>
+
+               <h2>
+                  <span class="lang-en">Principles</span>
+                  <span class="lang-zh" hidden>设计原则</span>
+               </h2>
             </div>
-        </div>
-        <div class="scroll-cue" data-target="#design">
-            <span><span class="lang-en">explore</span><span class="lang-zh">探索</span></span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-    </section>
 
-    <!-- ============================================================
-         02 · Design Language
-         ============================================================ -->
-    <section class="panel-section" id="design">
-        <span class="section-index">02 / 05</span>
-        <div class="section-inner">
-            <h2><span class="dot"></span><span class="lang-en">Design Language</span><span class="lang-zh">设计语言</span></h2>
-            <p class="section-subtitle"><span class="lang-en">The system behind pengandy.com — code-style typography, soft cards, snap panels.</span><span class="lang-zh">pengandy.com 背后的设计系统 —— 代码风格排版、柔和卡片、吸附式面板。</span></p>
+            <!-- Principles as a record list: the name is the key, the
+                 explanation is the value — same grammar as the CV pages. -->
+            <ul class="record-list">
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">Code is the aesthetic</span>
+                     <span class="lang-zh" hidden>代码即美学</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">Monospace everywhere. The site reads like a well-formatted source file.</span>
+                     <span class="lang-zh" hidden>全站等宽字体。整个网站读起来像一份排版精良的源代码文件。</span>
+                  </div>
+               </li>
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">Cards, not pages</span>
+                     <span class="lang-zh" hidden>卡片，而非页面</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">Soft borders, 12px radii, shadows that whisper. Content lives in cards.</span>
+                     <span class="lang-zh" hidden>柔和的边框、12px 圆角、若隐若现的阴影。内容都住在卡片里。</span>
+                  </div>
+               </li>
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">Motion earns its place</span>
+                     <span class="lang-zh" hidden>动效物尽其用</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">Reveals, nudges, and bobs — always subtle, always skippable via reduced-motion.</span>
+                     <span class="lang-zh" hidden>渐显、轻推、浮动 —— 始终克制，且始终尊重减少动效偏好设置。</span>
+                  </div>
+               </li>
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">Zero frameworks</span>
+                     <span class="lang-zh" hidden>零框架</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">Hand-written HTML/CSS/JS. Every byte on the page was put there on purpose.</span>
+                     <span class="lang-zh" hidden>纯手写 HTML/CSS/JS。页面上的每一个字节都有它存在的理由。</span>
+                  </div>
+               </li>
+            </ul>
+         </section>
 
-            <div class="pager-frame">
-                <button class="pager-nav prev" type="button" aria-label="Previous panel" disabled>
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <button class="pager-nav next" type="button" aria-label="Next panel">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
+         <!-- ============================================================
+              CARTOGRAPHY — the craft behind /maps.
+              ============================================================ -->
+         <section class="band--tight rise" id="cartography">
+            <p class="eyebrow">
+               <span class="lang-en">Cartography</span>
+               <span class="lang-zh" hidden>地图绘制</span>
+            </p>
 
-                <div class="pager">
-                    <!-- Panel 1: tokens -->
-                    <div class="pager-panel" aria-label="Design tokens">
-                        <div class="spec-card">
-                            <h3><i class="fa-solid fa-palette"></i><span class="lang-en">Tokens</span><span class="lang-zh">设计令牌</span></h3>
-                            <p class="spec-note"><span class="lang-en">One palette, many moods — each surface of the site keeps its own accent while sharing the same bones.</span><span class="lang-zh">一套色板，多种气质 —— 网站的每个页面都有自己的主题色，却共享同一副骨架。</span></p>
-                            <div class="swatch-row">
-                                <div class="swatch"><div class="chip" style="background:#0076df"></div><div class="meta"><span class="name">--theme</span><span class="val">#0076df</span></div></div>
-                                <div class="swatch"><div class="chip" style="background:#556b2f"></div><div class="meta"><span class="name">--moss</span><span class="val">#556b2f</span></div></div>
-                                <div class="swatch"><div class="chip" style="background:#ffc24d"></div><div class="meta"><span class="name">--amber</span><span class="val">#ffc24d</span></div></div>
-                                <div class="swatch"><div class="chip" style="background:#b3542e"></div><div class="meta"><span class="name">--warm</span><span class="val">#b3542e</span></div></div>
-                                <div class="swatch"><div class="chip" style="background:#16181d"></div><div class="meta"><span class="name">--ink</span><span class="val">#16181d</span></div></div>
-                            </div>
-                            <div class="type-specimen">
-                                <div class="t-h1"><b>Andy</b> Peng</div>
-                                <div class="t-sub">JetBrains Mono · 14px base · 1.6 line-height</div>
-                                <div class="t-code"><span class="k">const</span> site = { type: <span class="s">'monospace'</span>, cards: <span class="s">'soft'</span>, motion: <span class="s">'gentle'</span> };</div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="prose">
+               <p>
+                  <span class="lang-en">Hand-drawn SVG maps from <a href="/maps.html">/maps</a> — every coastline, peak, and ferry route is a path I plotted.</span>
+                  <span class="lang-zh" hidden>来自 <a href="/maps.html">/maps</a> 的手绘 SVG 地图 —— 每一条海岸线、每一座山峰、每一条渡轮航线，都是我亲手绘制的路径。</span>
+               </p>
 
-                    <!-- Panel 2: interaction model -->
-                    <div class="pager-panel" aria-label="Interaction patterns">
-                        <div class="spec-card">
-                            <h3><i class="fa-solid fa-arrows-left-right"></i><span class="lang-en">The Panel System</span><span class="lang-zh">面板系统</span></h3>
-                            <p class="spec-note"><span class="lang-en">Native scroll + snap, two axes: vertical between chapters, horizontal within them. This very pager is the pattern — try dragging the strip below.</span><span class="lang-zh">原生滚动 + 吸附，两个方向：章节间纵向滚动，章节内横向翻页。你眼前这个翻页器就是范例 —— 试着拖动下面的横条。</span></p>
-                            <div class="mini-viewport">
-                                <div class="mini-track">
-                                    <div class="mini-slide s1"><b>scroll-snap-type: x mandatory</b><span><span class="lang-en">the browser does the physics — no carousel library</span><span class="lang-zh">物理效果全靠浏览器 —— 不用轮播库</span></span></div>
-                                    <div class="mini-slide s2"><b>scroll-snap-align: start</b><span><span class="lang-en">every panel lands exactly where it should</span><span class="lang-zh">每个面板都精准停在该停的位置</span></span></div>
-                                    <div class="mini-slide s3"><b>overscroll-behavior: contain</b><span><span class="lang-en">no accidental back-swipe, ever</span><span class="lang-zh">永远不会误触返回手势</span></span></div>
-                                </div>
-                                <div class="mini-hint"><span class="lang-en">← swipe or drag →</span><span class="lang-zh">← 滑动或拖拽 →</span></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Panel 3: principles -->
-                    <div class="pager-panel" aria-label="Design principles">
-                        <div class="spec-card">
-                            <h3><i class="fa-solid fa-compass-drafting"></i><span class="lang-en">Principles</span><span class="lang-zh">设计原则</span></h3>
-                            <ul class="principles">
-                                <li><b><i class="fa-solid fa-terminal"></i><span class="lang-en">Code is the aesthetic</span><span class="lang-zh">代码即美学</span></b><span><span class="lang-en">Monospace everywhere. The site reads like a well-formatted source file.</span><span class="lang-zh">全站等宽字体。整个网站读起来像一份排版精良的源代码文件。</span></span></li>
-                                <li><b><i class="fa-solid fa-layer-group"></i><span class="lang-en">Cards, not pages</span><span class="lang-zh">卡片，而非页面</span></b><span><span class="lang-en">Soft borders, 12px radii, shadows that whisper. Content lives in cards.</span><span class="lang-zh">柔和的边框、12px 圆角、若隐若现的阴影。内容都住在卡片里。</span></span></li>
-                                <li><b><i class="fa-solid fa-wand-magic-sparkles"></i><span class="lang-en">Motion earns its place</span><span class="lang-zh">动效物尽其用</span></b><span><span class="lang-en">Reveals, nudges, and bobs — always subtle, always skippable via reduced-motion.</span><span class="lang-zh">渐显、轻推、浮动 —— 始终克制，且始终尊重减少动效偏好设置。</span></span></li>
-                                <li><b><i class="fa-solid fa-feather"></i><span class="lang-en">Zero frameworks</span><span class="lang-zh">零框架</span></b><span><span class="lang-en">Hand-written HTML/CSS/JS. Every byte on the page was put there on purpose.</span><span class="lang-zh">纯手写 HTML/CSS/JS。页面上的每一个字节都有它存在的理由。</span></span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pager-dots" role="tablist" aria-label="Design panels"></div>
+               <h2>
+                  <span class="lang-en">Anatomy of a panel map</span>
+                  <span class="lang-zh" hidden>一幅面板地图的解剖</span>
+               </h2>
+               <ol>
+                  <li>
+                     <span class="lang-en"><b>A rotatable D3 globe</b> greets you first — countries fill in as they're visited, cities pin with tooltips.</span>
+                     <span class="lang-zh" hidden><b>首先迎接你的是可旋转的 D3 地球仪</b> —— 到访过的国家逐一填色，城市图钉带有悬浮提示。</span>
+                  </li>
+                  <li>
+                     <span class="lang-en"><b>Scroll down, and the world zooms in</b> — a full-viewport Pacific Northwest chart snaps into place with a fade-and-rise reveal.</span>
+                     <span class="lang-zh" hidden><b>向下滚动，世界随之放大</b> —— 一幅满屏的太平洋西北地区海图以渐显上升的方式吸附就位。</span>
+                  </li>
+                  <li>
+                     <span class="lang-en"><b>Swipe right for route charts</b> — Salish Sea ferry crossings drawn like an old nautical map: anchors, whales, sea-siren medallions.</span>
+                     <span class="lang-zh" hidden><b>向右滑动查看航线图</b> —— 萨利希海的渡轮航线画成旧式航海图的模样：锚、鲸鱼、海妖徽章。</span>
+                  </li>
+                  <li>
+                     <span class="lang-en"><b>Everything is inline SVG</b> — no tiles, no map API. Peaks get elevation labels; unvisited ones fade back politely.</span>
+                     <span class="lang-zh" hidden><b>一切都是内联 SVG</b> —— 没有瓦片，没有地图 API。山峰标注海拔；未到访的则礼貌地淡入背景。</span>
+                  </li>
+                  <li>
+                     <span class="lang-en"><b>Dots, chevrons, and edge handles</b> guide the way — the same navigation grammar reused across the whole site.</span>
+                     <span class="lang-zh" hidden><b>圆点、箭头和边缘把手</b>指引方向 —— 与全站复用同一套导航语法。</span>
+                  </li>
+               </ol>
             </div>
-        </div>
-        <div class="scroll-cue" data-target="#maps">
-            <span><span class="lang-en">cartography</span><span class="lang-zh">地图绘制</span></span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-    </section>
 
-    <!-- ============================================================
-         03 · Cartography — the /maps map craft
-         ============================================================ -->
-    <section class="panel-section" id="maps">
-        <span class="section-index">03 / 05</span>
-        <div class="section-inner">
-            <h2><span class="dot"></span><span class="lang-en">Cartography</span><span class="lang-zh">地图绘制</span></h2>
-            <p class="section-subtitle"><span class="lang-en">Hand-drawn SVG maps from <b>/maps</b> — every coastline, peak, and ferry route is a path I plotted.</span><span class="lang-zh">来自 <b>/maps</b> 的手绘 SVG 地图 —— 每一条海岸线、每一座山峰、每一条渡轮航线，都是我亲手绘制的路径。</span></p>
+            <p class="more">
+               <a class="link" href="/maps.html">
+                  <span class="lang-en">Explore the real thing</span><span class="lang-zh" hidden>去看看真实版本</span> →
+               </a>
+            </p>
+         </section>
 
-            <div class="pager-frame">
-                <button class="pager-nav prev" type="button" aria-label="Previous panel" disabled>
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <button class="pager-nav next" type="button" aria-label="Next panel">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
+         <!-- ============================================================
+              PHOTOGRAPHY — the four frames the live page carries.
+              ============================================================ -->
+         <section class="band--tight rise" id="photography">
+            <p class="eyebrow">
+               <span class="lang-en">Photography</span>
+               <span class="lang-zh" hidden>摄影</span>
+            </p>
 
-                <div class="pager">
-                    <!-- Panel 1: mini map study -->
-                    <div class="pager-panel" aria-label="Map style study">
-                        <div class="map-card">
-                            <svg viewBox="0 0 800 380" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Style study of the Pacific Northwest map from the visitings page">
-                                <rect width="800" height="380" fill="#cfe3ec"/>
-                                <!-- coastline / land -->
-                                <path class="land" d="M 210 0 L 800 0 L 800 380 L 260 380
-                                    C 250 350 268 330 258 305
-                                    C 246 278 220 268 226 240
-                                    C 232 214 258 210 252 184
-                                    C 246 158 216 150 222 122
-                                    C 228 96 250 88 244 62
-                                    C 238 38 216 26 210 0 Z"/>
-                                <!-- puget sound inlet -->
-                                <path class="water" d="M 300 60 C 290 110 305 150 295 200 C 288 235 300 265 292 300 C 310 300 322 270 318 235 C 314 200 326 160 318 120 C 312 90 316 70 320 55 Z" stroke="#8fb8cc" stroke-width="1.2"/>
-                                <!-- state border -->
-                                <path class="state-border" d="M 250 232 L 800 232"/>
-                                <!-- river -->
-                                <path class="river" d="M 800 250 C 700 245 640 265 560 255 C 480 246 420 262 355 250"/>
-                                <!-- ferry route doodle -->
-                                <path class="route-dash" d="M 308 120 C 330 130 340 150 336 175"/>
-                                <!-- peaks -->
-                                <g transform="translate(470,120)">
-                                    <path class="peak-body" d="M -22 14 L 0 -20 L 22 14 Z"/>
-                                    <path class="peak-snow" d="M -8 -8 L 0 -20 L 8 -8 L 4 -5 L 0 -9 L -4 -5 Z"/>
-                                    <text class="peak-label" x="0" y="30" text-anchor="middle">Mt. Rainier</text>
-                                </g>
-                                <g transform="translate(620,80)">
-                                    <path class="peak-body" d="M -16 10 L 0 -14 L 16 10 Z"/>
-                                    <path class="peak-snow" d="M -6 -5 L 0 -14 L 6 -5 L 3 -3 L 0 -6 L -3 -3 Z"/>
-                                    <text class="peak-label" x="0" y="24" text-anchor="middle">Glacier Pk</text>
-                                </g>
-                                <!-- city markers -->
-                                <g transform="translate(340,150)">
-                                    <circle class="marker-core" r="5.5"/>
-                                    <text class="marker-label" x="10" y="4">Seattle</text>
-                                </g>
-                                <g transform="translate(390,268)">
-                                    <circle class="marker-core" r="5"/>
-                                    <text class="marker-label" x="10" y="4">Portland</text>
-                                </g>
-                                <!-- water labels -->
-                                <text class="water-label" x="248" y="180" text-anchor="middle" transform="rotate(-78 248 180)">Puget Sound</text>
-                                <text class="water-label" x="120" y="200" text-anchor="middle">Pacific Ocean</text>
-                                <!-- compass doodle -->
-                                <g transform="translate(90,72)" class="doodle">
-                                    <circle r="20"/>
-                                    <path d="M 0 -14 L 4 4 L 0 0 L -4 4 Z" fill="#4a3f2c"/>
-                                    <text x="0" y="-26" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#4a3f2c;stroke:none;font-family:var(--mono)">N</text>
-                                </g>
-                                <!-- tiny ship doodle -->
-                                <g transform="translate(160,300)" class="doodle">
-                                    <path d="M -9 3 L 9 3 L 5.5 7 L -5.5 7 Z"/>
-                                    <path d="M -0.5 3 L -0.5 -7 L 0.5 -7 L 0.5 3 Z"/>
-                                    <path d="M 1 -7 Q 7 -3.5 1 0 Z"/>
-                                </g>
-                            </svg>
-                            <div class="map-caption">
-                                <span><span class="lang-en"><b>Style study.</b> Olive land, dashed borders, snow-capped peak glyphs, italic water labels.</span><span class="lang-zh"><b>风格研究。</b>橄榄色陆地、虚线边界、雪顶山峰图标、斜体水域标注。</span></span>
-                                <a class="map-visit-link" href="/maps">
-                                    <i class="fa-solid fa-earth-americas"></i> <span class="lang-en">Open /maps</span><span class="lang-zh">打开 /maps</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Panel 2: anatomy -->
-                    <div class="pager-panel" aria-label="Map anatomy">
-                        <div class="map-anatomy-card">
-                            <h3><i class="fa-solid fa-pen-ruler"></i><span class="lang-en">Anatomy of a panel map</span><span class="lang-zh">一幅面板地图的解剖</span></h3>
-                            <ul class="anatomy-list">
-                                <li><span class="n">1</span><span><span class="lang-en"><b>A rotatable D3 globe</b> greets you first — countries fill in as they're visited, cities pin with tooltips.</span><span class="lang-zh"><b>首先迎接你的是可旋转的 D3 地球仪</b> —— 到访过的国家逐一填色，城市图钉带有悬浮提示。</span></span></li>
-                                <li><span class="n">2</span><span><span class="lang-en"><b>Scroll down, and the world zooms in</b> — a full-viewport Pacific Northwest chart snaps into place with a fade-and-rise reveal.</span><span class="lang-zh"><b>向下滚动，世界随之放大</b> —— 一幅满屏的太平洋西北地区海图以渐显上升的方式吸附就位。</span></span></li>
-                                <li><span class="n">3</span><span><span class="lang-en"><b>Swipe right for route charts</b> — Salish Sea ferry crossings drawn like an old nautical map: anchors, whales, sea-siren medallions.</span><span class="lang-zh"><b>向右滑动查看航线图</b> —— 萨利希海的渡轮航线画成旧式航海图的模样：锚、鲸鱼、海妖徽章。</span></span></li>
-                                <li><span class="n">4</span><span><span class="lang-en"><b>Everything is inline SVG</b> — no tiles, no map API. Peaks get elevation labels; unvisited ones fade back politely.</span><span class="lang-zh"><b>一切都是内联 SVG</b> —— 没有瓦片，没有地图 API。山峰标注海拔；未到访的则礼貌地淡入背景。</span></span></li>
-                                <li><span class="n">5</span><span><span class="lang-en"><b>Dots, chevrons, and edge handles</b> guide the way — the same navigation grammar reused across the whole site.</span><span class="lang-zh"><b>圆点、箭头和边缘把手</b>指引方向 —— 与全站复用同一套导航语法。</span></span></li>
-                            </ul>
-                            <div>
-                                <a class="map-visit-link" href="/maps">
-                                    <i class="fa-solid fa-compass"></i> <span class="lang-en">Explore the real thing</span><span class="lang-zh">去看看真实版本</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pager-dots" role="tablist" aria-label="Cartography panels"></div>
+            <div class="prose">
+               <p>
+                  <span class="lang-en">Frames from the road — coastlines, workbenches, small delights.</span>
+                  <span class="lang-zh" hidden>旅途中的画面 —— 海岸线、工作台，和那些小发现。</span>
+               </p>
             </div>
-        </div>
-        <div class="scroll-cue" data-target="#photo">
-            <span><span class="lang-en">photography</span><span class="lang-zh">摄影</span></span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-    </section>
 
-    <!-- ============================================================
-         04 · Photography (placeholders)
-         ============================================================ -->
-    <section class="panel-section" id="photo">
-        <span class="section-index">04 / 05</span>
-        <div class="section-inner">
-            <h2><span class="dot"></span><span class="lang-en">Photography</span><span class="lang-zh">摄影</span></h2>
-            <p class="section-subtitle"><span class="lang-en">Frames from the road — coastlines, workbenches, small delights.</span><span class="lang-zh">旅途中的画面 —— 海岸线、工作台，和那些小发现。</span></p>
-
-            <div class="photo-grid">
-                <div class="photo-tile ph-hero g1">
-                    <img src="/assets/creativity/photos/c7e2a9f4.jpg" alt="Plein air easel painting beneath blooming cherry trees" loading="lazy">
-                    <span class="ph-num">01</span>
-                    <span class="ph-label"><span class="lang-en">plein air · cherry blossoms</span><span class="lang-zh">户外写生 · 华大樱花</span></span>
-                </div>
-                <div class="photo-tile ph-wide g5">
-                    <img src="/assets/creativity/photos/d24b9c6e.jpg" alt="A child running along a misty Oregon coast shoreline" loading="lazy">
-                    <span class="ph-num">02</span>
-                    <span class="ph-label"><span class="lang-en">oregon coast · fog</span><span class="lang-zh">俄勒冈海岸 · 雾</span></span>
-                </div>
-                <div class="photo-tile g2">
-                    <img src="/assets/creativity/photos/b3d18e07.jpg" alt="A seagull perched on a downtown rooftop ledge" loading="lazy">
-                    <span class="ph-num">03</span>
-                    <span class="ph-label"><span class="lang-en">rooftop neighbor</span><span class="lang-zh">屋顶邻居</span></span>
-                </div>
-                <div class="photo-tile g7">
-                    <img src="/assets/creativity/photos/9a4d7f23.jpg" alt="An iced blue drink with a whale illustration on a counter" loading="lazy">
-                    <span class="ph-num">04</span>
-                    <span class="ph-label"><span class="lang-en">coastal blue</span><span class="lang-zh">海岸蓝 · Seattle Spheres</span></span>
-                </div>
+            <div class="gallery">
+               <figure>
+                  <img src="/assets/creativity/photos/c7e2a9f4.jpg" alt="Plein air easel painting beneath blooming cherry trees" loading="lazy">
+                  <figcaption>
+                     <span class="lang-en">plein air · cherry blossoms</span>
+                     <span class="lang-zh" hidden>户外写生 · 华大樱花</span>
+                  </figcaption>
+               </figure>
+               <figure>
+                  <img src="/assets/creativity/photos/d24b9c6e.jpg" alt="A child running along a misty Oregon coast shoreline" loading="lazy">
+                  <figcaption>
+                     <span class="lang-en">oregon coast · fog</span>
+                     <span class="lang-zh" hidden>俄勒冈海岸 · 雾</span>
+                  </figcaption>
+               </figure>
+               <figure>
+                  <img src="/assets/creativity/photos/b3d18e07.jpg" alt="A seagull perched on a downtown rooftop ledge" loading="lazy">
+                  <figcaption>
+                     <span class="lang-en">rooftop neighbor</span>
+                     <span class="lang-zh" hidden>屋顶邻居</span>
+                  </figcaption>
+               </figure>
+               <figure>
+                  <img src="/assets/creativity/photos/9a4d7f23.jpg" alt="An iced blue drink with a whale illustration on a counter" loading="lazy">
+                  <figcaption>
+                     <span class="lang-en">coastal blue</span>
+                     <span class="lang-zh" hidden>海岸蓝 · Seattle Spheres</span>
+                  </figcaption>
+               </figure>
             </div>
-            <p class="photo-note"><i class="fa-solid fa-circle-info"></i> <span class="lang-en">Four frames, for now — more rotating in over time.</span><span class="lang-zh">先放四张 —— 更多照片会陆续轮换上架。</span></p>
-        </div>
-        <div class="scroll-cue" data-target="#reels">
-            <span><span class="lang-en">reels</span><span class="lang-zh">短片</span></span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-    </section>
+         </section>
 
-    <!-- ============================================================
-         05 · Reels (placeholders)
-         ============================================================ -->
-    <section class="panel-section" id="reels">
-        <span class="section-index" style="color:#555c66">05 / 05</span>
-        <div class="section-inner">
-            <h2><span class="dot"></span><span class="lang-en">Reels</span><span class="lang-zh">短片</span></h2>
-            <p class="section-subtitle"><span class="lang-en">Short cuts, 9:16 — sketchbooks, islands, and street corners.</span><span class="lang-zh">9:16 竖屏短片 —— 速写本、海岛与街角。</span></p>
+         <!-- ============================================================
+              REELS — 9:16 shorts. Native <video controls> replaces the
+              live page's tap-to-play script; the inline sizing keeps the
+              vertical aspect inside the shared .gallery grid, which only
+              styles <img>.
+              ============================================================ -->
+         <section class="band--tight rise" id="reels">
+            <p class="eyebrow">
+               <span class="lang-en">Reels</span>
+               <span class="lang-zh" hidden>短片</span>
+            </p>
 
-            <div class="reel-row" aria-label="Reels">
-                <div class="reel-card r1 playable" data-video>
-                    <video src="/assets/creativity/reels/5b07d9e1.mp4" poster="/assets/creativity/reels/5b07d9e1-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
-                    <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">World Cup 2026</span><span class="lang-zh">2026 世界杯</span></span><span class="rl-sub"><span class="lang-en">lumen field · 1:03</span><span class="lang-zh">流明球场 · 1:03</span></span></div>
-                </div>
-                <div class="reel-card r5 playable" data-video>
-                    <video src="/assets/creativity/reels/8d15c7a3.mp4" poster="/assets/creativity/reels/8d15c7a3-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
-                    <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Orcas Island</span><span class="lang-zh">奥卡斯岛</span></span><span class="rl-sub"><span class="lang-en">salish sea · 0:46</span><span class="lang-zh">萨利希海 · 0:46</span></span></div>
-                </div>
-                <div class="reel-card r2 playable" data-video>
-                    <video src="/assets/creativity/reels/4f8a2b96.mp4" poster="/assets/creativity/reels/4f8a2b96-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
-                    <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Maps of Nantucket</span><span class="lang-zh">楠塔基特的地图</span></span><span class="rl-sub"><span class="lang-en">island wander · 1:04</span><span class="lang-zh">海岛漫游 · 1:04</span></span></div>
-                </div>
-                <div class="reel-card r3 playable" data-video>
-                    <video src="/assets/creativity/reels/2e96b4f8.mp4" poster="/assets/creativity/reels/2e96b4f8-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
-                    <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Gelato paradiso</span><span class="lang-zh">冰淇淋天堂</span></span><span class="rl-sub"><span class="lang-en">street corner · 1:16</span><span class="lang-zh">街角 · 1:16</span></span></div>
-                </div>
-                <div class="reel-card r1 playable" data-video>
-                    <video src="/assets/creativity/reels/71c3e8d5.mp4" poster="/assets/creativity/reels/71c3e8d5-p.jpg" preload="none" playsinline loop muted controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback></video>
-                    <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                    <div class="reel-meta"><span class="rl-title"><span class="lang-en">Sketching Hokusai</span><span class="lang-zh">速写北斋</span></span><span class="rl-sub"><span class="lang-en">seattle art museum · 0:26</span><span class="lang-zh">西雅图艺术博物馆 · 0:26</span></span></div>
-                </div>
-                <a class="reel-card r4 reel-cta" href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener" aria-label="More reels on Instagram @lazypppppppp">
-                    <span class="cta-icon"><i class="fa-brands fa-instagram"></i></span>
-                    <span class="cta-kicker"><span class="lang-en">More reels</span><span class="lang-zh">更多短片</span></span>
-                    <span class="cta-handle">@lazypppppppp</span>
-                    <span class="cta-go"><span class="lang-en">Instagram</span><span class="lang-zh">Instagram</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                </a>
+            <div class="prose">
+               <p>
+                  <span class="lang-en">Short cuts, 9:16 — sketchbooks, islands, and street corners.</span>
+                  <span class="lang-zh" hidden>9:16 竖屏短片 —— 速写本、海岛与街角。</span>
+               </p>
             </div>
-            <p class="reels-note"><i class="fa-solid fa-clapperboard"></i> <span class="lang-en">Tap a card to play · muted by default · more in <a href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener">@lazypppppppp</a>.</span><span class="lang-zh">点按卡片播放 · 默认静音 · 更多短片见 <a href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener">@lazypppppppp</a>。</span></p>
 
-            <div class="creativity-footer">
-                <button class="back-to-top" type="button" id="backToTop">
-                    <i class="fa-solid fa-chevron-up"></i> <span class="lang-en">Top</span><span class="lang-zh">回顶部</span>
-                </button>
-                <span>·</span>
-                <a href="/"><span class="lang-en">home</span><span class="lang-zh">首页</span></a>
-                <span>·</span>
-                <a href="/maps"><span class="lang-en">maps</span><span class="lang-zh">地图</span></a>
-                <span>·</span>
-                <a href="/portfolio"><span class="lang-en">about</span><span class="lang-zh">关于</span></a>
+            <div class="gallery">
+               <figure>
+                  <video src="/assets/creativity/reels/5b07d9e1.mp4" poster="/assets/creativity/reels/5b07d9e1-p.jpg" controls preload="none" playsinline loop muted style="width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--paper-2)"></video>
+                  <figcaption>
+                     <span class="lang-en">World Cup 2026 — lumen field · 1:03</span>
+                     <span class="lang-zh" hidden>2026 世界杯 —— 流明球场 · 1:03</span>
+                  </figcaption>
+               </figure>
+               <figure>
+                  <video src="/assets/creativity/reels/8d15c7a3.mp4" poster="/assets/creativity/reels/8d15c7a3-p.jpg" controls preload="none" playsinline loop muted style="width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--paper-2)"></video>
+                  <figcaption>
+                     <span class="lang-en">Orcas Island — salish sea · 0:46</span>
+                     <span class="lang-zh" hidden>奥卡斯岛 —— 萨利希海 · 0:46</span>
+                  </figcaption>
+               </figure>
+               <figure>
+                  <video src="/assets/creativity/reels/4f8a2b96.mp4" poster="/assets/creativity/reels/4f8a2b96-p.jpg" controls preload="none" playsinline loop muted style="width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--paper-2)"></video>
+                  <figcaption>
+                     <span class="lang-en">Maps of Nantucket — island wander · 1:04</span>
+                     <span class="lang-zh" hidden>楠塔基特的地图 —— 海岛漫游 · 1:04</span>
+                  </figcaption>
+               </figure>
+               <figure>
+                  <video src="/assets/creativity/reels/2e96b4f8.mp4" poster="/assets/creativity/reels/2e96b4f8-p.jpg" controls preload="none" playsinline loop muted style="width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--paper-2)"></video>
+                  <figcaption>
+                     <span class="lang-en">Gelato paradiso — street corner · 1:16</span>
+                     <span class="lang-zh" hidden>冰淇淋天堂 —— 街角 · 1:16</span>
+                  </figcaption>
+               </figure>
+               <figure>
+                  <video src="/assets/creativity/reels/71c3e8d5.mp4" poster="/assets/creativity/reels/71c3e8d5-p.jpg" controls preload="none" playsinline loop muted style="width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--paper-2)"></video>
+                  <figcaption>
+                     <span class="lang-en">Sketching Hokusai — seattle art museum · 0:26</span>
+                     <span class="lang-zh" hidden>速写北斋 —— 西雅图艺术博物馆 · 0:26</span>
+                  </figcaption>
+               </figure>
             </div>
-        </div>
-    </section>
 
-    <!-- Language toggle: shares the site-wide 'preferredLanguage' key with
-         the homepage/navbar/studio pages, so the choice made anywhere
-         carries over here (and vice versa). -->
-    <script>
-        function showEl(el) {
-            var tag = el.tagName;
-            el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
-        }
-        function applyLanguage(lang) {
-            document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
-                el.style.display = 'none';
-            });
-            var enBtn = document.getElementById('btn-en');
-            var zhBtn = document.getElementById('btn-zh');
-            if (lang === 'zh') {
-                document.querySelectorAll('.lang-zh').forEach(showEl);
-                // Fallback: if an .lang-en block has no sibling .lang-zh
-                // translation, keep showing English instead of leaving it blank.
-                document.querySelectorAll('.lang-en').forEach(function(el) {
-                    var parent = el.parentElement;
-                    var hasZhSibling = parent && parent.querySelector('.lang-zh');
-                    if (!hasZhSibling) showEl(el);
-                });
-                zhBtn.classList.add('active');
-                enBtn.classList.remove('active');
-                document.documentElement.lang = 'zh';
-                document.title = '创作 — Peng Andy';
-            } else {
-                document.querySelectorAll('.lang-en').forEach(showEl);
-                enBtn.classList.add('active');
-                zhBtn.classList.remove('active');
-                document.documentElement.lang = 'en';
-                document.title = 'Creativity — Peng Andy';
-            }
-        }
-        function switchLanguage(lang) {
-            try { localStorage.setItem('preferredLanguage', lang); } catch (e) {}
-            applyLanguage(lang);
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            var preferredLang = 'en';
-            try { preferredLang = localStorage.getItem('preferredLanguage') || 'en'; } catch (e) {}
-            applyLanguage(preferredLang);
-        });
-    </script>
+            <p class="more">
+               <a class="link" href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="external nofollow noopener">
+                  <span class="lang-en">More reels on Instagram — @lazypppppppp</span>
+                  <span class="lang-zh" hidden>更多短片见 Instagram —— @lazypppppppp</span> →
+               </a>
+            </p>
+         </section>
+      </main>
 
-    <script>
-        (function () {
-            'use strict';
-
-            /* ------------------------------------------------------
-               Section reveal on scroll (visitings pattern)
-               ------------------------------------------------------ */
-            const sections = document.querySelectorAll('.panel-section');
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((e) => {
-                    if (e.isIntersecting) e.target.classList.add('revealed');
-                });
-            }, { threshold: 0.25 });
-            sections.forEach((s) => io.observe(s));
-
-            /* ------------------------------------------------------
-               Scroll cues jump to the next section
-               ------------------------------------------------------ */
-            document.querySelectorAll('.scroll-cue').forEach((cue) => {
-                cue.addEventListener('click', () => {
-                    const target = document.querySelector(cue.dataset.target);
-                    if (target) target.scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-
-            /* ------------------------------------------------------
-               Horizontal pagers: chevrons + dots (visitings pattern)
-               ------------------------------------------------------ */
-            document.querySelectorAll('.pager-frame').forEach((frame) => {
-                const pager = frame.querySelector('.pager');
-                const prev = frame.querySelector('.pager-nav.prev');
-                const next = frame.querySelector('.pager-nav.next');
-                const dotsWrap = frame.querySelector('.pager-dots');
-                const panels = pager.querySelectorAll('.pager-panel');
-                const count = panels.length;
-
-                // build dots
-                for (let i = 0; i < count; i++) {
-                    const b = document.createElement('button');
-                    b.type = 'button';
-                    b.setAttribute('role', 'tab');
-                    b.setAttribute('aria-label', 'Panel ' + (i + 1));
-                    b.addEventListener('click', () => goTo(i));
-                    dotsWrap.appendChild(b);
-                }
-                const dots = dotsWrap.querySelectorAll('button');
-
-                function index() {
-                    return Math.round(pager.scrollLeft / pager.clientWidth);
-                }
-
-                function goTo(i) {
-                    pager.scrollTo({ left: i * pager.clientWidth, behavior: 'smooth' });
-                }
-
-                function sync() {
-                    const i = index();
-                    prev.disabled = i <= 0;
-                    next.disabled = i >= count - 1;
-                    dots.forEach((d, k) => d.classList.toggle('active', k === i));
-                }
-
-                prev.addEventListener('click', () => goTo(index() - 1));
-                next.addEventListener('click', () => goTo(index() + 1));
-
-                let raf = null;
-                pager.addEventListener('scroll', () => {
-                    if (raf) return;
-                    raf = requestAnimationFrame(() => { raf = null; sync(); });
-                }, { passive: true });
-
-                window.addEventListener('resize', sync);
-                sync();
-            });
-
-            /* ------------------------------------------------------
-               Hero panel 2: settle on the film portal → enter /showcase
-               ------------------------------------------------------ */
-            const heroPager = document.querySelector('#hero .pager');
-            if (heroPager) {
-                const portal = heroPager.querySelector('.film-portal');
-                let armTimer = null;
-                heroPager.addEventListener('scroll', () => {
-                    clearTimeout(armTimer);
-                    const onPortal = heroPager.scrollLeft > heroPager.clientWidth * 0.6;
-                    portal.classList.toggle('arming', onPortal);
-                    if (onPortal) {
-                        armTimer = setTimeout(() => { window.location.href = '/showcase/'; }, 900);
-                    }
-                }, { passive: true });
-            }
-
-            /* ------------------------------------------------------
-               Reels: tap to play/pause, one at a time
-               ------------------------------------------------------ */
-            const reelCards = document.querySelectorAll('.reel-card[data-video]');
-            function pauseAll(except) {
-                reelCards.forEach((c) => {
-                    const v = c.querySelector('video');
-                    if (v !== except && !v.paused) { v.pause(); c.classList.remove('playing'); }
-                });
-            }
-            reelCards.forEach((card) => {
-                const v = card.querySelector('video');
-                card.addEventListener('click', () => {
-                    if (v.paused) {
-                        pauseAll(v);
-                        v.play();
-                        card.classList.add('playing');
-                    } else {
-                        v.pause();
-                        card.classList.remove('playing');
-                    }
-                });
-            });
-            // pause reels when the section scrolls out of view
-            const reelsSection = document.getElementById('reels');
-            if (reelsSection) {
-                new IntersectionObserver((entries) => {
-                    entries.forEach((e) => { if (!e.isIntersecting) pauseAll(null); });
-                }, { threshold: 0.1 }).observe(reelsSection);
-            }
-
-            /* ------------------------------------------------------
-               Media protection (best-effort): no context menu / drag
-               on photos and reels
-               ------------------------------------------------------ */
-            document.addEventListener('contextmenu', (e) => {
-                if (e.target.closest('.photo-tile, .reel-card')) e.preventDefault();
-            });
-            document.addEventListener('dragstart', (e) => {
-                if (e.target.closest('.photo-tile, .reel-card')) e.preventDefault();
-            });
-
-            /* ------------------------------------------------------
-               Back to top
-               ------------------------------------------------------ */
-            const topBtn = document.getElementById('backToTop');
-            if (topBtn) {
-                topBtn.addEventListener('click', () => {
-                    document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
-                });
-            }
-        })();
-    </script>
-</body>
+      <footer class="foot" data-shell-footer></footer>
+   </body>
 </html>

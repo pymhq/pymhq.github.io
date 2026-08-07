@@ -1,626 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-HTV795ZMCP');
-      </script>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>Peng Andy, a builder.</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Peng, Andy — a builder.</title>
       <meta name="author" content="Peng, Andy">
-      <meta name="description" content="Peng Andy, a builder. ">
-      <meta name="keywords" content="Peng, Andy">
-      <!-- Open Graph / Facebook -->
+      <meta name="description" content="Builder, researcher, technologist, advisor. Large-scale machine learning systems, open source, and advisory work. Seattle, Washington.">
+      <link rel="canonical" href="https://pengandy.com/">
+
       <meta property="og:type" content="website">
-      <meta property="og:url" content="https://pengandy.com">
-      <meta property="og:title" content="Peng Andy, a builder.">
-      <meta property="og:description" content="Peng Andy, a builder. ">
-      <meta property="og:image" content="https://pengandy.com/assets/img/Memoji.png">
-      <!-- Twitter -->
-      <meta name="twitter:card" content="summary">
-      <meta name="twitter:url" content="https://pengandy.com">
-      <meta name="twitter:title" content="Peng Andy, a builder.">
-      <meta name="twitter:description" content="Peng Andy, a builder. ">
-      <meta name="twitter:image" content="https://pengandy.com/assets/img/Memoji.png">
+      <meta property="og:url" content="https://pengandy.com/">
+      <meta property="og:title" content="Peng, Andy — a builder.">
+      <meta property="og:description" content="Builder, researcher, technologist, advisor.">
+      <meta property="og:image" content="https://pengandy.com/assets/brand/icon-512.png">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <meta name="twitter:title" content="Peng, Andy — a builder.">
+      <meta name="twitter:description" content="Builder, researcher, technologist, advisor.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/brand/icon-512.png">
+
       <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
       <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
       <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
       <link rel="manifest" href="/site.webmanifest">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
-      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
-      <link rel="canonical" href="https://pengandy.com">
-      <link rel="stylesheet" href="/assets/css/main.css?0286170e23c3c109f66311d4c1ef1b3b">
-      <link rel="stylesheet" href="/assets/css/custom-index.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
-      <link rel="stylesheet" href="css/bootstrap-quotes.min.css" />
-      <script src="/assets/js/theme.js"></script>
-      <script src="/assets/js/dark_mode.js"></script>
-      <style>
-         /* --- EN / 中文 language toggle (matches blog post style) --- */
-         .lang-toggle { display: inline-flex; }
-         .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
-           font:600 0.82em 'Roboto',sans-serif; padding:5px 16px; cursor:pointer; line-height:1.4; }
-         .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
-         .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
-         .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
 
-         /* ============================================================
-            Endorsements full panel (second section, reached by swiping
-            right). Same pattern as the visitings page's PNW panel, but
-            on the horizontal axis: native scroll + snap, one direction.
-            ============================================================ */
-         html, body {
-            height: 100%;
-            overflow: hidden; /* the panel container owns scrolling */
-         }
+      <!-- Source Serif 4 is the brand display face fixed in OG-CARD-SOP.md;
+           reusing it extends the established social-card language here. -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
 
-         .hpanels {
-            display: flex;
-            width: 100vw;
-            height: 100vh; /* no fixed-top-nav on the homepage (removed 2026-07-24) */
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            overscroll-behavior-x: contain; /* no browser back/forward swipe */
-            scrollbar-width: none;
-         }
-         .hpanels::-webkit-scrollbar { display: none; }
+      <link rel="stylesheet" href="/assets/css/shell.css">
+      <script src="/assets/js/shell.js" defer></script>
 
-         .hpanel {
-            flex: 0 0 100vw;
-            height: 100%;
-            overflow-y: auto;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-         }
-
-         /* Second panel reveal, like visitings' #pnw-section */
-         #panel-endorse .endorse-panel-inner {
-            max-width: 790px;
-            margin: 0 auto;
-            padding: 80px 20px 90px; /* was 24px top + 56px body padding before the fixed-top-nav class was dropped */
-            opacity: 0;
-            transform: translateX(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-         }
-         #panel-endorse.visible .endorse-panel-inner {
-            opacity: 1;
-            transform: none;
-         }
-
-         .endorse-panel-hero {
-            text-align: center;
-            padding: 12px 0 8px;
-         }
-         .endorse-panel-hero .hero-avatars {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 14px;
-         }
-         .endorse-panel-hero .hero-avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--global-bg-color);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-            margin-left: -14px;
-         }
-         .endorse-panel-hero .hero-avatar:first-child { margin-left: 0; }
-         .endorse-panel-hero .hero-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            pointer-events: none;
-         }
-         .endorse-panel-hero h2 {
-            font-size: 22px !important;
-            font-weight: 700 !important;
-            margin: 0 0 4px;
-         }
-         .endorse-panel-hero .hero-rule {
-            width: 44px;
-            border: none;
-            border-top: 2px solid var(--global-theme-color);
-            margin: 14px auto 6px;
-         }
-
-         /* Semicircular edge handles: a soft half-disc "drawer handle" resting
-            on the screen edge, chevron centered in the visible half, gentle
-            inward nudge. Replaces the bare chevron cues. */
-         .h-cue {
-            position: fixed;
-            top: 50%;
-            width: 56px;
-            height: 56px;
-            margin-top: -28px;
-            border-radius: 50%;
-            background: var(--global-card-bg-color);
-            border: 1px solid var(--global-divider-color);
-            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9aa3ad;
-            font-size: 1.05rem;
-            z-index: 1500;
-            cursor: pointer;
-            -webkit-user-select: none;
-            user-select: none;
-            transition: box-shadow 0.25s ease, right 0.25s ease, left 0.25s ease, color 0.25s ease;
-         }
-         .h-cue:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            color: var(--global-theme-color);
-         }
-         #cue-right {
-            right: -28px;
-            padding-right: 26px; /* center the chevron in the visible half */
-         }
-         #cue-right:hover { right: -20px; }
-         #cue-right i { animation: cueNudgeLeft 2.4s ease-in-out infinite; }
-         #cue-left {
-            left: -28px;
-            padding-left: 26px;
-            display: none;
-         }
-         #cue-left:hover { left: -20px; }
-         #cue-left i { animation: cueNudgeRight 2.4s ease-in-out infinite; }
-         @keyframes cueNudgeLeft {
-            0%, 100% { transform: translateX(0); opacity: 0.65; }
-            50%      { transform: translateX(-4px); opacity: 1; }
-         }
-         @keyframes cueNudgeRight {
-            0%, 100% { transform: translateX(0); opacity: 0.65; }
-            50%      { transform: translateX(4px); opacity: 1; }
-         }
-         @media (prefers-reduced-motion: reduce) {
-            #cue-right i, #cue-left i { animation: none; }
-         }
-         @media (max-width: 480px) {
-            .h-cue { width: 48px; height: 48px; margin-top: -24px; font-size: 0.95rem; }
-            #cue-right { right: -24px; padding-right: 22px; }
-            #cue-left { left: -24px; padding-left: 22px; }
-         }
-      </style>
-   <style>
-      /* ============ Hero v3: site-native profile header (2026-07-24) ============
-         No art-piece composition — the homepage breathes like every other
-         page. Medium centered container; horizontal identity row (avatar
-         left, brand-style sans name right); 4-column sitemap; one mono
-         metadata line; sole blue accent = CTA. Floating copyright always. */
-      .hero2 {
-         height: 100%;
-         display: flex;
-         flex-direction: column;
-         padding: 44px 0 90px;
-         overflow-y: auto;
-      }
-      .hero2-main {
-         margin: auto;
-         width: 100%;
-         max-width: 790px;
-         padding: 0 30px;
-         text-align: left;
-      }
-      .hero2-head {
-         display: flex;
-         align-items: center;
-         gap: 30px;
-         margin-bottom: 80px;
-      }
-      .hero2-avatar {
-         width: 104px; height: 104px;
-         border-radius: 50%;
-         box-shadow: 0 6px 20px rgba(22, 24, 29, 0.12);
-         flex: 0 0 auto;
-      }
-      .hero2-id { min-width: 0; }
-      .hero2-name,
-      .hero2-name span {
-         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
-         font-size: clamp(2.1rem, 4.5vw, 2.9rem) !important;
-         line-height: 1.15 !important;
-      }
-      .hero2-name {
-         font-weight: 300 !important;
-         letter-spacing: 0.2px;
-         color: var(--global-text-color, #16181d);
-         margin: 0 0 10px;
-      }
-      .hero2-name .font-weight-bold { font-weight: 700 !important; }
-      /* ZH: single-character name with a quiet raised pinyin gloss —
-         same treatment as the portfolio page title. Higher specificity
-         than the .hero2-name span reset above. */
-      .hero2-name .hero2-pinyin {
-         font-size: 0.38em !important;
-         font-weight: 300 !important;
-         color: var(--global-text-color-light, #828282);
-         letter-spacing: 0.5px;
-         margin-left: 10px;
-         vertical-align: 0.6em;
-      }
-      .hero2-tagline,
-      .hero2-tagline span {
-         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
-         font-size: 1.1rem !important;
-      }
-      .hero2-tagline {
-         color: var(--global-text-color-light, #6d7683);
-         margin: 0;
-         line-height: 1.6;
-      }
-      .hero2-nav {
-         display: grid;
-         grid-template-columns: repeat(4, auto);
-         justify-content: start;
-         gap: 8px 64px;
-         margin-bottom: 64px;
-      }
-      .hero2-group h3,
-      .hero2-group a { white-space: nowrap; }
-      .hero2-group h3,
-      .hero2-group h3 span {
-         font-family: "JetBrains Mono", "SF Mono", Consolas, monospace !important;
-         font-size: 11px !important;
-      }
-      .hero2-group h3 {
-         font-weight: 600 !important;
-         letter-spacing: 1.8px;
-         text-transform: uppercase;
-         color: var(--global-text-color-light, #828282);
-         margin: 0 0 14px;
-         padding-bottom: 8px;
-      }
-      .hero2-group a,
-      .hero2-group a span {
-         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
-         font-size: 1.05rem !important;
-      }
-      .hero2-group a {
-         display: block;
-         line-height: 1.5;
-         padding: 5px 0;
-         color: var(--global-text-color, #16181d) !important;
-         text-decoration: none !important;
-         transition: color 0.18s ease;
-      }
-      .hero2-group a:hover,
-      .hero2-group a:hover span { color: var(--global-theme-color, #0076df) !important; }
-      .hero2-exp {
-         margin: 0 0 54px;
-         padding-top: 28px;
-      }
-      .hero2-tags {
-         display: flex;
-         flex-wrap: wrap;
-         gap: 9px;
-      }
-      .hero2-tags span {
-         font-family: "JetBrains Mono", "SF Mono", Consolas, monospace !important;
-         font-size: 11px !important;
-         line-height: 1 !important;
-         white-space: nowrap;
-         padding: 6px 12px;
-         border: 1px solid rgba(22, 24, 29, 0.14);
-         border-radius: 999px;
-         color: var(--global-text-color-light, #828282);
-         background: transparent;
-         transition: color 0.18s ease, border-color 0.18s ease;
-         cursor: default;
-      }
-      .hero2-tags span:hover {
-         color: var(--global-theme-color, #0076df);
-         border-color: var(--global-theme-color, #0076df);
-      }
-      .hero2-actions {
-         display: flex;
-         align-items: center;
-         gap: 24px;
-         flex-wrap: wrap;
-      }
-      .hero2-cta,
-      .hero2-cta span {
-         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
-         font-size: 1.02rem !important;
-         color: var(--global-theme-color, #0076df) !important;
-      }
-      .hero2-cta {
-         font-weight: 600;
-         text-decoration: none !important;
-         transition: color 0.18s ease;
-      }
-      .hero2-cta:hover,
-      .hero2-cta:hover span { color: var(--global-hover-color, #00369f) !important; }
-      .hero2-social { display: flex; gap: 15px; align-items: center; }
-      .hero2-social a {
-         font-size: 15px;
-         color: var(--global-text-color-light, #828282);
-         transition: color 0.18s ease;
-      }
-      .hero2-social a:hover { color: var(--global-theme-color, #0076df); }
-      .hero2-sep { width: 1px; height: 16px; background: rgba(22, 24, 29, 0.15); }
-      /* language toggle: classic blue/white (original site styles apply) */
-      /* align the floating copyright with the hero content column, the
-         same way other pages align it with their content container */
-      footer.fixed-bottom .container {
-         max-width: 790px;
-         margin: 0 auto;
-         padding: 0 30px;
-      }
-      footer.fixed-bottom,
-      footer.fixed-bottom div {
-         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", Arial, sans-serif !important;
-         font-size: 1.1rem !important;
-         color: var(--global-text-color, #16181d) !important;
-      }
-      @media (max-width: 760px) {
-         .hero2-nav { grid-template-columns: 1fr 1fr; gap: 26px 30px; }
-      }
-      @media (max-width: 520px) {
-         /* compact rhythm: the actions row must end above the floating ©
-            zone (~y890) in the initial viewport */
-         .hero2 { padding-top: 30px; padding-bottom: 120px; }
-         .hero2-main { padding: 0 22px; }
-         .hero2-head { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 26px; }
-         .hero2-avatar { width: 68px; height: 68px; }
-         .hero2-nav { grid-template-columns: 1fr 1fr; gap: 20px 20px; margin-bottom: 30px; }
-         .hero2-group a { padding: 3px 0; }
-         .hero2-exp { padding-top: 14px; margin-bottom: 24px; line-height: 1.9; }
-         .hero2-tagline { margin-bottom: 0; }
-      }
-      </style>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-HTV795ZMCP');
+      </script>
    </head>
 
-   <body>
-      <div class="hpanels" id="hpanels">
-         <section class="hpanel" id="panel-home">
-      <div class="hero2">
-      <div class="hero2-main">
-         <div class="hero2-head">
-            <img class="hero2-avatar" src="assets/img/Memoji.png" alt="Peng, Andy">
-            <div class="hero2-id">
-               <h1 class="hero2-name"><span class="lang-en">Peng, <span class="font-weight-bold">Andy</span></span><span class="lang-zh" style="display: none;"><span class="font-weight-bold">彭</span><span class="hero2-pinyin">(Péng)</span></span></h1>
-               <p class="hero2-tagline">
-                  <span class="lang-en">Builder, researcher, technologist, advisor.</span>
-                  <span class="lang-zh" style="display: none;">构建者、研究者、技术专家、顾问。</span>
-               </p>
-            </div>
+   <body data-nav-match="__home__">
+      <a class="skip" href="#main">Skip to content</a>
+      <nav class="nav" aria-label="Primary" data-shell-nav></nav>
+
+      <!-- ============================================================
+           HERO
+           The tagline is four durable words. Everything that could expire
+           — a job title, an employer, a current specialism, a year count
+           — is deliberately kept out of the identity line: a personal
+           site should outlive any one job.
+           ============================================================ -->
+      <header class="hero" id="main">
+         <div>
+            <h1 class="hero-name">
+               <span class="lang-en">Peng, <b>Andy</b></span>
+               <span class="lang-zh" hidden><b>彭</b><span class="hero-pinyin">Peng, Andy</span></span>
+            </h1>
+
+            <p class="hero-lede">
+               <span class="lang-en">Builder, researcher, technologist, advisor.</span>
+               <span class="lang-zh" hidden>构建者、研究者、技术专家、顾问。</span>
+            </p>
+
+            <p class="hero-meta">
+               <span class="lang-en">Seattle, Washington</span>
+               <span class="lang-zh" hidden>美国华盛顿州西雅图</span>
+               <span class="dot" aria-hidden="true"></span>
+               <span class="lang-en">Open for research collaboration &amp; advisory</span>
+               <span class="lang-zh" hidden>开放研究合作与顾问合作</span>
+            </p>
          </div>
-         <nav class="hero2-nav" aria-label="Site sections">
-            <div class="hero2-group">
-               <h3><span class="lang-en">About</span><span class="lang-zh" style="display: none;">关于</span></h3>
-               <a href="/portfolio"><span class="lang-en">Bio</span><span class="lang-zh" style="display: none;">简介</span></a>
-               <a href="/endorsements"><span class="lang-en">Endorsements</span><span class="lang-zh" style="display: none;">行业背书</span></a>
-               <a href="/news"><span class="lang-en">News</span><span class="lang-zh" style="display: none;">新闻</span></a>
-               <a href="/resume"><span class="lang-en">Resume</span><span class="lang-zh" style="display: none;">简历</span></a>
-            </div>
-            <div class="hero2-group">
-               <h3><span class="lang-en">Books &amp; Writing</span><span class="lang-zh" style="display: none;">书籍与写作</span></h3>
-               <a href="/publications"><span class="lang-en">Books &amp; Publications</span><span class="lang-zh" style="display: none;">书籍 & 发表</span></a>
-               <a href="/blog/"><span class="lang-en">Blog</span><span class="lang-zh" style="display: none;">博客</span></a>
-            </div>
-            <div class="hero2-group">
-               <h3><span class="lang-en">Science &amp; Tech</span><span class="lang-zh" style="display: none;">科技</span></h3>
-               <a href="/projects"><span class="lang-en">Projects</span><span class="lang-zh" style="display: none;">项目</span></a>
-               <a href="/service"><span class="lang-en">Services</span><span class="lang-zh" style="display: none;">服务</span></a>
-            </div>
-            <div class="hero2-group">
-               <h3><span class="lang-en">Creativity</span><span class="lang-zh" style="display: none;">创意</span></h3>
-               <a href="/creativity"><span class="lang-en">Design &amp; Photography</span><span class="lang-zh" style="display: none;">设计与摄影</span></a>
-               <a href="/maps"><span class="lang-en">Maps</span><span class="lang-zh" style="display: none;">地图</span></a>
-            </div>
-         </nav>
-         <div class="hero2-exp">
-            <div class="hero2-tags lang-en">
-               <span>ENFJ</span>
-               <span>PNW</span>
-               <span>Large-Scale Distributed System</span>
-               <span>Technical Leadership</span>
-               <span>Engineering</span>
-               <span>The State of the Art (SOTA)</span>
-               <span>Builder</span>
-               <span>Mentoring and Counseling</span>
-               <span>Intrapreneur</span>
-               <span>Product &amp; Research</span>
-               <span>Zero to One</span>
-               <span>Be Curious</span>
-               <span>Machine Learning</span>
-               <span>Serverless</span>
-               <span>Open Source</span>
-               <span>LLM</span>
-               <span>Technical Advisor</span>
-               <span>Virtualization</span>
-               <span>Model Evaluation and Benchmark</span>
-               <span>Organizational Behavior</span>
-            </div>
-            <div class="hero2-tags lang-zh" style="display: none;">
-               <span>ENFJ</span>
-               <span>PNW</span>
-               <span>大规模分布式系统</span>
-               <span>技术领导力</span>
-               <span>工程</span>
-               <span>业界前沿 (SOTA)</span>
-               <span>构建者</span>
-               <span>辅导与指导</span>
-               <span>内部创业者</span>
-               <span>产品与研究</span>
-               <span>从零到一</span>
-               <span>保持好奇</span>
-               <span>机器学习</span>
-               <span>无服务计算</span>
-               <span>开源</span>
-               <span>LLM</span>
-               <span>技术顾问</span>
-               <span>虚拟化</span>
-               <span>模型评估与基准</span>
-               <span>组织行为学</span>
-            </div>
-         </div>
-         <div class="hero2-actions">
-            <a class="hero2-cta" href="https://pengandy.com/studio" target="_blank" rel="noopener"><span class="lang-en">Get in touch →</span><span class="lang-zh" style="display: none;">联系 & 合作 →</span></a>
-            <div class="hero2-social">
-               <a href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D" title="Email"><i class="fa fa-envelope"></i></a>
-               <a href="https://www.linkedin.com/in/pengandy-us" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-               <a href="https://twitter.com/pymhq" title="Twitter"><i class="fab fa-twitter"></i></a>
-               <a href="https://substack.com/@pengandy" title="Substack" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-substack fa-sm"></i></a>
-               <a href="/studio" title="Book"><i class="fa fa-calendar"></i></a>
-            </div>
-            <span class="hero2-sep"></span>
-            <div class="lang-toggle" role="group" aria-label="Language selector">
-               <button type="button" class="active" id="btn-en" onclick="switchLanguage('en')">EN</button>
-               <button type="button" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   </section>
-         <section class="hpanel" id="panel-endorse">
-            <div class="endorse-panel-inner">
-               <div class="endorse-panel-hero">
-                  <div class="hero-avatars">
-                     <div class="hero-avatar"><img src="/assets/img/endorsements/leonard-boussioux.jpg" style="object-position: 50% 20%;" alt="Léonard Boussioux"></div>
-                     <div class="hero-avatar"><img src="/assets/img/endorsements/jennifer-madriaga.jpg" alt="Jennifer Madriaga"></div>
-                     <div class="hero-avatar"><img src="/assets/img/endorsements/yi-zhang.jpg" style="object-position: 50% 30%;" alt="Yi Zhang"></div>
+
+         <figure class="portrait">
+            <img src="/assets/img/headshot icml25.png" alt="Peng, Andy" width="1574" height="1574" fetchpriority="high">
+         </figure>
+      </header>
+
+      <!-- ============================================================
+           PRACTICE — three blocks, ranked.
+           Engineering and research are one block, not two: research
+           engineering is a single job, and splitting it invented a
+           distinction that does not exist.
+           ============================================================ -->
+      <section class="band band--tint">
+         <div class="shell">
+            <p class="eyebrow rise">
+               <span class="lang-en">Practice</span>
+               <span class="lang-zh" hidden>在做的事</span>
+            </p>
+
+            <ul class="practice">
+               <li class="rise">
+                  <h2>
+                     <span class="lang-en">Building &amp; research</span>
+                     <span class="lang-zh" hidden>构建与研究</span>
+                  </h2>
+                  <div>
+                     <p>
+                        <span class="lang-en">Decade-long veteran. Led 0-to-1 innovation and 10× scaling across multiple Amazon product lines — machine learning research engineering (generative AI: SageMaker AI, Bedrock; conversational AI: Alexa AI) and classic software engineering (App Runner, Fargate, S3).</span>
+                        <span class="lang-zh" hidden>十年老兵。在 Amazon 多条产品线上主导 0 到 1 的创新与十倍量级扩展 —— 机器学习研究工程（生成式 AI：SageMaker AI、Bedrock；对话式 AI：Alexa AI）与经典软件工程（App Runner、Fargate、S3）。</span>
+                     </p>
+                     <p>
+                        <span class="lang-en">The research side of the same work: Workshop Co-Chair at <a href="https://neurips.cc/Conferences/2025/Committees" target="_blank" rel="noopener">NeurIPS 2025</a>, multi-year programme committee and reviewer for <a href="https://icml.cc/Conferences/2025/ProgramCommittee" target="_blank" rel="noopener">ICML</a>, <a href="https://kdd-eval-workshop.github.io/genai-evaluation-kdd2025/" target="_blank" rel="noopener">KDD</a> and ICLR, and co-author of <a href="https://www.amazon.com/stores/author/B0G1JDQFSK" target="_blank" rel="noopener">DeepSeek in Practice</a> (Packt, 2025).</span>
+                        <span class="lang-zh" hidden>同一份工作的研究一侧：<a href="https://neurips.cc/Conferences/2025/Committees" target="_blank" rel="noopener">NeurIPS 2025</a> Workshop Co-Chair，多年担任 <a href="https://icml.cc/Conferences/2025/ProgramCommittee" target="_blank" rel="noopener">ICML</a>、<a href="https://kdd-eval-workshop.github.io/genai-evaluation-kdd2025/" target="_blank" rel="noopener">KDD</a>、ICLR 程序委员会与审稿人，合著 <a href="https://www.amazon.com/stores/author/B0G1JDQFSK" target="_blank" rel="noopener">DeepSeek in Practice</a>（Packt，2025）。</span>
+                     </p>
                   </div>
-                  <h2><span class="lang-en">Endorsements</span><span class="lang-zh" style="display: none;">行业背书</span></h2>
-                  <hr class="hero-rule">
-               </div>
-               <div id="panel-endorse-content"></div>
-            </div>
-         </section>
-      </div>
-      <footer class="fixed-bottom">
-         <div class="container mt-0">
-            <div>© Copyright 2026 Andy Peng.</div>
+               </li>
+
+               <li class="rise">
+                  <h2>
+                     <span class="lang-en">Open source</span>
+                     <span class="lang-zh" hidden>开源</span>
+                  </h2>
+                  <div>
+                     <p>
+                        <span class="lang-en"><a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank" rel="noopener">CNCF Ambassador</a>, under the Linux Foundation, and community lead of Cloud Native Seattle. Programme committee across <a href="https://events.linuxfoundation.org/archive/2025/open-source-summit-north-america/program/program-committee/" target="_blank" rel="noopener">Open Source Summit</a>, <a href="https://kccncna2022.sched.com/event/182KU/building-multi-tenant-routing-and-scaling-with-envoy-yiming-peng-amazon-web-services-inc" target="_blank" rel="noopener">KubeCon + CloudNativeCon</a> and <a href="https://pytorch.org/" target="_blank" rel="noopener">PyTorch Conference</a> — multiple years, multiple regions. Code at <a href="https://github.com/pymhq" target="_blank" rel="noopener">github.com/pymhq</a>.</span>
+                        <span class="lang-zh" hidden>Linux 基金会旗下 <a href="https://www.cncf.io/people/ambassadors/?p=andy-peng" target="_blank" rel="noopener">CNCF Ambassador</a>，Cloud Native Seattle 社区负责人。多年、多地担任 <a href="https://events.linuxfoundation.org/archive/2025/open-source-summit-north-america/program/program-committee/" target="_blank" rel="noopener">Open Source Summit</a>、<a href="https://kccncna2022.sched.com/event/182KU/building-multi-tenant-routing-and-scaling-with-envoy-yiming-peng-amazon-web-services-inc" target="_blank" rel="noopener">KubeCon + CloudNativeCon</a>、<a href="https://pytorch.org/" target="_blank" rel="noopener">PyTorch Conference</a> 程序委员会。代码在 <a href="https://github.com/pymhq" target="_blank" rel="noopener">github.com/pymhq</a>。</span>
+                     </p>
+                  </div>
+               </li>
+
+               <li class="rise">
+                  <h2>
+                     <span class="lang-en">Investor and advisor</span>
+                     <span class="lang-zh" hidden>投资人与顾问</span>
+                  </h2>
+                  <div>
+                     <p>
+                        <span class="lang-en"><a href="https://www.fusionfund.com/" target="_blank" rel="noopener">Fusion Fund</a> Fellow (2026). <a href="https://www.ai2incubator.com/" target="_blank" rel="noopener">AI2 Incubator</a> Resident Expert, advising early-stage AI startups.</span>
+                        <span class="lang-zh" hidden><a href="https://www.fusionfund.com/" target="_blank" rel="noopener">Fusion Fund</a> Fellow（2026）。<a href="https://www.ai2incubator.com/" target="_blank" rel="noopener">AI2 Incubator</a> Resident Expert，为早期 AI 创业公司提供顾问支持。</span>
+                     </p>
+                  </div>
+               </li>
+
+               <li class="rise">
+                  <h2>
+                     <span class="lang-en">University lecturer</span>
+                     <span class="lang-zh" hidden>高校讲师</span>
+                  </h2>
+                  <div>
+                     <p>
+                        <span class="lang-en">Guest lecturer for Generative AI / Cloud Computing courses (MSIS 547, MSIS 549) at the <a href="https://foster.uw.edu/academics/degree-programs/master-of-science-in-information-systems/mentors/" target="_blank" rel="noopener">University of Washington's Foster School of Business</a>. Mentor for the <a href="https://aws.amazon.com/machine-learning/scholarship/" target="_blank" rel="noopener">AWS AI/ML Scholarship Program</a> and UW MSIS students.</span>
+                        <span class="lang-zh" hidden>在<a href="https://foster.uw.edu/academics/degree-programs/master-of-science-in-information-systems/mentors/" target="_blank" rel="noopener">华盛顿大学 Foster 商学院</a>担任生成式 AI / 云计算课程（MSIS 547、MSIS 549）客座讲师。<a href="https://aws.amazon.com/machine-learning/scholarship/" target="_blank" rel="noopener">AWS AI/ML 奖学金计划</a>与 UW MSIS 学生的导师。</span>
+                     </p>
+                  </div>
+               </li>
+            </ul>
          </div>
-      </footer>
-      <!-- Endorsements panel: native horizontal scroll-snap (visitings-page
-           pattern on the x axis). Cues scroll between the two panels; the
-           browser's own physics handles swipes — no custom gesture code. -->
-      <div class="h-cue" id="cue-right" role="button" tabindex="0" aria-label="Endorsements">
-         <i class="fa-solid fa-chevron-right"></i>
-      </div>
-      <div class="h-cue" id="cue-left" role="button" tabindex="0" aria-label="Back to home">
-         <i class="fa-solid fa-chevron-left"></i>
-      </div>
-      <script>
+      </section>
 
-         // Transient GitHub Pages 5xx errors used to leave this section
-         // blank until a manual refresh; check status and retry instead.
-         function fetchRetry(url, tries) {
-            return fetch(url).then(function(r) {
-               if (!r.ok) throw new Error(url + ': ' + r.status);
-               return r.text();
-            }).catch(function(e) {
-               if (tries <= 1) throw e;
-               // fast first retry (300ms), longer second (600ms)
-               return new Promise(function(res) { setTimeout(res, (4 - tries) * 300); })
-                  .then(function() { return fetchRetry(url, tries - 1); });
-            });
-         }
-         (function() {
-            var panels = document.getElementById('hpanels');
-            var cueRight = document.getElementById('cue-right');
-            var cueLeft = document.getElementById('cue-left');
-            var endorsePanel = document.getElementById('panel-endorse');
+      <!-- ============================================================ SELECTED WORK -->
+      <section class="band">
+         <div class="shell">
+            <p class="eyebrow rise">
+               <span class="lang-en">Selected work</span>
+               <span class="lang-zh" hidden>部分作品</span>
+            </p>
 
-            function goRight() { panels.scrollTo({ left: panels.clientWidth, behavior: 'smooth' }); }
-            function goLeft()  { panels.scrollTo({ left: 0, behavior: 'smooth' }); }
-            function onKey(fn) {
-               return function(e) {
-                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); }
-               };
-            }
-            cueRight.addEventListener('click', goRight);
-            cueRight.addEventListener('keydown', onKey(goRight));
-            cueLeft.addEventListener('click', goLeft);
-            cueLeft.addEventListener('keydown', onKey(goLeft));
+            <ul class="entries">
+               <li class="rise">
+                  <a href="/publications.html">
+                     <span class="when">2025</span>
+                     <span class="what">DeepSeek in Practice
+                        <span class="note">
+                           <span class="lang-en">Co-authored book on running frontier open-weight models in production. Packt.</span>
+                           <span class="lang-zh" hidden>合著图书：在生产环境中运行前沿开放权重模型。Packt 出版。</span>
+                        </span>
+                     </span>
+                     <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+               </li>
+               <li class="rise">
+                  <a href="/service.html">
+                     <span class="when">2025</span>
+                     <span class="what">NeurIPS 2025
+                        <span class="note">
+                           <span class="lang-en">Workshop Co-Chair. Programme committee across the Position Paper and Evaluations &amp; Datasets tracks.</span>
+                           <span class="lang-zh" hidden>Workshop Co-Chair；Position Paper 与 Evaluations &amp; Datasets track 程序委员会。</span>
+                        </span>
+                     </span>
+                     <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+               </li>
+               <li class="rise">
+                  <a href="/work.html">
+                     <span class="when">2016—</span>
+                     <span class="what">Machine Learning Research and Classic Software Engineering
+                        <span class="note">
+                           <span class="lang-en">A decade of launches: generative AI and conversational AI services, container and serverless compute, object storage.</span>
+                           <span class="lang-zh" hidden>十年的发布记录：生成式 AI 与对话式 AI 服务、容器与无服务器计算、对象存储。</span>
+                        </span>
+                     </span>
+                     <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+               </li>
+               <li class="rise">
+                  <a href="/work.html">
+                     <span class="when"></span>
+                     <span class="what" style="color:var(--ink-3)">
+                        <span class="lang-en">All work, year by year</span>
+                        <span class="lang-zh" hidden>逐年查看全部作品</span>
+                     </span>
+                     <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </section>
 
-            // Swap cues + trigger the reveal transition based on position.
-            function refresh() {
-               var onSecond = panels.scrollLeft > panels.clientWidth / 2;
-               cueRight.style.display = onSecond ? 'none' : 'flex';
-               cueLeft.style.display = onSecond ? 'flex' : 'none';
-               if (panels.scrollLeft > panels.clientWidth / 4) {
-                  endorsePanel.classList.add('visible');
-               }
-            }
-            panels.addEventListener('scroll', refresh, { passive: true });
-            refresh();
+      <!-- ============================================================ WRITING -->
+      <section class="band band--tint">
+         <div class="shell">
+            <p class="eyebrow rise">
+               <span class="lang-en">Recent writing</span>
+               <span class="lang-zh" hidden>近期写作</span>
+            </p>
 
-            // Load the shared recommendations component into the panel
-            // (same single source of truth as the /endorsements page).
-            fetchRetry('/components/recommendations-content.html', 3)
-               .then(function(html) {
-                  var slot = document.getElementById('panel-endorse-content');
-                  if (slot) {
-                     slot.innerHTML = html;
-                     // Content arrives after the initial language pass, so
-                     // re-apply the saved preference to the injected markup.
-                     if (typeof applyLanguage === 'function') {
-                        applyLanguage(localStorage.getItem('preferredLanguage') || 'en');
-                     }
-                  }
-               });
-         })();
-      </script>
-      <!-- Language Toggle Script -->
-      <script>
-         function showEl(el) {
-            var tag = el.tagName;
-            el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
-         }
-         function applyLanguage(lang) {
-            document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el) {
-               el.style.display = 'none';
-            });
-            if (lang === 'zh') {
-               document.querySelectorAll('.lang-zh').forEach(showEl);
-               // Fallback: if an .lang-en block has no sibling .lang-zh translation
-               // on this page, keep showing the English version instead of leaving
-               // it blank.
-               document.querySelectorAll('.lang-en').forEach(function(el) {
-                  var parent = el.parentElement;
-                  var hasZhSibling = parent && parent.querySelector('.lang-zh');
-                  if (!hasZhSibling) {
-                     showEl(el);
-                  }
-               });
-               document.getElementById('btn-zh').classList.add('active');
-               document.getElementById('btn-en').classList.remove('active');
-            } else {
-               document.querySelectorAll('.lang-en').forEach(showEl);
-               document.getElementById('btn-en').classList.add('active');
-               document.getElementById('btn-zh').classList.remove('active');
-            }
-         }
-         // This is the single site-wide entry point for choosing a language.
-         // The choice is saved to localStorage and every other page (via the
-         // shared components/navbar.html) picks it up and applies it there.
-         function switchLanguage(lang) {
-            localStorage.setItem('preferredLanguage', lang);
-            applyLanguage(lang);
-         }
-         document.addEventListener('DOMContentLoaded', function() {
-            var preferredLang = localStorage.getItem('preferredLanguage') || 'en';
-            applyLanguage(preferredLang);
-         });
-      </script>
+            <ul class="entries">
+               <li class="rise">
+                  <a href="/blog/2026/openvsclosed/">
+                     <span class="when">2026</span>
+                     <span class="what">Open vs Closed</span>
+                     <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+               </li>
+               <li class="rise">
+                  <a href="/blog/2026/speculativedecoding/">
+                     <span class="when">2026</span>
+                     <span class="what">Trendings on Speculative Decoding</span>
+                     <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+               </li>
+               <li class="rise">
+                  <a href="/blog/2026/decade/">
+                     <span class="when">2026</span>
+                     <span class="what">A Decade at Amazon</span>
+                     <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+               </li>
+               <li class="rise">
+                  <a href="/blog/">
+                     <span class="when"></span>
+                     <span class="what" style="color:var(--ink-3)">
+                        <span class="lang-en">All writing</span>
+                        <span class="lang-zh" hidden>全部文章</span>
+                     </span>
+                     <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </section>
+
+      <!-- ============================================================ REFERENCES -->
+      <section class="band">
+         <div class="shell">
+            <p class="eyebrow rise">
+               <span class="lang-en">Endorsements</span>
+               <span class="lang-zh" hidden>行业背书</span>
+            </p>
+
+            <div class="quotes">
+               <figure class="quote rise">
+                  <blockquote>
+                     <span class="lang-en">“Andy's insider perspective and technical expertise on the latest advancements in Generative AI significantly enriched our classroom experience.”</span>
+                     <span class="lang-zh" hidden>「Andy 以业内人士的视角和对生成式 AI 前沿进展的技术专长，极大地丰富了我们的课堂体验。」</span>
+                  </blockquote>
+                  <figcaption>
+                     <span class="who">Léonard Boussioux</span>
+                     <span class="lang-en">Professor, University of Washington — Foster School of Business &amp; Allen School of Computer Science</span>
+                     <span class="lang-zh" hidden>华盛顿大学教授 —— Foster 商学院与 Allen 计算机学院</span>
+                  </figcaption>
+               </figure>
+
+               <figure class="quote rise">
+                  <blockquote>
+                     <span class="lang-en">“I know I can count on Andy to provide support in community endeavors as well as initiate relationships to make open source even stronger.”</span>
+                     <span class="lang-zh" hidden>「我知道在社区事务中总能得到他的支持，他也会主动牵线搭桥，让开源生态更加强大。」</span>
+                  </blockquote>
+                  <figcaption>
+                     <span class="who">Jennifer Madriaga</span>
+                     <span class="lang-en">Chief of Staff, The Linux Foundation</span>
+                     <span class="lang-zh" hidden>Linux 基金会幕僚长</span>
+                  </figcaption>
+               </figure>
+            </div>
+
+            <p class="more rise">
+               <a class="link" href="/endorsements.html">
+                  <span class="lang-en">All endorsements</span><span class="lang-zh" hidden>全部背书</span> →
+               </a>
+            </p>
+         </div>
+      </section>
+
+      <!-- ============================================================ CONTACT -->
+      <section class="band band--ink contact">
+         <div class="shell">
+            <p class="eyebrow rise">
+               <span class="lang-en">Get in touch</span>
+               <span class="lang-zh" hidden>联系</span>
+            </p>
+            <h2 class="rise">
+               <span class="lang-en">Research collaboration &amp; advisory.</span>
+               <span class="lang-zh" hidden>研究合作与顾问合作。</span>
+            </h2>
+            <p class="rise">
+               <a class="contact-mail" href="mailto:%70%65%6E%67%61%6E%64%79%2E%62%75%69%6C%64@%67%6D%61%69%6C%2E%63%6F%6D">pengandy [dot] build [at] gmail [dot] com</a>
+            </p>
+            <p class="contact-social rise">
+               <a href="/contact.html"><span class="lang-en">Book a call</span><span class="lang-zh" hidden>预约通话</span></a>
+               <a href="https://www.linkedin.com/in/pengandy-us" target="_blank" rel="noopener">LinkedIn</a>
+               <a href="https://twitter.com/pymhq" target="_blank" rel="noopener">Twitter</a>
+               <a href="https://github.com/pymhq" target="_blank" rel="noopener">GitHub</a>
+               <a href="https://substack.com/@pengandy" target="_blank" rel="noopener">Substack</a>
+               <a href="https://www.xiaohongshu.com/user/profile/646a8ca2000000000f006c94" target="_blank" rel="noopener">Rednote</a>
+               <a href="https://www.instagram.com/lazypppppppp/" target="_blank" rel="noopener">Instagram</a>
+            </p>
+         </div>
+      </section>
+
+      <footer class="foot" data-shell-footer></footer>
    </body>
 </html>
-
-

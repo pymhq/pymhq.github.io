@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-HTV795ZMCP');
-    </script>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Maps — Peng, Andy</title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="Interactive globe of places I've visited.">
+      <link rel="canonical" href="https://pengandy.com/maps">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Maps</title>
-    <meta name="author" content="Peng, Andy">
-    <meta name="description" content="Interactive Globe of Places I've Visited">
-    <meta name="keywords" content="Maps, Travel, Globe, Map">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="https://pengandy.com/maps">
+      <meta property="og:title" content="Maps — Peng, Andy">
+      <meta property="og:description" content="Interactive globe of places I've visited.">
+      <meta property="og:image" content="https://pengandy.com/assets/brand/icon-512.png">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@pymhq">
+      <meta name="twitter:creator" content="@pymhq">
+      <meta name="twitter:title" content="Maps — Peng, Andy">
+      <meta name="twitter:description" content="Interactive globe of places I've visited.">
+      <meta name="twitter:image" content="https://pengandy.com/assets/brand/icon-512.png">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" />
+      <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
+      <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
+      <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
+      <link rel="manifest" href="/site.webmanifest">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #ffffff;
-            overflow: hidden;
-        }
+      <link rel="stylesheet" href="/assets/css/shell.css">
+      <script src="/assets/js/shell.js" defer></script>
 
+      <!-- Inline style for the interactive map widget — the single
+           documented exception; everything else comes from shell.css. -->
+      <style>
         #globe-container {
+            overflow: hidden;
             width: 100%;
             height: 100vh;
             display: flex;
@@ -41,14 +44,14 @@
             justify-content: center;
         }
 
-        svg {
+        #globe-container svg {
             cursor: grab;
             touch-action: none;
             -webkit-user-select: none;
             user-select: none;
         }
 
-        svg:active {
+        #globe-container svg:active {
             cursor: grabbing;
         }
 
@@ -96,7 +99,7 @@
         }
 
         .stats {
-            position: fixed;
+            position: absolute;
             bottom: 20px;
             left: 20px;
             background: #ffffff;
@@ -128,7 +131,7 @@
         }
 
         .legend {
-            position: fixed;
+            position: absolute;
             bottom: 20px;
             right: 20px;
             background: #ffffff;
@@ -179,43 +182,7 @@
             color: #666;
             font-size: 12px;
             margin-top: 4px;
-        }
-
-        footer {
-            position: fixed;
-            top: 10px;
-            right: 20px;
-            color: #999999;
-            font-size: 0.85rem;
-            z-index: 999;
-        }
-
-        .home-link {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-            border: 2px solid #e0e0e0;
-            border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            color: #556b2f;
-            font-size: 1.05rem;
-            text-decoration: none;
-            z-index: 1000;
-            transition: background 0.15s ease, transform 0.15s ease;
-        }
-
-        .home-link:hover {
-            background: #f4f6f1;
-            transform: scale(1.06);
-        }
-
-        @media (max-width: 768px) {
+        }        @media (max-width: 768px) {
             .stats {
                 bottom: 10px;
                 left: 10px;
@@ -234,13 +201,6 @@
             .legend {
                 display: none;
             }
-
-            footer {
-                top: 10px;
-                right: 10px;
-                font-size: 0.75rem;
-            }
-
             .tooltip {
                 max-width: 200px;
             }
@@ -264,23 +224,14 @@
         /* ============================================================
            PNW full panel (second section, reached by scrolling down)
            Additive only: does not alter globe/stats/legend/footer above.
-           ============================================================ */
-        html {
-            scroll-snap-type: y proximity;
-        }
-
-        body {
-            overflow: visible;
-        }
-
-        #globe-section {
+           ============================================================ */        #globe-section {
             height: 100vh;
             scroll-snap-align: start;
             position: relative;
         }
 
         .scroll-cue {
-            position: fixed;
+            position: absolute;
             bottom: 18px;
             left: 50%;
             transform: translateX(-50%);
@@ -883,18 +834,56 @@
             .pnw-water-label { font-size: 8px; }
         }
     </style>
-   <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
-   <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
-   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
-   <link rel="manifest" href="/site.webmanifest">
-</head>
-<body>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-HTV795ZMCP');
+      </script>
+   </head>
+
+   <body data-nav-match="maps">
+      <a class="skip" href="#main">Skip to content</a>
+      <nav class="nav" aria-label="Primary" data-shell-nav></nav>
+
+      <header class="shell page-head">
+         <p class="eyebrow">
+            <span class="lang-en">Creativity</span>
+            <span class="lang-zh" hidden>创作</span>
+         </p>
+         <h1 class="page-title">
+            <span class="lang-en">Maps</span>
+            <span class="lang-zh" hidden>地图</span>
+         </h1>
+         <p class="page-lede">
+            <span class="lang-en">An interactive globe of the places I've visited — with hand-drawn Pacific Northwest charts below it.</span>
+            <span class="lang-zh" hidden>一个记录我到访之地的交互式地球仪——下方还有手绘的太平洋西北地图。</span>
+         </p>
+      </header>
+
+      <main class="shell" id="main" style="padding-bottom:var(--movement)">
+
+         <!-- Intro. -->
+         <section class="band--tight rise">
+            <div class="prose">
+               <p>
+                  <span class="lang-en">Drag the globe to spin it — visited countries fill in blue, and every city pin carries a date. Scroll on to the Pacific Northwest panel, then swipe right for the Salish Sea routes and race-routes charts.</span>
+                  <span class="lang-zh" hidden>拖动地球仪即可旋转——到访过的国家填上蓝色，每个城市图钉都带有日期。继续向下滚动进入太平洋西北面板，再向右滑动查看萨利希海航线图与比赛路线图。</span>
+               </p>
+            </div>
+         </section>
+
+         <!-- ============================================================
+              Interactive map widget, carried over from the live /maps
+              page (D3 + topojson). This is the one documented exception
+              to the no-inline-style rule: the widget needs its own CSS.
+              No .rise here — the PNW section runs its own reveal.
+              ============================================================ -->
+
     <div id="globe-section">
     <div id="globe-container"></div>
-
-    <a href="/" class="home-link" title="Back to Home" aria-label="Back to Home">
-        <i class="fa-solid fa-compass-drafting"></i>
-    </a>
 
     <div class="stats">
         <div class="stat-item">
@@ -927,26 +916,22 @@
         <div class="tooltip-date" id="tooltip-date"></div>
     </div>
 
-    <footer>
-        © 2026 Andy Peng
-    </footer>
-
     <div class="scroll-cue" id="scrollCue" role="button" tabindex="0" aria-label="Scroll to Pacific Northwest map">
         <span>PNW map</span>
-        <i class="fa-solid fa-chevron-down"></i>
+        <span aria-hidden="true">↓</span>
     </div>
     </div><!-- /#globe-section -->
 
     <section id="pnw-section" aria-hidden="true">
         <button class="back-to-globe" id="backToGlobe" type="button">
-            <i class="fa-solid fa-chevron-up"></i> Globe
+            <span aria-hidden="true">↑</span> Globe
         </button>
 
         <button class="pnw-nav prev" id="pnwPrev" type="button" aria-label="Previous panel" disabled>
-            <i class="fa-solid fa-chevron-left"></i>
+            <span aria-hidden="true">‹</span>
         </button>
         <button class="pnw-nav next" id="pnwNext" type="button" aria-label="Next panel">
-            <i class="fa-solid fa-chevron-right"></i>
+            <span aria-hidden="true">›</span>
         </button>
 
         <div class="pnw-pager" id="pnwPager">
@@ -1974,13 +1959,22 @@
         <div class="pnw-dots" id="pnwDots" role="tablist" aria-label="PNW panels"></div>
     </section>
 
-    <!-- D3.js for lightweight SVG globe -->
+         <p class="more rise">
+            <a class="link" href="/creativity.html">
+               <span class="lang-en">How these maps are drawn — Creativity</span><span class="lang-zh" hidden>这些地图是怎么画出来的——创作</span> →
+            </a>
+         </p>
+      </main>
+
+      <footer class="foot" data-shell-footer></footer>
+
+      <!-- D3.js for lightweight SVG globe -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://d3js.org/topojson.v3.min.js"></script>
 
     <!-- Data Files -->
-    <script src="maps/data/countries.js"></script>
-    <script src="maps/data/cities.js"></script>
+    <script src="/maps/data/countries.js"></script>
+    <script src="/maps/data/cities.js"></script>
 
     <script>
         // Set up dimensions
@@ -2114,13 +2108,13 @@
                     document.getElementById('tooltip-title').textContent = d.name;
                     document.getElementById('tooltip-date').textContent = d.date || '';
                     tooltip.style.display = 'block';
-                    tooltip.style.left = (event.pageX + 10) + 'px';
-                    tooltip.style.top = (event.pageY + 10) + 'px';
+                    tooltip.style.left = (event.clientX + 10) + 'px';
+                    tooltip.style.top = (event.clientY + 10) + 'px';
                 })
                 .on('mousemove', function(event) {
                     const tooltip = document.getElementById('tooltip');
-                    tooltip.style.left = (event.pageX + 10) + 'px';
-                    tooltip.style.top = (event.pageY + 10) + 'px';
+                    tooltip.style.left = (event.clientX + 10) + 'px';
+                    tooltip.style.top = (event.clientY + 10) + 'px';
                 })
                 .on('mouseleave', function() {
                     document.getElementById('tooltip').style.display = 'none';
@@ -2132,8 +2126,8 @@
                     document.getElementById('tooltip-date').textContent = d.date || '';
                     tooltip.style.display = 'block';
                     const touch = event.touches[0];
-                    tooltip.style.left = (touch.pageX + 10) + 'px';
-                    tooltip.style.top = (touch.pageY - 50) + 'px';
+                    tooltip.style.left = (touch.clientX + 10) + 'px';
+                    tooltip.style.top = (touch.clientY - 50) + 'px';
                     setTimeout(() => {
                         tooltip.style.display = 'none';
                     }, 2000);
@@ -2162,13 +2156,13 @@
                     document.getElementById('tooltip-title').textContent = d.name;
                     document.getElementById('tooltip-date').textContent = d.date || '';
                     tooltip.style.display = 'block';
-                    tooltip.style.left = (event.pageX + 10) + 'px';
-                    tooltip.style.top = (event.pageY + 10) + 'px';
+                    tooltip.style.left = (event.clientX + 10) + 'px';
+                    tooltip.style.top = (event.clientY + 10) + 'px';
                 })
                 .on('mousemove', function(event) {
                     const tooltip = document.getElementById('tooltip');
-                    tooltip.style.left = (event.pageX + 10) + 'px';
-                    tooltip.style.top = (event.pageY + 10) + 'px';
+                    tooltip.style.left = (event.clientX + 10) + 'px';
+                    tooltip.style.top = (event.clientY + 10) + 'px';
                 })
                 .on('mouseleave', function() {
                     document.getElementById('tooltip').style.display = 'none';
@@ -2180,8 +2174,8 @@
                     document.getElementById('tooltip-date').textContent = d.date || '';
                     tooltip.style.display = 'block';
                     const touch = event.touches[0];
-                    tooltip.style.left = (touch.pageX + 10) + 'px';
-                    tooltip.style.top = (touch.pageY - 50) + 'px';
+                    tooltip.style.left = (touch.clientX + 10) + 'px';
+                    tooltip.style.top = (touch.clientY - 50) + 'px';
                     setTimeout(() => {
                         tooltip.style.display = 'none';
                     }, 2000);
@@ -2680,5 +2674,5 @@
             });
         })();
     </script>
-</body>
+   </body>
 </html>
