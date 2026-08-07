@@ -1108,13 +1108,21 @@ figure > img,
   margin: 30px auto 12px;
 }
 
-.post a {
-  color: var(--accent);
+/* The prose link rule is an underline substitute, so it must not reach links
+   whose whole content is an image. The page-views badge is one: its anchor is
+   inline, so the border landed 5px under the badge and read as a stray rule
+   below "page views". No post has a link mixing text with an image, so the
+   exclusion costs no real underline. */
+.post a:not(:has(img)) {
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
-.post a:hover {
+.post a:not(:has(img)):hover {
   border-bottom-color: var(--accent);
+}
+
+.post a {
+  color: var(--accent);
 }
 
 /* No blanket margin on images. `.post img { margin-block }` was injected into
