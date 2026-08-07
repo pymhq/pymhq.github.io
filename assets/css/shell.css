@@ -1135,6 +1135,16 @@ figure > img,
   height: auto;
 }
 
+/* The global `img { display: block }` reset defeats the `text-align: center`
+   wrappers the posts author by hand: text-align has no effect on a block box,
+   so those images sat flush left with 300px of empty column beside them.
+   Honour the wrapper's stated intent, and only that -- keyed off the inline
+   declaration so no image whose author did not ask for centring is touched. */
+.post [style*="text-align: center"] > img,
+.post [style*="text-align:center"] > img {
+  margin-inline: auto;
+}
+
 .post > img,
 .post > :is(.lang-en, .lang-zh) > img,
 .post #markdown-content > img,
