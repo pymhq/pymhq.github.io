@@ -1874,8 +1874,19 @@ figure > img,
    The outline positions itself with calc(50vw …) against an 880px article, so
    it lines up with this shell too; below that width the post's own media
    query already hides it. */
+/* The floating outline is positioned by each post's own style layer at
+   top:130px, which cleared the previous site's fixed navbar. This shell has a
+   shorter sticky nav but puts the back-link at 122-148px — exactly where the
+   outline starts — so the outline covered it. Measured on /blog/2026/ant/:
+   back-link 122-148 spanning 137-204 horizontally, outline 130-341 spanning
+   24-228. Pushing it below the back-link clears both.
+
+   Only matters at the top of the page: once the reader scrolls, the
+   back-link is gone and the fixed outline overlaps nothing. */
 #fx-outline {
   z-index: 30;
+  top: 176px !important;
+  max-height: calc(100vh - 230px) !important;
 }
 
 #fxbar {
