@@ -40,7 +40,7 @@
       links: [
         [BASE + '/work.html', 'Work', '作品'],
         [BASE + '/publications.html', 'Books & papers', '书籍与论文'],
-        [BASE + '/speaking.html', 'Talks & lectures', '演讲与讲座'],
+        [BASE + '/invited-talks.html', 'Talks & lectures', '演讲与讲座'],
         [BASE + '/service.html', 'Academic service', '学术服务']
       ]
     },
