@@ -67,11 +67,15 @@
       ]
     },
     {
+      // Social links follow one order everywhere on the site:
+      // LinkedIn, Twitter, GitHub, Substack, Rednote, Instagram.
+      // This group carries the professional three; the rest live on the
+      // contact page, which is where someone looking for them goes.
       en: 'Elsewhere', zh: '其他',
       links: [
         ['https://www.linkedin.com/in/pengandy-us', 'LinkedIn', 'LinkedIn'],
-        ['https://substack.com/@pengandy', 'Substack', 'Substack'],
         ['https://twitter.com/pymhq', 'Twitter', 'Twitter'],
+        ['https://substack.com/@pengandy', 'Substack', 'Substack'],
         [BASE + '/sitemap.html', 'Sitemap', '站点地图']
       ]
     }
