@@ -1091,14 +1091,14 @@ figure > img,
   font-weight: 700;
   font-size: 1.7rem;
   line-height: 1.3;
-  margin: 62px auto 22px;
+  margin: 40px auto 18px;
 }
 
 .post h3 {
   font-weight: 600;
   font-size: 1.32rem;
   line-height: 1.35;
-  margin: 40px auto 16px;
+  margin: 30px auto 14px;
 }
 
 .post h4 {
@@ -1117,9 +1117,22 @@ figure > img,
   border-bottom-color: var(--accent);
 }
 
+/* No blanket margin on images. `.post img { margin-block }` was injected into
+   components that position their own images — the photo-swap figure stacks two
+   images inside a fixed-height stage, and 1.7em pushed the front image 32px
+   down, out of the stage and over the caption below it. Spacing belongs only
+   to images sitting in the prose flow. */
 .post img {
   max-width: 100%;
   height: auto;
+}
+
+.post > img,
+.post > :is(.lang-en, .lang-zh) > img,
+.post #markdown-content > img,
+.post #markdown-content > :is(.lang-en, .lang-zh) > img,
+.post .post-content > img,
+.post .post-content > :is(.lang-en, .lang-zh) > img {
   margin-block: 1.7em;
 }
 
@@ -1229,8 +1242,11 @@ figure > img,
 }
 
 .post .post-views {
+  /* the source sets an inline `margin: 14px 0 18px 0`, which overrides
+     margin-inline:auto and left the badge 100px outside the text column */
   max-width: 680px;
-  margin: 14px auto 18px;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .post .post-views img {
@@ -1295,7 +1311,7 @@ figure > img,
 /* Callouts authored as direct children of .post kept the outer 880px measure
    while the prose around them was 680px — the update notice on the
    research-versus-engineering post was the visible case. */
-.post > div:not(.full-bleed):not(.post-views) {
+.post > div:not(.full-bleed) {
   max-width: 680px;
   margin-left: auto;
   margin-right: auto;
@@ -1870,4 +1886,27 @@ figure > img,
   #fx-outline {
     display: none !important;
   }
+}
+
+/* ---------------- inherited <br> spacing ----------------
+   The posts use <br> to space blocks apart — 23 of them in the CNCF post.
+   That was fine against the old stylesheet's tighter margins, but on top of
+   this shell's heading rhythm it compounded: measured gaps reached 114px
+   before an h2 where the margin alone accounts for 40. A <br> that sits
+   between two block elements is doing no work the margins are not already
+   doing, so it is collapsed. */
+.post br + br,
+.post p + br,
+.post br:has(+ h1),
+.post br:has(+ h2),
+.post br:has(+ h3),
+.post br:has(+ hr),
+.post br:has(+ ul),
+.post br:has(+ ol) {
+  display: none;
+}
+
+.post hr + br,
+.post br + hr {
+  display: none;
 }
