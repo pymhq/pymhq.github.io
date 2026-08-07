@@ -188,8 +188,10 @@ def check_structure() -> None:
         if 'data-shell-footer' not in s:
             fails.append(f'{rel}: no footer mount')
             bad += 1
-    print(f'  pages checked: {len(glob.glob(os.path.join(ROOT, "plana/**/*.html"), recursive=True))}'
-          f'   problems: {bad}')
+    checked = len([f for f in site_pages()
+                   if os.path.relpath(f, ROOT) not in LEGACY])
+    print(f'  pages checked: {checked}   redirect stubs: {redirects}'
+          f'   legacy-shell pages: {len(LEGACY)}   problems: {bad}')
 
 
 def check_dependencies() -> None:
