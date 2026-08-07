@@ -39,6 +39,9 @@
          gtag('js', new Date());
          gtag('config', 'G-HTV795ZMCP');
       </script>
+   
+      <!-- Kit form 3d8f70c100 — powers the gated CV download above. -->
+      <script async data-uid="3d8f70c100" src="https://andy-peng.kit.com/3d8f70c100/index.js"></script>
    </head>
 
    <body data-nav-match="experience">
@@ -58,11 +61,14 @@
             <span class="lang-en">Roles held, in and outside the day job, and where I studied.</span>
             <span class="lang-zh" hidden>历任职务（含本职之外），以及教育经历。</span>
          </p>
-
-         <!-- The live resume gated its PDF behind a Kit form; same link, kept as
-              a plain action so it works without the vendor script. -->
+         <!-- The PDF lives on Kit, not in this repository, by design: it is an
+              email-gated download. The old resume page paired the link with
+              data-formkit-toggle and Kit's form script, which turns the click
+              into an in-page modal. Carrying only the href across degraded it
+              into a plain navigation to Kit's landing page — no download. -->
          <p class="page-actions">
-            <a class="btn" href="https://andy-peng.kit.com/3d8f70c100" target="_blank" rel="noopener">
+            <a class="btn" href="https://andy-peng.kit.com/3d8f70c100"
+               data-formkit-toggle="3d8f70c100" target="_blank" rel="noopener">
                <span class="lang-en">Download PDF</span><span class="lang-zh" hidden>下载 PDF</span>
             </a>
          </p>

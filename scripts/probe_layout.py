@@ -87,23 +87,48 @@ function path(el, stop) {
       const d = fr.contentDocument, w = fr.contentWindow;
       const root = d.querySelector('.post') || d.querySelector('main');
       if (!root) { lines.push(JSON.stringify({url, error: 'no .post or main'})); fr.remove(); continue; }
-      const ps = [...root.querySelectorAll('p')].filter(p => {
-        const t = (p.textContent || '').trim();
-        if (t.length < MIN) return false;
-        const cs = w.getComputedStyle(p);
-        if (cs.display === 'none' || p.hidden || p.closest('[hidden]')) return false;
-        if (p.closest('.post-meta,.post-tags,.fx-toc,#fx-outline,.foot,.nav')) return false;
+      // Every block element, not just <p>. Measuring paragraphs alone missed
+      // bare <li> with no list parent, and callout boxes that kept the outer
+      // measure while the prose around them was narrower.
+      const SEL = 'p,h1,h2,h3,h4,ul,ol,li,img,figure,table,blockquote,pre,div';
+      const ps = [...root.querySelectorAll(SEL)].filter(el => {
+        const cs = w.getComputedStyle(el);
+        if (cs.display === 'none' || el.hidden || el.closest('[hidden]')) return false;
+        if (el.closest('.post-meta,.post-tags,.post-views,.fx-toc,#fx-outline,.foot,.nav')) return false;
+        const r = el.getBoundingClientRect();
+        if (r.width < 20 || r.height < 4) return false;
+        // a text block must carry real text; media and containers need not
+        if (/^(P|H1|H2|H3|H4|LI|BLOCKQUOTE)$/.test(el.tagName))
+          return (el.textContent || '').trim().length >= MIN;
         return true;
       });
-      const geo = ps.map(p => {
-        const r = p.getBoundingClientRect();
-        return { l: Math.round(r.left), w: Math.round(r.width),
-                 path: path(p, root), text: (p.textContent || '').trim().slice(0, 70) };
+      const geo = ps.map(el => {
+        const r = el.getBoundingClientRect();
+        const bare = el.tagName === 'LI' &&
+                     !['UL', 'OL'].includes(el.parentElement.tagName);
+        return { l: Math.round(r.left), w: Math.round(r.width), tag: el.tagName.toLowerCase(),
+                 bare: bare, path: path(el, root),
+                 text: (el.textContent || '').trim().slice(0, 70) };
       });
-      const cnt = {}; geo.forEach(g => cnt[g.l] = (cnt[g.l] || 0) + 1);
+      // The column is taken from prose that sits directly in a content
+      // wrapper. Using the most frequent left edge of *everything* made two
+      // posts look misaligned when in fact their callout component simply
+      // appeared more often than their paragraphs.
+      const WRAP = /(?:^|> )(?:div#markdown-content|div\.lang-en|div\.lang-zh|article\.post-content) > (?:p|h2|h3|li|ul)$/;
+      const prose = geo.filter(g => /^(p|h2|h3|li|ul)$/.test(g.tag) &&
+                                    (WRAP.test(g.path) || !g.path.includes(' > ')));
+      const basis = prose.length ? prose : geo;
+      const cnt = {}; basis.forEach(g => cnt[g.l] = (cnt[g.l] || 0) + 1);
       const col = Number(Object.entries(cnt).sort((a, b) => b[1] - a[1])[0]?.[0] || 0);
-      lines.push(JSON.stringify({ url, n: geo.length, col,
-        first: geo[0] || null,
+      // an element wider than the column by more than a rounding margin has
+      // escaped the reading measure
+      const wcnt = {}; basis.forEach(g => wcnt[g.w] = (wcnt[g.w] || 0) + 1);
+      const colw = Number(Object.entries(wcnt).sort((a, b) => b[1] - a[1])[0]?.[0] || 0);
+      lines.push(JSON.stringify({ url, n: geo.length, col, colw,
+        first: (prose[0] || geo.find(g => /^(p|h2|h3|li)$/.test(g.tag)) || geo[0] || null),
+        bare: geo.filter(g => g.bare).length,
+        wide: geo.filter(g => g.w > colw + TOL && g.tag !== 'img' && g.tag !== 'figure')
+                .map(g => ({ tag: g.tag, l: g.l, w: g.w, path: g.path })),
         insets: geo.filter(g => Math.abs(g.l - col) > TOL) }));
     } catch (e) { lines.push(JSON.stringify({ url, error: e.message })); }
     fr.remove(); out.textContent = lines.join('\\n');
@@ -188,8 +213,8 @@ def main() -> int:
         cols[r["col"]] = cols.get(r["col"], 0) + 1
     site_col = max(cols, key=cols.get) if cols else 0
 
-    print(f"{'page':<44}{'column':>8}{'opening':>9}{'insets':>8}{'paras':>7}")
-    offsets, odd = [], []
+    print(f"{'page':<40}{'col':>6}{'width':>7}{'open':>6}{'wide':>6}{'bareLi':>7}{'blocks':>8}")
+    offsets, odd, wides = [], [], []
     for r in rows:
         if r.get("error"):
             print(f"  {r['url']:<42} ERROR {r['error']}")
@@ -203,7 +228,10 @@ def main() -> int:
             offsets.append(r); note = "  << opening offset"
         if r["col"] != site_col:
             odd.append(r); note += "  << column differs"
-        print(f"  {r['url']:<42}{r['col']:>8}{off:>9}{len(r['insets']):>8}{r['n']:>7}{note}")
+        if r.get("wide"):
+            wides.append(r); note += f"  << {len(r['wide'])} wider than the column"
+        print(f"  {r['url']:<40}{r['col']:>6}{r.get('colw', 0):>7}{off:>6}"
+              f"{len(r.get('wide', [])):>6}{r.get('bare', 0):>7}{r['n']:>8}{note}")
 
     print(f"\n  site reading column: {site_col}px from the viewport edge")
     print(f"  pages measured: {len(measured)}   sharing that column: "
@@ -216,6 +244,12 @@ def main() -> int:
             print(f"    {r['url']}  off by {r['first']['l'] - r['col']}px")
             print(f"      path: {r['first']['path']}")
             print(f"      text: {r['first']['text']}")
+
+    if wides:
+        print(f"\n  {len(wides)} page(s) with a block wider than the reading column:")
+        for r in wides:
+            for g in r["wide"][:4]:
+                print(f"    {r['url']:<38} {g['tag']:<6} w{g['w']}  {g['path']}")
 
     if args.paths:
         print("\n  insets by DOM path (deliberate component padding shows up here):")

@@ -1036,10 +1036,10 @@ figure > img,
   margin-right: auto;
 }
 
-.post > :is(p, ul, ol, blockquote, pre, table, hr, .fx-toc),
-.post > :is(.lang-en, .lang-zh) > :is(p, ul, ol, blockquote, pre, table, hr, .fx-toc),
-.post .post-content > :is(p, ul, ol, blockquote, pre, table, hr, .fx-toc),
-.post .post-content > :is(.lang-en, .lang-zh) > :is(p, ul, ol, blockquote, pre, table, hr, .fx-toc) {
+.post > :is(p, ul, ol, li, dl, blockquote, pre, table, hr, figure, img, .fx-toc),
+.post > :is(.lang-en, .lang-zh) > :is(p, ul, ol, li, dl, blockquote, pre, table, hr, figure, img, .fx-toc),
+.post .post-content > :is(p, ul, ol, li, dl, blockquote, pre, table, hr, figure, img, .fx-toc),
+.post .post-content > :is(.lang-en, .lang-zh) > :is(p, ul, ol, li, dl, blockquote, pre, table, hr, figure, img, .fx-toc) {
   max-width: 680px;
   margin-left: auto;
   margin-right: auto;
@@ -1080,8 +1080,8 @@ figure > img,
   letter-spacing: -0.015em;
 }
 
-.post > h1, .post > h2, .post > h3, .post > h4,
-.post > div > h1, .post > div > h2, .post > div > h3, .post > div > h4 {
+.post > :is(h1, h2, h3, h4, h5, h6),
+.post > div > :is(h1, h2, h3, h4, h5, h6) {
   max-width: 680px;
   margin-left: auto;
   margin-right: auto;
@@ -1255,6 +1255,51 @@ figure > img,
   color: var(--accent);
 }
 
+
+/* ---------------- bare list items ----------------
+   15 of the posts contain <li> with no <ul> or <ol> parent — 37 of them in
+   the CNCF post alone. That is how the source was authored, and the old build
+   leaned on main.css to make them look like lists. Without that stylesheet a
+   parentless <li> has no marker and no indent, so it renders exactly like a
+   paragraph and the list structure disappears — which is what made those
+   posts read as a wall of text.
+
+   Fixing it here keeps 15 published posts untouched. Real lists are
+   unaffected: the selector only matches an <li> whose parent is not a list,
+   so .fx-toc counters and the site's own .record / .entries lists are safe. */
+.post :not(ul):not(ol) > li {
+  display: block;
+  position: relative;
+  padding-left: 1.45em;
+  margin-block: 0 0.5em;
+}
+
+.post :not(ul):not(ol) > li::before {
+  content: "";
+  position: absolute;
+  left: 0.35em;
+  top: 0.78em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--rule-2);
+}
+
+.post :not(ul):not(ol) > li li::before {
+  border-radius: 0;
+  width: 6px;
+  height: 1px;
+  top: 0.9em;
+}
+
+/* Callouts authored as direct children of .post kept the outer 880px measure
+   while the prose around them was 680px — the update notice on the
+   research-versus-engineering post was the visible case. */
+.post > div:not(.full-bleed):not(.post-views) {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* ---------------- facets: categories & tags ----------------
    Mirrors the live blog index, which browses by both. Categories are few
