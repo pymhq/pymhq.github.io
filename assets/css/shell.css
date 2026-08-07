@@ -126,6 +126,65 @@ img {
   display: block;
 }
 
+/* ---------------- media protection ----------------
+   Carried over from the previous site, which applied this to photos and
+   reels on /creativity and /publications. Now site-wide, since every page
+   carries imagery.
+
+   Deliberately scoped to media only: a document-level contextmenu block
+   would also stop readers copying text or opening links in a new tab,
+   which the old site was careful not to do. Best-effort by nature — the
+   file is still in the network tab — but it stops the casual
+   right-click-save and drag-to-desktop. shell.js adds the event side. */
+img,
+video,
+picture,
+figure > img,
+.gallery img,
+.gallery video,
+.portrait img {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+/* A transparent layer over framed media intercepts long-press and
+   right-click on the bitmap itself, the same trick the old photo tiles
+   used. Only where the figure establishes a positioning context, so it
+   never swallows clicks on a linked image.
+
+   Stills only. The reels on /creativity are <video controls> inside the
+   same .gallery figure, and an overlay there covers the play button and
+   scrubber — the clip becomes unplayable. :has() excludes those, and the
+   z-index below is a second line of defence for engines without it. */
+.gallery figure,
+.figure,
+.portrait {
+  position: relative;
+}
+
+.gallery figure:not(:has(video))::after,
+.figure:not(:has(video))::after,
+.portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+}
+
+.gallery figure video,
+.figure video {
+  position: relative;
+  z-index: 2;
+}
+
+.gallery figure figcaption,
+.figure figcaption {
+  position: relative;
+  z-index: 1;
+}
+
 ::selection {
   background: color-mix(in srgb, var(--accent) 22%, transparent);
 }
@@ -946,33 +1005,47 @@ img {
   margin: 0 auto;
 }
 
-/* Centre the prose column on DIRECT children only.
-   The flagship layer does the same (`.post div.lang-en > p`), and matching
-   it matters: a broader `.post p` also caught paragraphs nested inside
-   component wrappers — pull-quotes, callouts, cards — many of which carry
-   an inline `margin: 0`. That shorthand overrides margin-left/right:auto,
-   so the quote centred while its attribution sat flush left. Nested blocks
-   must inherit their wrapper's width instead. */
-.post > p,
-.post > ul,
-.post > ol,
-.post > blockquote,
-.post > pre,
-.post > table,
-.post > hr,
-.post > .fx-toc,
-.post > div > p,
-.post > div > ul,
-.post > div > ol,
-.post > div > blockquote,
-.post > div > pre,
-.post > div > table,
-.post > div > hr,
-.post > div > .fx-toc,
-.post .post-content > p,
-.post .post-content > ul,
-.post .post-content > ol {
+/* The reading column.
+   Measured, not guessed: a probe of all 29 posts found opening paragraphs
+   sitting 100px left of the body — exactly (880-680)/2 — because the intro
+   lives at `.post-content > #markdown-content > p`, two levels deeper than
+   the old selectors reached, so it kept the 880px container width while
+   everything after it was centred at 680px. Three posts had their entire
+   body at 880px for the same reason.
+
+   The fix names the content wrappers explicitly — #markdown-content and the
+   language blocks — and never matches component wrappers. Callout boxes,
+   pull-quotes, paper cards and captions therefore keep their own insets,
+   which are deliberate. */
+.post #markdown-content,
+.post > .lang-en,
+.post > .lang-zh,
+.post .post-content > .lang-en,
+.post .post-content > .lang-zh,
+.post #markdown-content > .lang-en,
+.post #markdown-content > .lang-zh {
   max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post > :is(p, ul, ol, blockquote, pre, table, hr, .fx-toc),
+.post > :is(.lang-en, .lang-zh) > :is(p, ul, ol, blockquote, pre, table, hr, .fx-toc),
+.post .post-content > :is(p, ul, ol, blockquote, pre, table, hr, .fx-toc),
+.post .post-content > :is(.lang-en, .lang-zh) > :is(p, ul, ol, blockquote, pre, table, hr, .fx-toc) {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Media and wide components may still use the full 880px measure inside the
+   narrowed wrappers, which is how the posts that already read correctly are
+   built. */
+.post #markdown-content > :is(img, figure, table, .full-bleed),
+.post > :is(.lang-en, .lang-zh) > :is(img, figure, table, .full-bleed),
+.post #markdown-content > :is(.lang-en, .lang-zh) > :is(img, figure, .full-bleed) {
+  max-width: min(880px, 100vw - 2 * var(--gutter));
+  width: auto;
   margin-left: auto;
   margin-right: auto;
 }

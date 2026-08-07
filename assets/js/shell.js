@@ -280,6 +280,32 @@
     reveal._t = setTimeout(showAll, 2500); // failsafe
   }
 
+  /* ---------------- media protection ----------------
+     Same behaviour the previous site had on its photo tiles and reels, now
+     applied everywhere. Scoped to media: right-click and drag are blocked on
+     images and video, but text selection, copying and link context menus
+     elsewhere on the page keep working — a document-wide block would be
+     hostile to readers for very little gain.
+
+     This is best-effort and always will be: the file is still reachable from
+     the network tab. It stops casual right-click-save and drag-to-desktop. */
+  function protectMedia() {
+    var isMedia = function (t) {
+      return t && (t.tagName === 'IMG' || t.tagName === 'VIDEO' ||
+                   t.tagName === 'PICTURE' ||
+                   (t.closest && t.closest('.gallery figure, .figure, .portrait')));
+    };
+    document.addEventListener('contextmenu', function (e) {
+      if (isMedia(e.target)) e.preventDefault();
+    });
+    document.addEventListener('dragstart', function (e) {
+      if (isMedia(e.target)) e.preventDefault();
+    });
+    document.querySelectorAll('img, video').forEach(function (el) {
+      el.setAttribute('draggable', 'false');
+    });
+  }
+
   /* ---------------- boot ---------------- */
   applyTheme(currentTheme()); // before paint work, to avoid a flash
   document.addEventListener('DOMContentLoaded', function () {
@@ -289,5 +315,6 @@
     window.applyLanguage(currentLang());
     stickyNav();
     reveal();
+    protectMedia();
   });
 })();
