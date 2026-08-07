@@ -69,47 +69,46 @@
          (alphabetical); EXISTING tag → bump its <span class="tc-count">
          (a tc-one chip gaining a 2nd post gets a count span; promote to
          `tc-hot` only for the top few). Same for the category chip counts.
-       • If the first page is over its card budget, move the oldest card
-         to blog/page/2/index.html.
+       • The index carries EVERY post. There is no page 2: pagination was
+         removed because 29 posts fit one 27 KB page, and the second page only
+         duplicated cards already on this one. Long lists go in the "More
+         posts" <details> at the bottom, which is an editorial grouping.
 
-  4. PAGE 2 — blog/page/2/index.html:
-       • Its tag/category cloud is a COPY of the index cloud — apply the
-         exact same cloud edits there.
-
-  5. YEAR ARCHIVE — blog/archive/<YEAR>/index.html: add the same post card.
+  4. YEAR ARCHIVE — blog/archive/<YEAR>/index.html: add the same post card.
        • The calendar chip in every .post-tags row links here:
          <a href="/blog/archive/<YEAR>/"> (NOT /blog/<YEAR>/ — that URL
          belongs to the year's Recap ARTICLE, e.g. /blog/2025/ = 2025 Recap).
        • First post of a new year? Create the archive page first — copy
-         blog/archive/2026/index.html as the base.
+         blog/archive/2026/index.html as the base, and add the year to the
+         "By year:" row at the bottom of blog/index.html.
 
-  6. TAG PAGES — for EACH tag on the post:
+  5. TAG PAGES — for EACH tag on the post:
        • Existing tag: add the post card to blog/tag/<tag>/index.html.
        • New tag: mkdir blog/tag/<tag>/ and copy an existing single-tag
          page (e.g. blog/tag/mlsys/index.html) as the base, then add the
-         chip to BOTH clouds (steps 3 & 4).
+         chip to the index cloud (step 3).
 
-  7. CATEGORY PAGE — blog/category/<cat>/index.html: add the post card.
+  6. CATEGORY PAGE — blog/category/<cat>/index.html: add the post card.
 
-  8. SCRIPTS (run from repo root, commit results):
+  7. SCRIPTS (run from repo root, commit results):
        python3 scripts/sync_reading_stats.py    # sync index card readstats
        python3 scripts/check_reading_stats.py   # verify consistency
        python3 scripts/generate_feed.py         # regenerate feed.xml
 
-  9. AFTER PUSHING — run the post URL through the LinkedIn Post Inspector
+  8. AFTER PUSHING — run the post URL through the LinkedIn Post Inspector
      (https://www.linkedin.com/post-inspector/) to refresh the cache and
      preview the real card before sharing.
 
   CONSISTENCY RULE: the tag/category links on the post page, its card on
-  every listing page (index / page 2 / year / tag / category), the two tag
-  clouds, and feed.xml must all agree.
+  every listing page (index / year / tag / category), the tag cloud, and
+  feed.xml must all agree.
 
   TAG CHECK — MANDATORY on EVERY post update or new post:
     • Diff the post's .post-tags row against blog/tag/: any tag without a
       blog/tag/<slug>/index.html is NEW → create its page AND add its chip
-      to BOTH clouds (blog/index.html + blog/page/2/index.html).
+      to the cloud in blog/index.html.
     • Verify the chip really is in the CLOUD block (class="tc-chip"), not
-      just in a post card's tag row — grep 'tc-chip.*<slug>' in both files.
+      just in a post card's tag row — grep 'tc-chip.*<slug>' in that file.
       (A card link is NOT a cloud chip; they are easy to conflate.)
     • Naming: URL slug is hyphenated (reinforcement-learning); the DISPLAY
       label always uses spaces (reinforcement learning) — on the post page,

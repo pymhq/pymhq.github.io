@@ -1435,6 +1435,21 @@ figure > img,
   padding-top: clamp(22px, 2.4vw, 32px);
 }
 
+/* Date-ordered way out of the index, which is curated rather than
+   chronological. Matches the archive summary's weight so it reads as
+   navigation, not as another post entry. */
+.by-year {
+  margin-top: clamp(20px, 2vw, 28px);
+  font-size: var(--t-small);
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+.by-year span[aria-hidden] {
+  color: var(--rule);
+  margin: 0 2px;
+}
+
 .archive summary {
   cursor: pointer;
   font-size: var(--t-small);
