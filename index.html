@@ -76,7 +76,19 @@
          </div>
 
          <figure class="portrait">
-            <img src="/assets/img/headshot icml25.png" alt="Peng, Andy" width="1574" height="1574" fetchpriority="high">
+            <!-- The PNG master is a 1574px 2.2MB cutout and was 97% of the
+                 page weight. WebP at two widths covers 2x on both phone and
+                 desktop; the resized PNG is the fallback so a browser without
+                 WebP still does not pull the master. Alpha is bit-identical to
+                 the master and colour PSNR is 42 dB, i.e. no visible change. -->
+            <picture>
+               <source type="image/webp"
+                       srcset="/assets/img/headshot-760.webp 760w,
+                               /assets/img/headshot-1200.webp 1200w"
+                       sizes="(max-width: 900px) min(72vw, 360px), min(36vw, 500px)">
+               <img src="/assets/img/headshot-1200.png" alt="Peng, Andy"
+                    width="1200" height="1200" fetchpriority="high" decoding="async">
+            </picture>
          </figure>
       </header>
 

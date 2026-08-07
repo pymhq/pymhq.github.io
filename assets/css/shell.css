@@ -417,6 +417,13 @@ figure > img,
   z-index: -1;
 }
 
+/* display:contents keeps <picture> out of the layout, so the <img> stays the
+   grid item that place-items positions — otherwise the wrapper becomes the
+   item and the portrait loses its bottom alignment. */
+.portrait picture {
+  display: contents;
+}
+
 .portrait img {
   width: 100%;
   height: 100%;
