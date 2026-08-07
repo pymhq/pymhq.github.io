@@ -39,6 +39,63 @@
          gtag('js', new Date());
          gtag('config', 'G-HTV795ZMCP');
       </script>
+   
+      <style>
+/* Map illustration styling, carried over with the SVG it belongs to.
+   The old page kept these in its own <style>; the palette tokens are
+   remapped to literals so they no longer depend on that stylesheet. */
+.map-card {
+            width: 100%;
+            border-radius: 16px;
+            background: #eef2ea;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e2e7da;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column; }
+.map-card svg { display: block; width: 100%; height: auto; }
+.map-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 18px;
+            border-top: 2px solid #e2e7da;
+            background: rgba(255, 255, 255, 0.55);
+            font-size: 0.75rem;
+            color: #5a6650; }
+.map-caption b { color: #3c4530; }
+.map-visit-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 999px;
+            padding: 7px 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--sans);
+            color: #556b2f;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            white-space: nowrap;
+            transition: background 0.15s ease; }
+.map-visit-link:hover { background: #f4f6f1; }
+.land { fill: #8d9b63; stroke: #6f7e4a; stroke-width: 0.7; stroke-linejoin: round; }
+.state-border { fill: none; stroke: #ffffff; stroke-width: 1.4; stroke-dasharray: 4 3; }
+.water { fill: #cfe3ec; }
+.water-label { font-size: 9px; font-style: italic; font-weight: 600; fill: #2a5d80; font-family: var(--sans); }
+.river { fill: none; stroke: #8fb8cc; stroke-width: 1.7; stroke-linecap: round; opacity: 0.9; }
+.peak-body { fill: #6b7a48; stroke: #46503a; stroke-width: 1.2; stroke-linejoin: round; }
+.peak-snow { fill: #f7f4ea; stroke: #46503a; stroke-width: 1; stroke-linejoin: round; }
+.peak-label { font-size: 9.5px; font-weight: 700; fill: #2f3626; paint-order: stroke; stroke: rgba(244,246,241,0.7); stroke-width: 2.5; font-family: var(--sans); }
+.marker-core { fill: #1565C0; stroke: #ffffff; stroke-width: 2; }
+.marker-label { font-size: 11px; font-weight: 600; fill: #3c4530; font-family: var(--sans); }
+.doodle { fill: none; stroke: #4a3f2c; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.route-dash { fill: none; stroke: #b3542e; stroke-width: 1.8; stroke-dasharray: 5 4; stroke-linecap: round; }
+      </style>
    </head>
 
    <body data-nav-match="creativity">
@@ -203,6 +260,75 @@
                <span class="lang-zh" hidden>地图绘制</span>
             </p>
 
+         <!-- Hand-drawn SVG map, carried over from the previous page.
+              It is the whole point of this section and had been dropped: the
+              illustration is inline SVG rather than an image file, so an
+              image-by-image comparison of the two pages showed no loss. -->
+         <figure class="figure map-card-wrap">
+            <div class="map-card">
+                            <svg viewBox="0 0 800 380" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Style study of the Pacific Northwest map from the visitings page">
+                                <rect width="800" height="380" fill="#cfe3ec"/>
+                                <!-- coastline / land -->
+                                <path class="land" d="M 210 0 L 800 0 L 800 380 L 260 380
+                                    C 250 350 268 330 258 305
+                                    C 246 278 220 268 226 240
+                                    C 232 214 258 210 252 184
+                                    C 246 158 216 150 222 122
+                                    C 228 96 250 88 244 62
+                                    C 238 38 216 26 210 0 Z"/>
+                                <!-- puget sound inlet -->
+                                <path class="water" d="M 300 60 C 290 110 305 150 295 200 C 288 235 300 265 292 300 C 310 300 322 270 318 235 C 314 200 326 160 318 120 C 312 90 316 70 320 55 Z" stroke="#8fb8cc" stroke-width="1.2"/>
+                                <!-- state border -->
+                                <path class="state-border" d="M 250 232 L 800 232"/>
+                                <!-- river -->
+                                <path class="river" d="M 800 250 C 700 245 640 265 560 255 C 480 246 420 262 355 250"/>
+                                <!-- ferry route doodle -->
+                                <path class="route-dash" d="M 308 120 C 330 130 340 150 336 175"/>
+                                <!-- peaks -->
+                                <g transform="translate(470,120)">
+                                    <path class="peak-body" d="M -22 14 L 0 -20 L 22 14 Z"/>
+                                    <path class="peak-snow" d="M -8 -8 L 0 -20 L 8 -8 L 4 -5 L 0 -9 L -4 -5 Z"/>
+                                    <text class="peak-label" x="0" y="30" text-anchor="middle">Mt. Rainier</text>
+                                </g>
+                                <g transform="translate(620,80)">
+                                    <path class="peak-body" d="M -16 10 L 0 -14 L 16 10 Z"/>
+                                    <path class="peak-snow" d="M -6 -5 L 0 -14 L 6 -5 L 3 -3 L 0 -6 L -3 -3 Z"/>
+                                    <text class="peak-label" x="0" y="24" text-anchor="middle">Glacier Pk</text>
+                                </g>
+                                <!-- city markers -->
+                                <g transform="translate(340,150)">
+                                    <circle class="marker-core" r="5.5"/>
+                                    <text class="marker-label" x="10" y="4">Seattle</text>
+                                </g>
+                                <g transform="translate(390,268)">
+                                    <circle class="marker-core" r="5"/>
+                                    <text class="marker-label" x="10" y="4">Portland</text>
+                                </g>
+                                <!-- water labels -->
+                                <text class="water-label" x="248" y="180" text-anchor="middle" transform="rotate(-78 248 180)">Puget Sound</text>
+                                <text class="water-label" x="120" y="200" text-anchor="middle">Pacific Ocean</text>
+                                <!-- compass doodle -->
+                                <g transform="translate(90,72)" class="doodle">
+                                    <circle r="20"/>
+                                    <path d="M 0 -14 L 4 4 L 0 0 L -4 4 Z" fill="#4a3f2c"/>
+                                    <text x="0" y="-26" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#4a3f2c;stroke:none;font-family:var(--mono)">N</text>
+                                </g>
+                                <!-- tiny ship doodle -->
+                                <g transform="translate(160,300)" class="doodle">
+                                    <path d="M -9 3 L 9 3 L 5.5 7 L -5.5 7 Z"/>
+                                    <path d="M -0.5 3 L -0.5 -7 L 0.5 -7 L 0.5 3 Z"/>
+                                    <path d="M 1 -7 Q 7 -3.5 1 0 Z"/>
+                                </g>
+                            </svg>
+                            <div class="map-caption">
+                                <span><span class="lang-en"><b>Style study.</b> Olive land, dashed borders, snow-capped peak glyphs, italic water labels.</span><span class="lang-zh"><b>风格研究。</b>橄榄色陆地、虚线边界、雪顶山峰图标、斜体水域标注。</span></span>
+                                <a class="map-visit-link" href="/maps">
+                                    <i class="fa-solid fa-earth-americas"></i> <span class="lang-en">Open /maps</span><span class="lang-zh">打开 /maps</span>
+                                </a>
+                            </div>
+                        </div>
+         </figure>
+
             <div class="prose">
                <p>
                   <span class="lang-en">Hand-drawn SVG maps from <a href="/maps.html">/maps</a> — every coastline, peak, and ferry route is a path I plotted.</span>
@@ -266,13 +392,6 @@
                   <figcaption>
                      <span class="lang-en">plein air · cherry blossoms</span>
                      <span class="lang-zh" hidden>户外写生 · 华大樱花</span>
-                  </figcaption>
-               </figure>
-               <figure>
-                  <img src="/assets/creativity/photos/d24b9c6e.jpg" alt="A child running along a misty Oregon coast shoreline" loading="lazy">
-                  <figcaption>
-                     <span class="lang-en">oregon coast · fog</span>
-                     <span class="lang-zh" hidden>俄勒冈海岸 · 雾</span>
                   </figcaption>
                </figure>
                <figure>
