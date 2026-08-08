@@ -44,6 +44,24 @@ SKIP_DIRS = {
 # Subdirectories of otherwise-included sections that are not pages.
 SKIP_SUBPATHS = {("showcase", "shots")}
 
+# A page that asks search engines to skip it should not be advertised in the
+# sitemap either. Keying off the page's own robots meta keeps the two from
+# ever disagreeing: marking a page noindex is enough to unlist it, with no
+# second edit here. Hand-editing sitemap.html cannot work -- this script
+# regenerates it in CI and would put the entry straight back.
+NOINDEX_RE = re.compile(
+    r"""<meta\s+name=["']robots["']\s+content=["'][^"']*\bnoindex\b""",
+    re.IGNORECASE,
+)
+
+
+def is_noindex(path: Path) -> bool:
+    try:
+        return bool(NOINDEX_RE.search(path.read_text(encoding="utf-8",
+                                                     errors="replace")))
+    except OSError:
+        return False
+
 
 def page_title(path: Path) -> str:
     """Extract the <title> of a page, falling back to its path."""
@@ -93,6 +111,8 @@ def collect_tree() -> Node:
     for path in sorted(REPO_ROOT.glob("*.html")):
         if path.name in SKIP_ROOT_FILES:
             continue
+        if is_noindex(path):
+            continue
         if path.stem == "index":
             root.insert(("index.html",), "/", "Home", is_dir=False)
         else:
@@ -105,6 +125,8 @@ def collect_tree() -> Node:
         if not parts or parts[0] == "blog" or parts[0] in SKIP_DIRS:
             continue
         if any(parts[: len(s)] == s for s in SKIP_SUBPATHS):
+            continue
+        if is_noindex(path):
             continue
         root.insert(parts, "/" + "/".join(parts) + "/", page_title(path))
 
