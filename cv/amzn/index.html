@@ -378,25 +378,38 @@
       }
 
       /* ===== Level ladder (promotion milestones) ===== */
+      /* The horizontal axis is to scale: a step is as wide as the time spent
+         at that level, so the gap between two dots reads as the length of the
+         tenure instead of a uniform slot. --months comes from the markup and
+         is recomputed on load so the open-ended last span tracks today. */
       .level-ladder {
          display: flex;
          align-items: flex-start;
          max-width: 900px;
+         /* The gutter is half a dot, so the row runs dot-centre to dot-centre
+            and the flex shares land exactly on the tenure they encode. */
+         padding: 0 8px;
          margin: 6px 0 38px;
       }
 
       .ladder-step {
-         flex: 1;
+         flex: var(--months, 1) 1 0;
          position: relative;
-         text-align: center;
          padding-top: 26px;
+         min-width: 0;
+      }
+
+      /* The last marker closes the final span rather than opening one of its
+         own, so it takes no width and the rail stops at its dot. */
+      .ladder-step:last-child {
+         flex: 0 0 0;
       }
 
       .ladder-step::before {
          content: '';
          position: absolute;
          top: 7px;
-         left: 50%;
+         left: 0;
          width: 100%;
          height: 2px;
          background: var(--rule);
@@ -409,8 +422,10 @@
       .ladder-dot {
          position: absolute;
          top: 0;
-         left: 50%;
-         transform: translateX(-50%);
+         left: 0;
+         /* Centred with a negative margin, not translateX: the pulse below
+            animates transform and would otherwise drop the offset mid-beat. */
+         margin-left: -8px;
          width: 16px;
          height: 16px;
          border-radius: 50%;
@@ -432,6 +447,29 @@
 
       .ladder-dot.current {
          animation: pulse 2s infinite;
+      }
+
+      /* A date belongs to the moment of promotion, so each label rides its own
+         dot on the boundary instead of centring inside the box it precedes. */
+      .ladder-level,
+      .ladder-label,
+      .ladder-date {
+         position: relative;
+         width: max-content;
+         white-space: nowrap;
+         transform: translateX(-50%);
+      }
+
+      .ladder-step:first-child .ladder-level,
+      .ladder-step:first-child .ladder-label,
+      .ladder-step:first-child .ladder-date {
+         transform: none;
+      }
+
+      .ladder-step:last-child .ladder-level,
+      .ladder-step:last-child .ladder-label,
+      .ladder-step:last-child .ladder-date {
+         transform: translateX(-100%);
       }
 
       .ladder-level {
@@ -520,6 +558,39 @@
             font-size: 0.66rem;
          }
 
+         /* A scaled axis needs room the phone does not have: 22% of 320px is
+            narrower than the words it has to carry. Back to equal slots, where
+            the labels can wrap inside their own box. */
+         .ladder-step,
+         .ladder-step:last-child {
+            flex: 1 1 0;
+            text-align: center;
+         }
+
+         .ladder-step::before {
+            left: 50%;
+         }
+
+         .ladder-dot,
+         .ladder-step:first-child .ladder-dot,
+         .ladder-step:last-child .ladder-dot {
+            left: 50%;
+         }
+
+         .ladder-level,
+         .ladder-label,
+         .ladder-date,
+         .ladder-step:first-child .ladder-level,
+         .ladder-step:first-child .ladder-label,
+         .ladder-step:first-child .ladder-date,
+         .ladder-step:last-child .ladder-level,
+         .ladder-step:last-child .ladder-label,
+         .ladder-step:last-child .ladder-date {
+            width: auto;
+            white-space: normal;
+            transform: none;
+         }
+
          .discipline-section {
             padding: 20px 18px 0;
          }
@@ -544,26 +615,29 @@
 
       <article class="cv-timeline">
             <div class="ladder-note">L6, Amazon = 66 (Principal), Microsoft / L6 (Staff), Google / L6 (Staff), Meta</div>
+            <!-- data-start drives the widths: a step runs from its own date to
+                 the next one, and the closing marker is dated "now". The inline
+                 --months keeps the axis to scale before any script runs. -->
             <div class="level-ladder">
-               <div class="ladder-step">
+               <div class="ladder-step" data-start="2016-03-14" style="--months:28">
                   <div class="ladder-dot"></div>
                   <div class="ladder-level">L4</div>
                   <div class="ladder-label">Onboard</div>
                   <div class="ladder-date">Pi Day 2016</div>
                </div>
-               <div class="ladder-step">
+               <div class="ladder-step" data-start="2018-07-01" style="--months:45">
                   <div class="ladder-dot"></div>
                   <div class="ladder-level">L5</div>
                   <div class="ladder-label">Promoted</div>
                   <div class="ladder-date">Jul 2018</div>
                </div>
-               <div class="ladder-step">
+               <div class="ladder-step" data-start="2022-04-01" style="--months:52">
                   <div class="ladder-dot golden"></div>
                   <div class="ladder-level">L6</div>
                   <div class="ladder-label">Promoted</div>
                   <div class="ladder-date">Apr 2022</div>
                </div>
-               <div class="ladder-step">
+               <div class="ladder-step" data-start="now">
                   <div class="ladder-dot red current"></div>
                   <div class="ladder-level">L6</div>
                   <div class="ladder-label">&nbsp;</div>
@@ -828,5 +902,23 @@
          </article>
       </div>
    </main>
+
+   <!-- Keeps the axis honest as time passes: the last span is open-ended, so
+        its width is measured to today rather than baked into the markup. -->
+   <script>
+      (function () {
+         var steps = Array.prototype.slice.call(
+            document.querySelectorAll('.level-ladder .ladder-step[data-start]'));
+         var at = function (s) {
+            return s.dataset.start === 'now' ? new Date() : new Date(s.dataset.start + 'T00:00:00');
+         };
+         steps.forEach(function (step, i) {
+            var next = steps[i + 1];
+            if (!next) return;
+            var months = (at(next) - at(step)) / (1000 * 60 * 60 * 24 * 30.44);
+            step.style.setProperty('--months', months.toFixed(1));
+         });
+      })();
+   </script>
 </body>
 </html>
