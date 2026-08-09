@@ -1,14 +1,16 @@
 # Brand mark — runbook
 
-The site's icon is a桂花 (Osmanthus fragrans) inside a ring, monochrome ink green
-`#2f4436`. Everything under `/assets/brand/` is **machine generated** — do not
-hand-edit those files. Change parameters here and re-run.
+The site's icon is a桂花 (Osmanthus fragrans) inside a ring, standing in a brook
+that runs to the left, monochrome ink green `#2f4436`. Everything under
+`/assets/brand/` is **machine generated** — do not hand-edit those files. Change
+parameters here and re-run.
 
 ## Files
 
 | Path | What it is |
 | --- | --- |
 | `generate_mark.py` | Source of truth for `/assets/brand/*`. Draws the mark and writes the SVGs + PNGs. |
+| `water/` | The water studies that produced the current composition — eight concepts, and the raster check that settled the two-tier split. Nothing in it is wired into the site. |
 | `drafts/osmanthus_concepts.py` | The six osmanthus concepts explored before picking this one (AA–FF). |
 | `drafts/lotus_concepts.py` | The six 荷花/莲蓬 alternatives (GG–LL), kept as a live option. |
 
@@ -30,7 +32,7 @@ python3 scripts/brand/generate_mark.py --check
 
 `--check` compares SHA-256 of freshly generated output against what is on disk,
 rasterising into a temp dir so nothing is touched. It exits non-zero on any
-difference. All five files currently match byte for byte.
+difference. All seven files currently match byte for byte.
 
 Dependencies for `--png`:
 
@@ -42,15 +44,18 @@ pip install pillow playwright && playwright install chromium
 
 | File | Purpose |
 | --- | --- |
-| `logo-mark.svg` | Vector master. Carries a `prefers-color-scheme` rule so it flips to `#cfe0d4` in dark tab bars. |
+| `logo-mark.svg` | Vector master, icon tier: closed ring. Carries a `prefers-color-scheme` rule so it flips to `#cfe0d4` in dark tab bars. |
 | `logo-mark-flat.svg` | Same geometry with the colour baked in, for embedding and print. |
+| `logo-mark-display.svg` | Display tier, **128px and up only**: the ring opens at the bottom and the water closes it. Header, OG cards, slides, print. Not referenced by any page yet. |
+| `logo-mark-display-flat.svg` | The display tier with the colour baked in. |
 | `icon-512.png` | Transparent raster fallback — Safari only supports SVG favicons from version 26. |
 | `icon-192.png` | Web app manifest. |
 | `apple-touch-icon.png` | 180 px, transparent, 6 px inset so iOS's rounded mask never clips the ring. |
 
-No hand-tuned 16/32 px rasters exist on purpose: the browser scales the SVG (or
-the 512 PNG) itself, so a single artwork serves every size. Pages reference the
-set with four `<link>` tags; see any page's `<head>`, and `/site.webmanifest`.
+The rasters are always made from the **icon** tier. No hand-tuned 16/32 px
+rasters exist on purpose: the browser scales the SVG (or the 512 PNG) itself, so
+a single artwork serves every size. Pages reference the set with four `<link>`
+tags; see any page's `<head>`, and `/site.webmanifest`.
 
 ## Editing the mark
 
@@ -61,7 +66,12 @@ Adjust the constants at the top of `generate_mark.py`:
   (6 beads), leaf length, minimum leaf spacing
 - `RING` — ring radius and stroke width (7 was chosen over hairline and bold
   variants because it survives downscaling without swallowing the interior)
-- `FIT` / `ART_CENTRE` — where the drawing sits inside the ring
+- `FIT` / `ART_CENTRE` — where the drawing sits inside the ring. `(126, 118)` at
+  `(100, 88)`: smaller and higher than the ring alone would need, to leave the
+  water a band to run in
+- `WATER_ICON` / `WATER_DISPLAY` — ripple rows as `(offset, span, amplitude,
+  width)`, the stone, and the trailing dashes. `GROUND_Y` is derived from `FIT`,
+  so the water follows the tree if the fit moves
 - `INK` / `INK_DARK` — the single colour, light and dark
 - `MIN_W` — floor on stroke width; hairlines below this disappear when scaled
 
@@ -102,6 +112,24 @@ PY
 
 - **Ring, not bare tree.** Without a container the crown breaks into
   disconnected specks below ~32 px; the ring gives a stable outline at any size.
+- **Two composition tiers, still one artwork.** The water needs room the icon
+  cannot spare in its outline: opening the ring at the bottom, as the display
+  tier does, reads well from 128 px but stops reading as a circle at 32 px —
+  and the ring is the whole reason the mark survives 16 px. So the icon keeps
+  its ring shut with the water inside it, and the open-ring version is a
+  display-only asset. Both are drawn from the same `artwork()`; what differs is
+  the ring and the water, not the tree.
+- **The water needed space, not finer linework.** The earlier fit left 18 of the
+  200 canvas units between the trunk base and the ring, and the interior is only
+  ±28 wide down there — any ripple drawn into that slot is a grey smudge by
+  96 px. Refitting the tree to `(126, 118)` at `(100, 88)` opens 36 units. The
+  32 px icon reads *better* after the change, the crown being less crowded.
+  Eight alternatives are in `water/`, with the raster comparison that settled it.
+- **Direction comes from shape, not colour.** Monochrome and static, with no
+  arrowhead available: every ripple tapers to nothing at its left end, the rows
+  shorten and thin as they go, and the stone's wake opens downstream. Filled
+  ribbons are used rather than strokes because only a fill can taper to a point
+  — at the cost of the tip fading out below ~32 px, which is acceptable.
 - **One artwork, no simplified tiers.** Tried three redrawn tiers (112 / 56 / 24
   leaves) and rejected it — the detailed drawing downsampled from 1024 px reads
   better than a redrawn small version, and one file is easier to keep honest.

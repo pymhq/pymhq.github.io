@@ -95,6 +95,37 @@
 .marker-label { font-size: 11px; font-weight: 600; fill: #3c4530; font-family: var(--sans); }
 .doodle { fill: none; stroke: #4a3f2c; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .route-dash { fill: none; stroke: #b3542e; stroke-width: 1.8; stroke-dasharray: 5 4; stroke-linecap: round; }
+
+/* The mark section. The three stages sit on a fixed paper background with the
+   flat (colour baked in) SVGs, deliberately not the theme-aware ones: an
+   <img> follows the OS colour scheme, not this site's theme toggle, so the
+   themed files would go pale on a light card whenever the OS is in dark mode. */
+.mark-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.mark-step { border: 1px solid #e2e7da; border-radius: 16px; overflow: hidden;
+            background: #fff; display: flex; flex-direction: column; }
+.mark-art { background: #fffdf8; padding: 20px; display: flex; align-items: center;
+            justify-content: center; border-bottom: 1px solid #eef0e9; }
+.mark-art img { display: block; width: 148px; height: 148px; }
+.mark-step.study .mark-art { background: repeating-linear-gradient(45deg,
+            #faf8f2, #faf8f2 9px, #f2efe6 9px, #f2efe6 18px); }
+.mark-step.study .mark-art img { opacity: 0.55; }
+.mark-body { padding: 14px 16px 16px; }
+.mark-step h3 { margin: 0 0 6px; font-size: 14px; line-height: 1.35; }
+.mark-step p { margin: 0; font-size: 12.5px; line-height: 1.65; color: #5a616b; }
+.mark-tag { display: inline-block; font-size: 10.5px; letter-spacing: 0.06em;
+            text-transform: uppercase; border-radius: 99px; padding: 1px 8px;
+            margin-bottom: 8px; border: 1px solid #2f4436; color: #2f4436; }
+.mark-step.study .mark-tag { border-color: #a8a29a; color: #8a857d; }
+.mark-cues { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.mark-cues li { border-left: 2px solid #2f4436; padding: 2px 0 2px 12px;
+            font-size: 12.5px; line-height: 1.6; color: #5a616b; }
+.mark-cues b { color: #16181d; font-weight: 600; }
+
+/* The superseded palette, shown at half strength so it reads as a footnote to
+   the current one rather than a second live set. */
+.retired-swatches { opacity: 0.62; }
       </style>
    </head>
 
@@ -120,7 +151,11 @@
       <main class="shell" id="main" style="padding-bottom:var(--movement)">
 
          <!-- ============================================================
-              DESIGN LANGUAGE — the system behind the live site.
+              DESIGN LANGUAGE — what the live shell.css actually does, and the
+              language it replaced. The palette, the type and the card grammar
+              all changed in the rebuild; the previous set is kept below rather
+              than dropped, because the reasons it was abandoned are the most
+              useful part of it.
               ============================================================ -->
          <section class="band--tight rise" id="design">
             <p class="eyebrow">
@@ -130,21 +165,132 @@
 
             <div class="prose">
                <p>
-                  <span class="lang-en">The system behind pengandy.com — code-style typography, soft cards, snap panels.</span>
-                  <span class="lang-zh" hidden>pengandy.com 背后的设计系统 —— 代码风格排版、柔和卡片、吸附式面板。</span>
+                  <span class="lang-en">One stylesheet for every page. It replaced, per page, Bootstrap, MDBootstrap, FontAwesome, academicons, two syntax-highlighting themes and a webfont from a CDN — all of it, with hand-written CSS.</span>
+                  <span class="lang-zh" hidden>一份样式表服务所有页面。它替掉了每个页面各自加载的 Bootstrap、MDBootstrap、FontAwesome、academicons、两套代码高亮主题，以及一个 CDN 网络字体 —— 全部换成手写 CSS。</span>
                </p>
 
                <h2>
-                  <span class="lang-en">Tokens</span>
-                  <span class="lang-zh" hidden>设计令牌</span>
+                  <span class="lang-en">Two colour layers, no third</span>
+                  <span class="lang-zh" hidden>两层颜色，没有第三层</span>
                </h2>
                <p>
-                  <span class="lang-en">One palette, many moods — each surface of the site keeps its own accent while sharing the same bones.</span>
-                  <span class="lang-zh" hidden>一套色板，多种气质 —— 网站的每个页面都有自己的主题色，却共享同一副骨架。</span>
+                  <span class="lang-en">Ink and one blue. Everything else is those two thinned down: the secondary and tertiary inks, the paper tint, and the hairline rules, which are ink at 10% and 18%. No per-page accent colours.</span>
+                  <span class="lang-zh" hidden>墨色，加一种蓝。其余全部由这两者稀释而来：二级与三级墨色、纸面底色，以及分割线 —— 那是 10% 和 18% 的墨。不再为每个页面单独配主题色。</span>
                </p>
             </div>
 
             <ul class="swatches">
+               <li>
+                  <div class="swatch-chip" style="background:#16181d"></div>
+                  <div class="swatch-name">--ink</div>
+                  <div class="swatch-hex">#16181d</div>
+               </li>
+               <li>
+                  <div class="swatch-chip" style="background:#3c4148"></div>
+                  <div class="swatch-name">--ink-2</div>
+                  <div class="swatch-hex">#3c4148</div>
+               </li>
+               <li>
+                  <div class="swatch-chip" style="background:#6b7280"></div>
+                  <div class="swatch-name">--ink-3</div>
+                  <div class="swatch-hex">#6b7280</div>
+               </li>
+               <li>
+                  <div class="swatch-chip" style="background:#0076df"></div>
+                  <div class="swatch-name">--accent</div>
+                  <div class="swatch-hex">#0076df</div>
+               </li>
+               <li>
+                  <div class="swatch-chip" style="background:#f7f6f4"></div>
+                  <div class="swatch-name">--paper-2</div>
+                  <div class="swatch-hex">#f7f6f4</div>
+               </li>
+            </ul>
+
+            <div class="prose">
+               <h2>
+                  <span class="lang-en">Principles</span>
+                  <span class="lang-zh" hidden>设计原则</span>
+               </h2>
+            </div>
+
+            <!-- Principles as a record list: the name is the key, the
+                 explanation is the value — same grammar as the CV pages. -->
+            <ul class="record-list">
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">Scale, not ornament</span>
+                     <span class="lang-zh" hidden>用尺度，不用装饰</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">Weight comes from size and empty space. A heading earns its authority by being large and alone, not by acquiring a border, a shadow and a badge.</span>
+                     <span class="lang-zh" hidden>分量来自尺寸和留白。一个标题的权威感靠够大、够孤立，而不是靠再加一道边框、一层阴影和一个角标。</span>
+                  </div>
+               </li>
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">Serif for display, sans for reading</span>
+                     <span class="lang-zh" hidden>标题衬线，正文无衬线</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">Source Serif 4 carries every title; the body is the system sans. Monospace is reserved for what is actually code.</span>
+                     <span class="lang-zh" hidden>所有标题用 Source Serif 4，正文用系统无衬线体。等宽字体只留给真正是代码的地方。</span>
+                  </div>
+               </li>
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">Hairlines, not boxes</span>
+                     <span class="lang-zh" hidden>用细线，不用盒子</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">A single rule separates what a card used to enclose. Corners stay square — the only round things on the page are dots and pills.</span>
+                     <span class="lang-zh" hidden>一条细线就能分开原本要靠卡片圈住的内容。转角保持方正 —— 页面上唯一圆的东西是圆点和胶囊标签。</span>
+                  </div>
+               </li>
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">One measure</span>
+                     <span class="lang-zh" hidden>统一的阅读宽度</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">Prose is capped at 62 characters and every page shares the same shell, so a reader's eye lands in the same place on arrival, whatever the page.</span>
+                     <span class="lang-zh" hidden>正文宽度锁在 62 个字符，所有页面共用同一副外壳；无论进哪一页，视线落点都在同一处。</span>
+                  </div>
+               </li>
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">Zero frameworks</span>
+                     <span class="lang-zh" hidden>零框架</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">Hand-written HTML/CSS/JS, and a check that fails the build if a framework or a CDN font sneaks back in. Every byte on the page was put there on purpose.</span>
+                     <span class="lang-zh" hidden>纯手写 HTML/CSS/JS，并且有一项检查：只要框架或 CDN 字体偷偷回来就报错。页面上的每一个字节都有它存在的理由。</span>
+                  </div>
+               </li>
+               <li>
+                  <div class="record-key">
+                     <span class="lang-en">Motion earns its place</span>
+                     <span class="lang-zh" hidden>动效物尽其用</span>
+                  </div>
+                  <div class="record-val">
+                     <span class="lang-en">Reveals on scroll and cross-document view transitions — always subtle, always skippable via reduced-motion.</span>
+                     <span class="lang-zh" hidden>滚动渐显，以及跨页面的视图过渡 —— 始终克制，且始终尊重减少动效偏好设置。</span>
+                  </div>
+               </li>
+            </ul>
+
+            <div class="prose" style="margin-top:34px">
+               <h2>
+                  <span class="lang-en">The language this replaced</span>
+                  <span class="lang-zh" hidden>它替掉的那套语言</span>
+               </h2>
+               <p>
+                  <span class="lang-en">The earlier site ran five accent colours — one per surface — set everything in monospace, and put every block in a card with 12px corners and a soft shadow. It was cramped: a 720px measure, hairlines everywhere, 11px uppercase labels that read as variable names rather than headings. Scale replaced all of it. The one part that survived is the panel system — native <code>scroll-snap</code> with no carousel library, two axes, vertical between chapters and horizontal within them — which still drives the maps page.</span>
+                  <span class="lang-zh" hidden>上一版网站用五种主题色 —— 每个页面一种，全站等宽字体，每一块内容都装在 12px 圆角带柔和阴影的卡片里。它太挤了：720px 的正文宽度、到处都是细线、11px 全大写标签读起来像变量名而不是标题。后来用尺度把这些全部换掉。唯一留下来的是面板系统 —— 原生 <code>scroll-snap</code>，不用轮播库，两个方向：章节之间纵向、章节之内横向 —— 它现在还在支撑地图页。</span>
+               </p>
+            </div>
+
+            <ul class="swatches retired-swatches">
                <li>
                   <div class="swatch-chip" style="background:#0076df"></div>
                   <div class="swatch-name">--theme</div>
@@ -165,87 +311,177 @@
                   <div class="swatch-name">--warm</div>
                   <div class="swatch-hex">#b3542e</div>
                </li>
+            </ul>
+         </section>
+
+         <!-- ============================================================
+              THE MARK — 桂花 + 潺潺流水.
+              Three stages of one drawing. The water is what split the mark in
+              two: letting the stream close the circle reads at 220px and stops
+              reading as a circle at 32px, and the ring is the only reason the
+              mark holds together at 16px. Hence an icon that keeps its ring
+              shut and a display version that opens it.
+              ============================================================ -->
+         <section class="band--tight rise" id="mark">
+            <p class="eyebrow">
+               <span class="lang-en">The mark</span>
+               <span class="lang-zh" hidden>标志</span>
+            </p>
+
+            <div class="prose">
+               <p>
+                  <span class="lang-en">An osmanthus tree in a ring, standing in a brook that runs to the left. Drawn by a script, not by hand — <code>scripts/brand/generate_mark.py</code> is the master, every file under <code>/assets/brand/</code> is its output, and the whole drawing is seeded so re-running reproduces it byte for byte.</span>
+                  <span class="lang-zh" hidden>环里一棵桂花，脚下一道向左流的溪水。它不是手绘的，而是脚本画的 —— <code>scripts/brand/generate_mark.py</code> 是唯一母版，<code>/assets/brand/</code> 下的每个文件都是它的输出；所有随机都带种子，重跑一次能得到字节一致的结果。</span>
+               </p>
+
+               <h2>
+                  <span class="lang-en">桂花 — drawn to the botany</span>
+                  <span class="lang-zh" hidden>桂花 —— 照着植物学画</span>
+               </h2>
+               <p>
+                  <span class="lang-en">Osmanthus fragrans, and the drawing follows how it actually grows: leathery lanceolate leaves in opposite pairs, tiny four-petalled florets clustered in the leaf axils and never at a branch tip, dew only on the lowest leaf tips where it would really collect. 112 leaves, 18 clusters, 6 beads. In Chinese the tree carries 折桂 — plucking the osmanthus, an old figure for an achievement earned.</span>
+                  <span class="lang-zh" hidden>桂花（Osmanthus fragrans），画法照着它真实的生长习性：革质披针形叶严格对生；四瓣小花簇生在<b>叶腋</b>，绝不长在枝顶；露珠只挂最下层叶尖 —— 那才是露水真正会积的位置。112 片叶、18 簇花、6 颗露。中文语境里它还连着「折桂」，是靠本事换来的成就。</span>
+               </p>
+
+               <h2>
+                  <span class="lang-en">潺潺流水 — and how a still drawing points left</span>
+                  <span class="lang-zh" hidden>潺潺流水 —— 一张静止的画怎么指出流向</span>
+               </h2>
+               <p>
+                  <span class="lang-en">Monochrome, static, no arrowhead and no second colour. Direction has to come out of the shapes themselves, so four cues are stacked and none of the reading depends on one trick:</span>
+                  <span class="lang-zh" hidden>单色、静止，没有箭头也没有第二种颜色。流向只能由形状本身说出来，所以叠了四种线索，不让判断落在任何单一技巧上：</span>
+               </p>
+            </div>
+
+            <ul class="mark-cues">
                <li>
-                  <div class="swatch-chip" style="background:#16181d"></div>
-                  <div class="swatch-name">--ink</div>
-                  <div class="swatch-hex">#16181d</div>
+                  <span class="lang-en"><b>Taper.</b> Every ripple thins to nothing at its left end. The thick end is where the water came from — which is why the ripples are filled shapes rather than strokes: only a fill can end in a real point.</span>
+                  <span class="lang-zh" hidden><b>收尖。</b>每道水纹向左收成无穷细，粗的那头是水的来处。这也是水纹用填充而非描边的原因 —— 只有填充能收出真正的尖。</span>
+               </li>
+               <li>
+                  <span class="lang-en"><b>Wake.</b> A stone parts the flow and its wake opens downstream, to the left. The most literal cue in the drawing.</span>
+                  <span class="lang-zh" hidden><b>尾迹。</b>一块石头把水分开，尾迹朝下游、也就是朝左张开。整张图里最直白的一条线索。</span>
+               </li>
+               <li>
+                  <span class="lang-en"><b>Curl.</b> An eddy hooks over at the downstream tip, in the direction of travel.</span>
+                  <span class="lang-zh" hidden><b>回涡。</b>下游端一个小卷，顺着水走的方向兜回来。</span>
+               </li>
+               <li>
+                  <span class="lang-en"><b>Grading.</b> The rows shorten and thin as they go, the way a shallow brook frays out instead of stopping.</span>
+                  <span class="lang-zh" hidden><b>疏密。</b>越往左越短越细，像浅溪散开，而不是齐齐截断。</span>
                </li>
             </ul>
 
-            <div class="prose">
+            <div class="prose" style="margin-top:22px">
                <h2>
-                  <span class="lang-en">The Panel System</span>
-                  <span class="lang-zh" hidden>面板系统</span>
+                  <span class="lang-en">Three stages</span>
+                  <span class="lang-zh" hidden>三步演进</span>
                </h2>
                <p>
-                  <span class="lang-en">Native scroll + snap, two axes: vertical between chapters, horizontal within them.</span>
-                  <span class="lang-zh" hidden>原生滚动 + 吸附，两个方向：章节间纵向滚动，章节内横向翻页。</span>
+                  <span class="lang-en">The water needed space, not finer linework. The first version left 18 of the 200 canvas units between the trunk base and the ring, and the interior is only ±28 wide down there — anything drawn into that slot is a grey smudge by 96px. Fitting the same tree smaller and higher opened 36 units, and the 32px icon reads better for it, the crown being less crowded.</span>
+                  <span class="lang-zh" hidden>水缺的是地方，不是更细的笔。第一版在树干落地处到圆环之间只留了 18 个（共 200）画布单位，而且那个高度上内圆只有 ±28 宽 —— 任何水纹塞进去，到 96px 就是一团灰。把同一棵树缩小、上移，让出 36 单位，32px 反而比原来更清楚，因为树冠不再挤。</span>
                </p>
-               <ul>
-                  <li>
-                     <code>scroll-snap-type: x mandatory</code> —
-                     <span class="lang-en">the browser does the physics — no carousel library.</span>
-                     <span class="lang-zh" hidden>物理效果全靠浏览器 —— 不用轮播库。</span>
-                  </li>
-                  <li>
-                     <code>scroll-snap-align: start</code> —
-                     <span class="lang-en">every panel lands exactly where it should.</span>
-                     <span class="lang-zh" hidden>每个面板都精准停在该停的位置。</span>
-                  </li>
-                  <li>
-                     <code>overscroll-behavior: contain</code> —
-                     <span class="lang-en">no accidental back-swipe, ever.</span>
-                     <span class="lang-zh" hidden>永远不会误触返回手势。</span>
-                  </li>
-               </ul>
-
-               <h2>
-                  <span class="lang-en">Principles</span>
-                  <span class="lang-zh" hidden>设计原则</span>
-               </h2>
             </div>
 
-            <!-- Principles as a record list: the name is the key, the
-                 explanation is the value — same grammar as the CV pages. -->
-            <ul class="record-list">
+            <ol class="mark-steps">
+               <li class="mark-step study">
+                  <div class="mark-art">
+                     <img src="/assets/creativity/marks/mark-study.svg" width="148" height="148"
+                          alt="First study: osmanthus tree filling a closed ring, before the water">
+                  </div>
+                  <div class="mark-body">
+                     <span class="mark-tag">
+                        <span class="lang-en">study</span><span class="lang-zh" hidden>原型</span>
+                     </span>
+                     <h3>
+                        <span class="lang-en">1 · Closed ring, no water</span>
+                        <span class="lang-zh" hidden>一 · 环闭合，无水</span>
+                     </h3>
+                     <p>
+                        <span class="lang-en">The tree filling the ring edge to edge. A whole mark on its own, and the shape the water had to find room in.</span>
+                        <span class="lang-zh" hidden>树把圆环撑满。它本身已经是完整的一枚标志，也是水要在其中找位置的那个形状。</span>
+                     </p>
+                  </div>
+               </li>
+               <li class="mark-step">
+                  <div class="mark-art">
+                     <img src="/assets/brand/logo-mark-flat.svg" width="148" height="148"
+                          alt="Icon tier: the tree lifted and smaller, a brook running left below it, ring closed">
+                  </div>
+                  <div class="mark-body">
+                     <span class="mark-tag">
+                        <span class="lang-en">icon</span><span class="lang-zh" hidden>图标</span>
+                     </span>
+                     <h3>
+                        <span class="lang-en">2 · Lifted, with a real brook</span>
+                        <span class="lang-zh" hidden>二 · 抬树让水</span>
+                     </h3>
+                     <p>
+                        <span class="lang-en">Same tree, smaller and higher, four tapered ripples and a stone in the band it vacated. The ring stays shut on purpose — that closed outline is what still reads when the tab is 16 pixels wide.</span>
+                        <span class="lang-zh" hidden>同一棵树，缩小上移，让出的水带里放四道收尖水纹和一块分水石。环刻意保持闭合 —— 标签页只有 16 像素宽时，还能读出来的正是这个闭合轮廓。</span>
+                     </p>
+                  </div>
+               </li>
+               <li class="mark-step">
+                  <div class="mark-art">
+                     <img src="/assets/brand/logo-mark-display-flat.svg" width="148" height="148"
+                          alt="Display tier: the ring opens at the bottom and the stream closes the circle">
+                  </div>
+                  <div class="mark-body">
+                     <span class="mark-tag">
+                        <span class="lang-en">display</span><span class="lang-zh" hidden>展示</span>
+                     </span>
+                     <h3>
+                        <span class="lang-en">3 · Water as the base</span>
+                        <span class="lang-zh" hidden>三 · 水托</span>
+                     </h3>
+                     <p>
+                        <span class="lang-en">The ring stops where the water starts and the stream closes the circle, so the mark stands <em>in</em> the current rather than above a decoration. It earns that break only at size: by 32px the outline no longer reads as a circle, so this one is for 128px and up.</span>
+                        <span class="lang-zh" hidden>环在水面处断开，由水来收口，于是标志是立<em>在</em>流水里，而不是站在一处装饰上方。这个断口只有在大尺寸才划得来：到 32px 轮廓已经不像圆了，所以它只用于 128px 以上。</span>
+                     </p>
+                  </div>
+               </li>
+            </ol>
+
+            <ul class="record-list" style="margin-top:22px">
                <li>
                   <div class="record-key">
-                     <span class="lang-en">Code is the aesthetic</span>
-                     <span class="lang-zh" hidden>代码即美学</span>
+                     <span class="lang-en">Icon, every size</span>
+                     <span class="lang-zh" hidden>图标，全尺寸</span>
                   </div>
                   <div class="record-val">
-                     <span class="lang-en">Monospace everywhere. The site reads like a well-formatted source file.</span>
-                     <span class="lang-zh" hidden>全站等宽字体。整个网站读起来像一份排版精良的源代码文件。</span>
+                     <span class="lang-en">The closed-ring version is the favicon, the apple-touch-icon and the web app manifest icon, with the 192 and 512px rasters downsampled from it.</span>
+                     <span class="lang-zh" hidden>环闭合的那一版是 favicon、apple-touch-icon 与 Web App manifest 图标，192 / 512px 光栅图由它下采样得到。</span>
                   </div>
                </li>
                <li>
                   <div class="record-key">
-                     <span class="lang-en">Cards, not pages</span>
-                     <span class="lang-zh" hidden>卡片，而非页面</span>
+                     <span class="lang-en">Display, from 128px</span>
+                     <span class="lang-zh" hidden>展示，128px 起</span>
                   </div>
                   <div class="record-val">
-                     <span class="lang-en">Soft borders, 12px radii, shadows that whisper. Content lives in cards.</span>
-                     <span class="lang-zh" hidden>柔和的边框、12px 圆角、若隐若现的阴影。内容都住在卡片里。</span>
+                     <span class="lang-en">The open-ring version is for places with room to spare — headers, social cards, slides, print. Not for a favicon: the break needs size to make sense.</span>
+                     <span class="lang-zh" hidden>环断开的那一版用在放得开的地方 —— 页头、社交卡片、幻灯片、印刷。不做 favicon：那个断口需要尺寸才立得住。</span>
                   </div>
                </li>
                <li>
                   <div class="record-key">
-                     <span class="lang-en">Motion earns its place</span>
-                     <span class="lang-zh" hidden>动效物尽其用</span>
+                     <span class="lang-en">Rasters come from the vector</span>
+                     <span class="lang-zh" hidden>光栅图来自矢量</span>
                   </div>
                   <div class="record-val">
-                     <span class="lang-en">Reveals, nudges, and bobs — always subtle, always skippable via reduced-motion.</span>
-                     <span class="lang-zh" hidden>渐显、轻推、浮动 —— 始终克制，且始终尊重减少动效偏好设置。</span>
+                     <span class="lang-en">Rendered once at 1024px and downsampled with LANCZOS, never drawn straight onto a small canvas: that keeps a sub-pixel stroke as partial alpha instead of dropping it, so the detail survives as grey density.</span>
+                     <span class="lang-zh" hidden>先渲染到 1024px，再用 LANCZOS 下采样，绝不直接画在小画布上 —— 这样比一个像素还细的笔画会留成半透明的灰，而不是整根消失。</span>
                   </div>
                </li>
                <li>
                   <div class="record-key">
-                     <span class="lang-en">Zero frameworks</span>
-                     <span class="lang-zh" hidden>零框架</span>
+                     <span class="lang-en">One artwork, two compositions</span>
+                     <span class="lang-zh" hidden>一份图稿，两种构图</span>
                   </div>
                   <div class="record-val">
-                     <span class="lang-en">Hand-written HTML/CSS/JS. Every byte on the page was put there on purpose.</span>
-                     <span class="lang-zh" hidden>纯手写 HTML/CSS/JS。页面上的每一个字节都有它存在的理由。</span>
+                     <span class="lang-en">The two versions call the same drawing routine; what differs is the ring and the water. There is no separately redrawn small version — a detailed drawing downsampled beats a simplified redraw, and one source is easier to keep honest.</span>
+                     <span class="lang-zh" hidden>两个版本调用的是同一段绘制代码，区别只在环和水。没有另画一版简化的小图 —— 细节图下采样的效果好过重画的简化版，而且单一来源更容易保持诚实。</span>
                   </div>
                </li>
             </ul>
