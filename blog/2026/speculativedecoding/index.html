@@ -1908,7 +1908,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
             document.querySelectorAll('.lang-zh').forEach(showEl);
             document.querySelectorAll('.lang-en').forEach(function(el){
               var parent = el.parentElement;
-              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              var hasZhSibling = parent && parent.querySelector(':scope > .lang-zh');
               if (!hasZhSibling) { showEl(el); }
             });
           } else {

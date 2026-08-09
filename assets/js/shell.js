@@ -199,9 +199,12 @@
   window.applyLanguage = function (lang) {
     var zh = lang === 'zh';
     document.querySelectorAll('.lang-en').forEach(function (el) {
-      // keep English visible where no translation exists on this page
+      // Keep English visible where no translation exists. The pair has to be a
+      // *sibling*, so scope the lookup to direct children: a plain descendant
+      // query also matches Chinese text inside a nested .note, which wrongly
+      // hid the English title and left the entry with no title at all.
       var p = el.parentElement;
-      var hasZh = p && p.querySelector('.lang-zh');
+      var hasZh = p && p.querySelector(':scope > .lang-zh');
       el.hidden = zh && !!hasZh;
     });
     document.querySelectorAll('.lang-zh').forEach(function (el) {

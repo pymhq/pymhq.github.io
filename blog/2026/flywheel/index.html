@@ -732,7 +732,7 @@ img { pointer-events: none; }
             document.querySelectorAll('.lang-zh').forEach(showEl);
             document.querySelectorAll('.lang-en').forEach(function(el){
               var parent = el.parentElement;
-              var hasZhSibling = parent && parent.querySelector('.lang-zh');
+              var hasZhSibling = parent && parent.querySelector(':scope > .lang-zh');
               if (!hasZhSibling) { showEl(el); }
             });
           } else {
