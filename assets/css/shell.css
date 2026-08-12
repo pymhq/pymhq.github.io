@@ -1036,6 +1036,15 @@ figure > img,
   margin-right: auto;
 }
 
+/* The language switch hides a block with the `hidden` attribute, which any
+   `display` declaration outranks. Making it !important on these two classes
+   only keeps a page-local style — or a leftover inline one — from pinning a
+   post to one language while the rest of the page switches around it. */
+.lang-en[hidden],
+.lang-zh[hidden] {
+  display: none !important;
+}
+
 .post > :is(p, ul, ol, li, dl, blockquote, pre, table, hr, figure, img, .fx-toc),
 .post > :is(.lang-en, .lang-zh) > :is(p, ul, ol, li, dl, blockquote, pre, table, hr, figure, img, .fx-toc),
 .post .post-content > :is(p, ul, ol, li, dl, blockquote, pre, table, hr, figure, img, .fx-toc),

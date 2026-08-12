@@ -18,8 +18,9 @@
     TAGS_AND_CATEGORIES             the <a> tag/category links row
 
   NOTES
-    • Single-language post? Keep only the .lang-en block, delete the toggle,
-      the .lang-zh block, and the <script> at the bottom.
+    • Single-language post? Keep only the .lang-en block and delete the toggle
+      and the .lang-zh block. Nothing else needs changing: the switch leaves an
+      .lang-en block with no .lang-zh sibling visible in both languages.
     • PERSON NAMES: always wrap in <em>italic</em> — never <strong>bold</strong>.
     • DO NOT bold (<strong>) ANY content unless the author explicitly asks for it.
       Default to plain text; use <em>italic</em> only for names/light emphasis.
@@ -32,9 +33,13 @@
       <style>. Default is the site theme blue (--global-theme-color). Apply the
       same treatment in BOTH the EN and 中文 versions. (Legacy: ant-hl in
       blog/2026/curiosity-driven-builder/ is this same pill style.)
-    • The EN/中文 toggle works because the button sets `body.zh`, and the CSS
-      below hides the inactive language. Wrap the <h1> and <p class="post-meta">
-      in .lang-en / .lang-zh spans so the header switches too.
+    • The EN/中文 toggle is owned by the shared site shell script: it flips the `hidden`
+      attribute on every .lang-en/.lang-zh pair, stores the choice under
+      localStorage 'preferredLanguage', and marks the active [data-lang] button.
+      Wrap the <h1> and <p class="post-meta"> in .lang-en / .lang-zh spans so
+      the header switches too, and give every .lang-zh element `hidden` as its
+      default state. Never re-implement the switch in the page: a page-local
+      inline `display` outranks `hidden` and freezes the body in one language.
 
   ============================================================================
   PUBLISH CHECKLIST — every page/file to touch for ONE new post
@@ -178,14 +183,17 @@
         Clicking either button here updates the SAME global preference
         (localStorage 'preferredLanguage') used by the homepage and the
         navbar, so navigating away or the already-rendered navbar both
-        reflect the choice immediately. See __setPostLang() below. */
+        reflect the choice immediately. The switch itself is
+        switchLanguage() in the shared site shell script — do not add a
+        page-local copy: an inline `display` outranks the `hidden` it sets
+        and pins the body to one language.
+
+        The un-chosen block is hidden by `hidden` on the markup below, so
+        never give .lang-zh a `display` rule here either. */
      .lang-toggle { margin: 0 0 22px 0; }
-     .lang-toggle button { border:1px solid var(--global-theme-color); background:transparent; color:var(--global-theme-color);
-       font:600 0.82em var(--sans); padding:5px 16px; cursor:pointer; line-height:1.4; }
      .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
      .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
-     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
-     .lang-zh { display:none; }
+     .lang-toggle button.active { background:var(--global-theme-color); border-color:var(--global-theme-color); color:#fff; }
    </style>
    <body data-nav-match="blog/YEAR/POST_SLUG">
       <a class="skip" href="#main">Skip to content</a>
@@ -198,9 +206,9 @@
       <main class="shell" id="main" style="padding-bottom:var(--movement)">
          <div class="post">
             <header class="post-header">
-               <h1 class="post-title"><span class="lang-en">BLOG_TITLE_EN</span><span class="lang-zh">BLOG_TITLE_ZH</span></h1>
+               <h1 class="post-title"><span class="lang-en">BLOG_TITLE_EN</span><span class="lang-zh" hidden>BLOG_TITLE_ZH</span></h1>
                <!-- word count + read time live in .post-readstats; index card is auto-synced by sync_reading_stats.py -->
-               <p class="post-meta"><span class="lang-en"> Created in POST_DATE_EN<span class="post-readstats"> · WORD_COUNT words · READ_MIN min read</span> </span><span class="lang-zh"> 创建于 POST_DATE_ZH<span class="post-readstats"> · WORD_COUNT 字 · READ_MIN 分钟阅读</span> </span></p>
+               <p class="post-meta"><span class="lang-en"> Created in POST_DATE_EN<span class="post-readstats"> · WORD_COUNT words · READ_MIN min read</span> </span><span class="lang-zh" hidden> 创建于 POST_DATE_ZH<span class="post-readstats"> · WORD_COUNT 字 · READ_MIN 分钟阅读</span> </span></p>
                <p class="post-tags">
                   TAGS_AND_CATEGORIES
                </p>
@@ -214,10 +222,11 @@
             <article class="post-content">
                <div id="markdown-content">
 
-                  <!-- EN / 中文 switch -->
-                  <div class="lang-toggle">
-                     <button id="lang-en-btn" type="button" onclick="__setPostLang('en')">EN</button>
-                     <button id="lang-zh-btn" type="button" onclick="__setPostLang('zh')">中文</button>
+                  <!-- EN / 中文 switch. shell.js binds every [data-lang]
+                       control on the page and marks the active one. -->
+                  <div class="lang-toggle seg" role="group" aria-label="Language">
+                     <button type="button" data-lang="en">EN</button>
+                     <button type="button" data-lang="zh">中文</button>
                   </div>
 
                   <!-- ================= ENGLISH ================= -->
@@ -225,8 +234,10 @@
                      BLOG_CONTENT_EN
                   </div><!-- /lang-en -->
 
-                  <!-- ================= 中文 ================= -->
-                  <div class="lang-zh">
+                  <!-- ================= 中文 =================
+                       `hidden` is the default state and the only mechanism
+                       that hides a language block. -->
+                  <div class="lang-zh" hidden>
                      BLOG_CONTENT_ZH
                   </div><!-- /lang-zh -->
 
@@ -237,50 +248,5 @@
 
       <footer class="foot" data-shell-footer></footer>
 
-      <!-- EN / 中文 toggle logic. This writes the SAME global preference
-           (localStorage 'preferredLanguage') that the homepage button and
-           the shell nav use, so switching here also updates the
-           navbar immediately, without a page reload. -->
-      <script>
-      (function(){
-        function showEl(el) {
-          var tag = el.tagName;
-          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
-        }
-        function applyHere(lang) {
-          var zh = lang === 'zh';
-          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
-          if (zh) {
-            document.querySelectorAll('.lang-zh').forEach(showEl);
-            // Fallback: no Chinese translation on this page/block -> keep English.
-            document.querySelectorAll('.lang-en').forEach(function(el){
-              var parent = el.parentElement;
-              var hasZhSibling = parent && parent.querySelector(':scope > .lang-zh');
-              if (!hasZhSibling) { showEl(el); }
-            });
-          } else {
-            document.querySelectorAll('.lang-en').forEach(showEl);
-          }
-          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
-          if (be) be.classList.toggle('active', !zh);
-          if (bz) bz.classList.toggle('active', zh);
-        }
-
-        function setLang(lang) {
-          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
-          applyHere(lang);
-          // Also refresh the navbar (and any other .lang-en/.lang-zh markup
-          // outside this post) if it has already finished loading.
-          if (typeof window.applyGlobalLanguage === 'function') {
-            window.applyGlobalLanguage(lang);
-          }
-        }
-        window.__setPostLang = setLang;
-
-        var initial = 'en';
-        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
-        applyHere(initial);
-      })();
-      </script>
    </body>
 </html>

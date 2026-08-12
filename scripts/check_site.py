@@ -227,7 +227,34 @@ def check_bilingual() -> None:
             bad_pair += 1
             fails.append(f'{rel}: {zh_visible} lang-zh block(s) not marked hidden '
                          '(both languages would show at once)')
-    print(f'  inline display:none: {bad_style}   unhidden zh blocks: {bad_pair}')
+
+    # A page that switches languages itself is the defect this section exists
+    # for: every post used to carry a copy of the toggle that wrote inline
+    # `display`, which outranks the `hidden` attribute the shell sets. The
+    # titles kept switching while the body stayed in one language.
+    raw_pages = [f for f in site_pages()
+                 if os.path.relpath(f, ROOT) not in LEGACY]
+    local_switch = missing_toggle = 0
+    for f in raw_pages:
+        rel = os.path.relpath(f, ROOT)
+        raw = open(f, encoding='utf-8', errors='replace').read()
+        for script in re.findall(r'<script\b[^>]*>(.*?)</script>', raw, re.S):
+            if re.search(r"querySelectorAll\(\s*'[^']*\.lang-(?:en|zh)", script) \
+                    and 'style.display' in script:
+                local_switch += 1
+                fails.append(f'{rel}: page-local language switch writes '
+                             'style.display (use switchLanguage() in the shell)')
+                break
+        # A post with both languages needs its own visible control.
+        if re.match(r'blog/\d{4}/[^/]+/index\.html$', rel) \
+                and 'class="lang-zh"' in raw and '<div class="lang-zh"' in raw \
+                and 'data-lang=' not in raw:
+            missing_toggle += 1
+            fails.append(f'{rel}: translated post has no [data-lang] toggle')
+
+    print(f'  inline display:none: {bad_style}   unhidden zh blocks: {bad_pair}'
+          f'   page-local switches: {local_switch}'
+          f'   posts missing a toggle: {missing_toggle}')
 
 
 def check_reading_aids() -> None:

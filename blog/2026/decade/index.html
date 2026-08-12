@@ -55,9 +55,10 @@ img {
      /* --- EN / 中文 language toggle ---
         Clicking either button updates the shared global preference
         (localStorage 'preferredLanguage') also used by the homepage and
-        the navbar. See __setPostLang() near the bottom of this file. */
+        the navbar. See switchLanguage() in the shared site shell script. */
      .lang-toggle { margin: 0 0 22px 0; }
      .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+     .lang-toggle button:last-child  { border-radius: 0 16px 16px 0; }
      .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
       </style>
    </head>
@@ -102,6 +103,14 @@ img {
                        style="max-width: 380px; width: 100%; border-radius: 12px;"
                        draggable="false">
                 </div>
+
+                  <!-- EN / 中文 toggle. switchLanguage() lives in shell.js: it stores the
+                       shared 'preferredLanguage' and flips every .lang-en/.lang-zh pair on
+                       the page, so the nav, the footer and this body stay in one language. -->
+                  <div class="lang-toggle seg" role="group" aria-label="Language">
+                     <button type="button" data-lang="en">EN</button>
+                     <button type="button" data-lang="zh">中文</button>
+                  </div>
 
                   <div class="lang-en">
                   <p>
@@ -323,46 +332,6 @@ img {
       
        
 
-      <!-- EN / 中文 toggle. Persists the shared global preference
-           (localStorage 'preferredLanguage') that the homepage button and
-           the shell nav uses, so switching here also updates the
-           navbar immediately, without a page reload. -->
-      <script>
-      (function(){
-        function showEl(el) {
-          var tag = el.tagName;
-          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
-        }
-        function applyHere(lang) {
-          var zh = lang === 'zh';
-          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
-          if (zh) {
-            document.querySelectorAll('.lang-zh').forEach(showEl);
-            document.querySelectorAll('.lang-en').forEach(function(el){
-              var parent = el.parentElement;
-              var hasZhSibling = parent && parent.querySelector(':scope > .lang-zh');
-              if (!hasZhSibling) { showEl(el); }
-            });
-          } else {
-            document.querySelectorAll('.lang-en').forEach(showEl);
-          }
-          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
-          if (be) be.classList.toggle('active', !zh);
-          if (bz) bz.classList.toggle('active', zh);
-        }
-        function setLang(lang) {
-          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
-          applyHere(lang);
-          if (typeof window.applyGlobalLanguage === 'function') {
-            window.applyGlobalLanguage(lang);
-          }
-        }
-        window.__setPostLang = setLang;
-        var initial = 'en';
-        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
-        applyHere(initial);
-      })();
-      </script>
    
       </main>
 

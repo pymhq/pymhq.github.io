@@ -72,9 +72,10 @@ img {
     /* --- EN / 中文 language toggle ---
        Clicking either button updates the shared global preference
        (localStorage 'preferredLanguage') also used by the homepage and
-       the navbar. See __setPostLang() near the bottom of this file. */
+       the navbar. See switchLanguage() in the shared site shell script. */
     .lang-toggle { margin: 0 0 22px 0; }
     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
+    .lang-toggle button:last-child  { border-radius: 0 16px 16px 0; }
     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
       </style>
    </head>
@@ -99,6 +100,14 @@ img {
             </div>
 
             
+
+            <!-- EN / 中文 toggle. switchLanguage() lives in shell.js: it stores the
+                 shared 'preferredLanguage' and flips every .lang-en/.lang-zh pair on
+                 the page, so the nav, the footer and this body stay in one language. -->
+            <div class="lang-toggle seg" role="group" aria-label="Language">
+               <button type="button" data-lang="en">EN</button>
+               <button type="button" data-lang="zh">中文</button>
+            </div>
 
             <div class="lang-en">
 
@@ -158,13 +167,13 @@ img {
             </li>
             <li>
               Decode ≠ Prefill: LLM inference is two workloads, Prefill is compute-bound and Decode is memory-bound. Prefill needs a lot of computing resources to convert input into data structure that gets handed off to the next process. Decode (token generation) is that the model generates each token sequentially one at a time. And this puts a very different set of demands on AI infrastructure. Each time a token is generated, the entire model has to be read from memory, but only a small amount of compute is used. For this reason, token generation puts lots of demand on memory but only a small amount of compute. And for agentic AI scenario, customers care about fast prefill and really fast token generation. Standard deployments run both phases on the same GPU—inefficient. Disaggregated serving become necessary, separating these phases to independently scale and optimize them.
+              <div class="comment-note-2026">
+                 <span class="note-date">Mar 26, 2026 ·</span> Cerebras CEO &amp; Founder @andrewdfeldman elaborated on <a href="https://x.com/andrewdfeldman/status/2037153848146399548" target="_blank">"What is disaggregated inference?"</a> in a tweet.
+              </div>
+              <div class="comment-note-2026">
+                 <span class="note-date">Feb 2026 ·</span> Amazon published <a href="https://www.aboutamazon.com/stories/what-is-ai-inference-ai-agents">an article</a>, <strong>"What is AI inference? The backbone of the AI revolution,"</strong> that explains this process in a clear, easy-to-understand way.
+              </div>
             </li>
-            <div class="comment-note-2026">
-              <span class="note-date">Mar 26, 2026 ·</span> Cerebras CEO &amp; Founder @andrewdfeldman elaborated on <a href="https://x.com/andrewdfeldman/status/2037153848146399548" target="_blank">"What is disaggregated inference?"</a> in a tweet.
-            </div>
-            <div class="comment-note-2026">
-              <span class="note-date">Feb 2026 ·</span> Amazon published <a href="https://www.aboutamazon.com/stories/what-is-ai-inference-ai-agents">an article</a>, <strong>"What is AI inference? The backbone of the AI revolution,"</strong> that explains this process in a clear, easy-to-understand way.
-            </div>
             <li>
               Prompt caching essential. Many workloads are multi-turn (chat agents, tool-use, code completion). Routing to replicas with cached context avoids redundant prefill computation. This improves tail latencies by orders of magnitude when done right.
             </li>
@@ -273,13 +282,13 @@ img {
             </li>
             <li>
               解码（Decode）≠ 预填充（Prefill）：LLM 推理实际上是两种工作负载，Prefill 是计算密集型，Decode 是内存密集型。Prefill 需要大量计算资源，将输入转化为传递给下一阶段的数据结构。Decode（token 生成）则是模型逐个、依次生成每一个 token。这对 AI 基础设施提出了截然不同的要求：每生成一个 token，都必须把整个模型从内存中读取一遍，但实际用到的计算量却很小。因此，token 生成对内存的需求很高，对计算的需求却很低。而在智能体 AI 场景下，客户既关心快速的 Prefill，也关心极快的 token 生成速度。标准部署方式让这两个阶段共用同一块 GPU——效率低下。因此，将这两个阶段分离、独立扩展和优化的"分离式服务"（disaggregated serving）变得必要。
+              <div class="comment-note-2026">
+                 <span class="note-date">2026 年 3 月 26 日 ·</span> Cerebras CEO 兼创始人 @andrewdfeldman 在一条推文中详细阐述了<a href="https://x.com/andrewdfeldman/status/2037153848146399548" target="_blank">"什么是分离式推理？"</a>。
+              </div>
+              <div class="comment-note-2026">
+                 <span class="note-date">2026 年 2 月 ·</span> Amazon 发布了<a href="https://www.aboutamazon.com/stories/what-is-ai-inference-ai-agents">一篇文章</a>，<strong>《什么是 AI 推理？AI 革命的支柱》</strong>，用清晰易懂的方式解释了这一过程。
+              </div>
             </li>
-            <div class="comment-note-2026">
-              <span class="note-date">2026 年 3 月 26 日 ·</span> Cerebras CEO 兼创始人 @andrewdfeldman 在一条推文中详细阐述了<a href="https://x.com/andrewdfeldman/status/2037153848146399548" target="_blank">"什么是分离式推理？"</a>。
-            </div>
-            <div class="comment-note-2026">
-              <span class="note-date">2026 年 2 月 ·</span> Amazon 发布了<a href="https://www.aboutamazon.com/stories/what-is-ai-inference-ai-agents">一篇文章</a>，<strong>《什么是 AI 推理？AI 革命的支柱》</strong>，用清晰易懂的方式解释了这一过程。
-            </div>
             <li>
               提示缓存（Prompt caching）至关重要：许多工作负载都是多轮的（聊天智能体、工具调用、代码补全）。将请求路由到已缓存上下文的副本，可以避免重复的 Prefill 计算。做得好的话，能把尾部延迟降低几个数量级。
             </li>
@@ -341,46 +350,6 @@ img {
       
       
         
-      <!-- EN / 中文 toggle logic. Writes the SAME global preference
-           (localStorage 'preferredLanguage') that the homepage button and
-           the shell nav uses, so switching here also updates the
-           navbar immediately, without a page reload. -->
-      <script>
-      (function(){
-        function showEl(el) {
-          var tag = el.tagName;
-          el.style.display = (tag === 'SPAN') ? 'inline' : 'block';
-        }
-        function applyHere(lang) {
-          var zh = lang === 'zh';
-          document.querySelectorAll('.lang-en, .lang-zh').forEach(function(el){ el.style.display = 'none'; });
-          if (zh) {
-            document.querySelectorAll('.lang-zh').forEach(showEl);
-            document.querySelectorAll('.lang-en').forEach(function(el){
-              var parent = el.parentElement;
-              var hasZhSibling = parent && parent.querySelector(':scope > .lang-zh');
-              if (!hasZhSibling) { showEl(el); }
-            });
-          } else {
-            document.querySelectorAll('.lang-en').forEach(showEl);
-          }
-          var be = document.getElementById('lang-en-btn'), bz = document.getElementById('lang-zh-btn');
-          if (be) be.classList.toggle('active', !zh);
-          if (bz) bz.classList.toggle('active', zh);
-        }
-        function setLang(lang) {
-          try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
-          applyHere(lang);
-          if (typeof window.applyGlobalLanguage === 'function') {
-            window.applyGlobalLanguage(lang);
-          }
-        }
-        window.__setPostLang = setLang;
-        var initial = 'en';
-        try { initial = localStorage.getItem('preferredLanguage') || 'en'; } catch(e) {}
-        applyHere(initial);
-      })();
-      </script>
    
       </main>
 

@@ -156,11 +156,9 @@
       '</div>' +
       '</div></div></div>';
 
-    mount.querySelectorAll('[data-lang]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        switchLanguage(b.dataset.lang);
-      });
-    });
+    // The language buttons are bound once, page-wide, by bindLangButtons():
+    // posts carry their own EN/中文 pair above the article and both controls
+    // have to drive the same switch.
     mount.querySelectorAll('[data-theme-set]').forEach(function (b) {
       b.addEventListener('click', function () {
         setTheme(b.dataset.themeSet);
@@ -205,16 +203,31 @@
       // hid the English title and left the entry with no title at all.
       var p = el.parentElement;
       var hasZh = p && p.querySelector(':scope > .lang-zh');
-      el.hidden = zh && !!hasZh;
+      show(el, !(zh && !!hasZh));
     });
     document.querySelectorAll('.lang-zh').forEach(function (el) {
-      el.hidden = !zh;
+      show(el, zh);
     });
     document.querySelectorAll('[data-lang]').forEach(function (b) {
       b.classList.toggle('active', b.dataset.lang === lang);
     });
     document.documentElement.lang = zh ? 'zh-Hans' : 'en';
+    // Lets page-local widgets that key off the language — the reading-aid
+    // outlines in the long posts — rebuild without knowing about this file.
+    document.dispatchEvent(
+      new CustomEvent('languagechange', { detail: { lang: lang } })
+    );
   };
+
+  /* Visibility is the `hidden` attribute, but an inline `display` beats it:
+     posts written before this file owned the toggle set display in their own
+     script, which silently pinned the body to one language while the titles
+     around it still switched. Clearing the inline value keeps those pages
+     switchable whatever they did on load. */
+  function show(el, visible) {
+    if (el.style && el.style.display) el.style.removeProperty('display');
+    el.hidden = !visible;
+  }
 
   window.switchLanguage = function (lang) {
     localStorage.setItem('preferredLanguage', lang);
@@ -225,6 +238,18 @@
     var forced = new URLSearchParams(location.search).get('lang');
     if (forced === 'zh' || forced === 'en') return forced;
     return localStorage.getItem('preferredLanguage') || 'en';
+  }
+
+  /* One delegated handler for every EN/中文 control on the page — the footer
+     pair this file injects and the pair each translated post carries above its
+     article. Delegation also covers controls added after boot. */
+  function bindLangButtons() {
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('[data-lang]');
+      if (!btn) return;
+      e.preventDefault();
+      window.switchLanguage(btn.dataset.lang);
+    });
   }
 
   /* ---------------- sticky nav ---------------- */
@@ -319,6 +344,7 @@
     buildNav();
     buildFooter();
     applyTheme(currentTheme());
+    bindLangButtons();
     window.applyLanguage(currentLang());
     stickyNav();
     reveal();
