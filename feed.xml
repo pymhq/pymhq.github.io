@@ -17,20 +17,20 @@
       <enclosure url="https://pengandy.com/assets/blog/fifa/with-irene.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试</title>
-      <link>https://pengandy.com/blog/2026/storyline</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2026/storyline</guid>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-      <description>A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试</description>
-      <enclosure url="https://pengandy.com/assets/blog/storyline/nantucket-map.svg" type="image/png" length="0" />
-    </item>
-    <item>
       <title>How Google Gemini Helped Me Survive My French Riviera Trip</title>
       <link>https://pengandy.com/blog/2026/french-riviera</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2026/french-riviera</guid>
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
       <description>How Google Gemini Helped Me Survive My French Riviera Trip</description>
       <enclosure url="https://pengandy.com/assets/blog/french-riviera/hero.jpg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试</title>
+      <link>https://pengandy.com/blog/2026/storyline</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2026/storyline</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <description>A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试</description>
+      <enclosure url="https://pengandy.com/assets/blog/storyline/nantucket-map.svg" type="image/png" length="0" />
     </item>
     <item>
       <title>Open vs Closed</title>
@@ -113,20 +113,20 @@
       <enclosure url="https://pengandy.com/assets/blog/llm/Still-Life-with-TPU-Chip-and-Coffee-Mug-ChatGPT-2025.jpg" type="image/png" length="0" />
     </item>
     <item>
-      <title>NeurIPS CDMX Trip</title>
-      <link>https://pengandy.com/blog/2025/neurips</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/neurips</guid>
-      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
-      <description>NeurIPS CDMX Trip</description>
-      <enclosure url="https://pengandy.com/assets/blog/nips/nips25_mex.PNG" type="image/png" length="0" />
-    </item>
-    <item>
       <title>DeepSeek: Large Language Model of Year 2025 (and new book!)</title>
       <link>https://pengandy.com/blog/2025/deepseek</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/deepseek</guid>
       <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
       <description>DeepSeek: Large Language Model of Year 2025 (and new book!)</description>
       <enclosure url="https://img.icons8.com/?size=100&amp;id=j9OyN6SjuGXi&amp;format=png&amp;color=000000" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>NeurIPS CDMX Trip</title>
+      <link>https://pengandy.com/blog/2025/neurips</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/neurips</guid>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <description>NeurIPS CDMX Trip</description>
+      <enclosure url="https://pengandy.com/assets/blog/nips/nips25_mex.PNG" type="image/png" length="0" />
     </item>
     <item>
       <title>Research vs Engineering</title>
@@ -137,20 +137,20 @@
       <enclosure url="https://pengandy.com/assets/blog/rsrchvseng/sde.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>ICML 2025 Recap</title>
-      <link>https://pengandy.com/blog/2025/icml</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/icml</guid>
-      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
-      <description>ICML 2025 Recap</description>
-      <enclosure url="https://pengandy.com/assets/brand/icon-512.png" type="image/png" length="0" />
-    </item>
-    <item>
       <title>Talent Shuffle</title>
       <link>https://pengandy.com/blog/2025/talentshuffle</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/talentshuffle</guid>
       <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
       <description>Talent Shuffle</description>
       <enclosure url="https://pengandy.com/assets/blog/talentshuffle/talentshuffle.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>ICML 2025 Recap</title>
+      <link>https://pengandy.com/blog/2025/icml</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/icml</guid>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <description>ICML 2025 Recap</description>
+      <enclosure url="https://pengandy.com/assets/brand/icon-512.png" type="image/png" length="0" />
     </item>
     <item>
       <title>LLM Open Source Programs 2025 June</title>
@@ -169,20 +169,20 @@
       <enclosure url="https://pengandy.com/assets/brand/icon-512.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>LLM Native Primitives: Next Golden Path</title>
-      <link>https://pengandy.com/blog/2025/llmnative</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/llmnative</guid>
-      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
-      <description>LLM Native Primitives: Next Golden Path</description>
-      <enclosure url="https://pengandy.com/assets/blog/pd.png" type="image/png" length="0" />
-    </item>
-    <item>
       <title>Horizontal vs. Vertical</title>
       <link>https://pengandy.com/blog/2025/horizontalvsvertical</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/horizontalvsvertical</guid>
       <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
       <description>Horizontal vs. Vertical</description>
       <enclosure url="https://pengandy.com/assets/projects/programs.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>LLM Native Primitives: Next Golden Path</title>
+      <link>https://pengandy.com/blog/2025/llmnative</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/llmnative</guid>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+      <description>LLM Native Primitives: Next Golden Path</description>
+      <enclosure url="https://pengandy.com/assets/blog/pd.png" type="image/png" length="0" />
     </item>
     <item>
       <title>CNCF 10 Years</title>
