@@ -74,6 +74,13 @@ img {
        padding-left: 18px;
      }
 
+     /* shell.css sizes .post li absolutely, which beats inheritance; without
+        this the bullets render at 17px inside the box's 0.92em text. */
+     .sig-box ul li {
+       font-size: inherit;
+       line-height: inherit;
+     }
+
      .perf-badge {
        display: inline-block;
        background: #e8f5e9;
@@ -103,6 +110,15 @@ img {
        padding: 1px 5px;
        border-radius: 3px;
        color: #333;
+     }
+
+     /* Same reason as .sig-box ul li above: shell.css's absolute .post li
+        size beats inheritance, so the bullets in a release note sat at 17px
+        inside the note's 0.92em text. */
+     .release-note ul li,
+     .release-note ol li {
+       font-size: inherit;
+       line-height: inherit;
      }
       </style>
    </head>

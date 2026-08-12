@@ -80,6 +80,11 @@
      .post div.lang-en > p, .post div.lang-zh > p { max-width: var(--fx-prose); margin-left: auto; margin-right: auto; font-size: 1.0625rem; line-height: 1.85; }
      .post div.lang-en > ul, .post div.lang-zh > ul,
      .post div.lang-en > ol, .post div.lang-zh > ol { max-width: var(--fx-prose); margin-left: auto; margin-right: auto; padding-left: 22px; font-size: 1.03rem; line-height: 1.8; }
+     /* NB: the 1.03rem above never reaches the list items — shell.css sizes
+        .post li absolutely at 1.0625rem, so body lists read at the same
+        size as body paragraphs here and on every other post. Left as is
+        deliberately: honouring 1.03rem would shrink this post's lists
+        alone and break sitewide consistency. */
      .post div.lang-en a, .post div.lang-zh a { color: var(--fx-accent); text-decoration: none; border-bottom: 1px solid var(--fx-rule); transition: border-color .15s; }
      .post div.lang-en a:hover, .post div.lang-zh a:hover { text-decoration: none; border-bottom-color: var(--fx-accent); }
      .post div.lang-en > hr, .post div.lang-zh > hr { max-width: var(--fx-prose); margin: 10px auto; border-top: 1px solid var(--fx-hair); }
@@ -199,7 +204,7 @@
      .farewell-card .fw-body { font-size: 0.86em; color: var(--fx-mute); font-style: italic; overflow-y: auto; flex: 1; }
      .farewell-card .fw-email { font-style: normal; color: var(--fx-mute); }
      .farewell-card .fw-email .fw-head { font-size: 0.82em; color: var(--fx-mute); margin-bottom: 8px; }
-     .farewell-card .fw-email p { margin: 0 0 8px; }
+     .farewell-card .fw-email p { margin: 0 0 8px; font-size: inherit; line-height: inherit; }
 
      /* journey timeline (per chapter, cumulative) */
      .tl-wrap { max-width: 680px; margin: 18px auto 4px; }
@@ -230,7 +235,7 @@
      .cp-col { border: 1px solid var(--fx-hair); border-radius: 10px; padding: 14px 16px; }
      .cp-col h5 { font-size: 0.9em; font-weight: 700; margin: 0 0 8px; }
      .cp-col ul { margin: 0; padding-left: 18px; font-size: 0.86em; }
-     .cp-col li { margin: 4px 0; }
+     .cp-col li { margin: 4px 0; font-size: inherit; line-height: inherit; }
      .cp-col.keep { border-color: var(--fx-yes); background: transparent; }
      .cp-col.keep h5 { color: var(--fx-yes); }
      .cp-col.fade { border-color: var(--fx-no); background: transparent; border-style: dashed; }

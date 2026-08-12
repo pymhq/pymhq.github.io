@@ -118,7 +118,10 @@
      .timeline-date { font: 700 .74rem/1.55 var(--fx-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--fx-accent); margin-bottom: 4px; }
      .timeline-description { color: inherit; font-size: .97rem; line-height: 1.75; }
      .post .fx-sublist { list-style: none; max-width: var(--fx-prose); margin: 16px auto; padding-left: 4px; font-size: .97rem; line-height: 1.8; }
-     .post .fx-sublist li { position: relative; padding-left: 18px; margin: 10px 0; }
+     .post .fx-sublist li { position: relative; padding-left: 18px; margin: 10px 0;
+       /* shell.css sizes .post li absolutely, which beats inheritance and
+          left these bullets at 17px inside a .97rem list. */
+       font-size: inherit; line-height: inherit; }
      .post .fx-sublist li::before { content: "–"; position: absolute; left: 0; color: var(--fx-accent); font-weight: 700; }
      .timeline-description .tl-sublist { list-style: none; margin: 6px 0 0; padding-left: 4px; }
      .timeline-description .tl-sublist li { position: relative; padding-left: 16px; margin: 5px 0; }
@@ -131,14 +134,29 @@
      /* Name and Product Styling */
      .highlight { color: inherit; font-weight: 500; }
 
-     /* ---------- year notes: left-bar asides ---------- */
-     .comment-note-2026, .comment-note-2025 { max-width: var(--fx-prose); margin: 16px auto; padding: 13px 20px 13px 22px;
+     /* ---------- year notes: left-bar asides ----------
+        This block is duplicated verbatim in every post that uses the
+        component (2025/llm, 2025/llmnative, 2026/mlsys, 2026/openvsclosed).
+        It stays in the page on purpose: shipped with the HTML it cannot be
+        broken by a stale cached shell.css, and scripts/probe_type.py fails
+        if the copies ever drift apart again.
+        The --fx-* fallbacks let posts without a flagship palette use it. */
+     .comment-note-2026, .comment-note-2025 { max-width: var(--fx-prose, 680px); margin: 16px auto; padding: 13px 20px 13px 22px;
        font-size: .93rem; line-height: 1.75; color: inherit; border-radius: 0 12px 12px 0; }
-     .comment-note-2026 { border-left: 3px solid var(--fx-accent); background: var(--fx-soft); }
-     .comment-note-2025 { border-left: 3px solid var(--fx-warn); background: var(--fx-warm); }
-     .comment-note-2026 .note-date, .comment-note-2025 .note-date { font: 700 .7rem/1.8 var(--fx-sans); letter-spacing: .07em; text-transform: uppercase; }
-     .comment-note-2026 .note-date { color: var(--fx-accent); }
-     .comment-note-2025 .note-date { color: var(--fx-warn); }
+     .comment-note-2026 { border-left: 3px solid var(--fx-accent, var(--accent)); background: var(--fx-soft, rgba(0, 118, 223, .06)); }
+     .comment-note-2025 { border-left: 3px solid var(--fx-warn, #b45309); background: var(--fx-warm, rgba(180, 83, 9, .07)); }
+     .comment-note-2026 .note-date, .comment-note-2025 .note-date { font: 700 .7rem/1.8 var(--fx-sans, var(--sans)); letter-spacing: .07em; text-transform: uppercase; }
+     .comment-note-2026 .note-date { color: var(--fx-accent, var(--accent)); }
+     .comment-note-2025 .note-date { color: var(--fx-warn, #b45309); }
+     .note-sublist { list-style: none; margin: 6px 0 0; padding-left: 4px; }
+     .note-sublist > li { position: relative; padding-left: 16px; margin: 5px 0; }
+     .note-sublist > li::before { content: "–"; position: absolute; left: 0; font-weight: 700; color: var(--fx-accent, var(--accent)); }
+     .comment-note-2025 .note-sublist > li::before { color: var(--fx-warn, #b45309); }
+     /* shell.css sizes .post p and .post li absolutely (1.0625rem, added in
+        the single-design-system rebuild), which overrides inheritance inside
+        a callout — a bullet rendered at 17px next to 14.88px note text.
+        Nested blocks follow the component that holds them. */
+     .post :is(.comment-note-2026, .comment-note-2025, .timeline-description) :is(p, ul, ol, li) { font-size: inherit; line-height: inherit; }
 
      /* ---------- personal reflections: dashed-frame serif asides ---------- */
      .my-thought { max-width: var(--fx-prose); margin: 16px auto; padding: 14px 22px;

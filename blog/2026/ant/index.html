@@ -77,6 +77,11 @@
      .post { max-width: var(--fx-wide); margin: 0 auto; font-family: var(--fx-sans); }
      .post div.lang-en > p, .post div.lang-zh > p { max-width: var(--fx-prose); margin-left: auto; margin-right: auto; font-size: 1.0625rem; line-height: 1.85; }
      .post div.lang-en > ul, .post div.lang-zh > ul { max-width: var(--fx-prose); margin-left: auto; margin-right: auto; padding-left: 22px; font-size: 1.03rem; line-height: 1.8; }
+     /* NB: the 1.03rem above never reaches the bullets — shell.css sizes
+        .post li absolutely at 1.0625rem, so body lists read at the same
+        size as body paragraphs here and on every other post. Left as is
+        deliberately: honouring 1.03rem would shrink this post's lists
+        alone and break sitewide consistency. */
      .post div.lang-en a, .post div.lang-zh a { color: var(--fx-accent); text-decoration: none; border-bottom: 1px solid var(--fx-rule); transition: border-color .15s; }
      .post div.lang-en a:hover, .post div.lang-zh a:hover { text-decoration: none; border-bottom-color: var(--fx-accent); }
      .post div.lang-en > hr, .post div.lang-zh > hr { max-width: var(--fx-prose); margin: 10px auto; border-top: 1px solid var(--fx-hair); }
