@@ -240,14 +240,6 @@
      .cp-engine { max-width: 720px; margin: 8px auto 2px; }
      .cp-flywheel svg, .cp-engine svg { width: 100%; height: auto; display: block; }
 
-     /* --- EN / 中文 language toggle ---
-        Clicking either button updates the shared global preference
-        (localStorage 'preferredLanguage') also used by the homepage and
-        the navbar. See switchLanguage() in the shared site shell script. */
-     .lang-toggle { max-width: var(--fx-prose); margin: 0 auto 26px; }
-     .lang-toggle button:first-child { border-radius: 999px 0 0 999px; border-right: none; }
-     .lang-toggle button:last-child  { border-radius: 0 999px 999px 0; }
-     .lang-toggle button.active { background: var(--fx-accent); border-color: var(--fx-accent); color: #fff; }
 
      /* ---------- reading aids ---------- */
      #fxbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--fx-accent); z-index: 2001; }
@@ -288,14 +280,6 @@
                <div id="markdown-content">
 
                   
-
-                  <!-- EN / 中文 toggle. switchLanguage() lives in shell.js: it stores the
-                       shared 'preferredLanguage' and flips every .lang-en/.lang-zh pair on
-                       the page, so the nav, the footer and this body stay in one language. -->
-                  <div class="lang-toggle seg" role="group" aria-label="Language">
-                     <button type="button" data-lang="en">EN</button>
-                     <button type="button" data-lang="zh">中文</button>
-                  </div>
 
                   <div class="lang-en">
 

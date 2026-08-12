@@ -234,7 +234,7 @@ def check_bilingual() -> None:
     # titles kept switching while the body stayed in one language.
     raw_pages = [f for f in site_pages()
                  if os.path.relpath(f, ROOT) not in LEGACY]
-    local_switch = missing_toggle = 0
+    local_switch = local_control = 0
     for f in raw_pages:
         rel = os.path.relpath(f, ROOT)
         raw = open(f, encoding='utf-8', errors='replace').read()
@@ -243,18 +243,19 @@ def check_bilingual() -> None:
                     and 'style.display' in script:
                 local_switch += 1
                 fails.append(f'{rel}: page-local language switch writes '
-                             'style.display (use switchLanguage() in the shell)')
+                             'style.display (the shell owns the switch)')
                 break
-        # A post with both languages needs its own visible control.
-        if re.match(r'blog/\d{4}/[^/]+/index\.html$', rel) \
-                and 'class="lang-zh"' in raw and '<div class="lang-zh"' in raw \
-                and 'data-lang=' not in raw:
-            missing_toggle += 1
-            fails.append(f'{rel}: translated post has no [data-lang] toggle')
+        # One control, in the footer, injected by the shell. A per-post copy
+        # inherits whatever margins the page has and lands outside its reading
+        # column -- it did on 19 of the 21 translated posts.
+        if 'data-lang=' in raw:
+            local_control += 1
+            fails.append(f'{rel}: page-local [data-lang] control; the footer '
+                         'pair the shell injects is the only one')
 
     print(f'  inline display:none: {bad_style}   unhidden zh blocks: {bad_pair}'
           f'   page-local switches: {local_switch}'
-          f'   posts missing a toggle: {missing_toggle}')
+          f'   page-local controls: {local_control}')
 
 
 def check_reading_aids() -> None:

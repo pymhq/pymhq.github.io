@@ -96,12 +96,6 @@
      .post .post-tags a:hover { color: var(--fx-accent); text-decoration: none; }
      .post .post-views { max-width: var(--fx-prose); margin: 14px auto 20px !important; }
 
-     /* ---------- EN / 中文 toggle ---------- */
-     .lang-toggle { max-width: var(--fx-prose); margin: 0 auto 26px; }
-     .lang-toggle button:first-child { border-radius: 999px 0 0 999px; border-right: none; }
-     .lang-toggle button:last-child  { border-radius: 0 999px 999px 0; }
-     .lang-toggle button.active { background: var(--fx-accent); border-color: var(--fx-accent); color: #fff; }
-
      /* ---------- opening quote: left-bar pull quote ---------- */
      .post .post-content .sd-quote { max-width: calc(var(--fx-prose) - 30px); margin: 40px auto 42px; padding: 2px 0 2px 26px;
        position: relative; background: none; border: none; border-left: 3px solid var(--fx-accent); border-radius: 0; }
@@ -291,14 +285,6 @@
             <article class="post-content">
 
                
-
-               <!-- EN / 中文 toggle. switchLanguage() lives in shell.js: it stores the
-                    shared 'preferredLanguage' and flips every .lang-en/.lang-zh pair on
-                    the page, so the nav, the footer and this body stay in one language. -->
-               <div class="lang-toggle seg" role="group" aria-label="Language">
-                  <button type="button" data-lang="en">EN</button>
-                  <button type="button" data-lang="zh">中文</button>
-               </div>
 
                <div class="lang-en">
 

@@ -18,8 +18,8 @@
     TAGS_AND_CATEGORIES             the <a> tag/category links row
 
   NOTES
-    • Single-language post? Keep only the .lang-en block and delete the toggle
-      and the .lang-zh block. Nothing else needs changing: the switch leaves an
+    • Single-language post? Keep only the .lang-en block and delete the
+      .lang-zh block. Nothing else needs changing: the switch leaves an
       .lang-en block with no .lang-zh sibling visible in both languages.
     • PERSON NAMES: always wrap in <em>italic</em> — never <strong>bold</strong>.
     • DO NOT bold (<strong>) ANY content unless the author explicitly asks for it.
@@ -33,13 +33,14 @@
       <style>. Default is the site theme blue (--global-theme-color). Apply the
       same treatment in BOTH the EN and 中文 versions. (Legacy: ant-hl in
       blog/2026/curiosity-driven-builder/ is this same pill style.)
-    • The EN/中文 toggle is owned by the shared site shell script: it flips the `hidden`
-      attribute on every .lang-en/.lang-zh pair, stores the choice under
-      localStorage 'preferredLanguage', and marks the active [data-lang] button.
-      Wrap the <h1> and <p class="post-meta"> in .lang-en / .lang-zh spans so
-      the header switches too, and give every .lang-zh element `hidden` as its
-      default state. Never re-implement the switch in the page: a page-local
-      inline `display` outranks `hidden` and freezes the body in one language.
+    • The EN/中文 switch is the shell's, and there is exactly one control for
+      it: the pair in the footer. It flips the `hidden` attribute on every
+      .lang-en/.lang-zh pair and stores the choice under localStorage
+      'preferredLanguage'. Wrap the <h1> and <p class="post-meta"> in
+      .lang-en / .lang-zh spans so the header switches too, and give every
+      .lang-zh element `hidden` as its default state. Do not add a per-post
+      control or a page-local copy of the switch: an inline `display` outranks
+      `hidden` and freezes the body in one language.
 
   ============================================================================
   PUBLISH CHECKLIST — every page/file to touch for ONE new post
@@ -178,22 +179,6 @@
         --hl-color. See the NOTES in the header comment above. */
      a.post-hl { --hl-color: var(--global-theme-color); font-weight: 600; color: var(--hl-color); background: color-mix(in srgb, var(--hl-color) 14%, transparent); padding: 1px 7px; border-radius: 4px; border-bottom: 2px solid var(--hl-color); text-decoration: none; white-space: nowrap; }
      a.post-hl:hover { background: var(--hl-color); color: #fff; text-decoration: none; }
-
-     /* --- EN / 中文 language toggle ---
-        Clicking either button here updates the SAME global preference
-        (localStorage 'preferredLanguage') used by the homepage and the
-        navbar, so navigating away or the already-rendered navbar both
-        reflect the choice immediately. The switch itself is
-        switchLanguage() in the shared site shell script — do not add a
-        page-local copy: an inline `display` outranks the `hidden` it sets
-        and pins the body to one language.
-
-        The un-chosen block is hidden by `hidden` on the markup below, so
-        never give .lang-zh a `display` rule here either. */
-     .lang-toggle { margin: 0 0 22px 0; }
-     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
-     .lang-toggle button:last-child  { border-radius:0 16px 16px 0; }
-     .lang-toggle button.active { background:var(--global-theme-color); border-color:var(--global-theme-color); color:#fff; }
    </style>
    <body data-nav-match="blog/YEAR/POST_SLUG">
       <a class="skip" href="#main">Skip to content</a>
@@ -222,12 +207,10 @@
             <article class="post-content">
                <div id="markdown-content">
 
-                  <!-- EN / 中文 switch. shell.js binds every [data-lang]
-                       control on the page and marks the active one. -->
-                  <div class="lang-toggle seg" role="group" aria-label="Language">
-                     <button type="button" data-lang="en">EN</button>
-                     <button type="button" data-lang="zh">中文</button>
-                  </div>
+                  <!-- The site has ONE language control, in the footer, and it
+                       is injected by the shell. Do not add a per-post copy:
+                       the reading column differs from post to post, so a
+                       page-local control lands outside it. -->
 
                   <!-- ================= ENGLISH ================= -->
                   <div class="lang-en">

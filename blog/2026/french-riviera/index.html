@@ -101,14 +101,6 @@ img { pointer-events: none; }
      .g-qa .a .en th { background: rgba(155,89,182,0.10); }
      .g-qa .a .en pre { background: rgba(0,0,0,0.05); border-radius: 6px; padding: 10px 12px; overflow-x: auto; font-size: 0.82em; line-height: 1.55; margin: 8px 0; white-space: pre; }
      .sub-h { margin: 30px 0 10px; font-size: 1.08em; font-weight: 700; color: #5a4a8a; border-bottom: 1px solid rgba(120,110,200,0.25); padding-bottom: 5px; }
-     /* --- EN / 中文 language toggle ---
-        Clicking either button updates the shared global preference
-        (localStorage 'preferredLanguage') also used by the homepage and
-        the navbar. See switchLanguage() in the shared site shell script. */
-     .lang-toggle { margin: 0 0 22px 0; }
-     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
-     .lang-toggle button:last-child  { border-radius: 0 16px 16px 0; }
-     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
       </style>
    </head>
 
@@ -138,14 +130,6 @@ img { pointer-events: none; }
 
                   <div style="margin: 8px 0 24px 0; padding: 20px 26px; background: rgba(128,128,128,0.07); border-radius: 6px;">
                     <p style="font-size: 1.12em; font-style: italic; line-height: 1.7; margin: 0;"><span class="lang-en">"I can't survive my South FRA trip without Gemini."</span><span class="lang-zh" hidden>「没有 Gemini，我可能没法在这趟南法之旅中生存下来。」</span></p>
-                  </div>
-
-                  <!-- EN / 中文 toggle. switchLanguage() lives in shell.js: it stores the
-                       shared 'preferredLanguage' and flips every .lang-en/.lang-zh pair on
-                       the page, so the nav, the footer and this body stay in one language. -->
-                  <div class="lang-toggle seg" role="group" aria-label="Language">
-                     <button type="button" data-lang="en">EN</button>
-                     <button type="button" data-lang="zh">中文</button>
                   </div>
 
                   <div class="lang-en">

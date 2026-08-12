@@ -52,14 +52,6 @@ img {
       margin-right: auto;
       width: 50%;
     }
-     /* --- EN / 中文 language toggle ---
-        Clicking either button updates the shared global preference
-        (localStorage 'preferredLanguage') also used by the homepage and
-        the navbar. See switchLanguage() in the shared site shell script. */
-     .lang-toggle { margin: 0 0 22px 0; }
-     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
-     .lang-toggle button:last-child  { border-radius: 0 16px 16px 0; }
-     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
       </style>
    </head>
 
@@ -92,14 +84,6 @@ img {
             <br> 
             <hr>
             <br> 
-            <!-- EN / 中文 toggle. switchLanguage() lives in shell.js: it stores the
-                 shared 'preferredLanguage' and flips every .lang-en/.lang-zh pair on
-                 the page, so the nav, the footer and this body stay in one language. -->
-            <div class="lang-toggle seg" role="group" aria-label="Language">
-               <button type="button" data-lang="en">EN</button>
-               <button type="button" data-lang="zh">中文</button>
-            </div>
-
             <div class="lang-en">
             <p>It’s privileged to serve on <a href="https://icml.cc/Conferences/2025/ProgramCommittee">the program committee</a> for ICML 2025. my second time attending a conf at Vancouver Convention Centre, the last was NeurIPS 2019, right before the pandemic. Same venue, diff conf, and a diff time: the field has shifted from NLP to LLMs. What’s next?</p>
             <img src="/assets/blog/icml/icml25badge.PNG" height="500">

@@ -171,14 +171,6 @@
      .ant-gh .lbl { font-size: 0.62em; color: #8b949e; white-space: nowrap; }
      @media (max-width: 575px) { .ant-gh .lbl { transform: rotate(-50deg); margin-top: 4px; } .ant-gh .gh-grid { gap: 3px; } }
 
-     /* --- EN / 中文 language toggle ---
-        Clicking either button updates the shared global preference
-        (localStorage 'preferredLanguage') also used by the homepage and
-        the navbar. See switchLanguage() in the shared site shell script. */
-     .lang-toggle { max-width: var(--fx-prose); margin: 0 auto 26px; }
-     .lang-toggle button:first-child { border-radius: 999px 0 0 999px; border-right: none; }
-     .lang-toggle button:last-child  { border-radius: 0 999px 999px 0; }
-     .lang-toggle button.active { background: var(--fx-accent); border-color: var(--fx-accent); color: #fff; }
 
      /* ---------- reading aids ---------- */
      #fxbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--fx-accent); z-index: 2001; }
@@ -218,14 +210,6 @@
             <article class="post-content">
 
                
-
-               <!-- EN / 中文 toggle. switchLanguage() lives in shell.js: it stores the
-                    shared 'preferredLanguage' and flips every .lang-en/.lang-zh pair on
-                    the page, so the nav, the footer and this body stay in one language. -->
-               <div class="lang-toggle seg" role="group" aria-label="Language">
-                  <button type="button" data-lang="en">EN</button>
-                  <button type="button" data-lang="zh">中文</button>
-               </div>
 
                <div class="lang-en">
 

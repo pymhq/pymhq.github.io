@@ -52,14 +52,6 @@ img {
       margin-right: auto;
       width: 50%;
     }
-     /* --- EN / 中文 language toggle ---
-        Clicking either button updates the shared global preference
-        (localStorage 'preferredLanguage') also used by the homepage and
-        the navbar. See switchLanguage() in the shared site shell script. */
-     .lang-toggle { margin: 0 0 22px 0; }
-     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
-     .lang-toggle button:last-child  { border-radius: 0 16px 16px 0; }
-     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
       </style>
    </head>
 
@@ -96,14 +88,6 @@ img {
             <!-- ========================================== -->
             <!-- YOUR CONTENT STARTS HERE -->
             <!-- ========================================== -->
-
-            <!-- EN / 中文 toggle. switchLanguage() lives in shell.js: it stores the
-                 shared 'preferredLanguage' and flips every .lang-en/.lang-zh pair on
-                 the page, so the nav, the footer and this body stay in one language. -->
-            <div class="lang-toggle seg" role="group" aria-label="Language">
-               <button type="button" data-lang="en">EN</button>
-               <button type="button" data-lang="zh">中文</button>
-            </div>
 
             <div class="lang-en">
             <h2>A Historic First: Two Locations for NeurIPS</h2>

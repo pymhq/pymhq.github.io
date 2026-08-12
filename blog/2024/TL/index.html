@@ -46,14 +46,6 @@
 img {
          pointer-events: none;
       }
-     /* --- EN / 中文 language toggle ---
-        Clicking either button updates the shared global preference
-        (localStorage 'preferredLanguage') also used by the homepage and
-        the navbar. See switchLanguage() in the shared site shell script. */
-     .lang-toggle { margin: 0 0 22px 0; }
-     .lang-toggle button:first-child { border-radius:16px 0 0 16px; border-right:none; }
-     .lang-toggle button:last-child  { border-radius: 0 16px 16px 0; }
-     .lang-toggle button.active { background:var(--global-theme-color); color:#fff; }
       </style>
    </head>
 
@@ -86,14 +78,6 @@ img {
             <br> 
             <hr>
             <br> 
-            <!-- EN / 中文 toggle. switchLanguage() lives in shell.js: it stores the
-                 shared 'preferredLanguage' and flips every .lang-en/.lang-zh pair on
-                 the page, so the nav, the footer and this body stay in one language. -->
-            <div class="lang-toggle seg" role="group" aria-label="Language">
-               <button type="button" data-lang="en">EN</button>
-               <button type="button" data-lang="zh">中文</button>
-            </div>
-
             <div class="lang-en">
             <p>Back to 2022, I gave an online talk on the topic of IC vs. Manager, sharing some of my observations and experiences from when I took on a people manager role in the Serverless department. Although this session was primarily aimed at a Mandarin-speaking audience. I've recently started jotting down follow-up notes on the IC aspects to help me recap. I think it might also be a good opportunity to share these insights with my network and exchange perspectives.</p>
             <br>
