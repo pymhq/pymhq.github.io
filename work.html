@@ -39,6 +39,56 @@
          gtag('js', new Date());
          gtag('config', 'G-HTV795ZMCP');
       </script>
+      <style>
+/* At a glance: the icons the pre-rebuild projects.html carried on this
+   overview (fa-brain, fa-microchip, fa-database, fa-arrows, fa-cubes,
+   fa-comment-dots, fa-file-invoice-dollar, fa-brands fa-aws), redrawn to
+   suit this design system.
+
+   Two things had to change. FontAwesome is in check_site.py's FORBIDDEN
+   list and is not loaded, so the old <i class="fa-..."> markup renders
+   nothing; these are inline SVG on currentColor, the pattern the rest of
+   the site uses. And the original 64px tiles were filled teal, green,
+   orange, blue and navy — five hues against a system that carries one
+   accent and otherwise works in ink, paper and hairlines. The glyph keeps
+   the meaning; the chip drops the colour.
+
+   Kept in the page rather than shell.css so the component cannot arrive
+   without its styling if the stylesheet is cached. */
+      .glance-key {
+         display: grid;
+         grid-template-columns: 30px minmax(0, 1fr);
+         align-items: start;
+         gap: 11px;
+      }
+
+      .glance-icon {
+         width: 30px;
+         height: 30px;
+         display: grid;
+         place-items: center;
+         border: 1px solid var(--rule-2);
+         border-radius: 8px;
+         background: var(--paper-2);
+         color: var(--ink-3);
+         /* the label's cap-height, so glyph and word sit on one line */
+         margin-top: -3px;
+      }
+
+      .glance-icon svg {
+         width: 17px;
+         height: 17px;
+         display: block;
+      }
+
+      /* Narrow screens stack the record grid to one column; the icon then
+         reads as a bullet for the label rather than a column of its own. */
+      @media (max-width: 620px) {
+         .glance-key { grid-template-columns: 26px minmax(0, 1fr); gap: 9px; }
+         .glance-icon { width: 26px; height: 26px; border-radius: 7px; }
+         .glance-icon svg { width: 15px; height: 15px; }
+      }
+      </style>
    </head>
 
    <body data-nav-match="work">
@@ -68,35 +118,59 @@
             <h2 class="record-year"><span class="lang-en">At a glance</span><span class="lang-zh" hidden>概览</span></h2>
             <ul class="record-list">
                <li>
-                  <span class="record-key"><span class="lang-en">LLM</span><span class="lang-zh" hidden>人工智能：大语言模型</span></span>
+                  <span class="record-key glance-key">
+                     <span class="glance-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.4 4.6a2.2 2.2 0 0 0-3.5.4 2 2 0 0 0-2.1 2.6 2.2 2.2 0 0 0-.9 3.4 2.2 2.2 0 0 0 .9 3.2 2.2 2.2 0 0 0 2.7 2.1 2.2 2.2 0 0 0 2.9 1.1V4.6Z"/><path d="M12.6 4.6a2.2 2.2 0 0 1 3.5.4 2 2 0 0 1 2.1 2.6 2.2 2.2 0 0 1 .9 3.4 2.2 2.2 0 0 1-.9 3.2 2.2 2.2 0 0 1-2.7 2.1 2.2 2.2 0 0 1-2.9 1.1V4.6Z"/><path d="M9.2 8.4c.9.1 1.6.7 1.8 1.6M14.8 12.6c-.9.1-1.6.7-1.8 1.6"/></svg></span>
+                     <span class="glance-label"><span class="lang-en">LLM</span><span class="lang-zh" hidden>人工智能：大语言模型</span></span>
+                  </span>
                   <span class="record-val"><span class="lang-en">From 0 to 1 — co-created speculator trainer for open weights models. Model customization, optimization, evaluation and benchmark.</span><span class="lang-zh" hidden>从零到一 —— 联合创建面向开放权重模型的 speculator 训练器。模型定制、优化、评估与基准测试。</span></span>
                </li>
                <li>
-                  <span class="record-key"><span class="lang-en">LLM</span><span class="lang-zh" hidden>人工智能：大语言模型</span></span>
+                  <span class="record-key glance-key">
+                     <span class="glance-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7.5" y="7.5" width="9" height="9" rx="1.6"/><rect x="10.4" y="10.4" width="3.2" height="3.2" rx=".6"/><path d="M10.4 4v3.5M13.6 4v3.5M10.4 16.5V20M13.6 16.5V20M4 10.4h3.5M4 13.6h3.5M16.5 10.4H20M16.5 13.6H20"/></svg></span>
+                     <span class="glance-label"><span class="lang-en">LLM</span><span class="lang-zh" hidden>人工智能：大语言模型</span></span>
+                  </span>
                   <span class="record-val"><span class="lang-en">From 0 to 1 — co-created Anthropic inference engine: LLM inference, benchmark, computer use, Trainium, trust &amp; safety.</span><span class="lang-zh" hidden>从零到一 —— 联合创建 Anthropic 推理引擎：大模型推理、基准测试、computer use、Trainium、信任与安全。</span></span>
                </li>
                <li>
-                  <span class="record-key"><span class="lang-en">Foundational Data Services</span><span class="lang-zh" hidden>基础数据服务</span></span>
+                  <span class="record-key glance-key">
+                     <span class="glance-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6.4" rx="6.4" ry="2.6"/><path d="M5.6 6.4v11.2c0 1.4 2.9 2.6 6.4 2.6s6.4-1.2 6.4-2.6V6.4"/><path d="M5.6 12c0 1.4 2.9 2.6 6.4 2.6s6.4-1.2 6.4-2.6"/></svg></span>
+                     <span class="glance-label"><span class="lang-en">Foundational Data Services</span><span class="lang-zh" hidden>基础数据服务</span></span>
+                  </span>
                   <span class="record-val"><span class="lang-en">400TN+ objects, exabytes of data, 100M+ requests per second, 11 9's data durability.</span><span class="lang-zh" hidden>400TN+ 对象，数据规模达 EB 级，每秒 1 亿+ 请求，11 个 9 的数据持久性。</span></span>
                </li>
                <li>
-                  <span class="record-key"><span class="lang-en">Serverless &amp; Virtualization</span><span class="lang-zh" hidden>无服务计算及虚拟化</span></span>
+                  <span class="record-key glance-key">
+                     <span class="glance-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 10V4.5H10M14 19.5h5.5V14"/><path d="M4.5 4.5 11 11M19.5 19.5 13 13"/></svg></span>
+                     <span class="glance-label"><span class="lang-en">Serverless &amp; Virtualization</span><span class="lang-zh" hidden>无服务计算及虚拟化</span></span>
+                  </span>
                   <span class="record-val"><span class="lang-en">From 0 to 1 — co-created AWS App Runner. UTL &amp; TLM, overseeing two public products.</span><span class="lang-zh" hidden>从零到一 —— 联合创建 AWS App Runner。担任 UTL 与 TLM，负责两款公开产品。</span></span>
                </li>
                <li>
-                  <span class="record-key"><span class="lang-en">Containers</span><span class="lang-zh" hidden>容器</span></span>
+                  <span class="record-key glance-key">
+                     <span class="glance-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.7 19 7.6v8.8L12 20.3 5 16.4V7.6l7-3.9Z"/><path d="M5 7.6l7 3.9 7-3.9M12 11.5v8.8"/></svg></span>
+                     <span class="glance-label"><span class="lang-en">Containers</span><span class="lang-zh" hidden>容器</span></span>
+                  </span>
                   <span class="record-val"><span class="lang-en">Incubating new service in stealth mode: MicroVM-based long-running compute platform.</span><span class="lang-zh" hidden>在隐身模式下孵化新服务：基于 MicroVM 的长时运行计算平台。</span></span>
                </li>
                <li>
-                  <span class="record-key"><span class="lang-en">Conversational AI</span><span class="lang-zh" hidden>人工智能：对话式 AI</span></span>
+                  <span class="record-key glance-key">
+                     <span class="glance-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12.2c0 3.8-3.6 6.9-8 6.9-.9 0-1.8-.1-2.6-.4L5 20.5l1.3-3.3C4.9 16 4 14.2 4 12.2c0-3.8 3.6-6.9 8-6.9s8 3.1 8 6.9Z"/><path d="M9 12.2h.01M12 12.2h.01M15 12.2h.01" stroke-width="2.1"/></svg></span>
+                     <span class="glance-label"><span class="lang-en">Conversational AI</span><span class="lang-zh" hidden>人工智能：对话式 AI</span></span>
+                  </span>
                   <span class="record-val"><span class="lang-en">From 0 to 1 — co-created Health &amp; Wellness. 100M+ users worldwide.</span><span class="lang-zh" hidden>从零到一 —— 联合创建 Health &amp; Wellness，全球 1 亿+ 用户。</span></span>
                </li>
                <li>
-                  <span class="record-key"><span class="lang-en">Fintech</span><span class="lang-zh" hidden>金融科技</span></span>
+                  <span class="record-key glance-key">
+                     <span class="glance-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.2 3.4H7.4a1.6 1.6 0 0 0-1.6 1.6v14a1.6 1.6 0 0 0 1.6 1.6h9.2a1.6 1.6 0 0 0 1.6-1.6V8.2Z"/><path d="M13.2 3.4v4.8h5"/><path d="M8.6 7.2h2.2M8.6 10h2.2"/><path d="M12 12.3v6.3"/><path d="M13.6 13.5a1.7 1.7 0 0 0-1.4-.7c-.9 0-1.6.5-1.6 1.2s.7 1.1 1.6 1.3c.9.2 1.6.6 1.6 1.3s-.7 1.2-1.6 1.2a1.8 1.8 0 0 1-1.5-.7"/></svg></span>
+                     <span class="glance-label"><span class="lang-en">Fintech</span><span class="lang-zh" hidden>金融科技</span></span>
+                  </span>
                   <span class="record-val"><span class="lang-en">Scaling hundreds of billions in ARR — bill run, commerce platform.</span><span class="lang-zh" hidden>支撑数千亿美元 ARR 规模 —— 账单运行（Bill Run）、商业平台。</span></span>
                </li>
                <li>
-                  <span class="record-key"><span class="lang-en">Onboard</span><span class="lang-zh" hidden>入职</span></span>
+                  <span class="record-key glance-key">
+                     <span class="glance-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.8" width="16" height="14.2" rx="2"/><path d="M4 10.2h16M8.6 3.8v4M15.4 3.8v4"/><path d="M9.3 15.1l2 2 3.4-3.6"/></svg></span>
+                     <span class="glance-label"><span class="lang-en">Onboard</span><span class="lang-zh" hidden>入职</span></span>
+                  </span>
                   <span class="record-val"><span class="lang-en">Joined AWS on its 10th anniversary — Pi Day, 2016.</span><span class="lang-zh" hidden>在亚马逊云科技十周年之际加入 —— 2016 年 Pi Day。</span></span>
                </li>
             </ul>
