@@ -47,7 +47,7 @@
     {
       en: 'Writing', zh: '写作',
       links: [
-        [BASE + '/blog/', 'Blog', '博客'],
+        [BASE + '/blog/', 'All writing', '全部文章'],
         ['/feed.xml', 'RSS feed', 'RSS']
       ]
     },
