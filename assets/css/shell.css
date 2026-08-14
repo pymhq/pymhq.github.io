@@ -367,12 +367,21 @@ figure > img,
   max-width: 24em;
 }
 
+/* Current role, one step below the tagline in the visual hierarchy: body
+   size against the lede's display size, --ink-2 against full ink. The bold
+   run pulls role + employer back up to full ink so the line survives a
+   two-second scan, which is all a homepage hero usually gets. */
 .hero-sub {
   font-size: 1.12rem;
   line-height: 1.62;
   color: var(--ink-2);
   max-width: 34em;
   margin: 0 0 clamp(26px, 3vw, 40px);
+}
+
+.hero-sub b {
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .hero-meta {

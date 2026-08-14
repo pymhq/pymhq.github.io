@@ -242,14 +242,14 @@ def build_page() -> str:
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Sitemap &mdash; Peng, Andy</title>
+      <title>Sitemap &middot; Peng, Andy</title>
       <meta name="author" content="Peng, Andy">
       <meta name="description" content="Every page on pengandy.com, one link per layout.">
       <link rel="canonical" href="https://pengandy.com/sitemap">
 
       <meta property="og:type" content="website">
       <meta property="og:url" content="https://pengandy.com/sitemap">
-      <meta property="og:title" content="Sitemap &mdash; Peng, Andy">
+      <meta property="og:title" content="Sitemap &middot; Peng, Andy">
       <meta property="og:description" content="Every page on pengandy.com, one link per layout.">
       <meta property="og:image" content="https://pengandy.com/assets/brand/icon-512.png">
       <meta name="twitter:card" content="summary_large_image">
