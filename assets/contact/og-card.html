@@ -28,6 +28,15 @@
 
      No page title, no author name, no bare domain: LinkedIn/Twitter
      render those beneath the image.
+
+     RENDER AT 1x — 1200x630, --force-device-scale-factor=1.
+     OG-CARD-SOP.md asks for a 3x render (3600x1890). That is wrong for
+     LinkedIn: 1200x630 is the size it renders the card at, so a 3x
+     asset gets put through its server-side resizer and JPEG encoder,
+     and 400-weight serif plus the 19px handles row come back visibly
+     soft. Handing it the exact size means no resampling at all. 1200px
+     also covers retina: the desktop feed card is ~552 CSS px and a
+     phone is ~390 CSS px at DPR 3 = ~1170 device px.
      ============================================================ -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
