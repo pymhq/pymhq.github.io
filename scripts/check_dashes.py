@@ -81,7 +81,14 @@ def whole_file_lines(paths: list[str]) -> list[tuple[str, int, str]]:
         if not fp.is_file():
             print(f"skip (not a file): {p}")
             continue
-        for i, line in enumerate(fp.read_text(encoding="utf-8").splitlines(), 1):
+        try:
+            text = fp.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            # An untracked image or font is not prose. Before this, one new
+            # binary in the working tree crashed the gate the SOP tells you
+            # to run before committing.
+            continue
+        for i, line in enumerate(text.splitlines(), 1):
             rows.append((p, i, line))
     return rows
 
