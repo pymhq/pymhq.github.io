@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Compare word count / read time between blog/index.html list and each post page (EN + ZH)."""
+"""Compare word count / read time between blog/index.html list and each post page (EN + ZH).
+
+The listing keeps its stats in `span.note` inside `span.what`, and drops 阅读
+from the Chinese half, so both dialects are parsed leniently here. Reading the
+old `p.post-meta` shape, as this did before 2026-08, silently checked nothing
+and reported 0 entries while the listing drifted. Run
+recompute_reading_stats.py --fix then sync_reading_stats.py to repair.
+"""
 import re, os, glob, json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -11,8 +18,8 @@ def norm(s):
 # ---- 1. Parse list entries ----
 src = open(LIST, encoding='utf-8').read()
 entries = []  # (href, en_stats, zh_stats, raw_meta)
-# match each <a ... href="/blog/..."> followed (within block) by post-meta
-for m in re.finditer(r'href="(/blog/\d{4}/[^"]+/)"[^>]*>.*?<p class="post-meta">(.*?)</p>', src, re.S):
+# Each entry is <a href="/blog/YYYY/slug/"> ... <span class="note">stats</span>
+for m in re.finditer(r'href="(/blog/\d{4}/[^"]+/)"[^>]*>.*?<span class="note">(.*?)</span></span>', src, re.S):
     href, meta = m.group(1), norm(m.group(2))
     en = re.search(r'([\d,]+)\s*words\s*·\s*(\d+)\s*min read', meta)
     zh = re.search(r'约?\s*([\d,]+)\s*字\s*·\s*(\d+)\s*分钟', meta)

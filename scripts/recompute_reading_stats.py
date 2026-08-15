@@ -81,8 +81,16 @@ for path in posts:
     meta = re.sub(r'\s+', ' ', mm.group(1)) if mm else ''
     cur_en = re.search(r'([\d,]+)\s*words\s*·\s*(\d+)\s*min read', meta)
     cur_zh = re.search(r'(约\s*)?([\d,]+)\s*字\s*·\s*(\d+)\s*分钟', meta)
+    # A page can carry lang-zh in its body while its byline has no Chinese
+    # stats at all (blog/2024/productivity). Guarding on has_zh alone then
+    # dereferences a None match and kills the whole run on the third post,
+    # so the report is gated on the match itself.
+    zh_report = (
+        f'  ZH: page={(cur_zh.group(2), cur_zh.group(3)) if cur_zh else None}'
+        f' computed=({fmt(zh_words)},{zh_min})'
+    ) if has_zh else ''
     print(f'{rel:45} EN: page={cur_en.groups() if cur_en else None} computed=({fmt(en_words)},{en_min})'
-          + (f'  ZH: page={cur_zh.group(2), cur_zh.group(3) if cur_zh else None} computed=({fmt(zh_words)},{zh_min})' if has_zh else ''))
+          + zh_report)
     if FIX and mm:
         new_meta = mm.group(0)
         new_meta = re.sub(r'[\d,]+\s*words\s*·\s*\d+\s*min read',
