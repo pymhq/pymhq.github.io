@@ -32,7 +32,17 @@ TERMS = {
     "Linkedin": "领英",
     "Rednote": "小红书",
     "Xiaohongshu": "小红书",
+    "Google": "谷歌",
 }
+# Registered organisation and product names: the English word belongs to the
+# name itself, so it stays in Chinese copy too, exactly as ZH-TRANSLATION-SOP.md
+# already rules for `Amazon Bedrock` and `AWS Lambda`. Checked as a prefix, so
+# `Google Cloud` also covers `Google Cloud Run` and `Google Cloud Next`.
+EXEMPT_COMPOUNDS = (
+    "Google DeepMind", "Google Cloud", "Google X", "Google AI",
+    "Google Research", "Google Fonts", "Google I/O", "Google Scholar",
+    "Google Meet", "Google Docs", "Google Drive",
+)
 CJK = re.compile(r"[\u4e00-\u9fff]")
 TAG = re.compile(r"<[^>]+>")
 DROP_BLOCKS = re.compile(r"<(script|style|svg)\b.*?</\1>", re.S | re.I)
@@ -59,7 +69,15 @@ def text_of(fragment: str) -> str:
 
 
 def offenders(text: str) -> list[str]:
-    return [en for en in TERMS if en in text]
+    """English terms present in text, ignoring registered compound names."""
+    found = []
+    for en in TERMS:
+        for m in re.finditer(re.escape(en), text):
+            if any(text.startswith(x, m.start()) for x in EXEMPT_COMPOUNDS):
+                continue
+            found.append(en)
+            break
+    return found
 
 
 def check(path: Path) -> list[tuple[int, str, str]]:

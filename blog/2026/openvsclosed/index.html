@@ -391,7 +391,7 @@
          <div class="post">
             <header class="post-header">
                <h1 class="post-title"><span class="lang-en">Open vs Closed</span><span class="lang-zh" hidden>开源 vs 闭源</span></h1>
-               <p class="post-meta"><span class="lang-en"> Created in July, 2026<span class="post-readstats"> · 5,758 words · 29 min read</span> </span><span class="lang-zh" hidden> 创建于 2026 年 7 月<span class="post-readstats"> · 约 9,548 字 · 27 分钟阅读</span> </span></p>
+               <p class="post-meta"><span class="lang-en"> Created in July, 2026<span class="post-readstats"> · 5,758 words · 29 min read</span> </span><span class="lang-zh" hidden> 创建于 2026 年 7 月<span class="post-readstats"> · 约 9,557 字 · 27 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/archive/2026/"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/llm"> <i class="fa-solid fa-hashtag fa-sm"></i> llm</a>   <a href="/blog/tag/opensource"> <i class="fa-solid fa-hashtag fa-sm"></i> open source</a>   <a href="/blog/tag/open-weights"> <i class="fa-solid fa-hashtag fa-sm"></i> open weights</a>      ·   <a href="/blog/category/opensource"> <i class="fa-solid fa-tag fa-sm"></i> opensource</a>   <a href="/blog/category/products"> <i class="fa-solid fa-tag fa-sm"></i> products</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -1014,7 +1014,7 @@
                      <div class="timeline-description">周末之间联署翻倍至 50 家：
                         <ul class="tl-sublist">
                            <li><em>OpenAI</em> 签署——<em>Sam Altman</em>：<a href="https://officechai.com/ai/in-game-theory-twist-openai-also-signs-open-source-ai-letter-leaving-anthropic-as-most-prominent-non-signatory/" target="_blank">"我希望美国在开源和专有模型上都赢。"</a></li>
-                           <li><em>Google</em> 在 <em>Sundar Pichai</em> 背书下签署。Google DeepMind CEO <em>Demis Hassabis</em> <a href="https://x.com/demishassabis/status/2081039623422177765?s=20" target="_blank">引用转发黄仁勋</a>："一个强大而安全的开放生态系统，对让全世界受益于 AI 至关重要。从 Jax 到 Transformers、AlphaFold，再到 Gemma 开放模型，我们始终重仓支持和贡献开源与开放科学"——随后澄清：仅 Gemma 4 下载量就超 3 亿，Gemma 系列整体超 9 亿。</li>
+                           <li><em>谷歌</em> 在 <em>Sundar Pichai</em> 背书下签署。Google DeepMind CEO <em>Demis Hassabis</em> <a href="https://x.com/demishassabis/status/2081039623422177765?s=20" target="_blank">引用转发黄仁勋</a>："一个强大而安全的开放生态系统，对让全世界受益于 AI 至关重要。从 Jax 到 Transformers、AlphaFold，再到 Gemma 开放模型，我们始终重仓支持和贡献开源与开放科学"，随后澄清：仅 Gemma 4 下载量就超 3 亿，Gemma 系列整体超 9 亿。</li>
                            <li><em>SpaceX</em> 加入并获 <em>Elon Musk</em> 支持。</li>
                         </ul>
                      </div>
@@ -1070,7 +1070,7 @@
                </div>
             </div>
             <br>
-            <p>七十二小时，五十个签名。有意思的问题不是谁签了，而是：为什么这个联盟一次性横跨了行业的每一层——NVIDIA、Dell 这样的芯片与硬件商，Microsoft 这样的云与闭源模型厂（OpenAI、Google 随后跟进），还有 Hugging Face、IBM 这样的开放平台？它们都在开放权重里看到了什么？要回答这个问题，把时间倒回十二年。</p>
+            <p>七十二小时，五十个签名。有意思的问题不是谁签了，而是：为什么这个联盟一次性横跨了行业的每一层：NVIDIA、Dell 这样的芯片与硬件商，Microsoft 这样的云与闭源模型厂（OpenAI、谷歌随后跟进），还有 Hugging Face、IBM 这样的开放平台？它们都在开放权重里看到了什么？要回答这个问题，把时间倒回十二年。</p>
 
             <h2 id="weights-vs-source-zh">开放权重不等于开源</h2>
             <p>往下写之前，先纠正一个这场辩论反复踩到的术语问题：新闻头条里的"开源"模型，几乎没有一个符合软件世界沿用了二十五年的"开源"定义。它们是<em>开放权重（open weights）</em>。五十家公司签署的那封信，标题写的就是"open weights"，这不是偶然——这个区分也不是咬文嚼字，它直接决定了你拿到模型之后能做什么。</p>
@@ -1107,10 +1107,10 @@
             <p>所以在这篇文章里，凡是指 Kimi K3 这类发布，我都说"开放权重"；"开源"一词留给它真正适用的地方——vLLM、SGLang、Kubernetes、Kafka 这些生态。七月那封信在术语上是对的；大部分报道不是。</p>
 
             <h2 id="deja-vu-zh">既视感：这部电影我们看过</h2>
-            <p>2022 年 1 月，Honeypot 发布了<a href="https://www.youtube.com/watch?v=BE77h7dmoQU" target="_blank">《Kubernetes：纪录片》</a>。这是我所知道的、关于"巨头为什么开源自己的王冠明珠"最诚实的记录。2013 年前后，用早期 Kubernetes 工程师 <em>Tim Hockin</em> 的话说，亚马逊云科技是"压在每个人心头的庞然大物"。Kubernetes 联合创始人 <em>Joe Beda</em> 把 Google 的盘算讲得再直白不过：</p>
+            <p>2022 年 1 月，Honeypot 发布了<a href="https://www.youtube.com/watch?v=BE77h7dmoQU" target="_blank">《Kubernetes：纪录片》</a>。这是我所知道的、关于"巨头为什么开源自己的王冠明珠"最诚实的记录。2013 年前后，用早期 Kubernetes 工程师 <em>Tim Hockin</em> 的话说，亚马逊云科技是"压在每个人心头的庞然大物"。Kubernetes 联合创始人 <em>Joe Beda</em> 把谷歌的盘算讲得再直白不过：</p>
             <div class="my-thought">
                <span class="thought-label">纪录片原话</span>
-               "我们要怎么改变局面——怎么摇动这个雪花球？也许结果未必全归 Google，但至少让 Google 有一搏之力，去争取这些客户，去制衡亚马逊云科技当时的统治地位。"——Joe Beda。<em>Eric Brewer</em> 则说："Google 必须在云上走一步大胆的棋，才能成为长期赢家。"
+               "我们要怎么改变局面，怎么摇动这个雪花球？也许结果未必全归谷歌，但至少让谷歌有一搏之力，去争取这些客户，去制衡亚马逊云科技当时的统治地位。"（Joe Beda）。<em>Eric Brewer</em> 则说："谷歌必须在云上走一步大胆的棋，才能成为长期赢家。"
             </div>
             <p>开源 Kubernetes 不是慈善，是战略——挑战者用开放来瓦解领先者的优势。而它成功的原因，Brewer 说得精准："Kubernetes 赢，部分是因为它背后有一支庞大的贡献者大军……那种变化速度，胜过其他一切。"</p>
             <p>这个模式在软件史上反复重演。Apache Kafka 是我最喜欢的例子：领英在 2011 年将它开源，Confluent 将它商业化，今天 Kafka 已是事实上的事件流标准，Amazon MSK 与 Confluent Cloud 在竞争运行同一个开放协议。开放标准做大了市场，厂商在运维、性能与信任上竞争，没有谁被开放摧毁。Linux 对 Windows、Android 对 iOS、MySQL 对 Oracle、Kubernetes 对各家专有编排器：同一部电影，换个年代重播。Android 拿走了出货量，iOS 守住了利润，两者都活得很好。</p>
@@ -1227,9 +1227,9 @@
                </div>
             </div>
             <div class="fx-stacks-note">同样的栈型，不同的硅片底线——中间那层推理栈也不同。闭源大厂跑自己的推理栈；开放权重跑社区的推理栈，而社区的算子首先面向 CUDA。</div>
-            <p>这种不对称关乎需求的形状，而非意识形态。集中的需求能负担垂直整合：一家每年在算力上花掉几百亿美元的实验室，恰恰是那种能养得起自研加速器项目、也能谈下第二家 GPU 供应商的客户。这就是为什么闭源前沿反而是这个市场里去 NVIDIA 化最快的一部分——OpenAI 增加了 AMD 产能，并与 Broadcom 联合定制加速器；Anthropic 在 NVIDIA 之外，也在 Google TPU 与 AWS Trainium 上训练和推理。在闭源世界里，NVIDIA 在其最大客户硅片份额中的占比，只有一个方向可走。</p>
+            <p>这种不对称关乎需求的形状，而非意识形态。集中的需求能负担垂直整合：一家每年在算力上花掉几百亿美元的实验室，恰恰是那种能养得起自研加速器项目、也能谈下第二家 GPU 供应商的客户。这就是为什么闭源前沿反而是这个市场里去 NVIDIA 化最快的一部分：OpenAI 增加了 AMD 产能，并与 Broadcom 联合定制加速器；Anthropic 在 NVIDIA 之外，也在谷歌 TPU 与 AWS Trainium 上训练和推理。在闭源世界里，NVIDIA 在其最大客户硅片份额中的占比，只有一个方向可走。</p>
             <p>开放权重把这个形状彻底反转。需求碎裂在成千上万家企业、neocloud、创业公司和高校手里，其中几乎没有谁养得起一个 ASIC 项目，或组得起一支编译器团队。它们只会跑在"社区的推理栈跑得最好的地方"——而社区的算子，首先是为 CUDA 写的。每一次 Kimi K3、DeepSeek 或 Qwen 的发布，都会变成一波新的部署落到 NVIDIA 硬件上——默认发生，没有人来议价。开放权重把一份需要谈判的超级大单，换成了一万份不用谈判的小单。</p>
-            <p>这样读，NVIDIA 这封信就是 Google 2014 年那一步的翻版：在你不是垄断者的那一层开放，守住你是垄断者的那一层。Google 送出编排器去卖云；NVIDIA 力挺开放权重去卖加速卡。生态叙事和商业算盘指向同一个方向——这恰恰是它可信的原因，也是为什么这个联盟的天然领头者是一个生态建设者，而不是某家模型实验室。</p>
+            <p>这样读，NVIDIA 这封信就是谷歌 2014 年那一步的翻版：在你不是垄断者的那一层开放，守住你是垄断者的那一层。谷歌送出编排器去卖云；NVIDIA 力挺开放权重去卖加速卡。生态叙事和商业算盘指向同一个方向，这恰恰是它可信的原因，也是为什么这个联盟的天然领头者是一个生态建设者，而不是某家模型实验室。</p>
             <div class="my-thought">
                <span class="thought-label">诚实的但书</span>
                可移植性是双向的。让 CUDA 成为默认的那种开放性，同时也让它变得可替换——vLLM 和 SGLang 已经把硬件抽象掉，ROCm 追上了大半差距，开放推理栈也在不断补齐 TPU 与 Trainium 后端。开放权重削弱每一层的锁定，包括 NVIDIA 自己那一层。这才是生态建设者真正下的那个注：一个更大的市场，比一条更深的护城河更值钱。这个注 NVIDIA 下了二十年，至今没输过。

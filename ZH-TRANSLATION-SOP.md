@@ -23,6 +23,9 @@
 | `AWS <产品>`（AWS Lambda / AWS Fargate / AWS App Runner…） | 原样保留英文 | 产品名整体是商标，不拆开翻译 |
 | `Amazon <产品>`（Amazon S3 / Amazon EKS / Amazon Bedrock…） | 原样保留英文 | 同上 |
 | 刊物 / 专栏 / 活动的固有名称（AWS Week in Review、AWS Pi Day、AWS Open Source News and Updates、AWS Machine Learning blog、AWS × Docker Container Day…） | 原样保留英文 | 这些是标题本身，不是在指代公司 |
+| **Google（作为公司）** | **谷歌** | 官方中文名。`离开谷歌`、`谷歌是创始投资方`、`谷歌的博客`、`谷歌搜索` |
+| **`谷歌 <模型/产品>`** | 公司名译、产品名留（`谷歌 Gemma`、`谷歌 Gemini`、`谷歌 TPU`） | 模型本名只是 `Gemma`、`Gemini`，`Google` 是在标注归属，和 `阿里巴巴 Qwen` 同理 |
+| `Google DeepMind`、`Google Cloud (Run/Next)`、`Google X`、`Google AI`、`Google Research`、`Google Fonts` | 原样保留英文 | 注册的机构名 / 产品名整体，`Google` 是名字的一部分，与 `Amazon Bedrock` 同理 |
 | 人名、球队名、会议名（Marc Brooker、Seahawks、KubeCon、USENIX ATC） | 原样保留英文 | 全站既有惯例 |
 
 ### 社交平台（硬性映射）
