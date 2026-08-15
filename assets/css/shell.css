@@ -1650,6 +1650,25 @@ figure > img,
   color: var(--paper);
 }
 
+/* The optional action carries the same shape but not the same weight: a
+   full-strength second button competes with the primary one for the same
+   glance. Lighter border and muted ink keep it recognisably the same
+   control family while losing the argument for attention. */
+.more .btn--quiet {
+  border-color: var(--ink-3);
+  color: var(--ink-3);
+}
+
+.more .btn--quiet:hover {
+  background: var(--ink-3);
+  color: var(--paper);
+}
+
+.band--ink .btn--quiet {
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.72);
+}
+
 /* Two actions in one .more: they stack, they do not sit side by side.
    Side by side gives two bordered buttons identical visual weight, so the
    page asks the reader to choose between booking a chat and donating at the
