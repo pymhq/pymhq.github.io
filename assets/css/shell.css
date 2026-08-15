@@ -1650,24 +1650,32 @@ figure > img,
   color: var(--paper);
 }
 
-/* Two actions in one .more: inline-block whitespace alone puts them 4px
-   apart, and once they wrap on a phone the 13px padding makes them touch.
-   :has() turns the paragraph into a wrapping flex row only in that case,
-   since every other .more on the site holds a single text link and would
-   not survive being restyled. The margin rule is the fallback for engines
-   without :has(), matching how .gallery guards its video overlay. */
+/* Two actions in one .more: they stack, they do not sit side by side.
+   Side by side gives two bordered buttons identical visual weight, so the
+   page asks the reader to choose between booking a chat and donating at the
+   same moment, when only the first is what the page is for. Stacked, the
+   eye reads them in order of intent. It also keeps one hierarchy at every
+   width: they already stacked under 480px, so a flex row on desktop meant
+   the layout said something different depending on screen size.
+
+   :has() scopes this to the two-button case, since every other .more on the
+   site holds a single text link and would not survive being restyled. The
+   margin rule is the fallback for engines without :has(), matching how
+   .gallery guards its video overlay. align-items keeps each button at its
+   own text width instead of stretching to the column. */
 .more .btn + .btn {
-  margin-left: clamp(8px, 1vw, 14px);
+  margin-top: clamp(10px, 1.2vw, 14px);
 }
 
 .more:has(.btn + .btn) {
   display: flex;
-  flex-wrap: wrap;
-  gap: clamp(10px, 1.2vw, 16px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(10px, 1.2vw, 14px);
 }
 
 .more:has(.btn + .btn) .btn + .btn {
-  margin-left: 0;
+  margin-top: 0;
 }
 
 .band--ink .btn {
