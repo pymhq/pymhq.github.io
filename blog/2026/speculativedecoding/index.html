@@ -281,7 +281,7 @@
          <div class="post">
             <header class="post-header">
                <h1 class="post-title"><span class="lang-en">Trendings on Speculative Decoding</span><span class="lang-zh" hidden>投机解码（Speculative Decoding）趋势</span></h1>
-               <p class="post-meta"><span class="lang-en"> Created in June 2026<span class="post-readstats"> · 6,110 words · 31 min read</span> </span><span class="lang-zh" hidden> 创建于 2026 年 6 月<span class="post-readstats"> · 约 9,809 字 · 29 分钟阅读</span> </span></p>
+               <p class="post-meta"><span class="lang-en"> Created in June 2026<span class="post-readstats"> · 6,115 words · 31 min read</span> </span><span class="lang-zh" hidden> 创建于 2026 年 6 月<span class="post-readstats"> · 约 9,814 字 · 29 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/archive/2026/"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/speculative-decoding"> <i class="fa-solid fa-hashtag fa-sm"></i> speculative-decoding</a>   <a href="/blog/tag/mtp"> <i class="fa-solid fa-hashtag fa-sm"></i> mtp</a>   <a href="/blog/tag/inference"> <i class="fa-solid fa-hashtag fa-sm"></i> inference</a>   <a href="/blog/tag/eagle"> <i class="fa-solid fa-hashtag fa-sm"></i> eagle</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -327,23 +327,23 @@
                <p class="sd-rail-lbl">Speculator Releases <span>&mdash; three launches, eight weeks &middot; newest first</span></p>
                <div class="sd-rail">
                   <div class="sd-stop">
-                     <div class="when">Update &mdash; July 28, 2026 &mdash; Intent Lab &times; DSpark drafters (autonomous adoption)</div>
+                     <div class="when">Update, July 28, 2026: Intent Lab &times; DSpark drafters (autonomous adoption)</div>
                      <p class="what">Intent Lab's agent fleet <a href="https://intentlab.ai/blog/turn-your-intent-into-production-systems" target="_blank" rel="noopener">re-engineers TensorRT-LLM for GLM 5.2</a> on Grace Blackwell — <strong>6.3&times;</strong> end to end, with <strong>speculative decoding the single largest slice at &times;4.0</strong> via optimized <strong>DSpark drafters</strong>, reaching 647 tok/s. Full breakdown in the <a href="#in-the-wild">adoption ledger</a>.</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">Update &mdash; July 15, 2026 &mdash; Inkling &times; DFlash on Modal (production adoption)</div>
+                     <div class="when">Update, July 15, 2026: Inkling &times; DFlash on Modal (production adoption)</div>
                      <p class="what">DFlash lands in production for a day-0 frontier release: <a href="https://modal.com/blog/inkling-by-thinking-machines-labs-now-available-on-modal" target="_blank" rel="noopener">Modal serves Thinking Machines' Inkling</a> backed by a custom-trained <strong>DFlash speculator</strong> &mdash; <strong>67%</strong> higher throughput and interactivity, running on Modal Auto Endpoints with SGLang. <a href="https://x.com/soumithchintala/status/2077500083407667569?s=20" target="_blank" rel="noopener"><em>Soumith Chintala</em></a>: "Modal trained a DFlash speculator that's much faster than MTP, making it a great boost for inference speeds!"</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">June 27, 2026 &mdash; DeepSeek DSpark (server-scale)</div>
+                     <div class="when">June 27, 2026: DeepSeek DSpark (server-scale)</div>
                      <p class="what">DeepSeek layers a "semi-parallel" speculative framework with <strong>confidence-scheduled verification</strong> on top of DeepSeek-V4's built-in MTP-1. Per-user speedups of <strong>57&ndash;85%</strong> and throughput gains of <strong>1.5&times;&ndash;5&times;</strong> in real production traffic.</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">June 26, 2026 &mdash; Gemini Nano Frozen MTP (on-device)</div>
+                     <div class="when">June 26, 2026: Gemini Nano Frozen MTP (on-device)</div>
                      <p class="what">Google Research retrofits MTP onto <strong>frozen</strong> Gemini Nano v3 on Pixel 9/10. A "late-exit" head cross-attends to the main model's KV cache (zero-copy), saving <strong>~130&nbsp;MB</strong> and delivering <strong>50%+</strong> speedups with ~2 extra accepted tokens per pass.</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">May 5, 2026 &mdash; Gemma 4 Assistant (open weights)</div>
+                     <div class="when">May 5, 2026: Gemma 4 Assistant (open weights)</div>
                      <p class="what">Google ships a companion line of autoregressive <strong>drafter</strong> models — officially the <strong>"Gemma 4 Assistant"</strong> (the <code>-assistant</code> checkpoints) — plus an <strong>MTP</strong> head for the Gemma 4 family. Up to <strong>3&times;</strong> faster inference, lossless, Apache-2.0, and supported in Transformers, MLX, vLLM, SGLang and Ollama from day one.</p>
                   </div>
                </div>
@@ -352,23 +352,23 @@
                <p class="sd-rail-lbl">Speculator Trainers <span>&mdash; exactly one year, Jul 2025 &ndash; Jul 2026 &middot; newest first</span></p>
                <div class="sd-rail">
                   <div class="sd-stop">
-                     <div class="when">Jul 2026 &mdash; AngelSpec (Tencent Hunyuan)</div>
+                     <div class="when">Jul 2026: AngelSpec (Tencent Hunyuan)</div>
                      <p class="what">An <strong>end-to-end</strong> framework covering both training <em>and</em> deployment — torch-native training for <strong>MTP</strong> and block-parallel drafters, released with <strong>DFly</strong> drafter weights for Hy3-A21B. 1.98&ndash;2.40&times; end-to-end speedup at concurrency 4&ndash;64, and 10.5&ndash;11.8% higher throughput than DFlash. <a href="https://x.com/TencentHunyuan/status/2082447023626944936?s=20" target="_blank" rel="noopener">Announced on X</a>.</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">Jun 2026 &mdash; DeepSpec (DeepSeek)</div>
+                     <div class="when">Jun 2026: DeepSpec (DeepSeek)</div>
                      <p class="what">The repo DeepSeek open-sourced alongside <strong>DSpark</strong> — shipping not just the DSpark recipe but DeepSeek's own <strong>DFlash</strong> and <strong>EAGLE-3</strong> drafter training, closing the loop from algorithm research to a runnable production stack.</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">Mar 2026 &mdash; TorchSpec (TorchSpec &amp; Mooncake teams)</div>
+                     <div class="when">Mar 2026: TorchSpec (TorchSpec &amp; Mooncake teams)</div>
                      <p class="what">A torch-native framework for <strong>disaggregated</strong> drafter training: it decouples the inference engine that generates hidden states from the training workers that consume them, streaming tensors over RDMA/TCP through the <strong>Mooncake</strong> store — no disk, no co-location. Trains a Kimi&nbsp;K2.5 EAGLE-3 drafter in ~1,500 H200-hours.</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">Nov 2025 &mdash; Speculators (vLLM) &amp; SageMaker EAGLE</div>
+                     <div class="when">Nov 2025: Speculators (vLLM) &amp; SageMaker AI EAGLE</div>
                      <p class="what">Two production pushes in one month. <strong>Speculators</strong> (vLLM / Red Hat) standardizes drafters into a single Hugging Face format that runs in vLLM out of the box; Amazon <strong>SageMaker AI</strong> ships <strong>EAGLE-2/3 adaptive</strong> speculative decoding that retrains heads on your <em>own</em> traffic for ~2.5&times; throughput.</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">Jul 2025 &mdash; SpecForge (SGLang)</div>
+                     <div class="when">Jul 2025: SpecForge (SGLang)</div>
                      <p class="what">The first purpose-built <strong>EAGLE-3</strong> training framework, natively wired to <strong>SGLang</strong> so a draft model is deployable the moment training finishes. Built-in Training-Time Test (TTT), online &amp; offline hidden-state modes, FSDP + tensor parallelism, and MoE support (Llama 4, DeepSeek).</p>
                   </div>
                </div>
@@ -524,7 +524,7 @@
                </div>
 
                <p>
-                  This is exactly the gap <strong>P-EAGLE</strong> ("Parallel-Drafting EAGLE") was built to close: it transforms EAGLE from autoregressive into <em>parallel multi-token prediction</em> via a learnable shared hidden state, removing the serial-pass bottleneck while keeping EAGLE's feature-grounded accuracy (<a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a>; see also the <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM</a> and <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">Amazon SageMaker</a> write-ups).
+                  This is exactly the gap <strong>P-EAGLE</strong> ("Parallel-Drafting EAGLE") was built to close: it transforms EAGLE from autoregressive into <em>parallel multi-token prediction</em> via a learnable shared hidden state, removing the serial-pass bottleneck while keeping EAGLE's feature-grounded accuracy (<a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a>; see also the <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM</a> and <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">Amazon SageMaker AI</a> write-ups).
                </p>
 
                <p>
@@ -972,7 +972,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <div class="ptitle">P-EAGLE: Parallel-Drafting EAGLE with Scalable Training <span class="badge badge-serve">PARALLEL</span></div>
                   <div class="pauthors"><em>Amazon (AWS AI)</em></div>
                   <p class="psum">Transforms EAGLE from autoregressive into parallel multi-token prediction via a learnable shared hidden state, removing the serial K-passes bottleneck while keeping feature-grounded accuracy. Checkpoints under <code>amazon/…-p-eagle</code>.</p>
-                  <div class="plinks"><a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a> &middot; <a href="https://arxiv.org/pdf/2602.01469" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM blog</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">SageMaker blog</a></div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a> &middot; <a href="https://arxiv.org/pdf/2602.01469" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM blog</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">SageMaker AI blog</a></div>
                </div>
 
                <p class="group-label">3 &middot; Parallel &amp; diffusion drafting</p>
@@ -1055,7 +1055,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                <div class="paper">
                   <div class="ptitle">EAGLE-Based Adaptive Speculative Decoding on Amazon SageMaker AI <span class="badge badge-train">TRAINING</span> <span class="badge badge-serve">MANAGED</span></div>
                   <div class="pauthors">Amazon SageMaker AI team &mdash; <em>AWS</em></div>
-                  <p class="psum">A managed path in the SageMaker inference-optimization toolkit that trains <strong>EAGLE-2/3</strong> heads — and, crucially, <em>re</em>trains them on your own captured traffic, so the drafter adapts to your real workload rather than a generic benchmark. Supports six architectures (Llama, Qwen2/3, Qwen3-MoE, GPT-OSS with EAGLE-3; Qwen3-Next with EAGLE-2) and ships pre-trained heads for instant use. <span style="color:#777;">(Disclosure: a project I had a hand in shipping on the SageMaker team.)</span></p>
+                  <p class="psum">A managed path in the SageMaker AI inference-optimization toolkit that trains <strong>EAGLE-2/3</strong> heads, and crucially <em>re</em>trains them on your own captured traffic, so the drafter adapts to your real workload rather than a generic benchmark. Supports six architectures (Llama, Qwen2/3, Qwen3-MoE, GPT-OSS with EAGLE-3; Qwen3-Next with EAGLE-2) and ships pre-trained heads for instant use. <span style="color:#777;">(Disclosure: a project I had a hand in shipping on the SageMaker AI team.)</span></p>
                   <div class="metric">~2.5&times; throughput, lossless</div>
                   <div class="plinks"><a href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-introduces-eagle-based-adaptive-speculative-decoding-to-accelerate-generative-ai-inference/" target="_blank" rel="noopener">AWS Machine Learning blog</a></div>
                </div>
@@ -1125,23 +1125,23 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                <p class="sd-rail-lbl">投机器发布 <span>&mdash; 三次发布，八周时间 &middot; 最新在前</span></p>
                <div class="sd-rail">
                   <div class="sd-stop">
-                     <div class="when">更新 —— 2026 年 7 月 28 日 —— Intent Lab × DSpark 草稿器（自主落地）</div>
+                     <div class="when">更新，2026 年 7 月 28 日：Intent Lab × DSpark 草稿器（自主落地）</div>
                      <p class="what">Intent Lab 的 Agent 舰队<a href="https://intentlab.ai/blog/turn-your-intent-into-production-systems" target="_blank" rel="noopener">为 GLM 5.2 重构 TensorRT-LLM</a>（Grace Blackwell 节点）—— 端到端 <strong>6.3&times;</strong>，其中<strong>投机解码是最大的一块（&times;4.0）</strong>，由优化过的 <strong>DSpark 草稿器</strong>驱动，达到 647 tok/s。完整拆解见<a href="#in-the-wild-zh">落地台账</a>。</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">更新 —— 2026 年 7 月 15 日 —— Inkling × DFlash 登陆 Modal（生产落地）</div>
+                     <div class="when">更新，2026 年 7 月 15 日：Inkling × DFlash 登陆 Modal（生产落地）</div>
                      <p class="what">DFlash 在前沿模型发布首日即投入生产：<a href="https://modal.com/blog/inkling-by-thinking-machines-labs-now-available-on-modal" target="_blank" rel="noopener">Modal 上线 Thinking Machines 的 Inkling</a>，由定制训练的 <strong>DFlash 投机器</strong>加持——在 Modal Auto Endpoints 上搭配 SGLang，吞吐与交互性提升 <strong>67%</strong>。<a href="https://x.com/soumithchintala/status/2077500083407667569?s=20" target="_blank" rel="noopener"><em>Soumith Chintala</em></a>："Modal 训练的 DFlash 投机器比 MTP 快得多，是推理速度的一大助力！"</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">2026 年 6 月 27 日 —— DeepSeek DSpark（服务器规模）</div>
+                     <div class="when">2026 年 6 月 27 日：DeepSeek DSpark（服务器规模）</div>
                      <p class="what">DeepSeek 在 DeepSeek-V4 自带的 MTP-1 之上，叠加了一套"半并行（semi-parallel）"投机框架与<strong>置信度调度的验证</strong>。在真实生产流量中，单用户提速 <strong>57&ndash;85%</strong>，吞吐提升 <strong>1.5&times;&ndash;5&times;</strong>。</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">2026 年 6 月 26 日 —— Gemini Nano 冻结式 MTP（端侧）</div>
+                     <div class="when">2026 年 6 月 26 日：Gemini Nano 冻结式 MTP（端侧）</div>
                      <p class="what">谷歌研究院把 MTP 改造性地装到<strong>冻结</strong>的 Gemini Nano v3 上（Pixel 9/10）。一个"晚退出（late-exit）"头通过交叉注意力直接读取主模型的 KV cache（零拷贝），节省约 <strong>130&nbsp;MB</strong>，并带来 <strong>50%+</strong> 的提速，每次前向平均多接受约 2 个 token。</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">2026 年 5 月 5 日 —— Gemma 4 Assistant（开源权重）</div>
+                     <div class="when">2026 年 5 月 5 日：Gemma 4 Assistant（开源权重）</div>
                      <p class="what">谷歌发布了一系列自回归<strong>草稿</strong>模型 —— 官方称为 <strong>"Gemma 4 Assistant"</strong>（即 <code>-assistant</code> 检查点）—— 外加为 Gemma 4 家族准备的 <strong>MTP</strong> 头。推理最高提速 <strong>3&times;</strong>、无损、Apache-2.0，并自首日起支持 Transformers、MLX、vLLM、SGLang 与 Ollama。</p>
                   </div>
                </div>
@@ -1150,23 +1150,23 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                <p class="sd-rail-lbl">投机器训练器 <span>&mdash; 恰好一年：2025 年 7 月 &ndash; 2026 年 7 月 &middot; 最新在前</span></p>
                <div class="sd-rail">
                   <div class="sd-stop">
-                     <div class="when">2026 年 7 月 —— AngelSpec（腾讯混元）</div>
+                     <div class="when">2026 年 7 月：AngelSpec（腾讯混元）</div>
                      <p class="what">一个<strong>端到端</strong>框架，同时覆盖训练<em>与</em>部署 —— torch 原生地训练 <strong>MTP</strong> 与块并行草稿器，并随发布提供 Hy3-A21B 的 <strong>DFly</strong> 草稿器权重。在并发 4&ndash;64 区间取得 1.98&ndash;2.40&times; 的端到端加速，吞吐比 DFlash 高 10.5&ndash;11.8%。<a href="https://x.com/TencentHunyuan/status/2082447023626944936?s=20" target="_blank" rel="noopener">X 上的发布公告</a>。</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">2026 年 6 月 —— DeepSpec（DeepSeek）</div>
+                     <div class="when">2026 年 6 月：DeepSpec（DeepSeek）</div>
                      <p class="what">DeepSeek 随 <strong>DSpark</strong> 一起开源的仓库 —— 不仅给出 DSpark 配方，还附带 DeepSeek 自训的 <strong>DFlash</strong> 与 <strong>EAGLE-3</strong> 草稿器训练，把算法研究与可运行的生产栈闭环起来。</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">2026 年 3 月 —— TorchSpec（TorchSpec 团队与 Mooncake 团队）</div>
+                     <div class="when">2026 年 3 月：TorchSpec（TorchSpec 团队与 Mooncake 团队）</div>
                      <p class="what">一个 torch 原生的<strong>解耦式（disaggregated）</strong>草稿器训练框架：把生成隐藏状态的推理引擎与消费隐藏状态的训练 worker 解耦，通过 <strong>Mooncake</strong> 存储以 RDMA/TCP 直接流式传输张量 —— 不落盘，也不共置。约 1,500 H200 小时训出一个 Kimi&nbsp;K2.5 的 EAGLE-3 草稿器。</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">2025 年 11 月 —— Speculators（vLLM）与 SageMaker EAGLE</div>
+                     <div class="when">2025 年 11 月：Speculators（vLLM）与 SageMaker AI EAGLE</div>
                      <p class="what">同一个月里的两记生产化重拳。<strong>Speculators</strong>（vLLM / Red Hat）把草稿器标准化为统一的 Hugging Face 格式，开箱即在 vLLM 中运行；亚马逊 <strong>SageMaker AI</strong> 推出 <strong>EAGLE-2/3 自适应</strong>投机解码，在你<em>自己</em>的流量上重训草稿头，带来约 2.5&times; 的吞吐。</p>
                   </div>
                   <div class="sd-stop">
-                     <div class="when">2025 年 7 月 —— SpecForge（SGLang）</div>
+                     <div class="when">2025 年 7 月：SpecForge（SGLang）</div>
                      <p class="what">首个专为 <strong>EAGLE-3</strong> 打造的训练框架，与 <strong>SGLang</strong> 原生打通 —— 草稿模型一训完即可部署。内置训练期测试（TTT）、在线与离线两种隐藏状态模式、FSDP + 张量并行，并原生支持 MoE 目标（Llama 4、DeepSeek）。</p>
                   </div>
                </div>
@@ -1320,7 +1320,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                </div>
 
                <p>
-                  这正是 <strong>P-EAGLE</strong>（"并行草稿 EAGLE"）要弥合的鸿沟：它通过一个可学习的共享隐藏状态，把 EAGLE 从自回归转变为<em>并行多 token 预测</em>，在保留 EAGLE 特征级准确性的同时去除串行前向瓶颈（<a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a>；另见 <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM</a> 与 <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">Amazon SageMaker</a> 的文章）。
+                  这正是 <strong>P-EAGLE</strong>（"并行草稿 EAGLE"）要弥合的鸿沟：它通过一个可学习的共享隐藏状态，把 EAGLE 从自回归转变为<em>并行多 token 预测</em>，在保留 EAGLE 特征级准确性的同时去除串行前向瓶颈（<a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a>；另见 <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM</a> 与 <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">Amazon SageMaker AI</a> 的文章）。
                </p>
 
                <p>
@@ -1759,7 +1759,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                   <div class="ptitle">P-EAGLE: Parallel-Drafting EAGLE with Scalable Training <span class="badge badge-serve">PARALLEL</span></div>
                   <div class="pauthors"><em>Amazon（AWS AI）</em></div>
                   <p class="psum">通过可学习的共享隐藏状态，把 EAGLE 从自回归转变为并行多 token 预测，去除串行 K 次前向瓶颈，同时保留特征级准确性。检查点位于 <code>amazon/…-p-eagle</code>。</p>
-                  <div class="plinks"><a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a> &middot; <a href="https://arxiv.org/pdf/2602.01469" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM 博客</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">SageMaker 博客</a></div>
+                  <div class="plinks"><a href="https://arxiv.org/abs/2602.01469" target="_blank" rel="noopener">arXiv:2602.01469</a> &middot; <a href="https://arxiv.org/pdf/2602.01469" target="_blank" rel="noopener">PDF</a> &middot; <a href="https://vllm.ai/blog/p-eagle" target="_blank" rel="noopener">vLLM 博客</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/" target="_blank" rel="noopener">SageMaker AI 博客</a></div>
                </div>
 
                <p class="group-label">3 &middot; 并行 / 扩散草稿</p>
@@ -1842,7 +1842,7 @@ Slow to run speculator or drafting too many tokens with a low guess rate can be 
                <div class="paper">
                   <div class="ptitle">EAGLE-Based Adaptive Speculative Decoding on Amazon SageMaker AI <span class="badge badge-train">TRAINING</span> <span class="badge badge-serve">MANAGED</span></div>
                   <div class="pauthors">Amazon SageMaker AI 团队 &mdash; <em>AWS</em></div>
-                  <p class="psum">SageMaker 推理优化工具箱中的一条托管路径，训练 <strong>EAGLE-2/3</strong> 头 —— 更关键的是，它能在你自己采集的流量上<em>重新</em>训练这些头，让草稿器适配你真实的工作负载，而非通用基准。支持六种架构（Llama、Qwen2/3、Qwen3-MoE、GPT-OSS 用 EAGLE-3；Qwen3-Next 用 EAGLE-2），并附带预训练好的头以便即开即用。<span style="color:#777;">（披露：这是我在 SageMaker 团队参与交付的一个项目。）</span></p>
+                  <p class="psum">SageMaker AI 推理优化工具箱中的一条托管路径，训练 <strong>EAGLE-2/3</strong> 头；更关键的是，它能在你自己采集的流量上<em>重新</em>训练这些头，让草稿器适配你真实的工作负载，而非通用基准。支持六种架构（Llama、Qwen2/3、Qwen3-MoE、GPT-OSS 用 EAGLE-3；Qwen3-Next 用 EAGLE-2），并附带预训练好的头以便即开即用。<span style="color:#777;">（披露：这是我在 SageMaker AI 团队参与交付的一个项目。）</span></p>
                   <div class="metric">约 2.5&times; 吞吐，无损</div>
                   <div class="plinks"><a href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-introduces-eagle-based-adaptive-speculative-decoding-to-accelerate-generative-ai-inference/" target="_blank" rel="noopener">AWS 机器学习博客</a></div>
                </div>
