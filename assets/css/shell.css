@@ -562,6 +562,17 @@ figure > img,
   margin-top: 3px;
 }
 
+/* A qualifier that belongs to the line above it, not to a line of its own:
+   a co-presenter, a second affiliation. Block so it sits under its parent
+   credit rather than trailing off the end of it, and muted so the credit
+   stays the thing being scanned. */
+.record-val small.record-aside {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
 .record-val {
   color: var(--ink-2);
   font-size: 1.06rem;
