@@ -562,6 +562,24 @@ figure > img,
   margin-top: 3px;
 }
 
+/* The role is a different kind of fact from the venue, so it is not a second
+   grey line. Every entry on /invited-talks already named the role in its
+   byline, but buried after the title and inside a co-presenter list three
+   names long, which made a keynote and a panel seat read alike. Hoisted into
+   the key column it becomes a column you can count. */
+.record-key .record-role {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border: 1px solid var(--rule-2);
+  padding: 3px 8px;
+}
+
 .record-val {
   color: var(--ink-2);
   font-size: 1.06rem;
