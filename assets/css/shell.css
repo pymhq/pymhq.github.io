@@ -566,7 +566,10 @@ figure > img,
    grey line. Every entry on /invited-talks already named the role in its
    byline, but buried after the title and inside a co-presenter list three
    names long, which made a keynote and a panel seat read alike. Hoisted into
-   the key column it becomes a column you can count. */
+   the key column it becomes a column you can count.
+
+   Two axes, so an entry can carry two labels: what the speaking role was
+   (Keynote, Talk, Panel) and how it was delivered (Livestream). */
 .record-key .record-role {
   display: inline-block;
   margin-top: 8px;
@@ -578,6 +581,10 @@ figure > img,
   color: var(--ink-3);
   border: 1px solid var(--rule-2);
   padding: 3px 8px;
+}
+
+.record-key .record-role + .record-role {
+  margin-left: 6px;
 }
 
 .record-val {
