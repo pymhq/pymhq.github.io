@@ -25,6 +25,20 @@
 | 刊物 / 专栏 / 活动的固有名称（AWS Week in Review、AWS Pi Day、AWS Open Source News and Updates、AWS Machine Learning blog、AWS × Docker Container Day…） | 原样保留英文 | 这些是标题本身，不是在指代公司 |
 | 人名、球队名、会议名（Marc Brooker、Seahawks、KubeCon、USENIX ATC） | 原样保留英文 | 全站既有惯例 |
 
+### 社交平台（硬性映射）
+
+有官方中文名的平台，中文行必须用中文名；没有官方中文名的保留英文。
+
+| 英文 | 中文 | 说明 |
+|---|---|---|
+| **LinkedIn** | **领英** | 官方中文名。作为平台、公司、或 `LinkedIn Post` 这类标签一律适用：`领英帖子`、`一篇领英文章`、`通过领英连接` |
+| **Rednote / Xiaohongshu** | **小红书** | 中文本名就是小红书，`Rednote` 只是它的英文名。中文行不要写 `Rednote`，也不要写 `Rednote（小红书）` |
+| X、GitHub、Substack、Instagram、Discord | 原样保留英文 | 没有通行的官方中文名 |
+| WeChat / Feishu | 微信 / 飞书 | 中文本名 |
+
+英文行保持英文原名（`LinkedIn`、`Rednote`），只有中文行替换。注意 `LinkedIn` 的大写：
+`Linkedin` 是错的，2026-08 已全站修正。
+
 ### 判断"是不是公司名"的一句话测试
 
 把 `AWS` 换成 `Amazon Web Services` 读一遍：
@@ -68,6 +82,9 @@
 
   # 有英文行但缺中文行的条目（数量应两两相等）
   grep -c 'lang-en' news.html; grep -c 'lang-zh' news.html
+
+  # 中文行里漏译的社交平台名（应无输出）
+  python3 scripts/check_zh_terms.py
   ```
 
 - [ ] 本地起 `python3 scripts/serve.py`，切到「中文」目视过一遍改动的段落

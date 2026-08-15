@@ -73,7 +73,7 @@
       // contact page, which is where someone looking for them goes.
       en: 'Elsewhere', zh: '其他',
       links: [
-        ['https://www.linkedin.com/in/pengandy-us', 'LinkedIn', 'LinkedIn'],
+        ['https://www.linkedin.com/in/pengandy-us', 'LinkedIn', '领英'],
         ['https://x.com/pymhq', 'X', 'X'],
         ['https://substack.com/@pengandy', 'Substack', 'Substack'],
         [BASE + '/sitemap.html', 'Sitemap', '站点地图']
