@@ -55,8 +55,14 @@ def main() -> int:
     port = int(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_PORT
     handler = functools.partial(PagesHandler, directory=str(REPO_ROOT))
 
-    class Server(socketserver.TCPServer):
+    # Threaded, not the plain TCPServer this started as. HTTP/1.1 keep-alive
+    # means a browser holds its connection open after the response, and a
+    # single-threaded server then serves nobody else until that socket times
+    # out: pages hung mid-load and a second tab could not connect at all.
+    # daemon_threads so ctrl-c still exits immediately.
+    class Server(socketserver.ThreadingTCPServer):
         allow_reuse_address = True
+        daemon_threads = True
 
     print(f"site   -> http://localhost:{port}/")
     print(f"  中文 -> http://localhost:{port}/?lang=zh")
