@@ -46,7 +46,13 @@
 
         #globe-container svg {
             cursor: grab;
-            touch-action: none;
+            /* pan-y, not none. `none` hands every touch to the drag
+               handler, and because the globe is 100vh tall there is no
+               spare screen left to scroll with: once a phone user spun the
+               globe they could never reach the PNW panel below it. pan-y
+               gives vertical swipes back to the page; horizontal and
+               diagonal drags still spin the globe on both axes. */
+            touch-action: pan-y;
             -webkit-user-select: none;
             user-select: none;
         }
@@ -283,11 +289,17 @@
         }
 
         #pnw-section .pnw-section-inner {
-            width: min(92vw, 900px);
+            /* percentages, not vw: the section sits inside .shell, so it is
+               narrower than the viewport by two gutters. A vw width made
+               every panel wider than the pager that scrolls them, which
+               clipped the right edge and knocked the x-snap offsets out of
+               step with pager.clientWidth. */
+            width: min(92%, 900px);
             height: min(84vh, 760px);
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 14px;
         }
 
@@ -316,8 +328,14 @@
         }
 
         #pnw-full-map-wrap {
-            flex: 1;
+            /* The card takes the aspect of the drawing it holds, so a tall
+               panel leaves clean space around it rather than a letterbox the
+               map bleeds into. JS overrides the ratio on phones, where the
+               viewBox is cropped to a portrait window. */
+            flex: 0 1 auto;
             width: 100%;
+            aspect-ratio: 800 / 640;
+            max-height: 100%;
             border-radius: 16px;
             background: #eef2ea;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -534,6 +552,10 @@
 
         .pnw-panel {
             flex: 0 0 100%;
+            /* a flex item defaults to min-width:auto, so a panel with
+               content wider than the pager would stretch past 100% and
+               break scroll-snap alignment */
+            min-width: 0;
             height: 100%;
             scroll-snap-align: start;
             display: flex;
@@ -593,8 +615,11 @@
         }
 
         .pnw-route-card {
-            flex: 1;
+            /* same aspect-hugging as the map card above */
+            flex: 0 1 auto;
             width: 100%;
+            aspect-ratio: 900 / 700;
+            max-height: 100%;
             border-radius: 16px;
             background: #eef2ea;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -824,7 +849,7 @@
 
         @media (max-width: 600px) {
             #pnw-section .pnw-section-inner {
-                width: 94vw;
+                width: 96%;
                 height: 88vh;
                 gap: 10px;
             }
@@ -833,6 +858,20 @@
             .pnw-peak-label { font-size: 8px; }
             .pnw-peak-elev { font-size: 7px; }
             .pnw-water-label { font-size: 8px; }
+
+            /* The card now spans nearly the full width, so park the arrows in
+               the empty strip at the bottom beside the dots rather than on top
+               of the chart. */
+            .pnw-nav {
+                top: auto;
+                bottom: 6px;
+                transform: none;
+                width: 34px;
+                height: 34px;
+            }
+
+            .pnw-nav.prev { left: 50%; margin-left: -76px; }
+            .pnw-nav.next { right: 50%; margin-right: -76px; }
         }
     </style>
 
@@ -2165,9 +2204,15 @@
     <script src="/maps/data/cities.js"></script>
 
     <script>
-        // Set up dimensions
-        const width = Math.min(window.innerWidth, 1200);
-        const height = window.innerHeight;
+        // Set up dimensions.
+        // Measure the container, not the window: #globe-container sits inside
+        // .shell, so it is two gutters narrower than the viewport. Sizing the
+        // svg to window.innerWidth made it a flex item wider than its box,
+        // and flexbox then shrank the box without rescaling the drawing — on a
+        // phone the globe sat off-centre with its right limb clipped.
+        const globeHost = document.getElementById('globe-container');
+        const width = Math.min(globeHost ? globeHost.clientWidth : window.innerWidth, 1200);
+        const height = (globeHost && globeHost.clientHeight) || window.innerHeight;
         const radius = Math.min(width, height) / 2.5;
 
         // Create SVG
@@ -2419,27 +2464,27 @@
                     });
             }
 
-            // Add drag to rotate globe (works for both mouse and touch)
+            // Rotate the globe by the given screen-space delta.
+            function spin(dx, dy) {
+                const rotate = projection.rotate();
+                const k = 75 / projection.scale();
+                projection.rotate([rotate[0] + dx * k, rotate[1] - dy * k]);
+
+                // Throttle updates on mobile to prevent overwhelming the CPU
+                const now = Date.now();
+                if (!isMobile || now - lastUpdate > updateInterval) {
+                    updateGlobe();
+                    lastUpdate = now;
+                }
+            }
+
+            // Mouse drag to rotate.
             const drag = d3.drag()
                 .on('start', function(event) {
                     svg.style('cursor', 'grabbing');
                 })
                 .on('drag', function(event) {
-                    const now = Date.now();
-
-                    // Update rotation
-                    const rotate = projection.rotate();
-                    const k = 75 / projection.scale();
-                    projection.rotate([
-                        rotate[0] + event.dx * k,
-                        rotate[1] - event.dy * k
-                    ]);
-
-                    // Throttle updates on mobile to prevent overwhelming the CPU
-                    if (!isMobile || now - lastUpdate > updateInterval) {
-                        updateGlobe();
-                        lastUpdate = now;
-                    }
+                    spin(event.dx, event.dy);
                 })
                 .on('end', function(event) {
                     svg.style('cursor', 'grab');
@@ -2448,6 +2493,71 @@
                 });
 
             svg.call(drag);
+
+            /* Touch is handled here instead of by d3.drag.
+               d3.drag calls preventDefault() on the *first* touchmove, which
+               is before the browser has decided whether the swipe was a pan.
+               Since the globe is 100vh, that meant one touch anywhere on it
+               locked the page: a reader who spun the globe could never scroll
+               down to the PNW panel. It also stamps an inline
+               `touch-action: none` that outranks the stylesheet.
+
+               So: drop d3's touch listeners and judge the gesture ourselves.
+               The first few pixels pick an axis — mostly sideways and the
+               globe takes the gesture (and then spins on both axes, so
+               diagonal drags still tilt it); mostly up-down and we never
+               preventDefault, so the page scrolls as normal. */
+            svg.on('touchstart.drag', null)
+               .on('touchmove.drag', null)
+               .on('touchend.drag touchcancel.drag', null)
+               .style('touch-action', 'pan-y');
+
+            const svgNode = svg.node();
+            const AXIS_SLOP = 6; // px of travel before the axis is called
+            let touchId = null, startX = 0, startY = 0, lastX = 0, lastY = 0, axis = null;
+
+            svgNode.addEventListener('touchstart', (event) => {
+                if (event.touches.length !== 1) { touchId = null; axis = null; return; }
+                const t = event.touches[0];
+                touchId = t.identifier;
+                startX = lastX = t.clientX;
+                startY = lastY = t.clientY;
+                axis = null;
+            }, { passive: true });
+
+            svgNode.addEventListener('touchmove', (event) => {
+                if (touchId === null) return;
+                let t = null;
+                for (let i = 0; i < event.touches.length; i++) {
+                    if (event.touches[i].identifier === touchId) { t = event.touches[i]; break; }
+                }
+                if (!t) return;
+
+                if (axis === null) {
+                    const dx = Math.abs(t.clientX - startX);
+                    const dy = Math.abs(t.clientY - startY);
+                    if (dx < AXIS_SLOP && dy < AXIS_SLOP) return; // too early to tell
+                    axis = dx > dy ? 'x' : 'y';
+                    if (axis === 'x') svg.style('cursor', 'grabbing');
+                }
+                if (axis === 'y') return; // the page owns this swipe
+
+                event.preventDefault();
+                spin(t.clientX - lastX, t.clientY - lastY);
+                lastX = t.clientX;
+                lastY = t.clientY;
+            }, { passive: false });
+
+            const endTouch = () => {
+                if (axis === 'x') {
+                    svg.style('cursor', 'grab');
+                    updateGlobe(); // final update to ensure smooth finish
+                }
+                touchId = null;
+                axis = null;
+            };
+            svgNode.addEventListener('touchend', endTouch, { passive: true });
+            svgNode.addEventListener('touchcancel', endTouch, { passive: true });
         });
 
         // Handle window resize (debounced to prevent iOS crashes from address bar)
@@ -2458,7 +2568,7 @@
             // Prevents iOS address bar show/hide from triggering reload
             resizeTimer = setTimeout(() => {
                 // Only reload if width actually changed (not just height from address bar)
-                const newWidth = window.innerWidth;
+                const newWidth = globeHost ? globeHost.clientWidth : window.innerWidth;
                 if (Math.abs(newWidth - width) > 50) {
                     location.reload();
                 }
@@ -2495,6 +2605,46 @@
             ] };
             const proj = d3.geoMercator().fitExtent([[24, 24], [W - 24, H - 24]], bbox);
             const geoPath = d3.geoPath(proj);
+
+            /* Everything is drawn inside a clipped group.
+               The land path carries the whole USA + Canada outline under a
+               projection zoomed to the PNW, so it runs thousands of pixels
+               past the viewBox. An SVG clips at its *viewport* — the element
+               box — not at the viewBox, so on any card that is taller than
+               800x640 the letterbox filled up with continent instead of
+               staying empty: on a phone the map looked like a green slab
+               running off both edges. Clipping to the viewBox frames it. */
+            svg.append('defs').append('clipPath').attr('id', 'pnw-frame-clip')
+                .append('rect').attr('x', 0).attr('y', 0).attr('width', W).attr('height', H);
+            const frame = svg.append('g').attr('clip-path', 'url(#pnw-frame-clip)');
+
+            /* Phone screens are portrait and the drawn map is landscape, so
+               crop the viewBox to the projected bounding box (the map plus a
+               small margin) and hand the card the same ratio. That keeps the
+               card snug and renders the map ~50% larger than a letterboxed
+               800x640 would. */
+            const wrapEl = document.getElementById('pnw-full-map-wrap');
+            const tl = proj([box.lonMin, box.latMax]);
+            const br = proj([box.lonMax, box.latMin]);
+            const pad = 10;
+            const crop = tl && br ? {
+                x: tl[0] - pad, y: tl[1] - pad,
+                w: (br[0] - tl[0]) + pad * 2, h: (br[1] - tl[1]) + pad * 2
+            } : null;
+            const narrow = window.matchMedia('(max-width: 600px)');
+
+            function applyFraming() {
+                if (!crop || !wrapEl) return;
+                if (narrow.matches) {
+                    svg.attr('viewBox', `${crop.x.toFixed(1)} ${crop.y.toFixed(1)} ${crop.w.toFixed(1)} ${crop.h.toFixed(1)}`);
+                    wrapEl.style.aspectRatio = `${crop.w.toFixed(1)} / ${crop.h.toFixed(1)}`;
+                } else {
+                    svg.attr('viewBox', `0 0 ${W} ${H}`);
+                    wrapEl.style.aspectRatio = '';
+                }
+            }
+            applyFraming();
+            if (narrow.addEventListener) narrow.addEventListener('change', applyFraming);
 
             // ---------- peaks, rivers & lakes (hand-curated, illustrated) ----------
 
@@ -2581,7 +2731,7 @@
                 .y(d => proj(d)[1]);
 
             function drawWater() {
-                const g = svg.append('g').attr('class', 'pnw-water');
+                const g = frame.append('g').attr('class', 'pnw-water');
 
                 PNW_RIVERS.forEach(r => {
                     g.append('path')
@@ -2615,7 +2765,7 @@
 
             function drawPeaks() {
                 const tooltip = document.getElementById('tooltip');
-                const g = svg.append('g').attr('class', 'pnw-peaks');
+                const g = frame.append('g').attr('class', 'pnw-peaks');
 
                 PNW_PEAKS.forEach(p => {
                     const xy = proj([p.lon, p.lat]);
@@ -2667,7 +2817,7 @@
 
             function drawMarkers() {
                 const tooltip = document.getElementById('tooltip');
-                const g = svg.append('g').attr('class', 'pnw-full-markers');
+                const g = frame.append('g').attr('class', 'pnw-full-markers');
 
                 pnwFull.forEach(c => {
                     // Crater Lake NP is drawn as the illustrated caldera instead of a dot
@@ -2731,7 +2881,7 @@
                     const land = topojson.feature(world, world.objects.countries);
                     const feats = land.features.filter(f =>
                         f.properties && (f.properties.name === 'United States of America' || f.properties.name === 'Canada'));
-                    svg.insert('g', ':first-child').attr('class', 'pnw-land-full-g')
+                    frame.insert('g', ':first-child').attr('class', 'pnw-land-full-g')
                         .selectAll('path').data(feats).enter().append('path')
                         .attr('class', 'pnw-land-full')
                         .attr('d', geoPath);
@@ -2744,7 +2894,7 @@
             function drawStateBorders() {
                 d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
                     const states = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
-                    svg.append('path')
+                    frame.append('path')
                         .datum(states)
                         .attr('class', 'pnw-state-borders')
                         .attr('d', geoPath);
