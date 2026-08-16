@@ -294,7 +294,11 @@
                every panel wider than the pager that scrolls them, which
                clipped the right edge and knocked the x-snap offsets out of
                step with pager.clientWidth. */
-            width: min(92%, 900px);
+            /* 1040, not 900: the Salish Sea chart is now 1157 viewBox units
+               wide, so a wider card buys back the on-screen size that the
+               bigger frame cost. Height still binds on a desktop, so all three
+               panels simply get a little larger. */
+            width: min(92%, 1040px);
             height: min(84vh, 760px);
             display: flex;
             flex-direction: column;
@@ -989,7 +993,7 @@
             <div class="pnw-panel" aria-label="Salish Sea routes chart">
                 <div class="pnw-section-inner">
                     <div class="pnw-route-card">
-                        <svg viewBox="0 0 900 700" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustrated chart of Salish Sea routes from Seattle">
+                        <svg viewBox="20 0 1157 900" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustrated chart of Salish Sea routes from Seattle">
                             <defs>
 
                                 <!-- course arrow for the ferry tracks (two-way service: one at each end) -->
@@ -1343,8 +1347,8 @@
 
                             <!-- chart grid -->
                             <g class="rt-grid" opacity="0.7">
-                                <path d="M 0 100 H 900 M 0 200 H 900 M 0 300 H 900 M 0 400 H 900 M 0 500 H 900 M 0 600 H 900"/>
-                                <path d="M 100 0 V 700 M 200 0 V 700 M 300 0 V 700 M 400 0 V 700 M 500 0 V 700 M 600 0 V 700 M 700 0 V 700 M 800 0 V 700"/>
+                                <path d="M 0 100 H 900 M 0 200 H 900 M 0 300 H 900 M 0 400 H 900 M 0 500 H 900 M 0 600 H 900 M 0 700 H 900 M 0 800 H 900"/>
+                                <path d="M 100 0 V 900 M 200 0 V 900 M 300 0 V 900 M 400 0 V 900 M 500 0 V 900 M 600 0 V 900 M 700 0 V 900 M 800 0 V 900"/>
                             </g>
 
                             <!-- water decorations -->
@@ -1368,6 +1372,7 @@
                             <text class="rt-flavor" x="446" y="118" text-anchor="middle" transform="rotate(-75 446 118)">Rosario Strait</text>
                             <text class="rt-flavor" x="452" y="395" text-anchor="middle" transform="rotate(-70 452 395)">Admiralty Inlet</text>
                             <text class="rt-flavor" x="620" y="545" text-anchor="middle" transform="rotate(-75 620 545)">Puget Sound</text>
+                            <text class="rt-flavor" x="694" y="617" text-anchor="middle" transform="rotate(-62 694 617)">Elliott Bay</text>
 
                             <!-- here be orcas -->
                             <g transform="translate(300, 330)">
@@ -1419,8 +1424,8 @@
 
                             <!-- ================= land ================= -->
                             <!-- mainland (right) -->
-                            <path class="rt-coast-glow" d="M 585 0 C 600 45, 618 85, 616 130 C 610 146, 594 142, 576 146 C 556 150, 540 140, 522 138 C 500 136, 478 144, 468 158 C 458 172, 456 190, 464 202 C 470 210, 484 214, 498 216 C 510 218, 518 212, 530 210 C 546 208, 560 212, 572 222 C 584 232, 592 244, 600 258 C 616 304, 640 340, 645 388 C 650 428, 636 468, 646 508 C 654 545, 678 570, 688 608 C 694 634, 692 652, 684 664 C 660 682, 618 684, 585 678 C 550 672, 520 660, 498 646 C 480 634, 462 620, 455 604 C 448 580, 410 570, 372 556 C 346 532, 330 502, 340 470 C 350 440, 375 418, 396 388 C 410 368, 424 350, 432 328 C 436 316, 424 312, 415 322 C 402 336, 385 352, 360 368 C 320 392, 270 402, 210 392 C 150 380, 70 385, 0 400"/>
-                            <path class="rt-island" d="M 585 0 C 600 45, 618 85, 616 130 C 610 146, 594 142, 576 146 C 556 150, 540 140, 522 138 C 500 136, 478 144, 468 158 C 458 172, 456 190, 464 202 C 470 210, 484 214, 498 216 C 510 218, 518 212, 530 210 C 546 208, 560 212, 572 222 C 584 232, 592 244, 600 258 C 616 304, 640 340, 645 388 C 650 428, 636 468, 646 508 C 654 545, 678 570, 688 608 C 694 634, 692 652, 684 664 C 660 682, 618 684, 585 678 C 550 672, 520 660, 498 646 C 480 634, 462 620, 455 604 C 448 580, 410 570, 372 556 C 346 532, 330 502, 340 470 C 350 440, 375 418, 396 388 C 410 368, 424 350, 432 328 C 436 316, 424 312, 415 322 C 402 336, 385 352, 360 368 C 320 392, 270 402, 210 392 C 150 380, 70 385, 0 400 L 0 700 L 900 700 L 900 0 Z"/>
+                            <path class="rt-coast-glow" d="M 585 0 C 600 45, 618 85, 616 130 C 610 146, 594 142, 576 146 C 556 150, 540 140, 522 138 C 500 136, 478 144, 468 158 C 458 172, 456 190, 464 202 C 470 210, 484 214, 498 216 C 510 218, 518 212, 530 210 C 546 208, 560 212, 572 222 C 584 232, 592 244, 600 258 C 616 304, 640 340, 645 388 C 650 428, 636 468, 646 508 C 654 545, 678 570, 688 608 C 698 614, 706 622, 704 634 C 702 642, 694 646, 684 647 C 672 648, 664 652, 662 662 C 661 676, 667 692, 674 704 C 680 722, 684 730, 686 742 C 690 762, 692 776, 694 790 C 698 806, 702 820, 704 836 C 706 854, 702 866, 696 872 C 680 880, 656 878, 640 878 C 608 880, 588 880, 570 878 C 552 876, 534 872, 524 864 C 514 852, 512 838, 516 830 C 519 806, 522 794, 524 780 C 527 760, 531 748, 534 736 C 538 720, 545 708, 548 700 C 550 688, 550 680, 546 674 C 538 664, 528 660, 520 656 C 512 652, 502 648, 498 646 C 480 634, 462 620, 455 604 C 448 580, 410 570, 372 556 C 346 532, 330 502, 340 470 C 350 440, 375 418, 396 388 C 410 368, 424 350, 432 328 C 436 316, 424 312, 415 322 C 402 336, 385 352, 360 368 C 320 392, 270 402, 210 392 C 150 380, 70 385, 0 400 C -60 408, -120 414, -180 410"/>
+                            <path class="rt-island" d="M 585 0 C 600 45, 618 85, 616 130 C 610 146, 594 142, 576 146 C 556 150, 540 140, 522 138 C 500 136, 478 144, 468 158 C 458 172, 456 190, 464 202 C 470 210, 484 214, 498 216 C 510 218, 518 212, 530 210 C 546 208, 560 212, 572 222 C 584 232, 592 244, 600 258 C 616 304, 640 340, 645 388 C 650 428, 636 468, 646 508 C 654 545, 678 570, 688 608 C 698 614, 706 622, 704 634 C 702 642, 694 646, 684 647 C 672 648, 664 652, 662 662 C 661 676, 667 692, 674 704 C 680 722, 684 730, 686 742 C 690 762, 692 776, 694 790 C 698 806, 702 820, 704 836 C 706 854, 702 866, 696 872 C 680 880, 656 878, 640 878 C 608 880, 588 880, 570 878 C 552 876, 534 872, 524 864 C 514 852, 512 838, 516 830 C 519 806, 522 794, 524 780 C 527 760, 531 748, 534 736 C 538 720, 545 708, 548 700 C 550 688, 550 680, 546 674 C 538 664, 528 660, 520 656 C 512 652, 502 648, 498 646 C 480 634, 462 620, 455 604 C 448 580, 410 570, 372 556 C 346 532, 330 502, 340 470 C 350 440, 375 418, 396 388 C 410 368, 424 350, 432 328 C 436 316, 424 312, 415 322 C 402 336, 385 352, 360 368 C 320 392, 270 402, 210 392 C 150 380, 70 385, 0 400 C -60 408, -120 414, -180 410 L -180 900 L 1177 900 L 1177 0 Z"/>
 
                             <!-- Lake Union & Lake Washington (freshwater cutouts on the mainland) -->
                             <!-- Lake Washington Ship Canal: Puget Sound -> Ballard Locks -> Salmon Bay ->
@@ -1465,13 +1470,39 @@
                             <path class="rt-island" d="M 500 230 C 522 236, 530 256, 520 278 C 512 296, 498 308, 500 330 C 502 352, 522 362, 537 382 C 554 402, 572 426, 590 448 C 602 462, 606 476, 598 484 C 587 494, 570 486, 557 471 C 542 454, 522 436, 510 414 C 496 388, 482 366, 478 341 C 472 311, 472 286, 468 264 C 464 244, 472 234, 482 228 C 488 224, 494 226, 500 230 Z"/>
                             <text class="rt-sub" x="536" y="372" text-anchor="middle" transform="rotate(62 536 372)">Whidbey Island</text>
 
+                            <!-- Gulf Islands (Canada): Saltspring, Galiano, Mayne, Saturna.
+                                 The north-west of the chart was one blank sheet of water;
+                                 in fact it is an archipelago. Unlabelled on purpose. -->
+                            <path class="rt-coast-glow" d="M 38 0 C 50 3, 56 14, 54 28 C 52 40, 45 49, 37 51 C 29 53, 24 46, 25 34 C 26 20, 28 3, 38 0 Z"/>
+                            <path class="rt-island" d="M 38 0 C 50 3, 56 14, 54 28 C 52 40, 45 49, 37 51 C 29 53, 24 46, 25 34 C 26 20, 28 3, 38 0 Z"/>
+                            <path class="rt-coast-glow" d="M 64 2 C 78 0, 94 6, 104 15 C 110 21, 107 28, 99 26 C 86 22, 72 15, 64 9 C 60 6, 61 3, 64 2 Z"/>
+                            <path class="rt-island" d="M 64 2 C 78 0, 94 6, 104 15 C 110 21, 107 28, 99 26 C 86 22, 72 15, 64 9 C 60 6, 61 3, 64 2 Z"/>
+                            <path class="rt-coast-glow" d="M 98 36 C 107 32, 116 37, 115 44 C 114 51, 105 54, 99 50 C 93 46, 93 39, 98 36 Z"/>
+                            <path class="rt-island" d="M 98 36 C 107 32, 116 37, 115 44 C 114 51, 105 54, 99 50 C 93 46, 93 39, 98 36 Z"/>
+                            <path class="rt-coast-glow" d="M 118 14 C 128 11, 137 15, 139 22 C 140 29, 132 32, 124 29 C 117 26, 114 20, 118 14 Z"/>
+                            <path class="rt-island" d="M 118 14 C 128 11, 137 15, 139 22 C 140 29, 132 32, 124 29 C 117 26, 114 20, 118 14 Z"/>
+
+                            <path class="rt-coast-glow" d="M 100 58 C 110 55, 118 60, 117 67 C 116 74, 107 77, 101 73 C 95 69, 95 61, 100 58 Z"/>
+                            <path class="rt-island" d="M 100 58 C 110 55, 118 60, 117 67 C 116 74, 107 77, 101 73 C 95 69, 95 61, 100 58 Z"/>
+                            <ellipse class="rt-coast-glow" cx="104" cy="306" rx="7" ry="5"/>
+                            <ellipse class="rt-island" cx="104" cy="306" rx="7" ry="5"/>
+                            <text class="rt-flavor" x="132" y="236" text-anchor="middle" transform="rotate(-72 132 236)">Haro Strait</text>
+                            <text class="rt-flavor" x="140" y="120" text-anchor="middle" transform="rotate(-40 140 120)">Boundary Pass</text>
+
+                            <!-- Saanich Inlet, the fjord that makes Victoria's peninsula a
+                                 peninsula. Cut with the same water stroke as Hood Canal so
+                                 the island outline itself is untouched. -->
+                            <path d="M 50 330 C 45 312, 47 296, 53 282 C 56 274, 60 270, 64 268" fill="none" stroke="#aac4d1" stroke-width="12" opacity="0.32" stroke-linecap="round"/>
+                            <path d="M 50 330 C 45 312, 47 296, 53 282 C 56 274, 60 270, 64 268" fill="none" stroke="#eef2ea" stroke-width="7" stroke-linecap="round"/>
+                            <text class="rt-sub" x="68" y="288" text-anchor="middle" transform="rotate(-76 68 288)">Saanich</text>
+
                             <!-- Vancouver Island (SE corner) -->
-                            <path class="rt-coast-glow" d="M 0 148 C 30 152, 55 165, 70 185 C 82 202, 88 225, 86 248 C 84 268, 78 288, 68 302 C 62 310, 52 314, 40 318 C 25 322, 10 326, 0 330"/>
-                            <path class="rt-island" d="M 0 148 C 30 152, 55 165, 70 185 C 82 202, 88 225, 86 248 C 84 268, 78 288, 68 302 C 62 310, 52 314, 40 318 C 25 322, 10 326, 0 330 Z"/>
+                            <path class="rt-coast-glow" d="M -180 116 C -120 124, -60 138, 0 148 C 30 152, 55 165, 70 185 C 82 202, 88 225, 86 248 C 84 268, 78 288, 68 302 C 62 310, 52 314, 40 318 C 25 322, 10 326, 0 330 C -50 336, -120 342, -180 346"/>
+                            <path class="rt-island" d="M -180 116 C -120 124, -60 138, 0 148 C 30 152, 55 165, 70 185 C 82 202, 88 225, 86 248 C 84 268, 78 288, 68 302 C 62 310, 52 314, 40 318 C 25 322, 10 326, 0 330 C -50 336, -120 342, -180 346 Z"/>
                             <text class="rt-sub" x="38" y="228" text-anchor="middle" transform="rotate(-76 38 228)">Vancouver Island</text>
 
                             <!-- international boundary: Juan de Fuca -> Haro Strait -> Boundary Pass -->
-                            <path class="rt-border" d="M 0 352 C 40 352, 80 345, 104 320 C 118 305, 112 270, 110 240 C 108 205, 112 175, 122 145 C 132 115, 140 60, 142 0"/>
+                            <path class="rt-border" d="M -180 344 C -120 347, -60 350, 0 352 C 40 352, 80 345, 104 320 C 118 305, 112 270, 110 240 C 108 205, 112 175, 122 145 C 132 115, 140 60, 142 0"/>
                             <text class="rt-flavor" x="93" y="188" text-anchor="middle" transform="rotate(-80 93 188)">CANADA</text>
                             <text class="rt-flavor" x="128" y="298" text-anchor="middle" transform="rotate(-78 128 298)">U.S.A.</text>
 
@@ -1484,9 +1515,9 @@
 
                             <!-- Orcas Island (scaled from detail chart) -->
                             <g transform="translate(50, -12) scale(0.72)">
-                                <path class="rt-coast-glow" d="M 348 255 C 322 230, 310 190, 312 150 C 313 118, 330 98, 362 92 C 400 85, 440 84, 480 90 C 512 95, 526 118, 522 150 C 518 185, 512 215, 495 235 C 482 250, 465 248, 458 236 C 448 215, 448 175, 452 148 C 453 138, 446 130, 432 129 C 418 128, 408 134, 407 145 C 404 175, 404 210, 396 235 C 390 252, 365 268, 348 255 Z"/>
-                                <path class="rt-island" d="M 348 255 C 322 230, 310 190, 312 150 C 313 118, 330 98, 362 92 C 400 85, 440 84, 480 90 C 512 95, 526 118, 522 150 C 518 185, 512 215, 495 235 C 482 250, 465 248, 458 236 C 448 215, 448 175, 452 148 C 453 138, 446 130, 432 129 C 418 128, 408 134, 407 145 C 404 175, 404 210, 396 235 C 390 252, 365 268, 348 255 Z"/>
-                                <path class="rt-drive-line" d="M 346 248 C 334 215, 328 180, 330 142"/>
+                                <path class="rt-coast-glow" d="M 350 244 C 322 230, 310 190, 312 150 C 313 118, 330 98, 362 92 C 400 85, 440 84, 480 90 C 512 95, 526 118, 522 150 C 518 185, 512 215, 495 235 C 482 250, 465 248, 458 236 C 448 215, 448 175, 452 148 C 453 138, 446 130, 432 129 C 418 128, 408 134, 407 145 C 404 175, 404 210, 396 235 C 390 244, 368 250, 350 244 Z"/>
+                                <path class="rt-island" d="M 350 244 C 322 230, 310 190, 312 150 C 313 118, 330 98, 362 92 C 400 85, 440 84, 480 90 C 512 95, 526 118, 522 150 C 518 185, 512 215, 495 235 C 482 250, 465 248, 458 236 C 448 215, 448 175, 452 148 C 453 138, 446 130, 432 129 C 418 128, 408 134, 407 145 C 404 175, 404 210, 396 235 C 390 244, 368 250, 350 244 Z"/>
+                                <path class="rt-drive-line" d="M 344 234 C 336 212, 328 180, 330 142"/>
                                 <path class="rt-drive-line" d="M 340 116 C 358 100, 390 92, 420 96"/>
                                 <path class="rt-drive-line" d="M 445 110 C 462 106, 476 112, 484 124"/>
                                 <path class="rt-drive-line" d="M 488 156 C 485 162, 482 167, 479 172"/>
@@ -1495,12 +1526,34 @@
                             <text class="rt-sub" x="303" y="122" text-anchor="middle" transform="rotate(-78 303 122)">Orcas Island</text>
 
                             <!-- Lopez (decor) -->
-                            <ellipse class="rt-island" cx="368" cy="272" rx="33" ry="19" opacity="0.75"/>
-                            <text class="rt-sub" x="368" y="276" text-anchor="middle" opacity="0.8">Lopez</text>
+                            <ellipse class="rt-island" cx="368" cy="284" rx="31" ry="17" opacity="0.75"/>
+                            <text class="rt-sub" x="368" y="288" text-anchor="middle" opacity="0.8">Lopez</text>
 
                             <!-- Bainbridge Island -->
-                            <path class="rt-coast-glow" d="M 552 542 C 568 538, 582 548, 585 564 C 587 578, 590 588, 588 593 C 576 594, 570 597, 570 601 C 570 605, 577 607, 588 607 C 591 614, 588 628, 582 640 C 574 654, 560 662, 548 658 C 534 653, 528 638, 530 622 C 532 610, 528 600, 530 586 C 532 570, 536 552, 552 542 Z"/>
-                            <path class="rt-island" d="M 552 542 C 568 538, 582 548, 585 564 C 587 578, 590 588, 588 593 C 576 594, 570 597, 570 601 C 570 605, 577 607, 588 607 C 591 614, 588 628, 582 640 C 574 654, 560 662, 548 658 C 534 653, 528 638, 530 622 C 532 610, 528 600, 530 586 C 532 570, 536 552, 552 542 Z"/>
+                            <path class="rt-coast-glow" d="M 552 542 C 560 540, 565 543, 566 548 C 567 554, 561 558, 564 562 C 570 562, 576 558, 580 556 C 584 558, 585 560, 585 564 C 587 578, 590 588, 588 593 C 576 594, 570 597, 570 601 C 570 605, 577 607, 588 607 C 589 610, 589 612, 588 614 C 582 616, 578 617, 580 621 C 583 624, 586 624, 587 627 C 588 632, 586 636, 582 640 C 574 654, 560 662, 548 658 C 534 653, 528 638, 530 622 C 532 610, 528 600, 530 586 C 532 570, 536 552, 552 542 Z"/>
+                            <path class="rt-island" d="M 552 542 C 560 540, 565 543, 566 548 C 567 554, 561 558, 564 562 C 570 562, 576 558, 580 556 C 584 558, 585 560, 585 564 C 587 578, 590 588, 588 593 C 576 594, 570 597, 570 601 C 570 605, 577 607, 588 607 C 589 610, 589 612, 588 614 C 582 616, 578 617, 580 621 C 583 624, 586 624, 587 627 C 588 632, 586 636, 582 640 C 574 654, 560 662, 548 658 C 534 653, 528 638, 530 622 C 532 610, 528 600, 530 586 C 532 570, 536 552, 552 542 Z"/>
+
+                            <!-- Vashon and Maury, drawn as one landmass because
+                                 that is what they are: joined at Portage, with
+                                 Quartermaster Harbour biting in between them.
+                                 South of Bainbridge, hugging the Kitsap shore,
+                                 so narrow Colvos Passage runs down the west side
+                                 and wide East Passage down the east. Compact for
+                                 the same reason Lopez is: the chart runs out of
+                                 sound south of Bainbridge, and the drive route to
+                                 Tacoma is already on the coast below. -->
+                            <path class="rt-coast-glow" d="M 580 710 C 592 712, 599 718, 600 728 C 603 742, 604 754, 604 768 C 604 782, 602 790, 600 796 C 606 790, 614 789, 620 792 C 628 794, 634 795, 640 798 C 648 802, 653 806, 654 810 C 650 818, 644 824, 638 828 C 630 833, 624 836, 618 838 C 611 842, 606 845, 602 848 C 599 840, 596 834, 596 828 C 594 820, 592 815, 592 810 C 592 805, 590 802, 588 800 C 584 804, 581 808, 580 812 C 577 820, 575 828, 574 834 C 571 844, 568 855, 566 863 C 560 852, 556 842, 554 832 C 551 812, 550 796, 551 782 C 552 762, 554 744, 558 730 C 563 720, 571 712, 580 710 Z"/>
+                            <path class="rt-island" d="M 580 710 C 592 712, 599 718, 600 728 C 603 742, 604 754, 604 768 C 604 782, 602 790, 600 796 C 606 790, 614 789, 620 792 C 628 794, 634 795, 640 798 C 648 802, 653 806, 654 810 C 650 818, 644 824, 638 828 C 630 833, 624 836, 618 838 C 611 842, 606 845, 602 848 C 599 840, 596 834, 596 828 C 594 820, 592 815, 592 810 C 592 805, 590 802, 588 800 C 584 804, 581 808, 580 812 C 577 820, 575 828, 574 834 C 571 844, 568 855, 566 863 C 560 852, 556 842, 554 832 C 551 812, 550 796, 551 782 C 552 762, 554 744, 558 730 C 563 720, 571 712, 580 710 Z"/>
+                            <text class="rt-sub" x="578" y="778" text-anchor="middle" transform="rotate(-84 578 778)">Vashon Island</text>
+                            <text class="rt-sub" x="626" y="814" text-anchor="middle" transform="rotate(14 626 814)">Maury Island</text>
+                            <text class="rt-flavor" x="537" y="792" text-anchor="middle" transform="rotate(-84 537 792)">Colvos Passage</text>
+                            <text class="rt-flavor" x="648" y="762" text-anchor="middle" transform="rotate(-84 648 762)">East Passage</text>
+
+                            <!-- Blake Island: 2.35 km across, a seventh of Bainbridge's
+                                 length, 5.1 km SSW of Restoration Point. -->
+                            <ellipse class="rt-coast-glow" cx="566" cy="683" rx="9" ry="8"/>
+                            <ellipse class="rt-island" cx="566" cy="683" rx="9" ry="8"/>
+                            <text class="rt-sub" x="579" y="681" text-anchor="start" style="font-size:8.5px">Blake I.</text>
 
                             <!-- ================= Route I: San Juan Islands loop ================= -->
                             <!-- drive: Seattle -> Anacortes -->
@@ -1508,22 +1561,22 @@
                             <text class="rt-sub" x="692" y="352" text-anchor="middle" transform="rotate(-70 692 352)">I-5 · SR-20</text>
 
                             <!-- ferry: Anacortes -> Friday Harbor -->
-                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 452 186 C 392 238, 320 242, 258 212"/>
+                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 442 190 L 430 250 L 350 257 L 296 236 L 258 210"/>
                             <text class="rt-label water" x="382" y="252" text-anchor="middle">WSF</text>
                             <use href="#ic-ship" transform="translate(400, 202)"/>
 
                             <!-- ferry: Friday Harbor -> Orcas landing -->
-                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 250 194 C 258 178, 275 170, 293 171"/>
+                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 254 196 L 268 178 L 288 172 L 296 173"/>
 
                             <!-- ferry: Orcas landing -> Anacortes -->
-                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 307 175 C 360 182, 414 172, 450 178"/>
+                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 306 180 L 308 228 L 340 254 L 420 246 L 440 194"/>
                             <text class="rt-label water" x="390" y="162" text-anchor="middle">WSF</text>
 
                             <!-- drive on San Juan Island -->
                             <path class="rt-drive-line" d="M 244 210 C 215 222, 190 228, 172 230"/>
 
                             <!-- ================= Route II: Bainbridge ================= -->
-                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 596 600 C 628 590, 658 590, 681 596"/>
+                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 681 596 L 630 589 L 612 600 L 597 598"/>
                             <text class="rt-label water" x="641" y="616" text-anchor="middle">WSF</text>
                             <use href="#ic-ship" transform="translate(642, 573) scale(0.8)"/>
                             <use href="#ic-ship" transform="translate(560, 520) scale(0.75)"/>
@@ -1532,7 +1585,7 @@
                             <!-- spur: I-5 -> Mukilteo -->
                             <path class="rt-drive-line" d="M 702 452 C 685 450, 668 449, 654 449"/>
                             <!-- ferry: Mukilteo <-> Clinton -->
-                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 637 455 C 626 466, 612 470, 601 467"/>
+                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 637 455 L 601 467"/>
                             <text class="rt-label water" x="621" y="490" text-anchor="middle">WSF</text>
                             <!-- drive up Whidbey: Clinton -> Ebey's Landing -> Deception Pass -->
                             <path class="rt-drive-line" d="M 593 466 C 568 446, 542 420, 526 394 C 510 370, 496 350, 484 334 C 476 320, 488 302, 494 288 C 502 270, 500 250, 500 234"/>
@@ -1594,9 +1647,10 @@
                             </g>
 
                             <!-- ================= Route IV: Port Townsend (all-land drive) ================= -->
-                            <path class="rt-drive-line" d="M 760 615 C 750 645, 726 662, 698 671 C 660 688, 610 692, 574 686 C 545 681, 516 668, 498 654 C 482 640, 464 626, 452 612 C 444 598, 415 578, 386 562 C 362 548, 348 540, 336 528 C 326 516, 320 508, 320 498 C 320 486, 326 476, 334 464 C 344 448, 356 432, 370 412 C 380 398, 390 382, 398 366 C 406 352, 412 340, 418 330"/>
-                            <text class="rt-sub" x="630" y="697" text-anchor="middle">via Tacoma · SR-16</text>
-                            <text class="rt-sub" x="299" y="483" text-anchor="middle" transform="rotate(-80 299 483)">SR-3 · SR-104</text>
+                            <path class="rt-drive-line" d="M 760 615 C 750 645, 726 662, 698 671 C 708 700, 710 730, 712 762 C 716 800, 718 836, 712 868 C 700 886, 672 892, 640 892 C 604 892, 572 890, 552 884 C 528 872, 508 854, 502 830 C 498 800, 502 770, 508 742 C 512 720, 516 702, 512 686 C 504 668, 490 658, 478 650 C 468 644, 458 626, 452 612 C 444 598, 415 578, 386 562 C 362 548, 348 540, 336 528 C 326 516, 320 508, 320 498 C 320 486, 326 476, 334 464 C 344 448, 356 432, 370 412 C 380 398, 390 382, 398 366 C 406 352, 412 340, 418 330"/>
+                            <text class="rt-sub" x="494" y="800" text-anchor="middle" transform="rotate(-84 494 800)">via Tacoma · SR-16</text>
+                            <text class="rt-label" x="664" y="890" text-anchor="middle">Tacoma</text>
+                            <text class="rt-sub" x="396" y="498" text-anchor="middle" transform="rotate(-80 299 483)">SR-3 · SR-104</text>
 
                             <!-- Port Townsend -->
                             <g class="rt-poi" data-name="Port Townsend — Victorian seaport" transform="translate(424, 318)">
@@ -1625,6 +1679,60 @@
                                 <circle class="rt-hit" r="24"/>
                             </g>
                             <text class="rt-sub" x="210" y="532" text-anchor="middle">Olympic National Park</text>
+                            <!-- Hood Canal, and the south sound inlets below it: this
+                                 quarter of the chart was one unbroken block of land. -->
+                            <path d="M 400 360 C 384 398, 366 440, 352 486 C 340 528, 332 570, 326 612 C 322 646, 328 670, 342 682 C 354 691, 370 693, 384 689"
+                                  fill="none" stroke="#aac4d1" stroke-width="14" opacity="0.32" stroke-linecap="round"/>
+                            <path d="M 400 360 C 384 398, 366 440, 352 486 C 340 528, 332 570, 326 612 C 322 646, 328 670, 342 682 C 354 691, 370 693, 384 689"
+                                  fill="none" stroke="#eef2ea" stroke-width="9" stroke-linecap="round"/>
+                            <text class="rt-flavor" x="336" y="572" text-anchor="middle" transform="rotate(-80 336 572)">Hood Canal</text>
+                            <path d="M 398 704 C 392 742, 388 780, 390 818" fill="none" stroke="#aac4d1" stroke-width="11" opacity="0.32" stroke-linecap="round"/>
+                            <path d="M 398 704 C 392 742, 388 780, 390 818" fill="none" stroke="#eef2ea" stroke-width="7" stroke-linecap="round"/>
+                            <path d="M 448 706 C 452 744, 458 780, 464 812" fill="none" stroke="#aac4d1" stroke-width="11" opacity="0.32" stroke-linecap="round"/>
+                            <path d="M 448 706 C 452 744, 458 780, 464 812" fill="none" stroke="#eef2ea" stroke-width="7" stroke-linecap="round"/>
+                            <path d="M 286 534 C 296 530, 306 534, 306 542 C 306 550, 296 554, 288 550 C 280 546, 280 538, 286 534 Z"
+                                  fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
+                            <!-- the wet west side of the peninsula, filling the margin the
+                                 widened frame opened up -->
+                            <use href="#ic-pine" transform="translate(6, 470) scale(1.15)"/>
+                            <use href="#ic-pine" transform="translate(28, 480) scale(0.9)"/>
+                            <use href="#ic-pine" transform="translate(44, 492) scale(0.8)"/>
+                            <use href="#ic-pine" transform="translate(20, 502) scale(1.05)"/>
+                            <use href="#ic-pine" transform="translate(42, 494) scale(0.75)"/>
+                            <use href="#ic-pine" transform="translate(54, 516) scale(0.95)"/>
+                            <text class="rt-sub" x="70" y="538" text-anchor="middle">Hoh Rain Forest</text>
+                            <use href="#ic-mtns" transform="translate(120, 484) scale(1.25)"/>
+                            <text class="rt-label" x="120" y="508" text-anchor="middle">Mt. Olympus</text>
+                            <text class="rt-sub" x="120" y="520" text-anchor="middle">7,980 ft</text>
+                            <path d="M 92 604 C 104 599, 116 604, 116 612 C 116 621, 103 625, 93 620 C 84 615, 84 608, 92 604 Z"
+                                  fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
+                            <text class="rt-sub" x="102" y="638" text-anchor="middle">L. Quinault</text>
+                            <!-- Lake Crescent on the north side, and the rivers that run off
+                                 Mt. Olympus in every direction: the peninsula's whole shape. -->
+                            <path d="M 52 432 C 66 426, 88 428, 96 434 C 102 439, 96 444, 84 444 C 68 444, 54 440, 52 432 Z"
+                                  fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
+                            <text class="rt-sub" x="74" y="422" text-anchor="middle">L. Crescent</text>
+                            <path d="M 116 474 C 112 452, 110 428, 110 408" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
+                            <text class="rt-flavor" x="141" y="440" text-anchor="middle" transform="rotate(-80 141 440)" style="font-size:8.5px">Elwha R.</text>
+                            <path d="M 108 496 C 84 508, 56 518, 30 524" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
+                            <text class="rt-flavor" x="40" y="516" text-anchor="middle" transform="rotate(-12 40 516)" style="font-size:8.5px">Hoh R.</text>
+                            <path d="M 122 524 C 116 552, 110 578, 106 600" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
+                            <path d="M 208 556 C 250 566, 296 580, 336 596" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
+                            <text class="rt-flavor" x="256" y="562" text-anchor="middle" transform="rotate(14 256 562)" style="font-size:8.5px">Dosewallips R.</text>
+                            <use href="#ic-mtns" transform="translate(318, 492) scale(0.9)"/>
+                            <text class="rt-sub" x="318" y="514" text-anchor="middle">The Brothers</text>
+                            <text class="rt-sub" x="200" y="414" text-anchor="middle">Sequim</text>
+                            <use href="#ic-pine" transform="translate(58, 576) scale(1.0)"/>
+                            <use href="#ic-pine" transform="translate(34, 592) scale(0.85)"/>
+                            <use href="#ic-deer" transform="translate(148, 610) scale(0.95)"/>
+                            <use href="#ic-pine" transform="translate(240, 620) scale(0.9)"/>
+                            <use href="#ic-marmot" transform="translate(206, 486) scale(0.9)"/>
+                            <use href="#ic-pine" transform="translate(196, 660) scale(0.95)"/>
+                            <use href="#ic-pine" transform="translate(224, 672) scale(0.8)"/>
+                            <use href="#ic-pine" transform="translate(168, 676) scale(1.05)"/>
+                            <text class="rt-label" x="368" y="856" text-anchor="middle">Olympia</text>
+                            <path d="M 366 792 C 362 812, 362 830, 366 844" fill="none" stroke="#aac4d1" stroke-width="10" opacity="0.32" stroke-linecap="round"/>
+                            <path d="M 366 792 C 362 812, 362 830, 366 844" fill="none" stroke="#eef2ea" stroke-width="6" stroke-linecap="round"/>
 
                             <!-- Hurricane Ridge -->
                             <g class="rt-poi" data-name="Hurricane Ridge — mile-high viewpoint, Olympic NP" transform="translate(84, 436)">
@@ -1675,7 +1783,7 @@
                                 <text class="rt-poi-label" x="-14" y="4" text-anchor="end">Discovery Park</text>
                             </g>
                             <!-- Alki: the Statue of Liberty replica above the sand, driftwood beside her -->
-                            <g class="rt-poi" data-name="Alki Beach — the Statue of Liberty replica &amp; the driftwood shore" transform="translate(701, 652)">
+                            <g class="rt-poi" data-name="Alki Beach · the Statue of Liberty replica &amp; the driftwood shore" transform="translate(678, 655)">
                                 <use href="#ic-liberty" transform="scale(0.92)"/>
                                 <use href="#ic-driftwood" transform="translate(12, 5) scale(0.55)"/>
                                 <circle class="rt-hit" r="13"/>
@@ -1695,8 +1803,7 @@
                             </g>
 
                             <!-- ===== Eastside: Bellevue, on the far shore of Lake Washington ===== -->
-                            <text class="rt-label" x="872" y="558" text-anchor="middle">Bellevue</text>
-                            <!-- Waverly Beach Park — Kirkland's swim beach: the pier out over the water -->
+                                                        <!-- Waverly Beach Park · Kirkland's swim beach: the pier out over the water -->
                             <g class="rt-poi" data-name="Waverly Beach Park, Kirkland — Lake Washington swim beach &amp; pier" transform="translate(845, 545)">
                                 <use href="#ic-pier" transform="scale(0.75)"/>
                                 <circle class="rt-hit" r="11"/>
@@ -1716,13 +1823,13 @@
                             </g>
 
                             <!-- Woodinville — Chateau Ste. Michelle, NE of the north end of Lake Washington -->
-                            <g class="rt-poi" data-name="Chateau Ste. Michelle Winery — Woodinville" transform="translate(866, 520)">
+                            <g class="rt-poi" data-name="Chateau Ste. Michelle Winery · Woodinville" transform="translate(872, 486)">
                                 <use href="#ic-winery"/>
                                 <circle class="rt-hit" r="22"/>
                             </g>
-                            <text class="rt-label" x="864" y="466" text-anchor="middle">Woodinville</text>
-                            <text class="rt-sub" x="864" y="479" text-anchor="middle">Chateau</text>
-                            <text class="rt-sub" x="864" y="490" text-anchor="middle">Ste. Michelle</text>
+                            <text class="rt-label" x="872" y="432" text-anchor="middle">Woodinville</text>
+                            <text class="rt-sub" x="872" y="445" text-anchor="middle">Chateau</text>
+                            <text class="rt-sub" x="872" y="456" text-anchor="middle">Ste. Michelle</text>
 
                             <!-- Elliott Bay Park — Smith Cove waterfront path -->
                             <g class="rt-poi" data-name="Elliott Bay Park — Smith Cove waterfront path" transform="translate(683, 574)">
@@ -1749,6 +1856,29 @@
                                 <circle class="rt-hit" r="13"/>
                             </g>
                             <text class="rt-sub" x="670" y="632" text-anchor="end">Colman Dock (WSF)</text>
+
+                            <!-- Fauntleroy / Vashon Heights / Southworth.
+                                 The real service runs Fauntleroy to Vashon to
+                                 Southworth and back, so these are the two legs
+                                 that call at Vashon. Both are under 10 degrees of
+                                 course change end to end, hence dead straight. -->
+                            <g class="rt-poi" data-name="Fauntleroy Ferry Terminal (WSF) · West Seattle" transform="translate(671, 703)">
+                                <use href="#ic-anchor"/>
+                                <circle class="rt-hit" r="13"/>
+                            </g>
+                            <text class="rt-label" x="690" y="700" text-anchor="start">Fauntleroy</text>
+                            <g class="rt-poi" data-name="Vashon Heights Ferry Terminal (WSF)" transform="translate(563, 717)">
+                                <use href="#ic-anchor"/>
+                                <circle class="rt-hit" r="13"/>
+                            </g>
+                            <text class="rt-sub" x="574" y="702" text-anchor="middle">Vashon Hts.</text>
+                            <g class="rt-poi" data-name="Southworth Ferry Terminal (WSF) · Kitsap Peninsula" transform="translate(549, 700)">
+                                <use href="#ic-anchor"/>
+                                <circle class="rt-hit" r="13"/>
+                            </g>
+                            <text class="rt-label" x="532" y="694" text-anchor="end">Southworth</text>
+                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 663 705 L 600 703 L 574 711"/>
+                            <path class="rt-ferry-line" marker-start="url(#rt-track-arrow)" marker-end="url(#rt-track-arrow)" d="M 558 713 L 554 704"/>
 
                             <!-- Bainbridge Island Ferry Terminal -->
                             <g class="rt-poi" data-name="Bainbridge Island Ferry Terminal (WSF) · Eagle Harbor" transform="translate(590, 600)">
@@ -1862,6 +1992,38 @@
                             </g>
                             <text class="rt-sub" x="762" y="130" text-anchor="middle">Mt. Baker · 10,781 ft</text>
 
+                            <!-- Lake Sammamish: 13 km by 2.4 km, 5 km east of Lake
+                                 Washington, drawn to the same scale as it. The Sammamish
+                                 River runs from its north end past Woodinville to Lake
+                                 Washington, which is the trail on the race chart. -->
+                            <path d="M 918 590 C 924 597, 922 614, 925 630 C 927 642, 923 650, 918 649 C 913 646, 914 630, 911 614 C 909 599, 913 591, 918 590 Z"
+                                  fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
+                            <text class="rt-sub" x="937" y="620" text-anchor="middle" transform="rotate(-84 937 620)">L. Sammamish</text>
+                            <path d="M 916 590 C 903 572, 880 554, 860 540 C 852 534, 844 528, 840 526"
+                                  fill="none" stroke="#aac4d1" stroke-width="3" opacity="0.75" stroke-linecap="round"/>
+                            <text class="rt-label" x="862" y="520" text-anchor="start">Kirkland</text>
+
+                            <use href="#ic-mtns" transform="translate(1104, 606) scale(1.1)"/>
+                            <text class="rt-label" x="1104" y="630" text-anchor="middle">Mt. Si</text>
+                            <text class="rt-sub" x="1096" y="762" text-anchor="middle">Snoqualmie Pass · I-90</text>
+                            <path d="M 916 246 C 926 250, 924 272, 928 292 C 931 308, 927 318, 921 316 C 914 312, 916 290, 912 270 C 909 254, 910 246, 916 246 Z"
+                                  fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
+                            <text class="rt-sub" x="944" y="278" text-anchor="middle" transform="rotate(-84 944 278)">Ross L.</text>
+                            <use href="#ic-mtns" transform="translate(1010, 216) scale(1.15)"/>
+                            <text class="rt-label" x="1010" y="240" text-anchor="middle">Washington Pass</text>
+                            <text class="rt-sub" x="1010" y="252" text-anchor="middle">SR-20</text>
+                            <use href="#ic-pine" transform="translate(1108, 452) scale(1.0)"/>
+                            <use href="#ic-pine" transform="translate(1138, 466) scale(0.85)"/>
+                            <use href="#ic-pine" transform="translate(1082, 476) scale(0.9)"/>
+                            <text class="rt-sub" x="1088" y="504" text-anchor="middle">Alpine Lakes Wilderness</text>
+
+                            <!-- Snoqualmie Falls, 16.6 km east of Lake Sammamish -->
+                            <g class="rt-poi" data-name="Snoqualmie Falls" transform="translate(1044, 640)">
+                                <use href="#ic-falls"/>
+                                <circle class="rt-hit" r="14"/>
+                            </g>
+                            <text class="rt-label" x="1044" y="668" text-anchor="middle">Snoqualmie Falls</text>
+
                             <!-- North Cascades National Park & Diablo Lake -->
                             <!-- SR-20 continues east from the Skagit flats into the park -->
                             <path class="rt-drive-line" d="M 642 232 C 688 238, 730 242, 762 248 C 778 251, 790 254, 800 257"/>
@@ -1877,9 +2039,10 @@
                             <text class="rt-sub" x="810" y="284" text-anchor="middle">Diablo L.</text>
 
                             <!-- ================= title & legend ================= -->
-                            <text class="rt-label big" x="28" y="38" text-anchor="start" style="font-size:16px; letter-spacing:0.6px;">SALISH SEA ROUTES</text>
+                            <text class="rt-label big" x="46" y="38" text-anchor="start" style="font-size:16px; letter-spacing:0.6px;">SALISH SEA ROUTES</text>
+                            <text class="rt-flavor" x="110" y="382" text-anchor="middle" transform="rotate(-6 110 382)">· Strait of Juan de Fuca ·</text>
 
-                            <g transform="translate(28, 570)">
+                            <g transform="translate(34, 748)">
                                 <rect class="rt-quest-card" x="0" y="0" width="248" height="118" rx="10"/>
                                 <text class="rt-quest-title" x="14" y="20">Legend</text>
                             <path class="rt-ferry-line" marker-end="url(#rt-track-arrow)" d="M 14 34 h 30"/>
@@ -2080,9 +2243,9 @@
                                 <use href="#rc-pumpkin" transform="translate(13, -13) scale(0.9)"/>
                                 <circle class="rt-hit" r="34"/>
                                 <text class="rt-sub" x="0" y="12" text-anchor="middle">Seward Park</text>
-                                <g transform="translate(-17, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">1</text></g>
-                                <g transform="translate(0, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">6</text></g>
-                                <g transform="translate(17, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">8</text></g>
+                                <g transform="translate(-17, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">2</text></g>
+                                <g transform="translate(0, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">7</text></g>
+                                <g transform="translate(17, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">9</text></g>
                                 <text class="rt-poi-label" x="0" y="46" text-anchor="middle">Mar ’25 · Oct ’25 · Apr ’26</text>
                             </g>
 
@@ -2091,8 +2254,8 @@
                                 <use href="#rc-anchor" transform="scale(0.85)"/>
                                 <circle class="rt-hit" r="14"/>
                                 <text class="rt-sub" x="13" y="-10" text-anchor="start">Marina Park · Kirkland</text>
-                                <g transform="translate(18, 6)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">2</text></g>
-                                <g transform="translate(35, 6)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">9</text></g>
+                                <g transform="translate(18, 6)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">3</text></g>
+                                <g transform="translate(35, 6)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">10</text></g>
                                 <text class="rt-poi-label" x="13" y="26" text-anchor="start">May ’25 · May ’26</text>
                             </g>
 
@@ -2101,7 +2264,7 @@
                                 <use href="#rc-flag"/>
                                 <circle class="rt-hit" r="12"/>
                                 <text class="rt-sub" x="-26" y="4" text-anchor="end">Waterfront Park · Pier 62</text>
-                                <g transform="translate(-16, 16)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">3</text></g>
+                                <g transform="translate(-16, 16)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">4</text></g>
                                 <text class="rt-poi-label" x="-26" y="24" text-anchor="end">May ’25</text>
                             </g>
 
@@ -2109,7 +2272,7 @@
                             <g class="rt-poi" data-name="Sammamish River Trail, Redmond — Craft Classic 5K ’25" transform="translate(738, 362)">
                                 <use href="#rc-mug"/>
                                 <circle class="rt-hit" r="14"/>
-                                <g transform="translate(-20, 0)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">4</text></g>
+                                <g transform="translate(-20, 0)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">5</text></g>
                                 <text class="rt-sub" x="-2" y="24" text-anchor="middle">Sammamish River Trail</text>
                                 <text class="rt-poi-label" x="-2" y="40" text-anchor="middle">Jul ’25</text>
                             </g>
@@ -2119,7 +2282,7 @@
                                 <use href="#rc-flag"/>
                                 <circle class="rt-hit" r="12"/>
                                 <text class="rt-sub" x="14" y="-4" text-anchor="start">Gas Works Park</text>
-                                <g transform="translate(20, 10)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">5</text></g>
+                                <g transform="translate(20, 10)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">6</text></g>
                                 <text class="rt-poi-label" x="14" y="28" text-anchor="start">Aug ’25</text>
                             </g>
 
@@ -2129,7 +2292,7 @@
                                 <circle class="rt-hit" r="18"/>
                                 <text class="rt-sub" x="14" y="2" text-anchor="start">Seattle Center</text>
                                 <use href="#rc-cocoa" transform="translate(18, 16) scale(0.85)"/>
-                                <g transform="translate(37, 16)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">7</text></g>
+                                <g transform="translate(37, 16)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">8</text></g>
                                 <text class="rt-poi-label" x="14" y="34" text-anchor="start">Feb ’26</text>
                             </g>
 
@@ -2154,28 +2317,45 @@
                                 <text class="rt-quest-item" x="56" y="62">River &amp; canal</text>
                             </g>
 
+                            <!-- Tougher Mudder World Championship 2018, Black Diamond:
+                                 the one start that predates the road races, and the only
+                                 one off the lakes. -->
+                            <g class="rt-poi" data-name="Tough Mudder Seattle · Black Diamond · Sep 22, 2018 · the course runs the pits and forest of the Palmer Coking Coal Co." transform="translate(756, 600)">
+                                <path class="rt-race-line" d="M -7 -15 C 13 -19, 27 -7, 21 6 C 15 18, -6 21, -17 13 C -26 6, -23 -10, -7 -15 Z"/>
+                                <path class="rt-race-line" opacity="0.55" d="M -3 -9 C 11 -12, 20 -3, 16 5 C 11 13, -3 15, -10 9 C -16 4, -14 -6, -3 -9 Z"/>
+                                <path class="rt-doodle" fill="#4a3f2c" d="M -30 17 L -21 3 L -12 17 Z"/>
+                                <path class="rt-doodle" fill="#4a3f2c" d="M -16 17 L -9 7 L -2 17 Z"/>
+                                <path class="rt-doodle" fill="#8a6a4a" d="M -32 17 L 2 17 L 2 20 L -32 20 Z"/>
+                                <circle class="rt-hit" r="26"/>
+                                <text class="rt-sub" x="26" y="-4" text-anchor="start">Black Diamond</text>
+                                <text class="rt-flavor" x="26" y="7" text-anchor="start" style="font-size:8.5px">Palmer Coking Coal</text>
+                                <g transform="translate(3, 26)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">1</text></g>
+                            </g>
+
                             <!-- race log -->
                             <g transform="translate(24, 462)">
-                                <rect class="rt-quest-card" x="0" y="0" width="262" height="204" rx="10"/>
-                                <text class="rt-quest-title" x="14" y="22">Race log · 9 starts</text>
+                                <rect class="rt-quest-card" x="0" y="0" width="262" height="222" rx="10"/>
+                                <text class="rt-quest-title" x="14" y="22">Race log · 10 starts</text>
                                 <g transform="translate(22, 40)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">1</text></g>
-                                <text class="rt-quest-item" x="36" y="44">Mar 22 ’25 · Cherry Blossom Run 5K</text>
+                                <text class="rt-quest-item" x="36" y="44">Sep 22 ’18 · Tough Mudder, Black Diamond</text>
                                 <g transform="translate(22, 58)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">2</text></g>
-                                <text class="rt-quest-item" x="36" y="62">May 4 ’25 · Kirkland Half — 5K</text>
+                                <text class="rt-quest-item" x="36" y="62">Mar 22 ’25 · Cherry Blossom Run 5K</text>
                                 <g transform="translate(22, 76)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">3</text></g>
-                                <text class="rt-quest-item" x="36" y="80">May 31 ’25 · Waterfront Park 5K</text>
+                                <text class="rt-quest-item" x="36" y="80">May 4 ’25 · Kirkland Half · 5K</text>
                                 <g transform="translate(22, 94)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">4</text></g>
-                                <text class="rt-quest-item" x="36" y="98">Jul 27 ’25 · Craft Classic 5K</text>
+                                <text class="rt-quest-item" x="36" y="98">May 31 ’25 · Waterfront Park 5K</text>
                                 <g transform="translate(22, 112)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">5</text></g>
-                                <text class="rt-quest-item" x="36" y="116">Aug 10 ’25 · Lake Union 10K</text>
+                                <text class="rt-quest-item" x="36" y="116">Jul 27 ’25 · Craft Classic 5K</text>
                                 <g transform="translate(22, 130)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">6</text></g>
-                                <text class="rt-quest-item" x="36" y="134">Oct 12 ’25 · Pumpkin Dash 1 Mile</text>
+                                <text class="rt-quest-item" x="36" y="134">Aug 10 ’25 · Lake Union 10K</text>
                                 <g transform="translate(22, 148)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">7</text></g>
-                                <text class="rt-quest-item" x="36" y="152">Feb 28 ’26 · Hot Chocolate Run 5K</text>
+                                <text class="rt-quest-item" x="36" y="152">Oct 12 ’25 · Pumpkin Dash 1 Mile</text>
                                 <g transform="translate(22, 166)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">8</text></g>
-                                <text class="rt-quest-item" x="36" y="170">Apr 18 ’26 · Cherry Blossom Run 5K</text>
+                                <text class="rt-quest-item" x="36" y="170">Feb 28 ’26 · Hot Chocolate Run 5K</text>
                                 <g transform="translate(22, 184)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">9</text></g>
-                                <text class="rt-quest-item" x="36" y="188">May 3 ’26 · Kirkland Half — 5K</text>
+                                <text class="rt-quest-item" x="36" y="188">Apr 18 ’26 · Cherry Blossom Run 5K</text>
+                                <g transform="translate(22, 202)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">10</text></g>
+                                <text class="rt-quest-item" x="36" y="206">May 3 ’26 · Kirkland Half · 5K</text>
                             </g>
                         </svg>
                     </div>
