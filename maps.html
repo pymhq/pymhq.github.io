@@ -462,10 +462,6 @@
         }
 
         /* --- cascade / olympic peaks --- */
-        .pnw-peak {
-            cursor: pointer;
-        }
-
         .pnw-peak .peak-body {
             fill: #6b7a48;
             stroke: #46503a;
@@ -503,10 +499,10 @@
             pointer-events: none;
         }
 
-        /* not-yet-visited peaks fade back naturally */
+        /* Not-yet-visited peaks: the same light, half-transparent treatment the
+           route chart gives an unvisited summit, so the two maps read alike. */
         .pnw-peak.unvisited {
-            opacity: 0.8;
-            transition: opacity 0.2s ease;
+            opacity: 0.5;
         }
 
         .pnw-peak.unvisited .peak-body {
@@ -517,10 +513,6 @@
         .pnw-peak.unvisited .peak-snow {
             fill: #f0f2ea;
             stroke: #4f584a;
-        }
-
-        .pnw-peak.unvisited:hover {
-            opacity: 0.9;
         }
 
         #pnw-section .back-to-globe {
@@ -772,6 +764,14 @@
             font-style: italic;
             fill: #8ba3ae;
         }
+
+        /* Summits and places on the chart that have not been climbed or
+           visited yet. Drawn in the same light, half-transparent hand as the
+           decorative islands off the route — Lopez, Blake — so the weight of
+           the ink itself says whether we have been there, with no hover and no
+           second colour scheme to learn. Group opacity, so a glyph and its
+           label fade together whether the glyph is a <use> or drawn inline. */
+        .rt-unvisited { opacity: 0.5; }
 
         .rt-quest-card {
             fill: #faf7ec;
@@ -1911,8 +1911,10 @@
                             <use href="#ic-salmon" transform="translate(308, 668) scale(0.7) rotate(-24)"/>
                             <text class="rt-sub" x="126" y="596" text-anchor="end">Hoh Rain Forest</text>
                             <use href="#ic-elk" transform="translate(148, 584) scale(0.95)"/>
-                            <use href="#ic-mtns" transform="translate(120, 484) scale(1.25)"/>
-                            <text class="rt-sub" x="120" y="510" text-anchor="middle">Mt. Olympus · 7,980 ft</text>
+                            <g class="rt-unvisited">
+                                <use href="#ic-mtns" transform="translate(120, 484) scale(1.25)"/>
+                                <text class="rt-sub" x="120" y="510" text-anchor="middle">Mt. Olympus · 7,980 ft</text>
+                            </g>
                             <path d="M 92 604 C 104 599, 116 604, 116 612 C 116 621, 103 625, 93 620 C 84 615, 84 608, 92 604 Z"
                                   fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
                             <!-- Lake Crescent on the north side, and the rivers that run off
@@ -1926,8 +1928,6 @@
                             <path d="M 122 524 C 116 552, 110 578, 106 600" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
                             <path d="M 208 556 C 250 566, 296 580, 336 596" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
                             <text class="rt-flavor" x="256" y="562" text-anchor="middle" transform="rotate(14 256 562)" style="font-size:8.5px">Dosewallips R.</text>
-                            <use href="#ic-mtns" transform="translate(318, 492) scale(0.9)"/>
-                            <text class="rt-sub" x="318" y="514" text-anchor="middle">The Brothers</text>
                             <text class="rt-sub" x="310" y="530" text-anchor="start">L. Cushman</text>
                             <text class="rt-label" x="200" y="414" text-anchor="middle">Sequim</text>
                             <!-- Dungeness Spit: 8 km of sand hooking into the strait off
@@ -2254,20 +2254,24 @@
                             <text class="rt-flavor" x="708" y="62" text-anchor="middle" transform="rotate(17 708 62)" style="font-size:8.5px">Nooksack R.</text>
 
                             <!-- Mt. Baker — sentinel of the North Sound -->
-                            <g transform="translate(762, 92)">
-                                <path class="rt-doodle" fill="#7d8f5c" d="M -34 22 C -22 4, -14 -10, -6 -20 C -2 -25, 2 -25, 6 -20 C 14 -10, 22 4, 34 22 Z"/>
-                                <path class="rt-doodle" fill="#7d8f5c" d="M 18 22 C 25 13, 31 7, 37 3 C 43 9, 47 15, 49 22 Z"/>
-                                <path class="rt-doodle" fill="#f7f1e0" d="M -11 -13 C -8 -17.5, -4 -21, 0 -21 C 4 -21, 8 -17.5, 11 -13 C 7 -9.5, 4 -12, 0 -9.5 C -4 -12, -7 -9.5, -11 -13 Z"/>
-                                <path class="rt-doodle" fill="none" stroke-width="1.1" d="M -5 -10.5 q 1 3 0 5.5 M 5 -10.5 q 1 3 0 5.5"/>
+                            <g class="rt-unvisited">
+                                <g transform="translate(762, 92)">
+                                    <path class="rt-doodle" fill="#7d8f5c" d="M -34 22 C -22 4, -14 -10, -6 -20 C -2 -25, 2 -25, 6 -20 C 14 -10, 22 4, 34 22 Z"/>
+                                    <path class="rt-doodle" fill="#7d8f5c" d="M 18 22 C 25 13, 31 7, 37 3 C 43 9, 47 15, 49 22 Z"/>
+                                    <path class="rt-doodle" fill="#f7f1e0" d="M -11 -13 C -8 -17.5, -4 -21, 0 -21 C 4 -21, 8 -17.5, 11 -13 C 7 -9.5, 4 -12, 0 -9.5 C -4 -12, -7 -9.5, -11 -13 Z"/>
+                                    <path class="rt-doodle" fill="none" stroke-width="1.1" d="M -5 -10.5 q 1 3 0 5.5 M 5 -10.5 q 1 3 0 5.5"/>
+                                </g>
+                                <text class="rt-sub" x="762" y="130" text-anchor="middle">Mt. Baker · 10,781 ft</text>
                             </g>
-                            <text class="rt-sub" x="762" y="130" text-anchor="middle">Mt. Baker · 10,781 ft</text>
 
                             <!-- Mt. Shuksan, 18 km east of Baker: no cone, a horn, with the
                                  hanging glacier that puts it on every calendar -->
-                            <g transform="translate(886, 118)">
-                                <path class="rt-doodle" stroke-width="1.3" fill="#7d8f5c" d="M -26 18 C -20 8, -15 -2, -11 -8 C -8.6 -11.4, -6.4 -10.6, -4.6 -6 C -3 -2.4, -1.4 0.6, 0 3 C 1.4 -1, 2.6 -8, 5 -14 C 7 -18.6, 10 -18.6, 12 -14 C 15 -7, 19 4, 24 12 C 25.6 14.6, 26.6 16.6, 27 18 Z"/>
-                                <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M 5 -14 C 6.6 -17.4, 9.6 -17.4, 11 -13.4 C 12 -11, 13 -8.6, 13.6 -7 C 11 -5.4, 8.6 -7.4, 6 -6 C 5 -8.6, 4 -11, 5 -14 Z"/>
-                                <path class="rt-doodle" stroke-width="0.9" fill="#f7f1e0" d="M -11 -8 C -9.4 -11, -7 -11, -5.6 -7.4 C -4.6 -5.4, -4 -3.6, -3.4 -2.6 C -5.6 -1, -7.4 -3, -9.4 -1.6 C -10.4 -3.6, -11 -5.6, -11 -8 Z"/>
+                            <g class="rt-unvisited">
+                                <g transform="translate(886, 118)">
+                                    <path class="rt-doodle" stroke-width="1.3" fill="#7d8f5c" d="M -26 18 C -20 8, -15 -2, -11 -8 C -8.6 -11.4, -6.4 -10.6, -4.6 -6 C -3 -2.4, -1.4 0.6, 0 3 C 1.4 -1, 2.6 -8, 5 -14 C 7 -18.6, 10 -18.6, 12 -14 C 15 -7, 19 4, 24 12 C 25.6 14.6, 26.6 16.6, 27 18 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M 5 -14 C 6.6 -17.4, 9.6 -17.4, 11 -13.4 C 12 -11, 13 -8.6, 13.6 -7 C 11 -5.4, 8.6 -7.4, 6 -6 C 5 -8.6, 4 -11, 5 -14 Z"/>
+                                    <path class="rt-doodle" stroke-width="0.9" fill="#f7f1e0" d="M -11 -8 C -9.4 -11, -7 -11, -5.6 -7.4 C -4.6 -5.4, -4 -3.6, -3.4 -2.6 C -5.6 -1, -7.4 -3, -9.4 -1.6 C -10.4 -3.6, -11 -5.6, -11 -8 Z"/>
+                                </g>
                             </g>
 
                             <!-- Lake Sammamish: 13 km by 2.4 km, 5 km east of Lake
@@ -2281,8 +2285,10 @@
                                   fill="none" stroke="#aac4d1" stroke-width="3" opacity="0.75" stroke-linecap="round"/>
                             <text class="rt-label" x="862" y="520" text-anchor="start">Kirkland</text>
 
-                            <use href="#ic-mtns" transform="translate(1046, 588) scale(1.05)"/>
-                            <text class="rt-sub" x="1064" y="620" text-anchor="end">Mt. Si · 4,167 ft</text>
+                            <g class="rt-unvisited">
+                                <use href="#ic-mtns" transform="translate(1046, 588) scale(1.05)"/>
+                                <text class="rt-sub" x="1064" y="620" text-anchor="end">Mt. Si · 4,167 ft</text>
+                            </g>
                             <text class="rt-sub" x="1126" y="762" text-anchor="end">Snoqualmie Pass · I-90</text>
                             <path d="M 916 246 C 926 250, 924 272, 928 292 C 931 308, 927 318, 921 316 C 914 312, 916 290, 912 270 C 909 254, 910 246, 916 246 Z"
                                   fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
@@ -2308,12 +2314,14 @@
                             <path fill="none" stroke="#5d6b3f" stroke-width="2" stroke-linecap="round"
                                   d="M 1148 0 C 1140 46, 1132 92, 1138 138 C 1144 182, 1156 200, 1152 214 C 1148 240, 1136 268, 1132 300 C 1128 336, 1136 380, 1144 420 C 1150 442, 1150 450, 1146 458 C 1140 480, 1128 510, 1126 546 C 1124 590, 1134 640, 1140 686 C 1144 712, 1146 726, 1142 736 C 1138 760, 1128 790, 1128 820 C 1128 856, 1136 880, 1140 900"/>
                             <text class="rt-sub" x="1104" y="650" text-anchor="middle" transform="rotate(-90 1104 650)">· Cascade Crest ·</text>
-                            <g transform="translate(1088, 314)">
-                                <path class="rt-doodle" fill="#7d8f5c" d="M -32 22 C -21 5, -13 -11, -5 -21 C -1 -26, 3 -26, 7 -21 C 15 -11, 23 5, 34 22 Z"/>
-                                <path class="rt-doodle" fill="#f7f1e0" d="M -10 -12 C -7.5 -16.5, -4 -20, 1 -20 C 5 -20, 8.5 -16.5, 11 -12 C 7 -8.5, 4 -11, 1 -8.5 C -3 -11, -6 -8.5, -10 -12 Z"/>
-                                <path class="rt-doodle" fill="none" stroke-width="1" d="M -5 -21 L -12 22 M 7 -21 L 14 22"/>
+                            <g class="rt-unvisited">
+                                <g transform="translate(1088, 314)">
+                                    <path class="rt-doodle" fill="#7d8f5c" d="M -32 22 C -21 5, -13 -11, -5 -21 C -1 -26, 3 -26, 7 -21 C 15 -11, 23 5, 34 22 Z"/>
+                                    <path class="rt-doodle" fill="#f7f1e0" d="M -10 -12 C -7.5 -16.5, -4 -20, 1 -20 C 5 -20, 8.5 -16.5, 11 -12 C 7 -8.5, 4 -11, 1 -8.5 C -3 -11, -6 -8.5, -10 -12 Z"/>
+                                    <path class="rt-doodle" fill="none" stroke-width="1" d="M -5 -21 L -12 22 M 7 -21 L 14 22"/>
+                                </g>
+                                <text class="rt-sub" x="1090" y="352" text-anchor="end">Glacier Peak · 10,541 ft</text>
                             </g>
-                            <text class="rt-sub" x="1090" y="352" text-anchor="end">Glacier Peak · 10,541 ft</text>
                             <use href="#ic-mtns" transform="translate(930, 360) scale(0.85)"/>
                             <use href="#ic-saddle" transform="translate(1146, 458)"/>
                             <use href="#ic-saddle" transform="translate(1142, 736)"/>
@@ -3292,7 +3300,6 @@
             }
 
             function drawPeaks() {
-                const tooltip = document.getElementById('tooltip');
                 const g = frame.append('g').attr('class', 'pnw-peaks');
 
                 PNW_PEAKS.forEach(p => {
@@ -3320,24 +3327,6 @@
                         .attr('x', lx).attr('y', 4)
                         .attr('text-anchor', right ? 'start' : 'end')
                         .text(p.elev);
-
-                    node
-                        .on('mouseenter', function (event) {
-                            if (!tooltip) return;
-                            document.getElementById('tooltip-title').textContent = p.name + ' · ' + p.elev;
-                            document.getElementById('tooltip-date').textContent = p.visited ? (p.date || '') : '';
-                            tooltip.style.display = 'block';
-                            tooltip.style.left = (event.clientX + 10) + 'px';
-                            tooltip.style.top = (event.clientY + 10) + 'px';
-                        })
-                        .on('mousemove', function (event) {
-                            if (!tooltip) return;
-                            tooltip.style.left = (event.clientX + 10) + 'px';
-                            tooltip.style.top = (event.clientY + 10) + 'px';
-                        })
-                        .on('mouseleave', function () {
-                            if (tooltip) tooltip.style.display = 'none';
-                        });
                 });
             }
 
@@ -3509,33 +3498,18 @@
                 updatePagerUI();
             }
 
-            // --- route chart POI tooltips (hover, like the PNW map) ---
-            const routeTooltip = document.getElementById('tooltip');
+            /* Route chart POIs name themselves on the chart, in place, with the
+               label drawn where the cartographer put it. No cursor-following
+               tooltip: a box of floating text over a hand-drawn map covers the
+               very thing it is describing. Touch has no hover, so a tap pins
+               the label instead. */
             document.querySelectorAll('.pnw-route-card .rt-poi').forEach(poi => {
-                const name = poi.getAttribute('data-name');
-                if (!name || !routeTooltip) return;
-
-                const show = (x, y) => {
-                    document.getElementById('tooltip-title').textContent = name;
-                    document.getElementById('tooltip-date').textContent = '';
-                    routeTooltip.style.display = 'block';
-                    routeTooltip.style.left = (x + 10) + 'px';
-                    routeTooltip.style.top = (y + 10) + 'px';
-                };
-
-                poi.addEventListener('mouseenter', (e) => show(e.clientX, e.clientY));
-                poi.addEventListener('mousemove', (e) => {
-                    routeTooltip.style.left = (e.clientX + 10) + 'px';
-                    routeTooltip.style.top = (e.clientY + 10) + 'px';
-                });
-                poi.addEventListener('mouseleave', () => {
-                    routeTooltip.style.display = 'none';
-                });
                 poi.addEventListener('touchstart', (e) => {
                     e.stopPropagation();
-                    const t = e.touches[0];
-                    show(t.clientX, t.clientY - 50);
-                    setTimeout(() => { routeTooltip.style.display = 'none'; }, 2000);
+                    const wasPinned = poi.classList.contains('pinned');
+                    document.querySelectorAll('.pnw-route-card .rt-poi.pinned')
+                        .forEach(p => p.classList.remove('pinned'));
+                    if (!wasPinned) poi.classList.add('pinned');
                 }, { passive: true });
             });
         })();
