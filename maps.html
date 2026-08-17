@@ -1430,23 +1430,13 @@
                                     <path class="rt-doodle" stroke-width="1" fill="none" d="M 0 -21 L 0 -24"/>
                                     <path class="rt-doodle" stroke-width="1" fill="#b3542e" d="M 0 -24 L 4 -22.9 L 0 -21.8 Z"/>
                                 </g>
-                                <!-- A Cascade massif, drawn with the same curved shoulders as
-                                     the rest of the chart's hills rather than as flat
-                                     triangles: faint ridges down the faces, snow the shape the
-                                     little peaks already use. -->
-                                <g id="ic-massif">
-                                    <path class="rt-doodle" stroke-width="1.3" fill="#7d8f5c" d="M -42 20 C -34 9, -30 -1, -25 -9 C -22 -13, -19 -12, -16 -7 C -13 -2, -10 4, -6 8 C -3 3, -1 -6, 3 -15 C 6 -21, 10 -21, 13 -14 C 17 -5, 22 6, 28 12 C 32 16, 37 19, 42 20 Z"/>
-                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M 3 -15 C 5 -19, 9 -20, 11 -16 C 12.6 -12.6, 14 -9.6, 15 -7 C 12 -5, 9 -8, 6 -6 C 4 -8.6, 2 -11.4, 3 -15 Z"/>
-                                    <path class="rt-doodle" stroke-width="0.9" fill="#f7f1e0" d="M -25 -9 C -23 -12.4, -20 -12.4, -18 -8.4 C -17 -6.4, -16 -4.6, -15 -3.4 C -18 -1.8, -20 -4, -22 -2.4 C -23.6 -4.4, -25 -6.4, -25 -9 Z"/>
-                                    <path class="rt-doodle" stroke-width="0.9" fill="none" opacity="0.45" d="M -16 -7 C -15 0, -13 8, -11 20 M 13 -14 C 15 -6, 18 4, 21 20"/>
-                                </g>
-                                <!-- a pass: two peaks, the saddle between them, and the highway
-                                     going over it -->
-                                <g id="ic-pass">
-                                    <path class="rt-doodle" stroke-width="1.3" fill="#7d8f5c" d="M -36 18 C -29 7, -24 -5, -19 -13 C -16 -17, -13 -16, -10 -10 C -7.4 -4.6, -5 -0.6, -3 3 L 3 3 C 5 -0.6, 7.4 -4.6, 10 -10 C 13 -16, 16 -17, 19 -13 C 24 -5, 29 7, 36 18 Z"/>
-                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M -19 -13 C -17 -16.4, -14 -16.4, -12 -12.4 C -11 -10.4, -10 -8.6, -9 -7.4 C -12 -5.8, -14 -8, -16 -6.4 C -17.6 -8.4, -19 -10.4, -19 -13 Z"/>
-                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M 19 -13 C 17 -16.4, 14 -16.4, 12 -12.4 C 11 -10.4, 10 -8.6, 9 -7.4 C 12 -5.8, 14 -8, 16 -6.4 C 17.6 -8.4, 19 -10.4, 19 -13 Z"/>
-                                    <path class="rt-drive-line" d="M -31 12 C -19 6.6, -9 4, 0 3.6 C 9 4, 19 6.6, 31 12"/>
+                                <!-- The topographic symbol for a pass: the two opposed
+                                     contour arcs that a saddle draws on a contour map. Used
+                                     where the crest line crosses a highway pass, which is
+                                     what a pass is: the low point on a divide. -->
+                                <g id="ic-saddle">
+                                    <path class="rt-doodle" stroke-width="1.6" fill="none" d="M -10 -8 C -3.5 -3.5, -3.5 3.5, -10 8"/>
+                                    <path class="rt-doodle" stroke-width="1.6" fill="none" d="M 10 -8 C 3.5 -3.5, 3.5 3.5, 10 8"/>
                                 </g>
                                 <!-- a salmon running up a river -->
                                 <g id="ic-salmon">
@@ -1893,24 +1883,23 @@
                                  park, the reservoir behind Wynoochee dam, the river into the
                                  Great Bend, and the oysters that come out of the canal -->
                             <use href="#ic-rainforest" transform="translate(146, 654) scale(0.72)"/>
-                            <text class="rt-sub" x="196" y="700" text-anchor="middle">Quinault Rain Forest</text>
+                            <text class="rt-sub" x="200" y="686" text-anchor="middle">Quinault Rain Forest</text>
                             <path d="M 88 664 C 98 660, 108 664, 108 672 C 108 680, 98 684, 90 680 C 82 676, 82 668, 88 664 Z"
                                   fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
-                            <text class="rt-sub" x="98" y="700" text-anchor="middle">Wynoochee L.</text>
+                            <text class="rt-sub" x="98" y="688" text-anchor="middle">Wynoochee L.</text>
                             <path d="M 248 632 C 274 646, 298 660, 320 672" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
                             <text class="rt-flavor" x="278" y="644" text-anchor="middle" transform="rotate(28 278 644)" style="font-size:8.5px">Skokomish R.</text>
                             <g class="rt-poi" data-name="Hood Canal oysters: the tideflats between Lilliwaup and the Great Bend" transform="translate(352, 640)">
                                 <use href="#ic-oyster"/>
                                 <circle class="rt-hit" r="12"/>
                             </g>
-                            <use href="#ic-pine" transform="translate(268, 692) scale(0.9)"/>
+                            <use href="#ic-pine" transform="translate(280, 664) scale(0.9)"/>
                             <use href="#ic-pine" transform="translate(296, 712) scale(0.8)"/>
                             <use href="#ic-deer" transform="translate(160, 616) scale(0.95)"/>
                             <use href="#ic-pine" transform="translate(240, 620) scale(0.9)"/>
                             <use href="#ic-marmot" transform="translate(206, 486) scale(0.9)"/>
                             <use href="#ic-pine" transform="translate(196, 660) scale(0.95)"/>
-                            <use href="#ic-pine" transform="translate(224, 672) scale(0.8)"/>
-                            <use href="#ic-pine" transform="translate(168, 676) scale(1.05)"/>
+                            <use href="#ic-pine" transform="translate(238, 654) scale(0.8)"/>
                             <!-- The south sound: the two long inlets were drawn but never
                                  named, and the capital sat on the shore as a word with
                                  nothing under it. -->
@@ -2219,11 +2208,10 @@
 
                             <!-- Mt. Shuksan, 18 km east of Baker: no cone, a horn, with the
                                  hanging glacier that puts it on every calendar -->
-                            <g class="rt-poi" data-name="Mt. Shuksan, 9,131 ft" transform="translate(886, 118)">
+                            <g transform="translate(886, 118)">
                                 <path class="rt-doodle" stroke-width="1.3" fill="#7d8f5c" d="M -26 18 C -20 8, -15 -2, -11 -8 C -8.6 -11.4, -6.4 -10.6, -4.6 -6 C -3 -2.4, -1.4 0.6, 0 3 C 1.4 -1, 2.6 -8, 5 -14 C 7 -18.6, 10 -18.6, 12 -14 C 15 -7, 19 4, 24 12 C 25.6 14.6, 26.6 16.6, 27 18 Z"/>
                                 <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M 5 -14 C 6.6 -17.4, 9.6 -17.4, 11 -13.4 C 12 -11, 13 -8.6, 13.6 -7 C 11 -5.4, 8.6 -7.4, 6 -6 C 5 -8.6, 4 -11, 5 -14 Z"/>
                                 <path class="rt-doodle" stroke-width="0.9" fill="#f7f1e0" d="M -11 -8 C -9.4 -11, -7 -11, -5.6 -7.4 C -4.6 -5.4, -4 -3.6, -3.4 -2.6 C -5.6 -1, -7.4 -3, -9.4 -1.6 C -10.4 -3.6, -11 -5.6, -11 -8 Z"/>
-                                <circle class="rt-hit" r="24"/>
                             </g>
 
                             <!-- Lake Sammamish: 13 km by 2.4 km, 5 km east of Lake
@@ -2239,46 +2227,47 @@
 
                             <use href="#ic-mtns" transform="translate(1046, 588) scale(1.05)"/>
                             <text class="rt-sub" x="1064" y="620" text-anchor="end">Mt. Si · 4,167 ft</text>
-                            <text class="rt-sub" x="1090" y="770" text-anchor="end">Snoqualmie Pass · I-90</text>
+                            <text class="rt-sub" x="1126" y="762" text-anchor="end">Snoqualmie Pass · I-90</text>
                             <path d="M 916 246 C 926 250, 924 272, 928 292 C 931 308, 927 318, 921 316 C 914 312, 916 290, 912 270 C 909 254, 910 246, 916 246 Z"
                                   fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
                             <text class="rt-sub" x="944" y="278" text-anchor="middle" transform="rotate(-84 944 278)">Ross L.</text>
-                            <use href="#ic-pass" transform="translate(1012, 214)"/>
-                            <text class="rt-sub" x="1010" y="248" text-anchor="middle">Washington Pass · SR-20</text>
+                            <use href="#ic-saddle" transform="translate(1152, 214)"/>
+                            <text class="rt-sub" x="1136" y="240" text-anchor="end">Washington Pass · SR-20</text>
 
-                            <!-- The crest itself. The sound is walled in 60 km inland by a
-                                 range that runs the whole height of this sheet, and the
-                                 eastern third of the frame was an unbroken field of green
-                                 without it. Drawn the way the rest of the chart draws hills,
-                                 a few massifs set down at different sizes, with a saddle and
-                                 a road at each of the three passes the highways use: SR-20
-                                 above, US-2 in the middle, I-90 below. -->
-                            <use href="#ic-massif" transform="translate(1122, 112) scale(1.15)"/>
-                            <text class="rt-sub" x="1096" y="176" text-anchor="end">· Cascade Range ·</text>
-                            <g transform="translate(1116, 314)">
+                            <!-- The Cascade crest, in the language a map uses for a range
+                                 rather than in invented peaks. This line is the divide: west
+                                 of it every river on this chart drains to the sound, east of
+                                 it they drain to the Columbia. It is hachured, the old way of
+                                 showing a ridge in plan view, with the ticks longer on the
+                                 east where the range drops faster into the rain shadow. The
+                                 three breaks in the hachures carry the contour saddle symbol,
+                                 because that is what a pass is: the low point on a divide,
+                                 and the reason SR-20, US-2 and I-90 cross where they do. The
+                                 volcanoes stay as cones, since Baker and Glacier Peak really
+                                 do stand alone above the ridge line. The one liberty is
+                                 distance: the true crest is 80 km east of Seattle, and this
+                                 sheet has room for about half of that. -->
+                            <path fill="none" stroke="#6f7e4a" stroke-width="1.1" stroke-linecap="round" opacity="0.75"
+                                  d="M 1151.1 0.2 L 1136.3 -0.7 M 1150.2 12.7 L 1138.0 11.7 M 1146.6 24.7 L 1133.6 21.6 M 1146.7 38.4 L 1134.1 37.7 M 1144.9 50.4 L 1133.7 49.8 M 1141.2 60.8 L 1129.2 61.1 M 1141.9 75.1 L 1129.1 74.4 M 1140.2 89.1 L 1127.0 87.1 M 1140.8 99.5 L 1126.3 100.5 M 1140.9 108.4 L 1126.8 110.7 M 1139.6 122.8 L 1126.0 122.8 M 1141.4 131.6 L 1131.9 133.5 M 1143.3 137.5 L 1126.7 139.1 M 1144.1 144.1 L 1129.4 149.3 M 1144.0 152.9 L 1131.9 153.8 M 1145.8 158.5 L 1135.6 160.3 M 1147.2 168.3 L 1137.9 172.7 M 1148.3 174.9 L 1136.0 179.7 M 1150.9 179.8 L 1135.9 185.4 M 1152.0 185.7 L 1139.9 189.3 M 1154.0 189.9 L 1141.3 195.5 M 1150.2 239.7 L 1135.1 237.0 M 1149.3 245.4 L 1134.6 239.8 M 1145.9 252.7 L 1133.0 250.5 M 1143.9 257.7 L 1131.7 254.4 M 1143.7 263.0 L 1130.6 259.6 M 1141.8 270.8 L 1130.2 269.9 M 1141.5 277.3 L 1128.8 273.2 M 1139.7 282.4 L 1123.3 282.0 M 1136.6 291.9 L 1122.5 288.7 M 1134.9 300.2 L 1122.5 299.2 M 1136.4 311.3 L 1123.6 312.5 M 1136.3 319.4 L 1119.7 317.8 M 1135.9 326.6 L 1124.1 328.7 M 1135.7 338.1 L 1121.0 340.7 M 1135.8 347.4 L 1121.4 350.6 M 1136.2 359.8 L 1126.4 363.0 M 1140.2 367.2 L 1123.3 370.2 M 1139.5 375.5 L 1130.1 376.1 M 1142.3 387.6 L 1126.3 387.1 M 1144.8 397.4 L 1133.0 401.8 M 1144.8 405.8 L 1133.1 408.8 M 1145.7 415.5 L 1133.7 415.3 M 1146.6 419.7 L 1135.1 421.0 M 1149.8 425.1 L 1135.8 428.2 M 1149.7 428.7 L 1138.1 430.9 M 1150.4 431.8 L 1137.9 433.3 M 1152.6 434.8 L 1136.2 436.3 M 1152.8 437.9 L 1140.8 440.7 M 1144.2 480.5 L 1130.6 476.9 M 1141.9 489.1 L 1130.8 485.1 M 1138.3 495.3 L 1128.3 493.9 M 1137.6 506.0 L 1124.0 500.8 M 1133.9 511.5 L 1121.9 508.3 M 1133.2 520.1 L 1121.5 517.8 M 1132.4 529.3 L 1118.2 528.6 M 1131.1 536.9 L 1119.9 537.0 M 1128.9 543.8 L 1116.1 545.6 M 1130.9 546.5 L 1118.5 545.3 M 1131.0 557.0 L 1116.9 555.3 M 1130.9 563.9 L 1115.2 566.9 M 1130.8 580.5 L 1115.3 578.6 M 1131.6 587.9 L 1118.9 589.1 M 1132.8 599.7 L 1121.8 603.0 M 1134.7 614.1 L 1122.1 618.1 M 1136.6 625.4 L 1125.2 626.2 M 1136.5 638.6 L 1126.9 641.6 M 1138.4 654.4 L 1126.0 654.3 M 1142.1 665.1 L 1126.3 666.4 M 1141.9 675.3 L 1129.5 679.1 M 1143.1 684.6 L 1131.1 685.2 M 1143.2 685.2 L 1129.9 688.6 M 1144.9 689.9 L 1130.2 695.4 M 1144.4 696.1 L 1133.2 699.8 M 1146.1 703.1 L 1136.3 703.6 M 1145.8 706.5 L 1137.4 708.1 M 1146.3 713.0 L 1137.9 712.1 M 1148.1 718.1 L 1132.8 716.9 M 1143.4 756.1 L 1129.8 750.8 M 1140.3 761.9 L 1128.9 761.4 M 1138.7 768.8 L 1126.7 766.0 M 1138.4 775.8 L 1122.2 775.6 M 1135.0 782.9 L 1126.5 782.4 M 1134.4 788.9 L 1124.0 785.6 M 1134.5 797.1 L 1123.2 794.2 M 1131.8 804.0 L 1118.7 803.2 M 1130.8 810.8 L 1119.4 808.1 M 1131.1 817.1 L 1119.4 817.9 M 1133.2 819.0 L 1117.3 822.1 M 1133.4 827.8 L 1116.7 826.5 M 1133.2 833.8 L 1120.4 832.7 M 1132.4 839.2 L 1122.3 838.9 M 1134.3 844.9 L 1118.5 845.5 M 1135.6 854.6 L 1121.3 853.8 M 1134.4 861.2 L 1125.7 861.1 M 1136.6 866.2 L 1124.0 868.9 M 1138.5 871.0 L 1124.1 875.2 M 1139.7 875.5 L 1126.8 879.3 M 1141.4 881.8 L 1124.6 882.8 M 1140.1 885.7 L 1130.3 888.7 M 1141.9 889.4 L 1130.5 894.6 M 1144.0 894.0 L 1132.0 897.8 M 1144.3 897.4 L 1132.4 901.5"/>
+                            <path fill="none" stroke="#5d6b3f" stroke-width="2" stroke-linecap="round"
+                                  d="M 1148 0 C 1140 46, 1132 92, 1138 138 C 1144 182, 1156 200, 1152 214 C 1148 240, 1136 268, 1132 300 C 1128 336, 1136 380, 1144 420 C 1150 442, 1150 450, 1146 458 C 1140 480, 1128 510, 1126 546 C 1124 590, 1134 640, 1140 686 C 1144 712, 1146 726, 1142 736 C 1138 760, 1128 790, 1128 820 C 1128 856, 1136 880, 1140 900"/>
+                            <text class="rt-sub" x="1104" y="650" text-anchor="middle" transform="rotate(-90 1104 650)">· Cascade Crest ·</text>
+                            <g transform="translate(1088, 314)">
                                 <path class="rt-doodle" fill="#7d8f5c" d="M -32 22 C -21 5, -13 -11, -5 -21 C -1 -26, 3 -26, 7 -21 C 15 -11, 23 5, 34 22 Z"/>
                                 <path class="rt-doodle" fill="#f7f1e0" d="M -10 -12 C -7.5 -16.5, -4 -20, 1 -20 C 5 -20, 8.5 -16.5, 11 -12 C 7 -8.5, 4 -11, 1 -8.5 C -3 -11, -6 -8.5, -10 -12 Z"/>
                                 <path class="rt-doodle" fill="none" stroke-width="1" d="M -5 -21 L -12 22 M 7 -21 L 14 22"/>
                             </g>
                             <text class="rt-sub" x="1090" y="352" text-anchor="end">Glacier Peak · 10,541 ft</text>
-                            <g class="rt-poi" data-name="Mt. Pilchuck, 5,341 ft" transform="translate(930, 360)">
-                                <use href="#ic-mtns" transform="scale(0.85)"/>
-                                <circle class="rt-hit" r="18"/>
-                            </g>
-                            <use href="#ic-pass" transform="translate(1112, 458)"/>
-                            <use href="#ic-massif" transform="translate(1120, 600) scale(1.1)"/>
-                            <use href="#ic-pass" transform="translate(1112, 736)"/>
-                            <use href="#ic-massif" transform="translate(1128, 858) scale(1.0)"/>
+                            <use href="#ic-mtns" transform="translate(930, 360) scale(0.85)"/>
+                            <use href="#ic-saddle" transform="translate(1146, 458)"/>
+                            <use href="#ic-saddle" transform="translate(1142, 736)"/>
 
                             <!-- US-2 over the crest: the pass, the river that comes down from
                                  it, and the falls above Gold Bar -->
-                            <text class="rt-sub" x="1090" y="496" text-anchor="end">Stevens Pass · US-2</text>
+                            <text class="rt-sub" x="1130" y="484" text-anchor="end">Stevens Pass · US-2</text>
                             <path d="M 1124 490 C 1086 474, 1046 466, 1006 464" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
                             <text class="rt-flavor" x="1052" y="458" text-anchor="middle" transform="rotate(-11 1052 458)" style="font-size:8.5px">Skykomish R.</text>
-                            <g class="rt-poi" data-name="Wallace Falls: 265 ft, above Gold Bar on the Skykomish" transform="translate(1046, 430)">
-                                <use href="#ic-falls"/>
-                                <circle class="rt-hit" r="14"/>
-                            </g>
+                            <use href="#ic-falls" transform="translate(1046, 430)"/>
 
                             <!-- the Snoqualmie, running north out of the falls, and the
                                  wilderness that fills the crest between the two passes -->
@@ -2298,10 +2287,7 @@
                             <!-- Issaquah at the foot of the lake, the Alps behind it, and the
                                  watershed that Seattle drinks -->
                             <text class="rt-label" x="932" y="664" text-anchor="start">Issaquah</text>
-                            <g class="rt-poi" data-name="Tiger Mountain, above Issaquah" transform="translate(984, 694)">
-                                <use href="#ic-mtns" transform="scale(0.8)"/>
-                                <circle class="rt-hit" r="17"/>
-                            </g>
+                            <use href="#ic-mtns" transform="translate(984, 694) scale(0.8)"/>
                             <g class="rt-poi" data-name="Rattlesnake Ledge, above Rattlesnake Lake" transform="translate(1030, 710)">
                                 <use href="#ic-bluff" transform="scale(0.9)"/>
                                 <circle class="rt-hit" r="15"/>
@@ -2331,8 +2317,8 @@
                             <text class="rt-label big" x="46" y="38" text-anchor="start" style="font-size:16px; letter-spacing:0.6px;">SALISH SEA ROUTES</text>
                             <text class="rt-flavor" x="110" y="382" text-anchor="middle" transform="rotate(-6 110 382)">· Strait of Juan de Fuca ·</text>
 
-                            <g transform="translate(34, 714)">
-                                <rect class="rt-quest-card" x="0" y="0" width="248" height="118" rx="10"/>
+                            <g transform="translate(34, 700)">
+                                <rect class="rt-quest-card" x="0" y="0" width="248" height="136" rx="10"/>
                                 <text class="rt-quest-title" x="14" y="20">Legend</text>
                             <path class="rt-ferry-line" marker-end="url(#rt-track-arrow)" d="M 14 34 h 30"/>
                                 <text class="rt-quest-item" x="56" y="38">Washington State Ferries (WSF)</text>
@@ -2344,6 +2330,9 @@
                                 <text class="rt-quest-item" x="56" y="92">Ferry terminal</text>
                                 <path class="rt-border" d="M 14 106 h 34"/>
                                 <text class="rt-quest-item" x="56" y="110">International boundary</text>
+                                <path fill="none" stroke="#5d6b3f" stroke-width="2" stroke-linecap="round" d="M 14 124 C 22 122, 32 126, 48 123"/>
+                                <path fill="none" stroke="#6f7e4a" stroke-width="1.1" stroke-linecap="round" opacity="0.75" d="M 17 121 l 2 -6 M 24 123 l 1 -6 M 31 124 l 2 -6 M 38 125 l 1 -6 M 45 123 l 2 -6"/>
+                                <text class="rt-quest-item" x="56" y="128">Cascade crest (divide)</text>
                             </g>
                         </g>
                         </svg>
