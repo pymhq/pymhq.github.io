@@ -334,11 +334,18 @@
         #pnw-full-map-wrap {
             /* The card takes the aspect of the drawing it holds, so a tall
                panel leaves clean space around it rather than a letterbox the
-               map bleeds into. JS overrides the ratio on phones, where the
-               viewBox is cropped to a portrait window. */
+               map bleeds into. Driven from the height, not the width: with
+               width:100% and a max-height clamp, every window where height
+               was the binding side produced a card wider than its drawing,
+               and the drawing then letterboxed inside the card. JS overrides
+               the ratio on phones, where the viewBox is cropped to a portrait
+               window. */
             flex: 0 1 auto;
-            width: 100%;
+            /* capped by both sides, like the route card below: the panel's
+               width, and what its height leaves after the heading */
+            width: min(100%, calc((min(84vh, 760px) - 62px) * 800 / 640));
             aspect-ratio: 800 / 640;
+            height: auto;
             max-height: 100%;
             border-radius: 16px;
             background: #eef2ea;
@@ -619,10 +626,18 @@
         }
 
         .pnw-route-card {
-            /* same aspect-hugging as the map card above */
+            /* The card is exactly the shape of the chart it holds, capped by
+               both sides of the panel: by its width, and by what its height
+               allows (the panel is the only child of .pnw-section-inner, so the
+               inner height below is the height available). Sized from one side
+               only, every window where the other side bound produced a card
+               that was not the chart's shape, and the chart letterboxed inside
+               it. With the land drawn past the viewBox, that letterbox filled
+               with a slab of overhanging land until the clip went in. */
             flex: 0 1 auto;
-            width: 100%;
+            width: min(100%, calc(min(84vh, 760px) * 900 / 700));
             aspect-ratio: 900 / 700;
+            height: auto;
             max-height: 100%;
             border-radius: 16px;
             background: #eef2ea;
@@ -630,6 +645,18 @@
             border: 2px solid #e2e7da;
             overflow: hidden;
             position: relative;
+        }
+
+        /* Portrait phones: width binds, so drive from the width instead and
+           let the height follow the ratio. */
+        @media (max-width: 600px) {
+            #pnw-full-map-wrap,
+            .pnw-route-card {
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+            }
         }
 
         .pnw-route-card svg {
@@ -1343,37 +1370,37 @@
                                     <path class="rt-doodle" fill="none" stroke-width="1.1" d="M -2 0 L -0.5 0"/>
                                     <path class="rt-doodle" fill="none" d="M -10 8 L 8 8"/>
                                 </g>
-                                <!-- temperate rain forest: a bigleaf maple with club moss
-                                     hanging off its limbs, standing over a nurse log with a
-                                     row of seedlings rooted along its spine, sword ferns at
-                                     the foot and mist in the canopy. The Hoh and the
-                                     Quinault are not fir plantations, so they do not get
-                                     fir glyphs. -->
+                                <!-- Temperate rain forest, which is not a fir stand: a
+                                     bigleaf maple with heavy low limbs, curtains of club
+                                     moss hanging off them, moss up the trunk, sword ferns
+                                     at the foot, a nurse log with seedlings rooted along
+                                     its spine, and mist in the canopy. -->
                                 <g id="ic-rainforest">
-                                    <path class="rt-doodle" fill="none" stroke-dasharray="3 3" d="M -24 12 H 26"/>
-                                    <path fill="none" stroke="#b7cfd9" stroke-width="1.8" stroke-linecap="round" opacity="0.9" d="M -28 -21 q 5 -3 10 0 q 5 3 10 0"/>
-                                    <path fill="none" stroke="#b7cfd9" stroke-width="1.8" stroke-linecap="round" opacity="0.9" d="M 2 -30 q 5 -3 10 0 q 5 3 10 0"/>
-                                    <path class="rt-doodle" fill="#7d9b55" d="M -23 -15 C -29 -21, -21 -29, -11 -27 C -6 -33, 7 -32, 12 -25 C 22 -24, 24 -15, 14 -13 C 3 -10, -14 -11, -23 -15 Z"/>
-                                    <path class="rt-doodle" stroke-width="1.1" fill="none" d="M -18 -13.6 q 3 3 6 0 q 3 3 6 0 q 3 3 6 0 q 3 3 6 0"/>
-                                    <path class="rt-doodle" fill="#8a6a4a" d="M -7 12 C -5 4, -4.5 -6, -5.5 -14 L 1.5 -14 C 0.5 -6, 1 4, 3 12 Z"/>
-                                    <path class="rt-doodle" fill="none" stroke-width="2.2" d="M -3 -13 C -8 -17, -14 -19, -19 -18"/>
-                                    <path class="rt-doodle" fill="none" stroke-width="2.2" d="M 0 -14 C 4 -19, 10 -21, 15 -19"/>
-                                    <g stroke="#a8bb7a" stroke-width="2.4" stroke-linecap="round" fill="none">
-                                        <path d="M -17 -17 q -2 4 0 8"/>
-                                        <path d="M -11 -16 q 2 5 -1 10"/>
-                                        <path d="M -5.5 -11 q -2 4 0 7"/>
-                                        <path d="M 5 -17.5 q 2 5 -1 9"/>
-                                        <path d="M 12 -19 q 3 4 1 8"/>
+                                    <path fill="none" stroke="#b7cfd9" stroke-width="1.8" stroke-linecap="round" opacity="0.85" d="M -30 -30 q 6 -3.5 12 0 q 6 3.5 12 0"/>
+                                    <path fill="none" stroke="#b7cfd9" stroke-width="1.8" stroke-linecap="round" opacity="0.85" d="M 0 -37 q 6 -3.5 12 0 q 6 3.5 12 0"/>
+                                    <path class="rt-doodle" stroke-width="1.4" fill="#7d9b55" d="M -26 -19 C -33 -22, -32 -30, -24 -32 C -25 -39, -16 -44, -8 -41 C -3 -46, 8 -46, 13 -40 C 22 -41, 29 -33, 25 -26 C 30 -22, 27 -15, 19 -15 C 8 -12, -14 -12, -26 -19 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="none" opacity="0.55" d="M -19 -21 C -13 -27, -5 -29, 3 -27 C 11 -25, 17 -22, 21 -19"/>
+                                    <path class="rt-doodle" stroke-width="2.6" fill="none" d="M -5 -17 C -12 -21, -20 -23, -27 -22"/>
+                                    <path class="rt-doodle" stroke-width="2.6" fill="none" d="M 3 -19 C 9 -24, 17 -26, 24 -24"/>
+                                    <g stroke="#a8bb7a" stroke-linecap="round" fill="none">
+                                        <path stroke-width="2.4" d="M -25 -21 c -1.4 4, 0.6 7, -1.4 11"/>
+                                        <path stroke-width="2" d="M -19 -21 c 1.2 4.5, -0.8 7.5, 0.8 11.5"/>
+                                        <path stroke-width="2.4" d="M -13 -19 c -1.2 5, 0.8 8, -1 12"/>
+                                        <path stroke-width="1.8" d="M -7 -18 c 1 3.5, -0.6 6, 0.6 9"/>
+                                        <path stroke-width="2" d="M 8 -20 c -1.2 4, 0.8 6.5, -0.8 10"/>
+                                        <path stroke-width="2.4" d="M 15 -22 c 1.4 5, -0.6 8, 1.2 12"/>
+                                        <path stroke-width="1.8" d="M 22 -24 c -1 4, 0.8 6.5, -0.6 9.5"/>
                                     </g>
-                                    <path class="rt-doodle" fill="#8a6a4a" d="M 6 5 L 24 5 A 3.5 3.5 0 0 1 24 12 L 6 12 A 3.5 3.5 0 0 1 6 5 Z"/>
-                                    <ellipse class="rt-doodle" stroke-width="1.1" cx="24" cy="8.5" rx="2" ry="3.5" fill="#c9885a"/>
-                                    <path class="rt-doodle" stroke-width="1.1" fill="#5c6b3c" d="M 9 5 L 11 -1 L 13 5 Z M 15 5 L 17 -2 L 19 5 Z M 20.5 5 L 22 0 L 23.5 5 Z"/>
-                                    <g stroke="#5c6b3c" stroke-width="1.5" stroke-linecap="round" fill="none">
-                                        <path d="M -9 12 C -13 8, -17 6, -22 5"/>
-                                        <path d="M -9 12 C -14 10, -18 10, -23 10"/>
-                                        <path d="M -9 12 C -12 6, -13 2, -13 -2"/>
-                                        <path d="M 4 12 C 7 9, 9 7, 12 6"/>
-                                    </g>
+                                    <path class="rt-doodle" fill="#8a6a4a" d="M -8 14 C -6 4, -5 -8, -6 -20 L 3 -20 C 2 -8, 3 4, 5 14 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#a8bb7a" d="M -6.6 -14 C -4.6 -12, -4 -6, -4.4 0 C -4.8 6, -5.6 10, -5.4 14 L -8 14 C -6.6 6, -6 -4, -6.6 -14 Z"/>
+                                    <path stroke="#5c6b3c" stroke-width="1.5" stroke-linecap="round" fill="none" d="M -11 14 C -17 11, -22 9, -28 8"/>
+                                    <path stroke="#5c6b3c" stroke-width="1.5" stroke-linecap="round" fill="none" d="M -11 14 C -18 13, -23 13, -29 13"/>
+                                    <path stroke="#5c6b3c" stroke-width="1.5" stroke-linecap="round" fill="none" d="M -10 14 C -14 8, -16 4, -16 -1"/>
+                                    <path class="rt-doodle" fill="#8a6a4a" d="M 9 7 L 26 7 A 4 4 0 0 1 26 15 L 9 15 A 4 4 0 0 1 9 7 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#a8bb7a" d="M 10 7 C 15 4.6, 21 4.6, 26 7 C 21 9, 15 9, 10 7 Z"/>
+                                    <ellipse class="rt-doodle" stroke-width="1.1" cx="26" cy="11" rx="2.2" ry="4" fill="#c9885a"/>
+                                    <path class="rt-doodle" stroke-width="1.1" fill="#5c6b3c" d="M 11 6 L 13 0 L 15 6 Z M 17 6 L 19 -1 L 21 6 Z M 22.5 6 L 24 1 L 25.5 6 Z"/>
+                                    <path stroke="#5c6b3c" stroke-width="1.4" stroke-linecap="round" fill="none" d="M 6 14 C 9 11, 12 9, 15 8"/>
                                 </g>
                                 <!-- Roosevelt elk: the herd the park was founded to protect.
                                      Bigger than the black-tailed deer, dark neck, pale rump,
@@ -1403,38 +1430,23 @@
                                     <path class="rt-doodle" stroke-width="1" fill="none" d="M 0 -21 L 0 -24"/>
                                     <path class="rt-doodle" stroke-width="1" fill="#b3542e" d="M 0 -24 L 4 -22.9 L 0 -21.8 Z"/>
                                 </g>
-                                <!-- great blue heron, standing the tide flats -->
-                                <g id="ic-heron">
-                                    <path class="rt-water-deco" d="M -12 11 q 4 -3 8 0 q 4 3 8 0"/>
-                                    <path class="rt-doodle" stroke-width="1.1" fill="none" d="M 0 3 L -1 11 M 3.4 3 L 3.6 11 M -1 11 L -3.8 11.6 M 3.6 11 L 1 11.8"/>
-                                    <path class="rt-doodle" stroke-width="1.3" fill="#5b7f95" d="M -3 -3 Q 3 -4.4 7.2 -1.6 Q 11.6 1.4 9 3.4 Q 5.4 5 0 4.6 Q -4.4 4.2 -5 1 Q -5.4 -1.6 -3 -3 Z"/>
-                                    <path class="rt-doodle" stroke-width="1" fill="#8fb0be" d="M -1.8 -2.4 Q 3 -2.6 7 0.4 Q 4 2.6 -0.6 2.2 Q -3 1.6 -1.8 -2.4 Z"/>
-                                    <path class="rt-doodle" stroke-width="1.2" fill="#5b7f95" d="M -4.6 -1.2 L -9.6 1.6 L -4.2 2.6 Z"/>
-                                    <path class="rt-doodle" stroke-width="1.8" fill="none" d="M -3.6 -2.4 C -7.6 -5.2, -7 -9.8, -4 -12.2"/>
-                                    <circle class="rt-doodle" stroke-width="1" cx="-3.2" cy="-13.8" r="2" fill="#5b7f95"/>
-                                    <path class="rt-doodle" stroke-width="1" fill="#ffc24d" d="M -1.4 -14.6 L 4.6 -15.6 L -1.2 -13 Z"/>
-                                    <circle cx="-3.8" cy="-14.4" r="0.5" fill="#f7f1e0"/>
-                                    <path class="rt-doodle" stroke-width="0.9" fill="none" d="M -5.2 -15.2 C -7.4 -17.2, -9.6 -17.6, -11.4 -17"/>
-                                    <path stroke="#5c6b3c" stroke-width="1.2" stroke-linecap="round" fill="none" d="M 11.4 12 V 1 M 14 12 V 4 M 9 12 V 5.4"/>
-                                </g>
-                                <!-- a Cascade massif: jagged crest, ridges running down the
-                                     faces, snow on the two high summits. Drawn once and set
-                                     down a few times at different sizes, which is how the
-                                     rest of this chart draws hills, rather than as a row of
-                                     identical triangles. -->
+                                <!-- A Cascade massif, drawn with the same curved shoulders as
+                                     the rest of the chart's hills rather than as flat
+                                     triangles: faint ridges down the faces, snow the shape the
+                                     little peaks already use. -->
                                 <g id="ic-massif">
-                                    <path class="rt-doodle" fill="#7d8f5c" d="M -44 20 L -27 -9 L -14 6 L -2 -19 L 12 2 L 25 -13 L 44 20 Z"/>
-                                    <path class="rt-doodle" fill="#f7f1e0" d="M -2 -19 L 6 -7 Q 2 -4 -2 -7 Q -6 -4 -9.4 -8 Z"/>
-                                    <path class="rt-doodle" fill="#f7f1e0" d="M 25 -13 L 31 -4 Q 28 -1.6 25 -4 Q 22 -1.6 19.4 -5 Z"/>
-                                    <path class="rt-doodle" fill="none" stroke-width="1" d="M -27 -9 L -21 20 M -2 -19 L 4 20 M 25 -13 L 31 20"/>
+                                    <path class="rt-doodle" stroke-width="1.3" fill="#7d8f5c" d="M -42 20 C -34 9, -30 -1, -25 -9 C -22 -13, -19 -12, -16 -7 C -13 -2, -10 4, -6 8 C -3 3, -1 -6, 3 -15 C 6 -21, 10 -21, 13 -14 C 17 -5, 22 6, 28 12 C 32 16, 37 19, 42 20 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M 3 -15 C 5 -19, 9 -20, 11 -16 C 12.6 -12.6, 14 -9.6, 15 -7 C 12 -5, 9 -8, 6 -6 C 4 -8.6, 2 -11.4, 3 -15 Z"/>
+                                    <path class="rt-doodle" stroke-width="0.9" fill="#f7f1e0" d="M -25 -9 C -23 -12.4, -20 -12.4, -18 -8.4 C -17 -6.4, -16 -4.6, -15 -3.4 C -18 -1.8, -20 -4, -22 -2.4 C -23.6 -4.4, -25 -6.4, -25 -9 Z"/>
+                                    <path class="rt-doodle" stroke-width="0.9" fill="none" opacity="0.45" d="M -16 -7 C -15 0, -13 8, -11 20 M 13 -14 C 15 -6, 18 4, 21 20"/>
                                 </g>
-                                <!-- a pass: two peaks with the saddle between them, and the
-                                     highway going over it -->
+                                <!-- a pass: two peaks, the saddle between them, and the highway
+                                     going over it -->
                                 <g id="ic-pass">
-                                    <path class="rt-doodle" fill="#7d8f5c" d="M -38 18 L -19 -17 L -5 4 L 5 4 L 19 -17 L 38 18 Z"/>
-                                    <path class="rt-doodle" fill="#f7f1e0" d="M -19 -17 L -12 -5 Q -16 -2 -19 -5 Q -22 -2 -25.4 -6 Z"/>
-                                    <path class="rt-doodle" fill="#f7f1e0" d="M 19 -17 L 26 -5 Q 22 -2 19 -5 Q 16 -2 12.6 -6 Z"/>
-                                    <path class="rt-drive-line" d="M -33 13 C -20 8, -9 5.5, 0 5 C 9 5.5, 20 8, 33 13"/>
+                                    <path class="rt-doodle" stroke-width="1.3" fill="#7d8f5c" d="M -36 18 C -29 7, -24 -5, -19 -13 C -16 -17, -13 -16, -10 -10 C -7.4 -4.6, -5 -0.6, -3 3 L 3 3 C 5 -0.6, 7.4 -4.6, 10 -10 C 13 -16, 16 -17, 19 -13 C 24 -5, 29 7, 36 18 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M -19 -13 C -17 -16.4, -14 -16.4, -12 -12.4 C -11 -10.4, -10 -8.6, -9 -7.4 C -12 -5.8, -14 -8, -16 -6.4 C -17.6 -8.4, -19 -10.4, -19 -13 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M 19 -13 C 17 -16.4, 14 -16.4, 12 -12.4 C 11 -10.4, 10 -8.6, 9 -7.4 C 12 -5.8, 14 -8, 16 -6.4 C 17.6 -8.4, 19 -10.4, 19 -13 Z"/>
+                                    <path class="rt-drive-line" d="M -31 12 C -19 6.6, -9 4, 0 3.6 C 9 4, 19 6.6, 31 12"/>
                                 </g>
                                 <!-- a salmon running up a river -->
                                 <g id="ic-salmon">
@@ -1453,7 +1465,20 @@
                                     <path class="rt-doodle" stroke-width="1.2" fill="#e8dfc8" d="M 2 4 C 1 0, 4 -3.6, 8.4 -3.6 C 12.4 -3.6, 14 -0.4, 13 4 Z"/>
                                     <ellipse cx="7.6" cy="1" rx="3.2" ry="2" fill="#cfe3e8" stroke="#4a3f2c" stroke-width="0.8"/>
                                 </g>
+                            
+                                <!-- The hand-drawn land runs well past the viewBox on
+                                     purpose, so the coast never shows a cut end. An SVG
+                                     clips at its viewport, not at its viewBox, so on any
+                                     card whose box is not exactly the viewBox ratio the
+                                     letterbox filled up with that overhang: a slab of
+                                     land outside the frame on the left and the right,
+                                     which is what a windowed browser was showing.
+                                     Panel 1 already clips for the same reason. -->
+                                <clipPath id="rt-frame-clip">
+                                    <rect x="20" y="0" width="1157" height="900"/>
+                                </clipPath>
                             </defs>
+                            <g clip-path="url(#rt-frame-clip)">
 
                             <!-- chart grid -->
                             <g class="rt-grid" opacity="0.7">
@@ -1609,7 +1634,7 @@
                             <text class="rt-sub" x="416" y="50" text-anchor="start" style="font-size:8.5px">Sucia I.</text>
                             <ellipse class="rt-coast-glow" cx="500" cy="40" rx="9" ry="24" transform="rotate(-20 500 40)"/>
                             <ellipse class="rt-island" cx="500" cy="40" rx="9" ry="24" transform="rotate(-20 500 40)"/>
-                            <text class="rt-sub" x="500" y="12" text-anchor="middle" style="font-size:8.5px">Lummi I.</text>
+                            <text class="rt-sub" x="474" y="30" text-anchor="end" style="font-size:8.5px">Lummi I.</text>
                             <ellipse class="rt-coast-glow" cx="104" cy="306" rx="7" ry="5"/>
                             <ellipse class="rt-island" cx="104" cy="306" rx="7" ry="5"/>
                             <text class="rt-flavor" x="132" y="236" text-anchor="middle" transform="rotate(-72 132 236)">Haro Strait</text>
@@ -1829,7 +1854,13 @@
                                  it gets its own glyph, and the elk the park was created to
                                  protect graze under it. The firs move inland where they
                                  belong. -->
-                            <use href="#ic-rainforest" transform="translate(80, 558) scale(0.92)"/>
+                            <use href="#ic-rainforest" transform="translate(76, 556) scale(0.9)"/>
+                            <use href="#ic-rainforest" transform="translate(38, 486) scale(0.62)"/>
+                            <use href="#ic-rainforest" transform="translate(44, 646) scale(0.7)"/>
+                            <use href="#ic-pine" transform="translate(34, 592) scale(0.85)"/>
+                            <use href="#ic-pine" transform="translate(30, 690) scale(0.75)"/>
+                            <use href="#ic-deer" transform="translate(70, 620) scale(0.85)"/>
+                            <use href="#ic-salmon" transform="translate(52, 518) scale(0.7) rotate(-14)"/>
                             <text class="rt-sub" x="126" y="596" text-anchor="end">Hoh Rain Forest</text>
                             <use href="#ic-elk" transform="translate(148, 584) scale(0.95)"/>
                             <use href="#ic-mtns" transform="translate(120, 484) scale(1.25)"/>
@@ -1845,7 +1876,6 @@
                             <path d="M 116 474 C 112 452, 110 428, 110 408" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
                             <text class="rt-flavor" x="141" y="440" text-anchor="middle" transform="rotate(-80 141 440)" style="font-size:8.5px">Elwha R.</text>
                             <path d="M 108 496 C 84 508, 56 518, 30 524" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
-                            <text class="rt-flavor" x="86" y="526" text-anchor="middle" transform="rotate(-12 86 526)" style="font-size:8.5px">Hoh R.</text>
                             <path d="M 122 524 C 116 552, 110 578, 106 600" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
                             <path d="M 208 556 C 250 566, 296 580, 336 596" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
                             <text class="rt-flavor" x="256" y="562" text-anchor="middle" transform="rotate(14 256 562)" style="font-size:8.5px">Dosewallips R.</text>
@@ -1894,34 +1924,25 @@
                                 <circle class="rt-hit" r="16"/>
                             </g>
                             <text class="rt-label" x="368" y="856" text-anchor="middle">Olympia</text>
-                            <!-- the Nisqually delta, between the capital and Tacoma -->
-                            <use href="#ic-heron" transform="translate(466, 852) scale(1.15)"/>
-                            <text class="rt-sub" x="508" y="882" text-anchor="middle">Nisqually Delta</text>
                             <text class="rt-label" x="560" y="856" text-anchor="start">Gig Harbor</text>
                             <text class="rt-label" x="470" y="660" text-anchor="middle">Bremerton</text>
                             <text class="rt-label" x="336" y="716" text-anchor="middle">Shelton</text>
 
-                            <!-- Grays Harbor and the Chehalis. Measured against the west-side
-                                 anchors this chart is drawn to, the left edge falls at about
-                                 lon -124.0 and the Pacific shore at -124.4, so the ocean is
-                                 30 km off the sheet: correct. The harbour is not. Aberdeen
-                                 plots at x 127, Westport at x 40, so the estuary reaches into
-                                 the bottom-left corner, which was drawn as unbroken land. The
-                                 river that fills it is the second longest in the state and ran
-                                 clean off the chart. -->
-                            <path class="rt-coast-glow" d="M 20 398 C 32 424, 38 450, 36 478 C 34 506, 42 532, 46 560 C 50 590, 44 620, 42 650 C 40 680, 48 710, 50 740 C 52 772, 48 800, 48 828 C 64 840, 86 854, 108 866 C 128 876, 146 886, 156 895"/>
-                            <path d="M 20 398 C 32 424, 38 450, 36 478 C 34 506, 42 532, 46 560 C 50 590, 44 620, 42 650 C 40 680, 48 710, 50 740 C 52 772, 48 800, 48 828 C 64 840, 86 854, 108 866 C 128 876, 146 886, 156 895 L 20 900 Z"
+                            <!-- Grays Harbor, in the bottom-left corner only. The ocean itself
+                                 does not belong on this sheet: fitting the chart's own west
+                                 anchors, Victoria through Olympia, the left edge falls at about
+                                 lon -124.0 and the Pacific shore at -124.4, so the coast is 30
+                                 km past the frame at every latitude the chart covers. The
+                                 harbour is a different case. Aberdeen plots at x 127 and
+                                 Westport at x 40, both inside, so the estuary and the river
+                                 that fills it, the second longest in the state, do belong. -->
+                            <path class="rt-coast-glow" d="M 20 848 C 48 858, 76 868, 100 877 C 122 885, 142 891, 154 896"/>
+                            <path d="M 20 848 C 48 858, 76 868, 100 877 C 122 885, 142 891, 154 896 L 20 900 Z"
                                   fill="#eef2ea" stroke="#6f7e4a" stroke-width="1" stroke-linejoin="round"/>
-                            <path class="rt-water-deco" d="M 26 520 q 5 -4 10 0 q 5 4 10 0"/>
-                            <path class="rt-water-deco" d="M 24 700 q 5 -4 10 0 q 5 4 10 0"/>
-                            <text class="rt-flavor" x="35" y="600" text-anchor="middle" transform="rotate(-90 35 600)">· Pacific Ocean ·</text>
-                            <path d="M 90 616 C 74 622, 60 628, 48 634" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
-                            
-                            <text class="rt-flavor" x="100" y="884" text-anchor="middle" transform="rotate(-16 100 884)">Grays Harbor</text>
-                            <text class="rt-label" x="170" y="860" text-anchor="middle">Aberdeen</text>
-                            <path d="M 152 892 C 196 886, 238 876, 272 866 C 290 860, 302 858, 312 860" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
-                            <use href="#ic-salmon" transform="translate(266, 880) scale(0.9) rotate(-14)"/>
-                            <text class="rt-flavor" x="216" y="884" text-anchor="middle" transform="rotate(-13 216 884)" style="font-size:8.5px">Chehalis R.</text>
+                            <text class="rt-flavor" x="86" y="886" text-anchor="middle" transform="rotate(-19 86 886)" style="font-size:9px">Grays Harbor</text>
+                            <text class="rt-label" x="176" y="874" text-anchor="middle">Aberdeen</text>
+                            <path d="M 154 894 C 196 888, 238 878, 272 868 C 290 862, 302 860, 312 862" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
+                            <use href="#ic-salmon" transform="translate(258, 878) scale(0.85) rotate(-14)"/>
                             <text class="rt-label" x="852" y="688" text-anchor="start">Renton</text>
                             <text class="rt-label" x="800" y="700" text-anchor="middle">Kent</text>
                             <text class="rt-label" x="846" y="806" text-anchor="middle">Auburn</text>
@@ -2185,7 +2206,7 @@
                             <text class="rt-label" x="664" y="206" text-anchor="middle">Mount Vernon</text>
                             <text class="rt-flavor" x="566" y="60" text-anchor="middle" transform="rotate(-46 566 60)">Bellingham Bay</text>
                             <path d="M 622 30 C 660 44, 698 56, 734 66" fill="none" stroke="#aac4d1" stroke-width="2.6" opacity="0.8" stroke-linecap="round"/>
-                            <text class="rt-flavor" x="686" y="46" text-anchor="middle" transform="rotate(17 686 46)" style="font-size:8.5px">Nooksack R.</text>
+                            <text class="rt-flavor" x="708" y="62" text-anchor="middle" transform="rotate(17 708 62)" style="font-size:8.5px">Nooksack R.</text>
 
                             <!-- Mt. Baker — sentinel of the North Sound -->
                             <g transform="translate(762, 92)">
@@ -2198,12 +2219,12 @@
 
                             <!-- Mt. Shuksan, 18 km east of Baker: no cone, a horn, with the
                                  hanging glacier that puts it on every calendar -->
-                            <g transform="translate(886, 114)">
-                                <path class="rt-doodle" fill="#7d8f5c" d="M -24 18 L -12 -6 L -6 1 L 2 -16 L 12 -2 L 18 -8 L 26 18 Z"/>
-                                <path class="rt-doodle" fill="#f7f1e0" d="M 2 -16 L 8 -7 Q 5 -5 2 -7 Q -1 -4 -3.4 -6.8 Z"/>
-                                <path class="rt-doodle" fill="#f7f1e0" d="M -12 -6 L -8 -0.5 Q -10 1 -12 -0.5 Q -14 1 -15.6 -0.6 Z"/>
+                            <g class="rt-poi" data-name="Mt. Shuksan, 9,131 ft" transform="translate(886, 118)">
+                                <path class="rt-doodle" stroke-width="1.3" fill="#7d8f5c" d="M -26 18 C -20 8, -15 -2, -11 -8 C -8.6 -11.4, -6.4 -10.6, -4.6 -6 C -3 -2.4, -1.4 0.6, 0 3 C 1.4 -1, 2.6 -8, 5 -14 C 7 -18.6, 10 -18.6, 12 -14 C 15 -7, 19 4, 24 12 C 25.6 14.6, 26.6 16.6, 27 18 Z"/>
+                                <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M 5 -14 C 6.6 -17.4, 9.6 -17.4, 11 -13.4 C 12 -11, 13 -8.6, 13.6 -7 C 11 -5.4, 8.6 -7.4, 6 -6 C 5 -8.6, 4 -11, 5 -14 Z"/>
+                                <path class="rt-doodle" stroke-width="0.9" fill="#f7f1e0" d="M -11 -8 C -9.4 -11, -7 -11, -5.6 -7.4 C -4.6 -5.4, -4 -3.6, -3.4 -2.6 C -5.6 -1, -7.4 -3, -9.4 -1.6 C -10.4 -3.6, -11 -5.6, -11 -8 Z"/>
+                                <circle class="rt-hit" r="24"/>
                             </g>
-                            <text class="rt-sub" x="886" y="146" text-anchor="middle">Mt. Shuksan · 9,131 ft</text>
 
                             <!-- Lake Sammamish: 13 km by 2.4 km, 5 km east of Lake
                                  Washington, drawn to the same scale as it. The Sammamish
@@ -2240,8 +2261,10 @@
                                 <path class="rt-doodle" fill="none" stroke-width="1" d="M -5 -21 L -12 22 M 7 -21 L 14 22"/>
                             </g>
                             <text class="rt-sub" x="1090" y="352" text-anchor="end">Glacier Peak · 10,541 ft</text>
-                            <use href="#ic-mtns" transform="translate(930, 360) scale(0.85)"/>
-                            <text class="rt-sub" x="930" y="384" text-anchor="middle">Mt. Pilchuck</text>
+                            <g class="rt-poi" data-name="Mt. Pilchuck, 5,341 ft" transform="translate(930, 360)">
+                                <use href="#ic-mtns" transform="scale(0.85)"/>
+                                <circle class="rt-hit" r="18"/>
+                            </g>
                             <use href="#ic-pass" transform="translate(1112, 458)"/>
                             <use href="#ic-massif" transform="translate(1120, 600) scale(1.1)"/>
                             <use href="#ic-pass" transform="translate(1112, 736)"/>
@@ -2256,7 +2279,6 @@
                                 <use href="#ic-falls"/>
                                 <circle class="rt-hit" r="14"/>
                             </g>
-                            <text class="rt-sub" x="1046" y="414" text-anchor="middle">Wallace Falls</text>
 
                             <!-- the Snoqualmie, running north out of the falls, and the
                                  wilderness that fills the crest between the two passes -->
@@ -2265,7 +2287,6 @@
                             <use href="#ic-pine" transform="translate(1036, 566) scale(1.0)"/>
                             <use href="#ic-pine" transform="translate(1062, 552) scale(0.85)"/>
                             <use href="#ic-pine" transform="translate(1076, 578) scale(0.9)"/>
-                            <text class="rt-sub" x="1090" y="646" text-anchor="end">Alpine Lakes Wilderness</text>
 
                             <!-- Snoqualmie Falls, 16.6 km east of Lake Sammamish -->
                             <g class="rt-poi" data-name="Snoqualmie Falls" transform="translate(1044, 640)">
@@ -2277,14 +2298,15 @@
                             <!-- Issaquah at the foot of the lake, the Alps behind it, and the
                                  watershed that Seattle drinks -->
                             <text class="rt-label" x="932" y="664" text-anchor="start">Issaquah</text>
-                            <use href="#ic-mtns" transform="translate(984 694) scale(0.8)"/>
-                            <text class="rt-sub" x="984" y="716" text-anchor="middle">Tiger Mtn.</text>
+                            <g class="rt-poi" data-name="Tiger Mountain, above Issaquah" transform="translate(984, 694)">
+                                <use href="#ic-mtns" transform="scale(0.8)"/>
+                                <circle class="rt-hit" r="17"/>
+                            </g>
                             <g class="rt-poi" data-name="Rattlesnake Ledge, above Rattlesnake Lake" transform="translate(1030, 710)">
                                 <use href="#ic-bluff" transform="scale(0.9)"/>
                                 <circle class="rt-hit" r="15"/>
                             </g>
                             <text class="rt-sub" x="1070" y="736" text-anchor="end">Rattlesnake Ledge</text>
-                            <text class="rt-sub" x="980" y="812" text-anchor="middle">Cedar River Watershed</text>
                             <use href="#ic-pine" transform="translate(944, 764) scale(0.95)"/>
                             <use href="#ic-pine" transform="translate(1000, 858) scale(0.85)"/>
                             <use href="#ic-pine" transform="translate(1090, 796) scale(0.9)"/>
@@ -2309,7 +2331,7 @@
                             <text class="rt-label big" x="46" y="38" text-anchor="start" style="font-size:16px; letter-spacing:0.6px;">SALISH SEA ROUTES</text>
                             <text class="rt-flavor" x="110" y="382" text-anchor="middle" transform="rotate(-6 110 382)">· Strait of Juan de Fuca ·</text>
 
-                            <g transform="translate(58, 726)">
+                            <g transform="translate(34, 714)">
                                 <rect class="rt-quest-card" x="0" y="0" width="248" height="118" rx="10"/>
                                 <text class="rt-quest-title" x="14" y="20">Legend</text>
                             <path class="rt-ferry-line" marker-end="url(#rt-track-arrow)" d="M 14 34 h 30"/>
@@ -2323,6 +2345,7 @@
                                 <path class="rt-border" d="M 14 106 h 34"/>
                                 <text class="rt-quest-item" x="56" y="110">International boundary</text>
                             </g>
+                        </g>
                         </svg>
                     </div>
                 </div>
@@ -2394,7 +2417,20 @@
                                     <path d="M 2.2 -4.8 L 7 -2.6 M 1.2 -3.6 L -3.6 -5.8"/>
                                     <path d="M -1 1 L 3.6 4 L 5 8.5 M -1 1 C -3 3.6, -5.8 5.2, -8.6 5.6"/>
                                 </g>
+                            
+                                <!-- The hand-drawn land runs well past the viewBox on
+                                     purpose, so the coast never shows a cut end. An SVG
+                                     clips at its viewport, not at its viewBox, so on any
+                                     card whose box is not exactly the viewBox ratio the
+                                     letterbox filled up with that overhang: a slab of
+                                     land outside the frame on the left and the right,
+                                     which is what a windowed browser was showing.
+                                     Panel 1 already clips for the same reason. -->
+                                <clipPath id="rc-frame-clip">
+                                    <rect x="0" y="0" width="900" height="700"/>
+                                </clipPath>
                             </defs>
+                            <g clip-path="url(#rc-frame-clip)">
 
                             <!-- chart grid -->
                             <g class="rt-grid" opacity="0.7">
@@ -2624,6 +2660,7 @@
                                 <g transform="translate(22, 202)"><circle class="rt-stop" r="6.5"/><text class="rc-chip-num" y="3.2">10</text></g>
                                 <text class="rt-quest-item" x="36" y="206">May 3 ’26 · Kirkland Half · 5K</text>
                             </g>
+                        </g>
                         </svg>
                     </div>
                 </div>
