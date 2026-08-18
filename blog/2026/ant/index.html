@@ -176,6 +176,79 @@
      .ant-gh .lbl { font-size: 0.62em; color: #8b949e; white-space: nowrap; }
      @media (max-width: 575px) { .ant-gh .lbl { transform: rotate(-50deg); margin-top: 4px; } .ant-gh .gh-grid { gap: 3px; } }
 
+     /* ── channel-mix panel: where Anthropic's ARR arrives (2Q26) ──
+        Same flagship grammar as the rest of the post: one accent, hairline
+        rules, left bars. Built from the disclosed figures rather than
+        reproducing SemiAnalysis' own chart.
+        NB: width is the 680px prose measure, not a wider one. shell.css caps
+        `.post-content > .lang-* > figure` at 680px and outranks a bare class
+        here, so declaring anything wider would be a lie in the stylesheet.
+        It also reads better: every hairline lines up with the body text. */
+     .ant-mix { max-width: var(--fx-prose); margin: 36px auto 26px; padding: 0; }
+     .ant-mix .mx-kicker { font: 700 .72rem/1.4 var(--fx-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-accent); }
+     .ant-mix .mx-title { font-family: var(--fx-serif); font-weight: 700; font-size: 1.14rem; line-height: 1.45; margin: 9px 0 4px; }
+     .ant-mix .mx-panel { padding: 18px 0 4px; border-top: 1px solid var(--fx-hair); }
+     .ant-mix .mx-panel.first { border-top: 1px solid var(--global-text-color, #1a1a1a); }
+     .ant-mix .mx-lbl { font: 700 .68rem/1.4 var(--fx-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--fx-mute); margin-bottom: 14px; }
+
+     /* panel 1: single 100% stacked bar, indirect vs direct */
+     .ant-mix .mx-stack { display: flex; height: 48px; border-radius: 6px; overflow: hidden; }
+     .ant-mix .mx-seg { display: flex; align-items: center; padding: 0 13px; font: 700 .84rem/1.2 var(--fx-sans); white-space: nowrap; }
+     .ant-mix .mx-ind { flex: 0 0 41%; background: var(--fx-accent); color: #fff; }
+     .ant-mix .mx-dir { flex: 1 1 59%; background: var(--fx-soft); color: var(--fx-mute); box-shadow: inset 0 0 0 1px var(--fx-hair); }
+     .ant-mix .mx-key { list-style: none; margin: 14px 0 0; padding: 0; }
+     .ant-mix .mx-key li { position: relative; padding-left: 18px; margin-bottom: 7px; font-size: .875rem; line-height: 1.6; color: var(--fx-mute); }
+     .ant-mix .mx-key li::before { content: ""; position: absolute; left: 0; top: .5em; width: 9px; height: 9px; border-radius: 2px; background: var(--fx-accent); }
+     .ant-mix .mx-key li.hollow::before { background: var(--fx-soft); box-shadow: inset 0 0 0 1px var(--fx-rule); }
+     .ant-mix .mx-key b { color: var(--global-text-color, #1a1a1a); font-weight: 600; }
+
+     .ant-mix .mx-note { font-size: .84rem; line-height: 1.65; color: var(--fx-mute); margin: 14px 0 0; }
+
+     /* panel 2: SemiAnalysis' Bedrock revenue vs Anthropic-API-via-Bedrock
+        chart, redrawn natively so it themes with the page. Left axis $M per
+        quarter, right axis %; 2,000 and 10% share a gridline, so one set of
+        rules serves both axes. Last two quarters are their forecast. */
+     .ant-mix .mx-chart { width: 100%; height: auto; display: block; margin-bottom: 4px; }
+     .ant-mix .mx-grid { stroke: var(--fx-hair); stroke-width: 1; }
+     .ant-mix .mx-base { stroke: var(--fx-rule); stroke-width: 1; }
+     .ant-mix .mx-bar { fill: var(--fx-accent); }
+     .ant-mix .mx-bar.est { fill: var(--fx-soft); stroke: var(--fx-accent); stroke-width: 1; }
+     .ant-mix .mx-line { fill: none; stroke: var(--global-text-color, #1a1a1a); stroke-width: 2.4; stroke-linejoin: round; }
+     .ant-mix .mx-line.est { stroke-dasharray: 5 4; stroke-width: 2; }
+     .ant-mix .mx-dot { fill: var(--global-text-color, #1a1a1a); }
+     .ant-mix .mx-dot.est { fill: var(--global-bg-color, #fff); stroke: var(--global-text-color, #1a1a1a); stroke-width: 1.6; }
+     .ant-mix .mx-tick { fill: var(--fx-mute); font: 500 9px var(--fx-sans); }
+     .ant-mix .mx-qtr { fill: var(--fx-mute); font: 600 9.5px var(--fx-sans); }
+     .ant-mix .mx-axname { fill: var(--fx-mute); font: 700 8.5px var(--fx-sans); letter-spacing: .08em; text-transform: uppercase; }
+     .ant-mix .mx-call { fill: var(--global-text-color, #1a1a1a); font: 700 11px var(--fx-sans); }
+     .ant-mix .mx-split { stroke: var(--fx-rule); stroke-width: 1; stroke-dasharray: 3 3; }
+     .ant-mix .mx-splitlbl { fill: var(--fx-mute); font: 600 8.5px var(--fx-sans); letter-spacing: .06em; text-transform: uppercase; }
+     .ant-mix .mx-swatch { display: inline-block; width: 11px; height: 11px; border-radius: 2px; background: var(--fx-accent); margin-right: 6px; vertical-align: -1px; }
+     .ant-mix .mx-swatch.line { width: 15px; height: 0; border-radius: 0; background: none; border-top: 2.4px solid var(--global-text-color, #1a1a1a); vertical-align: 3px; }
+     .ant-mix .mx-legend { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 10px 0 0; padding: 0; list-style: none; }
+     .ant-mix .mx-legend li { font-size: .8rem; line-height: 1.5; color: var(--fx-mute); }
+     .ant-mix .mx-pan { display: none; font: 600 .7rem/1.4 var(--fx-sans); color: var(--fx-mute); margin-bottom: 7px; }
+
+     /* panel 3: how one Bedrock dollar splits */
+     .ant-mix .mx-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+     .ant-mix .mx-step { padding-left: 13px; border-left: 2px solid var(--fx-accent); font-size: .875rem; line-height: 1.65; }
+     .ant-mix .mx-step .who { display: block; font: 700 .68rem/1.4 var(--fx-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--fx-accent); margin-bottom: 4px; }
+     .ant-mix figcaption { font-family: var(--fx-serif); font-style: italic; font-size: .85rem; line-height: 1.7; color: var(--fx-mute); margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--fx-hair); }
+     @media (max-width: 640px) {
+       .ant-mix .mx-flow { grid-template-columns: 1fr; gap: 14px; }
+       .ant-mix .mx-seg { padding: 0 9px; font-size: .74rem; }
+       /* At 340px the 680-unit chart scales to ~0.5, which puts the axis
+          labels near 4.7px: present but unreadable. Pan it instead, and
+          scale the type back up so it survives the reduction. */
+       .ant-mix .mx-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+       .ant-mix .mx-pan { display: block; }
+       .ant-mix .mx-chart { min-width: 580px; }
+       .ant-mix .mx-tick { font-size: 11.5px; }
+       .ant-mix .mx-qtr { font-size: 12px; }
+       .ant-mix .mx-axname { font-size: 10.5px; }
+       .ant-mix .mx-splitlbl { font-size: 10.5px; }
+       .ant-mix .mx-call { font-size: 13px; }
+     }
 
      /* ---------- reading aids ---------- */
      #fxbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--fx-accent); z-index: 2001; }
@@ -206,7 +279,7 @@
          <div class="post">
             <header class="post-header">
                <h1 class="post-title"><span class="lang-en">My Story with Anthropic</span><span class="lang-zh" hidden>我与 Anthropic 的故事</span></h1>
-               <p class="post-meta"><span class="lang-en"> Created in June 2026<span class="post-readstats"> · 1,824 words · 10 min read</span> </span><span class="lang-zh" hidden> 创建于 2026 年 6 月<span class="post-readstats"> · 约 2,936 字 · 9 分钟阅读</span> </span></p>
+               <p class="post-meta"><span class="lang-en"> Created in June 2026<span class="post-readstats"> · 2,359 words · 12 min read</span> </span><span class="lang-zh" hidden> 创建于 2026 年 6 月<span class="post-readstats"> · 约 3,819 字 · 11 分钟阅读</span> </span></p>
                <p class="post-tags"> <a href="/blog/archive/2026/"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/anthropic"> <i class="fa-solid fa-hashtag fa-sm"></i> anthropic</a>   <a href="/blog/tag/claude"> <i class="fa-solid fa-hashtag fa-sm"></i> claude</a>   <a href="/blog/tag/bedrock"> <i class="fa-solid fa-hashtag fa-sm"></i> bedrock</a>   ·   <a href="/blog/category/corporate"> <i class="fa-solid fa-tag fa-sm"></i> corporate</a> </p>
             </header>
             <div class="post-views" style="margin:14px 0 18px 0;">
@@ -412,6 +485,115 @@
 
                <p>
                   By 2026 the blank looks were gone. Regular users worldwide — including people in China — had become familiar with Claude and were learning, on their own, how to use it well. The thing a handful of us had built behind a badge-locked door had quietly become part of everyday life.
+               </p>
+
+               <p>
+                  There is one number from this year I find hard to look at without feeling something. In <strong>2Q26</strong>, SemiAnalysis put more than <strong>40% of Anthropic's ARR</strong> through <em>indirect</em> channels: Amazon Bedrock, Microsoft Foundry, and Gemini Agent Enterprise, with Bedrock the largest of the three. Their own chart makes the second half of that plain: Bedrock grew from roughly <strong>$150M in a quarter</strong> in 1Q25 to a forecast <strong>$9.3B</strong> in 4Q26, and about 40% of Anthropic's API revenue now arrives through it. The serverless endpoint a handful of us stood up behind a locked door, the one I had to explain at CVPR in 2024, is now one of the main doors that revenue walks through.
+               </p>
+
+               <figure class="ant-mix">
+                  <div class="mx-kicker">2Q26 &nbsp;·&nbsp; where the revenue arrives</div>
+                  <p class="mx-title">Four in every ten of Anthropic's ARR dollars now arrive through someone else's console.</p>
+
+                  <div class="mx-panel first">
+                     <div class="mx-lbl">Anthropic ARR by channel, 2Q26</div>
+                     <div class="mx-stack" role="img" aria-label="Anthropic ARR by channel in the second quarter of 2026: more than 40 percent indirect, roughly 60 percent direct">
+                        <div class="mx-seg mx-ind">Indirect 40%+</div>
+                        <div class="mx-seg mx-dir">Direct ~60%</div>
+                     </div>
+                     <ul class="mx-key">
+                        <li><b>Indirect:</b> Amazon Bedrock, Microsoft Foundry, Gemini Agent Enterprise. The customer pays a cloud bill, and Anthropic is the seller of record.</li>
+                        <li class="hollow"><b>Direct:</b> Anthropic's own API, the Claude apps and subscriptions, and enterprise contracts signed directly.</li>
+                     </ul>
+                  </div>
+
+                  <div class="mx-panel">
+                     <div class="mx-lbl">Bedrock revenue, and how much of Anthropic's API runs through it</div>
+                     <span class="mx-pan">swipe to pan the chart &rarr;</span>
+                     <div class="mx-scroll">
+                        <svg class="mx-chart" viewBox="0 0 680 300" role="img" aria-label="Amazon Bedrock quarterly revenue rises from about 150 million dollars in 1Q25 to a forecast 9.3 billion in 4Q26, while the share of Anthropic's API revenue flowing through Bedrock rises from 18 percent to about 45 percent, crossing 40 percent in 1Q26 and holding there in 2Q26">
+                           <line class="mx-grid" x1="46" y1="26.0" x2="640" y2="26.0"/>
+                           <line class="mx-grid" x1="46" y1="71.6" x2="640" y2="71.6"/>
+                           <line class="mx-grid" x1="46" y1="117.2" x2="640" y2="117.2"/>
+                           <line class="mx-grid" x1="46" y1="162.8" x2="640" y2="162.8"/>
+                           <line class="mx-grid" x1="46" y1="208.4" x2="640" y2="208.4"/>
+                           <line class="mx-base" x1="46" y1="254.0" x2="640" y2="254.0"/>
+
+                           <text class="mx-tick" x="40" y="29.0" text-anchor="end">10,000</text>
+                           <text class="mx-tick" x="40" y="74.6" text-anchor="end">8,000</text>
+                           <text class="mx-tick" x="40" y="120.2" text-anchor="end">6,000</text>
+                           <text class="mx-tick" x="40" y="165.8" text-anchor="end">4,000</text>
+                           <text class="mx-tick" x="40" y="211.4" text-anchor="end">2,000</text>
+                           <text class="mx-tick" x="40" y="257.0" text-anchor="end">0</text>
+                           <text class="mx-axname" x="46" y="14" text-anchor="start">$M / quarter</text>
+
+                           <text class="mx-tick" x="646" y="29.0" text-anchor="start">50%</text>
+                           <text class="mx-tick" x="646" y="74.6" text-anchor="start">40%</text>
+                           <text class="mx-tick" x="646" y="120.2" text-anchor="start">30%</text>
+                           <text class="mx-tick" x="646" y="165.8" text-anchor="start">20%</text>
+                           <text class="mx-tick" x="646" y="211.4" text-anchor="start">10%</text>
+                           <text class="mx-tick" x="646" y="257.0" text-anchor="start">0%</text>
+                           <text class="mx-axname" x="640" y="14" text-anchor="end">share of API</text>
+
+                           <line class="mx-split" x1="491.5" y1="26" x2="491.5" y2="254"/>
+                           <text class="mx-splitlbl" x="496" y="36" text-anchor="start">forecast</text>
+
+                           <rect class="mx-bar" x="66.1" y="250.6" width="34" height="3.4" rx="1.5"/>
+                           <rect class="mx-bar" x="140.4" y="249.0" width="34" height="5.0" rx="1.5"/>
+                           <rect class="mx-bar" x="214.6" y="246.9" width="34" height="7.1" rx="1.5"/>
+                           <rect class="mx-bar" x="288.9" y="242.4" width="34" height="11.6" rx="1.5"/>
+                           <rect class="mx-bar" x="363.1" y="222.8" width="34" height="31.2" rx="1.5"/>
+                           <rect class="mx-bar" x="437.4" y="181.0" width="34" height="73.0" rx="1.5"/>
+                           <rect class="mx-bar est" x="511.6" y="119.5" width="34" height="134.5" rx="1.5"/>
+                           <rect class="mx-bar est" x="585.9" y="42.0" width="34" height="212.0" rx="1.5"/>
+
+                           <polyline class="mx-line" points="83.1,171.9 157.4,162.8 231.6,153.7 305.9,94.4 380.1,71.6 454.4,71.6"/>
+                           <polyline class="mx-line est" points="454.4,71.6 528.6,62.5 602.9,48.8"/>
+                           <circle class="mx-dot" cx="83.1" cy="171.9" r="2.6"/>
+                           <circle class="mx-dot" cx="157.4" cy="162.8" r="2.6"/>
+                           <circle class="mx-dot" cx="231.6" cy="153.7" r="2.6"/>
+                           <circle class="mx-dot" cx="305.9" cy="94.4" r="2.6"/>
+                           <circle class="mx-dot" cx="380.1" cy="71.6" r="2.6"/>
+                           <circle class="mx-dot" cx="454.4" cy="71.6" r="2.6"/>
+                           <circle class="mx-dot est" cx="528.6" cy="62.5" r="2.6"/>
+                           <circle class="mx-dot est" cx="602.9" cy="48.8" r="2.6"/>
+
+                           <text class="mx-call" x="454.4" y="60" text-anchor="middle">40%</text>
+                           <text class="mx-tick" x="83.1" y="163" text-anchor="middle">18%</text>
+
+                           <text class="mx-qtr" x="83.1" y="269" text-anchor="middle">1Q25</text>
+                           <text class="mx-qtr" x="157.4" y="269" text-anchor="middle">2Q25</text>
+                           <text class="mx-qtr" x="231.6" y="269" text-anchor="middle">3Q25</text>
+                           <text class="mx-qtr" x="305.9" y="269" text-anchor="middle">4Q25</text>
+                           <text class="mx-qtr" x="380.1" y="269" text-anchor="middle">1Q26</text>
+                           <text class="mx-qtr" x="454.4" y="269" text-anchor="middle">2Q26</text>
+                           <text class="mx-qtr" x="528.6" y="269" text-anchor="middle">3Q26</text>
+                           <text class="mx-qtr" x="602.9" y="269" text-anchor="middle">4Q26</text>
+                        </svg>
+                     </div>
+                     <ul class="mx-legend">
+                        <li><span class="mx-swatch"></span>Amazon Bedrock revenue, $M per quarter</li>
+                        <li><span class="mx-swatch line"></span>Share of Anthropic's API revenue via Bedrock</li>
+                     </ul>
+                     <p class="mx-note">The 1Q26 bar, roughly <strong>$1.37B</strong> in a quarter, is the <strong>$5.5B</strong> run rate quoted above. Note that this 40% and the 40% in the panel above are different measurements that happen to land on the same number: this one is Bedrock's share of Anthropic's <em>API</em> revenue, the one above is all indirect channels' share of <em>total</em> ARR.</p>
+                  </div>
+
+                  <div class="mx-panel">
+                     <div class="mx-lbl">How one Bedrock dollar splits</div>
+                     <div class="mx-flow">
+                        <div class="mx-step"><span class="who">Customer</span>Pays a single AWS bill, inside an account whose security review and contract are already done.</div>
+                        <div class="mx-step"><span class="who">Anthropic</span>Is the seller of record, so it books the full token spend as gross ARR.</div>
+                        <div class="mx-step"><span class="who">AWS</span>Keeps an IaaS fee plus a revenue share. Anthropic books that in sales and marketing: it trims lab EBIT, but costs far less than the enterprise sales force it replaces.</div>
+                     </div>
+                  </div>
+
+                  <figcaption>
+                     Both panels after SemiAnalysis' <a href="https://x.com/SemiAnalysis_/status/2089714350164492652" target="_blank" rel="noopener">August 2026 Tokenomics thread</a>, whose <a href="https://x.com/SemiAnalysis_/status/2089714351989026916" target="_blank" rel="noopener">second post</a> carries the Bedrock revenue chart redrawn here. Run rate, deal mechanics and the 80&ndash;90%+ Anthropic-model share come from <a href="https://newsletter.semianalysis.com/p/anthropic-growth-and-bedrock-mix" target="_blank" rel="noopener">Anthropic Growth and Bedrock Mix Drive AWS Margins Higher</a> (May 2026). Redrawn from their figures rather than reproduced, so it reads in both themes; 3Q26 and 4Q26 are their forecast.
+                  </figcaption>
+               </figure>
+
+               <p>
+                  I want to be careful about what that chart does and does not say. It is not my number. It is Anthropic's revenue, and the channel carries vastly more than the code any one engineer wrote into it. But the shape of it is the thing: a frontier lab now reaches a large share of its customers through a console someone else operates, and being the seller of record on that console was a structure Anthropic did first, with AWS. In 2024 we were arguing about token accounting and cold-start latency on a service most people had never heard of. It turns out we were building a distribution channel.
                </p>
 
                <p>
@@ -650,6 +832,115 @@
 
                <p>
                   到了 2026 年，茫然的表情消失了。全球普通用户 —— 包括中国的人们 —— 都已熟悉 Claude，并在自学如何用好它。我们少数几个人在一扇刷卡才能进的门后造出的东西，已悄然成为日常生活的一部分。
+               </p>
+
+               <p>
+                  今年有一个数字，我很难毫无触动地看着它。<strong>2026 年二季度</strong>，SemiAnalysis 估算 Anthropic 有超过 <strong>40% 的 ARR</strong> 来自<em>间接</em>渠道：Amazon Bedrock、Microsoft Foundry 与 Gemini Agent Enterprise，其中 Bedrock 规模最大。他们自己那张图把后半句说得很直白：Bedrock 的季度营收从 2025 年一季度的约 <strong>1.5 亿美元</strong>，长到 2026 年四季度预测的 <strong>93 亿美元</strong>，而 Anthropic 的 API 收入如今约有 40% 是经由它进来的。我们少数几个人在一扇上锁的门后立起来的那个无服务计算端点，那个我在 2024 年 CVPR 上还得逐句解释的东西，如今成了营收走进来的主要几扇门之一。
+               </p>
+
+               <figure class="ant-mix">
+                  <div class="mx-kicker">2026 年二季度 &nbsp;·&nbsp; 营收从哪里进来</div>
+                  <p class="mx-title">如今 Anthropic 每十美元 ARR 里，有四美元是从别人的控制台进来的。</p>
+
+                  <div class="mx-panel first">
+                     <div class="mx-lbl">Anthropic ARR 的渠道构成（2026 年二季度）</div>
+                     <div class="mx-stack" role="img" aria-label="2026 年二季度 Anthropic ARR 的渠道构成：间接渠道超过 40%，直接渠道约 60%">
+                        <div class="mx-seg mx-ind">间接 40%+</div>
+                        <div class="mx-seg mx-dir">直接 约 60%</div>
+                     </div>
+                     <ul class="mx-key">
+                        <li><b>间接：</b>Amazon Bedrock、Microsoft Foundry、Gemini Agent Enterprise。客户付的是云账单，而 Anthropic 是销售记录方（seller of record）。</li>
+                        <li class="hollow"><b>直接：</b>Anthropic 自家 API、Claude 应用与订阅，以及直接签下的企业合同。</li>
+                     </ul>
+                  </div>
+
+                  <div class="mx-panel">
+                     <div class="mx-lbl">Bedrock 的营收，以及 Anthropic 的 API 有多少经由它</div>
+                     <span class="mx-pan">左右滑动查看完整图表 &rarr;</span>
+                     <div class="mx-scroll">
+                        <svg class="mx-chart" viewBox="0 0 680 300" role="img" aria-label="Amazon Bedrock 的季度营收从 2025 年一季度的约 1.5 亿美元，升至 2026 年四季度预测的 93 亿美元；同期 Anthropic API 收入经由 Bedrock 的比例从 18% 升至约 45%，并在 2026 年一季度越过 40%、二季度维持在 40%">
+                           <line class="mx-grid" x1="46" y1="26.0" x2="640" y2="26.0"/>
+                           <line class="mx-grid" x1="46" y1="71.6" x2="640" y2="71.6"/>
+                           <line class="mx-grid" x1="46" y1="117.2" x2="640" y2="117.2"/>
+                           <line class="mx-grid" x1="46" y1="162.8" x2="640" y2="162.8"/>
+                           <line class="mx-grid" x1="46" y1="208.4" x2="640" y2="208.4"/>
+                           <line class="mx-base" x1="46" y1="254.0" x2="640" y2="254.0"/>
+
+                           <text class="mx-tick" x="40" y="29.0" text-anchor="end">10,000</text>
+                           <text class="mx-tick" x="40" y="74.6" text-anchor="end">8,000</text>
+                           <text class="mx-tick" x="40" y="120.2" text-anchor="end">6,000</text>
+                           <text class="mx-tick" x="40" y="165.8" text-anchor="end">4,000</text>
+                           <text class="mx-tick" x="40" y="211.4" text-anchor="end">2,000</text>
+                           <text class="mx-tick" x="40" y="257.0" text-anchor="end">0</text>
+                           <text class="mx-axname" x="46" y="14" text-anchor="start">百万美元 / 季</text>
+
+                           <text class="mx-tick" x="646" y="29.0" text-anchor="start">50%</text>
+                           <text class="mx-tick" x="646" y="74.6" text-anchor="start">40%</text>
+                           <text class="mx-tick" x="646" y="120.2" text-anchor="start">30%</text>
+                           <text class="mx-tick" x="646" y="165.8" text-anchor="start">20%</text>
+                           <text class="mx-tick" x="646" y="211.4" text-anchor="start">10%</text>
+                           <text class="mx-tick" x="646" y="257.0" text-anchor="start">0%</text>
+                           <text class="mx-axname" x="640" y="14" text-anchor="end">占 API 收入比例</text>
+
+                           <line class="mx-split" x1="491.5" y1="26" x2="491.5" y2="254"/>
+                           <text class="mx-splitlbl" x="496" y="36" text-anchor="start">预测</text>
+
+                           <rect class="mx-bar" x="66.1" y="250.6" width="34" height="3.4" rx="1.5"/>
+                           <rect class="mx-bar" x="140.4" y="249.0" width="34" height="5.0" rx="1.5"/>
+                           <rect class="mx-bar" x="214.6" y="246.9" width="34" height="7.1" rx="1.5"/>
+                           <rect class="mx-bar" x="288.9" y="242.4" width="34" height="11.6" rx="1.5"/>
+                           <rect class="mx-bar" x="363.1" y="222.8" width="34" height="31.2" rx="1.5"/>
+                           <rect class="mx-bar" x="437.4" y="181.0" width="34" height="73.0" rx="1.5"/>
+                           <rect class="mx-bar est" x="511.6" y="119.5" width="34" height="134.5" rx="1.5"/>
+                           <rect class="mx-bar est" x="585.9" y="42.0" width="34" height="212.0" rx="1.5"/>
+
+                           <polyline class="mx-line" points="83.1,171.9 157.4,162.8 231.6,153.7 305.9,94.4 380.1,71.6 454.4,71.6"/>
+                           <polyline class="mx-line est" points="454.4,71.6 528.6,62.5 602.9,48.8"/>
+                           <circle class="mx-dot" cx="83.1" cy="171.9" r="2.6"/>
+                           <circle class="mx-dot" cx="157.4" cy="162.8" r="2.6"/>
+                           <circle class="mx-dot" cx="231.6" cy="153.7" r="2.6"/>
+                           <circle class="mx-dot" cx="305.9" cy="94.4" r="2.6"/>
+                           <circle class="mx-dot" cx="380.1" cy="71.6" r="2.6"/>
+                           <circle class="mx-dot" cx="454.4" cy="71.6" r="2.6"/>
+                           <circle class="mx-dot est" cx="528.6" cy="62.5" r="2.6"/>
+                           <circle class="mx-dot est" cx="602.9" cy="48.8" r="2.6"/>
+
+                           <text class="mx-call" x="454.4" y="60" text-anchor="middle">40%</text>
+                           <text class="mx-tick" x="83.1" y="163" text-anchor="middle">18%</text>
+
+                           <text class="mx-qtr" x="83.1" y="269" text-anchor="middle">2025 Q1</text>
+                           <text class="mx-qtr" x="157.4" y="269" text-anchor="middle">Q2</text>
+                           <text class="mx-qtr" x="231.6" y="269" text-anchor="middle">Q3</text>
+                           <text class="mx-qtr" x="305.9" y="269" text-anchor="middle">Q4</text>
+                           <text class="mx-qtr" x="380.1" y="269" text-anchor="middle">2026 Q1</text>
+                           <text class="mx-qtr" x="454.4" y="269" text-anchor="middle">Q2</text>
+                           <text class="mx-qtr" x="528.6" y="269" text-anchor="middle">Q3</text>
+                           <text class="mx-qtr" x="602.9" y="269" text-anchor="middle">Q4</text>
+                        </svg>
+                     </div>
+                     <ul class="mx-legend">
+                        <li><span class="mx-swatch"></span>Amazon Bedrock 营收（百万美元 / 季）</li>
+                        <li><span class="mx-swatch line"></span>Anthropic API 收入经由 Bedrock 的比例</li>
+                     </ul>
+                     <p class="mx-note">2026 年一季度那根柱子约 <strong>13.7 亿美元</strong>，年化就是上文引用的 <strong>55 亿美元</strong> 营收规模。请注意：这里的 40% 和上一面板的 40% 是两个不同口径，只是恰好落在同一个数字上。这里指 Bedrock 占 Anthropic <em>API</em> 收入的比例，上面指全部间接渠道占<em>总</em> ARR 的比例。</p>
+                  </div>
+
+                  <div class="mx-panel">
+                     <div class="mx-lbl">一美元 Bedrock 收入如何拆分</div>
+                     <div class="mx-flow">
+                        <div class="mx-step"><span class="who">客户</span>只付一张亚马逊云科技的账单，而这个账号的安全审查与合同早已就位。</div>
+                        <div class="mx-step"><span class="who">Anthropic</span>作为销售记录方，把全部 token 消费按总额计入 ARR。</div>
+                        <div class="mx-step"><span class="who">亚马逊云科技</span>收一笔 IaaS 费用，外加一份分成。Anthropic 把这笔成本记在销售与市场费用里：它会压低实验室的 EBIT，但远低于自建一支同等规模企业销售团队的代价。</div>
+                     </div>
+                  </div>
+
+                  <figcaption>
+                     两个面板均依据 SemiAnalysis 的<a href="https://x.com/SemiAnalysis_/status/2089714350164492652" target="_blank" rel="noopener">2026 年 8 月 Tokenomics 系列推文</a>绘制，其中<a href="https://x.com/SemiAnalysis_/status/2089714351989026916" target="_blank" rel="noopener">第二条推文</a>附的正是这里重绘的 Bedrock 营收图。营收规模、分账机制与 80&ndash;90%+ 客户使用 Anthropic 模型的数据来自其 2026 年 5 月的报告<a href="https://newsletter.semianalysis.com/p/anthropic-growth-and-bedrock-mix" target="_blank" rel="noopener">《Anthropic Growth and Bedrock Mix Drive AWS Margins Higher》</a>。此处按其数字重绘而非直接转载，以便深浅两种主题下都清晰；2026 年三、四季度为其预测。
+                  </figcaption>
+               </figure>
+
+               <p>
+                  我想谨慎地说清这张图说了什么、又没说什么。它不是我的数字。那是 Anthropic 的营收，而这条渠道承载的东西，远远多于任何一位工程师写进去的代码。但它的形状本身才是重点：一家前沿实验室，如今有很大一部分客户是通过别人运营的控制台触达的，而在那个控制台上充当销售记录方，是 Anthropic 最先和亚马逊云科技一起做成的结构。2024 年，我们还在为一个多数人没听过的服务争论 token 计数与冷启动延迟。原来我们建的是一条分发渠道。
                </p>
 
                <p>
