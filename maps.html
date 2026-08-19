@@ -643,6 +643,7 @@
            let the height follow the ratio. */
         @media (max-width: 600px) {
             #pnw-full-map-wrap,
+            #np-map-wrap,
             .pnw-route-card {
                 width: 100%;
                 height: auto;
@@ -878,6 +879,122 @@
         .rt-compass { stroke: #8ba3ae; fill: #8ba3ae; }
         .rt-compass text { font-size: 10px; font-weight: 700; fill: #7d95a0; stroke: none; }
 
+        /* ============================================================
+           National parks map (panel 4)
+           Same card treatment as the PNW panel, sized from its own
+           900x700 drawing. The bottom band of the viewBox is left for
+           the park log, so the ratio is taller than the map alone.
+           ============================================================ */
+        #np-map-wrap {
+            flex: 0 1 auto;
+            width: min(100%, calc((min(84vh, 760px) - 62px) * 900 / 700));
+            aspect-ratio: 900 / 700;
+            height: auto;
+            max-height: 100%;
+            border-radius: 16px;
+            background: #eef2ea;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e2e7da;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #np-map {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .np-land {
+            fill: #8d9b63;
+            stroke: #6f7e4a;
+            stroke-width: 0.7px;
+            stroke-linejoin: round;
+        }
+
+        .np-borders {
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 1px;
+            stroke-dasharray: 3 3;
+            stroke-linejoin: round;
+            opacity: 0.75;
+            pointer-events: none;
+        }
+
+        .np-park { cursor: pointer; }
+        .np-park .np-hit { fill: transparent; stroke: none; }
+
+        .np-anchor {
+            fill: #f7f1e0;
+            stroke: #4a3f2c;
+            stroke-width: 1px;
+        }
+
+        .np-tether {
+            fill: none;
+            stroke: #4a3f2c;
+            stroke-width: 0.8px;
+            opacity: 0.55;
+        }
+
+        .np-label {
+            font-size: 9.5px;
+            font-weight: 700;
+            fill: #2f3626;
+            paint-order: stroke;
+            stroke: rgba(238, 242, 234, 0.78);
+            stroke-width: 2.6px;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        .np-year {
+            font-size: 8px;
+            font-weight: 500;
+            font-style: italic;
+            fill: #46503a;
+            paint-order: stroke;
+            stroke: rgba(238, 242, 234, 0.78);
+            stroke-width: 2.6px;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        /* Not yet visited: the light, half-transparent hand the other two
+           charts already use for an unclimbed summit. Pale ink says "not yet"
+           without a second colour key to learn. The name is held back until
+           hover, because 53 labels at once would bury the map. */
+        .np-park.unvisited { opacity: 0.5; }
+
+        .np-park.unvisited .np-dot {
+            fill: #f2f4ec;
+            stroke: #46503a;
+            stroke-width: 0.9px;
+            transition: r 0.15s ease, fill 0.15s ease;
+        }
+
+        .np-park.unvisited:hover { opacity: 0.95; }
+        .np-park.unvisited:hover .np-dot { fill: #ffc24d; r: 5; }
+
+        .np-park.unvisited .np-label {
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .np-park.unvisited:hover .np-label,
+        .np-park.unvisited.pinned .np-label { opacity: 1; }
+
+        .np-park.unvisited.pinned { opacity: 0.95; }
+
+        .np-inset-note {
+            font-size: 8.5px;
+            font-style: italic;
+            fill: #7d95a0;
+        }
+
+        .np-legend-text { font-size: 9.5px; font-weight: 600; fill: #4a5636; }
+
         @media (max-width: 600px) {
             #pnw-section .pnw-section-inner {
                 width: 96%;
@@ -940,8 +1057,8 @@
          <section class="band--tight rise">
             <div class="prose">
                <p>
-                  <span class="lang-en">Drag the globe to spin it — visited countries fill in blue, and every city pin carries a date. Scroll on to the Pacific Northwest panel, then swipe right for the Salish Sea routes and race-routes charts.</span>
-                  <span class="lang-zh" hidden>拖动地球仪即可旋转——到访过的国家填上蓝色，每个城市图钉都带有日期。继续向下滚动进入太平洋西北面板，再向右滑动查看萨利希海航线图与比赛路线图。</span>
+                  <span class="lang-en">Drag the globe to spin it: visited countries fill in blue, and every city pin carries a date. Scroll on to the Pacific Northwest panel, then swipe right for the Salish Sea routes, the race-routes chart and a map of all 63 U.S. national parks.</span>
+                  <span class="lang-zh" hidden>拖动地球仪即可旋转：到访过的国家填上蓝色，每个城市图钉都带有日期。继续向下滚动进入太平洋西北面板，再向右滑动查看萨利希海航线图、比赛路线图，以及全美 63 座国家公园地图。</span>
                </p>
             </div>
          </section>
@@ -2727,6 +2844,87 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Panel 4: U.S. National Parks. Every park in the system, with
+                 the eight visited ones drawn as a doodle and the rest left
+                 pale. Land, borders and markers are drawn by the script at
+                 the foot of the page; only the doodle stamps live here. -->
+            <div class="pnw-panel" aria-label="U.S. National Parks map">
+                <div class="pnw-section-inner">
+                    <h2><span class="dot"></span>U.S. National Parks<span class="pnw-subtitle" id="npCount"></span></h2>
+                    <div id="np-map-wrap">
+                        <svg id="np-map" viewBox="0 0 900 700" preserveAspectRatio="xMidYMid meet"
+                             role="img" aria-label="Map of all U.S. national parks, with the visited ones drawn as doodles">
+                            <defs>
+                                <!-- One doodle per visited park, drawn about the
+                                     origin at roughly ±12 units so the stamp sits
+                                     over its own dot at map scale. -->
+
+                                <!-- Rainier: the snow cone that owns the Seattle skyline -->
+                                <g id="np-rainier">
+                                    <path class="rt-doodle" stroke-width="1.2" fill="#7d8f5c" d="M -11 8 L -3.4 -6.4 Q 0 -11 3.4 -6.4 L 11 8 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M -5.6 -1.6 L -3.4 -6.4 Q 0 -11 3.4 -6.4 L 5.6 -1.6 Q 3.6 -3.4 2 -1.6 Q 0 -3.8 -1.8 -1.6 Q -3.6 -3.4 -5.6 -1.6 Z"/>
+                                </g>
+
+                                <!-- North Cascades: the "American Alps", peak after peak -->
+                                <g id="np-cascades">
+                                    <path class="rt-doodle" stroke-width="1.2" fill="#6f8050" d="M -12 8 L -5 -9 L 0.5 1.5 L 5 -5 L 12 8 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M -8.2 -1.4 L -5 -9 L -1.8 -1.4 Q -3.4 -3 -5 -1.6 Q -6.6 -3 -8.2 -1.4 Z"/>
+                                </g>
+
+                                <!-- Olympic: the mossy Hoh conifer, ferns at its foot -->
+                                <g id="np-rainforest">
+                                    <path class="rt-doodle" stroke-width="1.1" fill="#5c6b3c" d="M 0 -12 L 5.4 -3.6 L 2.8 -3.6 L 7.6 4 L -7.6 4 L -2.8 -3.6 L -5.4 -3.6 Z"/>
+                                    <path class="rt-doodle" stroke-width="1.2" fill="none" d="M 0 4 L 0 9"/>
+                                    <path stroke="#a8bb7a" stroke-width="1" stroke-linecap="round" fill="none" d="M -3.6 -1 q -2 3 -1.6 6 M 3.4 -1 q 2 3 1.4 6"/>
+                                    <path class="rt-doodle" stroke-width="1.1" fill="none" d="M -11 8 q 4 -3.4 7.6 -0.4"/>
+                                </g>
+
+                                <!-- Crater Lake: Mazama's caldera with Wizard Island -->
+                                <g id="np-caldera">
+                                    <path class="rt-doodle" stroke-width="1.2" fill="#7d8f5c" d="M -12 7 L -7 -5 L 7 -5 L 12 7 Z"/>
+                                    <ellipse class="rt-doodle" stroke-width="1" cx="0" cy="-5" rx="8.4" ry="3.2" fill="#4a86ad"/>
+                                    <path class="rt-doodle" stroke-width="0.9" fill="#5c6b3c" d="M -3.6 -5.4 L -2 -9 L -0.4 -5.4 Z"/>
+                                </g>
+
+                                <!-- Glacier: horn peaks and a hanging ice tongue -->
+                                <g id="np-glacier">
+                                    <path class="rt-doodle" stroke-width="1.2" fill="#6f8050" d="M -12 8 L -6 -10 L -0.5 -0.5 L 4.5 -7 L 12 8 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M -9.4 -2 L -6 -10 L -2.6 -2 Q -4.4 -3.6 -6 -2.2 Q -7.6 -3.6 -9.4 -2 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#cfe3ec" d="M 1.6 -3.6 L 4.5 -7 L 7.4 -3.6 L 6 0.6 L 3 0.6 Z"/>
+                                </g>
+
+                                <!-- Yellowstone: Old Faithful, mid-eruption -->
+                                <g id="np-geyser">
+                                    <path class="rt-doodle" stroke-width="1.2" fill="#8a6a4a" d="M -8 8 Q 0 4.6 8 8 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#a9cadb" d="M -2.6 6 C -5 -1 -3.2 -7 -0.6 -12 C 1.6 -6 4 -2 2.8 6 Z"/>
+                                    <circle class="rt-doodle" stroke-width="0.8" cx="-5.4" cy="-5" r="1.5" fill="#a9cadb"/>
+                                    <circle class="rt-doodle" stroke-width="0.8" cx="4.8" cy="-8.4" r="1.2" fill="#a9cadb"/>
+                                </g>
+
+                                <!-- Grand Teton: the three spires straight off the valley floor -->
+                                <g id="np-teton">
+                                    <path class="rt-doodle" stroke-width="1.2" fill="#6f8050" d="M -12 8 L -6.5 -3 L -3 2 L 1.5 -11 L 6 -2.5 L 8 -5.5 L 12 8 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#f7f1e0" d="M -1.4 -4.4 L 1.5 -11 L 4.4 -4.4 Q 3 -6 1.5 -4.6 Q 0 -6 -1.4 -4.4 Z"/>
+                                </g>
+
+                                <!-- Rocky Mountain: a bull elk, the animal you actually
+                                     queue behind on Trail Ridge Road -->
+                                <g id="np-elk">
+                                    <path class="rt-doodle" stroke-width="1.3" fill="none" d="M -2.4 -6 C -5.4 -10.4 -4.4 -14.4 -0.6 -16.4 M -4 -8.6 L -7.6 -9.6 M -4.4 -12 L -8 -13.4 M -2.2 -14.4 L -5 -16.6"/>
+                                    <path class="rt-doodle" stroke-width="1.3" fill="none" d="M 3 -6 C 6 -10.4 5 -14.4 1.2 -16.4 M 4.6 -8.6 L 8.2 -9.6 M 5 -12 L 8.6 -13.4 M 2.8 -14.4 L 5.6 -16.6"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#8a6a4a" d="M -3.6 -4.6 L -8.4 -6.6 L -5 -1.6 Z"/>
+                                    <path class="rt-doodle" stroke-width="1" fill="#8a6a4a" d="M 4.2 -4.6 L 9 -6.6 L 5.6 -1.6 Z"/>
+                                    <path class="rt-doodle" stroke-width="1.1" fill="#8a6a4a" d="M -4.4 -5.6 Q 0.3 -7.4 4.8 -5.6 Q 5.6 0 3.4 4 Q 2 7.4 0.3 10 Q -1.4 7.4 -2.8 4 Q -5.2 0 -4.4 -5.6 Z"/>
+                                    <path class="rt-doodle" stroke-width="0.9" fill="#5a4632" d="M -1.8 6.4 Q 0.3 5.4 2.4 6.4 Q 1.6 9.4 0.3 10.6 Q -1 9.4 -1.8 6.4 Z"/>
+                                    <circle cx="-2.2" cy="-1.8" r="0.75" fill="#f7f1e0"/>
+                                    <circle cx="2.6" cy="-1.8" r="0.75" fill="#f7f1e0"/>
+                                </g>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="pnw-dots" id="pnwDots" role="tablist" aria-label="PNW panels"></div>
@@ -3522,6 +3720,262 @@
                     if (!wasPinned) poi.classList.add('pinned');
                 }, { passive: true });
             });
+        })();
+    </script>
+
+    <!-- ============================================================
+         Panel 4: U.S. National Parks
+         All 63 parks on one Albers map. The eight I have walked into get
+         a doodle, their name and the year; the rest are pale dots that
+         name themselves on hover, so the ink weight alone says which is
+         which. That is the convention the peaks on panels 1 and 3 use.
+         ============================================================ -->
+    <script>
+        (function () {
+            if (typeof d3 === 'undefined' || typeof topojson === 'undefined') return;
+
+            const mapEl = document.getElementById('np-map');
+            if (!mapEl) return;
+
+            const W = 900, H = 700;
+            /* The map is inset from the top so a label or a doodle stamped
+               above a northern park (North Cascades, Glacier) has room
+               inside the frame instead of being clipped by it. */
+            const MAP_BOX = [[14, 26], [886, 518]];  // the map itself
+            const CARD_Y = 530, CARD_H = 150;        // park log below it
+
+            /* Every national park in the system, in alphabetical order.
+               A visited park carries `y` (year), `ic` (doodle) and its
+               placement. gx/gy nudge the doodle off the true dot, since the
+               three Washington parks and the two Wyoming ones sit within a
+               few pixels of each other at this scale; lx/ly/a place the
+               label, with a hairline tether drawn back to the dot. */
+            const PARKS = [
+                { n: 'Acadia',            s: 'ME', lat: 44.35,  lon: -68.21 },
+                { n: 'Arches',            s: 'UT', lat: 38.68,  lon: -109.57 },
+                { n: 'Badlands',          s: 'SD', lat: 43.86,  lon: -102.34 },
+                { n: 'Big Bend',          s: 'TX', lat: 29.25,  lon: -103.25 },
+                { n: 'Biscayne',          s: 'FL', lat: 25.65,  lon: -80.08 },
+                { n: 'Black Canyon of the Gunnison', s: 'CO', lat: 38.57, lon: -107.72 },
+                { n: 'Bryce Canyon',      s: 'UT', lat: 37.57,  lon: -112.18 },
+                { n: 'Canyonlands',       s: 'UT', lat: 38.20,  lon: -109.93 },
+                { n: 'Capitol Reef',      s: 'UT', lat: 38.20,  lon: -111.17 },
+                { n: 'Carlsbad Caverns',  s: 'NM', lat: 32.17,  lon: -104.44 },
+                { n: 'Channel Islands',   s: 'CA', lat: 34.01,  lon: -119.42 },
+                { n: 'Congaree',          s: 'SC', lat: 33.78,  lon: -80.78 },
+                { n: 'Crater Lake',       s: 'OR', lat: 42.94,  lon: -122.11,
+                  y: '2023', ic: 'np-caldera', gx: -15, gy: 2,  lx: -27, ly: 4,  a: 'end' },
+                { n: 'Cuyahoga Valley',   s: 'OH', lat: 41.24,  lon: -81.55 },
+                { n: 'Death Valley',      s: 'CA', lat: 36.50,  lon: -117.08 },
+                { n: 'Denali',            s: 'AK', lat: 63.33,  lon: -150.50 },
+                { n: 'Dry Tortugas',      s: 'FL', lat: 24.63,  lon: -82.87 },
+                { n: 'Everglades',        s: 'FL', lat: 25.32,  lon: -80.93 },
+                { n: 'Gates of the Arctic', s: 'AK', lat: 67.78, lon: -153.30 },
+                { n: 'Gateway Arch',      s: 'MO', lat: 38.63,  lon: -90.19 },
+                { n: 'Glacier',           s: 'MT', lat: 48.80,  lon: -113.99,
+                  y: '2018', ic: 'np-glacier', gx: 2,  gy: -14, lx: 14, ly: -18, a: 'start' },
+                { n: 'Glacier Bay',       s: 'AK', lat: 58.50,  lon: -137.00 },
+                { n: 'Grand Canyon',      s: 'AZ', lat: 36.06,  lon: -112.14 },
+                { n: 'Grand Teton',       s: 'WY', lat: 43.73,  lon: -110.80,
+                  y: '2018', ic: 'np-teton', gx: -14, gy: 10, lx: -26, ly: 14, a: 'end' },
+                { n: 'Great Basin',       s: 'NV', lat: 38.98,  lon: -114.30 },
+                { n: 'Great Sand Dunes',  s: 'CO', lat: 37.73,  lon: -105.51 },
+                { n: 'Great Smoky Mountains', s: 'TN', lat: 35.68, lon: -83.53 },
+                { n: 'Guadalupe Mountains', s: 'TX', lat: 31.92, lon: -104.87 },
+                { n: 'Haleakalā',         s: 'HI', lat: 20.72,  lon: -156.17 },
+                { n: 'Hawaiʻi Volcanoes', s: 'HI', lat: 19.38,  lon: -155.20 },
+                { n: 'Hot Springs',       s: 'AR', lat: 34.52,  lon: -93.05 },
+                { n: 'Indiana Dunes',     s: 'IN', lat: 41.65,  lon: -87.05 },
+                { n: 'Isle Royale',       s: 'MI', lat: 48.10,  lon: -88.55 },
+                { n: 'Joshua Tree',       s: 'CA', lat: 33.79,  lon: -115.90 },
+                { n: 'Katmai',            s: 'AK', lat: 58.50,  lon: -155.00 },
+                { n: 'Kenai Fjords',      s: 'AK', lat: 59.92,  lon: -149.65 },
+                { n: 'Kings Canyon',      s: 'CA', lat: 36.89,  lon: -118.55 },
+                { n: 'Kobuk Valley',      s: 'AK', lat: 67.33,  lon: -159.12 },
+                { n: 'Lake Clark',        s: 'AK', lat: 60.97,  lon: -153.42 },
+                { n: 'Lassen Volcanic',   s: 'CA', lat: 40.49,  lon: -121.51 },
+                { n: 'Mammoth Cave',      s: 'KY', lat: 37.19,  lon: -86.10 },
+                { n: 'Mesa Verde',        s: 'CO', lat: 37.23,  lon: -108.46 },
+                { n: 'Mount Rainier',     s: 'WA', lat: 46.85,  lon: -121.75,
+                  y: '2016', ic: 'np-rainier', gx: 12, gy: 14, lx: 24, ly: 18, a: 'start' },
+                { n: 'New River Gorge',   s: 'WV', lat: 37.93,  lon: -81.06 },
+                { n: 'North Cascades',    s: 'WA', lat: 48.70,  lon: -121.20,
+                  y: '2017', ic: 'np-cascades', gx: 16, gy: -12, lx: 28, ly: -14, a: 'start' },
+                { n: 'Olympic',           s: 'WA', lat: 47.80,  lon: -123.60,
+                  y: '2024', ic: 'np-rainforest', gx: -16, gy: -8, lx: -28, ly: -10, a: 'end' },
+                { n: 'Petrified Forest',  s: 'AZ', lat: 35.07,  lon: -109.79 },
+                { n: 'Pinnacles',         s: 'CA', lat: 36.48,  lon: -121.16 },
+                { n: 'Redwood',           s: 'CA', lat: 41.30,  lon: -124.00 },
+                { n: 'Rocky Mountain',    s: 'CO', lat: 40.40,  lon: -105.58,
+                  y: '2025', ic: 'np-elk', gx: 14, gy: -4, lx: 27, ly: -6, a: 'start' },
+                { n: 'Saguaro',           s: 'AZ', lat: 32.25,  lon: -110.50 },
+                { n: 'Sequoia',           s: 'CA', lat: 36.43,  lon: -118.68 },
+                { n: 'Shenandoah',        s: 'VA', lat: 38.53,  lon: -78.35 },
+                { n: 'Theodore Roosevelt', s: 'ND', lat: 46.98, lon: -103.54 },
+                { n: 'Virgin Islands',    s: 'VI', lat: 18.33,  lon: -64.73 },
+                { n: 'Voyageurs',         s: 'MN', lat: 48.50,  lon: -92.88 },
+                { n: 'White Sands',       s: 'NM', lat: 32.78,  lon: -106.17 },
+                { n: 'Wind Cave',         s: 'SD', lat: 43.57,  lon: -103.48 },
+                { n: 'Wrangell-St. Elias', s: 'AK', lat: 61.00, lon: -142.00 },
+                { n: 'Yellowstone',       s: 'WY', lat: 44.60,  lon: -110.50,
+                  y: '2018', ic: 'np-geyser', gx: 14, gy: -8, lx: 26, ly: -10, a: 'start' },
+                { n: 'Yosemite',          s: 'CA', lat: 37.85,  lon: -119.57 },
+                { n: 'Zion',              s: 'UT', lat: 37.30,  lon: -113.05 },
+                { n: 'American Samoa',    s: 'AS', lat: -14.25, lon: -169.50 }
+            ];
+
+            const visited = PARKS.filter(p => p.y);
+            const countEl = document.getElementById('npCount');
+            if (countEl) countEl.textContent = visited.length + ' of ' + PARKS.length + ' parks visited';
+
+            const svg = d3.select('#np-map');
+
+            /* Clip to the viewBox: the land runs past the frame the same way
+               it does on panel 1, and an SVG clips at its viewport, not its
+               viewBox. */
+            svg.select('defs').append('clipPath').attr('id', 'np-frame-clip')
+                .append('rect').attr('x', 0).attr('y', 0).attr('width', W).attr('height', H);
+            const frame = svg.append('g').attr('clip-path', 'url(#np-frame-clip)');
+
+            let drawn = false;
+
+            function draw() {
+                if (drawn) return;
+                drawn = true;
+                d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
+                    const states = topojson.feature(us, us.objects.states);
+                    /* Albers USA, so Alaska and Hawaii come along as insets and
+                       every park lat/lon lands in the right one. */
+                    const proj = d3.geoAlbersUsa().fitExtent(MAP_BOX, states);
+                    const geoPath = d3.geoPath(proj);
+
+                    frame.append('g').selectAll('path')
+                        .data(states.features).enter().append('path')
+                        .attr('class', 'np-land')
+                        .attr('d', geoPath);
+
+                    frame.append('path')
+                        .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
+                        .attr('class', 'np-borders')
+                        .attr('d', geoPath);
+
+                    const gPale = frame.append('g');
+                    const gInk = frame.append('g');
+                    const offMap = [];
+
+                    PARKS.forEach(p => {
+                        const xy = proj([p.lon, p.lat]);
+                        // Albers USA has no room for the Caribbean or the South
+                        // Pacific: those two parks get an inset of their own.
+                        if (!xy) { offMap.push(p); return; }
+                        (p.y ? drawVisited : drawPale)(p, xy);
+                    });
+
+                    function drawPale(p, xy) {
+                        const g = gPale.append('g')
+                            .attr('class', 'np-park unvisited')
+                            .attr('transform', 'translate(' + xy[0] + ',' + xy[1] + ')');
+                        g.append('circle').attr('class', 'np-hit').attr('r', 9);
+                        g.append('circle').attr('class', 'np-dot').attr('r', 3.4);
+                        // labels flip inward near the right edge so a long name
+                        // does not run off the card
+                        const flip = xy[0] > W * 0.74;
+                        g.append('text')
+                            .attr('class', 'np-label')
+                            .attr('x', flip ? -7 : 7)
+                            .attr('y', 3.2)
+                            .attr('text-anchor', flip ? 'end' : 'start')
+                            .text(p.n + ' NP · ' + p.s);
+                    }
+
+                    function drawVisited(p, xy) {
+                        const g = gInk.append('g')
+                            .attr('class', 'np-park visited')
+                            .attr('transform', 'translate(' + xy[0] + ',' + xy[1] + ')');
+                        const gx = p.gx || 0, gy = p.gy || 0;
+                        if (gx || gy) {
+                            g.append('line').attr('class', 'np-tether')
+                                .attr('x1', 0).attr('y1', 0).attr('x2', gx).attr('y2', gy);
+                            g.append('circle').attr('class', 'np-anchor').attr('r', 1.9);
+                        }
+                        g.append('use')
+                            .attr('href', '#' + p.ic)
+                            .attr('transform', 'translate(' + gx + ',' + gy + ') scale(1.05)');
+                        g.append('text').attr('class', 'np-label')
+                            .attr('x', p.lx).attr('y', p.ly)
+                            .attr('text-anchor', p.a)
+                            .text(p.n + ' NP');
+                        g.append('text').attr('class', 'np-year')
+                            .attr('x', p.lx).attr('y', p.ly + 10)
+                            .attr('text-anchor', p.a)
+                            .text(p.s + ' · ' + p.y);
+                    }
+
+                    drawLog(offMap);
+                }).catch(() => { drawLog([]); });
+            }
+
+            /* The park log, in the band under the map: the same quest-card the
+               race chart keeps its starts in, so the two panels read alike.
+               The last cell holds the two parks Albers USA has no room for. */
+            function drawLog(offMap) {
+                const card = svg.append('g').attr('transform', 'translate(14,' + CARD_Y + ')');
+                card.append('rect').attr('class', 'rt-quest-card')
+                    .attr('width', W - 28).attr('height', CARD_H).attr('rx', 10);
+                card.append('text').attr('class', 'rt-quest-title').attr('x', 16).attr('y', 24)
+                    .text('Park log · ' + visited.length + ' of ' + PARKS.length + ' visited');
+
+                // legend, right-aligned in the title row
+                const legend = card.append('g').attr('transform', 'translate(' + (W - 28 - 320) + ', 18)');
+                legend.append('use').attr('href', '#np-rainier').attr('transform', 'translate(10,0) scale(0.5)');
+                legend.append('text').attr('class', 'np-legend-text').attr('x', 22).attr('y', 3.4)
+                    .text('visited, doodled in');
+                legend.append('circle').attr('r', 3.4).attr('cx', 166).attr('cy', 0)
+                    .attr('fill', '#f2f4ec').attr('stroke', '#46503a').attr('stroke-width', 0.9)
+                    .attr('opacity', 0.6);
+                legend.append('text').attr('class', 'np-legend-text').attr('x', 176).attr('y', 3.4)
+                    .attr('opacity', 0.75)
+                    .text('not yet, hover for the name');
+
+                const byYear = visited.slice().sort((a, b) => a.y.localeCompare(b.y) || a.n.localeCompare(b.n));
+                byYear.forEach((p, i) => {
+                    const col = i % 3, row = Math.floor(i / 3);
+                    const x = 16 + col * 286, y = 54 + row * 32;
+                    const item = card.append('g').attr('transform', 'translate(' + x + ',' + y + ')');
+                    item.append('use').attr('href', '#' + p.ic)
+                        .attr('transform', 'translate(14,0) scale(0.62)');
+                    item.append('text').attr('class', 'rt-quest-item').attr('x', 32).attr('y', -1)
+                        .text(p.n + ' NP · ' + p.s);
+                    item.append('text').attr('class', 'np-year').attr('x', 32).attr('y', 11)
+                        .attr('stroke', 'none')
+                        .text('visited ' + p.y);
+                });
+
+                if (offMap && offMap.length) {
+                    const note = card.append('g').attr('transform', 'translate(' + (16 + 2 * 286) + ', 112)');
+                    note.append('text').attr('class', 'np-inset-note')
+                        .text('island parks, off this projection:');
+                    note.append('text').attr('class', 'np-inset-note').attr('y', 13)
+                        .attr('opacity', 0.9)
+                        .text(offMap.map(p => p.n + ' NP · ' + p.s).join(' · '));
+                }
+            }
+
+            /* Draw when the panel is swiped into view. It is clipped by the
+               pager until then, so the topojson is not fetched on page load. */
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { draw(); io.disconnect(); } });
+            }, { threshold: 0.05 });
+            io.observe(mapEl);
+
+            // Touch has no hover: a tap pins the pale park's name, like the
+            // route charts.
+            mapEl.addEventListener('touchstart', (e) => {
+                const hit = e.target.closest ? e.target.closest('.np-park.unvisited') : null;
+                const wasPinned = hit && hit.classList.contains('pinned');
+                mapEl.querySelectorAll('.np-park.pinned').forEach(p => p.classList.remove('pinned'));
+                if (hit && !wasPinned) hit.classList.add('pinned');
+            }, { passive: true });
         })();
     </script>
    </body>
