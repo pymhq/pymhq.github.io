@@ -768,10 +768,10 @@
 
         /* Summits and places on the chart that have not been climbed or
            visited yet. Drawn in the same light, half-transparent hand as the
-           decorative islands off the route — Lopez, Blake — so the weight of
-           the ink itself says whether we have been there, with no hover and no
-           second colour scheme to learn. Group opacity, so a glyph and its
-           label fade together whether the glyph is a <use> or drawn inline. */
+           decorative islands off the route — Lopez — so the weight of the ink
+           itself says whether we have been there, with no hover and no second
+           colour scheme to learn. Group opacity, so a glyph and its label fade
+           together whether the glyph is a <use> or drawn inline. */
         .rt-unvisited { opacity: 0.5; }
 
         .rt-quest-card {
@@ -1881,10 +1881,14 @@
                             <text class="rt-flavor" x="648" y="762" text-anchor="middle" transform="rotate(-84 648 762)">East Passage</text>
 
                             <!-- Blake Island: 2.35 km across, a seventh of Bainbridge's
-                                 length, 5.1 km SSW of Restoration Point. -->
-                            <ellipse class="rt-coast-glow" cx="566" cy="683" rx="9" ry="8"/>
-                            <ellipse class="rt-island" cx="566" cy="683" rx="9" ry="8"/>
-                            <text class="rt-sub" x="579" y="681" text-anchor="start" style="font-size:8.5px">Blake I.</text>
+                                 length, 5.1 km SSW of Restoration Point. Not landed on,
+                                 so it carries the same half-weight ink as the other
+                                 unvisited places rather than full decorative ink. -->
+                            <g class="rt-unvisited">
+                                <ellipse class="rt-coast-glow" cx="566" cy="683" rx="9" ry="8"/>
+                                <ellipse class="rt-island" cx="566" cy="683" rx="9" ry="8"/>
+                                <text class="rt-sub" x="579" y="681" text-anchor="start" style="font-size:8.5px">Blake I.</text>
+                            </g>
 
                             <!-- ================= Route I: San Juan Islands loop ================= -->
                             <!-- drive: Seattle -> Anacortes -->
