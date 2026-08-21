@@ -58,6 +58,9 @@
          }
          .tree-line { color: var(--ink-3); opacity: 0.5; }
          .tree-dir  { color: var(--ink); font-weight: 600; }
+         /* An unlinked directory: inherits the tree's own ink at normal
+            weight, so the bold reads as "there is a page here". */
+         .tree-stem { font-weight: 400; }
          .tree-note { color: var(--ink-3); font-size: 0.8rem; }
       </style>
    </head>
@@ -85,31 +88,36 @@
          <div class="sitemap-tree">
 <span class="tree-dir">pengandy.com/</span>
 <span class="tree-line">├── </span><a href="/">index.html</a>  <span class="tree-note"># Home</span>
-<span class="tree-line">├── </span><span class="tree-dir">afterhours/</span>
+<span class="tree-line">├── </span><span class="tree-stem">afterhours/</span>
 <span class="tree-line">│   └── </span><a href="/afterhours/races/">races/</a>  <span class="tree-note"># Race referral codes · Andy Peng</span>
 <span class="tree-line">├── </span><a href="/blog/">blog/</a>  <span class="tree-note"># Blog index</span>
 <span class="tree-line">│   ├── </span><a href="/blog/2025/">2025/</a>  <span class="tree-note"># Year index</span>
-<span class="tree-line">│   ├── </span><span class="tree-dir">2026/</span>
+<span class="tree-line">│   ├── </span><span class="tree-stem">2026/</span>
 <span class="tree-line">│   │   └── </span><a href="/blog/2026/vllm/">vllm/</a>  <span class="tree-note"># Blog post</span>
-<span class="tree-line">│   ├── </span><span class="tree-dir">archive/</span>
+<span class="tree-line">│   ├── </span><span class="tree-stem">archive/</span>
 <span class="tree-line">│   │   └── </span><a href="/blog/archive/2026/">2026/</a>  <span class="tree-note"># Archive</span>
-<span class="tree-line">│   ├── </span><span class="tree-dir">category/</span>
+<span class="tree-line">│   ├── </span><span class="tree-stem">category/</span>
 <span class="tree-line">│   │   └── </span><a href="/blog/category/branding/">branding/</a>  <span class="tree-note"># Category</span>
-<span class="tree-line">│   └── </span><span class="tree-dir">tag/</span>
+<span class="tree-line">│   └── </span><span class="tree-stem">tag/</span>
 <span class="tree-line">│       └── </span><a href="/blog/tag/10yo/">10yo/</a>  <span class="tree-note"># Tag</span>
 <span class="tree-line">├── </span><a href="/book">book</a>  <span class="tree-note"># Book · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/contact">contact</a>  <span class="tree-note"># Contact · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/creativity">creativity</a>  <span class="tree-note"># Creativity · Peng, Andy</span>
+<span class="tree-line">├── </span><span class="tree-stem">cv/</span>
+<span class="tree-line">│   └── </span><a href="/cv/amzn/">amzn/</a>  <span class="tree-note"># CV · AMZN</span>
 <span class="tree-line">├── </span><a href="/endorsements">endorsements</a>  <span class="tree-note"># Endorsements · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/experience">experience</a>  <span class="tree-note"># Experience · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/interests">interests</a>  <span class="tree-note"># Interests · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/invited-talks">invited-talks</a>  <span class="tree-note"># Speaking · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/maps">maps</a>  <span class="tree-note"># Maps · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/news">news</a>  <span class="tree-note"># News · Peng, Andy</span>
-<span class="tree-line">├── </span><span class="tree-dir">notes/</span>
+<span class="tree-line">├── </span><span class="tree-stem">notes/</span>
 <span class="tree-line">│   ├── </span><a href="/notes/LP/">LP/</a>  <span class="tree-note"># LEADERSHIP</span>
 <span class="tree-line">│   └── </span><a href="/notes/papers/">papers/</a>  <span class="tree-note"># PAPERS</span>
 <span class="tree-line">├── </span><a href="/office">office</a>  <span class="tree-note"># Offices · Peng, Andy</span>
+<span class="tree-line">├── </span><a href="/photos/">photos/</a>  <span class="tree-note"># Photographs · Peng, Andy</span>
+<span class="tree-line">│   ├── </span><a href="/photos/events/">events/</a>  <span class="tree-note"># Events · Photographs · Peng, Andy</span>
+<span class="tree-line">│   └── </span><a href="/photos/teams/">teams/</a>  <span class="tree-note"># Teams · Photographs · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/publications">publications</a>  <span class="tree-note"># Publications · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/service">service</a>  <span class="tree-note"># Academic service · Peng, Andy</span>
 <span class="tree-line">├── </span><a href="/studio">studio</a>  <span class="tree-note"># PENG ANDY STUDIO</span>

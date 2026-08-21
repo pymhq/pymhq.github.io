@@ -851,11 +851,14 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <meta name="author" content="Peng, Andy">
       <meta name="description" content="{description}">
       <link rel="canonical" href="https://pengandy.com/photos/{slug}/">
-      <!-- Unlisted by intent: reachable by URL, kept out of search results
-           and out of the footer directory. No OG card for the same reason,
-           following cv/amzn. generate_sitemap.py keys off this meta, so the
-           page drops out of sitemap.html with no second edit. -->
-      <meta name="robots" content="noindex, nofollow">
+      <!-- Listed: no robots meta, so generate_sitemap.py puts the page in the
+           tree at /sitemap. These pages were unlisted when the collection
+           opened, which is why the sitemap did not carry them; that was the
+           meta doing its job, not the generator missing a subdirectory.
+           Still absent from the footer directory, like /office: reachable from
+           the sitemap is reach enough for a shelf of photographs. The card a
+           social platform shows falls back to the site icon until these pages
+           get one of their own. -->
 
       <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
       <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">

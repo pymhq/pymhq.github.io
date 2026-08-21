@@ -209,7 +209,13 @@ def render_tree(root: Node) -> str:
                 label = (f'<a href="{html.escape(kid.href, quote=True)}">'
                          f"{label}</a>")
             else:
-                label = f'<span class="tree-dir">{label}</span>'
+                # A directory with no page of its own is structure, not a
+                # destination: notes/, cv/, afterhours/, blog/2026/, tag/ and
+                # the rest exist only to hold the entries beneath them.
+                # Bolding them gave them the visual weight of a link that is
+                # not there, and put the emphasis on the scaffolding rather
+                # than on the pages. Only the root keeps .tree-dir.
+                label = f'<span class="tree-stem">{label}</span>'
             note = ""
             if kid.note:
                 note = f'  <span class="tree-note"># {html.escape(kid.note)}</span>'
@@ -296,6 +302,9 @@ def build_page() -> str:
          }}
          .tree-line {{ color: var(--ink-3); opacity: 0.5; }}
          .tree-dir  {{ color: var(--ink); font-weight: 600; }}
+         /* An unlinked directory: inherits the tree's own ink at normal
+            weight, so the bold reads as "there is a page here". */
+         .tree-stem {{ font-weight: 400; }}
          .tree-note {{ color: var(--ink-3); font-size: 0.8rem; }}
       </style>
    </head>
