@@ -296,11 +296,17 @@ SOURCES: tuple[tuple[str, str, str], ...] = (
     ("~/Pictures/teams/2024-anthropic-bedrock.jpeg",
      "teams", "2024-anthropic-bedrock"),
 
+    # 10 May 2023.
+    ("~/Pictures/teams/2023-david-yanacek.jpeg",
+     "teams", "2023-david-yanacek"),
+
     # Moved from the events collection: a team occasion, not a talk. The source
     # still sits in ~/Pictures/events, which is where it arrived.
     ("~/Pictures/events/2023-pi-day.jpeg",            "teams", "2023-pi-day"),
     ("~/Pictures/teams/2023-james-hamilton.jpeg",
      "teams", "2023-james-hamilton"),
+    ("~/Pictures/teams/2023-junjie-desmond.jpeg",
+     "teams", "2023-junjie-desmond"),
 
     # Builders Day, 16 September 2022.
     ("~/Pictures/teams/2022-builders-day-a.jpeg",
@@ -314,6 +320,12 @@ SOURCES: tuple[tuple[str, str, str], ...] = (
     ("~/Pictures/teams/2019-alexa-health-a.jpg",                 "teams", "2019-alexa-health-a"),
     ("~/Pictures/teams/2019-alexa-health-b.jpg",                 "teams", "2019-alexa-health-b"),
     ("~/Pictures/teams/2019-alexa-health-c.jpg",                 "teams", "2019-alexa-health-c"),
+
+    # AWS Payments, the first team. A Facebook export with no EXIF date, so the
+    # occasion carries the tenure rather than a day: the internal CV puts the
+    # Payments years at Pi Day 2016 to March 2019.
+    ("~/Pictures/teams/2016-aws-payments.jpg",
+     "teams", "2016-aws-payments"),
 )
 
 

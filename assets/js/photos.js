@@ -52,7 +52,10 @@
       // covered too: applyLanguage queries the whole document, and
       // this clone is inside it. Nothing here needs to re-run it.
       var head = fig.closest('.occasion').querySelector('.occ-head');
-      var credit = fig.querySelector('.f-credit');
+      // Either kind of frame caption: .f-credit names a person,
+      // .f-caption says what the photograph is of. Selecting only the
+      // first meant a caption never reached the viewer at all.
+      var credit = fig.querySelector('.f-credit, .f-caption');
       lbCap.replaceChildren(head.cloneNode(true));
       if (credit) lbCap.appendChild(credit.cloneNode(true));
 

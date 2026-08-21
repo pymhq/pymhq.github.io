@@ -78,6 +78,21 @@ UW_SPONSORED = ("Group photo at the venue with the University of Washington "
 # KubeCon EU 2023. The -d frame is CNCF's own photograph, released under
 # CC BY-NC-SA 2.0, so the attribution and the licence are a condition of using
 # it rather than a courtesy.
+# Her own site describes her as "founder of the Cloud Native London meetup" and
+# names no employer; the CEO title and the two previous roles are as the owner
+# gave them. Both previous roles are read as past, which is how the site reads.
+CHERYL = ('With <a href="https://www.oicheryl.com/" target="_blank" '
+          'rel="noopener">Cheryl Hung</a> (founder and CEO, Cloud Native London; '
+          "previously VP at the Linux Foundation for CNCF, and Senior Director "
+          "at Arm)",
+          '与 <a href="https://www.oicheryl.com/" target="_blank" '
+          'rel="noopener">Cheryl Hung</a>（Cloud Native London 创始人兼 CEO；'
+          "此前任 Linux 基金会 CNCF 副总裁、Arm 高级总监）")
+# A caption, not a credit: it says what the photograph is of.
+MENU = ("On the menu: the EC2 Elastic Cloud Cheeseburger, the Lambda Gyro, the "
+        "Bedrock Surprise, S3 Fries, and the EKS Milkshake",
+        "菜单：EC2 弹性云芝士汉堡、Lambda 希腊卷饼、Bedrock 惊喜、S3 薯条、EKS 奶昔",
+        "f-caption")
 CNCF_AMB = ('The CNCF Ambassadors · photograph by the <a '
             'href="https://www.flickr.com/photos/143247548@N03/52838044610/" '
             'target="_blank" rel="noopener">Cloud Native Computing Foundation</a>, '
@@ -116,8 +131,9 @@ KEVIN = ("With Kevin (Zefeng) Wang (Vice Chair of the CNCF Technical Oversight "
          "Team, Huawei)",
          "与 Kevin (Zefeng) Wang（CNCF 技术监督委员会副主席、CNCF Ambassador；"
          "华为云原生开源团队负责人）")
-MATT = ("With Matt White (CTO, the Linux Foundation and the PyTorch Foundation)",
-        "与 Matt White（Linux 基金会与 PyTorch 基金会 CTO）")
+MATT = ("With Matt White (Global CTO of AI, the Linux Foundation; CTO, the "
+        "PyTorch Foundation)",
+        "与 Matt White（Linux 基金会全球 AI CTO；PyTorch 基金会 CTO）")
 TIM = ("With Tim Hockin (Distinguished Software Engineer, Google Cloud: "
        "Kubernetes and GKE)",
        "与 Tim Hockin（Google Cloud 杰出软件工程师，负责 Kubernetes 与 GKE）")
@@ -153,6 +169,25 @@ JAMES = ('With <a href="https://www.wired.com/2013/02/james-hamilton-amazon/" '
          '与 <a href="https://www.wired.com/2013/02/james-hamilton-amazon/" '
          'target="_blank" rel="noopener">James Hamilton</a>，亚马逊高级副总裁'
          '兼杰出工程师')
+# The parenthetical keeps the earlier teams out of the way of
+# check_photo_credits.py, which would otherwise read "and Observability" as a
+# second person and demand a second face.
+#
+# The current role is as the owner gave it. The linked AWS page is older: it
+# still lists Monitoring and Observability as current and says Engineer rather
+# than Technologist. It does corroborate the Lambda and Observability history.
+DAVID = ('With <a href="https://aws.amazon.com/builders-library/authors/'
+         'david-yanacek/" target="_blank" rel="noopener">David Yanacek</a> '
+         "(Senior Principal Technologist, Agentic AI Leadership; previously AWS "
+         "Monitoring and Observability, AWS Lambda)",
+         '与 <a href="https://aws.amazon.com/builders-library/authors/'
+         'david-yanacek/" target="_blank" rel="noopener">David Yanacek</a>'
+         "（Agentic AI 领导层高级首席技术专家；此前任职于亚马逊云科技监控与可观测性、"
+         "AWS Lambda）")
+PROSERVE = ("With Junjie Tang (Senior Principal, AWS ProServe) and Desmond (Yi) "
+            "Zhou (PXT, Amazon)",
+            "与 Junjie Tang（亚马逊云科技专业服务 ProServe 高级首席）、"
+            "Desmond (Yi) Zhou（亚马逊 PXT）")
 TIANWEI = ('With <a href="https://personal.ntu.edu.sg/tianwei.zhang/" '
            'target="_blank" rel="noopener">Tianwei Zhang</a>, now Associate '
            "Professor and Provost's Chair in Computing at Nanyang "
@@ -221,10 +256,11 @@ EVENTS = [
      title_en="Conference on Machine Learning and Systems",
      title_zh="机器学习与系统大会",
      note_en="Guest · 17 to 22 May 2026 · Hyatt Regency Bellevue · lunch with Matt "
-             "White, CTO of the Linux Foundation and the PyTorch Foundation · "
+             "White, Global CTO of AI at the Linux Foundation and CTO of the "
+             "PyTorch Foundation · "
              '<a href="/blog/2026/lunch-with-mattwhite/">the write-up</a>',
      note_zh="嘉宾 · 2026 年 5 月 17 日至 22 日 · Hyatt Regency Bellevue · 与 Linux "
-             "基金会及 PyTorch 基金会 CTO Matt White 的午餐 · "
+             "基金会全球 AI CTO、PyTorch 基金会 CTO Matt White 的午餐 · "
              '<a href="/blog/2026/lunch-with-mattwhite/">那篇记录</a>',
      alt="MLSys 2026, the Conference on Machine Learning and Systems, Bellevue, Washington.",
      frames=[("2026-mlsys-a", MATT,
@@ -398,7 +434,9 @@ EVENTS = [
      note_en="16 to 18 April 2024 · Seattle Convention Center",
      note_zh="2024 年 4 月 16 日至 18 日 · 西雅图会议中心",
      alt="Open Source Summit North America 2024, Seattle Convention Center.",
-     frames=[("2024-open-source-summit-na-a", None),
+     frames=[("2024-open-source-summit-na-a", MENU,
+              "An AWS-themed food menu at Open Source Summit North America 2024, "
+              "its QR code blanked."),
              ("2024-open-source-summit-na-b", HANNA),
              ("2024-open-source-summit-na-c", UW_SPONSORED),
              ("2024-open-source-summit-na-d", None),
@@ -447,7 +485,7 @@ EVENTS = [
              ("2023-kubecon-eu-g", KNATIVE), ("2023-kubecon-eu-h", None),
              ("2023-kubecon-eu-i", ANNI), ("2023-kubecon-eu-j", None),
              ("2023-kubecon-eu-k", KELSEY), ("2023-kubecon-eu-l", AWSTEAM),
-             ("2023-kubecon-eu-m", None), ("2023-kubecon-eu-n", BARRY),
+             ("2023-kubecon-eu-m", CHERYL), ("2023-kubecon-eu-n", BARRY),
              ("2023-kubecon-eu-o", KEVIN)]),
    dict(
      venue_en="CNCF · on camera", venue_zh="CNCF · 镜头前",
@@ -544,6 +582,13 @@ TEAMS = [
  ]),
  ("2023", "Seattle", "西雅图", [
    dict(
+     venue_en="Amazon", venue_zh="亚马逊",
+     title_en="David Yanacek", title_zh="与 David Yanacek",
+     note_en="10 May 2023",
+     note_zh="2023 年 5 月 10 日",
+     alt="With David Yanacek at Amazon, 10 May 2023.",
+     frames=[("2023-david-yanacek", DAVID)]),
+   dict(
      venue_en="Pi Day", venue_zh="圆周率日",
      title_en="Pi Day", title_zh="圆周率日",
      note_en="14 March 2023",
@@ -557,6 +602,14 @@ TEAMS = [
      note_zh="2023 年 2 月 2 日",
      alt="With James Hamilton at Amazon, 2 February 2023.",
      frames=[("2023-james-hamilton", JAMES)]),
+   dict(
+     venue_en="Amazon", venue_zh="亚马逊",
+     title_en="Junjie Tang and Desmond Zhou",
+     title_zh="与 Junjie Tang、Desmond Zhou",
+     note_en="2023",
+     note_zh="2023 年",
+     alt="With Junjie Tang and Desmond Zhou at Amazon, 2023.",
+     frames=[("2023-junjie-desmond", PROSERVE)]),
  ]),
  ("2022", "Seattle", "西雅图", [
    dict(
@@ -583,6 +636,16 @@ TEAMS = [
      alt="The Alexa AI Health and Wellness team, 2019.",
      frames=[("2019-alexa-health-a", None), ("2019-alexa-health-b", None),
              ("2019-alexa-health-c", TIANWEI)]),
+ ]),
+ ("2016", "Seattle", "西雅图", [
+   dict(
+     venue_en="Fintech AWS Payments · Seattle",
+     venue_zh="Fintech AWS Payments · 西雅图",
+     title_en="The Payments team", title_zh="Payments 团队",
+     note_en="2016 to 2019, the first team",
+     note_zh="2016 至 2019 年，第一支团队",
+     alt="The AWS Payments team, Seattle, 2016 to 2019.",
+     frames=[("2016-aws-payments", None)]),
  ]),
 ]
 
@@ -631,7 +694,11 @@ COLLECTIONS = [
         description="Team photographs from a decade at Amazon and AWS: Payments, "
                     "Alexa AI, App Runner, Bedrock, Builders Day, and hours with "
                     "Adam Selipsky, Deepak Singh and James Hamilton.",
-        census_extra=None,
+        # A fourth cell for the tenure, which the events collection spends on
+        # Continents. Two separate facts: Years measures the photographs and is
+        # derived from them, so it ends where the newest frame does; At Amazon
+        # is the span of the job. Neither is allowed to stand in for the other.
+        census_extra=("At Amazon", "在亚马逊", "2016\u20132026"),
         cover=("2022-builders-day-a",
                "Builders Day 2022, cover frame of the Teams collection."),
         blurb_en="Colleagues and team photographs across Amazon and AWS: Alexa AI, "
@@ -640,7 +707,11 @@ COLLECTIONS = [
         blurb_zh="亚马逊与亚马逊云科技的同事与团队合影：Alexa AI、App Runner、"
                  "Bedrock 与 Builders Day，以及与 Adam Selipsky、Deepak Singh、"
                  "James Hamilton 共处的时刻。",
-        more=[("/experience.html", "The roles behind these teams", "这些团队背后的岗位")],
+        # The essay is organised by the same teams in the same order, chapter by
+        # chapter, so it comes first: this page is its photographic index.
+        more=[("/blog/2026/curiosity-driven-builder/", "Builder's Journey",
+               "构建者之旅"),
+              ("/blog/2026/decade/", "Decade at Amazon", "亚马逊十年")],
     ),
 ]
 
@@ -695,7 +766,10 @@ def frame_html(coll, slug, credit, alt, count, ind, F) -> str:
 
     out = [f'{ind}<figure class="figure frame">', "\n".join(img)]
     if credit:
-        out.append(f'{ind}   {bi(credit[0], credit[1], "f-credit", "figcaption")}')
+        # A third element names the class: f-credit for a person, f-caption for
+        # a note about what the frame shows. Defaults to a credit.
+        cls = credit[2] if len(credit) > 2 else "f-credit"
+        out.append(f'{ind}   {bi(credit[0], credit[1], cls, "figcaption")}')
     out.append(f"{ind}</figure>")
     return "\n".join(out)
 

@@ -155,10 +155,21 @@
    color: var(--ink-3);
 }
 
+/* Not every note under a frame is a credit. A credit names a person; this one
+   describes what the photograph is of. Same size and colour, but without the
+   letter-spacing, which suits a name and not a sentence. */
+.f-caption {
+   font-family: var(--sans);
+   font-size: 0.78rem;
+   line-height: 1.5;
+   color: var(--ink-3);
+}
+
 /* A credit may name a person and link to them, so it needs the same
    link treatment as .f-note. Without this the global a{color:inherit}
    leaves the link indistinguishable from the text around it. */
-.f-credit a {
+.f-credit a,
+.f-caption a {
    color: var(--accent);
    border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
 }
@@ -262,7 +273,8 @@
    color: rgba(255, 255, 255, 0.55);
 }
 
-.lb-stage .f-credit {
+.lb-stage .f-credit,
+.lb-stage .f-caption {
    display: block;
    color: rgba(255, 255, 255, 0.45);
    margin-top: 8px;
@@ -277,7 +289,8 @@
 }
 
 .lb-stage .f-note a,
-.lb-stage .f-credit a {
+.lb-stage .f-credit a,
+.lb-stage .f-caption a {
    color: #7dc4f5;
    border-bottom-color: rgba(125, 196, 245, 0.4);
 }
