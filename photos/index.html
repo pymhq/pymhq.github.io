@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Photographs · Peng, Andy</title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="Photograph collections by Andy Peng, one subject per collection. Events: frames from NeurIPS CDMX, ICML Vancouver, Open Source Summit North America, KubeCon, DockerCon, SMILE and the University of Washington, 2018 to 2026.">
+      <link rel="canonical" href="https://pengandy.com/photos/">
+      <!-- Unlisted by intent: reachable by URL, kept out of search results
+           and out of the footer directory. No OG card for the same reason,
+           following cv/amzn. generate_sitemap.py keys off this meta, so the
+           page drops out of sitemap.html with no second edit. -->
+      <meta name="robots" content="noindex, nofollow">
+
+
+      <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
+      <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
+      <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
+      <link rel="manifest" href="/site.webmanifest">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="/assets/css/shell.css">
+      <script src="/assets/js/shell.js" defer></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-HTV795ZMCP');
+      </script>
+
+      <!-- One page-local pattern: the collection row. A cover on the left, the
+           subject and its count on the right, a rule between rows. Built from
+           shell.css tokens only. -->
+      <style>
+         .rack {
+            list-style: none;
+            margin: clamp(30px, 3.4vw, 52px) 0 0;
+            padding: 0;
+         }
+
+         .rack > li {
+            position: relative;
+            border-top: 1px solid var(--rule);
+            padding-block: clamp(24px, 2.8vw, 40px);
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: clamp(20px, 3vw, 52px);
+            align-items: center;
+         }
+
+         .rack > li:last-child {
+            border-bottom: 1px solid var(--rule);
+         }
+
+         @media (max-width: 700px) {
+            .rack > li {
+               grid-template-columns: 1fr;
+            }
+         }
+
+         .rack-cover {
+            margin: 0;
+            position: relative;
+         }
+
+         .rack-cover img {
+            width: 100%;
+            /* As on the collection page: the height attribute would otherwise
+               beat aspect-ratio and the cover would render at 451px tall. */
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border: 1px solid var(--rule);
+            background: var(--paper-2);
+            transition: opacity 0.25s ease;
+         }
+
+         /* The whole row is the target, but the link itself stays around the
+            heading. display:contents on an <a> drops it out of WebKit's
+            accessibility tree, so the row is widened with a pseudo-element
+            instead of by restructuring the markup. */
+         .rack h2 a::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+         }
+
+         .rack > li:hover .rack-cover img {
+            opacity: 0.88;
+         }
+
+         /* A collection with no frames yet gets a ruled blank instead of a
+            borrowed picture. Nothing here pretends to be a photograph. */
+         .rack-blank {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 1px dashed var(--rule-2);
+            background: var(--paper-2);
+            display: grid;
+            place-items: center;
+            font-family: var(--sans);
+            font-size: var(--t-eyebrow);
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+         }
+
+         .rack h2 {
+            font-size: var(--t-h2);
+            line-height: 1.04;
+         }
+
+         .rack .count {
+            font-family: var(--sans);
+            font-size: var(--t-eyebrow);
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin: 0 0 10px;
+         }
+
+         .rack p.blurb {
+            font-size: var(--t-small);
+            line-height: 1.6;
+            color: var(--ink-2);
+            margin: 12px 0 0;
+            max-width: 46ch;
+         }
+
+         .rack .go {
+            display: inline-block;
+            margin-top: 16px;
+            font-family: var(--sans);
+            font-size: var(--t-small);
+            font-weight: 500;
+            color: var(--accent);
+            border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+         }
+
+         .rack > li.soon h2,
+         .rack > li.soon .blurb {
+            color: var(--ink-3);
+         }
+      </style>
+   </head>
+
+   <body data-nav-match="photos">
+      <a class="skip" href="#main">Skip to content</a>
+      <nav class="nav" aria-label="Primary" data-shell-nav></nav>
+
+      <header class="shell page-head">
+         <p class="eyebrow">
+            <span class="lang-en">Creativity</span>
+            <span class="lang-zh" hidden>创作</span>
+         </p>
+         <h1 class="page-title">
+            <span class="lang-en">Photographs</span>
+            <span class="lang-zh" hidden>摄影</span>
+         </h1>
+         <p class="page-lede">
+            <span class="lang-en">One collection per subject, so a frame lands somewhere permanent instead of beside whatever page happened to need it.</span>
+            <span class="lang-zh" hidden>一个主题一个合集，让照片有个固定的去处，而不是随手挂在某一页旁边。</span>
+         </p>
+      </header>
+
+      <main class="shell" id="main" style="padding-bottom:var(--movement)">
+
+         <div class="prose read rise">
+            <p>
+               <span class="lang-en">The site accumulated pictures faster than it accumulated places to keep them. Photographs on this shelf are filed by what they are of, not by which page first used them, and each collection keeps its own captions. Design work and the reels still live on <a class="link" href="/creativity.html">Creativity</a>; the hand-drawn charts are on <a class="link" href="/maps.html">Maps</a>.</span>
+               <span class="lang-zh" hidden>本站积累照片的速度，快过给照片安排位置的速度。这个架子上的照片按拍的是什么归档，而不是按哪一页先用过它，每个合集自带说明文字。设计作品与短片仍在<a class="link" href="/creativity.html">创作</a>页，手绘图仍在<a class="link" href="/maps.html">地图</a>页。</span>
+            </p>
+         </div>
+
+         <ul class="rack rise">
+            <li>
+               <figure class="rack-cover">
+                  <img src="/assets/photos/events/2023-kubecon-eu-a-800.webp"
+                       width="800" height="451" loading="lazy" decoding="async"
+                       alt="KubeCon + CloudNativeCon Europe 2023, cover frame of the Events collection.">
+               </figure>
+               <div>
+                  <p class="count">
+                     <span class="lang-en">92 frames · 31 occasions · 2018–2026</span>
+                     <span class="lang-zh" hidden>92 张 · 31 个场合 · 2018–2026</span>
+                  </p>
+                  <h2>
+                     <a href="/photos/events/">
+                        <span class="lang-en">Events</span>
+                        <span class="lang-zh" hidden>活动</span>
+                     </a>
+                  </h2>
+                  <p class="blurb">
+                     <span class="lang-en">Conference halls, panel tables, lecture rooms and broadcast desks. NeurIPS in Mexico City, ICML in Vancouver, Open Source Summit and KubeCon, DockerCon, the Packt GenAI Summit, the Seattle Women in Tech Regatta, SMILE, B.E.L.L.E., and the lecture rooms of the University of Washington.</span>
+                     <span class="lang-zh" hidden>会场、圆桌、教室与直播台。墨西哥城的 NeurIPS、温哥华的 ICML、Open Source Summit 与 KubeCon、DockerCon、Packt GenAI Summit、西雅图 Women in Tech Regatta、SMILE、B.E.L.L.E.，以及华盛顿大学的各间教室。</span>
+                  </p>
+                  <span class="go">
+                     <span class="lang-en">Open the collection</span><span class="lang-zh" hidden>进入合集</span> →
+                  </span>
+               </div>
+            </li>
+
+            <!-- Planned collections, listed without links on purpose: the
+                 shelf shows what is coming, and a dead link would be worse
+                 than an honest blank. Each becomes /photos/<slug>/ built the
+                 same way, with its assets from
+                 scripts/build_photo_derivatives.py. -->
+            <li class="soon">
+               <div class="rack-blank">
+                  <span class="lang-en">Unfiled</span>
+                  <span class="lang-zh" hidden>待归档</span>
+               </div>
+               <div>
+                  <p class="count">
+                     <span class="lang-en">In the darkroom</span>
+                     <span class="lang-zh" hidden>暗房中</span>
+                  </p>
+                  <h2>
+                     <span class="lang-en">Salt water</span>
+                     <span class="lang-zh" hidden>咸水</span>
+                  </h2>
+                  <p class="blurb">
+                     <span class="lang-en">The Salish Sea end of things: ferries, island shorelines, and whatever surfaces on the crossing. The <a href="/maps.html">charts</a> cover the same water by hand in the meantime.</span>
+                     <span class="lang-zh" hidden>萨利希海这一侧：渡轮、海岛岸线，以及航渡途中冒出水面的一切。在此之前，同一片水由<a href="/maps.html">手绘图</a>代管。</span>
+                  </p>
+               </div>
+            </li>
+
+            <li class="soon">
+               <div class="rack-blank">
+                  <span class="lang-en">Unfiled</span>
+                  <span class="lang-zh" hidden>待归档</span>
+               </div>
+               <div>
+                  <p class="count">
+                     <span class="lang-en">In the darkroom</span>
+                     <span class="lang-zh" hidden>暗房中</span>
+                  </p>
+                  <h2>
+                     <span class="lang-en">Trails</span>
+                     <span class="lang-zh" hidden>山径</span>
+                  </h2>
+                  <p class="blurb">
+                     <span class="lang-en">Cascade and Olympic ridgelines, and the national parks counted on the <a href="/maps.html">parks chart</a>.</span>
+                     <span class="lang-zh" hidden>喀斯喀特与奥林匹克的山脊线，以及<a href="/maps.html">国家公园图</a>上数过的那些公园。</span>
+                  </p>
+               </div>
+            </li>
+         </ul>
+
+         <p class="more rise">
+            <a class="link" href="/creativity.html#photography">
+               <span class="lang-en">Design, photography and reels</span><span class="lang-zh" hidden>设计、摄影与短片</span> →
+            </a>
+            <a class="link" href="/invited-talks.html" style="margin-left:clamp(18px,2vw,32px)">
+               <span class="lang-en">The speaking record</span><span class="lang-zh" hidden>演讲记录</span> →
+            </a>
+         </p>
+
+      </main>
+
+      <footer class="foot" data-shell-footer></footer>
+   </body>
+</html>

@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Events · Photographs · Peng, Andy</title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="Photographs from conference halls, panel tables, lecture rooms and broadcast desks, 2018 to 2026: NeurIPS CDMX, ICML Vancouver, Open Source Summit North America, KubeCon Europe and North America, DockerCon, the Packt GenAI Summit, the Seattle Women in Tech Regatta, SMILE, B.E.L.L.E. and the University of Washington.">
+      <link rel="canonical" href="https://pengandy.com/photos/events/">
+      <!-- Unlisted by intent: reachable by URL, kept out of search results
+           and out of the footer directory. No OG card for the same reason,
+           following cv/amzn. generate_sitemap.py keys off this meta, so the
+           page drops out of sitemap.html with no second edit. -->
+      <meta name="robots" content="noindex, nofollow">
+
+
+      <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
+      <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
+      <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
+      <link rel="manifest" href="/site.webmanifest">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="/assets/css/shell.css">
+      <script src="/assets/js/shell.js" defer></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-HTV795ZMCP');
+      </script>
+
+      <!-- Page-local components, in the manner of interests.html and
+           sitemap.html: three patterns this collection needs and no other
+           page does, built only from shell.css tokens so they follow
+           light/dark and the type scale.
+
+             .census   the index line under the lede
+             .sheet    a contact sheet: column masonry, not a grid
+             .lb       the viewer
+
+           The shared .gallery is a uniform grid, which is the wrong tool
+           here: these ten frames run from 600x375 to 1600x2404, and a grid
+           either crops them to a common ratio or leaves ragged holes. A
+           column flow keeps every frame at its own aspect ratio, which is
+           what a contact sheet is for. -->
+      <style>
+         /* ---------- index line ---------- */
+         .census {
+            list-style: none;
+            margin: clamp(26px, 3vw, 40px) 0 0;
+            padding-block: clamp(18px, 2vw, 26px);
+            padding-inline: 0;
+            border-top: 1px solid var(--rule-2);
+            border-bottom: 1px solid var(--rule-2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(24px, 4vw, 64px);
+         }
+
+         .census div {
+            min-width: 84px;
+         }
+
+         .census dt {
+            font-family: var(--sans);
+            font-size: var(--t-eyebrow);
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+         }
+
+         .census dd {
+            font-family: var(--serif);
+            font-size: var(--t-h3);
+            line-height: 1.1;
+            margin: 6px 0 0;
+         }
+
+         /* ---------- year rule ---------- */
+         .year {
+            margin-top: var(--movement);
+            display: flex;
+            align-items: baseline;
+            gap: clamp(14px, 2vw, 28px);
+            border-top: 1px solid var(--rule);
+            padding-top: clamp(14px, 1.6vw, 22px);
+         }
+
+         .year h2 {
+            font-size: var(--t-h2);
+            line-height: 1;
+         }
+
+         .year p {
+            font-family: var(--sans);
+            font-size: var(--t-small);
+            color: var(--ink-3);
+            margin: 0;
+            margin-left: auto;
+            text-align: right;
+         }
+
+         /* ---------- occasion ----------
+            One event, one header, then its frames. Before the collection had
+            events contributing five frames apiece, every figure carried its
+            own caption; five copies of the same venue and title read as a
+            stutter, so the metadata moved up here and the frames below it are
+            left to be pictures. */
+         .occasion {
+            margin-top: clamp(34px, 3.8vw, 58px);
+         }
+
+         .occ-head {
+            max-width: var(--read);
+         }
+
+         .occ-head > * {
+            margin: 0;
+         }
+
+         .occ-head .f-title {
+            font-size: var(--t-h3);
+            line-height: 1.16;
+            margin-top: 7px;
+         }
+
+         .occ-head .f-note {
+            margin-top: 7px;
+         }
+
+         /* ---------- contact sheet ----------
+            Column count follows the number of frames, so a single frame is
+            shown at a size worth looking at instead of sitting in the first
+            of three columns with two empty ones beside it. */
+         .sheet {
+            margin-top: clamp(16px, 1.8vw, 24px);
+            columns: 3 288px;
+            column-gap: clamp(16px, 1.8vw, 26px);
+         }
+
+         .sheet[data-frames="1"] {
+            columns: 1;
+            max-width: min(100%, 680px);
+         }
+
+         .sheet[data-frames="2"] {
+            columns: 2 320px;
+         }
+
+         /* .figure carries the site's media-protection overlay and the
+            img sizing; .frame only re-flows it for the column context. */
+         .sheet .frame {
+            margin: 0 0 clamp(24px, 2.8vw, 40px);
+            break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+         }
+
+         .sheet .frame img {
+            /* height:auto is load-bearing. The width and height attributes are
+               there so the column flow reserves the right space before the
+               file arrives, and shell.css sets width:100% on figure images
+               without touching height, so the attribute would otherwise render
+               as a literal pixel height and stretch every frame. The same trap
+               is documented on .relic img in interests.html. */
+            height: auto;
+            border: 1px solid var(--rule);
+            cursor: zoom-in;
+            transition: opacity 0.25s ease;
+         }
+
+         .sheet .frame:hover img {
+            opacity: 0.9;
+         }
+
+         .sheet .frame figcaption {
+            max-width: none;
+            margin-top: 9px;
+         }
+
+         /* A credit exists only where the file says who took the frame. Three
+            of the MSIS frames carry EXIF Artist: MATT HAGEN; the derivatives
+            are written without EXIF, so the credit has to be visible here or
+            it does not survive at all. */
+         .f-credit {
+            font-family: var(--sans);
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+            color: var(--ink-3);
+         }
+
+         /* A credit may name a person and link to them, so it needs the same
+            link treatment as .f-note. Without this the global a{color:inherit}
+            leaves the link indistinguishable from the text around it. */
+         .f-credit a {
+            color: var(--accent);
+            border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+         }
+
+         /* Venue is the label, the talk is the line people read, the rest is
+            the fine print. Three weights, one column. */
+         .f-venue {
+            display: block;
+            font-family: var(--sans);
+            font-size: var(--t-eyebrow);
+            font-weight: 600;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+         }
+
+         .f-title {
+            display: block;
+            font-family: var(--serif);
+            font-size: 1.06rem;
+            line-height: 1.32;
+            color: var(--ink);
+            margin-top: 6px;
+         }
+
+         .f-note {
+            display: block;
+            font-size: 0.86rem;
+            line-height: 1.45;
+            color: var(--ink-3);
+            margin-top: 5px;
+         }
+
+         .f-note a {
+            color: var(--accent);
+            border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+         }
+
+         /* ---------- viewer ----------
+            Opened by click on a frame. Kept page-local: no other page has a
+            contact sheet, so shell.css has no reason to carry this. */
+         .lb[hidden] {
+            display: none;
+         }
+
+         .lb {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: color-mix(in srgb, #0b0c0e 92%, transparent);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            display: grid;
+            place-items: center;
+            padding: clamp(16px, 4vw, 56px);
+         }
+
+         .lb-stage {
+            margin: 0;
+            max-width: min(1100px, 100%);
+            max-height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+         }
+
+         .lb-stage img {
+            max-width: 100%;
+            max-height: 76vh;
+            width: auto;
+            margin: 0 auto;
+            object-fit: contain;
+            background: #0b0c0e;
+         }
+
+         .lb-stage figcaption {
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.72);
+            text-align: center;
+         }
+
+         /* The caption is a clone of the occasion header, so it arrives with
+            the sheet's three-part structure. Recolour it for the dark stage. */
+         .lb-stage .occ-head {
+            max-width: 68ch;
+            margin: 0 auto;
+         }
+
+         .lb-stage .f-venue {
+            color: rgba(255, 255, 255, 0.5);
+         }
+
+         .lb-stage .f-title {
+            color: #fff;
+            font-size: 1.12rem;
+         }
+
+         .lb-stage .f-note {
+            color: rgba(255, 255, 255, 0.55);
+         }
+
+         .lb-stage .f-credit {
+            display: block;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 8px;
+         }
+
+         .lb-count {
+            font-family: var(--sans);
+            font-size: 0.76rem;
+            letter-spacing: 0.16em;
+            color: rgba(255, 255, 255, 0.4);
+            margin: 10px 0 0;
+         }
+
+         .lb-stage .f-note a,
+         .lb-stage .f-credit a {
+            color: #7dc4f5;
+            border-bottom-color: rgba(125, 196, 245, 0.4);
+         }
+
+         .lb button {
+            position: absolute;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 999px;
+            color: #fff;
+            font-family: var(--sans);
+            font-size: 1.4rem;
+            line-height: 1;
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease;
+         }
+
+         .lb button:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.5);
+         }
+
+         .lb-x {
+            top: clamp(14px, 2.4vw, 30px);
+            right: clamp(14px, 2.4vw, 30px);
+         }
+
+         .lb-prev {
+            left: clamp(10px, 2vw, 26px);
+            top: 50%;
+            transform: translateY(-50%);
+         }
+
+         .lb-next {
+            right: clamp(10px, 2vw, 26px);
+            top: 50%;
+            transform: translateY(-50%);
+         }
+
+         /* On a phone the side arrows sit on top of the picture. Move them
+            under it, as a pair, where a thumb reaches them. */
+         @media (max-width: 620px) {
+            .lb-prev,
+            .lb-next {
+               top: auto;
+               bottom: clamp(14px, 4vw, 26px);
+               transform: none;
+            }
+
+            .lb-prev {
+               left: 28%;
+            }
+
+            .lb-next {
+               right: 28%;
+            }
+         }
+      </style>
+   </head>
+
+   <body data-nav-match="photos">
+      <a class="skip" href="#main">Skip to content</a>
+      <nav class="nav" aria-label="Primary" data-shell-nav></nav>
+
+      <header class="shell page-head">
+         <p class="eyebrow">
+            <span class="lang-en"><a href="/photos/">Photographs</a></span>
+            <span class="lang-zh" hidden><a href="/photos/">摄影</a></span>
+         </p>
+         <h1 class="page-title">
+            <span class="lang-en">Events</span>
+            <span class="lang-zh" hidden>活动</span>
+         </h1>
+         <p class="page-lede">
+            <span class="lang-en">Conference halls, panel tables, lecture rooms and broadcast desks, 2018 to 2026. Grouped by the occasion rather than by the frame.</span>
+            <span class="lang-zh" hidden>会场、圆桌、教室与直播台，2018 至 2026。按场合归组，而不是按单张照片。</span>
+         </p>
+      </header>
+
+      <main class="shell" id="main" style="padding-bottom:var(--movement)">
+
+         <section class="rise">
+            <dl class="census">
+               <div>
+                  <dt><span class="lang-en">Frames</span><span class="lang-zh" hidden>照片</span></dt>
+                  <dd>92</dd>
+               </div>
+               <div>
+                  <dt><span class="lang-en">Years</span><span class="lang-zh" hidden>年份</span></dt>
+                  <dd>2018–2026</dd>
+               </div>
+               <div>
+                  <dt><span class="lang-en">Occasions</span><span class="lang-zh" hidden>场合</span></dt>
+                  <dd>31</dd>
+               </div>
+               <div>
+                  <dt><span class="lang-en">Continents</span><span class="lang-zh" hidden>大洲</span></dt>
+                  <dd>2</dd>
+               </div>
+            </dl>
+         </section>
+
+         <!-- Years run newest first, matching every other dated listing on the
+              site, and within a year the occasions do too wherever a date is
+              known. A date is printed only where there is evidence for it:
+              EXIF DateTimeOriginal, a filename that carries the day, or a
+              published schedule. The Regatta frames come off a body whose
+              clock reads 03:21, so that set says April 2023 and no day.
+
+              Each occasion carries its own header, so the frames under it need
+              no repeated caption; a credit line appears only where a frame has
+              one. Alt text describes the occasion rather than the bitmap,
+              which is the honest limit of what is known about these files. -->
+
+         <!-- SHEET:BEGIN generated by scripts/generate_photo_pages.py -->
+
+         <!-- ============================================================
+              2026
+              ============================================================ -->
+         <section class="rise" id="y2026">
+            <div class="year">
+               <h2>2026</h2>
+               <p><span class="lang-en">Nine frames · Bellevue, Seattle</span><span class="lang-zh" hidden>九张 · Bellevue、西雅图</span></p>
+            </div>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">Fremont Brewing's Urban Beer Garden · Seattle</span><span class="lang-zh" hidden>Fremont Brewing's Urban Beer Garden · 西雅图</span></p>
+                  <h3 class="f-title"><span class="lang-en">The RLHF Book Launch</span><span class="lang-zh" hidden>RLHF 新书发布会</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest · 10 August 2026 · Nathan Lambert's Reinforcement Learning from Human Feedback · hosted by Nathan Lambert and Mia Ocolisanu, presented by RadixArk · <a href="https://luma.com/nytpq2x7" target="_blank" rel="noopener">event page</a></span><span class="lang-zh" hidden>嘉宾 · 2026 年 8 月 10 日 · Nathan Lambert 著《人类反馈强化学习》· 主办：Nathan Lambert、Mia Ocolisanu，由 RadixArk 呈现 · <a href="https://luma.com/nytpq2x7" target="_blank" rel="noopener">活动页面</a></span></p>
+               </header>
+               <div class="sheet" data-frames="2">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2026-rlhf-book-launch-a-896.webp"
+                           srcset="/assets/photos/events/2026-rlhf-book-launch-a-896.webp 896w,
+                           /assets/photos/events/2026-rlhf-book-launch-a-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2026-rlhf-book-launch-a-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="The RLHF Book Launch for Nathan Lambert's Reinforcement Learning from Human Feedback, Fremont Brewing's Urban Beer Garden, Seattle, 10 August 2026.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2026-rlhf-book-launch-b-1600.webp"
+                           srcset="/assets/photos/events/2026-rlhf-book-launch-b-1600.webp 1600w,
+                           /assets/photos/events/2026-rlhf-book-launch-b-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2026-rlhf-book-launch-b-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="The RLHF Book Launch for Nathan Lambert's Reinforcement Learning from Human Feedback, Fremont Brewing's Urban Beer Garden, Seattle, 10 August 2026.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">MLSys 2026 · Bellevue</span><span class="lang-zh" hidden>MLSys 2026 · 华盛顿州 Bellevue</span></p>
+                  <h3 class="f-title"><span class="lang-en">Conference on Machine Learning and Systems</span><span class="lang-zh" hidden>机器学习与系统大会</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest · 17 to 22 May 2026 · Hyatt Regency Bellevue · lunch with Matt White, CTO of the Linux Foundation and the PyTorch Foundation · <a href="/blog/2026/lunch-with-mattwhite/">the write-up</a></span><span class="lang-zh" hidden>嘉宾 · 2026 年 5 月 17 日至 22 日 · Hyatt Regency Bellevue · 与 Linux 基金会及 PyTorch 基金会 CTO Matt White 的午餐 · <a href="/blog/2026/lunch-with-mattwhite/">那篇记录</a></span></p>
+               </header>
+               <div class="sheet" data-frames="2">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2026-mlsys-a-896.webp"
+                           srcset="/assets/photos/events/2026-mlsys-a-896.webp 896w,
+                           /assets/photos/events/2026-mlsys-a-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2026-mlsys-a-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="Andy Peng and Matt White at MLSys 2026, both wearing MLSys lanyards">
+                     <figcaption class="f-credit"><span class="lang-en">With Matt White (CTO, the Linux Foundation and the PyTorch Foundation)</span><span class="lang-zh" hidden>与 Matt White（Linux 基金会与 PyTorch 基金会 CTO）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2026-mlsys-b-1537.webp"
+                           srcset="/assets/photos/events/2026-mlsys-b-1537.webp 1537w,
+                           /assets/photos/events/2026-mlsys-b-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2026-mlsys-b-1537.webp"
+                           width="1537" height="2048" loading="lazy" decoding="async"
+                           alt="MLSys 2026, the Conference on Machine Learning and Systems, Bellevue, Washington.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">University of Washington · MSIS 549</span><span class="lang-zh" hidden>华盛顿大学 · MSIS 549</span></p>
+                  <h3 class="f-title"><span class="lang-en">Machine Learning and Artificial Intelligence for Business Applications</span><span class="lang-zh" hidden>面向商业应用的机器学习与人工智能</span></h3>
+                  <p class="f-note"><span class="lang-en">MSIS 549, UW Foster · 14 March 2026 · hosted by Léonard Boussioux</span><span class="lang-zh" hidden>MSIS 549，华盛顿大学 Foster 商学院 · 2026 年 3 月 14 日 · 邀请人：Léonard Boussioux</span></p>
+               </header>
+               <div class="sheet" data-frames="5">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2026-uw-msis-549-a-1600.webp"
+                           srcset="/assets/photos/events/2026-uw-msis-549-a-1600.webp 1600w,
+                           /assets/photos/events/2026-uw-msis-549-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2026-uw-msis-549-a-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="MSIS 549 at the University of Washington, 14 March 2026.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2026-uw-msis-549-b-1600.webp"
+                           srcset="/assets/photos/events/2026-uw-msis-549-b-1600.webp 1600w,
+                           /assets/photos/events/2026-uw-msis-549-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2026-uw-msis-549-b-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="MSIS 549 at the University of Washington, 14 March 2026.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2026-uw-msis-549-c-1600.webp"
+                           srcset="/assets/photos/events/2026-uw-msis-549-c-1600.webp 1600w,
+                           /assets/photos/events/2026-uw-msis-549-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2026-uw-msis-549-c-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="MSIS 549 at the University of Washington, 14 March 2026.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2026-uw-msis-549-d-1600.webp"
+                           srcset="/assets/photos/events/2026-uw-msis-549-d-1600.webp 1600w,
+                           /assets/photos/events/2026-uw-msis-549-d-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2026-uw-msis-549-d-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="MSIS 549 at the University of Washington, 14 March 2026.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2026-uw-msis-549-e-1600.webp"
+                           srcset="/assets/photos/events/2026-uw-msis-549-e-1600.webp 1600w,
+                           /assets/photos/events/2026-uw-msis-549-e-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2026-uw-msis-549-e-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="MSIS 549 at the University of Washington, 14 March 2026.">
+                  </figure>
+               </div>
+            </article>
+
+         </section>
+
+         <!-- ============================================================
+              2025
+              ============================================================ -->
+         <section class="rise" id="y2025">
+            <div class="year">
+               <h2>2025</h2>
+               <p><span class="lang-en">Twenty-one frames · Mexico City, Vancouver, Seattle, online</span><span class="lang-zh" hidden>二十一张 · 墨西哥城、温哥华、西雅图、线上</span></p>
+            </div>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">NeurIPS 2025 · Mexico City</span><span class="lang-zh" hidden>NeurIPS 2025 · 墨西哥城</span></p>
+                  <h3 class="f-title"><span class="lang-en">NeurIPS CDMX, the conference's first satellite city</span><span class="lang-zh" hidden>NeurIPS CDMX：大会首个卫星会场</span></h3>
+                  <p class="f-note"><span class="lang-en">Workshop Co-Chair · 30 November to 5 December 2025, running in parallel with San Diego · <a href="/blog/2025/neurips/">trip notes</a> · <a href="https://neurips.cc/Conferences/2025/Committees" target="_blank" rel="noopener">committee</a></span><span class="lang-zh" hidden>Workshop Co-Chair · 2025 年 11 月 30 日至 12 月 5 日，与圣迭戈会场并行举行 · <a href="/blog/2025/neurips/">行程记录</a> · <a href="https://neurips.cc/Conferences/2025/Committees" target="_blank" rel="noopener">组织委员会</a></span></p>
+               </header>
+               <div class="sheet" data-frames="3">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-neurips-cdmx-a-1600.webp"
+                           srcset="/assets/photos/events/2025-neurips-cdmx-a-1600.webp 1600w,
+                           /assets/photos/events/2025-neurips-cdmx-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-neurips-cdmx-a-1600.webp"
+                           width="1600" height="939" loading="lazy" decoding="async"
+                           alt="NeurIPS CDMX 2025, the conference's Mexico City satellite location.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-neurips-cdmx-b-1600.webp"
+                           srcset="/assets/photos/events/2025-neurips-cdmx-b-1600.webp 1600w,
+                           /assets/photos/events/2025-neurips-cdmx-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-neurips-cdmx-b-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="NeurIPS CDMX 2025, the conference's Mexico City satellite location.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-neurips-cdmx-c-1600.webp"
+                           srcset="/assets/photos/events/2025-neurips-cdmx-c-1600.webp 1600w,
+                           /assets/photos/events/2025-neurips-cdmx-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-neurips-cdmx-c-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="NeurIPS CDMX 2025, the conference's Mexico City satellite location.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue">UW AI &amp; Robotics Data Summit</p>
+                  <h3 class="f-title"><span class="lang-en">LLM Native Primitives: Next Golden Path</span><span class="lang-zh" hidden>LLM 原生原语：下一条黄金路径</span></h3>
+                  <p class="f-note"><span class="lang-en">Keynote · 28 August 2025 · Boeing Advanced Research Center, University of Washington · hosted by Xu Chen · <a href="https://luma.com/iqjrwcal" target="_blank" rel="noopener">event page</a></span><span class="lang-zh" hidden>主旨演讲 · 2025 年 8 月 28 日 · 华盛顿大学波音先进研究中心 · 主办：Xu Chen · <a href="https://luma.com/iqjrwcal" target="_blank" rel="noopener">活动页面</a></span></p>
+               </header>
+               <div class="sheet" data-frames="5">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-uw-ai-robotics-summit-a-1600.webp"
+                           srcset="/assets/photos/events/2025-uw-ai-robotics-summit-a-1600.webp 1600w,
+                           /assets/photos/events/2025-uw-ai-robotics-summit-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-uw-ai-robotics-summit-a-1600.webp"
+                           width="1600" height="1067" loading="lazy" decoding="async"
+                           alt="UW AI &amp; Robotics Data Summit, Boeing Advanced Research Center, University of Washington, 28 August 2025.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-uw-ai-robotics-summit-b-1600.webp"
+                           srcset="/assets/photos/events/2025-uw-ai-robotics-summit-b-1600.webp 1600w,
+                           /assets/photos/events/2025-uw-ai-robotics-summit-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-uw-ai-robotics-summit-b-1600.webp"
+                           width="1600" height="2400" loading="lazy" decoding="async"
+                           alt="UW AI &amp; Robotics Data Summit, Boeing Advanced Research Center, University of Washington, 28 August 2025.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-uw-ai-robotics-summit-c-1600.webp"
+                           srcset="/assets/photos/events/2025-uw-ai-robotics-summit-c-1600.webp 1600w,
+                           /assets/photos/events/2025-uw-ai-robotics-summit-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-uw-ai-robotics-summit-c-1600.webp"
+                           width="1600" height="1067" loading="lazy" decoding="async"
+                           alt="UW AI &amp; Robotics Data Summit, Boeing Advanced Research Center, University of Washington, 28 August 2025.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-uw-ai-robotics-summit-d-1440.webp"
+                           srcset="/assets/photos/events/2025-uw-ai-robotics-summit-d-1440.webp 1440w,
+                           /assets/photos/events/2025-uw-ai-robotics-summit-d-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-uw-ai-robotics-summit-d-1440.webp"
+                           width="1440" height="962" loading="lazy" decoding="async"
+                           alt="UW AI &amp; Robotics Data Summit, Boeing Advanced Research Center, University of Washington, 28 August 2025.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-uw-ai-robotics-summit-e-800.webp"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-uw-ai-robotics-summit-e-800.webp"
+                           width="800" height="800" loading="lazy" decoding="async"
+                           alt="UW AI &amp; Robotics Data Summit, Boeing Advanced Research Center, University of Washington, 28 August 2025.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">ICML 2025 · Vancouver</span><span class="lang-zh" hidden>ICML 2025 · 温哥华</span></p>
+                  <h3 class="f-title"><span class="lang-en">International Conference on Machine Learning</span><span class="lang-zh" hidden>国际机器学习大会</span></h3>
+                  <p class="f-note"><span class="lang-en">Reviewer · July 2025 · Vancouver Convention Centre · <a href="/blog/2025/icml/">recap</a></span><span class="lang-zh" hidden>审稿人 · 2025 年 7 月 · 温哥华会议中心 · <a href="/blog/2025/icml/">小结</a></span></p>
+               </header>
+               <div class="sheet" data-frames="3">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-icml-yvr-a-1290.webp"
+                           srcset="/assets/photos/events/2025-icml-yvr-a-1290.webp 1290w,
+                           /assets/photos/events/2025-icml-yvr-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-icml-yvr-a-1290.webp"
+                           width="1290" height="1562" loading="lazy" decoding="async"
+                           alt="ICML 2025 at the Vancouver Convention Centre.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-icml-yvr-b-1600.webp"
+                           srcset="/assets/photos/events/2025-icml-yvr-b-1600.webp 1600w,
+                           /assets/photos/events/2025-icml-yvr-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-icml-yvr-b-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="ICML 2025 at the Vancouver Convention Centre.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-icml-yvr-c-896.webp"
+                           srcset="/assets/photos/events/2025-icml-yvr-c-896.webp 896w,
+                           /assets/photos/events/2025-icml-yvr-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-icml-yvr-c-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="ICML 2025 at the Vancouver Convention Centre.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">FlickBloom Tech Talks · Seattle</span><span class="lang-zh" hidden>FlickBloom Tech Talks · 西雅图</span></p>
+                  <h3 class="f-title"><span class="lang-en">Consumer-facing AI agents evaluation and validation</span><span class="lang-zh" hidden>面向消费者的 AI Agent 评估与验证</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest · 19 July 2025 · Foundations, Seattle · talk by Dr. Zhou (Jo) Yu (Professor of Computer Science, Columbia University; Founder &amp; CEO, Arklex.ai; Forbes 30 Under 30, 2018) · <a href="https://luma.com/t73dw8af" target="_blank" rel="noopener">event page</a></span><span class="lang-zh" hidden>嘉宾 · 2025 年 7 月 19 日 · Foundations，西雅图 · 主讲：Dr. Zhou (Jo) Yu（哥伦比亚大学计算机科学教授；Arklex.ai 创始人 &amp; CEO；2018 年福布斯 30 Under 30）· <a href="https://luma.com/t73dw8af" target="_blank" rel="noopener">活动页面</a></span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-flickbloom-agents-1195.webp"
+                           srcset="/assets/photos/events/2025-flickbloom-agents-1195.webp 1195w,
+                           /assets/photos/events/2025-flickbloom-agents-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2025-flickbloom-agents-1195.webp"
+                           width="1195" height="896" loading="lazy" decoding="async"
+                           alt="FlickBloom tech talk on evaluating consumer-facing AI agents, Foundations, Seattle, 19 July 2025.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue">Packt GenAI Summit</p>
+                  <h3 class="f-title"><span class="lang-en">State of Open Source LLM</span><span class="lang-zh" hidden>开源大语言模型现状</span></h3>
+                  <p class="f-note"><span class="lang-en">Keynote · online · <a href="https://www.linkedin.com/events/deepseekdemystifiedsummit7349071392195104771/" target="_blank" rel="noopener">event page</a></span><span class="lang-zh" hidden>主旨演讲 · 线上 · <a href="https://www.linkedin.com/events/deepseekdemystifiedsummit7349071392195104771/" target="_blank" rel="noopener">活动页面</a></span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-packt-genai-summit-1080.webp"
+                           srcset="/assets/photos/events/2025-packt-genai-summit-1080.webp 1080w,
+                           /assets/photos/events/2025-packt-genai-summit-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2025-packt-genai-summit-1080.webp"
+                           width="1080" height="1350" loading="lazy" decoding="async"
+                           alt="Speaker card for the Packt GenAI Summit 2025.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">University of Washington · Foster MSIS</span><span class="lang-zh" hidden>华盛顿大学 · Foster 商学院 MSIS</span></p>
+                  <h3 class="f-title"><span class="lang-en">MSIS Mentorship Celebration</span><span class="lang-zh" hidden>MSIS 导师计划庆祝活动</span></h3>
+                  <p class="f-note"><span class="lang-en">Seattle, 3 June 2025</span><span class="lang-zh" hidden>西雅图，2025 年 6 月 3 日</span></p>
+               </header>
+               <div class="sheet" data-frames="5">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-msis-mentorship-a-1600.webp"
+                           srcset="/assets/photos/events/2025-msis-mentorship-a-1600.webp 1600w,
+                           /assets/photos/events/2025-msis-mentorship-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-msis-mentorship-a-1600.webp"
+                           width="1600" height="1067" loading="lazy" decoding="async"
+                           alt="MSIS Mentorship Celebration at the University of Washington, 3 June 2025.">
+                     <figcaption class="f-credit"><span class="lang-en">Photograph by Matt Hagen</span><span class="lang-zh" hidden>摄影：Matt Hagen</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-msis-mentorship-b-1600.webp"
+                           srcset="/assets/photos/events/2025-msis-mentorship-b-1600.webp 1600w,
+                           /assets/photos/events/2025-msis-mentorship-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-msis-mentorship-b-1600.webp"
+                           width="1600" height="1067" loading="lazy" decoding="async"
+                           alt="MSIS Mentorship Celebration at the University of Washington, 3 June 2025.">
+                     <figcaption class="f-credit"><span class="lang-en">Photograph by Matt Hagen</span><span class="lang-zh" hidden>摄影：Matt Hagen</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-msis-mentorship-c-1600.webp"
+                           srcset="/assets/photos/events/2025-msis-mentorship-c-1600.webp 1600w,
+                           /assets/photos/events/2025-msis-mentorship-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-msis-mentorship-c-1600.webp"
+                           width="1600" height="1067" loading="lazy" decoding="async"
+                           alt="MSIS Mentorship Celebration at the University of Washington, 3 June 2025.">
+                     <figcaption class="f-credit"><span class="lang-en">Photograph by Matt Hagen</span><span class="lang-zh" hidden>摄影：Matt Hagen</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-msis-mentorship-d-1600.webp"
+                           srcset="/assets/photos/events/2025-msis-mentorship-d-1600.webp 1600w,
+                           /assets/photos/events/2025-msis-mentorship-d-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-msis-mentorship-d-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="MSIS Mentorship Celebration at the University of Washington, 3 June 2025.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-msis-mentorship-e-1600.webp"
+                           srcset="/assets/photos/events/2025-msis-mentorship-e-1600.webp 1600w,
+                           /assets/photos/events/2025-msis-mentorship-e-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-msis-mentorship-e-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="MSIS Mentorship Celebration at the University of Washington, 3 June 2025.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">SMILE · Seattle</span><span class="lang-zh" hidden>SMILE · 西雅图</span></p>
+                  <h3 class="f-title"><span class="lang-en">Succeed in Internal Transfer</span><span class="lang-zh" hidden>如何成功完成内部转岗</span></h3>
+                  <p class="f-note"><span class="lang-en">Seattle Amazonian Chinese League · 27 May 2025</span><span class="lang-zh" hidden>西雅图亚马逊华人联盟 · 2025 年 5 月 27 日</span></p>
+               </header>
+               <div class="sheet" data-frames="3">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-smile-internal-transfer-a-1440.webp"
+                           srcset="/assets/photos/events/2025-smile-internal-transfer-a-1440.webp 1440w,
+                           /assets/photos/events/2025-smile-internal-transfer-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-smile-internal-transfer-a-1440.webp"
+                           width="1440" height="2038" loading="lazy" decoding="async"
+                           alt="SMILE session on succeeding in an internal transfer, Seattle, 27 May 2025.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-smile-internal-transfer-b-1600.webp"
+                           srcset="/assets/photos/events/2025-smile-internal-transfer-b-1600.webp 1600w,
+                           /assets/photos/events/2025-smile-internal-transfer-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-smile-internal-transfer-b-1600.webp"
+                           width="1600" height="1226" loading="lazy" decoding="async"
+                           alt="SMILE session on succeeding in an internal transfer, Seattle, 27 May 2025.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2025-smile-internal-transfer-c-1600.webp"
+                           srcset="/assets/photos/events/2025-smile-internal-transfer-c-1600.webp 1600w,
+                           /assets/photos/events/2025-smile-internal-transfer-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2025-smile-internal-transfer-c-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="SMILE session on succeeding in an internal transfer, Seattle, 27 May 2025.">
+                  </figure>
+               </div>
+            </article>
+
+         </section>
+
+         <!-- ============================================================
+              2024
+              ============================================================ -->
+         <section class="rise" id="y2024">
+            <div class="year">
+               <h2>2024</h2>
+               <p><span class="lang-en">Thirty-one frames · Seattle, online</span><span class="lang-zh" hidden>三十一张 · 西雅图、线上</span></p>
+            </div>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">OnBoard! Podcast · episode artwork</span><span class="lang-zh" hidden>OnBoard! 播客 · 单集配图</span></p>
+                  <h3 class="f-title"><span class="lang-en">New Software Development Paradigms in the LLM Era</span><span class="lang-zh" hidden>LLM 时代需要怎样的软件开发新范式</span></h3>
+                  <p class="f-note"><span class="lang-en">Panel with Yangqing Jia 贾扬清 and Ed Huang 黄东旭 · moderated by Monica Xie · livestream · <a href="https://www.xiaoyuzhoufm.com/episode/676054e37d8426f6929d67cb?s=eyJ1IjogIjYwYjVhNzYxZTBmNWU3MjNiYjU4ZmNlYSJ9" target="_blank" rel="noopener">podcast</a> · <a href="https://mp.weixin.qq.com/s/wOZknRagMGyp8AluNqAzYg" target="_blank" rel="noopener">transcript</a></span><span class="lang-zh" hidden>圆桌，同场：贾扬清、黄东旭 · 主持：Monica Xie · 直播 · <a href="https://www.xiaoyuzhoufm.com/episode/676054e37d8426f6929d67cb?s=eyJ1IjogIjYwYjVhNzYxZTBmNWU3MjNiYjU4ZmNlYSJ9" target="_blank" rel="noopener">播客</a> · <a href="https://mp.weixin.qq.com/s/wOZknRagMGyp8AluNqAzYg" target="_blank" rel="noopener">文字版</a></span></p>
+               </header>
+               <div class="sheet" data-frames="2">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-onboard-podcast-a-704.webp"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-onboard-podcast-a-704.webp"
+                           width="704" height="1524" loading="lazy" decoding="async"
+                           alt="Episode artwork for the OnBoard! podcast episode on software development in the LLM era.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-onboard-podcast-b-1152.webp"
+                           srcset="/assets/photos/events/2024-onboard-podcast-b-1152.webp 1152w,
+                           /assets/photos/events/2024-onboard-podcast-b-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-onboard-podcast-b-1152.webp"
+                           width="1152" height="921" loading="lazy" decoding="async"
+                           alt="Episode artwork for the OnBoard! podcast episode on software development in the LLM era.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">B.E.L.L.E. · Seattle</span><span class="lang-zh" hidden>B.E.L.L.E. · 西雅图</span></p>
+                  <h3 class="f-title"><span class="lang-en">AI, Equity, and Innovations: Shaping the Future of Technology and Venture Capital</span><span class="lang-zh" hidden>人工智能、公平与创新：塑造科技与风险投资的未来</span></h3>
+                  <p class="f-note"><span class="lang-en">16 November 2024 · Capital One Café, Seattle</span><span class="lang-zh" hidden>2024 年 11 月 16 日 · Capital One Café，西雅图</span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-belle-seattle-1290.webp"
+                           srcset="/assets/photos/events/2024-belle-seattle-1290.webp 1290w,
+                           /assets/photos/events/2024-belle-seattle-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2024-belle-seattle-1290.webp"
+                           width="1290" height="868" loading="lazy" decoding="async"
+                           alt="B.E.L.L.E. community panel on AI, equity and venture capital, Capital One Café, Seattle, 16 November 2024.">
+                     <figcaption class="f-credit"><span class="lang-en">With <a href="https://www.madrona.com/team-profiles/rolanda-fu/" target="_blank" rel="noopener">Rolanda Fu</a> (Investor, Madrona) and Anna Hong (CEO and Co-founder, B.E.L.L.E.)</span><span class="lang-zh" hidden>与 <a href="https://www.madrona.com/team-profiles/rolanda-fu/" target="_blank" rel="noopener">Rolanda Fu</a>（Madrona 投资人）、Anna Hong（B.E.L.L.E. 联合创始人 & CEO）</span></figcaption>
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">China Entrepreneur Network · University of Washington</span><span class="lang-zh" hidden>China Entrepreneur Network · 华盛顿大学西雅图分校</span></p>
+                  <h3 class="f-title"><span class="lang-en">Dinner With Professionals (DWP)</span><span class="lang-zh" hidden>Dinner With Professionals（DWP）</span></h3>
+                  <p class="f-note"><span class="lang-en">Invited professional · October 2024 · Seattle · <a href="https://mp.weixin.qq.com/s/7qbcaW5sIsujO6kauIWY8Q" target="_blank" rel="noopener">write-up</a></span><span class="lang-zh" hidden>受邀职场嘉宾 · 2024 年 10 月 · 西雅图 · <a href="https://mp.weixin.qq.com/s/7qbcaW5sIsujO6kauIWY8Q" target="_blank" rel="noopener">活动记录</a></span></p>
+               </header>
+               <div class="sheet" data-frames="2">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-cen-dwp-a-1600.webp"
+                           srcset="/assets/photos/events/2024-cen-dwp-a-1600.webp 1600w,
+                           /assets/photos/events/2024-cen-dwp-a-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-cen-dwp-a-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="Dinner With Professionals, hosted by the China Entrepreneur Network at the University of Washington, October 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-cen-dwp-b-1500.webp"
+                           srcset="/assets/photos/events/2024-cen-dwp-b-1500.webp 1500w,
+                           /assets/photos/events/2024-cen-dwp-b-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-cen-dwp-b-1500.webp"
+                           width="1500" height="1500" loading="lazy" decoding="async"
+                           alt="Dinner With Professionals, hosted by the China Entrepreneur Network at the University of Washington, October 2024.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">Madrona · Seattle</span><span class="lang-zh" hidden>Madrona · 西雅图</span></p>
+                  <h3 class="f-title"><span class="lang-en">OpenAI Community Meetup</span><span class="lang-zh" hidden>OpenAI 社区聚会</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest · 1 August 2024 · Madrona, 999 Third Avenue, 34th floor, Seattle</span><span class="lang-zh" hidden>嘉宾 · 2024 年 8 月 1 日 · Madrona，西雅图第三大道 999 号 34 层</span></p>
+               </header>
+               <div class="sheet" data-frames="3">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-openai-meetup-seattle-a-1600.webp"
+                           srcset="/assets/photos/events/2024-openai-meetup-seattle-a-1600.webp 1600w,
+                           /assets/photos/events/2024-openai-meetup-seattle-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-openai-meetup-seattle-a-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="OpenAI Community Meetup Seattle at Madrona, 999 Third Avenue, 1 August 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-openai-meetup-seattle-b-1600.webp"
+                           srcset="/assets/photos/events/2024-openai-meetup-seattle-b-1600.webp 1600w,
+                           /assets/photos/events/2024-openai-meetup-seattle-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-openai-meetup-seattle-b-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="OpenAI Community Meetup Seattle at Madrona, 999 Third Avenue, 1 August 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-openai-meetup-seattle-c-1600.webp"
+                           srcset="/assets/photos/events/2024-openai-meetup-seattle-c-1600.webp 1600w,
+                           /assets/photos/events/2024-openai-meetup-seattle-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-openai-meetup-seattle-c-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="OpenAI Community Meetup Seattle at Madrona, 999 Third Avenue, 1 August 2024.">
+                     <figcaption class="f-credit"><span class="lang-en">With Jay Bartot (Technical Partner, Madrona Venture Labs; Affiliate Professor, University of Washington)</span><span class="lang-zh" hidden>与 Jay Bartot（Madrona Venture Labs 技术合伙人；华盛顿大学客座教授）</span></figcaption>
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">SMILE · Seattle</span><span class="lang-zh" hidden>SMILE · 西雅图</span></p>
+                  <h3 class="f-title">GenAI 茶话会</h3>
+                  <p class="f-note"><span class="lang-en">Panel with Xiaopeng Li and Raphael Shu · Seattle Amazonian Chinese League · <a href="https://www.xiaohongshu.com/discovery/item/6688bd8b000000001c0250fe?source=webshare&amp;xhsshare=pc_web&amp;xsec_token=ABKX1wuwAQJwr-A9ZoGU-cldn7AEkGNosdYsdMrzpMeqg=&amp;xsec_source=pc_share" target="_blank" rel="noopener">Rednote post</a></span><span class="lang-zh" hidden>圆桌，同场：Xiaopeng Li、Raphael Shu · 西雅图亚马逊华人联盟 · <a href="https://www.xiaohongshu.com/discovery/item/6688bd8b000000001c0250fe?source=webshare&amp;xhsshare=pc_web&amp;xsec_token=ABKX1wuwAQJwr-A9ZoGU-cldn7AEkGNosdYsdMrzpMeqg=&amp;xsec_source=pc_share" target="_blank" rel="noopener">小红书笔记</a></span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-smile-genai-panel-1080.webp"
+                           srcset="/assets/photos/events/2024-smile-genai-panel-1080.webp 1080w,
+                           /assets/photos/events/2024-smile-genai-panel-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2024-smile-genai-panel-1080.webp"
+                           width="1080" height="1397" loading="lazy" decoding="async"
+                           alt="The GenAI panel at SMILE, the Seattle Amazonian Chinese League, 2024.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">CVPR 2024 · Seattle</span><span class="lang-zh" hidden>CVPR 2024 · 西雅图</span></p>
+                  <h3 class="f-title"><span class="lang-en">Computer Vision and Pattern Recognition</span><span class="lang-zh" hidden>计算机视觉与模式识别大会</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest · 17 to 21 June 2024 · Seattle Convention Center</span><span class="lang-zh" hidden>嘉宾 · 2024 年 6 月 17 日至 21 日 · 西雅图会议中心</span></p>
+               </header>
+               <div class="sheet" data-frames="2">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-cvpr-a-1600.webp"
+                           srcset="/assets/photos/events/2024-cvpr-a-1600.webp 1600w,
+                           /assets/photos/events/2024-cvpr-a-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-cvpr-a-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="A CVPR 2024 attendee badge, its QR code blanked.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-cvpr-b-1195.webp"
+                           srcset="/assets/photos/events/2024-cvpr-b-1195.webp 1195w,
+                           /assets/photos/events/2024-cvpr-b-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-cvpr-b-1195.webp"
+                           width="1195" height="896" loading="lazy" decoding="async"
+                           alt="CVPR 2024, the Computer Vision and Pattern Recognition conference, Seattle Convention Center.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">Google Bay View · Mountain View</span><span class="lang-zh" hidden>谷歌 Bay View 办公室 · 山景城</span></p>
+                  <h3 class="f-title"><span class="lang-en">KuberTENes Birthday Bash</span><span class="lang-zh" hidden>KuberTENes 生日会</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest · 6 June 2024 · ten years of Kubernetes · <a href="https://events.linuxfoundation.org/kuber10es-birthday-bash/" target="_blank" rel="noopener">event page</a> · <a href="/blog/2025/cncf10yo/">my ten KubeCons</a></span><span class="lang-zh" hidden>嘉宾 · 2024 年 6 月 6 日 · Kubernetes 十周年 · <a href="https://events.linuxfoundation.org/kuber10es-birthday-bash/" target="_blank" rel="noopener">活动页面</a> · <a href="/blog/2025/cncf10yo/">我的十次 KubeCon</a></span></p>
+               </header>
+               <div class="sheet" data-frames="6">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-kubertenes-a-1500.webp"
+                           srcset="/assets/photos/events/2024-kubertenes-a-1500.webp 1500w,
+                           /assets/photos/events/2024-kubertenes-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-kubertenes-a-1500.webp"
+                           width="1500" height="1500" loading="lazy" decoding="async"
+                           alt="KuberTENes Birthday Bash, ten years of Kubernetes, at Google's Bay View office in Mountain View, 6 June 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-kubertenes-b-896.webp"
+                           srcset="/assets/photos/events/2024-kubertenes-b-896.webp 896w,
+                           /assets/photos/events/2024-kubertenes-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-kubertenes-b-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="KuberTENes Birthday Bash, ten years of Kubernetes, at Google's Bay View office in Mountain View, 6 June 2024.">
+                     <figcaption class="f-credit"><span class="lang-en">With Tim Hockin (Distinguished Software Engineer, Google Cloud: Kubernetes and GKE)</span><span class="lang-zh" hidden>与 Tim Hockin（Google Cloud 杰出软件工程师，负责 Kubernetes 与 GKE）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-kubertenes-c-1195.webp"
+                           srcset="/assets/photos/events/2024-kubertenes-c-1195.webp 1195w,
+                           /assets/photos/events/2024-kubertenes-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-kubertenes-c-1195.webp"
+                           width="1195" height="896" loading="lazy" decoding="async"
+                           alt="KuberTENes Birthday Bash, ten years of Kubernetes, at Google's Bay View office in Mountain View, 6 June 2024.">
+                     <figcaption class="f-credit"><span class="lang-en">With Janet Kuo (Staff Software Engineer, Google Cloud)</span><span class="lang-zh" hidden>与 Janet Kuo（Google Cloud 资深软件工程师）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-kubertenes-d-896.webp"
+                           srcset="/assets/photos/events/2024-kubertenes-d-896.webp 896w,
+                           /assets/photos/events/2024-kubertenes-d-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-kubertenes-d-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="KuberTENes Birthday Bash, ten years of Kubernetes, at Google's Bay View office in Mountain View, 6 June 2024.">
+                     <figcaption class="f-credit"><span class="lang-en">With Katie Greenley (Senior Manager, Marketing and Community, CNCF, the Linux Foundation; Marketing Committee Co-chair)</span><span class="lang-zh" hidden>与 Katie Greenley（Linux 基金会 CNCF 市场与社区高级经理；市场委员会联合主席）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-kubertenes-e-896.webp"
+                           srcset="/assets/photos/events/2024-kubertenes-e-896.webp 896w,
+                           /assets/photos/events/2024-kubertenes-e-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-kubertenes-e-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="KuberTENes Birthday Bash, ten years of Kubernetes, at Google's Bay View office in Mountain View, 6 June 2024.">
+                     <figcaption class="f-credit"><span class="lang-en">With Kelsey Hightower (Distinguished Software Engineer)</span><span class="lang-zh" hidden>与 Kelsey Hightower（杰出软件工程师）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-kubertenes-f-896.webp"
+                           srcset="/assets/photos/events/2024-kubertenes-f-896.webp 896w,
+                           /assets/photos/events/2024-kubertenes-f-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-kubertenes-f-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="KuberTENes Birthday Bash, ten years of Kubernetes, at Google's Bay View office in Mountain View, 6 June 2024.">
+                     <figcaption class="f-credit"><span class="lang-en">With Brian Grant (Distinguished Software Engineer, Google)</span><span class="lang-zh" hidden>与 Brian Grant（谷歌杰出软件工程师）</span></figcaption>
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">University of Washington · MSIS 549</span><span class="lang-zh" hidden>华盛顿大学 · MSIS 549</span></p>
+                  <h3 class="f-title"><span class="lang-en">Transforming AI: Modern Business Redefine</span><span class="lang-zh" hidden>变革人工智能：重新定义现代商业</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest lecturer · MSIS 549 (2): Machine Learning and Artificial Intelligence for Business Applications · <a href="https://www.linkedin.com/posts/margaretmz_it-has-been-a-wonderful-experience-teaching-ugcPost-7190422362406735872-K7Bs?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener">LinkedIn post</a></span><span class="lang-zh" hidden>客座讲师 · MSIS 549（2）：面向商业应用的机器学习与人工智能 · <a href="https://www.linkedin.com/posts/margaretmz_it-has-been-a-wonderful-experience-teaching-ugcPost-7190422362406735872-K7Bs?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener">领英帖子</a></span></p>
+               </header>
+               <div class="sheet" data-frames="4">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-uw-msis-549-a-1600.webp"
+                           srcset="/assets/photos/events/2024-uw-msis-549-a-1600.webp 1600w,
+                           /assets/photos/events/2024-uw-msis-549-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-uw-msis-549-a-1600.webp"
+                           width="1600" height="1202" loading="lazy" decoding="async"
+                           alt="Guest lecture for MSIS 549 at the University of Washington, 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-uw-msis-549-b-1600.webp"
+                           srcset="/assets/photos/events/2024-uw-msis-549-b-1600.webp 1600w,
+                           /assets/photos/events/2024-uw-msis-549-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-uw-msis-549-b-1600.webp"
+                           width="1600" height="1202" loading="lazy" decoding="async"
+                           alt="Guest lecture for MSIS 549 at the University of Washington, 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-uw-msis-549-c-1600.webp"
+                           srcset="/assets/photos/events/2024-uw-msis-549-c-1600.webp 1600w,
+                           /assets/photos/events/2024-uw-msis-549-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-uw-msis-549-c-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="Guest lecture for MSIS 549 at the University of Washington, 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-uw-msis-549-d-1500.webp"
+                           srcset="/assets/photos/events/2024-uw-msis-549-d-1500.webp 1500w,
+                           /assets/photos/events/2024-uw-msis-549-d-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-uw-msis-549-d-1500.webp"
+                           width="1500" height="1500" loading="lazy" decoding="async"
+                           alt="Guest lecture for MSIS 549 at the University of Washington, 2024.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">Open Source Summit North America · Seattle</span><span class="lang-zh" hidden>Open Source Summit North America · 西雅图</span></p>
+                  <h3 class="f-title"><span class="lang-en">Open Source Summit North America 2024</span><span class="lang-zh" hidden>Open Source Summit 北美站 2024</span></h3>
+                  <p class="f-note"><span class="lang-en">16 to 18 April 2024 · Seattle Convention Center</span><span class="lang-zh" hidden>2024 年 4 月 16 日至 18 日 · 西雅图会议中心</span></p>
+               </header>
+               <div class="sheet" data-frames="5">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-open-source-summit-na-a-1600.webp"
+                           srcset="/assets/photos/events/2024-open-source-summit-na-a-1600.webp 1600w,
+                           /assets/photos/events/2024-open-source-summit-na-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-open-source-summit-na-a-1600.webp"
+                           width="1600" height="1570" loading="lazy" decoding="async"
+                           alt="Open Source Summit North America 2024, Seattle Convention Center.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-open-source-summit-na-b-1600.webp"
+                           srcset="/assets/photos/events/2024-open-source-summit-na-b-1600.webp 1600w,
+                           /assets/photos/events/2024-open-source-summit-na-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-open-source-summit-na-b-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="Open Source Summit North America 2024, Seattle Convention Center.">
+                     <figcaption class="f-credit"><span class="lang-en">With Hanna Hajishirzi (VP, Microsoft AI; Professor, University of Washington; ex-Senior Director of AI, AI2)</span><span class="lang-zh" hidden>与 Hanna Hajishirzi（微软 AI 副总裁；华盛顿大学教授；前 AI2 人工智能高级总监）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-open-source-summit-na-c-1600.webp"
+                           srcset="/assets/photos/events/2024-open-source-summit-na-c-1600.webp 1600w,
+                           /assets/photos/events/2024-open-source-summit-na-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-open-source-summit-na-c-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="Open Source Summit North America 2024, Seattle Convention Center.">
+                     <figcaption class="f-credit"><span class="lang-en">Group photo at the venue with the University of Washington students I sponsored to attend</span><span class="lang-zh" hidden>会场合影：与我赞助参会的华盛顿大学学生</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-open-source-summit-na-d-1600.webp"
+                           srcset="/assets/photos/events/2024-open-source-summit-na-d-1600.webp 1600w,
+                           /assets/photos/events/2024-open-source-summit-na-d-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-open-source-summit-na-d-1600.webp"
+                           width="1600" height="2000" loading="lazy" decoding="async"
+                           alt="Open Source Summit North America 2024, Seattle Convention Center.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-open-source-summit-na-e-896.webp"
+                           srcset="/assets/photos/events/2024-open-source-summit-na-e-896.webp 896w,
+                           /assets/photos/events/2024-open-source-summit-na-e-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-open-source-summit-na-e-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="Open Source Summit North America 2024, Seattle Convention Center.">
+                     <figcaption class="f-credit"><span class="lang-en">With Jennifer Madriaga (Chief of Staff, The Linux Foundation)</span><span class="lang-zh" hidden>与 Jennifer Madriaga（Linux 基金会幕僚长）</span></figcaption>
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">University of Washington · MSIS 547</span><span class="lang-zh" hidden>华盛顿大学 · MSIS 547</span></p>
+                  <h3 class="f-title"><span class="lang-en">New Era of Generative AI and Building in the Cloud</span><span class="lang-zh" hidden>生成式人工智能新时代与云上构建</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest lecturer · MSIS 547 (2): Managing in the Era of Cloud Computing · 2 March 2024 · co-lecturer Jay Bartot · hosted by Léonard Boussioux · <a href="https://www.linkedin.com/posts/uw-foster-msis_msis-genai-demoday-ugcPost-7173432871800483841-wW0C?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener">UW Foster MSIS post</a> · <a href="https://www.linkedin.com/posts/leonard-boussioux_forging-ai-champions-a-transformative-ugcPost-7188941809279000576-ZKov?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener">LinkedIn post</a></span><span class="lang-zh" hidden>客座讲师 · MSIS 547（2）：云计算时代的管理 · 2024 年 3 月 2 日 · 共同讲师：Jay Bartot · 邀请人：Léonard Boussioux · <a href="https://www.linkedin.com/posts/uw-foster-msis_msis-genai-demoday-ugcPost-7173432871800483841-wW0C?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener">UW Foster MSIS 帖子</a> · <a href="https://www.linkedin.com/posts/leonard-boussioux_forging-ai-champions-a-transformative-ugcPost-7188941809279000576-ZKov?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener">领英帖子</a></span></p>
+               </header>
+               <div class="sheet" data-frames="5">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-uw-msis-547-a-1280.webp"
+                           srcset="/assets/photos/events/2024-uw-msis-547-a-1280.webp 1280w,
+                           /assets/photos/events/2024-uw-msis-547-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-uw-msis-547-a-1280.webp"
+                           width="1280" height="1706" loading="lazy" decoding="async"
+                           alt="Guest lecture for MSIS 547 at the University of Washington, 2 March 2024.">
+                     <figcaption class="f-credit"><span class="lang-en">With Jay Bartot (Technical Partner, Madrona Venture Labs; Affiliate Professor, University of Washington)</span><span class="lang-zh" hidden>与 Jay Bartot（Madrona Venture Labs 技术合伙人；华盛顿大学客座教授）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-uw-msis-547-b-1600.webp"
+                           srcset="/assets/photos/events/2024-uw-msis-547-b-1600.webp 1600w,
+                           /assets/photos/events/2024-uw-msis-547-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-uw-msis-547-b-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="Guest lecture for MSIS 547 at the University of Washington, 2 March 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-uw-msis-547-c-1600.webp"
+                           srcset="/assets/photos/events/2024-uw-msis-547-c-1600.webp 1600w,
+                           /assets/photos/events/2024-uw-msis-547-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-uw-msis-547-c-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="Guest lecture for MSIS 547 at the University of Washington, 2 March 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-uw-msis-547-d-1600.webp"
+                           srcset="/assets/photos/events/2024-uw-msis-547-d-1600.webp 1600w,
+                           /assets/photos/events/2024-uw-msis-547-d-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-uw-msis-547-d-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="Guest lecture for MSIS 547 at the University of Washington, 2 March 2024.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2024-uw-msis-547-e-1290.webp"
+                           srcset="/assets/photos/events/2024-uw-msis-547-e-1290.webp 1290w,
+                           /assets/photos/events/2024-uw-msis-547-e-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2024-uw-msis-547-e-1290.webp"
+                           width="1290" height="1833" loading="lazy" decoding="async"
+                           alt="Guest lecture for MSIS 547 at the University of Washington, 2 March 2024.">
+                  </figure>
+               </div>
+            </article>
+
+         </section>
+
+         <!-- ============================================================
+              2023
+              ============================================================ -->
+         <section class="rise" id="y2023">
+            <div class="year">
+               <h2>2023</h2>
+               <p><span class="lang-en">Twenty-five frames · Amsterdam, New York, Seattle, online</span><span class="lang-zh" hidden>二十五张 · 阿姆斯特丹、纽约、西雅图、线上</span></p>
+            </div>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">Women in Tech Regatta · Seattle</span><span class="lang-zh" hidden>Women in Tech Regatta · 西雅图</span></p>
+                  <h3 class="f-title"><span class="lang-en">Myth-Busting Tech Trends</span><span class="lang-zh" hidden>破解科技趋势迷思</span></h3>
+                  <p class="f-note"><span class="lang-en">Panel with Morgan Zion and Caroline Williams · moderated by Padmaja Vrudhula · April 2023 · <a href="https://seattleregatta2023.sched.com/event/1LEF6/myth-busting-tech-trends-supported-by-northeastern-university" target="_blank" rel="noopener">session page</a></span><span class="lang-zh" hidden>圆桌，同场：Morgan Zion、Caroline Williams · 主持：Padmaja Vrudhula · 2023 年 4 月 · <a href="https://seattleregatta2023.sched.com/event/1LEF6/myth-busting-tech-trends-supported-by-northeastern-university" target="_blank" rel="noopener">议程页面</a></span></p>
+               </header>
+               <div class="sheet" data-frames="4">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-women-in-tech-regatta-a-1600.webp"
+                           srcset="/assets/photos/events/2023-women-in-tech-regatta-a-1600.webp 1600w,
+                           /assets/photos/events/2023-women-in-tech-regatta-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-women-in-tech-regatta-a-1600.webp"
+                           width="1600" height="1065" loading="lazy" decoding="async"
+                           alt="The Myth-Busting Tech Trends panel at the Seattle Women in Tech Regatta 2023.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-women-in-tech-regatta-b-1600.webp"
+                           srcset="/assets/photos/events/2023-women-in-tech-regatta-b-1600.webp 1600w,
+                           /assets/photos/events/2023-women-in-tech-regatta-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-women-in-tech-regatta-b-1600.webp"
+                           width="1600" height="2404" loading="lazy" decoding="async"
+                           alt="The Myth-Busting Tech Trends panel at the Seattle Women in Tech Regatta 2023.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-women-in-tech-regatta-c-1600.webp"
+                           srcset="/assets/photos/events/2023-women-in-tech-regatta-c-1600.webp 1600w,
+                           /assets/photos/events/2023-women-in-tech-regatta-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-women-in-tech-regatta-c-1600.webp"
+                           width="1600" height="1065" loading="lazy" decoding="async"
+                           alt="The Myth-Busting Tech Trends panel at the Seattle Women in Tech Regatta 2023.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-women-in-tech-regatta-d-1600.webp"
+                           srcset="/assets/photos/events/2023-women-in-tech-regatta-d-1600.webp 1600w,
+                           /assets/photos/events/2023-women-in-tech-regatta-d-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-women-in-tech-regatta-d-1600.webp"
+                           width="1600" height="2404" loading="lazy" decoding="async"
+                           alt="The Myth-Busting Tech Trends panel at the Seattle Women in Tech Regatta 2023.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">KubeCon + CloudNativeCon Europe · Amsterdam</span><span class="lang-zh" hidden>KubeCon + CloudNativeCon Europe · 阿姆斯特丹</span></p>
+                  <h3 class="f-title">KubeCon + CloudNativeCon Europe 2023</h3>
+                  <p class="f-note"><span class="lang-en">Speaker, and announced here as a CNCF Ambassador · 18 to 21 April 2023 · presented “The open-source community at AWS: containerd and Envoy” with Phil Estes · <a href="https://twitter.com/AWSOpen/status/1647989049305575428?s=20" target="_blank" rel="noopener">AWS Open Source post</a> · <a href="/blog/2025/cncf10yo/">my ten KubeCons</a></span><span class="lang-zh" hidden>演讲者，并在会上正式公布为 CNCF Ambassador · 2023 年 4 月 18 日至 21 日 · 与 Phil Estes 共同演讲《亚马逊云科技的开源社区：containerd 与 Envoy》· <a href="https://twitter.com/AWSOpen/status/1647989049305575428?s=20" target="_blank" rel="noopener">AWS 开源团队动态</a> · <a href="/blog/2025/cncf10yo/">我的十次 KubeCon</a></span></p>
+               </header>
+               <div class="sheet" data-frames="15">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-a-1200.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-a-1200.webp 1200w,
+                           /assets/photos/events/2023-kubecon-eu-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-a-1200.webp"
+                           width="1200" height="676" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-b-1600.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-b-1600.webp 1600w,
+                           /assets/photos/events/2023-kubecon-eu-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-b-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-c-1600.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-c-1600.webp 1600w,
+                           /assets/photos/events/2023-kubecon-eu-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-c-1600.webp"
+                           width="1600" height="900" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-d-1600.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-d-1600.webp 1600w,
+                           /assets/photos/events/2023-kubecon-eu-d-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-d-1600.webp"
+                           width="1600" height="1200" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                     <figcaption class="f-credit"><span class="lang-en">Chris Aniszczyk (VP, Developer Relations, the Linux Foundation; CTO, CNCF) announcing the new Ambassadors at the opening</span><span class="lang-zh" hidden>Chris Aniszczyk（Linux 基金会开发者关系副总裁；CNCF CTO）在开场上公布新一届 Ambassador</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-e-1600.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-e-1600.webp 1600w,
+                           /assets/photos/events/2023-kubecon-eu-e-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-e-1600.webp"
+                           width="1600" height="1067" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                     <figcaption class="f-credit"><span class="lang-en">The CNCF Ambassadors · photograph by the <a href="https://www.flickr.com/photos/143247548@N03/52838044610/" target="_blank" rel="noopener">Cloud Native Computing Foundation</a>, <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/" target="_blank" rel="noopener">CC BY-NC-SA 2.0</a></span><span class="lang-zh" hidden>CNCF Ambassador 合影 · 摄影：<a href="https://www.flickr.com/photos/143247548@N03/52838044610/" target="_blank" rel="noopener">Cloud Native Computing Foundation</a>，<a href="https://creativecommons.org/licenses/by-nc-sa/2.0/" target="_blank" rel="noopener">CC BY-NC-SA 2.0</a> 许可</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-f-1024.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-f-1024.webp 1024w,
+                           /assets/photos/events/2023-kubecon-eu-f-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-f-1024.webp"
+                           width="1024" height="736" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                     <figcaption class="f-credit"><span class="lang-en">With Alolita Sharma (then Senior Manager, Software Engineering and Principal Technologist, AWS, and concurrently a CNCF Governing Board member, Chair of the End User TAB and Co-chair of the Observability TAG; now Engineering Management, Observability and Platform Technologies, Apple) and Michael Hausenblas (then Principal Product Manager, AWS; now Principal Software Engineer, Genesys)</span><span class="lang-zh" hidden>与 Alolita Sharma（时任亚马逊云科技软件工程高级经理与首席技术专家，同时是 CNCF 董事会成员、End User TAB 主席、Observability TAG 联合主席；现于 Apple 负责可观测性与平台技术的工程管理）、Michael Hausenblas（时任亚马逊云科技首席产品经理；现为 Genesys 首席软件工程师）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-g-1024.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-g-1024.webp 1024w,
+                           /assets/photos/events/2023-kubecon-eu-g-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-g-1024.webp"
+                           width="1024" height="1024" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                     <figcaption class="f-credit"><span class="lang-en">With the Knative group</span><span class="lang-zh" hidden>与 Knative 团队</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-h-1600.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-h-1600.webp 1600w,
+                           /assets/photos/events/2023-kubecon-eu-h-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-h-1600.webp"
+                           width="1600" height="900" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-i-1600.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-i-1600.webp 1600w,
+                           /assets/photos/events/2023-kubecon-eu-i-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-i-1600.webp"
+                           width="1600" height="900" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                     <figcaption class="f-credit"><span class="lang-en">With Anni Lai (General Member Representative and Generative AI Commons Co-chair, LF AI &amp; Data; Head of Open Source Operations and Marketing, Futurewei)</span><span class="lang-zh" hidden>与 Anni Lai（LF AI &amp; Data 普通会员代表、Generative AI Commons 联合主席；Futurewei 开源运营与市场负责人）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-j-896.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-j-896.webp 896w,
+                           /assets/photos/events/2023-kubecon-eu-j-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-j-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-k-896.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-k-896.webp 896w,
+                           /assets/photos/events/2023-kubecon-eu-k-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-k-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                     <figcaption class="f-credit"><span class="lang-en">With Kelsey Hightower (Distinguished Software Engineer)</span><span class="lang-zh" hidden>与 Kelsey Hightower（杰出软件工程师）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-l-896.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-l-896.webp 896w,
+                           /assets/photos/events/2023-kubecon-eu-l-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-l-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                     <figcaption class="f-credit"><span class="lang-en">With the AWS team</span><span class="lang-zh" hidden>与亚马逊云科技的同事们</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-m-896.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-m-896.webp 896w,
+                           /assets/photos/events/2023-kubecon-eu-m-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-m-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-n-1195.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-n-1195.webp 1195w,
+                           /assets/photos/events/2023-kubecon-eu-n-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-n-1195.webp"
+                           width="1195" height="896" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                     <figcaption class="f-credit"><span class="lang-en">With Barry Cooks (VP, AWS Compute Abstractions; CNCF Governing Board member)</span><span class="lang-zh" hidden>与 Barry Cooks（亚马逊云科技 Compute Abstractions 副总裁；CNCF 董事会成员）</span></figcaption>
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-kubecon-eu-o-896.webp"
+                           srcset="/assets/photos/events/2023-kubecon-eu-o-896.webp 896w,
+                           /assets/photos/events/2023-kubecon-eu-o-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-kubecon-eu-o-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon Europe 2023, Amsterdam.">
+                     <figcaption class="f-credit"><span class="lang-en">With Kevin (Zefeng) Wang (Vice Chair of the CNCF Technical Oversight Committee and a CNCF Ambassador; Lead of the Cloud Native Open Source Team, Huawei)</span><span class="lang-zh" hidden>与 Kevin (Zefeng) Wang（CNCF 技术监督委员会副主席、CNCF Ambassador；华为云原生开源团队负责人）</span></figcaption>
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">CNCF · on camera</span><span class="lang-zh" hidden>CNCF · 镜头前</span></p>
+                  <h3 class="f-title"><span class="lang-en">Meet the Ambassadors</span><span class="lang-zh" hidden>走近云原生大使</span></h3>
+                  <p class="f-note"><span class="lang-en">Filmed at KubeCon + CloudNativeCon Europe 2023 · <a href="https://youtu.be/uS698pTnw1I?si=j7xdt1GVic_jmqSG" target="_blank" rel="noopener">YouTube</a></span><span class="lang-zh" hidden>录制于 KubeCon + CloudNativeCon Europe 2023 · <a href="https://youtu.be/uS698pTnw1I?si=j7xdt1GVic_jmqSG" target="_blank" rel="noopener">YouTube</a></span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-meet-the-ambassadors-1280.webp"
+                           srcset="/assets/photos/events/2023-meet-the-ambassadors-1280.webp 1280w,
+                           /assets/photos/events/2023-meet-the-ambassadors-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2023-meet-the-ambassadors-1280.webp"
+                           width="1280" height="720" loading="lazy" decoding="async"
+                           alt="Meet the Ambassadors, filmed at KubeCon + CloudNativeCon Europe 2023.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue">CUC Meetup</p>
+                  <h3 class="f-title"><span class="lang-en">Technical Leadership in Team Management</span><span class="lang-zh" hidden>团队管理中的技术领导力</span></h3>
+                  <p class="f-note"><span class="lang-en">Speaker · moderated by Zheng Luo · <a href="https://youtu.be/F24kUu2nFDY" target="_blank" rel="noopener">YouTube</a></span><span class="lang-zh" hidden>主讲 · 主持：Zheng Luo · <a href="https://youtu.be/F24kUu2nFDY" target="_blank" rel="noopener">YouTube</a></span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-cuc-meetup-1080.webp"
+                           srcset="/assets/photos/events/2023-cuc-meetup-1080.webp 1080w,
+                           /assets/photos/events/2023-cuc-meetup-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2023-cuc-meetup-1080.webp"
+                           width="1080" height="540" loading="lazy" decoding="async"
+                           alt="CUC Meetup 2023, the session on technical leadership in team management.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue">StaffPlus New York</p>
+                  <h3 class="f-title">StaffPlus New York 2023</h3>
+                  <p class="f-note"><span class="lang-en">Guest · 16 March 2023 · New York · The Staff Engineer's Path, signed by its author, Tanya Reilly</span><span class="lang-zh" hidden>嘉宾 · 2023 年 3 月 16 日 · 纽约 · 作者 Tanya Reilly 在《The Staff Engineer's Path》上签名</span></p>
+               </header>
+               <div class="sheet" data-frames="3">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-staffplus-nyc-a-896.webp"
+                           srcset="/assets/photos/events/2023-staffplus-nyc-a-896.webp 896w,
+                           /assets/photos/events/2023-staffplus-nyc-a-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-staffplus-nyc-a-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="StaffPlus New York 2023, where Tanya Reilly signed a copy of The Staff Engineer's Path.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-staffplus-nyc-b-896.webp"
+                           srcset="/assets/photos/events/2023-staffplus-nyc-b-896.webp 896w,
+                           /assets/photos/events/2023-staffplus-nyc-b-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-staffplus-nyc-b-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="StaffPlus New York 2023, where Tanya Reilly signed a copy of The Staff Engineer's Path.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-staffplus-nyc-c-1600.webp"
+                           srcset="/assets/photos/events/2023-staffplus-nyc-c-1600.webp 1600w,
+                           /assets/photos/events/2023-staffplus-nyc-c-800.webp 800w"
+                           sizes="(min-width: 1280px) 352px, (min-width: 1024px) 30vw, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2023-staffplus-nyc-c-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="StaffPlus New York 2023, where Tanya Reilly signed a copy of The Staff Engineer's Path.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">Pi Day</span><span class="lang-zh" hidden>圆周率日</span></p>
+                  <h3 class="f-title"><span class="lang-en">Pi Day 2023</span><span class="lang-zh" hidden>2023 圆周率日</span></h3>
+                  <p class="f-note"><span class="lang-en">14 March 2023</span><span class="lang-zh" hidden>2023 年 3 月 14 日</span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2023-pi-day-896.webp"
+                           srcset="/assets/photos/events/2023-pi-day-896.webp 896w,
+                           /assets/photos/events/2023-pi-day-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2023-pi-day-896.webp"
+                           width="896" height="1195" loading="lazy" decoding="async"
+                           alt="Pi Day 2023.">
+                  </figure>
+               </div>
+            </article>
+
+         </section>
+
+         <!-- ============================================================
+              2022
+              ============================================================ -->
+         <section class="rise" id="y2022">
+            <div class="year">
+               <h2>2022</h2>
+               <p><span class="lang-en">Three frames · Detroit, online</span><span class="lang-zh" hidden>三张 · 底特律、线上</span></p>
+            </div>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue">KubeCon + CloudNativeCon North America</p>
+                  <h3 class="f-title"><span class="lang-en">Building Multi-Tenant Routing and Scaling with Envoy</span><span class="lang-zh" hidden>使用 Envoy 构建多租户路由与弹性伸缩</span></h3>
+                  <p class="f-note"><span class="lang-en">Sole presenter · Detroit · <a href="https://kccncna2022.sched.com/event/182KU/building-multi-tenant-routing-and-scaling-with-envoy-yiming-peng-amazon-web-services-inc" target="_blank" rel="noopener">session page</a> · <a href="https://www.youtube.com/watch?v=6-akjOASvxc" target="_blank" rel="noopener">YouTube</a></span><span class="lang-zh" hidden>独立演讲 · 底特律 · <a href="https://kccncna2022.sched.com/event/182KU/building-multi-tenant-routing-and-scaling-with-envoy-yiming-peng-amazon-web-services-inc" target="_blank" rel="noopener">议程页面</a> · <a href="https://www.youtube.com/watch?v=6-akjOASvxc" target="_blank" rel="noopener">YouTube</a></span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2022-kubecon-na-1200.webp"
+                           srcset="/assets/photos/events/2022-kubecon-na-1200.webp 1200w,
+                           /assets/photos/events/2022-kubecon-na-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2022-kubecon-na-1200.webp"
+                           width="1200" height="675" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon North America 2022, the session on multi-tenant routing and scaling with Envoy.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue">DockerCon</p>
+                  <h3 class="f-title"><span class="lang-en">How developers can get to production web applications at scale, easily</span><span class="lang-zh" hidden>开发者如何轻松将 Web 应用大规模投入生产</span></h3>
+                  <p class="f-note"><span class="lang-en">With Inbal Shani and Clarinda Mascarenhas · <a href="https://www.youtube.com/watch?v=Iyp9Ugk9oRs" target="_blank" rel="noopener">YouTube</a></span><span class="lang-zh" hidden>同场：Inbal Shani、Clarinda Mascarenhas · <a href="https://www.youtube.com/watch?v=Iyp9Ugk9oRs" target="_blank" rel="noopener">YouTube</a></span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2022-dockercon-1280.webp"
+                           srcset="/assets/photos/events/2022-dockercon-1280.webp 1280w,
+                           /assets/photos/events/2022-dockercon-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2022-dockercon-1280.webp"
+                           width="1280" height="720" loading="lazy" decoding="async"
+                           alt="DockerCon 2022, the AWS session on getting production web applications to scale.">
+                  </figure>
+               </div>
+            </article>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">Containers from the Couch · livestream</span><span class="lang-zh" hidden>Containers from the Couch · 直播</span></p>
+                  <h3 class="f-title"><span class="lang-en">AWS App Runner X-Ray Integration</span><span class="lang-zh" hidden>AWS App Runner 与 X-Ray 集成</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest · hosted by Adam Keller · <a href="https://youtu.be/cVr8N7enCMM" target="_blank" rel="noopener">YouTube</a></span><span class="lang-zh" hidden>嘉宾 · 主持：Adam Keller · <a href="https://youtu.be/cVr8N7enCMM" target="_blank" rel="noopener">YouTube</a></span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2022-containers-from-the-couch-600.webp"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2022-containers-from-the-couch-600.webp"
+                           width="600" height="375" loading="lazy" decoding="async"
+                           alt="Containers from the Couch, the episode on the AWS App Runner and X-Ray integration.">
+                  </figure>
+               </div>
+            </article>
+
+         </section>
+
+         <!-- ============================================================
+              2019
+              ============================================================ -->
+         <section class="rise" id="y2019">
+            <div class="year">
+               <h2>2019</h2>
+               <p><span class="lang-en">Two frames · San Diego</span><span class="lang-zh" hidden>两张 · 圣迭戈</span></p>
+            </div>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">KubeCon + CloudNativeCon North America · San Diego</span><span class="lang-zh" hidden>KubeCon + CloudNativeCon North America · 圣迭戈</span></p>
+                  <h3 class="f-title">KubeCon + CloudNativeCon North America 2019</h3>
+                  <p class="f-note"><span class="lang-en">The first of ten KubeCons · 18 to 21 November 2019 · San Diego Convention Center · <a href="/blog/2025/cncf10yo/">my ten KubeCons</a></span><span class="lang-zh" hidden>十次 KubeCon 中的第一次 · 2019 年 11 月 18 日至 21 日 · 圣迭戈会议中心 · <a href="/blog/2025/cncf10yo/">我的十次 KubeCon</a></span></p>
+               </header>
+               <div class="sheet" data-frames="2">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2019-kubecon-na-a-1600.webp"
+                           srcset="/assets/photos/events/2019-kubecon-na-a-1600.webp 1600w,
+                           /assets/photos/events/2019-kubecon-na-a-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2019-kubecon-na-a-1600.webp"
+                           width="1600" height="1067" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon North America 2019, San Diego Convention Center.">
+                  </figure>
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2019-kubecon-na-b-1600.webp"
+                           srcset="/assets/photos/events/2019-kubecon-na-b-1600.webp 1600w,
+                           /assets/photos/events/2019-kubecon-na-b-800.webp 800w"
+                           sizes="(min-width: 1024px) 528px, (min-width: 700px) 45vw, 92vw"
+                           data-full="/assets/photos/events/2019-kubecon-na-b-1600.webp"
+                           width="1600" height="2133" loading="lazy" decoding="async"
+                           alt="KubeCon + CloudNativeCon North America 2019, San Diego Convention Center.">
+                  </figure>
+               </div>
+            </article>
+
+         </section>
+
+         <!-- ============================================================
+              2018
+              ============================================================ -->
+         <section class="rise" id="y2018">
+            <div class="year">
+               <h2>2018</h2>
+               <p><span class="lang-en">One frame · Seattle</span><span class="lang-zh" hidden>一张 · 西雅图</span></p>
+            </div>
+
+            <article class="occasion">
+               <header class="occ-head">
+                  <p class="f-venue"><span class="lang-en">The Collective · Seattle</span><span class="lang-zh" hidden>The Collective · 西雅图</span></p>
+                  <h3 class="f-title"><span class="lang-en">Kai-Fu Lee on AI Superpowers, with a book signing</span><span class="lang-zh" hidden>李开复《AI Superpowers》演讲与新书签售会</span></h3>
+                  <p class="f-note"><span class="lang-en">Guest · 27 September 2018 · presented by Town Hall Seattle at The Collective, South Lake Union</span><span class="lang-zh" hidden>嘉宾 · 2018 年 9 月 27 日 · Town Hall Seattle 主办，于 South Lake Union 的 The Collective</span></p>
+               </header>
+               <div class="sheet" data-frames="1">
+                  <figure class="figure frame">
+                     <img src="/assets/photos/events/2018-kaifu-lee-ai-superpowers-1195.webp"
+                           srcset="/assets/photos/events/2018-kaifu-lee-ai-superpowers-1195.webp 1195w,
+                           /assets/photos/events/2018-kaifu-lee-ai-superpowers-800.webp 800w"
+                           sizes="(min-width: 780px) 680px, 92vw"
+                           data-full="/assets/photos/events/2018-kaifu-lee-ai-superpowers-1195.webp"
+                           width="1195" height="896" loading="lazy" decoding="async"
+                           alt="Kai-Fu Lee's AI Superpowers talk and book signing at The Collective, Seattle, 27 September 2018.">
+                  </figure>
+               </div>
+            </article>
+
+         </section>
+
+         <!-- SHEET:END -->
+
+         <p class="more">
+            <a class="link" href="/invited-talks.html">
+               <span class="lang-en">The full speaking record</span><span class="lang-zh" hidden>完整演讲记录</span> →
+            </a>
+            <a class="link" href="/photos/" style="margin-left:clamp(18px,2vw,32px)">
+               <span class="lang-en">All photograph collections</span><span class="lang-zh" hidden>全部摄影合集</span> →
+            </a>
+         </p>
+
+      </main>
+
+      <!-- Viewer. One instance, filled from whichever frame was clicked. -->
+      <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photograph viewer">
+         <button class="lb-x" type="button" data-lb-close aria-label="Close viewer">&times;</button>
+         <button class="lb-prev" type="button" data-lb-step="-1" aria-label="Previous photograph">&lsaquo;</button>
+         <button class="lb-next" type="button" data-lb-step="1" aria-label="Next photograph">&rsaquo;</button>
+         <figure class="lb-stage">
+            <img id="lb-img" alt="">
+            <figcaption id="lb-cap"></figcaption>
+         </figure>
+      </div>
+
+      <footer class="foot" data-shell-footer></footer>
+
+      <script>
+         /* Contact-sheet viewer.
+
+            Click, Enter or Space on a frame opens it; Escape closes; the
+            arrow keys and the two on-screen arrows step through the sheet in
+            document order, which is chronological.
+
+            The caption is cloned from the frame rather than rebuilt, so the
+            viewer inherits the same bilingual span pairs. shell.js owns
+            language visibility, so after inserting a clone we ask it to
+            re-apply the current choice. Otherwise a reader in Chinese would
+            get the English line back inside the viewer. */
+         (function () {
+            'use strict';
+
+            var lb = document.getElementById('lb');
+            var lbImg = document.getElementById('lb-img');
+            var lbCap = document.getElementById('lb-cap');
+            var frames = Array.prototype.slice.call(
+               document.querySelectorAll('.sheet .frame')
+            );
+            if (!lb || !frames.length) return;
+
+            var at = -1;
+            var opener = null;
+
+            function show(i) {
+               at = (i + frames.length) % frames.length;
+               var fig = frames[at];
+               var img = fig.querySelector('img');
+
+               // data-full names the widest derivative that exists for this
+               // frame. currentSrc is whatever the srcset picked for a 350px
+               // column, which is the wrong file to enlarge.
+               lbImg.src = img.dataset.full || img.currentSrc || img.src;
+               lbImg.alt = img.alt;
+
+               // The metadata lives on the occasion, not the frame, so the
+               // viewer clones the occasion header and appends the frame's own
+               // credit where it has one.
+               //
+               // A deep clone carries the hidden attribute shell.js has
+               // already set on each lang span, so the caption arrives in
+               // whichever language the reader is in. A later switch is
+               // covered too: applyLanguage queries the whole document, and
+               // this clone is inside it. Nothing here needs to re-run it.
+               var head = fig.closest('.occasion').querySelector('.occ-head');
+               var credit = fig.querySelector('.f-credit');
+               lbCap.replaceChildren(head.cloneNode(true));
+               if (credit) lbCap.appendChild(credit.cloneNode(true));
+
+               // "3 / 23" is the only thing the viewer knows that the page
+               // does not already say.
+               var count = document.createElement('p');
+               count.className = 'lb-count';
+               count.textContent = (at + 1) + ' / ' + frames.length;
+               lbCap.appendChild(count);
+            }
+
+            function open(i, from) {
+               opener = from || null;
+               show(i);
+               lb.hidden = false;
+               document.body.style.overflow = 'hidden';
+               lb.querySelector('.lb-x').focus();
+            }
+
+            function close() {
+               lb.hidden = true;
+               lbImg.removeAttribute('src');
+               document.body.style.overflow = '';
+               if (opener) opener.focus();
+            }
+
+            frames.forEach(function (fig, i) {
+               // A figure is not focusable and not a button; give it both
+               // properties by hand rather than wrapping the image in an
+               // anchor, which would make the caption links nest.
+               fig.tabIndex = 0;
+               fig.setAttribute('role', 'button');
+               fig.setAttribute('aria-haspopup', 'dialog');
+
+               fig.addEventListener('click', function (e) {
+                  // Caption links keep working: only the frame itself opens
+                  // the viewer.
+                  if (e.target.closest('a')) return;
+                  open(i, fig);
+               });
+
+               fig.addEventListener('keydown', function (e) {
+                  if (e.target.closest('a')) return;
+                  if (e.key === 'Enter' || e.key === ' ') {
+                     e.preventDefault();
+                     open(i, fig);
+                  }
+               });
+            });
+
+            lb.addEventListener('click', function (e) {
+               var step = e.target.closest('[data-lb-step]');
+               if (step) {
+                  show(at + Number(step.dataset.lbStep));
+                  return;
+               }
+               // Anywhere off the picture closes, including the backdrop and
+               // the explicit close button.
+               if (e.target.closest('[data-lb-close]') || !e.target.closest('.lb-stage')) {
+                  close();
+               }
+            });
+
+            document.addEventListener('keydown', function (e) {
+               if (lb.hidden) return;
+               if (e.key === 'Escape') { close(); }
+               else if (e.key === 'ArrowLeft') { show(at - 1); }
+               else if (e.key === 'ArrowRight') { show(at + 1); }
+            });
+         })();
+      </script>
+   </body>
+</html>
