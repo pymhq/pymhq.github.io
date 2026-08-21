@@ -587,6 +587,18 @@ figure > img,
   margin-left: 6px;
 }
 
+/* Where a guest lecture happened is part of the entry's address, not part of
+   its prose, so the room joins the year and the institution in the key
+   column instead of repeating "PACCAR Hall, University of Washington" as a
+   sentence in the body. A second grey line sits one step below the first:
+   set a shade smaller and tucked closer, so the column reads as year →
+   institution → room rather than three facts of equal rank. */
+.record-key small + small:not(.record-role) {
+  margin-top: 1px;
+  font-size: 0.8rem;
+  opacity: 0.82;
+}
+
 .record-val {
   color: var(--ink-2);
   font-size: 1.06rem;
@@ -645,6 +657,34 @@ figure > img,
 
 .record-links a:hover::before {
   color: var(--accent);
+}
+
+/* A slide deck is a download, not a reference, so it gets a control rather
+   than another ↗ line in .record-links. It borrows the .btn family at entry
+   scale: a full-size page button would outweigh the talk title above it.
+
+   The border is full-strength ink, matching .btn, and deliberately not the
+   var(--rule-2) hairline used by .record-role. At 18% grey this box read as
+   another passive label pill sitting in the same entry, so the one thing on
+   the row you can actually click looked like the two things you cannot. */
+.record-val .record-slides {
+  display: inline-block;
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.record-val a.record-slides:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
 }
 
 .muted {

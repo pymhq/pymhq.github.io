@@ -39,6 +39,13 @@
          gtag('js', new Date());
          gtag('config', 'G-HTV795ZMCP');
       </script>
+
+      <!-- Kit form 7c056a47aa powers the gated slides download in Guest
+           Lectures. Same arrangement as the CV on /experience: the deck lives
+           on Kit, not in this repository, so the download is email-gated.
+           data-formkit-toggle on the button turns the click into Kit's modal;
+           without the script it degrades to a plain link to Kit's page. -->
+      <script async data-uid="7c056a47aa" src="https://andy-peng.kit.com/7c056a47aa/index.js"></script>
    </head>
 
    <body data-nav-match="invited-talks">
@@ -85,8 +92,8 @@
                            <span class="lang-zh" hidden>主旨演讲嘉宾：Andy Peng（亚马逊云科技）</span>
                         </p>
                         <p>
-                           <span class="lang-en">Hosted by Xu Chen (Associate Professor at University of Washington, Director of Boeing Advanced Research Collaboration at UW)</span>
-                           <span class="lang-zh" hidden>主办：Xu Chen（华盛顿大学副教授，UW 波音先进研究合作中心主任）</span>
+                           <span class="lang-en">Hosted by <a href="https://www.me.washington.edu/facultyfinder/xu-chen" target="_blank" rel="noopener">Xu Chen</a> (Associate Professor at University of Washington, Director of Boeing Advanced Research Collaboration at UW)</span>
+                           <span class="lang-zh" hidden>主办：<a href="https://www.me.washington.edu/facultyfinder/xu-chen" target="_blank" rel="noopener">Xu Chen</a>（华盛顿大学副教授，UW 波音先进研究合作中心主任）</span>
                         </p>
                         <p>
                            <span class="lang-en">Boeing Advanced Research Center, University of Washington</span><span class="lang-zh" hidden>华盛顿大学波音先进研究中心</span>
@@ -284,8 +291,37 @@
                   <span class="lang-zh" hidden>客座讲座</span>
                </h2>
                <ul class="record-list">
+                  <!-- Seminar, not a course lecture: the role pill carries the
+                       distinction the way it does under Invited Talks, so the
+                       two kinds of teaching are countable in one column. -->
                   <li>
-                     <div class="record-key">2024<small><span class="lang-en">University of Washington</span><span class="lang-zh" hidden>华盛顿大学</span></small></div>
+                     <div class="record-key">2026<small><span class="lang-en">University of Washington</span><span class="lang-zh" hidden>华盛顿大学</span></small><small><span class="lang-en">Paul G. Allen Center for Computer Science &amp; Engineering</span><span class="lang-zh" hidden>保罗·艾伦计算机科学与工程中心</span></small><small class="record-role"><span class="lang-en">Seminar</span><span class="lang-zh" hidden>研讨讲座</span></small></div>
+                     <div class="record-val">
+                        <p>
+                           <span class="lang-en">LLM Customization and Optimization in Production</span>
+                           <span class="lang-zh" hidden>生产环境中的 LLM 定制与优化</span>
+                        </p>
+                        <p>
+                           <span class="lang-en">Guest Lecturer: Andy Peng (AWS)</span>
+                           <span class="lang-zh" hidden>客座讲师：Andy Peng（亚马逊云科技）</span>
+                        </p>
+                        <p>
+                           <span class="lang-en">Hosted by Stephanie Wang (Assistant Professor at the Allen School, University of Washington; Co-Director of the <a href="https://syfi.cs.washington.edu/" target="_blank" rel="noopener">SyFI Lab</a>, Systems for Future Intelligence)</span>
+                           <span class="lang-zh" hidden>邀请人：Stephanie Wang（华盛顿大学 Allen 计算机学院助理教授；<a href="https://syfi.cs.washington.edu/" target="_blank" rel="noopener">SyFI 实验室</a>联合主任，研究方向为面向未来智能的系统）</span>
+                        </p>
+                        <!-- The deck is a Kit incentive, so the label is just the
+                             thing itself: format and slide count were detail the
+                             reader has no use for before deciding to ask for it. -->
+                        <p>
+                           <a class="record-slides" href="https://andy-peng.kit.com/7c056a47aa"
+                              data-formkit-toggle="7c056a47aa" target="_blank" rel="noopener">
+                              <span class="lang-en">Slides</span><span class="lang-zh" hidden>讲座幻灯片</span>
+                           </a>
+                        </p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="record-key">2024<small><span class="lang-en">University of Washington</span><span class="lang-zh" hidden>华盛顿大学</span></small><small><span class="lang-en">Michael G. Foster School of Business ·&nbsp;PACCAR Hall</span><span class="lang-zh" hidden>Michael G. Foster 商学院 ·&nbsp;PACCAR Hall</span></small><small class="record-role"><span class="lang-en">Lecture</span><span class="lang-zh" hidden>课堂讲座</span></small></div>
                      <div class="record-val">
                         <p>
                            <a href="https://www.linkedin.com/posts/margaretmz_it-has-been-a-wonderful-experience-teaching-ugcPost-7190422362406735872-K7Bs?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener">
@@ -301,15 +337,12 @@
                            <span class="lang-en">MSIS 549 (2): Machine Learning and Artificial Intelligence for Business Applications</span><span class="lang-zh" hidden>MSIS 549（2）：面向商业应用的机器学习与人工智能</span>
                         </p>
                         <p>
-                           <span class="lang-en">PACCAR Hall, University of Washington</span><span class="lang-zh" hidden>华盛顿大学 PACCAR Hall</span>
-                        </p>
-                        <p>
                            <a href="https://www.linkedin.com/posts/margaretmz_it-has-been-a-wonderful-experience-teaching-ugcPost-7190422362406735872-K7Bs?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener"><span class="lang-en">LinkedIn Post</span><span class="lang-zh" hidden>领英帖子</span></a>
                         </p>
                      </div>
                   </li>
                   <li>
-                     <div class="record-key">2024<small><span class="lang-en">University of Washington</span><span class="lang-zh" hidden>华盛顿大学</span></small></div>
+                     <div class="record-key">2024<small><span class="lang-en">University of Washington</span><span class="lang-zh" hidden>华盛顿大学</span></small><small><span class="lang-en">Michael G. Foster School of Business ·&nbsp;PACCAR Hall</span><span class="lang-zh" hidden>Michael G. Foster 商学院 ·&nbsp;PACCAR Hall</span></small><small class="record-role"><span class="lang-en">Lecture</span><span class="lang-zh" hidden>课堂讲座</span></small></div>
                      <div class="record-val">
                         <p>
                            <a href="https://www.linkedin.com/posts/uw-foster-msis_msis-genai-demoday-ugcPost-7173432871800483841-wW0C?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener">
@@ -330,14 +363,11 @@
                            <span class="lang-zh" hidden>共同讲师：Jay Bartot（华盛顿大学客座教授；Madrona Venture Labs 合伙人）</span>
                         </p>
                         <p>
-                           <span class="lang-en">Hosted by Léonard Boussioux (Professor, University of Washington - Foster, Allen CSE)</span>
-                           <span class="lang-zh" hidden>邀请人：莱奥纳尔·布西乌（Léonard Boussioux，华盛顿大学 Foster 商学院 &amp; Allen 计算机学院教授）</span>
+                           <span class="lang-en">Hosted by <a href="https://foster.uw.edu/faculty-research/directory/leonard-boussioux/" target="_blank" rel="noopener">Léonard Boussioux</a> (Professor, University of Washington - Foster, Allen CSE)</span>
+                           <span class="lang-zh" hidden>邀请人：<a href="https://foster.uw.edu/faculty-research/directory/leonard-boussioux/" target="_blank" rel="noopener">莱奥纳尔·布西乌</a>（Léonard Boussioux，华盛顿大学 Foster 商学院 &amp; Allen 计算机学院教授）</span>
                         </p>
                         <p>
                            <span class="lang-en">MSIS 547 (2): Managing in the Era of Cloud Computing</span><span class="lang-zh" hidden>MSIS 547（2）：云计算时代的管理</span>
-                        </p>
-                        <p>
-                           <span class="lang-en">PACCAR Hall, University of Washington</span><span class="lang-zh" hidden>华盛顿大学 PACCAR Hall</span>
                         </p>
                         <p>
                            <a href="https://www.linkedin.com/posts/uw-foster-msis_msis-genai-demoday-ugcPost-7173432871800483841-wW0C?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener"><span class="lang-en">UW Foster MSIS Post</span><span class="lang-zh" hidden>UW Foster MSIS 帖子</span></a> ·
