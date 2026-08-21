@@ -270,9 +270,6 @@ SOURCES: tuple[tuple[str, str, str], ...] = (
      "events", "2023-staffplus-nyc-b"),
     ("~/Pictures/events/2023-staffplus-nyc-c.heic",               "events", "2023-staffplus-nyc-c"),
 
-    # Pi Day 2023. The date is the name of the day: 14 March.
-    ("~/Pictures/events/2023-pi-day.jpeg",
-     "events", "2023-pi-day"),
 
     # ---- 2018 ----
     # Kai-Fu Lee's AI Superpowers talk and signing, 27 September 2018. The venue
@@ -292,6 +289,31 @@ SOURCES: tuple[tuple[str, str, str], ...] = (
     ("assets/invited-talks/kubeconna22.png",         "events", "2022-kubecon-na"),
     ("assets/invited-talks/thumbnail03.jpg",         "events", "2022-dockercon"),
     ("assets/invited-talks/thumbnail22.jpg",         "events", "2022-containers-from-the-couch"),
+
+    # ================================================================
+    # teams: colleagues and team photographs, sources in ~/Pictures/teams.
+    # ================================================================
+    ("~/Pictures/teams/2024-anthropic-bedrock.jpeg",
+     "teams", "2024-anthropic-bedrock"),
+
+    # Moved from the events collection: a team occasion, not a talk. The source
+    # still sits in ~/Pictures/events, which is where it arrived.
+    ("~/Pictures/events/2023-pi-day.jpeg",            "teams", "2023-pi-day"),
+    ("~/Pictures/teams/2023-james-hamilton.jpeg",
+     "teams", "2023-james-hamilton"),
+
+    # Builders Day, 16 September 2022.
+    ("~/Pictures/teams/2022-builders-day-a.jpeg",
+     "teams", "2022-builders-day-a"),
+    ("~/Pictures/teams/2022-builders-day-b.jpeg",
+     "teams", "2022-builders-day-b"),
+    ("~/Pictures/teams/2022-app-runner-team.jpeg",
+     "teams", "2022-app-runner-team"),
+
+    # Alexa AI Health and Wellness, 2019.
+    ("~/Pictures/teams/2019-alexa-health-a.jpg",                 "teams", "2019-alexa-health-a"),
+    ("~/Pictures/teams/2019-alexa-health-b.jpg",                 "teams", "2019-alexa-health-b"),
+    ("~/Pictures/teams/2019-alexa-health-c.jpg",                 "teams", "2019-alexa-health-c"),
 )
 
 

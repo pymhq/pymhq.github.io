@@ -40,7 +40,7 @@ import sys
 import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-PAGE = ROOT / "photos" / "events" / "index.html"
+PAGES = sorted((ROOT / "photos").glob("*/index.html"))
 FACECOUNT = ROOT / "scripts" / "facecount.swift"
 
 # A group claim has to be about who is in the frame, not a word that happens to
@@ -60,9 +60,13 @@ TITLE_TAIL = re.compile(r"\s*\([^)]*\)")
 
 
 def frames_from_page() -> list[tuple[str, str]]:
-    """(largest derivative path, credit text) for every credited frame."""
-    text = PAGE.read_text(encoding="utf-8")
+    """(largest derivative path, credit text) for every credited frame.
+
+    Every collection page under /photos, not just the first one: a credit on a
+    new collection is exactly as capable of sitting on the wrong photograph.
+    """
     out = []
+    text = "\n".join(p.read_text(encoding="utf-8") for p in PAGES)
     for fig in re.findall(r"<figure class=\"figure frame\">(.*?)</figure>", text, re.S):
         credit = re.search(r'class="f-credit"[^>]*>(.*?)</figcaption>', fig, re.S)
         if not credit:
