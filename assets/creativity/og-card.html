@@ -3,100 +3,105 @@
 <head>
 <meta charset="utf-8">
 <!-- ============================================================
-     Social preview card — 1200×630.
-     A simplified, scaled-up replica of the /creativity hero panel
-     (panel 0): mono kicker, accent title with block cursor, one-line
-     sub, and the four chapter chips with their section dot colors.
+     Social preview card · pengandy.com/creativity · 1200×630.
+
+     Rebuilt to the same rules as assets/contact/og-card.html, which
+     is the current record for these cards. The previous version was
+     a scaled-up replica of the page's old hero panel and disagreed
+     with the site on six counts, every one of them now gone:
+
+       bare domain      "PENGANDY.COM / CREATIVITY" set across the
+                        top. LinkedIn and X print the domain under
+                        the image themselves, so the card spent its
+                        widest line repeating chrome.
+       display type     JetBrains Mono at weight 700. The site has no
+                        monospace display face and no 700 weight
+                        anywhere; h1-h4 in shell.css are --serif at
+                        400.
+       accent as fill   the word "Creativity" tinted --accent, plus a
+                        blue block cursor. On the site --accent is an
+                        interaction colour: links, nav underline,
+                        focus ring. It never tints display type.
+       extra hues       amber, warm brown and pink chip dots, four
+                        colour layers against the site's ink + one.
+       chrome           pill chips with borders and a drop shadow.
+                        Nothing on the site is a pill or has a shadow.
+       echoed title     the card's largest word was "Creativity",
+                        which is also the og:title the platform prints
+                        directly beneath it.
+
+     Every value below is lifted from assets/css/shell.css so the card
+     reads as a crop of creativity.html:
+
+       h1        shell.css h1-h4: --serif, 400, letter-spacing -.02em
+       .eyebrow  --ink-3, .16em tracking, uppercase, 600
+       .lede     .page-lede: --serif, --ink-2
+       rhythm    generous negative space, per --movement
+
+     Copy comes from the page, not from invention: the headline
+     compresses the page lede ("Things I design, draw, shoot, and
+     cut") to four words, and the chapter row names the five sections
+     in the order creativity.html runs them.
+
+     No blue at all here. The contact card spends its single accent on
+     a CTA arrow; this page has no call to action, and inventing one to
+     justify the colour would be the tail wagging the dog. Ink alone is
+     the quieter half of "ink + a little site blue", not a departure
+     from it.
+
+     RENDER AT 1x: 1200x630, --force-device-scale-factor=1, for the
+     reason assets/contact/og-card.html sets out: 1200x630 is the size
+     LinkedIn renders the card at, so a 3x asset goes through its
+     server-side resizer and 400-weight serif comes back visibly soft.
+     OG-CARD-SOP.md still asks for 3x and is stale on this point.
      ============================================================ -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
 <style>
   :root {
-    --text: #1c1c1d;
-    --text-light: #828282;
-    --divider: rgba(0, 0, 0, 0.1);
-    --theme: #0076df;
-    --amber: #ffc24d;
-    --warm: #b3542e;
-    --pink: #ff5470;
-    --mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    --ink: #16181d;          /* shell.css --ink */
+    --ink-2: #3c4148;        /* shell.css --ink-2 */
+    --ink-3: #6b7280;        /* shell.css --ink-3 */
+    --paper: #ffffff;        /* shell.css --paper */
+    --serif: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+      Arial, sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
-    background: #fff;
-    font-family: var(--mono);
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    background: var(--paper); color: var(--ink); font-family: var(--sans);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 96px;
     -webkit-font-smoothing: antialiased;
   }
 
-  .kicker {
-    font-size: 22px;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: var(--text-light);
-    margin-bottom: 30px;
+  .eyebrow {
+    font-size: 17px; font-weight: 600; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--ink-3);
   }
+  .eyebrow .sep { opacity: .55; margin: 0 11px; }
 
   h1 {
-    font-size: 104px;
-    font-weight: 700;
-    line-height: 1.05;
-    margin-bottom: 26px;
-  }
-  h1 .accent { color: var(--theme); }
-  h1 .cursor {
-    display: inline-block;
-    width: 0.55em;
-    height: 1.02em;
-    background: var(--theme);
-    vertical-align: text-bottom;
-    margin-left: 12px;
+    font-family: var(--serif); font-weight: 400;
+    font-size: 78px; line-height: 1.04; letter-spacing: -.02em;
+    margin-top: 26px;
   }
 
-  .sub {
-    font-size: 27px;
-    color: var(--text-light);
-    margin-bottom: 62px;
+  .lede {
+    font-family: var(--serif); font-size: 28px; line-height: 1.42;
+    color: var(--ink-2); margin-top: 34px; max-width: 940px;
   }
-
-  .chips {
-    display: flex;
-    gap: 24px;
-  }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    border: 2px solid var(--divider);
-    border-radius: 999px;
-    padding: 16px 34px;
-    font-size: 25px;
-    font-weight: 600;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  }
-  .chip .dot { width: 15px; height: 15px; border-radius: 50%; }
+  .lede .sep { color: var(--ink-3); opacity: .6; margin: 0 9px; }
 </style>
 </head>
 <body>
 
-  <div class="kicker">pengandy.com / creativity</div>
+  <p class="eyebrow">Creativity<span class="sep">·</span>The craft behind this site</p>
 
-  <h1><span class="accent">Creativity</span><span class="cursor"></span></h1>
+  <h1>Drawn, shot,<br>and cut.</h1>
 
-  <p class="sub">Things I design, draw, shoot, and cut.</p>
-
-  <div class="chips">
-    <span class="chip"><span class="dot" style="background:var(--theme)"></span>Design</span>
-    <span class="chip"><span class="dot" style="background:var(--amber)"></span>Maps</span>
-    <span class="chip"><span class="dot" style="background:var(--warm)"></span>Photos</span>
-    <span class="chip"><span class="dot" style="background:var(--pink)"></span>Reels</span>
-  </div>
+  <p class="lede">Design language<span class="sep">·</span>The mark<span class="sep">·</span>Cartography<span class="sep">·</span>Photography<span class="sep">·</span>Reels</p>
 
 </body>
 </html>
