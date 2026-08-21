@@ -279,6 +279,23 @@ SOURCES: tuple[tuple[str, str, str], ...] = (
      "events", "2018-kaifu-lee-ai-superpowers"),
 
     # ---- 2019 ----
+    # NeurIPS 2019, Vancouver Convention Centre, 8 to 14 December. The badge,
+    # lanyard and programme, photographed on the first day: EXIF
+    # DateTimeOriginal 8 December 2019, 09:53 local, GPS 49.290, -123.117, which
+    # is Canada Place. This source arrived after the archive moved under
+    # ~/Pictures/pics, so it names that path rather than the ~/Pictures/events
+    # the older specs still carry.
+    # The badge QR encodes registration data. It was scribbled over by hand
+    # before the file reached here, so find_photo_masks.py has nothing left to
+    # measure, but a scribble is not a redaction: fragments of the symbol
+    # survive along its right edge and the covering is ragged. The box below
+    # covers the whole code with its quiet zone, measured on the frame as Pillow
+    # sees it, which for this JPEG is the file itself: it carries no orientation
+    # tag, so exif_transpose is a no-op and 2109x1581 is both the stored and the
+    # masked size.
+    ("~/Pictures/pics/events/2019-neurips-yvr.jpg",  "events", "2019-neurips-yvr",
+     ((0.63775, 0.44276, 0.08535, 0.10626),)),
+
     # KubeCon + CloudNativeCon North America 2019, San Diego Convention Center,
     # 18 to 21 November. GPS on the iPhone frame reads 32.708, and
     # blog/2025/cncf10yo calls this the first of ten KubeCons.

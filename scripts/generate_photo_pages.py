@@ -540,7 +540,21 @@ EVENTS = [
      alt="Containers from the Couch, the episode on the AWS App Runner and X-Ray integration.",
      frames=[("2022-containers-from-the-couch", None)]),
  ]),
- ("2019", "San Diego", "圣迭戈", [
+ ("2019", "Vancouver, San Diego", "温哥华、圣迭戈", [
+   dict(
+     venue_en="NeurIPS 2019 · Vancouver", venue_zh="NeurIPS 2019 · 温哥华",
+     title_en="Neural Information Processing Systems",
+     title_zh="神经信息处理系统大会",
+     note_en="Guest · 8 to 14 December 2019 · Vancouver Convention Centre · my "
+             "first NeurIPS, 13,000 participants, just before the pandemic · "
+             '<a href="/blog/2025/neurips/">six years on</a>',
+     note_zh="嘉宾 · 2019 年 12 月 8 日至 14 日 · 温哥华会议中心 · 我的第一次 "
+             "NeurIPS，13,000 人参会，就在疫情之前 · "
+             '<a href="/blog/2025/neurips/">六年之后</a>',
+     alt="NeurIPS 2019 at the Vancouver Convention Centre.",
+     frames=[("2019-neurips-yvr", None,
+              "The NeurIPS 2019 badge, lanyard and programme on the first "
+              "morning, the badge's QR code blanked.")]),
    dict(
      venue_en="KubeCon + CloudNativeCon North America · San Diego",
      venue_zh="KubeCon + CloudNativeCon North America · 圣迭戈",
