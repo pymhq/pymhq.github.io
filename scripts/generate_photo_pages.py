@@ -893,7 +893,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <header class="shell page-head">
          <p class="eyebrow">
             <span class="lang-en"><a href="/photos/">Photographs</a></span>
-            <span class="lang-zh" hidden><a href="/photos/">摄影</a></span>
+            <span class="lang-zh" hidden><a href="/photos/">影像记录</a></span>
          </p>
          <h1 class="page-title">
             <span class="lang-en">{title_en}</span>
@@ -962,7 +962,7 @@ def census_html(frames: int, span: str, occasions: int, extra) -> str:
 def more_html(links) -> str:
     out = []
     for i, (href, en, zh) in enumerate(links + [("/photos/", "All photograph collections",
-                                                 "全部摄影合集")]):
+                                                 "全部影像合集")]):
         style = ' style="margin-left:clamp(18px,2vw,32px)"' if i else ""
         out += [f'            <a class="link" href="{href}"{style}>',
                 f"               {bi(en, zh)} →", "            </a>"]

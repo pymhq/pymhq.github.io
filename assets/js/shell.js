@@ -52,9 +52,15 @@
       ]
     },
     {
+      // 'Design & film', not 'Design & photography'. The photographs on
+      // /photos are a record of occasions attended, not work made, so they
+      // sit under About with the rest of the record; naming photography here
+      // as well would have promised the same thing twice and sent the word to
+      // the smaller of the two places. The frames that are craft, the road
+      // shots in #photography, stay on this page.
       en: 'Creativity', zh: '创作',
       links: [
-        [BASE + '/creativity.html', 'Design & photography', '设计与摄影'],
+        [BASE + '/creativity.html', 'Design & film', '设计与影像'],
         [BASE + '/maps.html', 'Maps', '地图']
       ]
     },
@@ -63,7 +69,12 @@
       links: [
         [BASE + '/experience.html', 'Experience', '经历'],
         [BASE + '/endorsements.html', 'Endorsements', '行业背书'],
-        [BASE + '/news.html', 'News', '动态']
+        [BASE + '/news.html', 'News', '动态'],
+        // Evidence for the two entries above it: the Events collection backs
+        // the speaking record, Teams backs the experience. Labelled for the
+        // shelf rather than for its current contents, so a third collection
+        // will not need a new label.
+        [BASE + '/photos/', 'Photo record', '影像记录']
       ]
     },
     {
