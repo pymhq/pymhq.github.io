@@ -296,25 +296,6 @@ def cumulative(pts) -> list[float]:
     return out
 
 
-def smooth(vals: list[float], win: int = 0) -> list[float]:
-    """A GPS elevation trace is noisy at the metre; a course profile is not.
-
-    The raw traces here report 140 m of climb on a course the organiser measures
-    at 25 m, which is barometer noise summed 200 times. The profile is drawn from
-    a moving mean over a twentieth of the trace, so the shape is the ground and
-    not the sampling.
-    """
-    win = win or max(5, len(vals) // 18 | 1)
-    if len(vals) < win:
-        return vals
-    half = win // 2
-    out = []
-    for i in range(len(vals)):
-        lo, hi = max(0, i - half), min(len(vals), i + half + 1)
-        out.append(sum(vals[lo:hi]) / (hi - lo))
-    return out
-
-
 # ---------------------------------------------------------------------- drawing
 
 def frame_for_panel(race: dict) -> tuple:
@@ -582,163 +563,57 @@ def wrap_to(text: str, width: int) -> list[str]:
     return lines
 
 
-def ring(cx: float, cy: float, r: float, frac: float, accent: str) -> str:
-    """One closed ring, filled clockwise from the top, the way a workout ring is.
-
-    What it measures is the distance against the longest thing on this screen,
-    which is 10 km. A 1-mile panel therefore shows a sixth of a ring, and that
-    is the honest comparison between a Tuesday mile and a Boston 10K.
-    """
-    frac = max(0.02, min(1.0, frac))
-    circ = 2 * math.pi * r
-    return (f'<g transform="translate({cx} {cy})">'
-            f'<circle r="{r}" fill="none" stroke="{accent}" stroke-opacity="0.16" '
-            f'stroke-width="13"/>'
-            f'<circle r="{r}" fill="none" stroke="{accent}" stroke-width="13" '
-            f'stroke-linecap="round" transform="rotate(-90)" '
-            f'stroke-dasharray="{circ * frac:.1f} {circ:.1f}"/></g>')
-
-
-def profile(x: float, y: float, w: float, h: float, pts, accent: str) -> str:
-    """The climb, as the ground under the line rather than as a number.
-
-    Drawn from whatever elevation the source carries, smoothed: see smooth().
-    A source with no elevation at all - the Hot Chocolate map is a KML of turns -
-    gets no profile rather than a flat line pretending to be one.
-    """
-    els = [p[2] for p in pts]
-    if not any(els):
-        return ""
-    els = smooth(els)
-    lo, hi = min(els), max(els)
-    if hi - lo < 1.5:
-        hi = lo + 1.5
-    cum = cumulative(pts)
-    total = cum[-1] or 1.0
-    step = max(1, len(pts) // 220)
-    poly = []
-    for i in range(0, len(pts), step):
-        poly.append((x + w * cum[i] / total,
-                     y + h - h * (els[i] - lo) / (hi - lo)))
-    poly.append((x + w, y + h - h * (els[-1] - lo) / (hi - lo)))
-    line = points_d(rdp(poly, 0.4), False)
-    fill = line + f" L {x + w:.1f} {y + h:.1f} L {x:.1f} {y + h:.1f} Z"
-    return (f'<g><path d="{fill}" fill="{accent}" fill-opacity="0.18"/>'
-            f'<path d="{line}" fill="none" stroke="{accent}" stroke-width="1.8" '
-            f'stroke-linejoin="round"/>'
-            f'<path d="M {x} {y + h} h {w}" stroke="{FAINT}" stroke-width="1"/>'
-            f'<text x="{x}" y="{y - 6}" class="rc-label">PROFILE</text>'
-            f'<text x="{x + w}" y="{y - 6}" class="rc-tick" text-anchor="end">'
-            f'{lo:.0f} to {hi:.0f} m</text></g>')
-
-
-def stat(x: float, y: float, label: str, value: str, unit: str = "",
-         width: int = 15) -> str:
-    """A label and its number. Long words step down a size rather than overflow.
-
-    "out and back over two bridges" at 25px is 380 units and the rail is 430, so
-    the shape tile used to print its value across the map. A value that does not
-    fit on one line at the tile size is set at body size and wrapped.
-    """
-    out = [f'<text x="{x}" y="{y}" class="rc-label">{label}</text>']
-    if len(value) <= width:
-        out.append(f'<text x="{x}" y="{y + 30}" class="rc-value">{value}'
-                   + (f'<tspan class="rc-unit"> {unit}</tspan>' if unit else "")
-                   + "</text>")
-    else:
-        yy = y + 24
-        for line in wrap_to(value, 24):
-            out.append(f'<text x="{x}" y="{yy}" class="rc-value-sm">{line}</text>')
-            yy += 20
-    return "".join(out)
-
-
 def rail(race: dict, pts, proj: Proj, n: int, total: int) -> str:
-    """The summary: which race, when, where, and the numbers. Nothing else.
+    """The summary: which race, when, where. That is the whole rail.
 
-    It carried a paragraph of prose per panel, plus the surface and, on one
-    panel, a list of obstacles. On a screen whose whole subject is the line to
-    the right of it, that is a page of reading in front of a map. So the rail is
-    now the four things a workout summary is: the name, the day, the place and
-    the measurements. What the course was like is what the drawing is for.
+    It has been cut twice. First it carried a paragraph of prose, the surface and
+    an obstacle list; then it still carried a distance ring, three metric tiles,
+    an elevation profile, a note about the line being routed, and a provenance
+    line. All of that is caption competing with the drawing next to it, and the
+    drawing already says how far it went: the course is beaded at every
+    kilometre. So the rail is three things, and the map is the rest.
+
+    Provenance did not vanish, it moved: every course's source is recorded on its
+    entry in scripts/race_courses.py, which is where a reader who wants to check
+    the line should look, and the OpenStreetMap credit stays on the map itself
+    because the licence asks for it there.
     """
     accent = race["accent"]
     out = [f'<rect x="0" y="0" width="{RAIL_W}" height="{VB_H}" fill="{RAIL_BG}"/>',
            f'<path d="M {RAIL_W} 0 V {VB_H}" stroke="#1f272f" stroke-width="2"/>']
     x = 40.0
-
-    out.append(f'<text x="{x}" y="56" class="rc-index">{n:02d} / {total:02d}</text>')
     if race.get("glyph"):
-        out.append(f'<use href="#{race["glyph"]}" transform="translate(430, 48) '
-                   f'scale(1.5)"/>')
+        out.append(f'<use href="#{race["glyph"]}" transform="translate(430, 52) '
+                   f'scale(1.6)"/>')
 
-    y = 116.0
-    for line in wrap_to(race["name"], 24):
-        out.append(f'<text x="{x}" y="{y}" class="rc-title">{line}</text>')
-        y += 34
-    out.append(f'<text x="{x}" y="{y + 6}" class="rc-sub" fill="{accent}">'
-               f'{race["sub"]}</text>')
-    y += 38
-    for line in wrap_to(f'{race["city"]} · {race["venue"]}', 52):
-        out.append(f'<text x="{x}" y="{y}" class="rc-place2">{line}</text>')
-        y += 17
+    # Set from the middle of the rail rather than the top: three short blocks
+    # pinned to the top of a 900-unit column read as an unfinished page.
+    title = wrap_to(race["name"], 22)
+    block = len(title) * 36 + 30 + len(wrap_to(place_of(race), 34)) * 20
+    y = (VB_H - block) / 2 + 26
 
-    # The dates, one chip each: a course run twice is one course and two
-    # mornings, and the panel should be able to say both.
-    y += 18
+    for line in title:
+        out.append(f'<text x="{x}" y="{y:.0f}" class="rc-title">{line}</text>')
+        y += 36
+    y += 12
     cx = x
     for iso in race["dates"]:
         label = pretty_date(iso)
-        w = 11 + len(label) * 7.3
-        out.append(f'<g><rect x="{cx:.1f}" y="{y}" width="{w:.1f}" height="26" '
-                   f'rx="13" fill="{accent}" fill-opacity="0.16"/>'
-                   f'<text x="{cx + w / 2:.1f}" y="{y + 18}" class="rc-chip" '
+        w = 11 + len(label) * 7.6
+        out.append(f'<g><rect x="{cx:.1f}" y="{y:.0f}" width="{w:.1f}" height="28" '
+                   f'rx="14" fill="{accent}" fill-opacity="0.18"/>'
+                   f'<text x="{cx + w / 2:.1f}" y="{y + 19:.0f}" class="rc-chip" '
                    f'fill="{accent}" text-anchor="middle">{label}</text></g>')
         cx += w + 8
-
-    # The ring, and the numbers beside it.
-    lap_km = (cumulative(pts)[-1] if pts else race["metres"] / 1000)
-    laps = race.get("laps", 1)
-    total_km = lap_km * laps
-    routed = bool(race.get("route"))
-    ry = y + 150
-    out.append(ring(x + 84, ry, 62, total_km / 10.0, accent))
-    out.append(f'<text x="{x + 84}" y="{ry - 4}" class="rc-ring-num" '
-               f'text-anchor="middle">{total_km:.2f}</text>')
-    out.append(f'<text x="{x + 84}" y="{ry + 20}" class="rc-ring-unit" '
-               f'text-anchor="middle">km {"routed" if routed else "measured"}</text>')
-
-    sx = x + 190
-    out.append(stat(sx, ry - 46, "DISTANCE", race["distance"]))
-    elev = f"{race['elev']}" if race.get("elev") else "\u2013"
-    out.append(stat(sx, ry + 14, "ELEV GAIN",
-                    elev, "m" if race.get("elev") else ""))
-    if not race.get("elev"):
-        out.append(f'<text x="{sx + 34}" y="{ry + 44}" class="rc-tick">'
-                   f'not published</text>')
-    out.append(stat(sx, ry + 74, "SHAPE", race["shape"]))
-
-    py = ry + 150
-    prof = profile(x, py + 22, RAIL_W - 2 * x, 74, pts, accent)
-    if prof:
-        out.append(prof)
-
-    notes = []
-    if laps > 1:
-        notes.append(f"one circuit drawn · run {laps}×")
-    if routed:
-        notes.append("routed line, not a measured track")
-    ny = VB_H - 74
-    for line in notes:
-        out.append(f'<text x="{x}" y="{ny}" class="rc-tick">{line}</text>')
-        ny += 15
-
-    # Provenance last, small, where a chart puts its sources.
-    sy = VB_H - 40
-    for line in wrap_to(race["source"], 58):
-        out.append(f'<text x="{x}" y="{sy}" class="rc-src">{line}</text>')
-        sy += 14
+    y += 56
+    for line in wrap_to(place_of(race), 34):
+        out.append(f'<text x="{x}" y="{y:.0f}" class="rc-place2">{line}</text>')
+        y += 20
     return "".join(out)
+
+
+def place_of(race: dict) -> str:
+    return f'{race["venue"]} · {race["city"]}'
 
 
 # ------------------------------------------------------------------ one panel
