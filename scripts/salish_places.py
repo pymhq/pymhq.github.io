@@ -175,22 +175,49 @@ SHEETS = [
              "park you can reach only by boat, is",
              "still half transparent.",
              "",
+             "Three drawings are what the day was:",
+             "Nashi Orchards, mid-island, pressing",
+             "perry off its own Asian pears; and 10",
+             "km east on the tip of Maury, Oscar the",
+             "Bird King, Thomas Dambo's troll in a",
+             "grove with a crown of birdhouses, five",
+             "minutes up the trail from the Point",
+             "Robinson light. The troll and the light",
+             "are 220 m apart, which at this scale is",
+             "two units, so one of them rides out to",
+             "clear paper on a leader.",
+             "",
              "A tall sheet: the chain runs 83 km",
              "north to south and the water between",
              "the islands is never wide, so the map",
              "is narrow and the apron carries the",
              "rest.",
          ]),
+    # Canada on one sheet. It used to be two: Vancouver and the Sea to Sky at
+    # 4.8 units/km, the Rockies at 2.7. Two sheets is what a reader of the
+    # trip does not have: I flew into YVR, drove Howe Sound, then drove east, and
+    # the distance between those two halves is the fact the pair of sheets hid.
+    # One frame states it: Victoria to the north end of Jasper, Vancouver Island
+    # to Calgary, at one scale. The price is the scale, 1.5 units/km, and at that
+    # scale a doodle covers 20 km, so Vancouver, YVR and UBC ride out to clear
+    # paper on leaders. That is the honest trade and the leaders say so.
     dict(key="vancouver", kind="map", usa_only=False, glyph_scale=1.1,
-         # Its frame reaches south to Swartz Bay so the crossing can be drawn, and
-         # that catches the whole of the San Juans. Only these places are drawn
-         # here; the rest keep their dots and belong to sheet 1.
+         # The frame is set by arithmetic, not by taste: the map can be 1090 units
+         # wide at most once the apron is paid for, so a 900-unit-high sheet can
+         # hold 1.211 of Mercator aspect. 10.05 degrees of longitude therefore
+         # buys exactly 5.3 of latitude, which is Victoria to north of Jasper.
+         # Reaching south to Swartz Bay for the crossing catches the whole of the
+         # San Juans; only these places are drawn here, and the rest keep their
+         # dots and belong to the sheets they were cut for.
          only=("vancouver", "yvr", "ubc", "whistler", "tsawwassen", "swartz_bay",
-               "victoria", "sidney"),
-         title="VANCOUVER, HOWE SOUND &amp; THE SEA TO SKY",
-         short="Vancouver &amp; the Sea to Sky",
-         sub="· the one sheet north of the line ·",
-         frame=(-124.10, 48.66, -122.00, 50.35),
+               "victoria", "sidney", "calgary", "banff", "lake_louise", "yoho",
+               "jasper"),
+         poi_names="own",
+         no_locator=True,
+         title="CANADA: VANCOUVER, THE SEA TO SKY &amp; THE ROCKIES",
+         short="Canada: Vancouver to Calgary",
+         sub="· one frame from salt water to the continental divide ·",
+         frame=(-123.62, 48.20, -113.70, 53.40),
          blurb=[
              "The only sheet that draws anything in",
              "Canada. Everywhere else the drawings",
@@ -198,52 +225,42 @@ SHEETS = [
              "geography and the names cross it; here",
              "the sheet is Canada, so they do not.",
              "",
+             "One frame, ten degrees of longitude:",
+             "700 km of ground, salt water at the",
+             "left edge and the continental divide",
+             "two thirds of the way across. This was",
+             "two sheets and should not have been.",
+             "The 500 km from Howe Sound to Lake",
+             "Louise is the thing the trip was about,",
+             "and a page break is the one way a map",
+             "cannot say it.",
+             "",
              "I flew into YVR and took BC Ferries",
              "from Tsawwassen to Swartz Bay, which",
-             "is the crossing drawn here and the",
-             "reason Victoria and Vancouver Island",
-             "are in full colour on every sheet.",
-             "",
-             "The Sea to Sky highway runs from",
-             "Horseshoe Bay up Howe Sound to",
-             "Whistler, and it is one of the great",
-             "drives anywhere.",
-             "",
-             "Banff, Yoho, Jasper and Calgary are",
-             "800 to 1,200 km east of this frame, on",
-             "the sheet after this one. That sheet is",
-             "the only one in the section that leaves",
-             "salt water behind altogether.",
-         ]),
-    dict(key="rockies", kind="map", usa_only=False, glyph_scale=1.15,
-         title="BANFF, YOHO, JASPER &amp; CALGARY",
-         short="the Rockies",
-         sub="· the continental sheet, four hundred km of mountains ·",
-         frame=(-119.20, 50.55, -113.40, 53.40),
-         only=("calgary", "banff", "lake_louise", "yoho", "jasper"),
-         no_locator=True,
-         blurb=[
-             "The far end of the same trip, and the",
-             "only sheet that leaves the coast",
-             "behind. Everything else in this section",
-             "is within a day of salt water; this is",
-             "four hundred km inland and two",
-             "kilometres up.",
+             "is the crossing drawn at the bottom",
+             "left and the reason Victoria and",
+             "Vancouver Island are in full colour on",
+             "every sheet. The Sea to Sky runs from",
+             "Horseshoe Bay up the sound to",
+             "Whistler; then the road turns east and",
+             "does not reach salt water again.",
              "",
              "Three of the four contiguous mountain",
              "parks are drawn: Banff, Yoho and",
              "Jasper, with Kootenay between them.",
              "The Icefields Parkway runs the length",
-             "of it, from Lake Louise to Jasper.",
+             "of it. The lakes are the reason to come",
+             "and their colour is rock flour ground",
+             "fine by the glaciers above them:",
+             "Louise, Moraine, Peyto, Emerald,",
+             "Maligne.",
              "",
-             "The lakes are the reason to come, and",
-             "their colour is rock flour ground fine",
-             "by the glaciers above them: Louise,",
-             "Moraine, Peyto, Emerald, Maligne.",
-             "",
-             "No coastline reaches this frame, so",
-             "the paper starts as land and the water",
-             "is drawn onto it.",
+             "The scale is the price of the frame.",
+             "At 1.5 units per km a doodle covers 20",
+             "km of ground, so Vancouver, YVR and",
+             "UBC, which are 10 km apart, ride out",
+             "to clear paper on leaders back to a",
+             "dot on the true spot.",
          ]),
     dict(key="cascades", kind="map",
          title="THE CASCADES: RAINIER TO DIABLO LAKE",
@@ -274,7 +291,7 @@ SHEETS = [
 # to south, because that is the way the water is travelled; then the city, then
 # the peninsula, then the mountains.
 _SHEET_ORDER = ["overview", "sanjuans", "north", "sound", "seattle", "olympic",
-                "cascades", "vancouver", "rockies"]
+                "cascades", "vancouver"]
 SHEETS.sort(key=lambda s: _SHEET_ORDER.index(s["key"]))
 
 # Labels the index sheet leaves out. At 3.3 units per km a swim-beach lake and a
@@ -673,6 +690,24 @@ POIS = [
          at=DOCKS["southworth"], ic="anchor", quiet_on=("overview",),
          label=("text", -14, -8, "end", "rt-label", ["Southworth"])),
 
+    # ---- Vashon and Maury: the day the ferry stopped being the whole of it ----
+    # Nashi is in the middle of Vashon and the other two are 220 m apart on the
+    # far east tip of Maury, which is 10 km away and the reason this sheet is
+    # worth its scale: at 10.8 units/km the troll and the light are 2.4 units
+    # apart, so one of them is nudged onto its own leader.
+    dict(key="nashi", name="Nashi Orchards Tasting Room: perry and cider off the "
+                          "Asian pears grown on the place",
+         at=(47.4535, -122.4703), ic="pear", scale=0.9,
+         label=("text", 0, -20, "middle", "rt-sub", ["Nashi Orchards"])),
+    dict(key="oscar", name="Oscar, the Bird King: Thomas Dambo's troll in the grove "
+                          "above the beach, crowned with birdhouses",
+         at=(47.3893, -122.3772), ic="troll", scale=0.85,
+         label=("text", 0, 26, "middle", "rt-sub", ["Oscar, the Bird King"])),
+    dict(key="pt_robinson", name="Point Robinson Lighthouse: the light on the east "
+                                "tip of Maury, in the middle of East Passage",
+         at=(47.3881, -122.3744), ic="light", scale=0.95,
+         label=("text", 13, 4, "start", "rt-sub", ["Pt. Robinson Light"])),
+
     # ---- Canada: the Vancouver sheet ----
     dict(key="vancouver", name="Vancouver, BC: YVR and the seawall", at=(49.2827, -123.1207),
          ic="city", scale=0.9,
@@ -919,7 +954,10 @@ LABELS = [
     ("Grays Harbor", 46.9900, -124.0300, "rt-flavor", "middle", -14),
     ("Vancouver Island", 48.8600, -123.9200, "rt-sub", "middle", -52),
     ("Gulf Islands · BC", 48.8500, -123.4600, "rt-sub", "middle", -40),
-    ("San Juan I.", 48.5400, -123.1200, "rt-sub", "middle", -50),
+    # The island's own name sits in its middle, not on its west coast: at
+    # 16 units/km the rotated label is 55 units long, and on the coast it lay
+    # across San Juan County Park's name 2 km away.
+    ("San Juan I.", 48.5235, -123.0760, "rt-sub", "middle", -50),
     ("Orcas I.", 48.6560, -122.9200, "rt-sub", "middle", 0),
     ("Lopez", 48.4800, -122.8900, "rt-sub", "middle", 0),
     ("Sucia I.", 48.7580, -122.9060, "rt-sub", "start", 0),

@@ -38,8 +38,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import salish_places as P  # noqa: E402
 from salish_geo import (  # noqa: E402
-    Proj, clip_chain, clip_ring, in_ring, is_dry, land_rings, load, merc_y, num,
-    WaterGrid, on_land, path_d, points_d, rdp, snap_to, stitch, way_coords,
+    Proj, _signed_area, clip_chain, clip_ring, in_ring, is_dry, land_rings, load,
+    merc_y, num, WaterGrid, on_land, path_d, points_d, rdp, snap_to, stitch,
+    way_coords,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -794,13 +795,19 @@ def base_layers(proj: Proj, rect, eps: float, out: list[str]) -> None:
     dt = path_d(theirs, proj, eps)
     # The mainland is one ring and not one experience. Inside the unvisited
     # regions its land is washed back; a POI standing there keeps its own colour.
+    # Every ring is wound the same way, because the wash is one path element now
+    # and under the nonzero rule two subpaths of opposite winding cut a hole in
+    # each other exactly where they overlap.
+    def _cw(pts):
+        return pts if _signed_area(pts) >= 0 else list(reversed(pts))
+
     rings = []
     for r in P.UNVISITED_REGIONS:
         pts = [proj(lo, la) for la, lo in r["ring"]]
-        rings.append(points_d(rdp(pts, 0.5), True))
+        rings.append(points_d(_cw(rdp(pts, 0.5)), True))
     for _n, s0, w0, n0, e0 in P.UNVISITED_ISLAND_BOXES:
         pts = [proj(w0, n0), proj(e0, n0), proj(e0, s0), proj(w0, s0)]
-        rings.append(points_d(pts, True))
+        rings.append(points_d(_cw(pts), True))
     uid0 = f"{abs(hash((rect, 'land'))) % 999983}"
     if dm:
         out.append(f'<path id="sg-lm-{uid0}" class="rt-island" d="{dm}"/>')
@@ -834,33 +841,54 @@ def base_layers(proj: Proj, rect, eps: float, out: list[str]) -> None:
 
 
     if rings:
-        # Painted last of all, over every land layer including the islands that
-        # lakes hold, in the water colour at half strength: invisible where it
-        # covers water, fading where it covers land. One path element per region,
-        # because fourteen subpaths in one element cancel wherever two overlap
-        # under the default nonzero fill rule, and Gig Harbor sits in two of them.
-        # Clipped to the land. Painting the regions straight onto the sheet drew
-        # them as visible rectangles: over open water the wash colour is the water
-        # colour and should vanish, but it also fell across the coast glow and the
-        # graticule and their edges showed. Clipping to the land means only land
-        # is ever touched, and the region's own shape never appears.
-        # The clip points at the land paths by id rather than repeating their
-        # geometry: a second copy of every coastline added 60 KB a sheet.
+        # Painted once, over the mainland and the unvisited islands only, in the
+        # water colour at half strength: invisible where it covers water, fading
+        # where it covers land.
+        #
+        # Two things were wrong here. It used one <path> per region, so wherever
+        # two of them overlapped the wash was laid down twice and came out darker:
+        # the Lopez box and the Decatur box share 160 m of longitude, and Lopez
+        # was printed in two different greys. And it was blurred, which turns a
+        # box edge into a gradient, so any box whose corner clipped an island I
+        # have landed on left a pale smear on it - the Stuart and Johns box on the
+        # north end of San Juan Island, the Gulf Islands box on Orcas.
+        #
+        # So: one element carrying every region as a subpath, which paints their
+        # union exactly once whatever they overlap; no blur, so half transparent
+        # is one value everywhere and not a ramp; and the clip excludes the
+        # islands that are mine, so no box can reach them however it is drawn.
         uses = "".join(f'<use href="#sg-{k}-{uid0}"/>'
-                       for k, d in (("lm", dm), ("li", di), ("lt", dt)) if d)
+                       for k, d in (("lm", dm), ("lt", dt)) if d)
         uid3 = f"{abs(hash((rect, 'landclip'))) % 999983}"
         if uses:
             out.append(f'<clipPath id="sg-land-{uid3}">{uses}</clipPath>')
-            blur = max(3.0, 26.0 / max(proj.px_per_km(), 1.0))
-            out.append(f'<filter id="sg-soft-{uid3}" x="-8%" y="-8%" '
-                       f'width="116%" height="116%">'
-                       f'<feGaussianBlur stdDeviation="{blur:.1f}"/></filter>')
-            out.append(f'<g clip-path="url(#sg-land-{uid3})" '
-                       f'filter="url(#sg-soft-{uid3})">')
-            for ring_d in rings:
-                out.append(f'<path d="{ring_d}" fill="{WATER_FILL}" '
-                           f'fill-opacity="0.62" stroke="none"/>')
-            out.append("</g>")
+            out.append(f'<g clip-path="url(#sg-land-{uid3})">'
+                       f'<path d="{" ".join(rings)}" fill="{WATER_FILL}" '
+                       f'fill-opacity="0.62" stroke="none"/></g>')
+        # Punch the visited spots back through: Poulsbo is mine and the Kitsap is
+        # not, Victoria is mine and Vancouver Island is not. This is the whole
+        # point of washing by region rather than by landmass.
+        bx2, by2, bw2, bh2 = proj.box
+        spots = []
+        for _nm, la, lo, km_r in P.VISITED_SPOTS:
+            cx, cy = proj(lo, la)
+            r = km_r * proj.px_per_km()
+            if (cx + r < bx2 or cx - r > bx2 + bw2
+                    or cy + r < by2 or cy - r > by2 + bh2):
+                continue
+            spots.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}"/>')
+        if spots and (dm or di):
+            uid2 = f"{abs(hash((rect, 'spot'))) % 999983}"
+            out.append(f'<clipPath id="sg-spot-{uid2}">{"".join(spots)}</clipPath>')
+            out.append(f'<g clip-path="url(#sg-spot-{uid2})">'
+                       + "".join(f'<use href="#sg-{k}-{uid0}" class="rt-island"/>'
+                                 for k, d in (("lm", dm), ("li", di)) if d)
+                       + '</g>')
+        # And redraw the islands that are mine on top of the wash, at full
+        # colour. Belt and braces: whatever a region box happens to overlap, an
+        # island I have set foot on is never half transparent.
+        if di:
+            out.append(f'<use href="#sg-li-{uid0}" class="rt-island"/>')
         # Punch the visited spots back through: Poulsbo is mine and the Kitsap is
         # not, Victoria is mine and Vancouver Island is not. This is the whole
         # point of washing by region rather than by landmass.
@@ -1394,10 +1422,28 @@ def build_map_sheet(sheet, sizes: dict) -> str:
     # bookshop: 117 printed names in a 930-unit map is what put Downriggers on
     # top of Rosario Strait. The rest keep their names on hover.
     towns_only = sheet.get("poi_names") == "towns"
+    # A sheet whose frame is far bigger than its subject catches other sheets'
+    # content whole. The Canada sheet reaches the San Juans, and printing their
+    # names put Friday Harbor, the bookshop, the bar and the pottery in a 60-unit
+    # corner on top of each other. "own" prints only this sheet's own places and
+    # leaves the rest as dots with a name on hover, which is what they are here.
+    own_only = sheet.get("poi_names") == "own"
+    earlier = [s2["frame"] for s2 in P.SHEETS[:P.SHEETS.index(sheet)]
+               if s2["key"] != "overview"]
+
+    def own(lat, lon):
+        """Is this piece of content this sheet's, or a finer sheet's?"""
+        if not own_only:
+            return True
+        return not any(on_frame(lat, lon, f2) for f2 in earlier)
     # Scenery is placed against the places, not before them: the placer already
-    # holds every glyph box from fit_places.
+    # holds every glyph box from fit_places. On an "own" sheet the scenery is
+    # filtered the same way the names are: the ducks, the hen and the whale pods
+    # belong to the sheets whose subject they are, and at 1.6 units/km they were
+    # a pile of 20-unit animals in a 90-unit corner of somebody else's water.
     scenery = ([d for d in P.DOODLES + P.MARKS
-                if on_frame(d[1], d[2], frame) and in_country(d[1], d[2])]
+                if on_frame(d[1], d[2], frame) and in_country(d[1], d[2])
+                and own(d[1], d[2])]
                if draws else [])
     doodles = []
     for ic, x, y, sc in fit_doodles(scenery, proj, sizes, glyphs):
@@ -1406,7 +1452,7 @@ def build_map_sheet(sheet, sizes: dict) -> str:
         doodles.append((ic, x, y, sc))
     if draws:
         whales = [w for w in P.WHALES if on_frame(w[1], w[2], frame)
-                  and in_country_of(w[1], w[2], usa_only)]
+                  and in_country_of(w[1], w[2], usa_only) and own(w[1], w[2])]
         for ic, wx, wy, sc in fit_doodles([(w[0], w[1], w[2], w[3]) for w in whales],
                                           proj, sizes, glyphs):
             out.append(f'<g transform="translate({wx:.1f}, {wy:.1f}) scale({sc})">'
@@ -1418,7 +1464,8 @@ def build_map_sheet(sheet, sizes: dict) -> str:
 
     quiet = {p["key"] for p in places
              if is_quiet(p, sheet["key"])
-             or (towns_only and p["key"] not in P.INDEX_NAMES)}
+             or (towns_only and p["key"] not in P.INDEX_NAMES)
+             or (own_only and only is not None and p["key"] not in only)}
     # A place keeps its dot and its name everywhere; it only earns its drawing on
     # a sheet that draws, and only on the American side of the line.
     def plain(q):
@@ -1467,7 +1514,11 @@ def build_map_sheet(sheet, sizes: dict) -> str:
 
     names(out, proj, frame, sizes, glyphs, anchors, displaced, doodles, whale_notes,
           map_x, map_w, tags, quiet, draws, placer, usa_only,
-          lambda q: only is not None and q["key"] not in only)
+          lambda q: only is not None and q["key"] not in only,
+          # A name belongs to the finest sheet that holds it. On the Canada sheet
+          # the whole Salish Sea is a 90-unit corner, and every water, island and
+          # summit name from six other sheets landed in it.
+          own)
 
     apron = map_apron(sheet, proj, map_x, map_w, dots, children)
     return wrap(sheet, proj, map_x, map_w, "".join(out), apron)
@@ -1509,7 +1560,8 @@ def place_hovers(places, proj, placer, sizes):
 
 def names(out, proj, frame, sizes, glyphs, anchors, displaced, doodles,
           whale_notes, map_x, map_w, tags=(), quiet=frozenset(), draws=True,
-          placer=None, usa_only=True, off_topic=lambda q: False):
+          placer=None, usa_only=True, off_topic=lambda q: False,
+          label_ok=lambda lat, lon: True):
     """Every name on the sheet, placed so it lands on nothing already there."""
     if placer is None:
         placer = name_placer(proj, frame, glyphs, map_x, map_w, tags)
@@ -1518,7 +1570,8 @@ def names(out, proj, frame, sizes, glyphs, anchors, displaced, doodles,
         placer.blocks(x, y, max(w * abs(sc), 10), max(h * abs(sc), 10))
 
 
-    summits = [s for s in P.SUMMITS if on_frame(*s["at"], frame)]
+    summits = [s for s in P.SUMMITS if on_frame(*s["at"], frame)
+               and label_ok(*s["at"])]
     for s in summits:
         if not (draws and in_country_of(*s["at"], usa_only)):
             continue
@@ -1528,9 +1581,11 @@ def names(out, proj, frame, sizes, glyphs, anchors, displaced, doodles,
         placer.blocks(x, y - h * sc / 4, w * sc, h * sc)
 
     labels = [l for l in P.LABELS if on_frame(l[1], l[2], frame)
+              and label_ok(l[1], l[2])
               and (draws or l[0] not in P.INDEX_OMIT_LABELS)]
     for t, (lat, lon), dx, dy, anchor in [p for p in P.PASSES
-                                          if on_frame(*p[1], frame)]:
+                                          if on_frame(*p[1], frame)
+                                          and label_ok(*p[1])]:
         x, y = proj(lon, lat)
         if draws:
             out.append(f'<use href="#sg-saddle" '
@@ -1597,13 +1652,14 @@ def names(out, proj, frame, sizes, glyphs, anchors, displaced, doodles,
             if not leg.get(key):
                 continue
             t, lat, lon, rot = leg[key]
-            if not on_frame(lat, lon, frame):
+            if not on_frame(lat, lon, frame) or not label_ok(lat, lon):
                 continue
             x, y = proj(lon, lat)
             dx, dy, anchor = placer.place([t], x, y, "rt-sub", "middle", 0, 0, rot)
             out.append(text(t, x + dx, y + dy, "rt-sub", anchor, rot))
     for t, lat, lon, rot in ([r for r in P.RIVER_LABELS
-                              if on_frame(r[1], r[2], frame)] if draws else []):
+                              if on_frame(r[1], r[2], frame)
+                              and label_ok(r[1], r[2])] if draws else []):
         x, y = proj(lon, lat)
         dx, dy, anchor = placer.place([t], x, y, "rt-flavor", "middle", 0, 0, rot, 8.5)
         out.append(text(t, x + dx, y + dy, "rt-flavor", anchor, rot, size=8.5))
@@ -1726,6 +1782,32 @@ def legend_keys(sheet, frame, children, dots) -> tuple:
     return tuple(keys)
 
 
+def fit_title(title: str, room: float) -> tuple[list[str], float]:
+    """Break a title to the apron's own width, and drop a size if it still spills.
+
+    The merged Canada sheet is called CANADA: VANCOUVER, THE SEA TO SKY & THE
+    ROCKIES, which at 19px is 580 units of caps against an apron 310 wide, so it
+    was printed straight across the map. The apron width is known here, so the
+    title is measured against it instead of assumed to fit.
+    """
+    for size in (19.0, 17.0, 15.0, 13.5):
+        per = size * 0.60 + 0.8          # caps at this weight, plus the tracking
+        limit = max(8, int(room / per))
+        lines, cur = [], ""
+        for word in title.split():
+            trial = f"{cur} {word}".strip()
+            if len(trial) > limit and cur:
+                lines.append(cur)
+                cur = word
+            else:
+                cur = trial
+        if cur:
+            lines.append(cur)
+        if len(lines) <= 2 and all(len(l) <= limit for l in lines):
+            return lines, size
+    return lines, 13.5
+
+
 def map_apron(sheet, proj: Proj, map_x, map_w, dots, children) -> str:
     """The paper either side of the map: title, note, bar, legend, locator.
 
@@ -1735,17 +1817,23 @@ def map_apron(sheet, proj: Proj, map_x, map_w, dots, children) -> str:
     """
     x = 30
     frame = sheet["frame"]
+    lines, size = fit_title(sheet["title"], map_x - 2 * x)
     out = [f'<rect x="0" y="0" width="{map_x}" height="{VB_H}" class="sg-apron"/>',
            f'<rect x="{map_x + map_w}" y="0" width="{VB_W - map_x - map_w}" '
            f'height="{VB_H}" class="sg-apron"/>',
            f'<path class="sg-apron-rule" d="M {map_x} 0 V {VB_H} '
-           f'M {map_x + map_w} 0 V {VB_H}"/>',
-           f'<text class="rt-label big" x="{x}" y="52" text-anchor="start" '
-           f'style="font-size:19px; letter-spacing:0.8px;">{sheet["title"]}</text>',
-           text(sheet["sub"], x, 74, "rt-flavor", "start")]
+           f'M {map_x + map_w} 0 V {VB_H}"/>']
+    ty = 52.0
+    for line in lines:
+        out.append(f'<text class="rt-label big" x="{x}" y="{ty:.0f}" '
+                   f'text-anchor="start" style="font-size:{size:g}px; '
+                   f'letter-spacing:0.8px;">{line}</text>')
+        ty += size + 5
+    top = ty + 6
+    out.append(text(sheet["sub"], x, top, "rt-flavor", "start"))
     for i, line in enumerate(sheet["blurb"]):
-        out.append(text(line, x, 100 + i * 13, "rt-sub", "start"))
-    y = 100 + len(sheet["blurb"]) * 13 + 14
+        out.append(text(line, x, top + 26 + i * 13, "rt-sub", "start"))
+    y = top + 26 + len(sheet["blurb"]) * 13 + 14
 
     bar, bar_w = scale_bar(x, y + 14, proj)
     out.append(bar)
@@ -1755,7 +1843,12 @@ def map_apron(sheet, proj: Proj, map_x, map_w, dots, children) -> str:
     k = proj.px_per_km()
     note = f"{k:.1f} units per km" if k < 10 else f"{k:.0f} units per km"
     if sheet["key"] != "overview":
-        note += f" · {k / base_upk:.0f}× the index sheet"
+        # A sheet can be coarser than the index rather than finer: the Canada
+        # sheet is 1,100 km wide and reads 0.4× it. Printing that as "0×" is the
+        # one number on the apron that was simply false.
+        ratio = k / base_upk
+        note += (f" · {ratio:.0f}× the index sheet" if ratio >= 1.5
+                 else f" · {ratio:.1f}× the index sheet")
     out.append(text(note, x, y + 34, "rt-sub", "start", size=9))
     # The compass goes after the bar's actual end, not at a fixed offset.
     out.append(compass(x + bar_w + 30, y + 4))
