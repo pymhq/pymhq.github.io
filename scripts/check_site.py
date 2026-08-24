@@ -48,6 +48,16 @@ SKIP_DIRS = ('assets', 'components', 'backup', 'libs', 'src', 'css', 'js',
 LEGACY = ('studio.html', 'cv/amzn/index.html', 'notes/papers/index.html',
           'notes/LP/index.html', 'afterhours/races/index.html')
 
+# Pages that carry no shell by design, rather than by age. /photos/coffee/ is a
+# single full-bleed wall: it loads no shell.css, mounts no nav and no footer, and
+# instead repeats the two rules that matter on its own (media protection, and a
+# reveal that degrades to visible without JS). Its only chrome is a link back to
+# /photos and a counter. Registered here so the shell checks report it as a
+# deliberate exception rather than four standing failures, which is what the
+# ACCEPTED table below exists to avoid: a real regression should not have to
+# compete with known noise.
+IMMERSIVE = ('photos/coffee/index.html',)
+
 # Assets fetched from a CDN by the old build; not content.
 SKIP_HOSTS = ('googletagmanager', 'jsdelivr', 'fonts.googleapis', 'fonts.gstatic',
               'cdnjs', 'code.jquery', 'stackpath', 'unpkg.com', 'd3js.org',
@@ -152,7 +162,7 @@ def check_structure() -> None:
         if os.path.basename(f).startswith('_'):
             continue
         rel = os.path.relpath(f, ROOT)
-        if rel in LEGACY:
+        if rel in LEGACY or rel in IMMERSIVE:
             continue
         s = open(f, encoding='utf-8', errors='replace').read()
         # Redirect stubs are a page type of their own: no shell, just a
@@ -189,9 +199,10 @@ def check_structure() -> None:
             fails.append(f'{rel}: no footer mount')
             bad += 1
     checked = len([f for f in site_pages()
-                   if os.path.relpath(f, ROOT) not in LEGACY])
+                   if os.path.relpath(f, ROOT) not in LEGACY + IMMERSIVE])
     print(f'  pages checked: {checked}   redirect stubs: {redirects}'
-          f'   legacy-shell pages: {len(LEGACY)}   problems: {bad}')
+          f'   legacy-shell pages: {len(LEGACY)}'
+          f'   shell-free by design: {len(IMMERSIVE)}   problems: {bad}')
 
 
 def check_dependencies() -> None:
