@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Coffee · Peng, Andy</title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="A coffee wall: twenty-five cups on one screen. Latte art on marble, wood and black tables.">
+      <!-- Draft: noindex keeps this out of generate_sitemap.py until the page
+           is adopted; remove the robots meta and register the collection then. -->
+      <meta name="robots" content="noindex">
+      <link rel="canonical" href="https://pengandy.com/photos/coffee/">
+
+      <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
+      <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
+      <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+      <style>
+         /* An immersive page: it deliberately does not load shell.css. The
+            wall is always dark, and the only chrome is a way back and a
+            counter. */
+         :root {
+            --bg: #101010;
+            --ink: #ece7df;
+            --ink-2: #a39d92;
+            --rule: #2a2a2a;
+            --serif: "Source Serif 4", Georgia, serif;
+            --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+         }
+
+         * { box-sizing: border-box; }
+
+         html { scroll-behavior: smooth; }
+
+         body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--serif);
+            -webkit-font-smoothing: antialiased;
+         }
+
+         a { color: inherit; }
+
+         /* ---- chrome ---------------------------------------------------- */
+
+         .chrome {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 20px clamp(20px, 3vw, 44px);
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            mix-blend-mode: difference;
+            color: #fff;
+         }
+
+         .chrome a { text-decoration: none; opacity: 0.85; }
+         .chrome a:hover { opacity: 1; }
+
+         /* ---- hero ------------------------------------------------------ */
+
+         .hero {
+            position: relative;
+            height: 100svh;
+            overflow: hidden;
+            display: grid;
+            place-items: end start;
+         }
+
+         .hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform-origin: 50% 40%;
+            animation: drift 26s ease-in-out infinite alternate;
+            filter: brightness(0.82);
+         }
+
+         @keyframes drift {
+            from { transform: scale(1); }
+            to   { transform: scale(1.07); }
+         }
+
+         .hero-text {
+            position: relative;
+            z-index: 1;
+            padding: clamp(28px, 5vw, 72px);
+            max-width: 30ch;
+         }
+
+         .hero-text .eyebrow {
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+            margin: 0 0 14px;
+         }
+
+         .hero-text h1 {
+            font-size: clamp(2.6rem, 7vw, 5.2rem);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            margin: 0;
+         }
+
+         .hero-text p {
+            font-size: clamp(1rem, 1.4vw, 1.15rem);
+            line-height: 1.55;
+            color: var(--ink-2);
+            margin: 18px 0 0;
+         }
+
+         /* ---- the wall: 25 true squares, edge to edge ------------------- */
+         /* Full-bleed and square at once: five 20vw squares per row, so the
+            wall is a 100vw x 100vw plane the page scrolls through. */
+
+         .wall {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+         }
+
+         .wall li {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #1a1a1a;
+         }
+
+         .wall img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.001);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+            filter: saturate(0.92) brightness(0.96);
+         }
+
+         .wall li:hover img {
+            transform: scale(1.045);
+            filter: saturate(1) brightness(1);
+         }
+
+         /* staggered reveal: each tile carries its own delay via --i */
+         .wall li {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: calc(var(--i) * 45ms);
+         }
+
+         .wall.in li {
+            opacity: 1;
+            transform: none;
+         }
+
+         /* ---- coda ------------------------------------------------------ */
+
+         .coda {
+            text-align: center;
+            padding: clamp(70px, 10vh, 140px) 24px;
+         }
+
+         .coda p {
+            font-size: 1.05rem;
+            color: var(--ink-2);
+            margin: 0 0 26px;
+         }
+
+         .coda a {
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid var(--rule);
+            border-radius: 999px;
+            padding: 12px 26px;
+            transition: border-color 0.2s ease;
+         }
+
+         .coda a:hover { border-color: var(--ink-2); }
+
+         @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .hero img { animation: none; }
+            .wall li { opacity: 1; transform: none; transition: none; }
+            .wall li:hover img { transform: none; }
+         }
+      </style>
+   </head>
+   <body>
+      <nav class="chrome" aria-label="Page">
+         <a href="/photos/">&larr; Photographs</a>
+         <span>Coffee &middot; 25 cups</span>
+      </nav>
+
+      <header class="hero">
+         <img src="/assets/photos/coffee/rose-petals-hero.jpg" alt="Top-down heart latte art in a paper cup, scattered rose petals on grey marble" width="1600" height="1600" fetchpriority="high">
+         <div class="hero-text">
+            <p class="eyebrow">Photographs &middot; One subject</p>
+            <h1>Coffee</h1>
+            <p>Twenty-five cups on one wall, counted the way the mugs are: one at a time, wherever the day put me.</p>
+         </div>
+      </header>
+
+      <main class="wall-stage" aria-label="Coffee wall">
+         <ul class="wall">
+            <li style="--i:0"><img src="/assets/photos/coffee/heart-on-black.jpg" alt="Heart latte art in a white paper cup on a matte black table" width="800" height="800" loading="lazy"></li>
+            <li style="--i:1"><img src="/assets/photos/coffee/blue-cup-rosetta.jpg" alt="Feathery mocha rosetta in a blue cup on a white table" width="800" height="800" loading="lazy"></li>
+            <li style="--i:2"><img src="/assets/photos/coffee/black-mug-swirl.jpg" alt="Black mug with a soft milk swirl on warm plank wood" width="800" height="800" loading="lazy"></li>
+            <li style="--i:3"><img src="/assets/photos/coffee/first-heart-2014.jpg" alt="Heart latte in a paper cup on a black counter, 2014" width="800" height="800" loading="lazy"></li>
+            <li style="--i:4"><img src="/assets/photos/coffee/blue-cup-black-marble.jpg" alt="Heart latte art in a blue cup on black veined marble" width="800" height="800" loading="lazy"></li>
+
+            <li style="--i:5"><img src="/assets/photos/coffee/blue-and-pink.jpg" alt="A blue latte and a pink hojicha side by side on pale wood" width="800" height="800" loading="lazy"></li>
+            <li style="--i:6"><img src="/assets/photos/coffee/tall-glass-mocha.jpg" alt="Tall glass mocha with a swirl on a black tray at a marble counter" width="800" height="800" loading="lazy"></li>
+            <li style="--i:7"><img src="/assets/photos/coffee/cocoa-swirl.jpg" alt="Hot chocolate with a swirl in a two-tone mug on pale marble" width="800" height="800" loading="lazy"></li>
+            <li style="--i:8"><img src="/assets/photos/coffee/dusted-cappuccino.jpg" alt="Cappuccino dusted with cocoa in a white cup and saucer" width="800" height="800" loading="lazy"></li>
+            <li style="--i:9"><img src="/assets/photos/coffee/glass-rosetta.jpg" alt="Rosetta latte in a clear glass on grey concrete" width="800" height="800" loading="lazy"></li>
+
+            <li style="--i:10"><img src="/assets/photos/coffee/matcha-heart.jpg" alt="Matcha latte with a heart in a black mug" width="800" height="800" loading="lazy"></li>
+            <li style="--i:11"><img src="/assets/photos/coffee/hot-chocolate-order.jpg" alt="Hot chocolate beside a projected order label reading Andy" width="800" height="800" loading="lazy"></li>
+            <li style="--i:12"><img src="/assets/photos/coffee/still-life-tpu.jpg" alt="Still Life with TPU Chip and Coffee Mug, pixel art by ChatGPT, 2025" width="800" height="800" loading="lazy"></li>
+            <li style="--i:13"><img src="/assets/photos/coffee/stacked-hearts.jpg" alt="Stacked-heart mocha in a grey cup and saucer on a white table" width="800" height="800" loading="lazy"></li>
+            <li style="--i:14"><img src="/assets/photos/coffee/la-marzocco-heart.jpg" alt="Heart latte in a La Marzocco cup on grey wood" width="800" height="800" loading="lazy"></li>
+
+            <li style="--i:15"><img src="/assets/photos/coffee/starbucks-swirl.jpg" alt="Latte with a soft swirl in a Starbucks paper cup" width="800" height="800" loading="lazy"></li>
+            <li style="--i:16"><img src="/assets/photos/coffee/boba-smile.jpg" alt="Iced milk tea with boba and a smiley label, by a window" width="800" height="800" loading="lazy"></li>
+            <li style="--i:17"><img src="/assets/photos/coffee/egg-coffee-receipt.jpg" alt="Egg coffee with the lid lifted, receipt in front" width="800" height="800" loading="lazy"></li>
+            <li style="--i:18"><img src="/assets/photos/coffee/cafe-counter.jpg" alt="Latte on a caf&eacute; counter" width="800" height="800" loading="lazy"></li>
+            <li style="--i:19"><img src="/assets/photos/coffee/victrola-rosetta.jpg" alt="Mocha rosetta in a Victrola Coffee Roasters cup" width="800" height="800" loading="lazy"></li>
+
+            <li style="--i:20"><img src="/assets/photos/coffee/to-go-cup.jpg" alt="To-go cup of coffee" width="800" height="800" loading="lazy"></li>
+            <li style="--i:21"><img src="/assets/photos/coffee/chalkboard-cafe.jpg" alt="Latte in front of a caf&eacute; chalkboard menu" width="800" height="800" loading="lazy"></li>
+            <li style="--i:22"><img src="/assets/photos/coffee/egg-coffee-open.jpg" alt="Egg coffee dusted with cinnamon, lid held open" width="800" height="800" loading="lazy"></li>
+            <li style="--i:23"><img src="/assets/photos/coffee/hot-kakao-receipt.jpg" alt="Tulip latte art beside a receipt reading Andy on veined marble" width="800" height="800" loading="lazy"></li>
+            <li style="--i:24"><img src="/assets/photos/coffee/rose-petals-heart.jpg" alt="Heart latte art with rose petals on grey marble, square crop" width="800" height="800" loading="lazy"></li>
+         </ul>
+      </main>
+
+      <footer class="coda">
+         <p>Counted by cup rather than by city, but the habit is the same.</p>
+         <a href="/interests">Magnets &amp; mugs &rarr;</a>
+      </footer>
+
+      <script>
+         // Reveal the wall once it enters the viewport; tiles stagger via the
+         // per-tile --i delay. Without IntersectionObserver the wall is simply
+         // visible (reduced motion is handled in CSS).
+         (function () {
+            var wall = document.querySelector(".wall");
+            if (!("IntersectionObserver" in window)) {
+               wall.classList.add("in");
+               return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+               entries.forEach(function (e) {
+                  if (e.isIntersecting) {
+                     wall.classList.add("in");
+                     io.disconnect();
+                  }
+               });
+            }, { threshold: 0.15 });
+            io.observe(wall);
+         })();
+      </script>
+   </body>
+</html>
