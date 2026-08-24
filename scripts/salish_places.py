@@ -647,7 +647,12 @@ POIS = [
          at=(47.6621, -122.4359), ic="light", scale=0.8,
          label=("hover", -14, 4, "end", None, ["Discovery Park"])),
     dict(key="alki", name="Alki Beach · the Statue of Liberty replica &amp; the driftwood shore",
-         at=(47.5860, -122.4110), ic="liberty", scale=0.92,
+         # The statue's own plaza, at 61st Ave SW, and not the middle of Elliott
+         # Bay: the old point was 900 m offshore, and because the land test used
+         # to answer by the nearest coastline segment, which at Alki is a piece of
+         # the Duwamish Head shore running the other way, the snap that is meant
+         # to put a glyph ashore moved it 360 m further out instead.
+         at=(47.5811, -122.4055), ic="liberty", scale=0.92,
          extra=[("driftwood", 12, 5, 0.55)],
          label=("hover", -11, 8, "end", None, ["Alki Beach"])),
     dict(key="madison_park", name="Madison Park Beach: Lake Washington swim beach &amp; swim raft",
@@ -704,9 +709,14 @@ POIS = [
                           "above the beach, crowned with birdhouses",
          at=(47.3893, -122.3772), ic="troll", scale=0.85,
          label=("text", 0, 26, "middle", "rt-sub", ["Oscar, the Bird King"])),
+    # Pinned: a light is a fixed mark and the point it stands on is the whole of
+    # why it is there, so it keeps its own spot and the troll takes the nudge.
+    # Unpinned, the placer gave Oscar the anchor and pushed the lighthouse 26
+    # units west onto Maury, which put the light inland of the troll and got the
+    # real arrangement backwards: Oscar is in the grove behind the light.
     dict(key="pt_robinson", name="Point Robinson Lighthouse: the light on the east "
                                 "tip of Maury, in the middle of East Passage",
-         at=(47.3881, -122.3744), ic="light", scale=0.95,
+         at=(47.3881, -122.3744), ic="light", scale=0.95, pin=True,
          label=("text", 13, 4, "start", "rt-sub", ["Pt. Robinson Light"])),
 
     # ---- Canada: the Vancouver sheet ----
@@ -965,7 +975,9 @@ LABELS = [
     ("Lummi I.", 48.6900, -122.6700, "rt-sub", "middle", -60),
     ("Fidalgo Island", 48.4750, -122.6200, "rt-sub", "middle", 0),
     ("Whidbey Island", 48.1450, -122.5450, "rt-sub", "middle", -58),
-    ("Vashon Island", 47.4150, -122.4560, "rt-sub", "middle", -84),
+    # Set up the island rather than at its south end, where the name ran down
+    # into the Point Robinson light and crossed its label.
+    ("Vashon Island", 47.4270, -122.4640, "rt-sub", "middle", -84),
     ("Maury I.", 47.3830, -122.4300, "rt-sub", "middle", 20),
     ("Blake I.", 47.5390, -122.4930, "rt-sub", "start", 0),
     ("Olympic Peninsula", 47.6100, -123.3300, "rt-sub", "middle", 0),

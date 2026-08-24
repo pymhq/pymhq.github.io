@@ -995,10 +995,13 @@ def fit_places(places, proj: Proj, sizes: dict, sheet_key=None, draws=True,
             x, y = poi_xy(p, proj)
             placer.blocks(x, y, 9.0, 9.0)
         return list(places), [], [], placer
-    # Printed names first, then doodles, then the plain chart stops. A stop with
+    # A pinned place is one whose whole meaning is where it stands - a lighthouse
+    # on its point - so it takes its own spot first and the neighbours move round
+    # it. Then printed names, then doodles, then the plain chart stops: a stop with
     # no glyph reserving paper ahead of a doodle is how Cascade Falls lost its
     # waterfall to the 9-unit dot marking the trail 200 m away.
     order = sorted(places, key=lambda p: (
+        0 if p.get("pin") else 1,
         0 if p["label"][0] == "text" and not is_quiet(p, sheet_key) else 1,
         0 if p.get("ic") else 1))
     leftover = []
@@ -1019,35 +1022,39 @@ def fit_places(places, proj: Proj, sizes: dict, sheet_key=None, draws=True,
         # doodle to a town plan. With a leader line back to a dot on the true
         # spot the displacement is stated on the sheet, so it can be as long as
         # the paper needs: this is what a printed chart does with a leader.
+        # Every free spot is collected and then sorted, rather than taking the
+        # first one found. The old loop walked the angles from due east and
+        # stopped at the first hit, so a glyph whose own paper was busy went east
+        # by default: that is how Oscar the Bird King, a troll in a grove on Maury
+        # Island, ended up standing in East Passage on a leader back to the shore.
+        # Now the right side of the water wins first and the shortest nudge
+        # second, so a drawing lands on the nearest piece of the ground it belongs
+        # on, in whatever direction that is.
         cap = NUDGE_MAX
-        spot = None
         want = glyph_side(p.get("ic"))
-        for strict in (True, False):
-            for r in (cap * 0.45, cap * 0.7, cap):
-                for i in range(8):
-                    a = math.pi / 4 * i
-                    dx, dy = r * math.cos(a), r * math.sin(a)
-                    box = (x + dx, y + dy, w, h, 0.0)
-                    if not placer.free(box):
+        cands = []
+        for step in (0.4, 0.55, 0.7, 0.85, 1.0):
+            r = cap * step
+            for i in range(16):
+                a = math.pi / 8 * i
+                dx, dy = r * math.cos(a), r * math.sin(a)
+                box = (x + dx, y + dy, w, h, 0.0)
+                if not placer.free(box):
+                    continue
+                if want is not None:
+                    la2, lo2 = proj.inverse(x + dx, y + dy)
+                    if is_dry((lo2, la2)) != want:
+                        # A drawing that can only be nudged onto the wrong side of
+                        # the shore is not nudged at all: it keeps a dot on its true
+                        # spot here and its doodle appears on the sheet below, which
+                        # is a smaller lie than a troll standing in East Passage.
                         continue
-                    # A nudge of 26 units is 840 m on the Seattle sheet, which is
-                    # enough to walk Alki's statue back into Puget Sound. The
-                    # first pass only accepts spots on the right side of the
-                    # shore; the second gives up on that rather than lose the
-                    # drawing.
-                    if strict and want is not None:
-                        la2, lo2 = proj.inverse(x + dx, y + dy)
-                        if is_dry((lo2, la2)) != want:
-                            continue
-                    spot = (dx, dy, box)
-                    break
-                if spot:
-                    break
-            if spot:
-                break
-        if spot:
-            placer.block(spot[2])
-            displaced.append((p, spot[0], spot[1]))
+                cands.append((r, i, dx, dy, box))
+        cands.sort(key=lambda c: (c[0], c[1]))
+        if cands:
+            dx, dy, box = cands[0][2], cands[0][3], cands[0][4]
+            placer.block(box)
+            displaced.append((p, dx, dy))
         else:
             dots.append(p)
     return anchors, displaced, dots, placer

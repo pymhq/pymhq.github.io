@@ -502,15 +502,52 @@ def in_ring(pt, ring) -> bool:
     return c
 
 
-def is_dry(pt) -> bool:
-    """Dry land: the land side of the coastline, and not inside a lake.
+_NEAR_LAND: dict = {}
 
-    `on_land` alone answers the sea only, so it calls the middle of Lake Union
-    land. Gas Works Park sits on that lake's north shore and Waverly Beach on
-    Lake Washington's, so telling their doodles from the water needs the lakes
+
+def land_side(pt, span: float = 0.08):
+    """Is this point inside the land the sheets actually draw? None if unknown.
+
+    `on_land` answers by the side of the nearest coastline segment, which is cheap
+    and right in open country and wrong exactly where a shoreline doubles back on
+    itself. At Alki the nearest segment to a point in Elliott Bay is a piece of
+    the Duwamish Head shore running the other way, so the bay came back as land:
+    the Statue of Liberty was snapped 360 m further out to sea to "put it ashore",
+    and the checker that is supposed to catch that agreed with the snap, because
+    both asked the same wrong question.
+
+    This asks the question the drawing answers: the same land_rings the sheet
+    fills, for a small frame round the point. Cached per 0.08 degree cell, which
+    is about 9 km, so a sheet's worth of glyphs shares a handful of frames.
+    """
+    lo, la = pt
+    key = (int(math.floor(lo / span)), int(math.floor(la / span)))
+    if key not in _NEAR_LAND:
+        rect = (key[0] * span - span, key[1] * span - span,
+                key[0] * span + 2 * span, key[1] * span + 2 * span)
+        try:
+            land, _holes = land_rings(rect)
+        except (SystemExit, ValueError, ZeroDivisionError):
+            land = []
+        _NEAR_LAND[key] = land
+    rings = _NEAR_LAND[key]
+    if not rings:
+        return None
+    return any(in_ring(pt, r) for r in rings)
+
+
+def is_dry(pt) -> bool:
+    """Dry land: inside the drawn coastline, and not inside a lake.
+
+    The coastline test alone answers the sea only, so it calls the middle of Lake
+    Union land. Gas Works Park sits on that lake's north shore and Waverly Beach
+    on Lake Washington's, so telling their doodles from the water needs the lakes
     too.
     """
-    if not on_land(pt):
+    side = land_side(pt)
+    if side is None:
+        side = on_land(pt)
+    if not side:
         return False
     return not any(in_ring(pt, r) for r in _lake_rings_near(pt))
 
