@@ -18,8 +18,19 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+      <link rel="preload" as="image" href="/assets/photos/coffee/rose-petals-hero.jpg" fetchpriority="high">
 
       <style>
+         /* Media protection, as shell.css does site-wide: this page does not
+            load the shell, so it carries the same rules itself. Best-effort
+            by nature, but it stops right-click-save and drag-to-desktop. */
+         img {
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+         }
+
          /* An immersive page: it deliberately does not load shell.css. The
             wall is always dark, and the only chrome is a way back and a
             counter. */
@@ -163,15 +174,17 @@
             filter: saturate(1) brightness(1);
          }
 
-         /* staggered reveal: each tile carries its own delay via --i */
-         .wall li {
+         /* staggered reveal, progressive enhancement only: tiles start
+            hidden solely when the script has marked the wall as animatable,
+            so a blocked or failed script never leaves a black wall. */
+         .wall.will-reveal li {
             opacity: 0;
             transform: translateY(14px);
             transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             transition-delay: calc(var(--i) * 45ms);
          }
 
-         .wall.in li {
+         .wall.will-reveal.in li {
             opacity: 1;
             transform: none;
          }
@@ -229,35 +242,35 @@
 
       <main class="wall-stage" aria-label="Coffee wall">
          <ul class="wall">
-            <li style="--i:0"><img src="/assets/photos/coffee/heart-on-black.jpg" alt="Heart latte art in a white paper cup on a matte black table" width="800" height="800" loading="lazy"></li>
-            <li style="--i:1"><img src="/assets/photos/coffee/blue-cup-rosetta.jpg" alt="Feathery mocha rosetta in a blue cup on a white table" width="800" height="800" loading="lazy"></li>
-            <li style="--i:2"><img src="/assets/photos/coffee/black-mug-swirl.jpg" alt="Black mug with a soft milk swirl on warm plank wood" width="800" height="800" loading="lazy"></li>
-            <li style="--i:3"><img src="/assets/photos/coffee/first-heart-2014.jpg" alt="Heart latte in a paper cup on a black counter, 2014" width="800" height="800" loading="lazy"></li>
-            <li style="--i:4"><img src="/assets/photos/coffee/blue-cup-black-marble.jpg" alt="Heart latte art in a blue cup on black veined marble" width="800" height="800" loading="lazy"></li>
+            <li style="--i:0"><img src="/assets/photos/coffee/heart-on-black.jpg" alt="Heart latte art in a white paper cup on a matte black table" width="800" height="800" decoding="async"></li>
+            <li style="--i:1"><img src="/assets/photos/coffee/blue-cup-rosetta.jpg" alt="Feathery mocha rosetta in a blue cup on a white table" width="800" height="800" decoding="async"></li>
+            <li style="--i:2"><img src="/assets/photos/coffee/black-mug-swirl.jpg" alt="Black mug with a soft milk swirl on warm plank wood" width="800" height="800" decoding="async"></li>
+            <li style="--i:3"><img src="/assets/photos/coffee/first-heart-2014.jpg" alt="Heart latte in a paper cup on a black counter, 2014" width="800" height="800" decoding="async"></li>
+            <li style="--i:4"><img src="/assets/photos/coffee/blue-cup-black-marble.jpg" alt="Heart latte art in a blue cup on black veined marble" width="800" height="800" decoding="async"></li>
 
-            <li style="--i:5"><img src="/assets/photos/coffee/blue-and-pink.jpg" alt="A blue latte and a pink hojicha side by side on pale wood" width="800" height="800" loading="lazy"></li>
-            <li style="--i:6"><img src="/assets/photos/coffee/tall-glass-mocha.jpg" alt="Tall glass mocha with a swirl on a black tray at a marble counter" width="800" height="800" loading="lazy"></li>
-            <li style="--i:7"><img src="/assets/photos/coffee/cocoa-swirl.jpg" alt="Hot chocolate with a swirl in a two-tone mug on pale marble" width="800" height="800" loading="lazy"></li>
-            <li style="--i:8"><img src="/assets/photos/coffee/dusted-cappuccino.jpg" alt="Cappuccino dusted with cocoa in a white cup and saucer" width="800" height="800" loading="lazy"></li>
-            <li style="--i:9"><img src="/assets/photos/coffee/glass-rosetta.jpg" alt="Rosetta latte in a clear glass on grey concrete" width="800" height="800" loading="lazy"></li>
+            <li style="--i:5"><img src="/assets/photos/coffee/blue-and-pink.jpg" alt="A blue latte and a pink hojicha side by side on pale wood" width="800" height="800" decoding="async"></li>
+            <li style="--i:6"><img src="/assets/photos/coffee/tall-glass-mocha.jpg" alt="Tall glass mocha with a swirl on a black tray at a marble counter" width="800" height="800" decoding="async"></li>
+            <li style="--i:7"><img src="/assets/photos/coffee/cocoa-swirl.jpg" alt="Hot chocolate with a swirl in a two-tone mug on pale marble" width="800" height="800" decoding="async"></li>
+            <li style="--i:8"><img src="/assets/photos/coffee/dusted-cappuccino.jpg" alt="Cappuccino dusted with cocoa in a white cup and saucer" width="800" height="800" decoding="async"></li>
+            <li style="--i:9"><img src="/assets/photos/coffee/glass-rosetta.jpg" alt="Rosetta latte in a clear glass on grey concrete" width="800" height="800" decoding="async"></li>
 
-            <li style="--i:10"><img src="/assets/photos/coffee/matcha-heart.jpg" alt="Matcha latte with a heart in a black mug" width="800" height="800" loading="lazy"></li>
-            <li style="--i:11"><img src="/assets/photos/coffee/hot-chocolate-order.jpg" alt="Hot chocolate beside a projected order label reading Andy" width="800" height="800" loading="lazy"></li>
-            <li style="--i:12"><img src="/assets/photos/coffee/still-life-tpu.jpg" alt="Still Life with TPU Chip and Coffee Mug, pixel art by ChatGPT, 2025" width="800" height="800" loading="lazy"></li>
-            <li style="--i:13"><img src="/assets/photos/coffee/stacked-hearts.jpg" alt="Stacked-heart mocha in a grey cup and saucer on a white table" width="800" height="800" loading="lazy"></li>
-            <li style="--i:14"><img src="/assets/photos/coffee/la-marzocco-heart.jpg" alt="Heart latte in a La Marzocco cup on grey wood" width="800" height="800" loading="lazy"></li>
+            <li style="--i:10"><img src="/assets/photos/coffee/matcha-heart.jpg" alt="Matcha latte with a heart in a black mug" width="800" height="800" decoding="async"></li>
+            <li style="--i:11"><img src="/assets/photos/coffee/hot-chocolate-order.jpg" alt="Hot chocolate beside a projected order label reading Andy" width="800" height="800" decoding="async"></li>
+            <li style="--i:12"><img src="/assets/photos/coffee/still-life-tpu.jpg" alt="Still Life with TPU Chip and Coffee Mug, pixel art by ChatGPT, 2025" width="800" height="800" decoding="async"></li>
+            <li style="--i:13"><img src="/assets/photos/coffee/stacked-hearts.jpg" alt="Stacked-heart mocha in a grey cup and saucer on a white table" width="800" height="800" decoding="async"></li>
+            <li style="--i:14"><img src="/assets/photos/coffee/la-marzocco-heart.jpg" alt="Heart latte in a La Marzocco cup on grey wood" width="800" height="800" decoding="async"></li>
 
-            <li style="--i:15"><img src="/assets/photos/coffee/starbucks-swirl.jpg" alt="Latte with a soft swirl in a Starbucks paper cup" width="800" height="800" loading="lazy"></li>
-            <li style="--i:16"><img src="/assets/photos/coffee/boba-smile.jpg" alt="Iced milk tea with boba and a smiley label, by a window" width="800" height="800" loading="lazy"></li>
-            <li style="--i:17"><img src="/assets/photos/coffee/egg-coffee-receipt.jpg" alt="Egg coffee with the lid lifted, receipt in front" width="800" height="800" loading="lazy"></li>
-            <li style="--i:18"><img src="/assets/photos/coffee/cafe-counter.jpg" alt="Latte on a caf&eacute; counter" width="800" height="800" loading="lazy"></li>
-            <li style="--i:19"><img src="/assets/photos/coffee/victrola-rosetta.jpg" alt="Mocha rosetta in a Victrola Coffee Roasters cup" width="800" height="800" loading="lazy"></li>
+            <li style="--i:15"><img src="/assets/photos/coffee/starbucks-swirl.jpg" alt="Latte with a soft swirl in a Starbucks paper cup" width="800" height="800" decoding="async"></li>
+            <li style="--i:16"><img src="/assets/photos/coffee/boba-smile.jpg" alt="Iced milk tea with boba and a smiley label, by a window" width="800" height="800" decoding="async"></li>
+            <li style="--i:17"><img src="/assets/photos/coffee/egg-coffee-receipt.jpg" alt="Egg coffee with the lid lifted, receipt in front" width="800" height="800" decoding="async"></li>
+            <li style="--i:18"><img src="/assets/photos/coffee/cafe-counter.jpg" alt="Latte on a caf&eacute; counter" width="800" height="800" decoding="async"></li>
+            <li style="--i:19"><img src="/assets/photos/coffee/victrola-rosetta.jpg" alt="Mocha rosetta in a Victrola Coffee Roasters cup" width="800" height="800" decoding="async"></li>
 
-            <li style="--i:20"><img src="/assets/photos/coffee/to-go-cup.jpg" alt="To-go cup of coffee" width="800" height="800" loading="lazy"></li>
-            <li style="--i:21"><img src="/assets/photos/coffee/chalkboard-cafe.jpg" alt="Latte in front of a caf&eacute; chalkboard menu" width="800" height="800" loading="lazy"></li>
-            <li style="--i:22"><img src="/assets/photos/coffee/egg-coffee-open.jpg" alt="Egg coffee dusted with cinnamon, lid held open" width="800" height="800" loading="lazy"></li>
-            <li style="--i:23"><img src="/assets/photos/coffee/hot-kakao-receipt.jpg" alt="Tulip latte art beside a receipt reading Andy on veined marble" width="800" height="800" loading="lazy"></li>
-            <li style="--i:24"><img src="/assets/photos/coffee/rose-petals-heart.jpg" alt="Heart latte art with rose petals on grey marble, square crop" width="800" height="800" loading="lazy"></li>
+            <li style="--i:20"><img src="/assets/photos/coffee/to-go-cup.jpg" alt="To-go cup of coffee" width="800" height="800" decoding="async"></li>
+            <li style="--i:21"><img src="/assets/photos/coffee/chalkboard-cafe.jpg" alt="Latte in front of a caf&eacute; chalkboard menu" width="800" height="800" decoding="async"></li>
+            <li style="--i:22"><img src="/assets/photos/coffee/egg-coffee-open.jpg" alt="Egg coffee dusted with cinnamon, lid held open" width="800" height="800" decoding="async"></li>
+            <li style="--i:23"><img src="/assets/photos/coffee/hot-kakao-receipt.jpg" alt="Tulip latte art beside a receipt reading Andy on veined marble" width="800" height="800" decoding="async"></li>
+            <li style="--i:24"><img src="/assets/photos/coffee/rose-petals-heart.jpg" alt="Heart latte art with rose petals on grey marble, square crop" width="800" height="800" decoding="async"></li>
          </ul>
       </main>
 
@@ -268,23 +281,36 @@
 
       <script>
          // Reveal the wall once it enters the viewport; tiles stagger via the
-         // per-tile --i delay. Without IntersectionObserver the wall is simply
-         // visible (reduced motion is handled in CSS).
+         // per-tile --i delay. The hidden state is only applied here, so if
+         // this script never runs the wall is simply visible.
          (function () {
             var wall = document.querySelector(".wall");
-            if (!("IntersectionObserver" in window)) {
-               wall.classList.add("in");
-               return;
+            var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (!reduced && "IntersectionObserver" in window) {
+               wall.classList.add("will-reveal");
+               var io = new IntersectionObserver(function (entries) {
+                  entries.forEach(function (e) {
+                     if (e.isIntersecting) {
+                        wall.classList.add("in");
+                        io.disconnect();
+                     }
+                  });
+               }, { threshold: 0.15 });
+               io.observe(wall);
             }
-            var io = new IntersectionObserver(function (entries) {
-               entries.forEach(function (e) {
-                  if (e.isIntersecting) {
-                     wall.classList.add("in");
-                     io.disconnect();
-                  }
-               });
-            }, { threshold: 0.15 });
-            io.observe(wall);
+
+            // Media protection, the event side, as shell.js protectMedia():
+            // right-click and drag on the bitmaps only, never on text/links.
+            var isMedia = function (t) { return t && t.tagName === "IMG"; };
+            document.addEventListener("contextmenu", function (e) {
+               if (isMedia(e.target)) e.preventDefault();
+            });
+            document.addEventListener("dragstart", function (e) {
+               if (isMedia(e.target)) e.preventDefault();
+            });
+            document.querySelectorAll("img").forEach(function (el) {
+               el.setAttribute("draggable", "false");
+            });
          })();
       </script>
    </body>
