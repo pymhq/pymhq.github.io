@@ -40,9 +40,16 @@
             --bg: #101010;
             --ink: #ece7df;
             --ink-2: #a39d92;
+            /* The shell's third ink, in this page's warmer register: the rights
+               line sits a step quieter than the coda prose, as it does site-wide. */
+            --ink-3: #7d776e;
             --rule: #2a2a2a;
             --serif: "Source Serif 4", Georgia, serif;
             --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            /* shell.css tokens, so the rights line below lands on the same
+               measure and gutter as every other footer on the site. */
+            --shell: 1280px;
+            --gutter: clamp(24px, 5.5vw, 88px);
          }
 
          * { box-sizing: border-box; }
@@ -219,6 +226,24 @@
 
          .coda a:hover { border-color: var(--ink-2); }
 
+         /* ---- rights ------------------------------------------------------ */
+         /* shell.css .foot-bar, repeated here because no shell footer mounts on
+            this page: same rule above it, same small muted type, same measure.
+            The directory columns and the language and theme controls are the
+            shell's business and stay out - this is one wall, always dark, in
+            one language - so the bar carries the rights line alone and centres
+            it rather than spacing a single item apart. */
+         .foot-bar {
+            max-width: var(--shell);
+            margin: 0 auto;
+            padding: 24px var(--gutter) clamp(30px, 3vw, 44px);
+            border-top: 1px solid var(--rule);
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            color: var(--ink-3);
+            text-align: center;
+         }
+
          @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .hero img { animation: none; }
@@ -257,9 +282,9 @@
             <li style="--i:9"><img src="/assets/photos/coffee/glass-rosetta.jpg" alt="Rosetta latte in a clear glass on grey concrete" width="800" height="800" decoding="async"></li>
 
             <li style="--i:10"><img src="/assets/photos/coffee/matcha-heart.jpg" alt="Matcha latte with a heart in a black mug" width="800" height="800" decoding="async"></li>
-            <li style="--i:11"><img src="/assets/photos/coffee/hot-chocolate-order.jpg" alt="Hot chocolate beside a projected order label reading Andy" width="800" height="800" decoding="async"></li>
+            <li style="--i:11"><img src="/assets/photos/coffee/stacked-hearts.jpg" alt="Stacked-heart mocha in a grey cup and saucer on a white table" width="800" height="800" decoding="async"></li>
             <li style="--i:12"><img src="/assets/photos/coffee/still-life-tpu.jpg" alt="Still Life with TPU Chip and Coffee Mug, pixel art by ChatGPT, 2025" width="800" height="800" decoding="async"></li>
-            <li style="--i:13"><img src="/assets/photos/coffee/stacked-hearts.jpg" alt="Stacked-heart mocha in a grey cup and saucer on a white table" width="800" height="800" decoding="async"></li>
+            <li style="--i:13"><img src="/assets/photos/coffee/tatte-iced-latte.jpg" alt="The last of an iced latte in a Tatte cup on a weathered picnic table" width="800" height="800" decoding="async"></li>
             <li style="--i:14"><img src="/assets/photos/coffee/la-marzocco-heart.jpg" alt="Heart latte in a La Marzocco cup on grey wood" width="800" height="800" decoding="async"></li>
 
             <li style="--i:15"><img src="/assets/photos/coffee/lidded-cup-on-black.jpg" alt="Lidded Starbucks paper cup on a black caf&eacute; table, in-store signage behind" width="800" height="800" decoding="async"></li>
@@ -280,6 +305,18 @@
          <p>Counted by cup rather than by city, but the habit is the same.</p>
          <a href="/interests">Magnets &amp; mugs &rarr;</a>
       </footer>
+
+      <!-- The site's rights line, worded exactly as shell.js buildFooter()
+           writes it, so this page reads the same as every other footer instead
+           of inventing its own notice. The year is in the markup and the script
+           refreshes it from the same source the shell uses, so it is correct
+           with JS and still correct without. Per-frame credits are not this
+           line's job: the one tile that is not a photograph of mine names its
+           author in its own alt text, which is where the collections keep
+           credits. -->
+      <div class="foot-bar">
+         <span>&copy; <span data-year>2026</span> Andy Peng</span>
+      </div>
 
       <script>
          // Reveal the wall once it enters the viewport; tiles stagger via the
@@ -313,6 +350,12 @@
             document.querySelectorAll("img").forEach(function (el) {
                el.setAttribute("draggable", "false");
             });
+
+            // The rights line takes its year from the same source as
+            // shell.js buildFooter(), so this page cannot fall a year behind
+            // the footers the shell builds.
+            var year = document.querySelector("[data-year]");
+            if (year) year.textContent = new Date().getFullYear();
          })();
       </script>
    </body>
