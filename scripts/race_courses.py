@@ -46,14 +46,18 @@ from __future__ import annotations
 RACES = [
     dict(
         key="tough_mudder",
-        name="Tough Mudder Seattle",
-        sub="Tougher Mudder World Championship",
+        # The Half, not the Classic and not the Tougher: one circuit of the
+        # property, five miles, and the obstacles that fit on it. The panel drew
+        # the right line and called it the wrong race, which also made the
+        # Block Ness Monster the start of a second lap that I never ran.
+        name="Tough Mudder Half",
+        sub="Seattle · one 5-mile circuit",
         dates=["2018-09-22"],
-        distance="10 miles · 22 obstacles",
-        metres=16093,
+        distance="5 miles · 13 obstacles",
+        metres=8047,
         elev=None,
-        laps=2,
-        shape="two 5-mile circuits",
+        laps=1,
+        shape="one 5-mile circuit",
         surface="grass, forest singletrack, gravel pit",
         city="Black Diamond, WA",
         venue="Palmer Coking Coal Co.",
@@ -68,10 +72,10 @@ RACES = [
             # to lift. What there is, is Tough Mudder's own recap of this exact
             # race: "a flat and wide start on fresh grass and paved roads",
             # then Mud Mile, "open fields gave way to dense forests", "snaking
-            # through the gravel pits of the mine", and the second 5-mile
-            # circuit beginning after Block Ness Monster. So one circuit is
-            # routed on the venue's real track network - the forest roads and
-            # pit-edge tracks of the Palmer property, from OpenStreetMap -
+            # through the gravel pits of the mine", and the Block Ness Monster
+            # near the end. The Half is one circuit of that, so the line is
+            # routed once on the venue's real track network - the forest roads
+            # and pit-edge tracks of the Palmer property, from OpenStreetMap -
             # through the ground the recap describes, in that order. It comes
             # out at 7.3 km against a nominal five miles, which is what the
             # mapped network on the property will carry.
@@ -89,10 +93,11 @@ RACES = [
                 ("Mud Mile 2.0", 47.32600, -122.01500),
                 ("Berlin Walls", 47.32950, -122.01900),
                 ("gravel pits · Tight Squeeze", 47.32130, -122.02447),
-                ("Block Ness Monster · lap 2", 47.31745, -122.01544),
+                ("Block Ness Monster", 47.31745, -122.01544),
             ],
         ),
-        source=("Course sequence: Tough Mudder's own race recap of 22 Sep 2018 "
+        source=("Distance and format: Tough Mudder Half, one circuit. Course "
+                "sequence: Tough Mudder's own race recap of 22 Sep 2018 "
                 "(toughmudder.com/blog). Circuit routed on the venue's tracks, "
                 "OpenStreetMap."),
     ),

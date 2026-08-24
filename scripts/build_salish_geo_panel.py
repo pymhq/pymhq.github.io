@@ -684,12 +684,19 @@ def scale_bar(x, y, proj: Proj, max_w: float = 200.0):
     return "".join(out), 3 * step * k + 34
 
 
-def compass(x, y) -> str:
+def compass(x, y, r: float = 26.0) -> str:
+    """The rose. Its own box is 2r wide and 2r + 13 tall, because the N rides
+    above the circle, and the caller has to leave room for that: on the Canada
+    and Cascades sheets it used to be dropped beside the scale bar, where the
+    circle crossed the last line of the note above it and the N crossed the line
+    of prose above that."""
     return (f'<g class="rt-compass" transform="translate({x} {y})">'
-            '<circle r="26" fill="none" stroke-width="1"/><circle r="2.5"/>'
-            '<path d="M 0 -22 L 4 0 L 0 22 L -4 0 Z" fill-opacity="0.85"/>'
-            '<path d="M -22 0 L 0 4 L 22 0 L 0 -4 Z" fill-opacity="0.45"/>'
-            '<text x="0" y="-31" text-anchor="middle">N</text></g>')
+            f'<circle r="{r:g}" fill="none" stroke-width="1"/><circle r="2.5"/>'
+            f'<path d="M 0 {-r + 4:g} L {r * 0.155:g} 0 L 0 {r - 4:g} '
+            f'L {-r * 0.155:g} 0 Z" fill-opacity="0.85"/>'
+            f'<path d="M {-r + 4:g} 0 L 0 {r * 0.155:g} L {r - 4:g} 0 '
+            f'L 0 {-r * 0.155:g} Z" fill-opacity="0.45"/>'
+            f'<text x="0" y="{-r - 5:g}" text-anchor="middle">N</text></g>')
 
 
 # --------------------------------------------------------------------- content
@@ -748,6 +755,57 @@ def ring_span_km(ring) -> float:
     return math.hypot(dx, dy)
 
 
+def _visited_islands():
+    """Every island in the cache I have set foot on, whole and unclipped."""
+    if not _VISITED_CACHE:
+        _VISITED_CACHE.extend(r for r in island_rings() if island_is_mine(r))
+    return _VISITED_CACHE
+
+
+_VISITED_CACHE: list = []
+
+
+def partly_visited_layer(proj: Proj, rect, eps: float, uid0: str) -> list[str]:
+    """The Kitsap in the lighter tone, with Poulsbo standing on it in full colour.
+
+    The one place these sheets say something finer than "this landmass is mine".
+    Three passes, in this order, and the order is the whole of why it is safe:
+
+      the region, in the lighter tone, clipped to the land
+      the spot, in full colour, clipped to the same land
+      every island in frame, redrawn in its own tone
+
+    The last line is what the old wash never did. A region drawn round a peninsula
+    reaches across the water to whatever island is beside it - Bainbridge and
+    Blake both sit inside this one - and the old build tried to keep the polygon
+    off them by hand, which is a losing game. Redrawing the islands afterwards
+    means the region cannot touch one however it is drawn, so the polygon is free
+    to follow the water instead of dodging the map.
+    """
+    box = grow(rect, 0.02)
+    live = [p for p in P.PARTLY_VISITED
+            if any(on_frame(la, lo, box) for la, lo in p["region"]["ring"])
+            or any(on_frame(la, lo, box) for _n, la, lo, _r in p["spots"])]
+    if not live:
+        return []
+    out = [f'<clipPath id="sg-shore-{uid0}"><use href="#sg-lm-{uid0}"/></clipPath>',
+           f'<g clip-path="url(#sg-shore-{uid0})">']
+    for p in live:
+        pts = [proj(lo, la) for la, lo in p["region"]["ring"]]
+        out.append(f'<path class="rt-island unseen" d="{points_d(rdp(pts, 0.4), True)}"/>')
+    for p in live:
+        for _name, la, lo, km_r in p["spots"]:
+            cx, cy = proj(lo, la)
+            out.append(f'<circle class="rt-island" cx="{cx:.1f}" cy="{cy:.1f}" '
+                       f'r="{km_r * proj.px_per_km():.1f}"/>')
+    out.append("</g>")
+    mine = [r for r in (clip_ring(ring, rect) for ring in _visited_islands()) if r]
+    dv = path_d(mine, proj, eps)
+    if dv:
+        out.append(f'<path class="rt-island" d="{dv}"/>')
+    return out
+
+
 def base_layers(proj: Proj, rect, eps: float, out: list[str]) -> None:
     land, holes = land_rings(rect)
     d = path_d(land, proj, eps)
@@ -756,23 +814,22 @@ def base_layers(proj: Proj, rect, eps: float, out: list[str]) -> None:
     # times the tolerance is still well under the stroke's own width, so there is
     # nothing in it to see; on the San Juans the halo alone was 16 KB.
     out.append(f'<path class="rt-coast-glow" d="{path_d(land, proj, eps * 9)}"/>')
-    # All the land in one tone, then the islands that are not mine painted over it
-    # in the other. Two elements, two tones, and the boundary between them is a
-    # coastline: whatever the frame did to the rings, an island is one colour.
+    # All the land in one tone, then anything that is not mine painted over it in
+    # the other. Two tones, and the unit each applies to is a whole island, so
+    # whatever the frame did to the rings, an island is one colour.
     #
-    # This replaces a wash. Colour used to be laid on in four passes - the land,
-    # a water-coloured wash inside polygons and boxes, the visited islands again
-    # on top, then discs of full colour punched back through at Poulsbo and
-    # Victoria - and every one of those edges fell where no edge belongs. Lopez
-    # was inside its own box and half transparent twice over; Vancouver Island
-    # was pale with a dark circle on it; the Gulf Islands were cut by the corner
-    # of a box. Reading the polygons instead of painting them costs the one thing
-    # they were for, which is peninsula-level colour on a landmass I have partly
-    # walked, and the faded name of the town says that better anyway.
+    # This replaces a wash of four passes: the land, a water-coloured wash inside
+    # a dozen lat/lon boxes, the visited islands again on top, then discs punched
+    # back through. Almost every edge in that stack fell where no edge belongs.
+    # Lopez was inside its own box and half transparent twice over; the Gulf
+    # Islands were cut by a box corner. What survives of it is one region and one
+    # circle, both of which now mean something: see P.PARTLY_VISITED.
     uid0 = f"{abs(hash((rect, 'land'))) % 999983}"
     dm = path_d(land, proj, eps)
     if dm:
         out.append(f'<path id="sg-lm-{uid0}" class="rt-island" d="{dm}"/>')
+    if dm:
+        out += partly_visited_layer(proj, rect, eps, uid0)
     theirs = [r for r in (clip_ring(ring, rect) for ring in _unvisited_islands()) if r]
     dt = path_d(theirs, proj, eps)
     if dt:
@@ -1605,6 +1662,12 @@ def legend_rows(x, y0, keys=None):
                            f'<rect class="rt-island unseen" x="{x + 17}" '
                            f'y="{y - 6}" width="17" height="12"/>',
          ["Set foot on it · only", "sailed past it"]),
+        # The one exception, and the only circle on any of these sheets.
+        ("spot", lambda y: f'<rect class="rt-island unseen" x="{x}" y="{y - 6}" '
+                           f'width="34" height="12"/>'
+                           f'<circle class="rt-island" cx="{x + 17}" '
+                           f'cy="{y}" r="5.5"/>',
+         ["The one town on it I", "have walked: Poulsbo"]),
         ("ferry", lambda y: f'<path class="rt-ferry-line" '
                             f'marker-end="url(#sg-track-arrow)" d="M {x} {y} h 30"/>',
          ["Washington State Ferries"]),
@@ -1650,14 +1713,17 @@ def legend_rows(x, y0, keys=None):
     return "".join(out), y
 
 
-LEGEND_ALL = ("land", "ferry", "drive", "trail", "terminal", "border", "crest",
-              "river", "box", "dot")
+LEGEND_ALL = ("land", "spot", "ferry", "drive", "trail", "terminal", "border",
+              "crest", "river", "box", "dot")
 
 
 def legend_keys(sheet, frame, children, dots) -> tuple:
     """Only the legend rows this sheet's ground actually shows."""
     box = grow(frame)
     keys = ["land"]
+    if any(on_frame(la, lo, frame) for p in P.PARTLY_VISITED
+           for _n, la, lo, _r in p["spots"]):
+        keys.append("spot")
     if any(on_frame(lat, lon, frame, -0.02) for leg in P.FERRY_LEGS
            for lat, lon in leg):
         keys.append("ferry")
@@ -1733,7 +1799,11 @@ def map_apron(sheet, proj: Proj, map_x, map_w, dots, children) -> str:
         out.append(text(line, x, top + 26 + i * 13, "rt-sub", "start"))
     y = top + 26 + len(sheet["blurb"]) * 13 + 14
 
-    bar, bar_w = scale_bar(x, y + 14, proj)
+    # The bar, the note and the rose are one block, and it needs air above it:
+    # the rose is 26 units of circle plus its N, so a 14-unit gap under the prose
+    # put the letter in the last line of it.
+    y += 8
+    bar, _bar_w = scale_bar(x, y + 14, proj)
     out.append(bar)
     base = next(s2 for s2 in P.SHEETS if s2["key"] == "overview")
     base_upk = sheet_geometry(base["frame"])[0] and 900.0 / (
@@ -1748,9 +1818,13 @@ def map_apron(sheet, proj: Proj, map_x, map_w, dots, children) -> str:
         note += (f" · {ratio:.0f}× the index sheet" if ratio >= 1.5
                  else f" · {ratio:.1f}× the index sheet")
     out.append(text(note, x, y + 34, "rt-sub", "start", size=9))
-    # The compass goes after the bar's actual end, not at a fixed offset.
-    out.append(compass(x + bar_w + 30, y + 4))
-    y += 62
+    # The rose sits in a column of its own, to the right of the text measure and
+    # left of the apron's edge, rather than at the end of the scale bar where it
+    # used to be: the bar's length is the scale, so on a coarse sheet it grew
+    # until the rose was sitting on the note under it. 285 clears the longest line
+    # the apron sets, and still fits the narrowest apron, which is 340 wide.
+    out.append(compass(min(map_x - 51, 285), y + 15, r=21))
+    y += 54
 
     out.append(text("Legend", x, y, "rt-quest-title", "start"))
     body, y = legend_rows(x, y + 18, legend_keys(sheet, frame, children, dots))

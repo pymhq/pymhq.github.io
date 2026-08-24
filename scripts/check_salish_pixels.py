@@ -56,14 +56,19 @@ POINTS = [
     # Vancouver Island is one landmass and I have set foot on it: the ferry from
     # Tsawwassen lands at Swartz Bay and Victoria is on it. It used to be washed
     # back with a disc of full colour punched through at Victoria, which is the
-    # kind of half-and-half this page no longer does.
+    # kind of half-and-half only the Kitsap gets now, and only because a 60 km
+    # peninsula touched at one town cannot honestly be either tone.
     ("Vancouver Island", 48.6000, -123.9000, "land"),
     ("Victoria", 48.4300, -123.3600, "land"),
-    # The Kitsap and the Key Peninsula are the mainland, and the mainland is one
-    # tone. That I have not been to Bremerton or Gig Harbor is said by the faded
-    # name, not by painting a polygon over the peninsula they stand on.
-    ("Bremerton, Kitsap", 47.5673, -122.6329, "land"),
-    ("Gig Harbor peninsula", 47.3450, -122.6050, "land"),
+    # The Kitsap is the one exception to a tone per landmass: the peninsula is
+    # the lighter tone and Poulsbo stands on it in full colour. Both halves of
+    # that are sampled, and so is the mainland across the water from it, because
+    # the failure mode of the old wash was a polygon reaching the wrong shore.
+    ("Poulsbo", 47.7362, -122.6465, "land"),
+    ("Bremerton, Kitsap", 47.5673, -122.6329, "faded"),
+    ("Gig Harbor peninsula", 47.3450, -122.6050, "faded"),
+    ("Hood Canal, Olympic side", 47.6000, -123.0400, "land"),
+    ("Shelton, past the isthmus", 47.2151, -123.1007, "land"),
     ("Lopez", 48.4800, -122.8800, "faded"),
     ("Shaw", 48.5780, -122.9300, "faded"),
     ("Blake Island", 47.5390, -122.4930, "faded"),

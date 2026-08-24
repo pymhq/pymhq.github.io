@@ -181,8 +181,8 @@ class Streets:
     Two courses need this. Boston, because the B.A.A. publishes a picture rather
     than a track: drawing that by hand would put the turns wherever the hand went,
     so the turns its own map names are given as waypoints and the line between
-    them is the real street. And Tough Mudder Seattle, because the course was
-    never a street at all - it was two laps of the forest roads and pit tracks of
+    them is the real street. And the Tough Mudder Half, because the course was
+    never a street at all - it was a circuit of the forest roads and pit tracks of
     a working coal property - so the graph is restricted to tracks and paths and
     the circuit is routed on those.
 
@@ -807,14 +807,45 @@ GLYPHS = {
         '<path d="M -8 3 L 8 3"/>'
         '<path d="M -11 -7 L 11 -7"/>'
         '<path d="M -6 -9 L -6 -5 M -8 -7 L -4 -7 M 4 -9 L 4 -5 M 2 -7 L 6 -7"/></g>',
-    # Boston: the unicorn, as the B.A.A. draws it: a head and a horn
-    "rc-unicorn": '<g id="rc-unicorn" class="rc-ic">'
-        '<path d="M -7 9 C -8 3, -6 -2, -1 -5 C 2 -6.6, 5 -6.2, 7 -4.4 '
-        'C 8.6 -3, 8.4 -0.6, 6.4 0.6 L 1 3.6 C -1.6 5, -2.6 6.8, -2.6 9 Z" '
-        'fill="#f0c23c" fill-opacity="0.3"/>'
-        '<path d="M 1 -5.6 L 4.6 -12.6"/>'
-        '<path d="M -3.6 -3.6 C -6 -6.6, -6.6 -9.6, -5.6 -12.4"/>'
-        '<circle cx="3.2" cy="-2.6" r="1" fill="#f0c23c" stroke="none"/></g>',
+    # Boston: the B.A.A. unicorn, rampant and facing left, as it stands on the
+    # association's own seal and on the finish line on Boylston Street.
+    #
+    # One silhouette, not an assembly of outlined parts. The first attempt at this
+    # drew the head, neck, barrel and each leg as its own stroked shape, and at 30
+    # units the strokes met and filled in: it read as a rat with a spike. A
+    # heraldic beast is a shape, so this is one closed outline for the animal, with
+    # the tail and the mane laid over it in the same colour a shade stronger, and
+    # the horn deliberately long, spiralled and clear of the ears, because the horn
+    # is the whole of what makes a horse a unicorn.
+    "rc-unicorn": '<g id="rc-unicorn">'
+        '<path fill="#f0c23c" fill-opacity="0.42" stroke="#8d99a6" '
+        'stroke-width="1" stroke-linejoin="round" d="'
+        'M -12.4 -18.6 L -6.4 -11 '
+        'C -8.2 -10.2 -9.8 -8.8 -10.4 -7.2 C -10.8 -6.2 -9.8 -5.8 -8.8 -6.2 '
+        'C -7.6 -6.6 -6.4 -7.4 -5.6 -8.2 C -4.4 -7 -3.8 -5.2 -3.4 -3.2 '
+        'C -3 -1.6 -3.6 -0.4 -4.6 0.4 C -6.8 1.2 -8.4 2.6 -8.8 4.4 '
+        'C -9 5.4 -8 5.8 -7.2 5.2 C -6.6 3.6 -5.2 2.2 -3.6 1.6 '
+        'C -4.2 3.4 -4.6 5.6 -4 7.6 C -3.6 8.6 -2.4 8.6 -2 7.6 '
+        'C -1.6 5.4 -0.6 3.6 0.8 2.6 C 2.4 3.4 3.8 4.4 4.6 6 '
+        'C 4 8.2 4.2 10.6 5 12.8 L 7.4 12.8 '
+        'C 7 10.2 7.6 8 8.8 6.4 C 9.6 8.4 10.2 10.6 10.4 12.8 L 12.8 12.8 '
+        'C 12.4 10 12.2 7.2 12.6 4.6 C 13.2 2.6 13 0.6 12.2 -1 '
+        'C 10.6 -3 7.6 -4.4 4.4 -5 C 2 -5.6 0.2 -7 -0.8 -9.2 '
+        'C -1.4 -10.6 -1.8 -11.8 -2 -12.8 L -0.6 -15.6 L -2.8 -13.2 '
+        'C -3.6 -13.6 -4.4 -13.8 -5 -13.6 Z"/>'
+        # the tail, sweeping up behind
+        '<path fill="#f0c23c" fill-opacity="0.6" stroke="none" d="'
+        'M 11.8 -2.2 C 15 -3.6 16.8 -6.8 17.2 -10.4 C 18.6 -8 18.2 -4 16 -1.2 '
+        'C 14.8 0.4 13.2 0.8 12.4 0.2 Z"/>'
+        # the mane, down the crest of the neck
+        '<path fill="#f0c23c" fill-opacity="0.6" stroke="none" d="'
+        'M -2.2 -12.6 C 0.6 -11.2 2.4 -8.6 4.6 -5.2 C 3.2 -6.2 1.4 -6.4 0 -6 '
+        'C -0.2 -8.4 -1 -10.8 -2.2 -12.6 Z"/>'
+        # the spiral on the horn, and the eye
+        '<path fill="none" stroke="#8d99a6" stroke-width="0.9" '
+        'stroke-linecap="round" d="M -8.6 -13.6 L -7.4 -14.6 '
+        'M -9.8 -15.4 L -8.6 -16.4 M -11 -17.2 L -9.8 -18.2"/>'
+        '<circle cx="-7.4" cy="-9.4" r="0.8" fill="#0e1216" stroke="none"/></g>',
 }
 
 

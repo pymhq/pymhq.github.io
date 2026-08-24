@@ -42,22 +42,21 @@ SHEETS = [
              "",
              "This sheet carries no drawings. At 3.3",
              "units per km a doodle covers 8 km of",
-             "water, so every one of them lives on a",
-             "numbered sheet that follows, at its own",
-             "true position and its own scale.",
+             "water, so each one lives on a numbered",
+             "sheet that follows, at its own scale.",
              "",
-             "Rainier and Olympia sit below this",
-             "sheet's south edge, on sheet 6 and",
-             "sheet 5. Reaching both the Pacific and",
-             "Rainier from one frame is more water",
-             "than one screen can hold.",
+             "Rainier and Olympia sit below the south",
+             "edge, on sheets 6 and 5: one frame that",
+             "reached both the Pacific and Rainier is",
+             "more water than a screen holds.",
              "",
-             "Two tones and one rule. Full colour is",
-             "land I have set foot on; the lighter",
-             "tone is an island I have only sailed",
-             "past - Lopez, Shaw, Camano, Blake,",
-             "Lummi and the Gulf Islands. The edge",
-             "between them is always a coastline.",
+             "Two tones. Full colour is land I have",
+             "set foot on; the lighter tone is land I",
+             "have only passed: Lopez, Shaw, Camano,",
+             "Blake, Lummi, the Gulf Islands and the",
+             "Kitsap. The edge between them is a",
+             "shore everywhere but one place, and the",
+             "one circle on these sheets is Poulsbo.",
          ]),
     dict(key="sanjuans", kind="map",
          title="THE SAN JUANS", short="The San Juans &amp; Haro Strait",
@@ -178,23 +177,25 @@ SHEETS = [
              "park you can reach only by boat, is",
              "still the lighter tone.",
              "",
-             "Three drawings are what the day was:",
-             "Nashi Orchards, mid-island, pressing",
-             "perry off its own Asian pears; and 10",
-             "km east on the tip of Maury, Oscar the",
-             "Bird King, Thomas Dambo's troll in a",
-             "grove with a crown of birdhouses, five",
+             "The Kitsap is the lighter tone, with",
+             "one dark circle on it: Poulsbo is the",
+             "only town on that 60 km peninsula I",
+             "have walked, and 4 km round it is",
+             "honestly as far as I got.",
+             "",
+             "Three drawings are the day: Nashi",
+             "Orchards pressing perry off its own",
+             "Asian pears, and 10 km east on Maury,",
+             "Oscar the Bird King, Dambo's troll in a",
+             "grove crowned with birdhouses, five",
              "minutes up the trail from the Point",
-             "Robinson light. The troll and the light",
-             "are 220 m apart, which at this scale is",
-             "two units, so one of them rides out to",
-             "clear paper on a leader.",
+             "Robinson light. Troll and light are two",
+             "units apart here, so one rides out on a",
+             "leader.",
              "",
              "A tall sheet: the chain runs 83 km",
-             "north to south and the water between",
-             "the islands is never wide, so the map",
-             "is narrow and the apron carries the",
-             "rest.",
+             "north to south and the water is never",
+             "wide, so the apron carries the rest.",
          ]),
     # Canada on one sheet. It used to be two: Vancouver and the Sea to Sky at
     # 4.8 units/km, the Rockies at 2.7. Two sheets is what a reader of the
@@ -355,47 +356,93 @@ ISLANDS_VISITED = [
 
 VISITED_LAND = MAINLAND_VISITED + ISLANDS_VISITED
 
-# Ground I have not walked, drawn as polygons. These no longer paint anything:
-# painting them was what put two shades on one island. A box edge does not follow
-# a coast, so any island it crossed came out half dark and half pale, and where
-# two boxes overlapped the wash was laid down twice and made a third shade. They
-# are now read, not drawn: they say which islands are not mine, and they fade the
-# name of a town I have not been to. The tone edge on the map is always a shore.
+# Ground I have not walked, drawn as polygons. Two jobs, and only one of them is
+# paint. Every one of them fades the name of a town I have not been to. Exactly
+# one of them, the Kitsap, is also painted, because that landmass is the one place
+# on these sheets where an honest tone cannot be a landmass: I have been to
+# Poulsbo on it and nowhere else. See PARTLY_VISITED below.
+#
+# The Kitsap ring is drawn along the water it stands in, vertex by vertex, so the
+# only place its edge crosses dry land is the 6.5 km isthmus at the head of Hood
+# Canal, which is where the peninsula genuinely ends. That is the difference
+# between this and the wash boxes that came before it: a box edge fell wherever
+# arithmetic put it, usually across the middle of an island.
+KITSAP = dict(name="Kitsap Peninsula", ring=[
+    # The cut, and the only edge of this ring that is meant to be seen: the
+    # isthmus between the head of Hood Canal at Belfair and the head of North Bay
+    # on Case Inlet, 4 km of dry ground and the one place the peninsula is
+    # attached to anything. Everything below it is Shelton and Olympia, which are
+    # the mainland and stay one tone.
+    (47.440, -122.850),
+    # West: down the east arm of Hood Canal to the Great Bend, then north up the
+    # canal to Admiralty Inlet. Every vertex was read off the coastline in the
+    # cache rather than guessed, which is why they are not on a round number: an
+    # earlier pass put this line 15 km east of the water and washed the Olympic
+    # side of the canal by mistake.
+    (47.420, -122.884), (47.400, -122.930), (47.390, -122.950), (47.380, -122.985),
+    (47.370, -123.005), (47.365, -123.012), (47.358, -123.022), (47.355, -123.045),
+    (47.360, -123.062), (47.370, -123.090), (47.375, -123.120), (47.380, -123.130),
+    (47.400, -123.125), (47.420, -123.115), (47.440, -123.100), (47.450, -123.092),
+    (47.500, -123.044), (47.550, -123.016), (47.600, -122.956), (47.650, -122.874),
+    (47.670, -122.800), (47.685, -122.770), (47.700, -122.762), (47.750, -122.740),
+    (47.800, -122.714), (47.850, -122.650), (47.900, -122.615), (47.925, -122.625),
+    (47.945, -122.645), (47.960, -122.600),
+    # North and east: across Admiralty Inlet and down the middle of Puget Sound.
+    # Bainbridge, Blake and Vashon fall inside this and are redrawn afterwards,
+    # because an island answers for its own colour and no polygon should have to
+    # dodge one.
+    (47.970, -122.500), (47.850, -122.470), (47.700, -122.470), (47.550, -122.470),
+    (47.460, -122.500), (47.420, -122.535), (47.380, -122.535), (47.340, -122.550),
+    (47.300, -122.545), (47.270, -122.550), (47.240, -122.580), (47.210, -122.595),
+    # South: round the foot of the Key Peninsula and back up Case Inlet.
+    (47.190, -122.640), (47.180, -122.700), (47.165, -122.760), (47.175, -122.800),
+    (47.190, -122.800), (47.220, -122.850), (47.260, -122.860), (47.300, -122.830),
+    (47.340, -122.800), (47.380, -122.823), (47.405, -122.824),
+])
+
 UNVISITED_REGIONS = [
-    # The east edge stays west of Bainbridge, which is mine: an island with a
-    # reference point of its own answers for itself before a region is consulted,
-    # but keeping the polygon off it costs nothing.
-    dict(name="Kitsap Peninsula", ring=[
-        (47.95, -122.80), (47.95, -122.58), (47.80, -122.56), (47.75, -122.60),
-        (47.55, -122.60), (47.45, -122.56), (47.28, -122.60), (47.22, -122.85),
-        (47.35, -123.05), (47.60, -123.10), (47.85, -122.98)]),
+    KITSAP,
     # Vancouver Island: the island itself is mine, because Victoria is on it and
-    # the ferry from Tsawwassen lands there. What this polygon is for is the
-    # scatter of small islands off its east coast, none of which I have landed on.
+    # the ferry from Tsawwassen lands there. What this polygon is for is the names
+    # on it that are not, and the small islands off its east coast.
     dict(name="Vancouver Island", ring=[
         (48.20, -123.15), (48.45, -123.30), (48.70, -123.55), (49.00, -123.75),
         (49.30, -124.05), (49.70, -124.60), (50.10, -125.20), (50.50, -125.70),
         (50.50, -128.00), (48.20, -128.00)]),
-    dict(name="Gig Harbor, the Key Peninsula and the south Sound", ring=[
-        # West of the Tacoma Narrows: Gig Harbor, the Key Peninsula, Shelton and
-        # Olympia inside, Tacoma on the far side of the water and outside. Harstine,
-        # Anderson, McNeil, Fox and Squaxin are the islands this catches.
+    dict(name="the south Sound", ring=[
+        # Shelton and Olympia inside, Tacoma on the far side of the water and
+        # outside. Names only: the land here is the mainland and stays one tone.
         (47.44, -122.51), (47.36, -122.56), (47.30, -122.72), (47.24, -122.92),
         (47.30, -123.14), (47.22, -123.30), (46.88, -123.30), (46.88, -122.46),
         (47.18, -122.46)]),
 ]
 
+# The exception to one tone per landmass, and the only one. A peninsula 60 km long
+# that I have touched at exactly one town cannot honestly be full colour, and
+# painting all of it back is a lie in the other direction, so the Kitsap is drawn
+# in the lighter tone with Poulsbo standing on it in full colour: the radius is
+# how far I actually got, 4 km round the town and the head of Liberty Bay.
+#
+# The circle is the one edge on these sheets that is not a shore, and it is meant
+# to be read as a mark rather than as geography, so the legend carries it. It is
+# clipped to the land, so it never spills into the bay, and it is painted before
+# the islands are, so it can never reach one.
+PARTLY_VISITED = [dict(region=KITSAP,
+                       spots=[("Poulsbo", 47.7362, -122.6465, 4.0)])]
+
+
+def in_ring_latlon(lat: float, lon: float, ring) -> bool:
+    """Point in a (lat, lon) ring. The rings in this file are written that way
+    round, because they are read off a map and not out of a projection."""
+    c = False
+    for (la1, lo1), (la2, lo2) in zip(ring, ring[1:] + ring[:1]):
+        if (la1 > lat) != (la2 > lat) and lon < lo1 + (lat-la1)/(la2-la1)*(lo2-lo1):
+            c = not c
+    return c
+
 
 def in_unvisited_region(lat: float, lon: float) -> bool:
-    for r in UNVISITED_REGIONS:
-        ring = r["ring"]
-        c = False
-        for (la1, lo1), (la2, lo2) in zip(ring, ring[1:] + ring[:1]):
-            if (la1 > lat) != (la2 > lat) and lon < lo1 + (lat-la1)/(la2-la1)*(lo2-lo1):
-                c = not c
-        if c:
-            return True
-    return False
+    return any(in_ring_latlon(lat, lon, r["ring"]) for r in UNVISITED_REGIONS)
 
 
 # Settlements I have not been to. Faded, the same as the land: on the chart the
@@ -669,8 +716,8 @@ POIS = [
     dict(key="yvr", name="YVR: Vancouver International", at=(49.1967, -123.1815),
          ic="plane", scale=0.8,
          label=("text", 0, 20, "middle", "rt-sub", ["YVR"])),
-    dict(key="ubc", name="UBC: the Point Grey campus and Wreck Beach",
-         at=(49.2606, -123.2460), ic="cherry", scale=0.5,
+    dict(key="ubc", name="UBC: the Point Grey campus and the plaza fountain",
+         at=(49.2606, -123.2460), ic="fountain", scale=0.5,
          label=("text", -12, 4, "end", "rt-sub", ["UBC"])),
     dict(key="whistler", name="Whistler: the Sea to Sky highway ends here",
          at=(50.1163, -122.9574), ic="mtns", scale=0.8,
@@ -988,10 +1035,13 @@ DOODLES = [
     ("pine", 51.05, -116.10, 1.2),
     ("pine", 52.90, -116.60, 1.2),
     ("pine", 50.90, -117.60, 1.1),
-    ("elk", 51.60, -116.00, 1.2),
-    ("elk", 52.60, -117.60, 1.1),
+    # A grizzly on the shore of Bow Lake, on the Icefields Parkway. This is the
+    # one animal on the Rockies sheet that is a specific memory rather than
+    # decoration, which is why it is at a lake and not in open country: two elk
+    # used to stand here instead, in the middle of nowhere in particular.
+    ("bear", 51.6725, -116.4630, 1.15),
     ("deer", 51.25, -114.90, 1.1),
-    ("marmot", 51.75, -116.60, 1.1),
+    ("marmot", 52.05, -117.30, 1.1),   # north of the bear, not beside it
     ("salmon", 51.10, -115.10, 0.9),
     ("duck", 48.5320, -123.1540, 0.95), ("duck", 48.5300, -123.1560, 0.8),
     ("duck", 48.5310, -123.1510, 0.7),

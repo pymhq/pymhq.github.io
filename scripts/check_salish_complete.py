@@ -128,6 +128,11 @@ def main() -> int:
     ca += [(f"whale {w[0]}", w[0]) for w in P.WHALES if not P.in_usa(w[1], w[2])]
     print(f"   items on the Canadian side: {len(ca)} "
           f"({', '.join(k for k, _ in ca) or 'none'})")
+    # The rule is about the US sheets, so the test has to be too. It used to ask
+    # whether the glyph appeared on *any* sheet, which a glyph that exists only in
+    # Canada can never pass: the bear at Bow Lake failed for being drawn on the
+    # Canada sheet, which is the sheet it is for.
+    us_sheets = {s["key"] for s in P.SHEETS if s.get("usa_only", True)}
     for key, ic in ca:
         # its glyph may legitimately appear elsewhere for a US place; only flag a
         # glyph that no US item uses at all
@@ -136,9 +141,9 @@ def main() -> int:
                                  for d in P.DOODLES + P.MARKS)
         us_uses = us_uses or any(ic == w[0] and P.in_usa(w[1], w[2])
                                  for w in P.WHALES)
-        if not us_uses and any(ic in d for d in drawn.values()):
-            fails.append(f"Canadian drawing still on a sheet: {key} ({ic})")
-            print(f"     DRAWN IN CANADA {key} ({ic})")
+        if not us_uses and any(ic in drawn[k] for k in us_sheets):
+            fails.append(f"Canadian drawing still on a US sheet: {key} ({ic})")
+            print(f"     DRAWN ON A US SHEET {key} ({ic})")
 
     # ---- 4: the index sheet draws nothing ---------------------------------
     print("\n4. the index sheet carries no drawings")
@@ -213,6 +218,41 @@ def main() -> int:
             fails.append(f"{name}: visited={got}, expected {want}")
         print(f"     {'ok ' if ok else 'BAD'} {name:16} visited={got} "
               f"expected={want}")
+
+    # ---- 7: the one painted region ------------------------------------------
+    print("\n7. the Kitsap region and the Poulsbo circle")
+    for part in P.PARTLY_VISITED:
+        ring = part["region"]["ring"]
+        # What the polygon must and must not hold. The wash is clipped to the
+        # shore, so its edges in the water are invisible and only this matters:
+        # the peninsula inside it, every neighbouring landmass outside it.
+        inside_want = [("Poulsbo", 47.7362, -122.6465), ("Bremerton", 47.5673, -122.6329),
+                       ("Silverdale", 47.645, -122.694), ("Port Orchard", 47.540, -122.636),
+                       ("Kingston", 47.796, -122.497), ("Port Gamble", 47.855, -122.583),
+                       ("Seabeck", 47.641, -122.828), ("Belfair", 47.449, -122.827),
+                       ("Gig Harbor", 47.345, -122.605), ("Key Peninsula", 47.30, -122.72)]
+        outside_want = [("Seattle", 47.6062, -122.3321), ("Tacoma", 47.2529, -122.4443),
+                        ("Shelton", 47.2151, -123.1007), ("Olympia", 47.0357, -122.9053),
+                        ("Hoodsport, Olympic side", 47.404, -123.140),
+                        ("Quilcene, Olympic side", 47.827, -122.877),
+                        ("Port Townsend", 48.117, -122.760), ("Sequim", 48.078, -123.100)]
+        for name, lat, lon in inside_want:
+            if not P.in_ring_latlon(lat, lon, ring):
+                fails.append(f"{name} should be inside the {part['region']['name']}")
+                print(f"     BAD {name:24} outside, expected inside")
+        for name, lat, lon in outside_want:
+            if P.in_ring_latlon(lat, lon, ring):
+                fails.append(f"{name} should be outside the {part['region']['name']}")
+                print(f"     BAD {name:24} inside, expected outside")
+        print(f"   {part['region']['name']}: {len(inside_want)} places in, "
+              f"{len(outside_want)} places out, {len(ring)} vertices")
+        # The circle has to sit on the region it is an exception to, and on land.
+        for name, lat, lon, km_r in part["spots"]:
+            if not P.in_ring_latlon(lat, lon, ring):
+                fails.append(f"the {name} circle is not on {part['region']['name']}")
+            if not is_dry((lon, lat)):
+                fails.append(f"the {name} circle is centred on water")
+            print(f"   {name}: {km_r:g} km, on the region and on land")
 
     print("\n" + "=" * 60)
     if fails:
