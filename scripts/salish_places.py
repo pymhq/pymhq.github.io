@@ -52,10 +52,12 @@ SHEETS = [
              "Rainier from one frame is more water",
              "than one screen can hold.",
              "",
-             "Full colour is a place I have set foot",
-             "on. Half transparent is one I have only",
-             "sailed past: Lopez, Shaw, Fidalgo,",
-             "Blake and the Gulf Islands.",
+             "Two tones and one rule. Full colour is",
+             "land I have set foot on; the lighter",
+             "tone is an island I have only sailed",
+             "past - Lopez, Shaw, Camano, Blake,",
+             "Lummi and the Gulf Islands. The edge",
+             "between them is always a coastline.",
          ]),
     dict(key="sanjuans", kind="map",
          title="THE SAN JUANS", short="The San Juans &amp; Haro Strait",
@@ -67,10 +69,11 @@ SHEETS = [
              "of Anacortes are far enough apart to",
              "read as three separate courses.",
              "",
-             "San Juan Island and Orcas are mine.",
-             "Lopez, Shaw and Fidalgo are half",
-             "transparent: the ferry called there and",
-             "I stayed aboard.",
+             "San Juan Island and Orcas are mine, and",
+             "so is Fidalgo: Anacortes is on it and",
+             "the drive to the boat crosses it. Lopez",
+             "and Shaw are the lighter tone. The",
+             "ferry called there and I stayed aboard.",
              "",
              "The boundary runs down the middle of",
              "Haro Strait and out through Boundary",
@@ -173,7 +176,7 @@ SHEETS = [
              "full colour. Vashon and Maury only",
              "earned it today. Blake Island, a state",
              "park you can reach only by boat, is",
-             "still half transparent.",
+             "still the lighter tone.",
              "",
              "Three drawings are what the day was:",
              "Nashi Orchards, mid-island, pressing",
@@ -254,13 +257,6 @@ SHEETS = [
              "fine by the glaciers above them:",
              "Louise, Moraine, Peyto, Emerald,",
              "Maligne.",
-             "",
-             "The scale is the price of the frame.",
-             "At 1.5 units per km a doodle covers 20",
-             "km of ground, so Vancouver, YVR and",
-             "UBC, which are 10 km apart, ride out",
-             "to clear paper on leaders back to a",
-             "dot on the true spot.",
          ]),
     dict(key="cascades", kind="map",
          title="THE CASCADES: RAINIER TO DIABLO LAKE",
@@ -321,12 +317,12 @@ INDEX_NAMES = {
 }
 
 # --------------------------------------------------------- where I have been
-# Colour carries it: full colour for a place I have set foot on, half
-# transparent for one I have only sailed past. Panel 2 applies this by hand to
-# Vashon, Maury and Blake. These sheets are generated, so it has to be a rule:
-# a piece of land is mine if it contains one of these points, and every other
-# island in the frame is not. Defaulting the unknown island to "not visited" is
-# the honest direction to be wrong in.
+# Two tones, and only two: full colour for land I have set foot on, one lighter
+# tone for land I have only sailed past. The unit the tone applies to is the
+# island, whole, so the edge between the two is always a coastline and never a
+# box, a circle or a polygon drawn through the middle of somewhere. An island is
+# mine if it contains one of these points; anything else is not. Defaulting the
+# unknown island to "not visited" is the honest direction to be wrong in.
 MAINLAND_VISITED = [
     # The mainland, with enough points that every frame catches its own piece.
     (47.6062, -122.3321), (47.6130, -122.1900), (47.2529, -122.4443),
@@ -337,8 +333,9 @@ MAINLAND_VISITED = [
     (48.5250, -120.6500), (46.8523, -121.7603), (48.1118, -121.1132),
 ]
 
-# Islands I have set foot on. Kept apart from the mainland because the mainland
-# gets a second, finer rule below: it is one landmass but not one experience.
+# Islands I have set foot on. Kept apart from the mainland only because the two
+# lists are maintained differently: the mainland needs enough points that every
+# frame catches its own piece of it, an island needs one.
 ISLANDS_VISITED = [
     (48.5500, -123.1000),   # San Juan Island
     (48.6786, -122.8322),   # Orcas
@@ -358,30 +355,31 @@ ISLANDS_VISITED = [
 
 VISITED_LAND = MAINLAND_VISITED + ISLANDS_VISITED
 
-# The mainland is one ring and not one experience: Poulsbo yes, the rest of the
-# Kitsap no. Per-ring colour cannot say that, so these polygons wash the land
-# inside them back to half transparent, and a POI standing in one keeps its own
-# full colour. That is the honest picture: "not this peninsula, except that spot".
+# Ground I have not walked, drawn as polygons. These no longer paint anything:
+# painting them was what put two shades on one island. A box edge does not follow
+# a coast, so any island it crossed came out half dark and half pale, and where
+# two boxes overlapped the wash was laid down twice and made a third shade. They
+# are now read, not drawn: they say which islands are not mine, and they fade the
+# name of a town I have not been to. The tone edge on the map is always a shore.
 UNVISITED_REGIONS = [
-    # The east edge stays west of Bainbridge, which is mine: the wash is painted
-    # over everything last, so a region must not reach across an island I have
-    # set foot on.
+    # The east edge stays west of Bainbridge, which is mine: an island with a
+    # reference point of its own answers for itself before a region is consulted,
+    # but keeping the polygon off it costs nothing.
     dict(name="Kitsap Peninsula", ring=[
         (47.95, -122.80), (47.95, -122.58), (47.80, -122.56), (47.75, -122.60),
         (47.55, -122.60), (47.45, -122.56), (47.28, -122.60), (47.22, -122.85),
         (47.35, -123.05), (47.60, -123.10), (47.85, -122.98)]),
-    # Vancouver Island: Victoria is mine and nothing else on it is. The east side
-    # of this polygon follows the island's own coast, so the wash stops in Georgia
-    # Strait instead of running on across the mainland.
+    # Vancouver Island: the island itself is mine, because Victoria is on it and
+    # the ferry from Tsawwassen lands there. What this polygon is for is the
+    # scatter of small islands off its east coast, none of which I have landed on.
     dict(name="Vancouver Island", ring=[
         (48.20, -123.15), (48.45, -123.30), (48.70, -123.55), (49.00, -123.75),
         (49.30, -124.05), (49.70, -124.60), (50.10, -125.20), (50.50, -125.70),
         (50.50, -128.00), (48.20, -128.00)]),
     dict(name="Gig Harbor, the Key Peninsula and the south Sound", ring=[
         # West of the Tacoma Narrows: Gig Harbor, the Key Peninsula, Shelton and
-        # Olympia inside, Tacoma on the far side of the water and outside. The
-        # edges are drawn through water wherever they can be, so the wash does not
-        # leave a straight line lying across dry land.
+        # Olympia inside, Tacoma on the far side of the water and outside. Harstine,
+        # Anderson, McNeil, Fox and Squaxin are the islands this catches.
         (47.44, -122.51), (47.36, -122.56), (47.30, -122.72), (47.24, -122.92),
         (47.30, -123.14), (47.22, -123.30), (46.88, -123.30), (46.88, -122.46),
         (47.18, -122.46)]),
@@ -408,58 +406,14 @@ UNVISITED_LABELS = {
     "Quinault Rain Forest",
 }
 
-# The islands I have NOT set foot on, by a point inside each. This is the list
-# that decides the colour now. Asking the other way round - "is this ring
-# visited?" - fails on the mainland, because a big frame closes the coastline
-# into several separate mainland rings and any one of them without a reference
-# point inside it fell to "not visited". That greyed Kirkland, the Skagit and
-# the whole isthmus between Fidalgo and Seattle.
-UNVISITED_ISLANDS = [
-    (48.4800, -122.8800),   # Lopez
-    (48.5780, -122.9300),   # Shaw
-    (47.5390, -122.4930),   # Blake
-    (48.7580, -122.9060),   # Sucia
-    (48.6900, -122.6700),   # Lummi
-    (48.1900, -122.4700),   # Camano
-    (48.5400, -122.6200),   # Guemes
-    (48.5800, -122.7000),   # Cypress
-    (48.4000, -122.9500),   # Decatur
-    (48.4500, -122.8100),   # Blakely
-    (48.7900, -123.1300),   # Saturna, BC
-    (48.8200, -123.3200),   # Pender, BC
-    (48.8800, -123.4500),   # Galiano, BC
-    (48.6100, -123.2600),   # Stuart / Johns
-]
-
-# Boxes round the islands I have not landed on. The wash is water-coloured, so
-# where a box covers water it changes nothing; it only fades the land inside it.
-# This is the same trick the mainland regions use, and for the same reason: after
-# the frame closes a coastline, "which ring is this island" has no stable answer.
-UNVISITED_ISLAND_BOXES = [
-    ("Lopez",        48.400, -122.945, 48.525, -122.785),
-    ("Shaw",         48.548, -122.985, 48.612, -122.885),
-    ("Decatur",      48.395, -122.860, 48.520, -122.760),
-    ("Blake",        47.522, -122.515, 47.556, -122.470),
-    ("Sucia",        48.725, -122.950, 48.790, -122.855),
-    ("Lummi",        48.635, -122.745, 48.765, -122.615),
-    ("Camano",       48.095, -122.570, 48.285, -122.415),
-    ("Guemes",       48.505, -122.665, 48.575, -122.575),
-    ("Cypress",      48.535, -122.760, 48.625, -122.655),
-    ("Stuart, Johns", 48.575, -123.300, 48.705, -123.115),
-    ("Gulf Islands", 48.700, -123.470, 48.960, -122.990),
-]
-
-# Full colour is punched back through the wash here: the one spot on an otherwise
-# unvisited landmass that is mine. Poulsbo on the Kitsap, Victoria on Vancouver
-# Island. Radius in km.
-VISITED_SPOTS = [
-    ("Poulsbo", 47.7362, -122.6465, 4.0),
-    ("Victoria", 48.4197, -123.3701, 9.0),
-]
-
-# Below this, in square km, an unnamed rock is faded: there are hundreds of them
-# and I have not landed on any.
-ROCK_SPAN_KM = 2.2
+# The islands I have not set foot on used to be listed here, with a box round
+# each group of them and a radius round the one spot on a peninsula that was
+# mine. All of it existed to correct a default that had to be "visited", because
+# the rule ran on frame-clipped rings and could not tell the mainland from an
+# island. The rule now runs on each island's own closed coastline, where the
+# default can be the honest one, so the exceptions are gone: an island is mine if
+# a point above is inside it, and that is the whole of it. See island_is_mine in
+# scripts/build_salish_geo_panel.py.
 
 # The two floating bridges. They are the only way onto Mercer Island and they are
 # the longest floating bridges in the world, so a chart of this water that leaves

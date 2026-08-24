@@ -38,9 +38,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import salish_places as P  # noqa: E402
 from salish_geo import (  # noqa: E402
-    Proj, _signed_area, clip_chain, clip_ring, in_ring, is_dry, land_rings, load,
-    merc_y, num, WaterGrid, on_land, path_d, points_d, rdp, snap_to, stitch,
-    way_coords,
+    Proj, _signed_area, clip_chain, clip_ring, in_ring, island_rings, is_dry,
+    land_rings, load, merc_y, num, WaterGrid, on_land, path_d, points_d, rdp,
+    snap_to, stitch, way_coords,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -694,60 +694,49 @@ def compass(x, y) -> str:
 
 # --------------------------------------------------------------------- content
 
-def visited_split(land):
-    """Split land rings into the ones I have set foot on and the ones I have not.
+def island_is_mine(ring) -> bool:
+    """Have I set foot on this island?
 
-    Decided by containment, so the answer does not depend on the frame: the same
-    island must be the same colour on every sheet. Bainbridge came out faded on
-    one panel and full on another because the previous rule matched a ring to a
-    reference point by *proximity*, and Blake Island's point is five km off
-    Bainbridge's south tip.
+    Asked of the island's own closed coastline, never of a frame-clipped ring, so
+    the answer is a fact about the island and the same island is the same colour
+    on every sheet. The rule is the short one: an island is mine if a point of
+    mine is inside it, and every other island is not.
 
-    An island is not mine if one of `P.UNVISITED_ISLANDS` lies inside it. A rock
-    too small to have a name is not mine either. Everything else - the mainland,
-    Whidbey, Fidalgo, Vancouver Island - is, which also avoids ever testing the
-    frame-closed mainland ring, whose outline can self-intersect and answers
-    point-in-polygon wrongly.
+    Defaulting the unknown island to "not mine" is now safe and it was not
+    before. The old rule ran on frame-clipped rings, where the mainland arrives
+    as several pieces and Vancouver Island as one more, and a piece with no
+    reference point in it fell to "not visited": that is what greyed Kirkland and
+    the Skagit, and it is why the default had to be "mine" and why a list of
+    named exceptions and boxes was needed to claw individual islands back. A
+    closed coastline way is never the mainland - the mainland's coast is an open
+    chain in this bbox, and so is Vancouver Island's - so the question can be put
+    the honest way round, and the exception lists are gone with it.
     """
-    mine, theirs = [], []
-    for ring in land:
-        # Visited wins. A wider frame merged Whidbey's ring with Camano's, and
-        # testing "not visited" first faded the whole of Whidbey with it. The
-        # wash boxes fade the unvisited island inside a merged ring by geography,
-        # which is the only thing that works once rings can merge.
-        if any(in_ring((lo, la), ring) for la, lo in P.VISITED_LAND):
-            mine.append(ring)
-        elif any(in_ring((lo, la), ring) for la, lo in P.UNVISITED_ISLANDS):
-            theirs.append(ring)
-        elif ring_span_km(ring) < P.ROCK_SPAN_KM:
-            theirs.append(ring)
-        else:
-            mine.append(ring)
-    return mine, theirs
+    return any(in_ring((lo, la), ring) for la, lo in P.VISITED_LAND)
 
 
-def _near_any(ring, points, km_limit) -> bool:
-    """Is any of these (lat, lon) points within km_limit of the ring's outline?"""
-    step = max(1, len(ring) // 400)
-    for la, lo in points:
-        k = math.cos(math.radians(la))
-        lim = km_limit * km_limit
-        for i in range(0, len(ring), step):
-            x, y = ring[i]
-            dx = (x - lo) * 111.32 * k
-            dy = (y - la) * 110.9
-            if dx * dx + dy * dy < lim:
-                return True
-    return False
+def _unvisited_islands():
+    """Every island in the cache I have not set foot on, whole and unclipped.
+
+    Frame-independent, so it is classified once for all eight sheets: 3,500 rings
+    times a containment test each is not something to do per frame.
+    """
+    if not _UNVISITED_CACHE:
+        _UNVISITED_CACHE.extend(r for r in island_rings() if not island_is_mine(r))
+    return _UNVISITED_CACHE
+
+
+_UNVISITED_CACHE: list = []
 
 
 def ring_span_km(ring) -> float:
     """The diagonal of a ring's bounding box, in km.
 
-    Used instead of the shoelace area because the frame closes the mainland
-    coastline into a ring that self-intersects, and the shoelace of that ring
-    very nearly cancels to zero: the whole of Washington was being classified as
-    an unnamed rock and drawn half transparent.
+    A size that does not care whether a ring is wound the right way or crosses
+    itself, which the shoelace area does: the frame closes the mainland coastline
+    into a ring that self-intersects, and its shoelace very nearly cancels to
+    zero. The checkers use this to pick the island out of the rings that hold a
+    point - the smallest one is the island itself.
     """
     if len(ring) < 3:
         return 0.0
@@ -759,18 +748,6 @@ def ring_span_km(ring) -> float:
     return math.hypot(dx, dy)
 
 
-def ring_km2(ring) -> float:
-    """Rough area of a lon/lat ring in square km."""
-    if len(ring) < 3:
-        return 0.0
-    lat0 = sum(p[1] for p in ring) / len(ring)
-    k = math.cos(math.radians(lat0))
-    a = 0.0
-    for (x1, y1), (x2, y2) in zip(ring, ring[1:] + ring[:1]):
-        a += (x1 * k * 111.32) * (y2 * 110.9) - (x2 * k * 111.32) * (y1 * 110.9)
-    return abs(a) / 2
-
-
 def base_layers(proj: Proj, rect, eps: float, out: list[str]) -> None:
     land, holes = land_rings(rect)
     d = path_d(land, proj, eps)
@@ -779,43 +756,27 @@ def base_layers(proj: Proj, rect, eps: float, out: list[str]) -> None:
     # times the tolerance is still well under the stroke's own width, so there is
     # nothing in it to see; on the San Juans the halo alone was 16 KB.
     out.append(f'<path class="rt-coast-glow" d="{path_d(land, proj, eps * 9)}"/>')
-    mine, theirs = visited_split(land)
-    # The region wash is about the mainland. Bainbridge sits inside the Kitsap
-    # polygon and is not part of the Kitsap: an island I have been to must keep
-    # its colour whatever the wash says about the peninsula beside it.
-    # Island-sized only. The frame closing can merge an island's ring with the
-    # mainland it sits beside, and redrawing such a ring over the wash un-fades
-    # the peninsula with it: that is how Gig Harbor kept its colour.
-    isles = [r for r in mine
-             if ring_span_km(r) < 60
-             and any(in_ring((lo, la), r) for la, lo in P.ISLANDS_VISITED)]
-    main = [r for r in mine if r not in isles]
-    dm = path_d(main, proj, eps)
-    di = path_d(isles, proj, eps)
-    dt = path_d(theirs, proj, eps)
-    # The mainland is one ring and not one experience. Inside the unvisited
-    # regions its land is washed back; a POI standing there keeps its own colour.
-    # Every ring is wound the same way, because the wash is one path element now
-    # and under the nonzero rule two subpaths of opposite winding cut a hole in
-    # each other exactly where they overlap.
-    def _cw(pts):
-        return pts if _signed_area(pts) >= 0 else list(reversed(pts))
-
-    rings = []
-    for r in P.UNVISITED_REGIONS:
-        pts = [proj(lo, la) for la, lo in r["ring"]]
-        rings.append(points_d(_cw(rdp(pts, 0.5)), True))
-    for _n, s0, w0, n0, e0 in P.UNVISITED_ISLAND_BOXES:
-        pts = [proj(w0, n0), proj(e0, n0), proj(e0, s0), proj(w0, s0)]
-        rings.append(points_d(_cw(pts), True))
+    # All the land in one tone, then the islands that are not mine painted over it
+    # in the other. Two elements, two tones, and the boundary between them is a
+    # coastline: whatever the frame did to the rings, an island is one colour.
+    #
+    # This replaces a wash. Colour used to be laid on in four passes - the land,
+    # a water-coloured wash inside polygons and boxes, the visited islands again
+    # on top, then discs of full colour punched back through at Poulsbo and
+    # Victoria - and every one of those edges fell where no edge belongs. Lopez
+    # was inside its own box and half transparent twice over; Vancouver Island
+    # was pale with a dark circle on it; the Gulf Islands were cut by the corner
+    # of a box. Reading the polygons instead of painting them costs the one thing
+    # they were for, which is peninsula-level colour on a landmass I have partly
+    # walked, and the faded name of the town says that better anyway.
     uid0 = f"{abs(hash((rect, 'land'))) % 999983}"
+    dm = path_d(land, proj, eps)
     if dm:
         out.append(f'<path id="sg-lm-{uid0}" class="rt-island" d="{dm}"/>')
-    if di:
-        out.append(f'<path id="sg-li-{uid0}" class="rt-island" d="{di}"/>')
+    theirs = [r for r in (clip_ring(ring, rect) for ring in _unvisited_islands()) if r]
+    dt = path_d(theirs, proj, eps)
     if dt:
-        out.append(f'<g class="rt-unvisited">'
-                   f'<path id="sg-lt-{uid0}" class="rt-island" d="{dt}"/></g>')
+        out.append(f'<path id="sg-lt-{uid0}" class="rt-island unseen" d="{dt}"/>')
 
     for name, park_rings in parks(rect):
         pd = path_d([r for r in (clip_ring(ring, rect) for ring in park_rings) if r],
@@ -838,76 +799,6 @@ def base_layers(proj: Proj, rect, eps: float, out: list[str]) -> None:
     isl = [x for x in isl if x]
     if isl:
         out.append(f'<path class="rt-island" d="{" ".join(isl)}"/>')
-
-
-    if rings:
-        # Painted once, over the mainland and the unvisited islands only, in the
-        # water colour at half strength: invisible where it covers water, fading
-        # where it covers land.
-        #
-        # Two things were wrong here. It used one <path> per region, so wherever
-        # two of them overlapped the wash was laid down twice and came out darker:
-        # the Lopez box and the Decatur box share 160 m of longitude, and Lopez
-        # was printed in two different greys. And it was blurred, which turns a
-        # box edge into a gradient, so any box whose corner clipped an island I
-        # have landed on left a pale smear on it - the Stuart and Johns box on the
-        # north end of San Juan Island, the Gulf Islands box on Orcas.
-        #
-        # So: one element carrying every region as a subpath, which paints their
-        # union exactly once whatever they overlap; no blur, so half transparent
-        # is one value everywhere and not a ramp; and the clip excludes the
-        # islands that are mine, so no box can reach them however it is drawn.
-        uses = "".join(f'<use href="#sg-{k}-{uid0}"/>'
-                       for k, d in (("lm", dm), ("lt", dt)) if d)
-        uid3 = f"{abs(hash((rect, 'landclip'))) % 999983}"
-        if uses:
-            out.append(f'<clipPath id="sg-land-{uid3}">{uses}</clipPath>')
-            out.append(f'<g clip-path="url(#sg-land-{uid3})">'
-                       f'<path d="{" ".join(rings)}" fill="{WATER_FILL}" '
-                       f'fill-opacity="0.62" stroke="none"/></g>')
-        # Punch the visited spots back through: Poulsbo is mine and the Kitsap is
-        # not, Victoria is mine and Vancouver Island is not. This is the whole
-        # point of washing by region rather than by landmass.
-        bx2, by2, bw2, bh2 = proj.box
-        spots = []
-        for _nm, la, lo, km_r in P.VISITED_SPOTS:
-            cx, cy = proj(lo, la)
-            r = km_r * proj.px_per_km()
-            if (cx + r < bx2 or cx - r > bx2 + bw2
-                    or cy + r < by2 or cy - r > by2 + bh2):
-                continue
-            spots.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}"/>')
-        if spots and (dm or di):
-            uid2 = f"{abs(hash((rect, 'spot'))) % 999983}"
-            out.append(f'<clipPath id="sg-spot-{uid2}">{"".join(spots)}</clipPath>')
-            out.append(f'<g clip-path="url(#sg-spot-{uid2})">'
-                       + "".join(f'<use href="#sg-{k}-{uid0}" class="rt-island"/>'
-                                 for k, d in (("lm", dm), ("li", di)) if d)
-                       + '</g>')
-        # And redraw the islands that are mine on top of the wash, at full
-        # colour. Belt and braces: whatever a region box happens to overlap, an
-        # island I have set foot on is never half transparent.
-        if di:
-            out.append(f'<use href="#sg-li-{uid0}" class="rt-island"/>')
-        # Punch the visited spots back through: Poulsbo is mine and the Kitsap is
-        # not, Victoria is mine and Vancouver Island is not. This is the whole
-        # point of washing by region rather than by landmass.
-        bx2, by2, bw2, bh2 = proj.box
-        spots = []
-        for _nm, la, lo, km_r in P.VISITED_SPOTS:
-            cx, cy = proj(lo, la)
-            r = km_r * proj.px_per_km()
-            if (cx + r < bx2 or cx - r > bx2 + bw2
-                    or cy + r < by2 or cy - r > by2 + bh2):
-                continue
-            spots.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}"/>')
-        if spots and (dm or di):
-            uid2 = f"{abs(hash((rect, 'spot'))) % 999983}"
-            out.append(f'<clipPath id="sg-spot-{uid2}">{"".join(spots)}</clipPath>')
-            out.append(f'<g clip-path="url(#sg-spot-{uid2})">'
-                       + "".join(f'<use href="#sg-{k}-{uid0}" class="rt-island"/>'
-                                 for k, d in (("lm", dm), ("li", di)) if d)
-                       + '</g>')
 
     # Diablo Lake keeps the colour panel 2 gave it: rock-flour turquoise.
     for name, rings, _inner in lakes(rect):
@@ -1707,6 +1598,13 @@ def legend_rows(x, y0, keys=None):
     printing them over empty paper.
     """
     rows = [
+        # The colour key. Worth a row of its own now that the tone means exactly
+        # one thing and the boundary between the two is always a shore.
+        ("land", lambda y: f'<rect class="rt-island" x="{x}" y="{y - 6}" '
+                           f'width="17" height="12"/>'
+                           f'<rect class="rt-island unseen" x="{x + 17}" '
+                           f'y="{y - 6}" width="17" height="12"/>',
+         ["Set foot on it · only", "sailed past it"]),
         ("ferry", lambda y: f'<path class="rt-ferry-line" '
                             f'marker-end="url(#sg-track-arrow)" d="M {x} {y} h 30"/>',
          ["Washington State Ferries"]),
@@ -1752,14 +1650,14 @@ def legend_rows(x, y0, keys=None):
     return "".join(out), y
 
 
-LEGEND_ALL = ("ferry", "drive", "trail", "terminal", "border", "crest", "river",
-              "box", "dot")
+LEGEND_ALL = ("land", "ferry", "drive", "trail", "terminal", "border", "crest",
+              "river", "box", "dot")
 
 
 def legend_keys(sheet, frame, children, dots) -> tuple:
     """Only the legend rows this sheet's ground actually shows."""
     box = grow(frame)
-    keys = []
+    keys = ["land"]
     if any(on_frame(lat, lon, frame, -0.02) for leg in P.FERRY_LEGS
            for lat, lon in leg):
         keys.append("ferry")
@@ -1876,6 +1774,12 @@ def map_apron(sheet, proj: Proj, map_x, map_w, dots, children) -> str:
 
     loc = locator_inset(sheet, x, min(y + 18, VB_H - 150), 190)
     out.append(loc)
+    # The apron is flowed, so it can run off the bottom of the sheet: say so
+    # rather than printing a legend nobody can read. The locator, where there is
+    # one, is 150 units of that; where there is not, the paper runs to the edge.
+    room = VB_H - (150 if loc else 16)
+    if y > room:
+        print(f"    ! apron overfull by {y - room:.0f} units. Shorten the blurb.")
 
     rx = map_x + map_w + 16
     out.append(text("Coastlines, lakes,", rx, 828, "rt-sub", "start", size=9))

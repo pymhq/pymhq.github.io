@@ -52,12 +52,36 @@ MAPS = ROOT / "maps.html"
 BEGIN = "<!-- BEGIN generated: race panels (scripts/build_race_panels.py) -->"
 END = "<!-- END generated: race panels -->"
 
-# 16:9, the shape of the screen it fills. The rail is the workout summary and
-# the rest is the map; the split is 29/71, which is what it took to fit a
-# 44-character line of prose at 13px without hyphenating.
-VB_W, VB_H = 1600.0, 900.0
-RAIL_W = 470.0
-MAP_X, MAP_W = RAIL_W, VB_W - RAIL_W
+# One panel is 900 units tall and as wide as its own course needs, up to 16:9.
+#
+# There used to be a 470-unit rail down the left side carrying the title, one
+# date and the venue. Three short blocks in a 470x900 column is a column of
+# empty paint, and the map paid for it twice: it lost a third of its width, and
+# what was left was the wrong shape for a course, so a north-south course like
+# the Waterfront 5K sat hard against one edge with a screen of bay beside it.
+# The title is now set on the map itself, in whichever top corner the course is
+# furthest from.
+#
+# The width is the other half of the same problem. Only the Boston course is
+# 16:9; the rest are portrait, and the streets are only fetched for the course's
+# own box, so a panel wider than that box is not map, it is unpainted paper with
+# the streets stopping dead in the middle of it. So each panel is cut to the
+# shape of its own ground - between 620 units and the full 1600 - and the pager
+# centres it on the screen. Nothing is lost: what filled that width before was
+# blank.
+VB_H = 900.0
+VB_W = 1600.0             # the widest a panel gets, and the shape of the screen
+PANEL_MIN_W = 620.0       # enough paper for the title block
+MAP_X = 0.0
+
+# The type block: the corner is chosen per panel, the size follows the panel.
+PAD = 44.0
+BLOCK_H = 180.0
+# The page's nav is sticky, so it sits over the top of a full-height panel: about
+# 80 of the 860 css pixels a 900-unit panel is scaled into. The top block starts
+# below that, which is also why the bottom of the panel is not treated the same
+# way - nothing overlays it but the pager's own dots, and those are centred.
+HEADER_CLEAR = 96.0
 
 # The dark set. A race panel is not a chart: it is a screen you look at once,
 # after, to see what you did. So it reads like an instrument and not like paper,
@@ -67,7 +91,6 @@ INK = "#e9eef4"          # primary type
 DIM = "#8d99a6"          # labels, secondary type
 FAINT = "#5b6672"        # provenance
 BG = "#0e1216"           # the map's paper
-RAIL_BG = "#141a20"      # the summary rail
 WATER = "#16324a"
 WATER_EDGE = "#23536f"
 GREEN = "#152318"
@@ -298,17 +321,33 @@ def cumulative(pts) -> list[float]:
 
 # ---------------------------------------------------------------------- drawing
 
-def frame_for_panel(race: dict) -> tuple:
-    """The fetched frame, squared up to the map box so nothing is stretched.
+def panel_width(race: dict) -> float:
+    """How wide this panel's paper is: the shape of the ground it has.
+
+    The fetched box is the course plus a fifth of its span, and that is exactly
+    the ground there are streets for, so the panel is that box's own aspect. Wider
+    than 16:9 is more than a screen holds, and narrower than PANEL_MIN_W has no
+    room for the title, so it is clamped at both ends: the three narrowest courses
+    still carry a band of paper the streets do not reach, and on all three that
+    band is Elliott Bay or Lake Washington, which the coastline cache does paint.
+    """
+    w, s, e, n = frame_of(race)
+    dx = merc_x(e) - merc_x(w)
+    dy = merc_y(n) - merc_y(s)
+    return min(VB_W, max(PANEL_MIN_W, round(VB_H * dx / dy)))
+
+
+def frame_for_panel(race: dict, pw: float) -> tuple:
+    """The fetched frame, squared up to the panel so nothing is stretched.
 
     The projection keeps one scale on both axes and centres the slack, so a tall
     course in a wide box is correct but small and off to one side. Growing the
     short axis of the frame instead fills the box, at the same scale, with real
-    ground rather than with padding.
+    ground rather than with padding. With the panel cut to the course's own shape
+    this is now a small correction on most panels instead of a third of the width.
     """
     w, s, e, n = frame_of(race)
-    want = MAP_W / VB_H
-    mid = (s + n) / 2
+    want = pw / VB_H
     dx = merc_x(e) - merc_x(w)
     dy = merc_y(n) - merc_y(s)
     if dx / dy < want:
@@ -435,11 +474,11 @@ def salish_land(rect):
     return land
 
 
-def basemap(race: dict, proj: Proj, rect) -> list[str]:
+def basemap(race: dict, proj: Proj, rect, pw: float) -> list[str]:
     key = race["key"]
     land = salish_land(rect)
     base = WATER if land else BG
-    out = [f'<rect x="{MAP_X}" y="0" width="{MAP_W}" height="{VB_H}" fill="{base}"/>']
+    out = [f'<rect x="0" y="0" width="{pw:.0f}" height="{VB_H:.0f}" fill="{base}"/>']
     if land:
         d = path_d(land, proj, 0.6)
         out.append(f'<path d="{d}" fill="{BG}"/>')
@@ -524,13 +563,13 @@ def pin(x: float, y: float, accent: str, label: str, filled: bool,
             f'fill-opacity="0.16"/>{body}{text}</g>')
 
 
-def named_marks(race: dict, proj: Proj, rect) -> list[str]:
+def named_marks(race: dict, proj: Proj, rect, pw: float) -> list[str]:
     out = []
     for label, lat, lon in race.get("route", {}).get("marks", []):
         if label in ("START", "FINISH"):
             continue
         x, y = proj(lon, lat)
-        if not (MAP_X + 6 < x < VB_W - 6 and 6 < y < VB_H - 6):
+        if not (6 < x < pw - 6 and 6 < y < VB_H - 6):
             continue
         out.append(f'<g><circle cx="{x:.1f}" cy="{y:.1f}" r="3" fill="{INK}"/>'
                    f'<text x="{x:.1f}" y="{y - 12:.1f}" class="rc-place" '
@@ -538,7 +577,7 @@ def named_marks(race: dict, proj: Proj, rect) -> list[str]:
     return out
 
 
-# ------------------------------------------------------------------- the rail
+# ------------------------------------------------------------------- the type
 
 MONTH = ("Jan", "Feb", "Mar", "Apr", "May", "Jun",
          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
@@ -563,52 +602,101 @@ def wrap_to(text: str, width: int) -> list[str]:
     return lines
 
 
-def rail(race: dict, pts, proj: Proj, n: int, total: int) -> str:
-    """The summary: which race, when, where. That is the whole rail.
+def title_place(xy, marks, pw: float) -> tuple[str, str]:
+    """Which corner the type goes in: the one with least under it that matters.
 
-    It has been cut twice. First it carried a paragraph of prose, the surface and
-    an obstacle list; then it still carried a distance ring, three metric tiles,
-    an elevation profile, a note about the line being routed, and a provenance
-    line. All of that is caption competing with the drawing next to it, and the
-    drawing already says how far it went: the course is beaded at every
-    kilometre. So the rail is three things, and the map is the rest.
+    Four candidates. What is weighed is the labelled things first - the start and
+    finish pins and any named turn, at twelve points each, because covering the
+    word START is the one mistake here that loses information - then the course
+    line itself at one point, then a small penalty on the bottom two so that a
+    title sits above its subject when both are equally free. Streets and parks are
+    not weighed at all: they are ground, and the scrim is meant to sit on them.
+    """
+    bw = block_w(pw)
+    spots = [("top", "left", 0.0, HEADER_CLEAR),
+             ("top", "right", pw - bw - PAD, HEADER_CLEAR),
+             ("bottom", "left", 0.0, VB_H - BLOCK_H - 96),
+             ("bottom", "right", pw - bw - PAD, VB_H - BLOCK_H - 96)]
+    best, best_cost = ("top", "left"), None
+    for vside, side, x0, y0 in spots:
+        def inside(pts, grow=0.0):
+            return sum(1 for x, y in pts
+                       if x0 - grow <= x <= x0 + bw + PAD + grow
+                       and y0 - grow <= y <= y0 + BLOCK_H + PAD + grow)
+        # 40 units of grow for the marks: a pin's label is set above it.
+        # The course counts as the share of it that falls under the block, not as
+        # a number of points: a course is traced at whatever density its source
+        # published, and a raw count let a dense line outvote a start pin.
+        share = inside(xy) / max(1, len(xy))
+        cost = 12 * inside(marks, 40.0) + 8 * share + (0 if vside == "top" else 1)
+        if best_cost is None or cost < best_cost:
+            best, best_cost = (vside, side), cost
+    return best
 
-    Provenance did not vanish, it moved: every course's source is recorded on its
-    entry in scripts/race_courses.py, which is where a reader who wants to check
-    the line should look, and the OpenStreetMap credit stays on the map itself
+
+def block_w(pw: float) -> float:
+    """How wide the type block may be: the panel, less its margins."""
+    return min(660.0, pw - 2 * PAD)
+
+
+def title_block(race: dict, xy, marks, pw: float) -> str:
+    """The name, the date and the place, set on the map in one corner.
+
+    Two lines of information and nothing else. It carried a distance ring, three
+    metric tiles, an elevation profile, a paragraph of prose and a provenance
+    line at various points; all of it was caption competing with the drawing, and
+    the drawing already says how far it went, because the course is beaded at
+    every kilometre. Provenance lives on the course's entry in
+    scripts/race_courses.py, and the OpenStreetMap credit stays on the map
     because the licence asks for it there.
+
+    A scrim goes under it: on a dark ground light type reads on its own, but the
+    ground here is a real city and its parks are pale enough to swallow a letter.
     """
     accent = race["accent"]
-    out = [f'<rect x="0" y="0" width="{RAIL_W}" height="{VB_H}" fill="{RAIL_BG}"/>',
-           f'<path d="M {RAIL_W} 0 V {VB_H}" stroke="#1f272f" stroke-width="2"/>']
-    x = 40.0
+    vside, side = title_place(xy, marks, pw)
+    bw = block_w(pw)
+    x = PAD if side == "left" else pw - PAD
+    anchor = "start" if side == "left" else "end"
+    gx = 0.0 if side == "left" else pw - bw - PAD
+    top = HEADER_CLEAR if vside == "top" else VB_H - BLOCK_H - 96
+    # The corner is the best of four, which on a narrow panel can still be a
+    # corner with something in it. Say so rather than shipping a covered pin.
+    hit = [1 for mx, my in marks
+           if gx - 40 <= mx <= gx + bw + PAD + 40
+           and top - 40 <= my <= top + BLOCK_H + PAD + 40]
+    print(f"    title {vside} {side}" + (f", {len(hit)} mark(s) under it" if hit else ""))
+    # The scrim runs to the panel edge behind the block, so the type never sits
+    # on a visible slab: only the gradient's own fade has an edge.
+    sy = 0.0 if vside == "top" else top
+    sh = top + BLOCK_H + PAD if vside == "top" else VB_H - top
+    out = [f'<rect x="{gx:.0f}" y="{sy:.0f}" width="{bw + PAD:.0f}" '
+           f'height="{sh:.0f}" '
+           f'fill="url(#rc-scrim{"" if vside == "top" else "-up"})"/>']
+    y = top + 100
+    # 0.56 of the size is about the width of a character at this weight.
+    for line in wrap_to(race["name"], int(bw / (36 * 0.56))):
+        out.append(f'<text x="{x:.0f}" y="{y:.0f}" class="rc-title" '
+                   f'text-anchor="{anchor}">{line}</text>')
+        y += 44
+    dates = " · ".join(pretty_date(d) for d in race["dates"])
+    limit = int(bw / (14 * 0.55))
+    one = f"{dates}  ·  {place_of(race)}"
+    if len(one) <= limit:
+        out.append(f'<text x="{x:.0f}" y="{y + 4:.0f}" class="rc-meta" '
+                   f'text-anchor="{anchor}">'
+                   f'<tspan fill="{accent}">{dates}</tspan>'
+                   f'<tspan fill="{DIM}">  ·  {place_of(race)}</tspan></text>')
+    else:
+        for line, colour in ([(dates, accent)]
+                             + [(l, DIM) for l in wrap_to(place_of(race), limit)]):
+            out.append(f'<text x="{x:.0f}" y="{y + 4:.0f}" class="rc-meta" '
+                       f'text-anchor="{anchor}" fill="{colour}">{line}</text>')
+            y += 21
     if race.get("glyph"):
-        out.append(f'<use href="#{race["glyph"]}" transform="translate(430, 52) '
-                   f'scale(1.6)"/>')
-
-    # Set from the middle of the rail rather than the top: three short blocks
-    # pinned to the top of a 900-unit column read as an unfinished page.
-    title = wrap_to(race["name"], 22)
-    block = len(title) * 36 + 30 + len(wrap_to(place_of(race), 34)) * 20
-    y = (VB_H - block) / 2 + 26
-
-    for line in title:
-        out.append(f'<text x="{x}" y="{y:.0f}" class="rc-title">{line}</text>')
-        y += 36
-    y += 12
-    cx = x
-    for iso in race["dates"]:
-        label = pretty_date(iso)
-        w = 11 + len(label) * 7.6
-        out.append(f'<g><rect x="{cx:.1f}" y="{y:.0f}" width="{w:.1f}" height="28" '
-                   f'rx="14" fill="{accent}" fill-opacity="0.18"/>'
-                   f'<text x="{cx + w / 2:.1f}" y="{y + 19:.0f}" class="rc-chip" '
-                   f'fill="{accent}" text-anchor="middle">{label}</text></g>')
-        cx += w + 8
-    y += 56
-    for line in wrap_to(place_of(race), 34):
-        out.append(f'<text x="{x}" y="{y:.0f}" class="rc-place2">{line}</text>')
-        y += 20
+        gx2 = x + 20 if side == "left" else x - 20
+        out.append(f'<use href="#{race["glyph"]}" '
+                   f'transform="translate({gx2:.0f}, {top + 54:.0f}) scale(1.5)"/>')
     return "".join(out)
 
 
@@ -620,31 +708,36 @@ def place_of(race: dict) -> str:
 
 def build_panel(race: dict, n: int, total: int) -> str:
     print(f"panel {n} {race['key']}")
-    frame = frame_for_panel(race)
-    proj = Proj(frame[0], frame[1], frame[2], frame[3], MAP_X, 0, MAP_W, VB_H)
-    print(f"    {proj.px_per_km():.1f} units/km, frame "
-          f"{tuple(round(v, 4) for v in frame)}")
+    pw = panel_width(race)
+    frame = frame_for_panel(race, pw)
+    proj = Proj(frame[0], frame[1], frame[2], frame[3], MAP_X, 0, pw, VB_H)
+    print(f"    {pw:.0f} x {VB_H:.0f} paper, {proj.px_per_km():.1f} units/km, "
+          f"frame {tuple(round(v, 4) for v in frame)}")
     rect = frame
 
-    body = basemap(race, proj, rect)
+    body = basemap(race, proj, rect, pw)
     pts = course_of(race)
+    xy = [proj(p[1], p[0]) for p in pts]
+    # The things that carry a word: the two pins and any named turn.
+    marks = ([xy[0], xy[-1]] if xy else []) + [
+        proj(lon, lat) for label, lat, lon in race.get("route", {}).get("marks", [])
+        if label not in ("START", "FINISH")]
     if pts:
         body += course_markup(race, pts, proj)
-        body += named_marks(race, proj, rect)
-    body.append(scale_bar(MAP_X + 40, VB_H - 44, proj))
-    body.append(f'<text x="{VB_W - 30}" y="{VB_H - 40}" class="rc-src" '
+        body += named_marks(race, proj, rect, pw)
+    body.append(scale_bar(PAD, VB_H - 46, proj))
+    body.append(f'<text x="{pw - PAD:.0f}" y="{VB_H - 42:.0f}" class="rc-src" '
                 f'text-anchor="end">Streets, water and parks: OpenStreetMap</text>')
 
     label = (f'{race["name"]}: {race["sub"]}, '
              f'{" and ".join(pretty_date(d) for d in race["dates"])}')
     return (f'<svg class="rc-panel sg-sheet" id="rc-panel-{race["key"]}" '
-            f'viewBox="0 0 {VB_W:.0f} {VB_H:.0f}" '
-            f'data-map-only="{MAP_X:.0f} 0 {MAP_W:.0f} {VB_H:.0f}" '
+            f'viewBox="0 0 {pw:.0f} {VB_H:.0f}" '
             f'preserveAspectRatio="xMidYMid meet" role="img" '
             f'aria-label="{label}">'
             f'<defs>{{DEFS}}</defs>'
-            f'<g clip-path="url(#rc-map-clip-{race["key"]})">{"".join(body)}</g>'
-            f'{rail(race, pts, proj, n, total)}</svg>')
+            f'<g clip-path="url(#rc-map-clip-{race["key"]})">{"".join(body)}'
+            f'{title_block(race, xy, marks, pw)}</g></svg>')
 
 
 # --------------------------------------------------------------------- assembly
@@ -727,9 +820,23 @@ GLYPHS = {
 
 def subset_defs(race: dict, markup: str) -> str:
     used = set(re.findall(r'href="#(rc-[a-z-]+)"', markup))
-    clip = (f'<clipPath id="rc-map-clip-{race["key"]}"><rect x="{MAP_X}" y="0" '
-            f'width="{MAP_W}" height="{VB_H}"/></clipPath>')
-    return "".join(v for k, v in GLYPHS.items() if k in used) + clip
+    pw = re.search(r'viewBox="0 0 (\d+)', markup).group(1)
+    clip = (f'<clipPath id="rc-map-clip-{race["key"]}"><rect x="0" y="0" '
+            f'width="{pw}" height="{VB_H:.0f}"/></clipPath>')
+    # The scrim under the type: the panel's own ground, fading out away from the
+    # edge it sits on. A gradient and not a panel, so it has no edge to line
+    # anything up against.
+    scrim = ('<linearGradient id="rc-scrim" x1="0" y1="0" x2="0" y2="1">'
+             f'<stop offset="0" stop-color="{BG}" stop-opacity="0.9"/>'
+             f'<stop offset="0.62" stop-color="{BG}" stop-opacity="0.62"/>'
+             f'<stop offset="1" stop-color="{BG}" stop-opacity="0"/>'
+             '</linearGradient>'
+             '<linearGradient id="rc-scrim-up" x1="0" y1="1" x2="0" y2="0">'
+             f'<stop offset="0" stop-color="{BG}" stop-opacity="0.9"/>'
+             f'<stop offset="0.62" stop-color="{BG}" stop-opacity="0.62"/>'
+             f'<stop offset="1" stop-color="{BG}" stop-opacity="0"/>'
+             '</linearGradient>')
+    return "".join(v for k, v in GLYPHS.items() if k in used) + clip + scrim
 
 
 def section_html(panels: list[str]) -> str:

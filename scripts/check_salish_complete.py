@@ -27,7 +27,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import salish_places as P  # noqa: E402
-from salish_geo import in_ring, is_dry, land_rings  # noqa: E402
+from salish_geo import in_ring, island_rings, is_dry  # noqa: E402
 
 import build_salish_geo_panel as B  # noqa: E402
 
@@ -174,42 +174,45 @@ def main() -> int:
     print("\n6. the visited / not-visited rule")
     for sheet in P.SHEETS:
         body = bodies[sheet["key"]]
-        land, holes = land_rings(sheet["frame"])
-        mine, theirs = B.visited_split(land)
-        has = 'class="rt-unvisited"><path id="sg-lt-' in body
-        print(f"   {sheet['key']:9} rings: {len(mine):3} mine, {len(theirs):3} not"
-              f"   greyed layer present: {has}")
+        frame = sheet["frame"]
+        theirs = [r for r in B._unvisited_islands()
+                  if any(B.on_frame(la, lo, frame) for lo, la in r[::7])]
+        has = 'class="rt-island unseen" d=' in body
+        print(f"   {sheet['key']:9} islands not mine in frame: {len(theirs):4}"
+              f"   lighter layer present: {has}")
         if theirs and not has:
-            fails.append(f"{sheet['key']} has {len(theirs)} unvisited rings but "
-                         f"draws no greyed land")
-    # the named islands must land on the correct side of the rule
+            fails.append(f"{sheet['key']} has {len(theirs)} islands that are not "
+                         f"mine but draws no lighter land")
+    # The islands whose colour is the point of the rule. Asked of the island's own
+    # coastline, so the answer must be the same however the sheet is framed.
     checks = [("San Juan Island", 48.5500, -123.1000, True),
               ("Orcas", 48.6786, -122.8322, True),
               ("Whidbey", 48.2201, -122.6857, True),
               ("Bainbridge", 47.6300, -122.5400, True),
               ("Vashon", 47.4400, -122.4600, True),
               ("Maury", 47.3830, -122.4300, True),
+              ("Fidalgo", 48.4900, -122.6300, True),
               ("Lopez", 48.4800, -122.8800, False),
               ("Shaw", 48.5780, -122.9300, False),
-              ("Fidalgo", 48.4900, -122.6300, True),
+              ("Camano", 48.2000, -122.5000, False),
+              ("Lummi", 48.6900, -122.6700, False),
+              ("Salt Spring, BC", 48.8300, -123.4830, False),
               ("Blake", 47.5390, -122.4930, False)]
     print("   named islands, by the rule:")
     for name, lat, lon, want in checks:
-        frame = next((s["frame"] for s in P.SHEETS
-                      if s.get("doodles", True) and B.on_frame(lat, lon, s["frame"])),
-                     None)
-        if frame is None:
-            fails.append(f"{name} is on no drawing sheet")
-            print(f"     {name}: ON NO SHEET")
+        holder = [r for r in island_rings() if in_ring((lon, lat), r)]
+        if not holder:
+            fails.append(f"{name} is inside no island ring")
+            print(f"     {name}: IN NO RING")
             continue
-        land, _ = land_rings(frame)
-        mine, theirs = B.visited_split(land)
-        got = any(in_ring((lon, lat), r) for r in mine)
-        inany = got or any(in_ring((lon, lat), r) for r in theirs)
-        ok = (got == want) and inany
+        # The innermost ring holding the point is the island itself.
+        ring = min(holder, key=B.ring_span_km)
+        got = B.island_is_mine(ring)
+        ok = got == want
         if not ok:
             fails.append(f"{name}: visited={got}, expected {want}")
-        print(f"     {'ok ' if ok else 'BAD'} {name:16} visited={got} expected={want}")
+        print(f"     {'ok ' if ok else 'BAD'} {name:16} visited={got} "
+              f"expected={want}")
 
     print("\n" + "=" * 60)
     if fails:

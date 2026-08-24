@@ -312,6 +312,25 @@ def coast_chains():
     return _STITCHED
 
 
+_ISLANDS: list = []
+
+
+def island_rings() -> list[list]:
+    """One ring per island, as OpenStreetMap draws it: closed, whole, unclipped.
+
+    `land_rings` answers a different question - what land is in this frame - and
+    to answer it it closes the open mainland coast against the frame edge, which
+    can walk past an island and join it to the run. That is fine for a fill and
+    useless for a colour: an island's colour is a fact about the island, not
+    about the sheet it turns up on. The coastline layer already carries every
+    island as its own closed way, so this is that list, straight.
+    """
+    if not _ISLANDS:
+        _ISLANDS.extend(ch for ch in coast_chains()
+                        if len(ch) > 3 and ch[0] == ch[-1] and _signed_area(ch) > 0)
+    return _ISLANDS
+
+
 def _sew_open(pieces, rect, tol=0.02):
     """Bridge coastline pieces that stop in open country.
 
