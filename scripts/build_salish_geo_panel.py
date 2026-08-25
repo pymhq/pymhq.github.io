@@ -180,6 +180,18 @@ INLINE_GLYPHS["seastack"] = '''<g class="rt-doodle" stroke-width="1.5">
 <path fill="#5c6b3c" stroke-width="1.2" d="M -4.8 -11.4 L -3.6 -15.6 L -2.4 -11.4 Z"/>
 <path fill="#e8dfc8" stroke-width="1.2" d="M -15.6 9.4 L -4.4 8.4 L -4.2 10.2 L -15.4 11.2 Z"/></g>
 <path class="rt-water-deco" d="M -17 13.4 q 3 -2.6 6 0 q 3 2.6 6 0 q 3 -2.6 6 0 q 3 2.6 6 0"/>'''
+# The Hardware Store on Vashon: an 1890 false-front timber store that is a
+# restaurant now, and the oldest commercial building on the island. Nothing in
+# panel 2's defs is a building on a street - the chart's other stops are a
+# lighthouse, a pot, a pear - so this is a new one in the same hand.
+INLINE_GLYPHS["storefront"] = '''<g class="rt-doodle" stroke-width="1.3">
+<path fill="#8a6a4a" d="M -9.5 -7.5 L 0 -13 L 9.5 -7.5 Z"/>
+<path fill="#c9885a" d="M -11 9 L -11 -8.5 L 11 -8.5 L 11 9 Z"/>
+<path fill="#f7f1e0" stroke-width="1.1" d="M -8.5 -6.5 L 8.5 -6.5 L 8.5 -2 L -8.5 -2 Z"/>
+<path fill="none" stroke-width="0.8" d="M -6 -4.2 L 6 -4.2"/>
+<path fill="#e8dfc8" stroke-width="1.1" d="M -8.5 0.5 L -3.5 0.5 L -3.5 5 L -8.5 5 Z"/>
+<path fill="#e8dfc8" stroke-width="1.1" d="M 3.5 0.5 L 8.5 0.5 L 8.5 5 L 3.5 5 Z"/>
+<path fill="#4a3f2c" stroke-width="1.1" d="M -2 9 L -2 0.5 L 2 0.5 L 2 9 Z"/></g>'''
 INLINE_GLYPHS["glacier_peak"] = INLINE_GLYPHS["cone"]
 INLINE_GLYPHS["rainier"] = INLINE_GLYPHS["cone"]
 INLINE_GLYPHS["orca-pod"] = INLINE_GLYPHS["orca"] + '''
@@ -343,7 +355,14 @@ class Roads:
     def __init__(self) -> None:
         self.pos: dict[int, tuple[float, float]] = {}
         self.adj: dict[int, list[tuple[int, float, frozenset]]] = defaultdict(list)
-        for el in load("roads") + load("links"):
+        self._routes: dict = {}
+        # local_roads and rockies_roads are optional layers: the named spurs up to
+        # a trailhead, the road net of Vashon, and the Canadian highways. A way
+        # with no ref gets the empty set, which the router charges twelvefold, so
+        # adding them cannot pull a numbered drive off its own highway - it only
+        # gives the last few km somewhere to go.
+        for el in (load("roads") + load("links")
+                   + load_opt("local_roads") + load_opt("rockies_roads")):
             nodes, geom = el.get("nodes", []), el.get("geometry", [])
             if len(nodes) != len(geom) or len(nodes) < 2:
                 continue
@@ -407,11 +426,29 @@ class Roads:
             self.adj[a].append((b, d * 20, frozenset()))
             self.adj[b].append((a, d * 20, frozenset()))
             sewn += 1
-        print(f"  road graph: {len(self.pos)} nodes, {sewn} seams sewn")
+        # What is left after sewing: which piece of the network each node is on,
+        # and how big that piece is. `nearest` needs it. Fetching the ramps that
+        # join a Canadian interchange also brings thousands of ramp stubs that
+        # lead nowhere, and the closest node to downtown Calgary is one of them:
+        # every Rockies leg snapped onto a five-node fragment and reported no
+        # road path to anywhere.
+        size: dict[int, int] = defaultdict(int)
+        for nid in self.pos:
+            size[find(nid)] += 1
+        self.csize = {nid: size[find(nid)] for nid in self.pos}
+        print(f"  road graph: {len(self.pos)} nodes, {sewn} seams sewn, "
+              f"biggest piece {max(size.values())}")
+
+    # A piece of network smaller than this is a stub, not a road you can drive
+    # off: the Canadian highways are 5,000 to 10,000 nodes each and a ramp
+    # fragment is five.
+    MIN_PIECE = 400
 
     def nearest(self, lat, lon, refs) -> int:
         best, at, any_best, any_at = 1e9, None, 1e9, None
         for nid, (nlon, nlat) in self.pos.items():
+            if self.csize[nid] < self.MIN_PIECE:
+                continue
             d = (nlat - lat) ** 2 + ((nlon - lon) * 0.67) ** 2
             if d < any_best:
                 any_best, any_at = d, nid
@@ -426,6 +463,12 @@ class Roads:
         return any_at
 
     def route(self, checkpoints, refs) -> list[tuple[float, float]]:
+        # Cached on the leg itself. Eight sheets each ask for every leg, and
+        # `nearest` is a linear scan of 385,000 nodes: routing the same twenty-one
+        # legs eight times over is most of the build.
+        key = (tuple(map(tuple, checkpoints)), tuple(refs))
+        if key in self._routes:
+            return self._routes[key]
         refs = set(refs)
         nodes = [self.nearest(lat, lon, refs) for lat, lon in checkpoints]
         path: list[tuple[float, float]] = []
@@ -435,6 +478,7 @@ class Roads:
                 print(f"    ! no road path between {self.pos[a]} and {self.pos[b]}")
                 leg = [self.pos[a], self.pos[b]]
             path += leg if not path else leg[1:]
+        self._routes[key] = path
         return path
 
     def _dijkstra(self, a, b, refs):
@@ -1212,6 +1256,18 @@ def poi_label(p: dict, proj: Proj, placer: Placer, off=(0.0, 0.0),
     return f'<g class="rt-unvisited">{body}</g>' if p.get("unvisited") else body
 
 
+def carried_by(p: dict, sheet_key) -> bool:
+    """Does this sheet carry this place at all?
+
+    A different question from whether it prints the name, which is `quiet_on`.
+    At the index sheet's 3.4 units per km a restaurant and the market 100 m
+    behind it are one dot with two hover labels fighting over the same paper, and
+    that sheet's job is to say where the six drawing sheets are cut from, not to
+    list the shops on Vashon. Same argument as INDEX_OMIT_LABELS, one rung down.
+    """
+    return sheet_key not in p.get("omit_on", ())
+
+
 def unique_places():
     seen, out = set(), []
     for p in sorted(P.POIS, key=lambda q: 0 if q["label"][0] == "text" else 1):
@@ -1405,7 +1461,8 @@ def build_map_sheet(sheet, sizes: dict) -> str:
         x, y = proj(lon, lat)
         out.append(f'<path class="rt-water-deco" d="M {num(x)} {num(y)} '
                    f'q 6 -6 12 0 q 6 6 12 0"/>')
-    places = [p for p in unique_places() if on_frame(*p["at"], frame)]
+    places = [p for p in unique_places() if on_frame(*p["at"], frame)
+              and carried_by(p, sheet["key"])]
     anchors, displaced, dots, glyphs = fit_places(places, proj, sizes, sheet["key"],
                                                  sheet.get("doodles", True),
                                                  sheet.get("glyph_scale", 1.0))
@@ -1881,7 +1938,9 @@ def map_apron(sheet, proj: Proj, map_x, map_w, dots, children) -> str:
         out.append(text("places", x + 250, y, "rt-sub", "end", size=8.5))
         y += 20
         for i, (cframe, title) in enumerate(children, 1):
-            n = len([p for p in unique_places() if on_frame(*p["at"], cframe)])
+            ckey = next(s2["key"] for s2 in P.SHEETS if s2["short"] == title)
+            n = len([p for p in unique_places() if on_frame(*p["at"], cframe)
+                     and carried_by(p, ckey)])
             out.append(f'<circle cx="{x + 6.5}" cy="{y - 3.5}" r="6.5" '
                        f'fill="#f7f1e0" stroke="#7a4a2d" stroke-width="1"/>'
                        f'<text x="{x + 6.5}" y="{y - 0.3}" text-anchor="middle" '
@@ -2029,7 +2088,8 @@ def coverage(sizes: dict) -> None:
             map_x, map_w, map_h = sheet_geometry(frame)
             proj = Proj(frame[0], frame[1], frame[2], frame[3],
                         map_x, 0, map_w, map_h)
-            inside = [p for p in unique_places() if on_frame(*p["at"], frame)]
+            inside = [p for p in unique_places() if on_frame(*p["at"], frame)
+                      and carried_by(p, sheet["key"])]
             anchors, displaced, dots, _ = fit_places(inside, proj, sizes,
                                                      sheet["key"])
             for p in anchors + [d[0] for d in displaced]:

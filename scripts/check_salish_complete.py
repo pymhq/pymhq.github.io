@@ -102,7 +102,8 @@ def main() -> int:
         mx, mw, mh = B.sheet_geometry(frame)
         from salish_geo import Proj
         proj = Proj(frame[0], frame[1], frame[2], frame[3], mx, 0, mw, mh)
-        inside = [p for p in B.unique_places() if B.on_frame(*p["at"], frame)]
+        inside = [p for p in B.unique_places() if B.on_frame(*p["at"], frame)
+                  and B.carried_by(p, sheet["key"])]
         anchors, displaced, dots, _ = B.fit_places(inside, proj, sizes, sheet["key"])
         for p in anchors + [d[0] for d in displaced]:
             if P.in_usa(*p["at"]):
@@ -152,7 +153,8 @@ def main() -> int:
            "pine", "deer", "elk", "duck", "hen", "ship", "orca", "orca-pod",
            "humpback", "gulls", "rainforest", "mtns", "baker", "shuksan",
            "rainier", "glacier_peak", "saddle", "marmot", "salmon", "oyster",
-           "swanboat", "croissant", "lakeshore", "seastack"}
+           "swanboat", "croissant", "lakeshore", "seastack", "glider",
+           "storefront"}
     on_idx = sorted(set(drawn[idx]) & art)
     print(f"   drawings on '{idx}': {len(on_idx)} {on_idx}")
     if on_idx:

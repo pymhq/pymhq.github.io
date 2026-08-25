@@ -312,7 +312,7 @@ INDEX_OMIT_LABELS = {
     "Quinault Rain Forest",
     # The town names these already: Friday Harbor is on San Juan Island,
     # Eastsound is on Orcas, and Mercer Island has the Seattle sheet.
-    "San Juan I.", "Orcas I.", "Vashon Island", "Mercer I.",
+    "San Juan I.", "Orcas I.", "Mercer I.",
 }
 
 # ------------------------------------------------------------- the index sheet
@@ -747,6 +747,19 @@ POIS = [
                           "Asian pears grown on the place",
          at=(47.4535, -122.4703), ic="pear", scale=0.9,
          label=("text", 0, -20, "middle", "rt-sub", ["Nashi Orchards"])),
+    # Vashon town, which the drive off the ferry goes through and the chart had
+    # nothing on. The restaurant and the market are 100 m apart, which at this
+    # sheet's 10.8 units/km is one unit: they cannot both carry a drawing, so the
+    # one that is a building gets the doodle and the market keeps a dot and its
+    # name on hover. That is the honest split rather than a nudged pair.
+    dict(key="hardware_store", name="The Hardware Store Restaurant: the 1890 "
+                                    "false-front store, the oldest building in town",
+         at=(47.4472, -122.4609), ic="storefront", scale=0.8, omit_on=("overview",),
+         label=("text", 0, -18, "middle", "rt-sub", ["The Hardware Store"])),
+    dict(key="farmers_market", name="Vashon Island Farmers Market: Saturdays on "
+                                    "the Village Green", at=(47.4481, -122.4609),
+         ic=None, omit_on=("overview",),
+         label=("hover", 12, 4, "start", None, ["Farmers Market"])),
     dict(key="oscar", name="Oscar, the Bird King: Thomas Dambo's troll in the grove "
                           "above the beach, crowned with birdhouses",
          at=(47.3893, -122.3772), ic="troll", scale=0.85,
@@ -804,6 +817,12 @@ POIS = [
     dict(key="snoqualmie_falls", name="Snoqualmie Falls", at=(47.5417, -121.8377),
          ic="falls",
          label=("text", 0, 28, "middle", "rt-sub", ["Snoqualmie Falls"])),
+    # Poo Poo Point, above Issaquah: a paraglider launch you drive to the foot of
+    # and walk up. The chart already carries a glider, and this is the hill it is
+    # for.
+    dict(key="poopoo", name="Poo Poo Point: the paraglider launch on Tiger Mountain",
+         at=(47.4994, -122.0081), ic="glider", scale=0.9, omit_on=("overview",),
+         label=("text", 0, 24, "middle", "rt-sub", ["Poo Poo Point"])),
     dict(key="north_cascades", name="North Cascades National Park", at=(48.7300, -121.2200),
          ic="mtns",
          label=("text", 0, 30, "middle", "rt-sub", ["North Cascades NP"])),
@@ -921,6 +940,62 @@ DRIVE_LEGS = [
               (47.0357, -122.9053), (47.2529, -122.4443), (47.5990, -122.3300)],
          label=("US-101 · Grays Harbor", 47.1500, -123.9200, -70),
          label2=("US-12 · SR-8 · I-5", 47.0100, -123.2500, 4)),
+
+    # The three park spurs off that loop. Each is a real road with a name and no
+    # number, fetched by name into the `local_roads` layer, so these are routed
+    # on the ground the same as every other line here. Before that layer existed
+    # the drives stopped at the junction and the doodle sat alone up the valley.
+    dict(key="hurricane_spur", refs=("US 101",),
+         via=[(48.1181, -123.4307), (47.9694, -123.4986)]),
+    dict(key="sol_duc_spur", refs=("US 101",),
+         via=[(48.0575, -123.8630), (47.9541, -123.8348)],
+         label=("Sol Duc Rd", 48.0100, -123.8900, -70)),
+    dict(key="hoh_spur", refs=("US 101",),
+         via=[(47.8069, -124.2530), (47.8606, -123.9350)],
+         label=("Upper Hoh Rd", 47.8250, -124.1200, 18)),
+
+    # Vashon and Maury, off the Fauntleroy boat: Vashon Highway SW the length of
+    # the island to town, out to the orchard, then over the isthmus onto Maury
+    # and down to the light. Not one numbered route the whole way, which is why
+    # the island's road net is fetched entire.
+    dict(key="vashon_island", refs=(),
+         via=[DOCKS["vashon_hts"], (47.4472, -122.4609), (47.4481, -122.4609),
+              (47.4535, -122.4703), (47.3881, -122.3744)]),
+
+    # Downtown Seattle to the Fauntleroy slip. The dock is on SR-160 and SR-99
+    # runs south out of downtown, but the West Seattle Bridge between them
+    # carries no number at all: a motorway with a name and nothing else.
+    dict(key="fauntleroy_drive", refs=("SR 99", "SR 509", "SR 160", "I 5"),
+         via=[DOCKS["colman"], (47.5810, -122.3390), (47.5715, -122.3760),
+              DOCKS["fauntleroy"]]),
+
+    # Three days out of Seattle into the Cascades. Rainier is the long one: I-5
+    # to Tacoma, SR-512, SR-7 down the Nisqually valley and SR-706 in at the
+    # Nisqually gate, then the park's own road up to Paradise.
+    dict(key="rainier_drive", refs=("I 5", "SR 512", "SR 7", "SR 706"),
+         via=[(47.5990, -122.3300), (47.1600, -122.4360), (47.1620, -122.2960),
+              (46.8500, -122.2700), (46.7550, -122.0400), (46.7860, -121.7360)],
+         label=("SR-7 · SR-706", 46.8300, -122.0700, -62)),
+    dict(key="rattlesnake_drive", refs=("I 5", "I 90"),
+         via=[(47.5900, -122.3200), (47.4450, -121.7860), (47.4305, -121.7753)]),
+    dict(key="poopoo_drive", refs=("I 5", "I 90"),
+         via=[(47.5900, -122.3200), (47.5480, -122.0330), (47.5265, -122.0330),
+              (47.4994, -122.0081)]),
+
+    # Canada. Two drives, both out and back on the one road there is: the Sea to
+    # Sky from Vancouver up Howe Sound to Whistler, and the Rockies loop from
+    # Calgary west on the Trans-Canada through Banff and Lake Louise, over
+    # Kicking Horse Pass into Yoho, back east and north up the Icefields Parkway
+    # to Jasper. The return retraces both, so the line on the sheet is the road
+    # driven twice rather than two lines drawn on top of each other.
+    dict(key="sea_to_sky", refs=("99", "BC 99", "1", "BC 1"),
+         via=[(49.2827, -123.1207), (49.3760, -123.2710), (49.6800, -123.1600),
+              (50.1163, -122.9574)]),
+    dict(key="rockies_loop", refs=("1", "TCH 1", "AB 1", "93", "1A"),
+         via=[(51.0447, -114.0719), (51.1784, -115.5708), (51.4000, -116.5000),
+              (52.1900, -117.2300), (52.8737, -118.0814)],
+         label=("Trans-Canada · Hwy 1", 51.1000, -114.8000, -6),
+         label2=("Icefields Pkwy · Hwy 93", 52.4000, -117.5000, -58)),
 ]
 
 # Island drives, on roads the highway layer does not carry (they are not
@@ -1052,7 +1127,15 @@ LABELS = [
     ("Whidbey Island", 48.1450, -122.5450, "rt-sub", "middle", -58),
     # Set up the island rather than at its south end, where the name ran down
     # into the Point Robinson light and crossed its label.
-    ("Vashon Island", 47.4270, -122.4640, "rt-sub", "middle", -84),
+    # Vashon's own name is gone from the label list, and this is the note that
+    # says so. The island is 55 units of paper on the sheet that draws it and it
+    # now carries six names: the ferry landing, the orchard, the store, the
+    # market, the light and the troll. A 55-unit label rotated near vertical
+    # cannot be fitted among them - south it hit Oscar and Maury's name, west it
+    # hit the lighthouse, in place it hit the town - and it is not needed: the
+    # sheet is called BAINBRIDGE, VASHON & THE SOUTH SOUND and Vashon Hts. is
+    # printed on the island. The index sheet had already dropped it, for this
+    # reason, in INDEX_OMIT_LABELS.
     ("Maury I.", 47.3830, -122.4300, "rt-sub", "middle", 20),
     ("Blake I.", 47.5390, -122.4930, "rt-sub", "start", 0),
     ("Olympic Peninsula", 47.6100, -123.3300, "rt-sub", "middle", 0),
