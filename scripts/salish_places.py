@@ -613,6 +613,19 @@ POIS = [
     dict(key="forks", name="Forks: the logging town in the rain shadow of nothing",
          at=(47.9503, -124.3855), ic="pine", scale=1.1,
          label=("text", 0, -22, "middle", "rt-label", ["Forks"])),
+    # The two stops the Olympic loop had on it and the chart did not. Sol Duc is
+    # up its own spur off US-101 west of Lake Crescent, Rialto is out past Forks
+    # on the ocean: both are on this sheet at their own coordinates, and both
+    # spurs are unnumbered park roads the highway layer does not carry, so the
+    # drive lines stop where the numbered road does.
+    dict(key="sol_duc", name="Sol Duc Falls: the Sol Duc dropping into its cleft, "
+                             "27 m of it, in old growth",
+         at=(47.9541, -123.8348), ic="falls", scale=1.2,
+         label=("text", 0, 26, "middle", "rt-sub", ["Sol Duc Falls"])),
+    dict(key="rialto", name="Rialto Beach: the sea stacks, the arch at Hole-in-the-Wall "
+                           "and the drift logs",
+         at=(47.9199, -124.6395), ic="seastack",
+         label=("text", 0, -24, "middle", "rt-label", ["Rialto Beach"])),
     dict(key="kalaloch", name="Kalaloch Beach: the drift logs and the Tree of Life",
          at=(47.6120, -124.3745), ic="driftwood", scale=2.0,
          label=("text", 0, -22, "middle", "rt-label", ["Kalaloch Beach"])),
@@ -875,6 +888,39 @@ DRIVE_LEGS = [
          via=[(48.4560, -122.3350), (48.5300, -121.7400), (48.6800, -121.2600),
               (48.7150, -121.1200)],
          label=("SR-20 · North Cascades Highway", 48.62, -121.55, -8)),
+
+    # The Olympic loop. Seattle to Bainbridge is the ferry above; from the slip
+    # the drive runs SR-305 over Agate Pass, SR-3 north, SR-104 across the Hood
+    # Canal Bridge and US-101 west to Port Angeles, then the whole length of
+    # US-101 round the peninsula and home by the bottom of it, through Aberdeen
+    # and Olympia and up I-5 past Tacoma. No ferry on the way back.
+    #
+    # Four stops on that loop sit up unnumbered park spurs - Hurricane Ridge
+    # Road, Sol Duc Hot Springs Road, Mora Road and Upper Hoh Road - and the
+    # highway layer only carries ways that carry a route number. So these lines
+    # are the numbered road and stop where it stops: the drive is drawn as far as
+    # the junction and the doodle sits at the place, which is the honest picture
+    # rather than four hand-typed roads pretending to be routed.
+    dict(key="hood_canal_101", refs=("SR 305", "SR 3", "SR 104", "US 101"),
+         via=[DOCKS["bainbridge"], (47.7359, -122.6465), (47.8000, -122.6400),
+              (47.8580, -122.6250), (47.8580, -122.7450), (47.9490, -122.8846),
+              (48.0795, -123.1021), (48.1181, -123.4307)],
+         label=("US-101 · Sequim", 48.0700, -123.2400, -4)),
+    dict(key="us101_west", refs=("US 101",),
+         via=[(48.1181, -123.4307), (48.0870, -123.7600), (48.0620, -123.9000),
+              (48.0640, -124.1500), (47.9503, -124.3855), (47.8080, -124.2530),
+              (47.6120, -124.3745)],
+         label=("US-101 · the west side", 47.7100, -124.3000, -80)),
+    # Forks out to the Mora Road fork, which is as far west as SR-110 is numbered.
+    dict(key="sr110_mora", refs=("SR 110", "US 101"),
+         via=[(47.9503, -124.3855), (47.9675, -124.4035), (47.9150, -124.5302)],
+         label=("SR-110", 47.9450, -124.4700, -34)),
+    dict(key="us101_south", refs=("US 101", "US 12", "SR 8", "I 5"),
+         via=[(47.6120, -124.3745), (47.5300, -124.3200), (47.2300, -123.9600),
+              (46.9754, -123.8157), (47.0000, -123.4100), (47.0600, -123.0100),
+              (47.0357, -122.9053), (47.2529, -122.4443), (47.5990, -122.3300)],
+         label=("US-101 · Grays Harbor", 47.1500, -123.9200, -70),
+         label2=("US-12 · SR-8 · I-5", 47.0100, -123.2500, 4)),
 ]
 
 # Island drives, on roads the highway layer does not carry (they are not

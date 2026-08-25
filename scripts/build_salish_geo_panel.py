@@ -167,6 +167,19 @@ INLINE_GLYPHS["lakeshore"] = '''<g class="rt-doodle" stroke-width="1.1">
 <path fill="#c9885a" d="M -11.6 -1.8 L 10.6 -1.8 L 10.6 1.2 L -11.6 1.2 Z"/>
 <path fill="none" stroke-width="0.7" d="M -11 -0.3 L 10 -0.3"/></g>
 <path class="rt-water-deco" d="M -12 7.6 Q -9 6 -6 7.6 Q -3 9.2 0 7.6 Q 3 6 6 7.6 Q 9 9.2 11.6 7.6"/>'''
+# Rialto Beach, which the hand-drawn chart never reached. The Pacific side is
+# not a beach the way Alki is a beach: it is sea stacks standing off the surf
+# with firs on top of them, an arch cut through the near one at Hole-in-the-Wall,
+# and the drift logs the winter throws up the sand. Kalaloch already owns the
+# drift-log glyph, so this one is the rock: same hand, same fills, 1.5 ink.
+INLINE_GLYPHS["seastack"] = '''<g class="rt-doodle" stroke-width="1.5">
+<path fill="#8d9482" d="M 8.6 8 L 9.6 -3.4 Q 10 -5.2 11.4 -5.3 L 13 -5.3 Q 14.2 -5.2 14.6 -3.4 L 15.6 8 Z"/>
+<path fill="#5c6b3c" stroke-width="1.2" d="M 10.8 -5.5 L 11.9 -9.8 L 13 -5.5 Z"/>
+<path fill="#7c8371" d="M -13.4 8 L -12 -8.6 Q -11.4 -11 -9 -11.2 L -2.6 -11.2 Q -0.4 -11 0.2 -8.6 L 1.6 8 L -2 8 Q -2.6 1.6 -5.8 1.4 Q -9 1.6 -9.6 8 Z"/>
+<path fill="#5c6b3c" stroke-width="1.2" d="M -8.6 -11.4 L -7.1 -17.4 L -5.6 -11.4 Z"/>
+<path fill="#5c6b3c" stroke-width="1.2" d="M -4.8 -11.4 L -3.6 -15.6 L -2.4 -11.4 Z"/>
+<path fill="#e8dfc8" stroke-width="1.2" d="M -15.6 9.4 L -4.4 8.4 L -4.2 10.2 L -15.4 11.2 Z"/></g>
+<path class="rt-water-deco" d="M -17 13.4 q 3 -2.6 6 0 q 3 2.6 6 0 q 3 -2.6 6 0 q 3 2.6 6 0"/>'''
 INLINE_GLYPHS["glacier_peak"] = INLINE_GLYPHS["cone"]
 INLINE_GLYPHS["rainier"] = INLINE_GLYPHS["cone"]
 INLINE_GLYPHS["orca-pod"] = INLINE_GLYPHS["orca"] + '''
