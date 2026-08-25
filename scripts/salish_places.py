@@ -155,9 +155,18 @@ SHEETS = [
              "",
              "Drawings sit on the side of the shore",
              "the thing is really on. The sailboat is",
-             "in Meydenbauer Bay, the swim raft is",
-             "off Madison Park, and Alki's Statue of",
+             "in Meydenbauer Bay, the swim raft is off",
+             "Madison Park, the swan pedal boat is out",
+             "on Green Lake, and Alki's Statue of",
              "Liberty stands on the beach.",
+             "",
+             "Mercer Island is the ground between the",
+             "two floating bridges, and it is a hole in",
+             "Lake Washington rather than a piece of",
+             "coast, which the lake test used to read",
+             "as water. The croissant in the town",
+             "centre and the water's edge at Luther",
+             "Burbank are the first drawings on it.",
          ]),
     dict(key="sound", kind="map",
          title="BAINBRIDGE, VASHON &amp; THE SOUTH SOUND",
@@ -636,6 +645,15 @@ POIS = [
     dict(key="gasworks", name="Gas Works Park: the cracking towers on Lake Union's north shore",
          at=(47.6456, -122.3344), ic="gasworks",
          label=("hover", -6, -16, "end", None, ["Gas Works Park"])),
+    # The point is the roomiest water in the lake, not its average vertex: the
+    # boat has to sit *in* Green Lake, and the lake is 41 units across on this
+    # sheet with only 25 of clear water at its widest, so the drawing is scaled to
+    # that and not to the family. The loop path is the reason to come, but a path
+    # is 4.5 km long and a doodle is 26 units: the boats are the part with a spot.
+    dict(key="greenlake", name="Green Lake: the 4.5 km loop path &amp; the swan pedal boats "
+                               "off the boathouse",
+         at=(47.6768, -122.3398), ic="swanboat", scale=0.62,
+         label=("hover", 13, 6, "start", None, ["Green Lake"])),
     dict(key="locks", name="Hiram M. Chittenden (Ballard) Locks: fish ladder &amp; the step up from the sea",
          at=(47.6656, -122.3974), ic="locks",
          label=("hover", 0, -13, "middle", None, ["Ballard Locks"])),
@@ -661,6 +679,17 @@ POIS = [
     dict(key="madrona_park", name="Madrona Park: Lake Washington beach, bathhouse &amp; lakeside benches",
          at=(47.6110, -122.2851), ic="bench", scale=0.78,
          label=("hover", -13, 10, "end", None, ["Madrona Park"])),
+    # Mercer Island, which is the ground between the two floating bridges and
+    # until now had a name on the chart and nothing on it. Both of these are on
+    # the island proper: it is a hole in Lake Washington, so a drawing here is on
+    # dry land, not 1.5 km out in the lake. See is_dry in scripts/salish_geo.py.
+    dict(key="la_fete", name="La Fête Pâtisserie Française · Mercer Island: the croissants",
+         at=(47.5866, -122.2366), ic="croissant", scale=0.8,
+         label=("hover", 13, 6, "start", None, ["La Fête Pâtisserie"])),
+    dict(key="luther_burbank", name="Luther Burbank Park: the Lake Washington shore of "
+                                    "Mercer Island, its fishing dock &amp; swimming beach",
+         at=(47.5902, -122.2266), ic="lakeshore", scale=0.8,
+         label=("hover", -13, 10, "end", None, ["Luther Burbank Park"])),
     dict(key="waverly", name="Waverly Beach Park, Kirkland: Lake Washington swim beach &amp; pier",
          at=(47.6873, -122.2091), ic="pier", scale=0.75,
          label=("hover", -13, -8, "end", None, ["Waverly Beach Park"])),

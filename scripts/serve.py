@@ -37,6 +37,15 @@ class PagesHandler(http.server.SimpleHTTPRequestHandler):
 
     def translate_path(self, path: str) -> str:
         resolved = super().translate_path(path)
+        # /maps -> maps.html, even though a maps/ directory exists beside it.
+        # Pages answers /maps with the page (verified: pengandy.com/maps is
+        # 200 and 1.8 MB of maps.html). SimpleHTTPRequestHandler prefers the
+        # directory, redirects to /maps/ and serves a file listing, so the one
+        # path the sitemap actually links to was the one that did not work.
+        if os.path.isdir(resolved) and not resolved.endswith("/"):
+            if (not os.path.isfile(os.path.join(resolved, "index.html"))
+                    and os.path.isfile(resolved + ".html")):
+                return resolved + ".html"
         if os.path.exists(resolved):
             return resolved
         # /portfolio -> /portfolio.html

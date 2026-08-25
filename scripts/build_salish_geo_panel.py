@@ -137,11 +137,36 @@ INLINE_GLYPHS = {
 <path d="M -8 -6 Q -6 -9 -4 -6 Q -2 -9 0 -6"/>
 <path d="M 6 4 Q 8 1 10 4 Q 12 1 14 4"/></g>''',
 }
-# Two the hand-drawn chart never needed, in its own hand: thin stroke, the
+# Glyphs the hand-drawn chart never needed, in its own hand: thin stroke, the
 # same cream fill. They live here rather than in panel 2's defs because
 # INLINE_GLYPHS is exactly the place for a glyph panel 2 does not carry.
 INLINE_GLYPHS["city"] = '<g class="rt-doodle" stroke-width="1.1">\n<path fill="#f7f1e0" d="M -13 8 L -13 -4 L -8 -4 L -8 8 Z"/>\n<path fill="#f7f1e0" d="M -6 8 L -6 -12 L -1 -12 L -1 8 Z"/>\n<path fill="#f7f1e0" d="M 1 8 L 1 -7 L 6 -7 L 6 8 Z"/>\n<path fill="#f7f1e0" d="M 8 8 L 8 -16 L 12 -16 L 12 8 Z"/>\n<path fill="none" stroke-width="0.7" d="M -11 -1 h 1 M -11 3 h 1 M -4 -9 h 1 M -4 -5 h 1 M -4 -1 h 1 M 3 -4 h 1 M 3 0 h 1 M 10 -13 v 2 M 10 -8 v 2"/>\n<path fill="none" d="M -15 8 H 14"/></g>'
 INLINE_GLYPHS["plane"] = '<g class="rt-doodle" stroke-width="1.1">\n<path fill="#f7f1e0" d="M -14 1 L 4 -1 L 12 0 L 12 2 L 4 3 L -14 3 Z"/>\n<path fill="#f7f1e0" d="M -4 0 L 2 -11 L 5 -11 L 1 0 Z"/>\n<path fill="#f7f1e0" d="M -4 3 L 2 13 L 5 13 L 1 3 Z"/>\n<path fill="#f7f1e0" d="M 8 0 L 11 -5 L 13 -5 L 11 1 Z"/></g>'
+# Three more the hand-drawn chart never had: the swan pedal boats off the Green
+# Lake boathouse, a croissant for the Mercer Island patisserie, and the water's
+# edge at Luther Burbank, which is a bank, its reeds and the fishing dock out
+# over the lake. Same hand as the rest: 1.6 ink, the chart's own fills.
+INLINE_GLYPHS["swanboat"] = '''<g class="rt-doodle" stroke-width="1.2">
+<path fill="#f7f1e0" d="M -9 -2.6 L 10 -2.6 Q 9.4 3.4 4.6 3.4 L -4 3.4 Q -8.6 3.4 -9 -2.6 Z"/>
+<path fill="#f7f1e0" d="M -6.8 -2.6 Q -8.8 -6.6 -8 -10 L -5.6 -9.6 Q -5.6 -6 -3.4 -2.6 Z"/>
+<path fill="#f7f1e0" d="M 9 -2.6 Q 12.6 -4.8 13 -1.8 Q 11.6 -0.4 9.6 -1 Z"/>
+<circle cx="-7.6" cy="-10.4" r="2.4" fill="#f7f1e0"/>
+<path fill="#ffc24d" stroke-width="1.1" d="M -9.8 -11 L -12.8 -10.2 L -9.8 -9.4 Z"/>
+<path fill="#e8dfc8" stroke-width="1" d="M -1.6 -0.6 Q 2.4 -2.8 6.4 -0.4 Q 2.4 1.8 -1.6 -0.6 Z"/>
+<path fill="#c9885a" stroke-width="1" d="M 0.4 -2.6 L 0.4 -6 L 2.8 -6 L 2.8 -2.6 Z"/>
+<path fill="#c9885a" stroke-width="1" d="M 4.6 -2.6 L 4.6 -6 L 7 -6 L 7 -2.6 Z"/>
+<circle cx="-7" cy="-11" r="0.6" fill="#4a3f2c"/></g>
+<path class="rt-water-deco" d="M -11 5 Q -8 3.4 -5 5 Q -2 6.6 1 5 Q 4 3.4 7 5 Q 10 6.6 12.4 5"/>'''
+INLINE_GLYPHS["croissant"] = '''<g class="rt-doodle" stroke-width="1.2">
+<path fill="#ffc24d" d="M -12.4 4.4 Q -12 -0.6 -8 -3.8 Q -4.2 -7 0 -7 Q 4.2 -7 8 -3.8 Q 12 -0.6 12.4 4.4 Q 8.6 1.2 6.4 2.8 Q 3.4 5 0 5 Q -3.4 5 -6.4 2.8 Q -8.6 1.2 -12.4 4.4 Z"/>
+<path fill="none" stroke-width="0.9" d="M -6.6 -3 Q -5.4 0.4 -6.6 3.2 M -2.6 -6 Q -2 -0.6 -2.8 4.6 M 2.6 -6 Q 2 -0.6 2.8 4.6 M 6.6 -3 Q 5.4 0.4 6.6 3.2"/>
+<path fill="#c9885a" stroke-width="0.9" d="M -3.6 -6.6 Q 0 -8.2 3.6 -6.6 Q 0 -5.2 -3.6 -6.6 Z"/></g>'''
+INLINE_GLYPHS["lakeshore"] = '''<g class="rt-doodle" stroke-width="1.1">
+<path fill="none" stroke-width="1.3" d="M -8 1.2 L -8 5.6 M -1 1.2 L -1 6.2 M 6 1.2 L 6 5.4"/>
+<path fill="none" stroke-width="1.1" d="M 6.6 -1.8 L 6.6 -5 Q 6.6 -6.4 8.4 -6.4 Q 10.2 -6.4 10.2 -5 L 10.2 -1.8 M 6.8 -3.6 L 10 -3.6"/>
+<path fill="#c9885a" d="M -11.6 -1.8 L 10.6 -1.8 L 10.6 1.2 L -11.6 1.2 Z"/>
+<path fill="none" stroke-width="0.7" d="M -11 -0.3 L 10 -0.3"/></g>
+<path class="rt-water-deco" d="M -12 7.6 Q -9 6 -6 7.6 Q -3 9.2 0 7.6 Q 3 6 6 7.6 Q 9 9.2 11.6 7.6"/>'''
 INLINE_GLYPHS["glacier_peak"] = INLINE_GLYPHS["cone"]
 INLINE_GLYPHS["rainier"] = INLINE_GLYPHS["cone"]
 INLINE_GLYPHS["orca-pod"] = INLINE_GLYPHS["orca"] + '''
@@ -926,7 +951,7 @@ NUDGE_MAX, NUDGE_MIN, NUDGE_SHARE = 26.0, 8.0, 0.9
 # anchored on the waterline reads as floating: Alki's Statue of Liberty was
 # standing in Puget Sound and Meydenbauer's sailboat was parked on the lawn.
 WATER_SIDE = {"santana", "orca", "orca-pod", "orca-fin", "humpback", "ship",
-              "duck", "gulls", "salmon", "oyster", "swimraft"}
+              "duck", "gulls", "salmon", "oyster", "swimraft", "swanboat"}
 NEUTRAL_SIDE = {"anchor"}          # a ferry slip is the waterline, either side reads
 
 

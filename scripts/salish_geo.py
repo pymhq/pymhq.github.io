@@ -469,10 +469,13 @@ def on_land(pt, limit: float = 0.6) -> bool:
 
 
 def _lake_rings_near(pt, span=0.2):
-    """Lake polygons within span degrees of a point, from the water layer.
+    """Lakes within span degrees of a point, each as (outline, holes).
 
     Handles relations as well as ways: Lake Washington and Lake Union both come
-    back as multipolygons, so a ways-only test finds neither.
+    back as multipolygons, so a ways-only test finds neither. The holes come back
+    with them because a lake's holes are islands: Mercer Island is an inner ring
+    of Lake Washington and not a piece of coast, so an outline-only test calls
+    the whole island water and puts every drawing on it in the lake.
     """
     x0, y0 = pt
     s, w, n, e = y0 - span, x0 - span, y0 + span, x0 + span
@@ -483,13 +486,17 @@ def _lake_rings_near(pt, span=0.2):
                   or b["maxlon"] < w or b["minlon"] > e):
             continue
         if el["type"] == "way":
-            rings = [way_coords(el)]
+            rings, holes = [way_coords(el)], []
         else:
             ways = [[(p["lon"], p["lat"]) for p in m.get("geometry", [])]
                     for m in el.get("members", []) if m.get("role") in ("outer", "")]
             rings = [r for r in stitch([x for x in ways if len(x) > 1])
                      if len(r) > 3 and r[0] == r[-1]]
-        out += [r for r in rings if len(r) > 3]
+            iways = [[(p["lon"], p["lat"]) for p in m.get("geometry", [])]
+                     for m in el.get("members", []) if m.get("role") == "inner"]
+            holes = [r for r in stitch([x for x in iways if len(x) > 1])
+                     if len(r) > 3 and r[0] == r[-1]]
+        out += [(r, holes) for r in rings if len(r) > 3]
     return out
 
 
@@ -542,14 +549,16 @@ def is_dry(pt) -> bool:
     The coastline test alone answers the sea only, so it calls the middle of Lake
     Union land. Gas Works Park sits on that lake's north shore and Waverly Beach
     on Lake Washington's, so telling their doodles from the water needs the lakes
-    too.
+    too. A lake's own islands are dry: Mercer Island is a hole in Lake Washington,
+    so the pâtisserie in its town centre is on land and not 1.5 km out in a lake.
     """
     side = land_side(pt)
     if side is None:
         side = on_land(pt)
     if not side:
         return False
-    return not any(in_ring(pt, r) for r in _lake_rings_near(pt))
+    return not any(in_ring(pt, r) and not any(in_ring(pt, h) for h in holes)
+                   for r, holes in _lake_rings_near(pt))
 
 
 def snap_to(pt, want_dry: bool, max_m: float = 500.0):

@@ -151,7 +151,8 @@ def main() -> int:
     art = {"anchor", "siren", "needle", "whale", "tent", "pot", "falls", "tower",
            "pine", "deer", "elk", "duck", "hen", "ship", "orca", "orca-pod",
            "humpback", "gulls", "rainforest", "mtns", "baker", "shuksan",
-           "rainier", "glacier_peak", "saddle", "marmot", "salmon", "oyster"}
+           "rainier", "glacier_peak", "saddle", "marmot", "salmon", "oyster",
+           "swanboat", "croissant", "lakeshore"}
     on_idx = sorted(set(drawn[idx]) & art)
     print(f"   drawings on '{idx}': {len(on_idx)} {on_idx}")
     if on_idx:
