@@ -22,6 +22,12 @@ Salish sheets, which hold one scale across a ladder of frames, and it is right
 here for the same reason it is wrong there. These are nine separate mornings in
 four cities, not one body of water.
 
+Panel 1 is the index sheet: a thumbnail of each of the nine, drawn from the same
+frames and the same lines, each one opening its own panel, and a way through to
+/afterhours/races/ for the ones still to come. It is laid out twice on one
+canvas - five across on a screen, three across on a phone - and the pager picks
+the window, the way the Salish sheets already drop their apron on a phone.
+
     python3 scripts/build_race_panels.py            # write into maps.html
     python3 scripts/build_race_panels.py --preview  # /tmp only, don't touch the page
     python3 scripts/build_race_panels.py --only boston_10k
@@ -35,6 +41,8 @@ import math
 import re
 import sys
 from collections import defaultdict
+from dataclasses import dataclass, replace
+from functools import lru_cache
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -42,7 +50,7 @@ import race_courses as R                                    # noqa: E402
 import salish_geo as SG                                     # noqa: E402
 from fetch_race_geo import CACHE, COURSES, frame_of         # noqa: E402
 from salish_geo import (                                    # noqa: E402
-    Proj, clip_chain, merc_x, merc_y, num, path_d, points_d, rdp,
+    Proj, clip_chain, clip_ring, merc_x, merc_y, num, path_d, points_d, rdp,
     stitch, way_coords,
 )
 
@@ -109,6 +117,16 @@ def load(key: str, layer: str) -> list:
     return json.loads(f.read_text()).get("elements", [])
 
 
+# The index sheet draws every course a second time, so the layers are now asked
+# for more than once each. Nothing mutates what comes back.
+load = lru_cache(maxsize=None)(load)                             # noqa: E305
+
+
+def esc(s: str) -> str:
+    """& in a race name is an ampersand, not the start of an entity."""
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
 def rings_of(el: dict) -> tuple[list, list]:
     """Outer and inner rings of a way or multipolygon relation."""
     if el["type"] == "way":
@@ -173,6 +191,21 @@ def course_of(race: dict) -> list:
         r = race["route"]
         return Streets(race["key"], r.get("classes")).route(r["waypoints"])
     return []
+
+
+_COURSES: dict[str, list] = {}
+
+
+def course_cached(race: dict) -> list:
+    """The same line, asked for by the panel and twice by the index sheet.
+
+    Two courses are routed on a street graph rather than read from a file, and
+    Boston's graph is 32,000 nodes: building it three times to draw the same line
+    three times is a minute of nothing.
+    """
+    if race["key"] not in _COURSES:
+        _COURSES[race["key"]] = course_of(race)
+    return _COURSES[race["key"]]
 
 
 class Streets:
@@ -337,17 +370,15 @@ def panel_width(race: dict) -> float:
     return min(VB_W, max(PANEL_MIN_W, round(VB_H * dx / dy)))
 
 
-def frame_for_panel(race: dict, pw: float) -> tuple:
-    """The fetched frame, squared up to the panel so nothing is stretched.
+def squared(frame: tuple, want: float) -> tuple:
+    """A geographic frame grown on its short axis to the box's own aspect.
 
     The projection keeps one scale on both axes and centres the slack, so a tall
     course in a wide box is correct but small and off to one side. Growing the
     short axis of the frame instead fills the box, at the same scale, with real
-    ground rather than with padding. With the panel cut to the course's own shape
-    this is now a small correction on most panels instead of a third of the width.
+    ground rather than with padding. `want` is width / height of the box.
     """
-    w, s, e, n = frame_of(race)
-    want = pw / VB_H
+    w, s, e, n = frame
     dx = merc_x(e) - merc_x(w)
     dy = merc_y(n) - merc_y(s)
     if dx / dy < want:
@@ -359,6 +390,15 @@ def frame_for_panel(race: dict, pw: float) -> tuple:
         s = math.degrees(2 * math.atan(math.exp(merc_y(s) - grow)) - math.pi / 2)
         n = math.degrees(2 * math.atan(math.exp(merc_y(n) + grow)) - math.pi / 2)
     return (w, s, e, n)
+
+
+def frame_for_panel(race: dict, pw: float) -> tuple:
+    """The fetched frame, squared up to the panel so nothing is stretched.
+
+    With the panel cut to the course's own shape this is now a small correction
+    on most panels instead of a third of the width.
+    """
+    return squared(frame_of(race), pw / VB_H)
 
 
 def lines_on(chains, proj, rect, cls_attr: str, eps: float = 0.9) -> list[str]:
@@ -472,6 +512,9 @@ def salish_land(rect):
     except SystemExit:
         return []
     return land
+
+
+salish_land = lru_cache(maxsize=None)(salish_land)                # noqa: E305
 
 
 def basemap(race: dict, proj: Proj, rect, pw: float) -> list[str]:
@@ -677,7 +720,7 @@ def title_block(race: dict, xy, marks, pw: float) -> str:
     # 0.56 of the size is about the width of a character at this weight.
     for line in wrap_to(race["name"], int(bw / (36 * 0.56))):
         out.append(f'<text x="{x:.0f}" y="{y:.0f}" class="rc-title" '
-                   f'text-anchor="{anchor}">{line}</text>')
+                   f'text-anchor="{anchor}">{esc(line)}</text>')
         y += 44
     dates = " · ".join(pretty_date(d) for d in race["dates"])
     limit = int(bw / (14 * 0.55))
@@ -716,7 +759,7 @@ def build_panel(race: dict, n: int, total: int) -> str:
     rect = frame
 
     body = basemap(race, proj, rect, pw)
-    pts = course_of(race)
+    pts = course_cached(race)
     xy = [proj(p[1], p[0]) for p in pts]
     # The things that carry a word: the two pins and any named turn.
     marks = ([xy[0], xy[-1]] if xy else []) + [
@@ -732,10 +775,334 @@ def build_panel(race: dict, n: int, total: int) -> str:
     return (f'<svg class="rc-panel sg-sheet" id="rc-panel-{race["key"]}" '
             f'viewBox="0 0 {pw:.0f} {VB_H:.0f}" '
             f'preserveAspectRatio="xMidYMid meet" role="img" '
-            f'aria-label="{label}">'
+            f'aria-label="{esc(label)}">'
             f'<defs>{{DEFS}}</defs>'
             f'<g clip-path="url(#rc-map-clip-{race["key"]})">{"".join(body)}'
             f'{title_block(race, xy, marks, pw)}</g></svg>')
+
+
+# ----------------------------------------------------------------- index sheet
+
+# Panel 1 is a contact sheet of the nine that follow: the same ground, the same
+# measured line, a tenth of the size, with the name and the date under it. Tap a
+# cell and the pager opens that panel. It carries the two things the panels
+# cannot: what the whole set is, and where to sign up for the ones that are still
+# to come, which is /afterhours/races/.
+#
+# No streets on a thumbnail. At a tenth of the scale a street network is grey
+# noise with a coloured thread in it, and the thread is the point; what is kept
+# is the water, the coastline and the parks, because those are what say Seward
+# Park from Juanita Beach at 280 units across.
+#
+# It is drawn twice on one canvas. Ten cells are 5x2 on a screen and 2x5 on a
+# phone, and the pager already swaps in a slide's own tall window from
+# data-map-only, so the phone layout is the same cells rearranged, parked below
+# the wide one, and the viewBox chooses. Nothing else in the section reflows.
+
+IDX_KEY = "index"
+TALL_BOX = (0.0, 1000.0, 900.0, 1900.0)          # x, y, w, h of the phone layout
+RACES_HREF = "/afterhours/races/"
+
+# How hard the ground is simplified on a thumbnail, and how far outside the cell
+# it is kept. The panels project a water polygon whole and leave it to the clip,
+# because cutting a shoreline by hand is how one of them came out as all water;
+# at a tenth of the size that means Lake Washington's entire ring in the file for
+# 300 m of visible shore. So here a ring is cut to the cell first - a closed ring
+# through Sutherland-Hodgman has no inside to lose - a little wider than the cell
+# so the cut edge itself falls under the clip and never draws as a shore. At
+# about 280 units for 2 km, 2 units of tolerance is 15 m.
+THUMB_EPS = 2.0
+THUMB_BLEED = 0.06        # of the frame, each side
+
+
+def grown(rect: tuple, by: float = THUMB_BLEED) -> tuple:
+    w, s, e, n = rect
+    dx, dy = (e - w) * by, (n - s) * by
+    return (w - dx, s - dy, e + dx, n + dy)
+
+
+def thumb_areas(elements, proj: Proj, rect: tuple, fill: str,
+                stroke: str = "none", min_span: float = 10.0) -> list[str]:
+    """Filled polygons, cut to the cell and simplified in cell units.
+
+    `min_span` is the smallest thing worth a mark. On a panel that is 9 units,
+    about a lawn; here it has to be a park you can see, or the greens layer
+    arrives as three hundred specks and half the weight of the sheet.
+    """
+    box = grown(rect)
+    ds = []
+    for el in elements:
+        if not touches(el, rect):
+            continue
+        outer, inner = rings_of(el)
+        rings = []
+        for ring in outer + inner:
+            piece = clip_ring(ring, box)
+            if len(piece) < 3:
+                continue
+            pts = rdp([proj(lo, la) for lo, la in piece], THUMB_EPS)
+            if len(pts) > 2 and _span(pts) > min_span:
+                rings.append(points_d(pts, True))
+        if rings:
+            ds.append(" ".join(rings))
+    if not ds:
+        return []
+    edge = f' stroke="{stroke}" stroke-width="1"' if stroke != "none" else ""
+    return [f'<path d="{" ".join(ds)}" fill="{fill}" fill-rule="evenodd"{edge}/>']
+
+
+@dataclass(frozen=True)
+class Sheet:
+    """One arrangement of the cells, and the type sizes that fit it."""
+    x: float
+    y: float
+    w: float
+    h: float
+    cols: int
+    rows: int
+    gap: float
+    band: float          # the type under each thumbnail, for a one-line name
+    name: float          # the race name
+    meta: float          # distance and dates
+    badge: float         # the panel number
+    glyph: float         # the event mark, as a scale
+    clear: float         # the page's sticky nav, in this region's units
+    link_in_grid: bool   # the tenth cell, or a strip under the grid
+    name_lines: int = 1  # set by fitted(): the longest name on the sheet
+
+
+# The nav is sticky and sits over the top of a full-height panel, which is why
+# the race panels start their type at HEADER_CLEAR. The same band, measured on
+# the page: about 100 css pixels of nav over a sheet drawn at 2.6 units to the
+# pixel on a phone, and 1 to 1 on a 16:9 screen.
+WIDE_SHEET = Sheet(x=PAD, y=186, w=VB_W - 2 * PAD, h=VB_H - 186 - 36,
+                   cols=5, rows=2, gap=26, band=78,
+                   name=15.5, meta=10.5, badge=11, glyph=0.8,
+                   clear=HEADER_CLEAR, link_in_grid=True)
+# Three across on a phone, because two across makes every thumbnail 2.3 times as
+# wide as it is tall and a course drawn north-south then owns a third of it. Nine
+# cells fill a 3x3 exactly, so the way through to the sign-up codes is a strip
+# under the grid rather than a tenth cell. The clear band is larger here than the
+# panels' 96 because these units are smaller: measured on the page, a phone draws
+# this region at about 2.7 units to the pixel, so the sticky nav's 100 pixels can
+# reach 270 units down it.
+TALL_SHEET = Sheet(x=PAD, y=TALL_BOX[1] + 430, w=TALL_BOX[2] - 2 * PAD,
+                   h=TALL_BOX[3] - 430 - 196, cols=3, rows=3, gap=26, band=100,
+                   name=22, meta=16, badge=15, glyph=1.1,
+                   clear=280, link_in_grid=False)
+STRIP_H = 110.0          # the sign-up card, when it is not a cell in the grid
+
+
+def wraps_to(w: float, size: float) -> int:
+    """How many characters of this size fit a cell this wide.
+
+    0.55 of the size is a shade wider than this face actually sets, which is the
+    safe direction to be wrong in.
+    """
+    return int(w / (size * 0.55))
+
+
+def fitted(sh: Sheet, races: list[dict]) -> Sheet:
+    """The sheet with room under every thumbnail for its own name.
+
+    The band is written for a one-line name. One race whose name wraps - Meet Me
+    at Waterfront Park 5K, on the phone layout - pushed its dates down into the
+    row below, which is the sort of thing that appears the day a race is added.
+    So the band is the longest name the sheet has to set, and the thumbnails give
+    up the difference.
+    """
+    cw = (sh.w - sh.gap * (sh.cols - 1)) / sh.cols
+    lines = max(len(wrap_to(r["name"], wraps_to(cw, sh.name))) for r in races)
+    return replace(sh, band=sh.band + (lines - 1) * sh.name * 1.25,
+                   name_lines=lines)
+
+
+def cells_of(sh: Sheet, n: int):
+    cw = (sh.w - sh.gap * (sh.cols - 1)) / sh.cols
+    ch = (sh.h - sh.gap * (sh.rows - 1)) / sh.rows
+    for i in range(n):
+        r, c = divmod(i, sh.cols)
+        yield (sh.x + c * (cw + sh.gap), sh.y + r * (ch + sh.gap), cw, ch)
+
+
+def text_at(x: float, y: float, body: str, cls: str, size: float,
+            anchor: str = "start", fill: str = "") -> str:
+    style = f"font-size:{size:g}px" + (f"; fill:{fill}" if fill else "")
+    return (f'<text x="{x:.0f}" y="{y:.0f}" class="{cls}" '
+            f'text-anchor="{anchor}" style="{style}">{esc(body)}</text>')
+
+
+def thumb_map(race: dict, x: float, y: float, w: float, h: float,
+              clip: str) -> list[str]:
+    """One course at thumbnail scale: its panel's frame, water, parks, line."""
+    key = race["key"]
+    rect = squared(frame_of(race), w / h)
+    proj = Proj(rect[0], rect[1], rect[2], rect[3], x, y, w, h)
+    land = salish_land(rect)
+    out = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" '
+           f'fill="{WATER if land else BG}"/>']
+    if land:
+        # One element, not the panel's two: at this size the shore is a hairline
+        # and a second copy of a coastline is a third of the sheet's weight.
+        rings = [rdp([proj(lo, la) for lo, la in clip_ring(r, grown(rect))],
+                     THUMB_EPS) for r in land]
+        d = " ".join(points_d(r, True) for r in rings if len(r) > 2)
+        if d:
+            out.append(f'<path d="{d}" fill="{BG}" stroke="{WATER_EDGE}" '
+                       f'stroke-width="1"/>')
+    out += thumb_areas(load(key, "green"), proj, rect, GREEN, min_span=17.0)
+    out += thumb_areas([e for e in load(key, "water")
+                        if e.get("tags", {}).get("natural") != "coastline"],
+                       proj, rect, WATER, WATER_EDGE, min_span=11.0)
+    pts = course_cached(race)
+    if pts:
+        accent = race["accent"]
+        d = points_d(rdp([proj(p[1], p[0]) for p in pts], 1.1), False)
+        out.append(f'<path d="{d}" fill="none" stroke="{accent}" '
+                   f'stroke-width="9" stroke-opacity="0.16" '
+                   f'stroke-linecap="round" stroke-linejoin="round"/>')
+        out.append(f'<path d="{d}" fill="none" stroke="{accent}" '
+                   f'stroke-width="2.6" stroke-linecap="round" '
+                   f'stroke-linejoin="round"/>')
+        sx, sy = proj(pts[0][1], pts[0][0])
+        fx, fy = proj(pts[-1][1], pts[-1][0])
+        out.append(f'<circle cx="{sx:.1f}" cy="{sy:.1f}" r="3.4" fill="{BG}" '
+                   f'stroke="{accent}" stroke-width="2"/>')
+        if km(pts[0][:2], pts[-1][:2]) >= 0.15:
+            out.append(f'<circle cx="{fx:.1f}" cy="{fy:.1f}" r="3.4" '
+                       f'fill="{accent}" stroke="{BG}" stroke-width="1.4"/>')
+    return [f'<g clip-path="url(#{clip})">'] + out + ["</g>"]
+
+
+def thumb_cell(race: dict, n: int, cell: tuple, sh: Sheet, tag: str) -> list[str]:
+    """A thumbnail, its number, its name and the slide it opens."""
+    x, y, w, h = cell
+    mh = h - sh.band
+    clip = f"rc-th-{tag}-{race['key']}"
+    label = f'{race["name"]}: {race["sub"]} · route {n} of the nine'
+    out = [f'<g class="rc-thumb" role="link" tabindex="0" data-slide="{n}" '
+           f'aria-label="{esc(label)}">']
+    out += thumb_map(race, x, y, w, mh, clip)
+    out.append(f'<rect class="rc-thumb-frame" x="{x:.1f}" y="{y:.1f}" '
+               f'width="{w:.1f}" height="{mh:.1f}" rx="3"/>')
+    # The number is the race's own, in the order they were run, and it is also
+    # the slide it opens: this sheet is slide 0 and race n is slide n.
+    br = sh.badge + 6
+    out.append(f'<g><circle cx="{x + br:.1f}" cy="{y + br:.1f}" r="{br - 4:.1f}" '
+               f'fill="{BG}" fill-opacity="0.82" stroke="{race["accent"]}" '
+               f'stroke-width="1.4"/>'
+               f'<text x="{x + br:.1f}" y="{y + br + sh.badge * 0.36:.1f}" '
+               f'class="rc-badge" style="font-size:{sh.badge:g}px">{n}</text></g>')
+    if race.get("glyph"):
+        out.append(f'<use href="#{race["glyph"]}" transform="translate('
+                   f'{x + w - br:.1f}, {y + br:.1f}) scale({sh.glyph:g})"/>')
+    top = y + mh + sh.name + 12
+    ty = top
+    for line in wrap_to(race["name"], wraps_to(w, sh.name)):
+        out.append(text_at(x, ty, line, "rc-th-name", sh.name))
+        ty += sh.name * 1.25
+    # The distance sits at the sheet's own line allowance, not under whatever
+    # this name happened to need, so a row of cells reads as a row.
+    dates = " · ".join(pretty_date(d) for d in race["dates"])
+    ty = top + sh.name_lines * sh.name * 1.25 + sh.meta * 0.5
+    for line, fill in [(race["distance"], race["accent"]), (dates, DIM)]:
+        for part in wrap_to(line, wraps_to(w, sh.meta)):
+            out.append(text_at(x, ty, part, "rc-th-meta", sh.meta, fill=fill))
+            ty += sh.meta * 1.35
+    # The whole cell is the target, type included: a 15-unit name is a hard
+    # thing to hit and an easy thing to read.
+    out.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" '
+               f'fill="{BG}" fill-opacity="0"/>')
+    out.append("</g>")
+    return out
+
+
+def link_cell(cell: tuple, sh: Sheet) -> list[str]:
+    """Off the chart, to the sign-up codes: the tenth cell, or a strip."""
+    x, y, w, h = cell
+    mh = h - sh.band if sh.link_in_grid else h
+    out = [f'<a class="rc-link" href="{RACES_HREF}" '
+           f'aria-label="Races: referral codes for the ones still to come">',
+           f'<rect class="rc-link-card" x="{x:.1f}" y="{y:.1f}" '
+           f'width="{w:.1f}" height="{mh:.1f}" rx="3"/>']
+    if sh.link_in_grid:
+        cy = y + mh / 2
+        out.append(text_at(x + w / 2, cy - sh.name * 0.4, "Still to come",
+                           "rc-th-name", sh.name * 1.15, anchor="middle"))
+        out.append(text_at(x + w / 2, cy + sh.meta * 1.6, "sign-up codes  →",
+                           "rc-th-meta", sh.meta * 1.2, anchor="middle", fill=INK))
+        ty = y + mh + sh.name + 12
+        out.append(text_at(x, ty, "Races", "rc-th-name", sh.name))
+        out.append(text_at(x, ty + sh.name * 1.25 + sh.meta * 0.5, RACES_HREF,
+                           "rc-th-meta", sh.meta, fill=DIM))
+    else:
+        # A strip: the same words on one line, set like a footer.
+        out.append(text_at(x + 22, y + mh / 2 - sh.meta * 0.2, "Still to come",
+                           "rc-th-name", sh.name))
+        out.append(text_at(x + 22, y + mh / 2 + sh.meta * 1.5,
+                           f"sign-up codes · {RACES_HREF}", "rc-th-meta",
+                           sh.meta, fill=DIM))
+        out.append(text_at(x + w - 22, y + mh / 2 + sh.meta * 0.4, "→",
+                           "rc-th-name", sh.name * 1.4, anchor="end"))
+    out.append("</a>")
+    return out
+
+
+def index_region(races: list[dict], sh: Sheet, tag: str, box: tuple) -> list[str]:
+    sh = fitted(sh, races)
+    bx, by, bw, bh = box
+    big = sh.name * 1.7
+    top = by + sh.clear + big
+    out = [f'<rect x="{bx:.0f}" y="{by:.0f}" width="{bw:.0f}" '
+           f'height="{bh:.0f}" fill="{BG}"/>']
+    out.append(f'<text x="{bx + PAD:.0f}" y="{top:.0f}" class="rc-idx-title" '
+               f'style="font-size:{big:g}px; '
+               f'letter-spacing:{big * 0.05:.1f}px">RACE ROUTES</text>')
+    out.append(text_at(bx + PAD, top + sh.meta * 1.8,
+                       f"· the index sheet: {len(races)} start lines, "
+                       f"each on its own ground ·", "rc-idx-sub", sh.meta * 1.15))
+    hint = "Tap a course to open its panel"
+    if sh.cols > sh.rows:
+        out.append(text_at(bx + bw - PAD, top, hint,
+                           "rc-idx-sub", sh.meta * 1.15, anchor="end"))
+    else:
+        out.append(text_at(bx + PAD, top + sh.meta * 3.5, hint,
+                           "rc-idx-sub", sh.meta * 1.15))
+    cells = list(cells_of(sh, len(races) + (1 if sh.link_in_grid else 0)))
+    for i, race in enumerate(races):
+        out += thumb_cell(race, i + 1, cells[i], sh, tag)
+    if sh.link_in_grid:
+        out += link_cell(cells[len(races)], sh)
+    else:
+        out += link_cell((sh.x, sh.y + sh.h + sh.gap, sh.w, STRIP_H), sh)
+    return out
+
+
+def index_panel(races: list[dict]) -> str:
+    print(f"panel 0 {IDX_KEY}: {len(races)} thumbnails, two layouts")
+    body = index_region(races, WIDE_SHEET, "w", (0.0, 0.0, VB_W, VB_H))
+    body += index_region(races, TALL_SHEET, "t", TALL_BOX)
+    label = (f"Race routes: the index sheet, {len(races)} courses, "
+             f"each opening its own panel")
+    tall = f"{TALL_BOX[0]:.0f} {TALL_BOX[1]:.0f} {TALL_BOX[2]:.0f} {TALL_BOX[3]:.0f}"
+    return (f'<svg class="rc-panel sg-sheet" id="rc-panel-{IDX_KEY}" '
+            f'viewBox="0 0 {VB_W:.0f} {VB_H:.0f}" data-map-only="{tall}" '
+            f'preserveAspectRatio="xMidYMid meet" role="img" '
+            f'aria-label="{esc(label)}">'
+            f'<defs>{{DEFS}}</defs>{"".join(body)}</svg>')
+
+
+def index_defs(races: list[dict], markup: str) -> str:
+    """The glyphs the sheet uses, and one clip per thumbnail."""
+    used = set(re.findall(r'href="#(rc-[a-z-]+)"', markup))
+    clips = []
+    for sh, tag in ((fitted(WIDE_SHEET, races), "w"),
+                    (fitted(TALL_SHEET, races), "t")):
+        for race, (x, y, w, h) in zip(races, cells_of(sh, len(races))):
+            clips.append(f'<clipPath id="rc-th-{tag}-{race["key"]}">'
+                         f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" '
+                         f'height="{h - sh.band:.1f}" rx="3"/></clipPath>')
+    return "".join(v for k, v in GLYPHS.items() if k in used) + "".join(clips)
 
 
 # --------------------------------------------------------------------- assembly
@@ -872,6 +1239,8 @@ def section_html(panels: list[str]) -> str:
     slides = "".join(f'<div class="sg-slide">{p}</div>' for p in panels)
     return f'''{BEGIN}
     <!-- Every start line, one panel each, on the real ground it was run over.
+         Panel 1 is the index sheet: a thumbnail of all nine, each one opening
+         its own panel, plus the way through to /afterhours/races/.
          Generated: edit scripts/race_courses.py and rebuild, never this markup.
          The courses are the organisers' own published lines; the streets, water
          and parks under them are OpenStreetMap. -->
@@ -907,6 +1276,14 @@ def main() -> int:
         svg = svg.replace("{DEFS}", subset_defs(race, svg))
         print(f"    {len(svg) // 1024} KB")
         built.append(svg)
+
+    # The index sheet goes first, and it is built last: it needs every course,
+    # and by now every course is in hand.
+    if not only:
+        idx = index_panel(R.RACES)
+        idx = idx.replace("{DEFS}", index_defs(R.RACES, idx))
+        print(f"    {len(idx) // 1024} KB")
+        built.insert(0, idx)
 
     style = re.search(r"<style>(.*?)</style>", html, re.S)
     head = ("<!doctype html><meta charset=utf-8><style>"
