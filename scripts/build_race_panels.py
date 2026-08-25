@@ -726,8 +726,6 @@ def build_panel(race: dict, n: int, total: int) -> str:
         body += course_markup(race, pts, proj)
         body += named_marks(race, proj, rect, pw)
     body.append(scale_bar(PAD, VB_H - 46, proj))
-    body.append(f'<text x="{pw - PAD:.0f}" y="{VB_H - 42:.0f}" class="rc-src" '
-                f'text-anchor="end">Streets, water and parks: OpenStreetMap</text>')
 
     label = (f'{race["name"]}: {race["sub"]}, '
              f'{" and ".join(pretty_date(d) for d in race["dates"])}')
