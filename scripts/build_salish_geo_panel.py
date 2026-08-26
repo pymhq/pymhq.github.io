@@ -1287,6 +1287,49 @@ def grow(frame, share: float = 0.04):
     return (w - dx, s - dy, e + dx, n + dy)
 
 
+def trim_to_sheet(xy, box, margin: float = 18.0):
+    """A track that leaves the sheet, cut short of the frame with room to spare.
+
+    A ferry leg is drawn whole and the sheet's clip cuts it at the frame, which
+    reads as a course that stops mid-water for no reason: the Tsawwassen boat did
+    that on the San Juans and the Whidbey sheets. Cut `margin` units inside the
+    frame instead and the arrow at the end says what the geometry means, that the
+    crossing carries on off the paper.
+
+    Returns (points, cut) or None when the track ends on this sheet and should be
+    drawn as it is.
+    """
+    x0, y0, w, h = box
+    out_of = lambda p: not (x0 <= p[0] <= x0 + w and y0 <= p[1] <= y0 + h)
+    if not (out_of(xy[0]) or out_of(xy[-1])):
+        return None
+    inner = (x0 + margin, y0 + margin, x0 + w - margin, y0 + h - margin)
+    keep = lambda p: (inner[0] <= p[0] <= inner[2] and inner[1] <= p[1] <= inner[3])
+    first = next((k for k, p in enumerate(xy) if keep(p)), None)
+    if first is None:
+        return None
+    last = len(xy) - 1 - next(k for k, p in enumerate(reversed(xy)) if keep(p))
+    pts, cut = xy[first:last + 1], None
+    if first > 0:
+        pts = [_cross(pts[0], xy[first - 1], inner)] + pts
+        cut = pts[0]
+    if last < len(xy) - 1:
+        pts = pts + [_cross(pts[-1], xy[last + 1], inner)]
+        cut = cut or pts[-1]
+    return (pts, cut) if len(pts) > 1 and cut else None
+
+
+def _cross(inside, outside, box, steps: int = 24):
+    """Where the segment leaves the box, by bisection. Straight lines only, so
+    the answer is exact to a thousandth of a unit in 24 halvings."""
+    keep = lambda p: (box[0] <= p[0] <= box[2] and box[1] <= p[1] <= box[3])
+    a, b = inside, outside
+    for _ in range(steps):
+        m = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+        a, b = (m, b) if keep(m) else (a, m)
+    return a
+
+
 def lines_on(chains, proj: Proj, frame, cls, eps=0.4, extra="") -> list[str]:
     """Draw only the pieces of these polylines that reach this sheet.
 
@@ -1365,11 +1408,32 @@ def draw_frame_content(proj: Proj, frame, out: list[str], sizes: dict,
                         proj, frame, "rt-drive-line", 0.3)
         out += lines_on([[(lon, lat) for lat, lon in t] for t in P.TRAILS],
                         proj, frame, "rt-trail-line", 0.2)
-    for leg in ferry_tracks():
+    for li, leg in enumerate(ferry_tracks()):
         if any(on_frame(lat, lon, frame, -0.02) for lat, lon in leg):
-            out.append(poly([(lon, lat) for lat, lon in leg], proj, "rt-ferry-line",
-                            0.2, ' marker-start="url(#sg-track-arrow)"'
-                                 ' marker-end="url(#sg-track-arrow)"'))
+            xy = [proj(lon, lat) for lat, lon in leg]
+            cut = trim_to_sheet(xy, proj.box)
+            if cut is None:
+                out.append(poly([(lon, lat) for lat, lon in leg], proj,
+                                "rt-ferry-line", 0.2,
+                                ' marker-start="url(#sg-track-arrow)"'
+                                ' marker-end="url(#sg-track-arrow)"'))
+                continue
+            # The leg leaves the sheet. Drawn whole it is cut by the frame, which
+            # reads as a line that stops for no reason; cut short of the edge with
+            # an arrow on it, it reads as a course carrying on off the paper.
+            pts, (cx, cy) = cut
+            out.append(f'<path class="rt-ferry-line" '
+                       f'd="{points_d(rdp(pts, 0.2), False)}" '
+                       f'marker-start="url(#sg-track-arrow)" '
+                       f'marker-end="url(#sg-track-arrow)"/>')
+            ends = (P.FERRY_LEGS[li][0], P.FERRY_LEGS[li][-1])
+            note = P.FERRY_NOTES.get(ends)
+            if note:
+                # Beside the arrow, not above it: the top of a sheet is where the
+                # graticule prints its degree labels, and a caption on that line
+                # lands on '123°W'. The track leaves downwards, so its right is
+                # the free side.
+                out.append(text(note, cx + 8.0, cy + 12.0, "rt-sub", "start"))
     for name, span in P.BRIDGES:
         if any(on_frame(lat, lon, frame) for lat, lon in span):
             out.append(poly([(lon, lat) for lat, lon in span], proj,
@@ -1397,13 +1461,23 @@ def children_of(sheet) -> list[tuple[tuple, str]]:
     return out
 
 
-def child_box(frame, proj: Proj, n: int, bounds=None) -> tuple[str, tuple]:
+def child_box(frame, proj: Proj, n: int, ground=None) -> tuple[str, tuple]:
     """A later rung's ground, boxed and numbered.
 
     The number is the point. Spelling the sheet's name beside the box needs 120
     units of the busiest paper on the chart and lands on the Snoqualmie; an
     11-unit tag keyed to the apron list needs none of it, and it also makes the
     town-plan boxes findable, which at 8 units across they were not.
+
+    A child frame is not obliged to fit: the Cascades reach 190 units below the
+    index sheet's ground and the Whidbey frame is five times the San Juans sheet.
+    So only the edges that fall on this sheet's own ground are drawn, clamped to
+    it, which leaves the box open on the side where the frame runs off the paper.
+    Drawn whole and unclamped, as it was, those edges landed on the blank margin
+    below the map or on the apron, and the four that fell off the sheet entirely
+    left one dashed line crossing the paper with no box to belong to. A frame
+    showing fewer than two of its edges says nothing as a box, so it keeps its
+    number and drops the lines.
     """
     w, s, e, n_lat = frame
     x0, y0 = proj(w, n_lat)
@@ -1411,25 +1485,54 @@ def child_box(frame, proj: Proj, n: int, bounds=None) -> tuple[str, tuple]:
     pad = 3.0
     bw, bh = max(x1 - x0, 4), max(y1 - y0, 4)
     rect = (x0 - pad, y0 - pad, bw + pad * 2, bh + pad * 2)
-    tx, ty = rect[0] - 7.5, rect[1] - 7.5
+    gx0, gy0, gx1, gy1 = ground if ground else (rect[0], rect[1],
+                                                rect[0] + rect[2],
+                                                rect[1] + rect[3])
+
+    def clamp(v, lo, hi):
+        return min(max(v, lo), hi)
+
+    # The pad is decoration; whether an edge exists is the frame's own business.
+    # Clamp the drawn line, test the true edge.
+    eps = 0.5
+    px0, py0 = clamp(rect[0], gx0, gx1), clamp(rect[1], gy0, gy1)
+    px1 = clamp(rect[0] + rect[2], gx0, gx1)
+    py1 = clamp(rect[1] + rect[3], gy0, gy1)
+    on_x = lambda v: gx0 - eps <= v <= gx1 + eps
+    on_y = lambda v: gy0 - eps <= v <= gy1 + eps
+    edges = []
+    if px1 - px0 > 1 and py1 - py0 > 1:
+        if on_y(y0):
+            edges.append(f'M {px0:.1f} {py0:.1f} H {px1:.1f}')
+        if on_y(y1):
+            edges.append(f'M {px0:.1f} {py1:.1f} H {px1:.1f}')
+        if on_x(x0):
+            edges.append(f'M {px0:.1f} {py0:.1f} V {py1:.1f}')
+        if on_x(x1):
+            edges.append(f'M {px1:.1f} {py0:.1f} V {py1:.1f}')
+    box = ''
+    if len(edges) >= 2:
+        box = (f'<path d="{" ".join(edges)}" fill="none" stroke="#7a4a2d" '
+               f'stroke-width="1" stroke-dasharray="3 3" opacity="0.8"/>')
+    # The tag hangs off the corner of what is actually drawn, not of the frame:
+    # a corner 190 units below the paper cannot carry a number.
+    tx, ty = px0 - 7.5, py0 - 7.5
     # A frame that starts at the sheet's own west edge puts its tag under the
     # apron, which is drawn last and paints over it: sheet 3 lost its number
     # that way. Keep the tag inside the map, flipping it in at the edges.
-    if bounds:
-        mx0, mx1 = bounds
-        if tx - 6.5 < mx0 + 2:
-            tx = rect[0] + 8.5
-        if tx + 6.5 > mx1 - 2:
-            tx = rect[0] + rect[2] - 8.5
-        ty = max(ty, 9.0)
-    return (f'<rect x="{rect[0]:.1f}" y="{rect[1]:.1f}" width="{rect[2]:.1f}" '
-            f'height="{rect[3]:.1f}" fill="none" stroke="#7a4a2d" '
-            f'stroke-width="1" stroke-dasharray="3 3" opacity="0.8"/>'
-            f'<circle cx="{tx:.1f}" cy="{ty:.1f}" r="6.5" fill="#f7f1e0" '
-            f'stroke="#7a4a2d" stroke-width="1"/>'
-            f'<text x="{tx:.1f}" y="{ty + 3.2:.1f}" text-anchor="middle" '
-            f'fill="#7a4a2d" style="font-size:9px; font-weight:600">{n}</text>',
-            rect, (tx, ty))
+    if ground:
+        if tx - 6.5 < gx0 + 2:
+            tx = px0 + 8.5
+        if tx + 6.5 > gx1 - 2:
+            tx = px1 - 8.5
+        tx = clamp(tx, gx0 + 9, gx1 - 9)
+        ty = clamp(max(ty, 9.0), gy0 + 9, gy1 - 9)
+    return (box
+            + f'<circle cx="{tx:.1f}" cy="{ty:.1f}" r="6.5" fill="#f7f1e0" '
+              f'stroke="#7a4a2d" stroke-width="1"/>'
+              f'<text x="{tx:.1f}" y="{ty + 3.2:.1f}" text-anchor="middle" '
+              f'fill="#7a4a2d" style="font-size:9px; font-weight:600">{n}</text>',
+            (px0, py0, px1 - px0, py1 - py0), (tx, ty))
 
 
 def build_map_sheet(sheet, sizes: dict) -> str:
@@ -1528,7 +1631,7 @@ def build_map_sheet(sheet, sizes: dict) -> str:
     # them.
     tags_pre = []
     for i2, (cf, _t) in enumerate(children_of(sheet), 1):
-        _m, _r, tg = child_box(cf, proj, i2, (map_x, map_x + map_w))
+        _m, _r, tg = child_box(cf, proj, i2, (map_x, 0, map_x + map_w, map_h))
         tags_pre.append(tg)
     placer = name_placer(proj, frame, glyphs, map_x, map_w, tags_pre)
     for ic, dx2, dy2, sc2 in [(d[0], d[1], d[2], d[3]) for d in doodles]:
@@ -1558,7 +1661,8 @@ def build_map_sheet(sheet, sizes: dict) -> str:
     children = children_of(sheet)
     tags = []
     for i, (cframe, title) in enumerate(children, 1):
-        markup, rect, tag = child_box(cframe, proj, i, (map_x, map_x + map_w))
+        markup, rect, tag = child_box(cframe, proj, i,
+                                      (map_x, 0, map_x + map_w, map_h))
         out.append(markup)
         tags.append(tag)
 
@@ -1571,7 +1675,7 @@ def build_map_sheet(sheet, sizes: dict) -> str:
           own)
 
     apron = map_apron(sheet, proj, map_x, map_w, dots, children)
-    return wrap(sheet, proj, map_x, map_w, "".join(out), apron)
+    return wrap(sheet, proj, map_x, map_w, "".join(out), apron, map_h=map_h)
 
 
 def name_placer(proj, frame, glyphs, map_x, map_w, tags=()):
@@ -1970,11 +2074,16 @@ def map_apron(sheet, proj: Proj, map_x, map_w, dots, children) -> str:
 
 # ------------------------------------------------------------------- assembly
 
-def wrap(sheet, proj, map_x, map_w, body: str, apron: str, narrow_vb=None) -> str:
+def wrap(sheet, proj, map_x, map_w, body: str, apron: str, narrow_vb=None,
+         map_h=VB_H) -> str:
     """One sheet as an svg: the map clipped, the apron over it."""
     if proj is not None:
+        # The clip is the ground, height included. A frame wider than the sheet
+        # has left pays in height (see sheet_geometry): the index sheet's ground
+        # is 737 of 900 units, and a clip 900 units tall let anything hung off
+        # the south edge print on the blank margin below the map.
         clip = (f'<clipPath id="sg-clip-{sheet["key"]}"><rect x="{map_x}" y="0" '
-                f'width="{map_w}" height="{VB_H}"/></clipPath>')
+                f'width="{map_w}" height="{map_h}"/></clipPath>')
         inner = f'<g clip-path="url(#sg-clip-{sheet["key"]})">{body}</g>'
         narrow = f' data-map-only="{map_x:.0f} 0 {map_w:.0f} {VB_H:.0f}"'
     else:

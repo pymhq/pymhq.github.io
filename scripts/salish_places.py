@@ -877,6 +877,15 @@ FERRY_LEGS = [
 ]
 
 
+# What a leg cut short by the frame is on its way to. Keyed by the leg's own two
+# ends, so the caption follows the crossing rather than a sheet: the Tsawwassen
+# boat runs off the top of the San Juans and the Whidbey sheets, and an arrow
+# alone does not say where to.
+FERRY_NOTES = {
+    (DOCKS["tsawwassen"], DOCKS["swartz_bay"]): "→ Tsawwassen · Vancouver",
+}
+
+
 # Drive legs are routed through the real highway network: each is a list of
 # checkpoints, and the build script walks the OSM graph between them along the
 # refs given, so the line on the chart is the road.
@@ -998,8 +1007,19 @@ DRIVE_LEGS = [
          label2=("Icefields Pkwy · Hwy 93", 52.4000, -117.5000, -58)),
 ]
 
-# Island drives, on roads the highway layer does not carry (they are not
-# numbered routes): the west side of San Juan Island, and Orcas.
+# Island drives, on roads the highway layer does not carry: the west side of San
+# Juan Island, and Orcas, which are unnumbered; and the two British Columbia
+# legs, which are numbered 17 and are missing from the fetch for a different
+# reason. CA_ROAD_REFS in fetch_salish_geo.py asks Overpass for 1, 1A, 2, 16, 93,
+# 93A and 99 only, so BC-17 down the Saanich Peninsula is not in the road graph
+# and cannot be routed on it: without these two chains the Swartz Bay boat lands
+# on an island with no way off it, and Vancouver has no road to its own ferry.
+#
+# Both alignments follow the real BC-17. They were hand-placed on the drawn coast
+# and lived, for one commit, only in the generated markup of maps.html; they are
+# data now so that a rebuild keeps them. Every vertex and every 200 m sample
+# between them is on dry land, bar the two ferry docks, the False Creek bridges
+# and the Tsawwassen causeway, which are over water on the ground too.
 ISLAND_DRIVES = [
     [DOCKS["friday_harbor"], (48.5390, -123.0290), (48.5480, -123.0700),
      (48.5420, -123.1200), (48.5380, -123.1430), (48.5347, -123.1489)],
@@ -1011,6 +1031,17 @@ ISLAND_DRIVES = [
      (48.6786, -122.8322)],
     [(48.6930, -122.9200), (48.6800, -122.9560), (48.6700, -122.9700),
      (48.6656, -122.9803)],
+    # Swartz Bay to Victoria, 32 km: out of the terminal to the southwest, down
+    # the east side of the peninsula past Sidney and Saanichton, then bending
+    # southeast into town on Blanshard.
+    [DOCKS["swartz_bay"], (48.6786, -123.4270), (48.6735, -123.4270),
+     (48.6683, -123.4191), (48.5830, -123.4231), (48.5417, -123.4074),
+     (48.4795, -123.3722), (48.4381, -123.3683), (48.4329, -123.3605),
+     (48.4225, -123.3644), (48.4197, -123.3701)],
+    # Downtown Vancouver to the Tsawwassen slip: Hwy 99 south out of the city,
+    # 17 through Delta and the causeway out to the berths.
+    [(49.2827, -123.1207), (49.2710, -123.1021), (49.0915, -123.0929),
+     (49.0255, -123.1021), DOCKS["tsawwassen"]],
 ]
 
 TRAILS = [
