@@ -829,6 +829,15 @@ POIS = [
     dict(key="diablo", name="Diablo Lake: its milky turquoise comes from glacial rock flour",
          at=(48.7150, -121.1050), ic="diablo",
          label=("text", 0, 22, "middle", "rt-sub", ["Diablo L."])),
+    # Elk Fields is the Meadowbrook Farm meadow inside Three Forks Natural Area,
+    # 1.5 km from the confluence itself - too close for the sheet to carry two
+    # doodles (a doodle needs 6 to 12 km of clearance), so one elk carries both
+    # names: the park's on the sign, the elk are why I went.
+    dict(key="elk_fields",
+         name="Elk Fields: the Three Forks Natural Area meadow, at the confluence "
+              "of the Snoqualmie's three forks, where the North Bend elk herd grazes",
+         at=(47.5123, -121.8072), ic="elk", scale=0.85,
+         label=("text", 0, 22, "middle", "rt-sub", ["Elk Fields"])),
 ]
 
 # ------------------------------------------------------- unclimbed summits etc.
@@ -841,7 +850,7 @@ SUMMITS = [
          label=("Glacier Peak · 10,541 ft", -4, 40, "end")),
     dict(key="olympus", at=(47.7986, -123.7062), glyph="mtns", scale=1.25,
          label=("Mt. Olympus · 7,980 ft", 0, 26, "middle")),
-    dict(key="si", at=(47.4877, -121.7233), glyph="mtns", scale=1.05,
+    dict(key="si", at=(47.4877, -121.7233), glyph="mtns", scale=1.05, visited=True,
          label=("Mt. Si · 4,167 ft", 18, 32, "end")),
     dict(key="rainier", at=(46.8523, -121.7603), glyph="rainier", visited=True,
          label=("Mt. Rainier · 14,411 ft", 0, -34, "middle")),

@@ -1058,7 +1058,7 @@ def is_quiet(p: dict, sheet_key) -> bool:
 
 
 def fit_places(places, proj: Proj, sizes: dict, sheet_key=None, draws=True,
-               sheet_scale=1.0):
+               sheet_scale=1.0, extra_boxes=()):
     """Draw a doodle on every place the sheet can hold, in three passes.
 
     One: a doodle at the true position for everything with room, priority to the
@@ -1066,8 +1066,16 @@ def fit_places(places, proj: Proj, sizes: dict, sheet_key=None, draws=True,
     for the leftovers, each on a leader back to a dot on the real spot. Three:
     whatever still cannot fit stays a plain dot with its hover name, and gets its
     doodle on the sheet one rung up the ladder.
+
+    `extra_boxes` reserves paper before the first place is placed - the summits,
+    so that a POI close to Mt. Si nudges away from its glyph instead of onto it.
+    The name placer already gets this for free by starting from `glyphs.taken`;
+    the glyphs themselves did not, which is how Elk Fields ended up standing on
+    Mt. Si's triangle.
     """
     placer = Placer()
+    for box in extra_boxes:
+        placer.block(box)
     anchors, displaced, dots = [], [], []
     if not draws:
         # An index sheet draws every place as a 2-unit dot. A dot's whole job is
@@ -1566,9 +1574,21 @@ def build_map_sheet(sheet, sizes: dict) -> str:
                    f'q 6 -6 12 0 q 6 6 12 0"/>')
     places = [p for p in unique_places() if on_frame(*p["at"], frame)
               and carried_by(p, sheet["key"])]
+    # Summits are drawn outside fit_places (they are always on, never nudged),
+    # so its placer has to be told about them by hand or a POI's glyph can be
+    # nudged onto Rainier or Si without either side knowing.
+    summit_boxes = []
+    if draws:
+        for s in P.SUMMITS:
+            if on_frame(*s["at"], frame) and in_country_of(*s["at"], usa_only):
+                sx, sy = proj(s["at"][1], s["at"][0])
+                sw, sh = sizes.get(s["glyph"], (60.0, 44.0))
+                ssc = s.get("scale", 1.0)
+                summit_boxes.append((sx, sy - sh * ssc / 4, sw * ssc, sh * ssc, 0.0))
     anchors, displaced, dots, glyphs = fit_places(places, proj, sizes, sheet["key"],
                                                  sheet.get("doodles", True),
-                                                 sheet.get("glyph_scale", 1.0))
+                                                 sheet.get("glyph_scale", 1.0),
+                                                 extra_boxes=summit_boxes)
     print(f"    places {len(places)}: doodle {len(anchors)}, nudged {len(displaced)}, "
           f"dot only {len(dots)}")
     # An index sheet names regions, waters and towns. It does not name the
