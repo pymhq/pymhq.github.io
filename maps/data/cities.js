@@ -25,6 +25,7 @@ CITIES =
    {name: 'North Cascades NP, WA', latitude: 48.7718, longitude: -121.2985, radius: 3, fillKey: 'city', date: '2017'},
    {name: 'Mount Rainier NP, WA', latitude: 46.8523, longitude: -121.7603, radius: 3, fillKey: 'city', date: '2016'},
    {name: 'Mt. Si, WA', latitude: 47.4877, longitude: -121.7233, radius: 3, fillKey: 'city', date: '2026-08-26'},
+   {name: 'North Bend, WA', latitude: 47.4958, longitude: -121.7849, radius: 3, fillKey: 'city', date: '2026-08-26'},
    {name: 'Vancouver, BC', latitude: 49.2827, longitude: -123.1207, radius: 3, fillKey: 'city', date: ''},
    {name: 'Portland, OR', latitude: 45.5152, longitude: -122.6784, radius: 3, fillKey: 'city', date: ''},
    {name: 'Chicago, IL', latitude: 41.8781, longitude: -87.6298, radius: 2, fillKey: 'city', date: '2023'},
