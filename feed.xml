@@ -49,12 +49,12 @@
       <enclosure url="https://pengandy.com/assets/blog/2026/flywheel/flywheel-card.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>Trendings on Speculative Decoding</title>
-      <link>https://pengandy.com/blog/2026/speculativedecoding</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2026/speculativedecoding</guid>
+      <title>My Story with Anthropic</title>
+      <link>https://pengandy.com/blog/2026/ant</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2026/ant</guid>
       <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
-      <description>Trendings on Speculative Decoding</description>
-      <enclosure url="https://pengandy.com/assets/blog/2026/speculativedecoding/og-card.png" type="image/png" length="0" />
+      <description>My Story with Anthropic</description>
+      <enclosure url="https://pengandy.com/assets/blog/2026/ant/og-card.png" type="image/png" length="0" />
     </item>
     <item>
       <title>Curiosity-Driven Builder&#x27;s Journey</title>
@@ -65,12 +65,12 @@
       <enclosure url="https://pengandy.com/assets/blog/curiosity-driven-builder/og-card.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>My Story with Anthropic</title>
-      <link>https://pengandy.com/blog/2026/ant</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2026/ant</guid>
+      <title>Trendings on Speculative Decoding</title>
+      <link>https://pengandy.com/blog/2026/speculativedecoding</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2026/speculativedecoding</guid>
       <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
-      <description>My Story with Anthropic</description>
-      <enclosure url="https://pengandy.com/assets/blog/2026/ant/og-card.png" type="image/png" length="0" />
+      <description>Trendings on Speculative Decoding</description>
+      <enclosure url="https://pengandy.com/assets/blog/2026/speculativedecoding/og-card.png" type="image/png" length="0" />
     </item>
     <item>
       <title>Lunch with CTO of The Linux Foundation &amp; PyTorch Foundation Matt White</title>
@@ -105,14 +105,6 @@
       <enclosure url="https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Full-Logo.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>LLM Year in Review</title>
-      <link>https://pengandy.com/blog/2025/llm</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/llm</guid>
-      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
-      <description>LLM Year in Review</description>
-      <enclosure url="https://pengandy.com/assets/blog/llm/Still-Life-with-TPU-Chip-and-Coffee-Mug-ChatGPT-2025.jpg" type="image/png" length="0" />
-    </item>
-    <item>
       <title>NeurIPS CDMX Trip</title>
       <link>https://pengandy.com/blog/2025/neurips</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/neurips</guid>
@@ -127,6 +119,14 @@
       <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
       <description>DeepSeek: Large Language Model of Year 2025 (and new book!)</description>
       <enclosure url="https://img.icons8.com/?size=100&amp;id=j9OyN6SjuGXi&amp;format=png&amp;color=000000" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>LLM Year in Review</title>
+      <link>https://pengandy.com/blog/2025/llm</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/llm</guid>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <description>LLM Year in Review</description>
+      <enclosure url="https://pengandy.com/assets/blog/llm/Still-Life-with-TPU-Chip-and-Coffee-Mug-ChatGPT-2025.jpg" type="image/png" length="0" />
     </item>
     <item>
       <title>Research vs Engineering</title>
@@ -161,20 +161,20 @@
       <enclosure url="https://pengandy.com/assets/brand/icon-512.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>LLM Open Source Programs 2025 May</title>
-      <link>https://pengandy.com/blog/2025/opensourceprograms202505</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/opensourceprograms202505</guid>
-      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
-      <description>LLM Open Source Programs 2025 May</description>
-      <enclosure url="https://pengandy.com/assets/brand/icon-512.png" type="image/png" length="0" />
-    </item>
-    <item>
       <title>LLM Native Primitives: Next Golden Path</title>
       <link>https://pengandy.com/blog/2025/llmnative</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/llmnative</guid>
       <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
       <description>LLM Native Primitives: Next Golden Path</description>
       <enclosure url="https://pengandy.com/assets/blog/pd.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>LLM Open Source Programs 2025 May</title>
+      <link>https://pengandy.com/blog/2025/opensourceprograms202505</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/opensourceprograms202505</guid>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+      <description>LLM Open Source Programs 2025 May</description>
+      <enclosure url="https://pengandy.com/assets/brand/icon-512.png" type="image/png" length="0" />
     </item>
     <item>
       <title>Horizontal vs. Vertical</title>
@@ -193,20 +193,20 @@
       <enclosure url="https://pengandy.com/assets/blog/cna.jpg" type="image/png" length="0" />
     </item>
     <item>
-      <title>Projectversaries 2025</title>
-      <link>https://pengandy.com/blog/2025/Projectversaries</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/Projectversaries</guid>
-      <pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate>
-      <description>Projectversaries 2025</description>
-      <enclosure url="https://pengandy.com/assets/blog/projectversaries/projects2025.png" type="image/png" length="0" />
-    </item>
-    <item>
       <title>Org Chart</title>
       <link>https://pengandy.com/blog/2025/orgchart</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/orgchart</guid>
       <pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate>
       <description>Org Chart</description>
       <enclosure url="https://pengandy.com/assets/blog/orgchart/org%20chart%20llm5.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Projectversaries 2025</title>
+      <link>https://pengandy.com/blog/2025/Projectversaries</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/Projectversaries</guid>
+      <pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate>
+      <description>Projectversaries 2025</description>
+      <enclosure url="https://pengandy.com/assets/blog/projectversaries/projects2025.png" type="image/png" length="0" />
     </item>
     <item>
       <title>Serious Productivity</title>
