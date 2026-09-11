@@ -91,21 +91,27 @@ BLOCK_H = 180.0
 # way - nothing overlays it but the pager's own dots, and those are centred.
 HEADER_CLEAR = 96.0
 
-# The dark set. A race panel is not a chart: it is a screen you look at once,
-# after, to see what you did. So it reads like an instrument and not like paper,
-# and the parchment palette of every other panel on this page is deliberately
-# not used here.
-INK = "#e9eef4"          # primary type
-DIM = "#8d99a6"          # labels, secondary type
-FAINT = "#5b6672"        # provenance
-BG = "#0e1216"           # the map's paper
-WATER = "#16324a"
-WATER_EDGE = "#23536f"
-GREEN = "#152318"
-ROAD_MAJOR = "#39424d"
-ROAD_MINOR = "#242c34"
-PATH = "#2c3540"
-RAIL_LINE = "#2a2f38"
+# A cool, light ground - the same kind of paper the rest of the page reads on,
+# rather than the near-black instrument face this used to be. And one ink for
+# every course: nine accent hues made the index sheet read as nine competing
+# apps: the courses differ by name, city and shape, not by which colour of
+# marker drew them, so the route itself - the line, the pins, the km beads, the
+# thumbnail trace - is now a single blue, kept from race 4, the Waterfront 5K.
+# The event glyphs and the title's date tint stay each race's own hue: they are
+# what tells the nine panels apart at a glance, and losing that would make the
+# unification a loss rather than a cleanup.
+ROUTE = "#3f9fd6"        # the one hue every course's line, pin and bead now share
+INK = "#22282e"          # primary type
+DIM = "#5a636c"          # labels, secondary type
+FAINT = "#8b939c"        # provenance, scale ticks
+BG = "#f7f8fa"           # the map's paper
+WATER = "#dce8f0"
+WATER_EDGE = "#9db3c2"
+GREEN = "#e4ece1"
+ROAD_MAJOR = "#a9afb8"
+ROAD_MINOR = "#dde1e6"
+PATH = "#c3c9cf"
+RAIL_LINE = "#aab0b8"
 
 
 # ------------------------------------------------------------------ osm layers
@@ -548,7 +554,7 @@ def basemap(race: dict, proj: Proj, rect, pw: float) -> list[str]:
 
 def course_markup(race: dict, pts, proj: Proj) -> list[str]:
     """The course itself: a glow, the line, the kilometre beads, the two pins."""
-    accent = race["accent"]
+    accent = ROUTE
     xy = rdp([proj(p[1], p[0]) for p in pts], 0.35)
     d = points_d(xy, False)
     out = [f'<path d="{d}" fill="none" stroke="{accent}" stroke-width="16" '
@@ -696,7 +702,6 @@ def title_block(race: dict, xy, marks, pw: float) -> str:
     A scrim goes under it: on a dark ground light type reads on its own, but the
     ground here is a real city and its parks are pale enough to swallow a letter.
     """
-    accent = race["accent"]
     vside, side = title_place(xy, marks, pw)
     bw = block_w(pw)
     x = PAD if side == "left" else pw - PAD
@@ -725,16 +730,17 @@ def title_block(race: dict, xy, marks, pw: float) -> str:
     dates = " · ".join(pretty_date(d) for d in race["dates"])
     limit = int(bw / (14 * 0.55))
     one = f"{dates}  ·  {place_of(race)}"
+    # Dates used to carry the race's own accent, so a panel set two colours
+    # for two lines of the same kind of fact. Both are provenance now, so
+    # both are DIM, the same ink the place already used.
     if len(one) <= limit:
         out.append(f'<text x="{x:.0f}" y="{y + 4:.0f}" class="rc-meta" '
-                   f'text-anchor="{anchor}">'
-                   f'<tspan fill="{accent}">{dates}</tspan>'
-                   f'<tspan fill="{DIM}">  ·  {place_of(race)}</tspan></text>')
+                   f'text-anchor="{anchor}" fill="{DIM}">'
+                   f'{dates}  ·  {place_of(race)}</text>')
     else:
-        for line, colour in ([(dates, accent)]
-                             + [(l, DIM) for l in wrap_to(place_of(race), limit)]):
+        for line in [dates] + wrap_to(place_of(race), limit):
             out.append(f'<text x="{x:.0f}" y="{y + 4:.0f}" class="rc-meta" '
-                       f'text-anchor="{anchor}" fill="{colour}">{line}</text>')
+                       f'text-anchor="{anchor}" fill="{DIM}">{line}</text>')
             y += 21
     if race.get("glyph"):
         gx2 = x + 20 if side == "left" else x - 20
@@ -956,7 +962,7 @@ def thumb_map(race: dict, x: float, y: float, w: float, h: float,
                        proj, rect, WATER, WATER_EDGE, min_span=11.0)
     pts = course_cached(race)
     if pts:
-        accent = race["accent"]
+        accent = ROUTE
         d = points_d(rdp([proj(p[1], p[0]) for p in pts], 1.1), False)
         out.append(f'<path d="{d}" fill="none" stroke="{accent}" '
                    f'stroke-width="9" stroke-opacity="0.16" '
@@ -989,8 +995,8 @@ def thumb_cell(race: dict, n: int, cell: tuple, sh: Sheet, tag: str) -> list[str
     # the slide it opens: this sheet is slide 0 and race n is slide n.
     br = sh.badge + 6
     out.append(f'<g><circle cx="{x + br:.1f}" cy="{y + br:.1f}" r="{br - 4:.1f}" '
-               f'fill="{BG}" fill-opacity="0.82" stroke="{race["accent"]}" '
-               f'stroke-width="1.4"/>'
+               f'fill="{BG}" fill-opacity="0.82" stroke="{ROUTE}" '
+               f'stroke-opacity="0.55" stroke-width="1.4"/>'
                f'<text x="{x + br:.1f}" y="{y + br + sh.badge * 0.36:.1f}" '
                f'class="rc-badge" style="font-size:{sh.badge:g}px">{n}</text></g>')
     if race.get("glyph"):
@@ -1002,12 +1008,14 @@ def thumb_cell(race: dict, n: int, cell: tuple, sh: Sheet, tag: str) -> list[str
         out.append(text_at(x, ty, line, "rc-th-name", sh.name))
         ty += sh.name * 1.25
     # The distance sits at the sheet's own line allowance, not under whatever
-    # this name happened to need, so a row of cells reads as a row.
+    # this name happened to need, so a row of cells reads as a row. It used to
+    # carry the race's own accent against the dates' DIM, which is the same
+    # split title_block no longer makes: both are one line of provenance now.
     dates = " · ".join(pretty_date(d) for d in race["dates"])
     ty = top + sh.name_lines * sh.name * 1.25 + sh.meta * 0.5
-    for line, fill in [(race["distance"], race["accent"]), (dates, DIM)]:
+    for line in (race["distance"], dates):
         for part in wrap_to(line, wraps_to(w, sh.meta)):
-            out.append(text_at(x, ty, part, "rc-th-meta", sh.meta, fill=fill))
+            out.append(text_at(x, ty, part, "rc-th-meta", sh.meta, fill=DIM))
             ty += sh.meta * 1.35
     # The whole cell is the target, type included: a 15-unit name is a hard
     # thing to hit and an easy thing to read.
@@ -1118,60 +1126,63 @@ def race_defs() -> str:
     return "".join(GLYPHS.values())
 
 
-# A line icon each, in the panel's own ink. Roughly 20 units wide, centred.
+# A line icon each, all now filled with the one route hue at whatever alpha
+# the shape originally carried in its own colour - unified, not flattened: the
+# pumpkin's lobe was always more opaque than the flag's pennant, and stays so.
+# Roughly 20 units wide, centred.
 GLYPHS = {
     # cherry blossom: five petals round a stamen
-    "rc-blossom": '<g id="rc-blossom" class="rc-ic">'
-        '<circle cx="0" cy="-6.4" r="4.2" fill="#e6738f" fill-opacity="0.35"/>'
-        '<circle cx="6.1" cy="-2" r="4.2" fill="#e6738f" fill-opacity="0.35"/>'
-        '<circle cx="3.8" cy="5.3" r="4.2" fill="#e6738f" fill-opacity="0.35"/>'
-        '<circle cx="-3.8" cy="5.3" r="4.2" fill="#e6738f" fill-opacity="0.35"/>'
-        '<circle cx="-6.1" cy="-2" r="4.2" fill="#e6738f" fill-opacity="0.35"/>'
-        '<circle cx="0" cy="0" r="1.9" fill="#e6738f" stroke="none"/></g>',
+    "rc-blossom": f'<g id="rc-blossom" class="rc-ic">'
+        f'<circle cx="0" cy="-6.4" r="4.2" fill="{ROUTE}" fill-opacity="0.35"/>'
+        f'<circle cx="6.1" cy="-2" r="4.2" fill="{ROUTE}" fill-opacity="0.35"/>'
+        f'<circle cx="3.8" cy="5.3" r="4.2" fill="{ROUTE}" fill-opacity="0.35"/>'
+        f'<circle cx="-3.8" cy="5.3" r="4.2" fill="{ROUTE}" fill-opacity="0.35"/>'
+        f'<circle cx="-6.1" cy="-2" r="4.2" fill="{ROUTE}" fill-opacity="0.35"/>'
+        f'<circle cx="0" cy="0" r="1.9" fill="{ROUTE}" stroke="none"/></g>',
     # pumpkin: three lobes and a stalk
-    "rc-pumpkin": '<g id="rc-pumpkin" class="rc-ic">'
-        '<path d="M 0 -8 C 0.6 -10.4, 1.8 -11.6, 3.6 -12.2"/>'
-        '<path d="M -9 0 C -9 -5.6, -4.5 -8, 0 -8 C 4.5 -8, 9 -5.6, 9 0 '
-        'C 9 5.6, 4.5 8.6, 0 8.6 C -4.5 8.6, -9 5.6, -9 0 Z" '
-        'fill="#e08344" fill-opacity="0.3"/>'
-        '<path d="M -3.4 -7.3 C -5.1 -2.3, -5.1 3.4, -3.4 7.9 '
-        'M 3.4 -7.3 C 5.1 -2.3, 5.1 3.4, 3.4 7.9"/></g>',
+    "rc-pumpkin": f'<g id="rc-pumpkin" class="rc-ic">'
+        f'<path d="M 0 -8 C 0.6 -10.4, 1.8 -11.6, 3.6 -12.2"/>'
+        f'<path d="M -9 0 C -9 -5.6, -4.5 -8, 0 -8 C 4.5 -8, 9 -5.6, 9 0 '
+        f'C 9 5.6, 4.5 8.6, 0 8.6 C -4.5 8.6, -9 5.6, -9 0 Z" '
+        f'fill="{ROUTE}" fill-opacity="0.3"/>'
+        f'<path d="M -3.4 -7.3 C -5.1 -2.3, -5.1 3.4, -3.4 7.9 '
+        f'M 3.4 -7.3 C 5.1 -2.3, 5.1 3.4, 3.4 7.9"/></g>',
     # beer: a stein with a head on it
-    "rc-mug": '<g id="rc-mug" class="rc-ic">'
-        '<path d="M 5.6 -4.6 C 10.8 -4.6, 10.8 4, 5.2 4"/>'
-        '<path d="M -5.6 -8 L 5.6 -8 L 4.7 9 L -4.7 9 Z" '
-        'fill="#e0a53c" fill-opacity="0.3"/>'
-        '<path d="M -5.6 -8 Q -3.9 -10.8 -2 -9.1 Q 0 -12 2 -9.1 Q 3.9 -10.8 5.6 -8"/>'
-        '</g>',
+    "rc-mug": f'<g id="rc-mug" class="rc-ic">'
+        f'<path d="M 5.6 -4.6 C 10.8 -4.6, 10.8 4, 5.2 4"/>'
+        f'<path d="M -5.6 -8 L 5.6 -8 L 4.7 9 L -4.7 9 Z" '
+        f'fill="{ROUTE}" fill-opacity="0.3"/>'
+        f'<path d="M -5.6 -8 Q -3.9 -10.8 -2 -9.1 Q 0 -12 2 -9.1 Q 3.9 -10.8 5.6 -8"/>'
+        f'</g>',
     # cocoa: a mug with steam
-    "rc-cocoa": '<g id="rc-cocoa" class="rc-ic">'
-        '<path d="M 6.8 -2.2 C 11.4 -2.2, 11.4 5.2, 6 5.2"/>'
-        '<path d="M -6.8 -4.6 L 6.8 -4.6 L 5.4 9 L -5.4 9 Z" '
-        'fill="#a5714f" fill-opacity="0.42"/>'
-        '<path d="M -2.8 -8 q 1.4 -2.2 0 -4.6 M 2.3 -8 q 1.4 -2.2 0 -4.6"/></g>',
+    "rc-cocoa": f'<g id="rc-cocoa" class="rc-ic">'
+        f'<path d="M 6.8 -2.2 C 11.4 -2.2, 11.4 5.2, 6 5.2"/>'
+        f'<path d="M -6.8 -4.6 L 6.8 -4.6 L 5.4 9 L -5.4 9 Z" '
+        f'fill="{ROUTE}" fill-opacity="0.42"/>'
+        f'<path d="M -2.8 -8 q 1.4 -2.2 0 -4.6 M 2.3 -8 q 1.4 -2.2 0 -4.6"/></g>',
     # start flag
-    "rc-flag": '<g id="rc-flag" class="rc-ic">'
-        '<path d="M -3 9 L -3 -10"/>'
-        '<path d="M -3 -10 L 8 -6.6 L -3 -3.2 Z" fill="#3f9fd6" fill-opacity="0.4"/>'
-        '</g>',
+    "rc-flag": f'<g id="rc-flag" class="rc-ic">'
+        f'<path d="M -3 9 L -3 -10"/>'
+        f'<path d="M -3 -10 L 8 -6.6 L -3 -3.2 Z" fill="{ROUTE}" fill-opacity="0.4"/>'
+        f'</g>',
     # anchor: a lake town with a marina
     "rc-anchor": '<g id="rc-anchor" class="rc-ic">'
         '<circle cx="0" cy="-7.5" r="2.2"/>'
         '<path d="M 0 -5.2 L 0 8"/><path d="M -4.8 -1.4 L 4.8 -1.4"/>'
         '<path d="M -7.5 1.4 Q -6.8 8.2 0 9 Q 6.8 8.2 7.5 1.4"/></g>',
     # Gas Works Park: the cracking towers
-    "rc-gasworks": '<g id="rc-gasworks" class="rc-ic">'
-        '<path d="M -9 9 L -9 -5 M -3 9 L -3 -10 M 3 9 L 3 -7 M 9 9 L 9 -2"/>'
-        '<path d="M -11 9 L 11 9"/>'
-        '<path d="M -9 -5 L -3 -10 M -3 -10 L 3 -7 M 3 -7 L 9 -2"/>'
-        '<circle cx="-3" cy="-10" r="2" fill="#7a6fd6" fill-opacity="0.5"/></g>',
+    "rc-gasworks": f'<g id="rc-gasworks" class="rc-ic">'
+        f'<path d="M -9 9 L -9 -5 M -3 9 L -3 -10 M 3 9 L 3 -7 M 9 9 L 9 -2"/>'
+        f'<path d="M -11 9 L 11 9"/>'
+        f'<path d="M -9 -5 L -3 -10 M -3 -10 L 3 -7 M 3 -7 L 9 -2"/>'
+        f'<circle cx="-3" cy="-10" r="2" fill="{ROUTE}" fill-opacity="0.5"/></g>',
     # Tough Mudder: a wall and the wire over it
-    "rc-mudder": '<g id="rc-mudder" class="rc-ic">'
-        '<path d="M -10 9 L 10 9"/>'
-        '<path d="M -8 9 L -8 -3 L 8 -3 L 8 9" fill="#d98b3a" fill-opacity="0.22"/>'
-        '<path d="M -8 3 L 8 3"/>'
-        '<path d="M -11 -7 L 11 -7"/>'
-        '<path d="M -6 -9 L -6 -5 M -8 -7 L -4 -7 M 4 -9 L 4 -5 M 2 -7 L 6 -7"/></g>',
+    "rc-mudder": f'<g id="rc-mudder" class="rc-ic">'
+        f'<path d="M -10 9 L 10 9"/>'
+        f'<path d="M -8 9 L -8 -3 L 8 -3 L 8 9" fill="{ROUTE}" fill-opacity="0.22"/>'
+        f'<path d="M -8 3 L 8 3"/>'
+        f'<path d="M -11 -7 L 11 -7"/>'
+        f'<path d="M -6 -9 L -6 -5 M -8 -7 L -4 -7 M 4 -9 L 4 -5 M 2 -7 L 6 -7"/></g>',
     # Boston: the B.A.A. unicorn, rampant and facing left, as it stands on the
     # association's own seal and on the finish line on Boylston Street.
     #
@@ -1182,9 +1193,9 @@ GLYPHS = {
     # the tail and the mane laid over it in the same colour a shade stronger, and
     # the horn deliberately long, spiralled and clear of the ears, because the horn
     # is the whole of what makes a horse a unicorn.
-    "rc-unicorn": '<g id="rc-unicorn">'
-        '<path fill="#f0c23c" fill-opacity="0.42" stroke="#8d99a6" '
-        'stroke-width="1" stroke-linejoin="round" d="'
+    "rc-unicorn": f'<g id="rc-unicorn">'
+        f'<path fill="{ROUTE}" fill-opacity="0.42" stroke="{DIM}" '
+        f'stroke-width="1" stroke-linejoin="round" d="'
         'M -12.4 -18.6 L -6.4 -11 '
         'C -8.2 -10.2 -9.8 -8.8 -10.4 -7.2 C -10.8 -6.2 -9.8 -5.8 -8.8 -6.2 '
         'C -7.6 -6.6 -6.4 -7.4 -5.6 -8.2 C -4.4 -7 -3.8 -5.2 -3.4 -3.2 '
@@ -1199,18 +1210,18 @@ GLYPHS = {
         'C -1.4 -10.6 -1.8 -11.8 -2 -12.8 L -0.6 -15.6 L -2.8 -13.2 '
         'C -3.6 -13.6 -4.4 -13.8 -5 -13.6 Z"/>'
         # the tail, sweeping up behind
-        '<path fill="#f0c23c" fill-opacity="0.6" stroke="none" d="'
+        f'<path fill="{ROUTE}" fill-opacity="0.6" stroke="none" d="'
         'M 11.8 -2.2 C 15 -3.6 16.8 -6.8 17.2 -10.4 C 18.6 -8 18.2 -4 16 -1.2 '
         'C 14.8 0.4 13.2 0.8 12.4 0.2 Z"/>'
         # the mane, down the crest of the neck
-        '<path fill="#f0c23c" fill-opacity="0.6" stroke="none" d="'
+        f'<path fill="{ROUTE}" fill-opacity="0.6" stroke="none" d="'
         'M -2.2 -12.6 C 0.6 -11.2 2.4 -8.6 4.6 -5.2 C 3.2 -6.2 1.4 -6.4 0 -6 '
         'C -0.2 -8.4 -1 -10.8 -2.2 -12.6 Z"/>'
         # the spiral on the horn, and the eye
-        '<path fill="none" stroke="#8d99a6" stroke-width="0.9" '
-        'stroke-linecap="round" d="M -8.6 -13.6 L -7.4 -14.6 '
+        f'<path fill="none" stroke="{DIM}" stroke-width="0.9" '
+        f'stroke-linecap="round" d="M -8.6 -13.6 L -7.4 -14.6 '
         'M -9.8 -15.4 L -8.6 -16.4 M -11 -17.2 L -9.8 -18.2"/>'
-        '<circle cx="-7.4" cy="-9.4" r="0.8" fill="#0e1216" stroke="none"/></g>',
+        f'<circle cx="-7.4" cy="-9.4" r="0.8" fill="{INK}" stroke="none"/></g>',
 }
 
 
