@@ -1058,6 +1058,13 @@ figure > img,
   aspect-ratio: 16 / 10;
 }
 
+/* One-off: a single figure in an otherwise-portrait gallery whose source is
+   landscape. Keeps its own native ratio instead of the grid default's 4:5
+   center-crop, which would cut its sides off. */
+.gallery img.landscape {
+  aspect-ratio: 4 / 3;
+}
+
 .gallery video {
   width: 100%;
   height: auto;
