@@ -113,6 +113,14 @@
       <enclosure url="https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Full-Logo.png" type="image/png" length="0" />
     </item>
     <item>
+      <title>NeurIPS CDMX Trip</title>
+      <link>https://pengandy.com/blog/2025/neurips</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/neurips</guid>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <description>NeurIPS CDMX Trip</description>
+      <enclosure url="https://pengandy.com/assets/blog/nips/nips25_mex.PNG" type="image/png" length="0" />
+    </item>
+    <item>
       <title>LLM Year in Review</title>
       <link>https://pengandy.com/blog/2025/llm</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/llm</guid>
@@ -129,14 +137,6 @@
       <enclosure url="https://img.icons8.com/?size=100&amp;id=j9OyN6SjuGXi&amp;format=png&amp;color=000000" type="image/png" length="0" />
     </item>
     <item>
-      <title>NeurIPS CDMX Trip</title>
-      <link>https://pengandy.com/blog/2025/neurips</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/neurips</guid>
-      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
-      <description>NeurIPS CDMX Trip</description>
-      <enclosure url="https://pengandy.com/assets/blog/nips/nips25_mex.PNG" type="image/png" length="0" />
-    </item>
-    <item>
       <title>Research vs Engineering</title>
       <link>https://pengandy.com/blog/2025/RSRCHORENG</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/RSRCHORENG</guid>
@@ -145,20 +145,20 @@
       <enclosure url="https://pengandy.com/assets/blog/rsrchvseng/sde.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>ICML 2025 Recap</title>
-      <link>https://pengandy.com/blog/2025/icml</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/icml</guid>
-      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
-      <description>ICML 2025 Recap</description>
-      <enclosure url="https://pengandy.com/assets/brand/icon-512.png" type="image/png" length="0" />
-    </item>
-    <item>
       <title>Talent Shuffle</title>
       <link>https://pengandy.com/blog/2025/talentshuffle</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/talentshuffle</guid>
       <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
       <description>Talent Shuffle</description>
       <enclosure url="https://pengandy.com/assets/blog/talentshuffle/talentshuffle.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>ICML 2025 Recap</title>
+      <link>https://pengandy.com/blog/2025/icml</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/icml</guid>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <description>ICML 2025 Recap</description>
+      <enclosure url="https://pengandy.com/assets/brand/icon-512.png" type="image/png" length="0" />
     </item>
     <item>
       <title>LLM Open Source Programs 2025 June</title>
