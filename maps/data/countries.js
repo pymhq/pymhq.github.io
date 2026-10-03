@@ -9,4 +9,5 @@ COUNTRIES =
     MEX: {fillKey: 'visited'},
     FRA: {fillKey: 'visited'},
     GBR: {fillKey: 'visited'},
+    KOR: {fillKey: 'visited'},
 }
