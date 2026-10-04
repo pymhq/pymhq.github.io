@@ -745,7 +745,7 @@ def title_block(race: dict, xy, marks, pw: float) -> str:
     if race.get("glyph"):
         gx2 = x + 20 if side == "left" else x - 20
         out.append(f'<use href="#{race["glyph"]}" '
-                   f'transform="translate({gx2:.0f}, {top + 54:.0f}) scale(1.5)"/>')
+                   f'transform="translate({gx2:.0f}, {top + 44:.0f}) scale(1.5)"/>')
     return "".join(out)
 
 
@@ -1181,14 +1181,10 @@ GLYPHS = {
         f'<path d="M -11 9 L 11 9"/>'
         f'<path d="M -9 -5 L -3 -10 M -3 -10 L 3 -7 M 3 -7 L 9 -2"/>'
         f'<circle cx="-3" cy="-10" r="2" fill="{ROUTE}" fill-opacity="0.5"/></g>',
-    # Kraken: a head and three curling tentacles
-    "rc-kraken": f'<g id="rc-kraken" class="rc-ic">'
-        f'<path d="M -7 0 C -7 -8, -3.5 -11, 0 -11 C 3.5 -11, 7 -8, 7 0 Z" '
-        f'fill="{ROUTE}" fill-opacity="0.35"/>'
-        f'<path d="M -6 0 C -7 5, -10 6, -10.5 9 M -2 0 C -2.5 5, -4 8, -2.5 10.5 '
-        f'M 2 0 C 2.5 5, 4 8, 2.5 10.5 M 6 0 C 7 5, 10 6, 10.5 9"/>'
-        f'<circle cx="-2.4" cy="-5" r="1" fill="{INK}" stroke="none"/>'
-        f'<circle cx="2.4" cy="-5" r="1" fill="{INK}" stroke="none"/></g>',
+    # Seattle Kraken: the club's own logo (assets/maps/race-logos/seattle-kraken.svg),
+    # drawn at about 24 units tall in its own colours. Not restyled.
+    "rc-kraken": '<g id="rc-kraken" stroke="none" transform="translate(-10.4 -13) scale(0.115)">'
+        f'<path d="M0 184.04c44 3.85 72 16.26 85.56 42 46.55-7.54 89.6-37.39 89.6-75.88 0-51.26-62.12-59.32-63.77-74.26 26.12 9.47 54.88-.49 68.61-33.09-40.58-3-70.29-17.8-83.14-42.78C47.09 8.86 7.27 41.13 7.27 75.88c0 50.83 65.33 64.29 72.64 75.07-35.65-13.52-66.4 1.88-79.91 33.09" fill="{DIM}"/><path d="M77.25 73.25c-5.57-5.66-7.89-10.12-7.89-15.94 0-6.7 3.22-10 3.22-13.72 0-3.22-2-5.75-5.9-6.52A11.82 11.82 0 0 1 75 33.13c16.61 0 21.52 36.72 56.18 35.4 12.35-1.18 24-7.18 31.37-17.72-30.27-3.96-57.9-16.82-71.41-38.68-14 2.55-72.74 22.82-71.25 65.18 1.54 44.17 66.87 56.45 85.15 75.42 14.41 15 4.26 30-5 35.51-14.35-37.31-61.5-40-80.27-13C50 179.13 77.64 192 91.14 213.86c33.39-7 49.5-36.28 43.37-57.4-10.15-35-76-41.1-93.51-73.84-9.34-18.42-1.66-38.08 15.42-49.49a44.8 44.8 0 0 0-9.77 27.9c1.52 1.65 2.16 5.53 2.18 5.6.22 1.35.62 4.21-.09 6a30.3 30.3 0 0 0 2.85 5.62c2.28.57 4.86 3.55 4.9 3.62 2.52 2.89 2.91 4.71 3 5.4 1.55 1.39 3.22 2.73 5 4 1.47-.17 3.72.54 6 2 2.62 1.71 3.93 3.42 4.3 4.69 1.83 1.07 3.7 2.11 5.62 3.14 1.47-.4 3.89.06 6.31 1.31s4.22 3 4.75 4.38l5.81 2.89c1.46-.43 3.9 0 6.35 1.24s4.15 2.91 4.71 4.33c2 1 4 2.07 5.89 3.13 1.8-.37 4.67.73 6.24 1.66a9.77 9.77 0 0 1 4.37 4.63c2 1.27 3.85 2.58 5.67 3.93 1.53-.07 3.79.81 5.89 2.6 2.27 2 3.44 4.15 3.49 5.66a49 49 0 0 1 4.3 5.25c1.86.46 3.73 2.61 4.77 4.77 1.44 3.15 1.26 5.36.83 6.51 2.51 7.81 3.18 17.66-.85 29 0 .11-.09.25-.15.4 8.43-9.19 14.13-20.49 13.65-34.06-1.59-44.23-66.91-56.51-85.19-75.48" fill="#b4d9ee"/><path d="M102.32 77.88c-7.46-8.58-12.23-23.81-20.46-29.75-3.69 13.11 3.99 27.44 20.46 29.75" fill="{INK}"/><path d="M96.41 201.07a100 100 0 0 1-5.27 12.79c-13.5-21.87-41.14-34.73-71.4-38.66 31.26-15.68 63.66.82 76.67 25.87m66.14-150.3c-31.28 15.68-63.66-.82-76.67-25.88a99 99 0 0 1 5.26-12.76c-13.22 2.38-72.75 22.43-71.25 65.16 1.54 44.17 66.87 56.45 85.15 75.42 14.41 15 4.26 30-5 35.51a122 122 0 0 1-3.6 12.84c6.8-1.19 27.43-12.11 27.57-33.13.18-29-37.26-36.64-65.63-54.22C35 99.24 30.46 84.89 29.28 75.8c-2.79-21.37 12.3-40.9 34.23-50.1a44.6 44.6 0 0 0-7.09 7.43 44.85 44.85 0 0 0-9.77 27.91c1.52 1.65 2.16 5.52 2.18 5.6.22 1.35.62 4.21-.09 6a30.5 30.5 0 0 0 2.85 5.49c2.28.58 4.86 3.56 4.9 3.62 2.52 2.89 2.91 4.72 3 5.41 1.55 1.39 3.22 2.72 5 4 1.47-.17 3.72.55 6 2 2.62 1.72 3.93 3.42 4.3 4.69q2.74 1.6 5.62 3.14c1.47-.4 3.89.06 6.31 1.31s4.22 3 4.75 4.39l5.81 2.88c1.46-.42 3.9 0 6.35 1.25s4.15 2.9 4.71 4.32q3 1.55 5.89 3.13c1.8-.37 4.67.73 6.24 1.67a9.73 9.73 0 0 1 4.37 4.63c2 1.27 3.85 2.58 5.67 3.93 1.53-.07 3.79.81 5.89 2.6 2.27 2 3.44 4.15 3.49 5.65a50 50 0 0 1 4.3 5.25c1.86.47 3.73 2.62 4.77 4.77 1.44 3.15 1.26 5.36.83 6.51 2.51 7.82 3.18 17.67-.85 29 10.78-18.26 9.74-36.4-2.3-51.72-25.18-32-88.52-35.86-88.28-72.58a31.46 31.46 0 0 1 8.37-20.95 11.78 11.78 0 0 1 8.27-3.9c16.61 0 21.52 36.72 56.18 35.4 12.37-1.19 24.05-7.19 31.38-17.72Z" fill="{ROUTE}"/></g>',
     # Tough Mudder: a wall and the wire over it
     "rc-mudder": f'<g id="rc-mudder" class="rc-ic">'
         f'<path d="M -10 9 L 10 9"/>'
@@ -1196,45 +1192,10 @@ GLYPHS = {
         f'<path d="M -8 3 L 8 3"/>'
         f'<path d="M -11 -7 L 11 -7"/>'
         f'<path d="M -6 -9 L -6 -5 M -8 -7 L -4 -7 M 4 -9 L 4 -5 M 2 -7 L 6 -7"/></g>',
-    # Boston: the B.A.A. unicorn, rampant and facing left, as it stands on the
-    # association's own seal and on the finish line on Boylston Street.
-    #
-    # One silhouette, not an assembly of outlined parts. The first attempt at this
-    # drew the head, neck, barrel and each leg as its own stroked shape, and at 30
-    # units the strokes met and filled in: it read as a rat with a spike. A
-    # heraldic beast is a shape, so this is one closed outline for the animal, with
-    # the tail and the mane laid over it in the same colour a shade stronger, and
-    # the horn deliberately long, spiralled and clear of the ears, because the horn
-    # is the whole of what makes a horse a unicorn.
-    "rc-unicorn": f'<g id="rc-unicorn">'
-        f'<path fill="{ROUTE}" fill-opacity="0.42" stroke="{DIM}" '
-        f'stroke-width="1" stroke-linejoin="round" d="'
-        'M -12.4 -18.6 L -6.4 -11 '
-        'C -8.2 -10.2 -9.8 -8.8 -10.4 -7.2 C -10.8 -6.2 -9.8 -5.8 -8.8 -6.2 '
-        'C -7.6 -6.6 -6.4 -7.4 -5.6 -8.2 C -4.4 -7 -3.8 -5.2 -3.4 -3.2 '
-        'C -3 -1.6 -3.6 -0.4 -4.6 0.4 C -6.8 1.2 -8.4 2.6 -8.8 4.4 '
-        'C -9 5.4 -8 5.8 -7.2 5.2 C -6.6 3.6 -5.2 2.2 -3.6 1.6 '
-        'C -4.2 3.4 -4.6 5.6 -4 7.6 C -3.6 8.6 -2.4 8.6 -2 7.6 '
-        'C -1.6 5.4 -0.6 3.6 0.8 2.6 C 2.4 3.4 3.8 4.4 4.6 6 '
-        'C 4 8.2 4.2 10.6 5 12.8 L 7.4 12.8 '
-        'C 7 10.2 7.6 8 8.8 6.4 C 9.6 8.4 10.2 10.6 10.4 12.8 L 12.8 12.8 '
-        'C 12.4 10 12.2 7.2 12.6 4.6 C 13.2 2.6 13 0.6 12.2 -1 '
-        'C 10.6 -3 7.6 -4.4 4.4 -5 C 2 -5.6 0.2 -7 -0.8 -9.2 '
-        'C -1.4 -10.6 -1.8 -11.8 -2 -12.8 L -0.6 -15.6 L -2.8 -13.2 '
-        'C -3.6 -13.6 -4.4 -13.8 -5 -13.6 Z"/>'
-        # the tail, sweeping up behind
-        f'<path fill="{ROUTE}" fill-opacity="0.6" stroke="none" d="'
-        'M 11.8 -2.2 C 15 -3.6 16.8 -6.8 17.2 -10.4 C 18.6 -8 18.2 -4 16 -1.2 '
-        'C 14.8 0.4 13.2 0.8 12.4 0.2 Z"/>'
-        # the mane, down the crest of the neck
-        f'<path fill="{ROUTE}" fill-opacity="0.6" stroke="none" d="'
-        'M -2.2 -12.6 C 0.6 -11.2 2.4 -8.6 4.6 -5.2 C 3.2 -6.2 1.4 -6.4 0 -6 '
-        'C -0.2 -8.4 -1 -10.8 -2.2 -12.6 Z"/>'
-        # the spiral on the horn, and the eye
-        f'<path fill="none" stroke="{DIM}" stroke-width="0.9" '
-        f'stroke-linecap="round" d="M -8.6 -13.6 L -7.4 -14.6 '
-        'M -9.8 -15.4 L -8.6 -16.4 M -11 -17.2 L -9.8 -18.2"/>'
-        f'<circle cx="-7.4" cy="-9.4" r="0.8" fill="{INK}" stroke="none"/></g>',
+    # Boston: the B.A.A.'s own unicorn mark, cropped from the logo on baa.org
+    # (assets/maps/race-logos/baa-unicorn.png). Not redrawn.
+    "rc-unicorn": '<g id="rc-unicorn"><image href="/assets/maps/race-logos/baa-unicorn.png" '
+        'x="-12" y="-12" width="24" height="24"/></g>',
 }
 
 
