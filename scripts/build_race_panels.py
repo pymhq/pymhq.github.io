@@ -882,7 +882,7 @@ class Sheet:
 # the page: about 100 css pixels of nav over a sheet drawn at 2.6 units to the
 # pixel on a phone, and 1 to 1 on a 16:9 screen.
 WIDE_SHEET = Sheet(x=PAD, y=186, w=VB_W - 2 * PAD, h=VB_H - 186 - 36,
-                   cols=5, rows=2, gap=26, band=78,
+                   cols=6, rows=2, gap=22, band=78,
                    name=15.5, meta=10.5, badge=11, glyph=0.8,
                    clear=HEADER_CLEAR, link_in_grid=True)
 # Three across on a phone, because two across makes every thumbnail 2.3 times as
@@ -893,7 +893,7 @@ WIDE_SHEET = Sheet(x=PAD, y=186, w=VB_W - 2 * PAD, h=VB_H - 186 - 36,
 # this region at about 2.7 units to the pixel, so the sticky nav's 100 pixels can
 # reach 270 units down it.
 TALL_SHEET = Sheet(x=PAD, y=TALL_BOX[1] + 430, w=TALL_BOX[2] - 2 * PAD,
-                   h=TALL_BOX[3] - 430 - 196, cols=3, rows=3, gap=26, band=100,
+                   h=TALL_BOX[3] - 430 - 196, cols=3, rows=4, gap=22, band=100,
                    name=22, meta=16, badge=15, glyph=1.1,
                    clear=280, link_in_grid=False)
 STRIP_H = 110.0          # the sign-up card, when it is not a cell in the grid
@@ -980,12 +980,13 @@ def thumb_map(race: dict, x: float, y: float, w: float, h: float,
     return [f'<g clip-path="url(#{clip})">'] + out + ["</g>"]
 
 
-def thumb_cell(race: dict, n: int, cell: tuple, sh: Sheet, tag: str) -> list[str]:
+def thumb_cell(race: dict, n: int, cell: tuple, sh: Sheet, tag: str,
+               total: int = 0) -> list[str]:
     """A thumbnail, its number, its name and the slide it opens."""
     x, y, w, h = cell
     mh = h - sh.band
     clip = f"rc-th-{tag}-{race['key']}"
-    label = f'{race["name"]}: {race["sub"]} · route {n} of the nine'
+    label = f'{race["name"]}: {race["sub"]} · route {n} of {total}'
     out = [f'<g class="rc-thumb" role="link" tabindex="0" data-slide="{n}" '
            f'aria-label="{esc(label)}">']
     out += thumb_map(race, x, y, w, mh, clip)
@@ -1077,8 +1078,10 @@ def index_region(races: list[dict], sh: Sheet, tag: str, box: tuple) -> list[str
         out.append(text_at(bx + PAD, top + sh.meta * 3.5, hint,
                            "rc-idx-sub", sh.meta * 1.15))
     cells = list(cells_of(sh, len(races) + (1 if sh.link_in_grid else 0)))
+    # Newest first: the cell for race n is still badged n and still opens slide n,
+    # only the order they sit in on the sheet runs back from the latest.
     for i, race in enumerate(races):
-        out += thumb_cell(race, i + 1, cells[i], sh, tag)
+        out += thumb_cell(race, len(races) - i, cells[i], sh, tag, len(races))
     if sh.link_in_grid:
         out += link_cell(cells[len(races)], sh)
     else:
@@ -1088,6 +1091,7 @@ def index_region(races: list[dict], sh: Sheet, tag: str, box: tuple) -> list[str
 
 def index_panel(races: list[dict]) -> str:
     print(f"panel 0 {IDX_KEY}: {len(races)} thumbnails, two layouts")
+    races = races[::-1]
     body = index_region(races, WIDE_SHEET, "w", (0.0, 0.0, VB_W, VB_H))
     body += index_region(races, TALL_SHEET, "t", TALL_BOX)
     label = (f"Race routes: the index sheet, {len(races)} courses, "
@@ -1103,6 +1107,7 @@ def index_panel(races: list[dict]) -> str:
 def index_defs(races: list[dict], markup: str) -> str:
     """The glyphs the sheet uses, and one clip per thumbnail."""
     used = set(re.findall(r'href="#(rc-[a-z-]+)"', markup))
+    races = races[::-1]
     clips = []
     for sh, tag in ((fitted(WIDE_SHEET, races), "w"),
                     (fitted(TALL_SHEET, races), "t")):
@@ -1176,6 +1181,14 @@ GLYPHS = {
         f'<path d="M -11 9 L 11 9"/>'
         f'<path d="M -9 -5 L -3 -10 M -3 -10 L 3 -7 M 3 -7 L 9 -2"/>'
         f'<circle cx="-3" cy="-10" r="2" fill="{ROUTE}" fill-opacity="0.5"/></g>',
+    # Kraken: a head and three curling tentacles
+    "rc-kraken": f'<g id="rc-kraken" class="rc-ic">'
+        f'<path d="M -7 0 C -7 -8, -3.5 -11, 0 -11 C 3.5 -11, 7 -8, 7 0 Z" '
+        f'fill="{ROUTE}" fill-opacity="0.35"/>'
+        f'<path d="M -6 0 C -7 5, -10 6, -10.5 9 M -2 0 C -2.5 5, -4 8, -2.5 10.5 '
+        f'M 2 0 C 2.5 5, 4 8, 2.5 10.5 M 6 0 C 7 5, 10 6, 10.5 9"/>'
+        f'<circle cx="-2.4" cy="-5" r="1" fill="{INK}" stroke="none"/>'
+        f'<circle cx="2.4" cy="-5" r="1" fill="{INK}" stroke="none"/></g>',
     # Tough Mudder: a wall and the wire over it
     "rc-mudder": f'<g id="rc-mudder" class="rc-ic">'
         f'<path d="M -10 9 L 10 9"/>'

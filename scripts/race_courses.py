@@ -41,7 +41,7 @@ Fields
 from __future__ import annotations
 
 # --------------------------------------------------------------------- the races
-# In the order they were run. Panel 1 is 2018 and panel 9 is 2026, so paging
+# In the order they were run. Panel 1 is 2018 and the last panel is 2026, so paging
 # right is paging forward in time.
 RACES = [
     dict(
@@ -323,6 +323,29 @@ RACES = [
             "Boylston, which is the last quarter mile of the Boston Marathon.",
         ],
         source="Official 2026 B.A.A. course map (baa.org), routed on OpenStreetMap streets.",
+    ),
+    dict(
+        key="kraken_5k",
+        name="Seattle Kraken 5K",
+        sub="Green Lake Park",
+        dates=["2026-10-03"],
+        distance="5K",
+        metres=5025,
+        elev=None,
+        shape="loop",
+        surface="lakeside path",
+        city="Seattle, WA",
+        venue="Green Lake Park",
+        accent="#3f9fd6",
+        glyph="rc-kraken",
+        course="kraken_5k",
+        note=[
+            "The Kraken's season-opening fun run, once round Green Lake on the",
+            "path that rings it, with the hockey front office, Buoy and a",
+            "kids' dash before it. Waves go off from 9:30, fastest first. It",
+            "benefits the Hockey Fights Cancer Fund.",
+        ],
+        source="Official MapMyRun route 6191145334, runsignup.com/Race/WA/Seattle/SeattleKraken5K.",
     ),
 ]
 
