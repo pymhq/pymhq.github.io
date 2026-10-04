@@ -1259,6 +1259,9 @@
             .pnw-nav.prev { left: 50%; margin-left: -76px; }
             .pnw-nav.next { right: 50%; margin-right: -76px; }
         }
+        /* Discourage saving the pictures: no drag-out, no long-press save sheet. */
+        img, svg, canvas, video { -webkit-user-drag: none; -webkit-touch-callout: none; }
+        img, video { -webkit-user-select: none; user-select: none; }
     </style>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTV795ZMCP"></script>
@@ -4390,5 +4393,22 @@
             });
         }());
 </script>
+    <script>
+        // Discourage saving the pictures: no context menu or drag on any image,
+        // map, canvas or video, and no draggable images.
+        (function () {
+            var media = 'img, picture, svg, canvas, video, image';
+            ['contextmenu', 'dragstart'].forEach(function (t) {
+                document.addEventListener(t, function (e) {
+                    if (e.target && e.target.closest && e.target.closest(media)) e.preventDefault();
+                });
+            });
+            document.querySelectorAll('img').forEach(function (im) { im.draggable = false; });
+            document.querySelectorAll('video').forEach(function (v) {
+                v.setAttribute('controlslist', 'nodownload noremoteplayback');
+                v.setAttribute('disablepictureinpicture', '');
+            });
+        })();
+    </script>
    </body>
 </html>
