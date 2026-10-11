@@ -291,6 +291,7 @@
         #race-routes .pnw-section-inner,
         #national-parks .pnw-section-inner,
         #china-mountains .pnw-section-inner,
+        #yangtze-posts .pnw-section-inner,
         #pnw-section .pnw-section-inner {
             /* percentages, not vw: the section sits inside .shell, so it is
                narrower than the viewport by two gutters. A vw width made
@@ -313,6 +314,7 @@
         #race-routes h2,
         #national-parks h2,
         #china-mountains h2,
+        #yangtze-posts h2,
         #pnw-section h2 {
             font-size: 1.3rem;
             font-weight: 700;
@@ -326,6 +328,7 @@
         #race-routes h2 .dot,
         #national-parks h2 .dot,
         #china-mountains h2 .dot,
+        #yangtze-posts h2 .dot,
         #pnw-section h2 .dot {
             width: 10px;
             height: 10px;
@@ -337,6 +340,7 @@
         #race-routes .pnw-subtitle,
         #national-parks .pnw-subtitle,
         #china-mountains .pnw-subtitle,
+        #yangtze-posts .pnw-subtitle,
         #pnw-section .pnw-subtitle {
             font-size: 0.85rem;
             color: #8a9478;
@@ -531,6 +535,7 @@
         #race-routes .back-to-globe,
         #national-parks .back-to-globe,
         #china-mountains .back-to-globe,
+        #yangtze-posts .back-to-globe,
         #salish-to-scale .back-to-globe {
             position: absolute;
             top: 18px;
@@ -553,6 +558,7 @@
         #race-routes .back-to-globe:hover,
         #national-parks .back-to-globe:hover,
         #china-mountains .back-to-globe:hover,
+        #yangtze-posts .back-to-globe:hover,
         #salish-to-scale .back-to-globe:hover {
             background: #f4f6f1;
         }
@@ -665,6 +671,7 @@
             #pnw-full-map-wrap,
             #np-map-wrap,
             #cm-map-wrap,
+            #yp-map-wrap,
             .pnw-route-card {
                 width: 100%;
                 height: auto;
@@ -921,6 +928,7 @@
         #race-routes,
         #national-parks,
         #china-mountains,
+        #yangtze-posts,
         #salish-to-scale {
             height: 100vh;
             display: flex;
@@ -938,6 +946,7 @@
         #race-routes.revealed,
         #national-parks.revealed,
         #china-mountains.revealed,
+        #yangtze-posts.revealed,
         #salish-to-scale.revealed { opacity: 1; transform: translateY(0); }
 
         /* one sheet per screen, swiped horizontally, exactly as the panel pager
@@ -1019,6 +1028,7 @@
         #race-routes .sg-up,
         #national-parks .sg-up,
         #china-mountains .sg-up,
+        #yangtze-posts .sg-up,
         #salish-to-scale .sg-up { left: 18px; right: auto; z-index: 6; }
 
         /* the sheet's margin: on panel 2 the title and legend sit on the water,
@@ -1443,6 +1453,76 @@
         .cm-legend-text { font-size: 10.5px; font-weight: 600; fill: #4a5636; }
         .cm-legend-sub { font-size: 9.2px; font-style: italic; fill: #6b765a; }
 
+        /* ============================================================
+           Yangtze theme post offices (its own screen, after China)
+           Only the river is drawn, no national outline. The river and the
+           Hankou station are solid; the other ten stations are the same
+           stamp at light, half strength.
+           ============================================================ */
+        #yangtze-posts .pnw-section-inner {
+            width: min(96%, 1360px);
+            height: min(90vh, 860px);
+        }
+
+        #yp-map-wrap {
+            flex: 0 1 auto;
+            width: min(100%, calc((min(90vh, 860px) - 62px) * 1200 / 600));
+            aspect-ratio: 1200 / 600;
+            height: auto;
+            max-height: 100%;
+            border-radius: 16px;
+            background: #eef3f1;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 2px solid #dbe5e8;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #yp-map { display: block; width: 100%; height: 100%; }
+
+        #yp-map text {
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                         "Noto Sans SC", -apple-system, BlinkMacSystemFont,
+                         "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .yp-credit { font-size: 0.68rem; color: #8a9aa0; margin: -6px 0 0; }
+
+        .yp-prov-name { font-size: 15px; font-weight: 600; letter-spacing: 6px; fill: #7f947d; opacity: 0.55; }
+
+        .yp-glow { fill: none; stroke: #8fd0ea; stroke-opacity: 0.28; stroke-linecap: round; stroke-linejoin: round; }
+        .yp-river path { fill: none; stroke: url(#yp-river-grad); stroke-linecap: round; stroke-linejoin: round; }
+        .yp-flow { fill: #ffffff; opacity: 0.85; }
+        .yp-reach { font-size: 11px; font-style: italic; font-weight: 600; fill: #2f6f99; paint-order: stroke; stroke: #eef3f1; stroke-width: 3px; stroke-linejoin: round; }
+        .yp-ground { font-size: 11px; font-weight: 600; fill: #8a9aa0; letter-spacing: 1px; }
+
+        .yp-leader { fill: none; stroke: #5d7480; stroke-width: 0.9px; opacity: 0.55; }
+        .yp-station.hankou .yp-leader { stroke: #0e7a4f; opacity: 0.9; stroke-width: 1.2px; }
+
+        .yp-stamp-fill { fill-opacity: 0.55; stroke-width: 1.2px; }
+        .yp-perf { fill: none; stroke: #eef3f1; stroke-width: 6px; stroke-dasharray: 3.5 3.5; }
+        .yp-station.hankou .yp-stamp-fill { fill: #0e7a4f; fill-opacity: 1; stroke: #0b5f3d; }
+
+        .yp-pin { fill-opacity: 0.6; stroke-width: 1.3px; }
+        .yp-station.hankou .yp-pin { fill: #0e7a4f; fill-opacity: 1; stroke: #ffffff; stroke-width: 2px; }
+        .yp-mark { fill: none; stroke: #c8362d; stroke-width: 1.4px; }
+        .yp-pin-num { font-size: 10px; font-weight: 700; fill: #2f4651; text-anchor: middle; pointer-events: none; }
+        .yp-station.hankou .yp-pin-num { fill: #ffffff; }
+
+        .yp-head { font-size: 9.2px; font-weight: 700; letter-spacing: 0.3px; fill: #4c6270; }
+        .yp-zh { font-size: 12.5px; font-weight: 700; fill: #263c46; }
+        .yp-zh-sub { font-size: 10px; font-weight: 500; fill: #36505c; }
+        .yp-en { font-size: 9.2px; font-weight: 600; fill: #35505c; }
+        .yp-en-sub { font-size: 8.6px; font-style: italic; fill: #4c6270; }
+        .yp-prov { font-size: 9.2px; font-weight: 600; fill: #4c6270; }
+        .yp-station.hankou .yp-head,
+        .yp-station.hankou .yp-zh,
+        .yp-station.hankou .yp-zh-sub,
+        .yp-station.hankou .yp-en,
+        .yp-station.hankou .yp-en-sub,
+        .yp-station.hankou .yp-prov { fill: #f6f3e6; }
+
+
         /* Discourage saving the pictures: no drag-out, no long-press save sheet. */
         img, svg, canvas, video { -webkit-user-drag: none; -webkit-touch-callout: none; }
         img, video { -webkit-user-select: none; user-select: none; }
@@ -1482,8 +1562,8 @@
          <section class="band--tight rise">
             <div class="prose">
                <p>
-                  <span class="lang-en">Drag the globe to spin it: visited countries fill in blue, and every city pin carries a date. Scroll on to the Pacific Northwest panel, then swipe right for the Salish Sea routes and a map of all 63 U.S. national parks. Scroll on again for the same Salish Sea chart drawn to scale on a screen of its own, and then for the race panels: one start line each, every course the organiser's own published line. Past the parks is a map of China (with Hong Kong, Macao and Taiwan) and its 30 famous mountains, each drawn after its own shape, solid where I have climbed it.</span>
-                  <span class="lang-zh" hidden>拖动地球仪即可旋转：到访过的国家填上蓝色，每个城市图钉都带有日期。继续向下滚动进入太平洋西北面板，再向右滑动查看萨利希海航线图，以及全美 63 座国家公园地图。继续往下，是同一片萨利希海的等比例版本，单独占满一屏；再往下是比赛面板，每场比赛一屏，赛道都取自主办方公布的实际路线。国家公园之后是一幅中国地图（含香港、澳门和台湾），标出 30 座名山，每座按各自的形态手绘，登过的画成实心。</span>
+                  <span class="lang-en">Drag the globe to spin it: visited countries fill in blue, and every city pin carries a date. Scroll on to the Pacific Northwest panel, then swipe right for the Salish Sea routes and a map of all 63 U.S. national parks. Scroll on again for the same Salish Sea chart drawn to scale on a screen of its own, and then for the race panels: one start line each, every course the organiser's own published line. Past the parks is a map of China (with Hong Kong, Macao and Taiwan) and its 30 famous mountains, each drawn after its own shape, solid where I have climbed it. Below that, the Yangtze alone, source to sea, with its eleven theme post offices from west to east.</span>
+                  <span class="lang-zh" hidden>拖动地球仪即可旋转：到访过的国家填上蓝色，每个城市图钉都带有日期。继续向下滚动进入太平洋西北面板，再向右滑动查看萨利希海航线图，以及全美 63 座国家公园地图。继续往下，是同一片萨利希海的等比例版本，单独占满一屏；再往下是比赛面板，每场比赛一屏，赛道都取自主办方公布的实际路线。国家公园之后是一幅中国地图（含香港、澳门和台湾），标出 30 座名山，每座按各自的形态手绘，登过的画成实心。再往下是单独的一条长江，从源头到入海，按自西向东的顺序标出 11 座长江主题邮局。</span>
                </p>
             </div>
          </section>
@@ -3638,6 +3718,32 @@
 
     </section>
 
+    <!-- Yangtze theme post offices, on its own screen after the China map. -->
+    <section id="yangtze-posts" aria-hidden="true"
+             aria-label="Yangtze River theme post offices map">
+        <button class="back-to-globe sg-up" type="button" data-target="china-mountains">
+            <span aria-hidden="true">↑</span> China
+        </button>
+
+                <div class="pnw-section-inner">
+                    <h2><span class="dot"></span>长江主题邮局 · Yangtze Post Offices<span class="pnw-subtitle" id="ypCount"></span></h2>
+                    <div id="yp-map-wrap">
+                        <svg id="yp-map" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet"
+                             role="img" aria-label="The Yangtze River from its source to the sea, with eleven theme post offices numbered 1 to 11 from west to east; the Hankou riverside station is solid">
+                            <defs>
+                                <linearGradient id="yp-river-grad" gradientUnits="userSpaceOnUse" x1="60" y1="0" x2="1140" y2="0">
+                                    <stop offset="0" stop-color="#a4dcef"/>
+                                    <stop offset="0.45" stop-color="#3b97c9"/>
+                                    <stop offset="1" stop-color="#14568f"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <p class="yp-credit">River course: © OpenStreetMap contributors (ODbL) · Boundaries: Natural Earth</p>
+                </div>
+
+    </section>
+
          <p class="more rise">
             <a class="link" href="/creativity.html">
                <span class="lang-en">How these maps are drawn — Creativity</span><span class="lang-zh" hidden>这些地图是怎么画出来的——创作</span> →
@@ -4831,11 +4937,11 @@
             }, { passive: true });
         })();
     
-        /* The national parks and China sections have one panel each, so they need
+        /* The national parks, China and Yangtze sections have one panel each, so they need
            no pager of their own: just reveal-on-scroll and a way back up to the charts. The race
            section used to be here too and is now a pager, handled above. */
         (function () {
-            ['national-parks', 'china-mountains'].forEach(id => {
+            ['national-parks', 'china-mountains', 'yangtze-posts'].forEach(id => {
                 const section = document.getElementById(id);
                 if (!section) return;
                 const io = new IntersectionObserver(entries => {
@@ -5212,6 +5318,326 @@
                 mapEl.querySelectorAll('.cm-peak.pinned').forEach(p => p.classList.remove('pinned'));
                 if (hitEl && !was) hitEl.classList.add('pinned');
             }, { passive: true });
+        })();
+    </script>
+    <!-- ============================================================
+         Yangtze theme post offices
+         The river alone, source to sea, from its surveyed course
+         (maps/data/yangtze-course.json: OpenStreetMap, 3,200 vertices,
+         ~170 m tolerance) in the same Albers projection as the China map,
+         drawn as a ribbon that widens as it goes. Eleven stations, numbered
+         in the order the river meets them, which is also west to east.
+         Hankou is solid; the rest are light, half strength, one tint per
+         reach. Each pin sits on the nearest point of the real course to
+         the place's own coordinates.
+         ============================================================ -->
+    <script>
+        (function () {
+            if (typeof d3 === 'undefined') return;
+            const svgEl = document.getElementById('yp-map');
+            if (!svgEl) return;
+
+            const W = 1200, H = 600;
+
+            /* tint per reach: upper = glacier blue, middle = sage, lower = sand */
+            const TINT = {
+                up:  { fill: '#bfe3f0', stroke: '#4f9dbd' },
+                mid: { fill: '#cde7c2', stroke: '#6a9d55' },
+                low: { fill: '#f7dcb4', stroke: '#c49a52' }
+            };
+
+            /* lon/lat is each place's own coordinate; the pin is placed on the
+               nearest point of the river. #2 has no named city in the list, so
+               it is a point on the Jinsha reach that is the Tibet border. */
+            const ST = [
+                { n: 1,  reach: 'up',  lon: 92.4337,  lat: 34.2186, side: 't', zh: '格尔木市 唐古拉山镇', zs: '沱沱河畔',    en: 'Tanggula, Golmud', es: 'Tuotuo River bank', pz: '青海省', pe: 'Qinghai' },
+                { n: 2,  reach: 'up',  lon: 98.62,    lat: 31.30,   side: 't', zh: '西藏自治区',         zs: '沿江点位',    en: 'Tibet Autonomous Region', es: 'a site on the river' },
+                { n: 3,  reach: 'up',  lon: 100.2299, lat: 26.8721, side: 'b', zh: '丽江市',             zs: '',            en: 'Lijiang', es: '', pz: '云南省', pe: 'Yunnan' },
+                { n: 4,  reach: 'up',  lon: 104.6366, lat: 28.7697, side: 'b', zh: '宜宾市',             zs: '三江交汇处',  en: 'Yibin', es: 'where three rivers meet', pz: '四川省', pe: 'Sichuan' },
+                { n: 5,  reach: 'mid', lon: 106.5836, lat: 29.5646, side: 't', zh: '重庆市',             zs: '',            en: 'Chongqing', es: '', pz: '直辖市', pe: 'Municipality' },
+                { n: 6,  reach: 'mid', lon: 113.1275, lat: 29.4258, side: 'b', zh: '岳阳市',             zs: '',            en: 'Yueyang', es: '', pz: '湖南省', pe: 'Hunan' },
+                { n: 7,  reach: 'mid', lon: 114.296,  lat: 30.585,  side: 't', zh: '武汉市 汉口江滩',    zs: '',            en: 'Wuhan, Hankou Riverside', es: '', pz: '湖北省', pe: 'Hubei', hankou: 1 },
+                { n: 8,  reach: 'mid', lon: 115.99,   lat: 29.73,   side: 'b', zh: '九江市',             zs: '',            en: 'Jiujiang', es: '', pz: '江西省', pe: 'Jiangxi' },
+                { n: 9,  reach: 'mid', lon: 117.05,   lat: 30.52,   side: 't', zh: '安庆市',             zs: '',            en: 'Anqing', es: '', pz: '安徽省', pe: 'Anhui' },
+                { n: 10, reach: 'low', lon: 118.74,   lat: 32.09,   side: 'b', zh: '南京市 鼓楼区',      zs: '下关火车主题公园', en: 'Nanjing, Gulou District', es: 'Xiaguan Railway Theme Park', pz: '江苏省', pe: 'Jiangsu' },
+                { n: 11, reach: 'low', lon: 121.50,   lat: 31.40,   side: 't', zh: '上海市 宝山区',      zs: '吴淞炮台湾湿地公园', en: 'Shanghai, Baoshan District', es: 'Wusong Paotaiwan Wetland Park', pz: '直辖市', pe: 'Municipality' }
+            ];
+
+            const countEl = document.getElementById('ypCount');
+            if (countEl) countEl.textContent = ST.length + ' stations · 1 to 11, west to east';
+
+            Promise.all([d3.json('/maps/data/yangtze-course.json'), d3.json('/maps/data/china-admin1.json'), d3.json('/maps/data/asia-neighbours.json')]).then(([feat, geo, nb]) => {
+                const svg = d3.select('#yp-map');
+                const defs = svg.select('defs');
+                svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#eef3f1');
+                const gBg = svg.append('g');
+
+                // the same conic as the China map, fitted to the river
+                const proj = d3.geoAlbers().rotate([-105, 0]).center([0, 34]).parallels([25, 47])
+                    .fitExtent([[70, 130], [1130, 470]], feat);
+                const course = feat.geometry.coordinates;
+
+                /* Behind the river, quiet: the land against the sea, and the
+                   provinces. From natural-earth admin-1 (maps/data/china-admin1.json),
+                   in the same projection as the river. Layering gives the
+                   coast without a second dataset: wide pale strokes under the
+                   land read as water-lines off the shore, the land fill covers
+                   the inner half of every stroke (so inner borders vanish from
+                   the coast layers), and what is left outside is the shore. */
+                const geoPath = d3.geoPath(proj);
+                const feats = geo.features;
+                // Hong Kong and Macao come with the neighbours' file but are China
+                const isChina = n => n === 'Hong Kong' || n === 'Macao';
+                const abroad = nb.features.filter(f => !isChina(f.properties.n));
+                const homeExtra = nb.features.filter(f => isChina(f.properties.n));
+                const everything = feats.concat(abroad, homeExtra);
+                const layer = (g, data, fn) => g.selectAll('path').data(data).enter().append('path').attr('d', geoPath).call(fn);
+                [[26, 0.20], [16, 0.28], [8, 0.42]].forEach(w => {
+                    layer(gBg.append('g'), everything, p => p.attr('fill', '#cfe0e6').attr('stroke', '#bcd4dc')
+                        .attr('stroke-width', w[0]).attr('stroke-opacity', w[1]).attr('stroke-linejoin', 'round'));
+                });
+                layer(gBg.append('g'), everything, p => p.attr('fill', '#7f9ea8').attr('stroke', '#7f9ea8')
+                    .attr('stroke-width', 1.6).attr('stroke-linejoin', 'round'));
+                layer(gBg.append('g'), abroad, p => p.attr('fill', '#eceee8').attr('stroke', 'none'));
+                layer(gBg.append('g'), feats.concat(homeExtra), p => p.attr('fill', '#e7eee0').attr('stroke', 'none'));
+                // the national border, then the provinces inside it
+                layer(gBg.append('g'), abroad, p => p.attr('fill', 'none').attr('stroke', '#92a38f')
+                    .attr('stroke-width', 1).attr('stroke-linejoin', 'round').attr('stroke-opacity', 0.85));
+                layer(gBg.append('g'), feats.filter(f => !f.properties.tw), p => p.attr('fill', 'none').attr('stroke', '#9fb39b')
+                    .attr('stroke-width', 0.8).attr('stroke-dasharray', '3.2 2.6')
+                    .attr('stroke-linejoin', 'round').attr('stroke-opacity', 0.9));
+
+                // province names, set wide and faint, in the band between the cards
+                const NAMES = new Set(['青海','西藏','四川','云南','贵州','重庆','湖北','湖南','江西','安徽','江苏','浙江','福建','河南','陕西','甘肃','广东','广西','山东']);
+                const gNm = gBg.append('g');
+                const done = new Set();
+                feats.forEach(ft => {
+                    const z = ft.properties.zh;
+                    if (!NAMES.has(z) || done.has(z)) return;
+                    // centroid of the province's largest piece
+                    let best = null, area = -1;
+                    ft.geometry.coordinates.forEach(poly => {
+                        const one = { type: 'Polygon', coordinates: poly };
+                        const a = geoPath.area(one);
+                        if (a > area) { area = a; best = one; }
+                    });
+                    const c = geoPath.centroid(best);
+                    if (!isFinite(c[0]) || c[0] < 20 || c[0] > W - 20 || c[1] < 120 || c[1] > H - 120) return;
+                    done.add(z);
+                    const nudge = z === '重庆' ? [10, 24] : [0, 0];
+                    gNm.append('text').attr('x', c[0] + nudge[0]).attr('y', c[1] + nudge[1]).attr('text-anchor', 'middle')
+                        .attr('class', 'yp-prov-name').text(z);
+                });
+
+                const pts = course.map(c => proj(c));
+
+                /* Keep the bends that show at this scale and drop the rest. At
+                   roughly 3 km to the pixel the gorges' fine zigzags are noise,
+                   so the surveyed course is simplified (Douglas-Peucker, 5 px,
+                   about 15 km) and joined with a smooth curve: every major bend
+                   stays where the river has it. */
+                const dp = (P, tol) => {
+                    const keep = new Array(P.length).fill(false);
+                    keep[0] = keep[P.length - 1] = true;
+                    const st = [[0, P.length - 1]];
+                    while (st.length) {
+                        const [i0, i1] = st.pop();
+                        const ax = P[i0][0], ay = P[i0][1], dx = P[i1][0] - ax, dy = P[i1][1] - ay;
+                        const L = Math.hypot(dx, dy);
+                        let best = -1, bi = -1;
+                        for (let i = i0 + 1; i < i1; i++) {
+                            const d = L ? Math.abs(dy * (P[i][0] - ax) - dx * (P[i][1] - ay)) / L
+                                        : Math.hypot(P[i][0] - ax, P[i][1] - ay);
+                            if (d > best) { best = d; bi = i; }
+                        }
+                        if (best > tol) { keep[bi] = true; st.push([i0, bi], [bi, i1]); }
+                    }
+                    return P.filter((p, i) => keep[i]);
+                };
+                const cosφ0 = Math.cos(31 * Math.PI / 180);
+                const simple = dp(pts, 5);               // a calm guide for names and arrows
+                // the river itself keeps its bends: gorges, the Jingjiang loops
+                const detail = dp(pts.map((p, i) => [p[0], p[1], i]), 0.6);
+                const centerD = d3.line().curve(d3.curveCatmullRom.alpha(0.5))(simple);
+                const probe = defs.append('path').attr('id', 'yp-center').attr('d', centerD).node();
+                const len = probe.getTotalLength();
+
+                const rs = [];   // kept for the gradient extent
+                for (let l = 0; l < len; l += 3) { const p = probe.getPointAtLength(l); rs.push([p.x, p.y]); }
+
+                /* Width, to scale. Typical widths from the literature, in km,
+                   at known places along the river; between them the width is
+                   interpolated along the river's length. The line is never
+                   drawn thinner than MINW px so it stays visible: at about
+                   3 km to the pixel, nearly the whole river is under a pixel. */
+                const R_KM = [];
+                { let acc = 0; R_KM.push(0);
+                  for (let i = 1; i < course.length; i++) {
+                      acc += Math.hypot((course[i][0] - course[i - 1][0]) * cosφ0, course[i][1] - course[i - 1][1]) * 111.2;
+                      R_KM.push(acc);
+                  } }
+                const nearIdx = (lon, lat) => {
+                    let bi = 0, bd = 1e9;
+                    for (let i = 0; i < course.length; i++) {
+                        const d = (course[i][0] - lon) * (course[i][0] - lon) * cosφ0 * cosφ0 + (course[i][1] - lat) * (course[i][1] - lat);
+                        if (d < bd) { bd = d; bi = i; }
+                    }
+                    return bi;
+                };
+                const WIDTH = [
+                    [90.98, 33.48, 0.03], [92.43, 34.22, 0.08], [96.0, 34.1, 0.15], [98.7, 31.0, 0.12],
+                    [99.95, 26.9, 0.06], [101.7, 26.6, 0.2], [104.4, 28.6, 0.4], [104.63, 28.77, 0.5],
+                    [106.55, 29.56, 0.8], [109.5, 31.0, 0.25], [111.3, 30.7, 1.0], [112.2, 30.35, 1.2],
+                    [113.13, 29.43, 1.5], [114.3, 30.58, 1.4], [115.99, 29.73, 2.0], [117.05, 30.52, 2.3],
+                    [118.74, 32.09, 1.9], [119.45, 32.25, 2.5], [120.3, 31.95, 2.5], [120.9, 31.97, 6],
+                    [121.4, 31.72, 18], [122.37, 30.99, 70]
+                ].map(a => ({ km: R_KM[nearIdx(a[0], a[1])], w: a[2] })).sort((p, q) => p.km - q.km);
+                const widthKm = km => {
+                    if (km <= WIDTH[0].km) return WIDTH[0].w;
+                    for (let i = 1; i < WIDTH.length; i++) {
+                        if (km <= WIDTH[i].km) {
+                            const t = (km - WIDTH[i - 1].km) / ((WIDTH[i].km - WIDTH[i - 1].km) || 1);
+                            return WIDTH[i - 1].w + t * (WIDTH[i].w - WIDTH[i - 1].w);
+                        }
+                    }
+                    return WIDTH[WIDTH.length - 1].w;
+                };
+                // px per km on this map, from one degree of latitude mid-river
+                const pk = Math.hypot(...[0, 1].map(k => proj([110, 30 + k])).reduce((a, b) => [b[0] - a[0], b[1] - a[1]])) / 111.2;
+                const MINW = 1.7;
+
+                // gradient follows the river's own x extent
+                const xs = rs.map(p => p[0]);
+                defs.select('#yp-river-grad')
+                    .attr('x1', d3.min(xs)).attr('x2', d3.max(xs));
+
+                svg.append('path').attr('class', 'yp-glow').attr('d', centerD).attr('stroke-width', 11);
+                const gRiver = svg.append('g').attr('class', 'yp-river');
+                const lineG = d3.line().curve(d3.curveCatmullRom.alpha(0.5));
+                const GROUP = 6;
+                for (let i = 0; i < detail.length - 1; i += GROUP - 1) {
+                    const sl = detail.slice(Math.max(0, i - 1), Math.min(detail.length, i + GROUP + 1));
+                    const mid = detail[Math.min(detail.length - 1, i + Math.floor(GROUP / 2))];
+                    const wpx = Math.max(MINW, widthKm(R_KM[mid[2]]) * pk);
+                    // the estuary fades as it opens, into the sea it becomes
+                    const fade = Math.max(0.28, Math.min(1, 1 - (wpx - 3) / 22));
+                    gRiver.append('path').attr('d', lineG(sl.map(p => [p[0], p[1]])))
+                        .attr('stroke-width', wpx.toFixed(2)).attr('stroke-opacity', fade.toFixed(2))
+                        .attr('stroke-linecap', wpx > 5 ? 'butt' : 'round');
+                }
+
+                // nearest point on the real (unsimplified) course, by true ground distance
+                const cosφ = Math.cos(31 * Math.PI / 180);
+                function snap(lon, lat) {
+                    let best = { d: 1e9 };
+                    for (let i = 0; i < course.length - 1; i++) {
+                        const ax = course[i][0] * cosφ, ay = course[i][1];
+                        const bx = course[i + 1][0] * cosφ, by = course[i + 1][1];
+                        const px = lon * cosφ, py = lat;
+                        const dx = bx - ax, dy = by - ay, L2 = dx * dx + dy * dy;
+                        const t = L2 ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / L2)) : 0;
+                        const d = Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+                        if (d < best.d) {
+                            best = { d: d, lon: course[i][0] + t * (course[i + 1][0] - course[i][0]),
+                                     lat: course[i][1] + t * (course[i + 1][1] - course[i][1]) };
+                        }
+                    }
+                    return best;
+                }
+
+                // flow chevrons, so west to east reads as downstream
+                [0.2, 0.45, 0.7, 0.9].forEach(t => {
+                    const p = probe.getPointAtLength(t * len), q = probe.getPointAtLength(Math.min(len, t * len + 3));
+                    const a = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
+                    svg.append('path').attr('class', 'yp-flow').attr('d', 'M -4 -3 L 3 0 L -4 3 Z')
+                        .attr('transform', 'translate(' + p.x + ',' + p.y + ') rotate(' + a + ')');
+                });
+
+                // reach names along the river
+                [['通天河 Tongtian', 0.1, -9], ['金沙江 Jinsha', 0.262, -11], ['长江 Yangtze River', 0.655, -17]].forEach(r => {
+                    svg.append('text').attr('class', 'yp-reach')
+                        .append('textPath').attr('href', '#yp-center')
+                        .attr('startOffset', Math.round(r[1] * 100) + '%').attr('text-anchor', 'middle')
+                        .attr('dy', r[2]).text(r[0]);
+                });
+                const plateau = proj([90.5, 30.6]), sea = proj([124.6, 28.2]);
+                svg.append('text').attr('class', 'yp-ground').attr('x', plateau[0]).attr('y', plateau[1])
+                    .text('青藏高原 · Tibetan Plateau');
+                const seaT = svg.append('text').attr('class', 'yp-ground').attr('text-anchor', 'end');
+                seaT.append('tspan').attr('x', W - 18).attr('y', sea[1] - 6).text('东海');
+                seaT.append('tspan').attr('x', W - 18).attr('y', sea[1] + 9).text('East China Sea');
+
+                /* ---- stations ---------------------------------------------- */
+                const CW = 144, TOP_Y = 22, BOT_Y = H - 18;
+                ST.forEach(s => {
+                    const sp = snap(s.lon, s.lat);
+                    const xy = proj([sp.lon, sp.lat]);
+                    s.mx = xy[0]; s.my = xy[1];
+                    const L = [];
+                    L.push({ c: 'yp-head', t: '长江' + s.n + '号 · Yangtze No. ' + s.n, h: 14 });
+                    L.push({ c: 'yp-zh', t: s.zh, h: 16 });
+                    if (s.zs) L.push({ c: 'yp-zh-sub', t: s.zs, h: 13 });
+                    L.push({ c: 'yp-en', t: s.en, h: 13 });
+                    if (s.es) L.push({ c: 'yp-en-sub', t: s.es, h: 12 });
+                    if (s.pz) L.push({ c: 'yp-prov', t: s.pz + ' · ' + s.pe, h: 13 });
+                    s.lines = L;
+                    s.ch = 10 + L.reduce((a, l) => a + l.h, 0);
+                    s.cx = s.mx;
+                });
+
+                // each row: keep cards apart and inside the frame, as close to their point as they can sit
+                ['t', 'b'].forEach(side => {
+                    const row = ST.filter(s => s.side === side).sort((a, b) => a.mx - b.mx);
+                    const gap = CW + 6, lo = CW / 2 + 8, hi = W - CW / 2 - 8;
+                    for (let it = 0; it < 300; it++) {
+                        for (let i = 1; i < row.length; i++) {
+                            const d = row[i].cx - row[i - 1].cx;
+                            if (d < gap) { const k = (gap - d) / 2; row[i].cx += k; row[i - 1].cx -= k; }
+                        }
+                        row.forEach(s => { s.cx = Math.min(hi, Math.max(lo, s.cx)); });
+                    }
+                });
+
+                const gLead = svg.append('g'), gSt = svg.append('g');
+                const order = ST.slice().sort((a, b) => (a.hankou ? 1 : 0) - (b.hankou ? 1 : 0));
+                order.forEach(s => {
+                    const tint = TINT[s.reach];
+                    const top = s.side === 't';
+                    const y1 = top ? TOP_Y : BOT_Y - s.ch;
+                    const edgeY = top ? y1 + s.ch : y1;
+                    const midY = top ? edgeY + (s.my - edgeY) * 0.55 : edgeY - (edgeY - s.my) * 0.55;
+                    const g = gSt.append('g').attr('class', 'yp-station' + (s.hankou ? ' hankou' : ''));
+                    g.append('title').text('长江' + s.n + '号 · Yangtze No. ' + s.n + ' · ' + s.zh + (s.zs ? ' ' + s.zs : '') + ' · ' + s.en + (s.es ? ' (' + s.es + ')' : ''));
+
+                    gLead.append('path').attr('class', 'yp-leader')
+                        .attr('d', 'M' + s.mx + ',' + s.my + ' L' + s.mx + ',' + midY + ' L' + s.cx + ',' + edgeY)
+                        .attr('style', s.hankou ? 'stroke:#0e7a4f;opacity:.9;stroke-width:1.2px' : '');
+
+                    // the stamp: light and half strength, perforated edge
+                    const x1 = s.cx - CW / 2;
+                    g.append('rect').attr('x', x1).attr('y', y1).attr('width', CW).attr('height', s.ch)
+                        .attr('rx', 3).attr('fill', '#eef3f1');
+                    g.append('rect').attr('class', 'yp-stamp-fill').attr('x', x1).attr('y', y1)
+                        .attr('width', CW).attr('height', s.ch).attr('rx', 3)
+                        .attr('fill', tint.fill).attr('stroke', tint.stroke);
+                    g.append('rect').attr('class', 'yp-perf').attr('x', x1).attr('y', y1)
+                        .attr('width', CW).attr('height', s.ch).attr('rx', 3);
+                    let y = y1 + 5;
+                    s.lines.forEach(l => {
+                        y += l.h;
+                        g.append('text').attr('class', l.c).attr('x', x1 + 9).attr('y', y - 3.5).text(l.t);
+                    });
+
+                    // the pin on the river, with its number
+                    if (s.hankou) {
+                        g.append('circle').attr('class', 'yp-mark').attr('cx', s.mx).attr('cy', s.my).attr('r', 15);
+                        g.append('circle').attr('class', 'yp-mark').attr('cx', s.mx).attr('cy', s.my).attr('r', 18.5).attr('stroke-opacity', 0.5);
+                    }
+                    g.append('circle').attr('class', 'yp-pin').attr('cx', s.mx).attr('cy', s.my).attr('r', 10)
+                        .attr('fill', tint.fill).attr('stroke', tint.stroke);
+                    g.append('text').attr('class', 'yp-pin-num').attr('x', s.mx).attr('y', s.my + 3.6).text(s.n);
+                });
+            });
         })();
     </script>
     <script>
