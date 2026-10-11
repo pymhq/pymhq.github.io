@@ -290,6 +290,7 @@
 
         #race-routes .pnw-section-inner,
         #national-parks .pnw-section-inner,
+        #china-mountains .pnw-section-inner,
         #pnw-section .pnw-section-inner {
             /* percentages, not vw: the section sits inside .shell, so it is
                narrower than the viewport by two gutters. A vw width made
@@ -311,6 +312,7 @@
 
         #race-routes h2,
         #national-parks h2,
+        #china-mountains h2,
         #pnw-section h2 {
             font-size: 1.3rem;
             font-weight: 700;
@@ -323,6 +325,7 @@
 
         #race-routes h2 .dot,
         #national-parks h2 .dot,
+        #china-mountains h2 .dot,
         #pnw-section h2 .dot {
             width: 10px;
             height: 10px;
@@ -333,6 +336,7 @@
 
         #race-routes .pnw-subtitle,
         #national-parks .pnw-subtitle,
+        #china-mountains .pnw-subtitle,
         #pnw-section .pnw-subtitle {
             font-size: 0.85rem;
             color: #8a9478;
@@ -526,6 +530,7 @@
         #pnw-section .back-to-globe,
         #race-routes .back-to-globe,
         #national-parks .back-to-globe,
+        #china-mountains .back-to-globe,
         #salish-to-scale .back-to-globe {
             position: absolute;
             top: 18px;
@@ -547,6 +552,7 @@
         #pnw-section .back-to-globe:hover,
         #race-routes .back-to-globe:hover,
         #national-parks .back-to-globe:hover,
+        #china-mountains .back-to-globe:hover,
         #salish-to-scale .back-to-globe:hover {
             background: #f4f6f1;
         }
@@ -658,6 +664,7 @@
         @media (max-width: 600px) {
             #pnw-full-map-wrap,
             #np-map-wrap,
+            #cm-map-wrap,
             .pnw-route-card {
                 width: 100%;
                 height: auto;
@@ -913,6 +920,7 @@
            All they add is the full-screen frame, shared with #salish-to-scale. */
         #race-routes,
         #national-parks,
+        #china-mountains,
         #salish-to-scale {
             height: 100vh;
             display: flex;
@@ -929,6 +937,7 @@
 
         #race-routes.revealed,
         #national-parks.revealed,
+        #china-mountains.revealed,
         #salish-to-scale.revealed { opacity: 1; transform: translateY(0); }
 
         /* one sheet per screen, swiped horizontally, exactly as the panel pager
@@ -1009,6 +1018,7 @@
            is on the left of the apron, so the button lines up with it */
         #race-routes .sg-up,
         #national-parks .sg-up,
+        #china-mountains .sg-up,
         #salish-to-scale .sg-up { left: 18px; right: auto; z-index: 6; }
 
         /* the sheet's margin: on panel 2 the title and legend sit on the water,
@@ -1259,6 +1269,180 @@
             .pnw-nav.prev { left: 50%; margin-left: -76px; }
             .pnw-nav.next { right: 50%; margin-right: -76px; }
         }
+        /* ============================================================
+           China: 30 famous mountains (its own screen, after the parks)
+           Same card treatment as the national parks panel, from a 1200x840
+           drawing. A climbed mountain is drawn solid; every other one is the
+           same drawing at half strength, the convention the other charts use.
+           ============================================================ */
+        #china-mountains .pnw-section-inner {
+            width: min(96%, 1360px);
+            height: min(90vh, 860px);
+        }
+
+        #cm-map-wrap {
+            flex: 0 1 auto;
+            width: min(100%, calc((min(90vh, 860px) - 62px) * 1200 / 840));
+            aspect-ratio: 1200 / 840;
+            height: auto;
+            max-height: 100%;
+            border-radius: 16px;
+            background: #e8f0f2;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 2px solid #dbe5e8;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #cm-map { display: block; width: 100%; height: 100%; }
+
+        #cm-map text {
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                         "Noto Sans SC", -apple-system, BlinkMacSystemFont,
+                         "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .cm-prov { stroke: #ffffff; stroke-width: 1.1px; stroke-linejoin: round; }
+        .cm-prov.c0 { fill: #dfe7cc; }
+        .cm-prov.c1 { fill: #e9e6cc; }
+        .cm-prov.c2 { fill: #d5e3d0; }
+        .cm-prov.c3 { fill: #ece0c8; }
+        .cm-prov.sar { fill: #f1b7a0; stroke: #c9694a; stroke-width: 0.8px; }
+
+        .cm-coast {
+            fill: none;
+            stroke: #8aa3ab;
+            stroke-width: 1.6px;
+            stroke-linejoin: round;
+            opacity: 0.55;
+            pointer-events: none;
+        }
+
+        .cm-river {
+            fill: none;
+            stroke: #5fa3cc;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        .cm-river-name {
+            font-size: 10.5px;
+            font-style: italic;
+            font-weight: 600;
+            fill: #3f7ea6;
+            paint-order: stroke;
+            stroke: rgba(232, 240, 242, 0.85);
+            stroke-width: 2.4px;
+            stroke-linejoin: round;
+        }
+
+        .cm-prov-name {
+            font-size: 10.5px;
+            font-weight: 600;
+            fill: #4a5636;
+            opacity: 0.4;
+            text-anchor: middle;
+            pointer-events: none;
+            letter-spacing: 1px;
+        }
+
+        .cm-sar-name {
+            font-size: 11px;
+            font-weight: 700;
+            fill: #9c4a2e;
+            paint-order: stroke;
+            stroke: rgba(232, 240, 242, 0.9);
+            stroke-width: 2.6px;
+            stroke-linejoin: round;
+        }
+
+        .cm-sar-en { font-size: 9px; font-weight: 500; font-style: italic; }
+        .cm-sar-line { fill: none; stroke: #9c4a2e; stroke-width: 0.8px; opacity: 0.7; }
+
+        /* doodle ink and the handful of fills the 30 drawings share */
+        .cm-p {
+            stroke: #34422f;
+            stroke-width: 1px;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+        }
+        .cm-p.n { fill: none; }
+        .cm-p.fine { stroke-width: 0.7px; }
+        .cm-p.sn { fill: #f7f9fb; }
+        .cm-p.g1 { fill: #7fa062; }
+        .cm-p.g2 { fill: #4f7a4f; }
+        .cm-p.g3 { fill: #a9c46a; }
+        .cm-p.rk { fill: #9aa0a0; }
+        .cm-p.rk2 { fill: #7c858c; }
+        .cm-p.rd { fill: #c86f4a; }
+        .cm-p.rd2 { fill: #a85e55; }
+        .cm-p.gd { fill: #e8b94a; }
+        .cm-p.wt { fill: #7fb6d6; }
+        .cm-p.sd { fill: #b69b7a; }
+        .cm-p.pk { fill: #e7a3b5; }
+        .cm-p.ink { fill: #34422f; }
+        .cm-p.wh { fill: #ffffff; }
+
+        .cm-tether {
+            fill: none;
+            stroke: #4a3f2c;
+            stroke-width: 0.8px;
+            opacity: 0.55;
+            pointer-events: none;
+        }
+
+        .cm-anchor {
+            fill: #f7f1e0;
+            stroke: #4a3f2c;
+            stroke-width: 1px;
+            pointer-events: none;
+        }
+
+        /* Not climbed: the same drawing at half strength. Climbed: solid. */
+        .cm-peak { cursor: pointer; }
+        .cm-peak .cm-art { transition: opacity 0.15s ease; }
+        .cm-peak.unvisited .cm-art { opacity: 0.5; }
+        .cm-peak.unvisited:hover .cm-art,
+        .cm-peak.unvisited.pinned .cm-art { opacity: 0.95; }
+        .cm-peak.visited .cm-art { opacity: 1; }
+        .cm-peak .cm-hit { fill: transparent; stroke: none; }
+
+        .cm-zh {
+            font-size: 12.5px;
+            font-weight: 700;
+            fill: #2b3523;
+            paint-order: stroke;
+            stroke: rgba(232, 240, 242, 0.88);
+            stroke-width: 3px;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        .cm-en {
+            font-size: 9.2px;
+            font-weight: 500;
+            fill: #46503a;
+            paint-order: stroke;
+            stroke: rgba(232, 240, 242, 0.88);
+            stroke-width: 2.6px;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        .cm-peak.unvisited .cm-zh { fill: #3d4932; }
+        .cm-peak.visited .cm-zh { fill: #1f3d17; font-size: 13.5px; }
+        .cm-peak.visited .cm-en { fill: #2d4a24; font-weight: 700; }
+
+        .cm-legend-card {
+            fill: rgba(255, 255, 255, 0.72);
+            stroke: #dbe5e8;
+            stroke-width: 1.5px;
+        }
+        .cm-legend-title { font-size: 12.5px; font-weight: 700; fill: #4a5636; }
+        .cm-legend-text { font-size: 10.5px; font-weight: 600; fill: #4a5636; }
+        .cm-legend-sub { font-size: 9.2px; font-style: italic; fill: #6b765a; }
+
         /* Discourage saving the pictures: no drag-out, no long-press save sheet. */
         img, svg, canvas, video { -webkit-user-drag: none; -webkit-touch-callout: none; }
         img, video { -webkit-user-select: none; user-select: none; }
@@ -1298,8 +1482,8 @@
          <section class="band--tight rise">
             <div class="prose">
                <p>
-                  <span class="lang-en">Drag the globe to spin it: visited countries fill in blue, and every city pin carries a date. Scroll on to the Pacific Northwest panel, then swipe right for the Salish Sea routes and a map of all 63 U.S. national parks. Scroll on again for the same Salish Sea chart drawn to scale on a screen of its own, and then for the race panels: one start line each, every course the organiser's own published line.</span>
-                  <span class="lang-zh" hidden>拖动地球仪即可旋转：到访过的国家填上蓝色，每个城市图钉都带有日期。继续向下滚动进入太平洋西北面板，再向右滑动查看萨利希海航线图，以及全美 63 座国家公园地图。继续往下，是同一片萨利希海的等比例版本，单独占满一屏；再往下是比赛面板，每场比赛一屏，赛道都取自主办方公布的实际路线。</span>
+                  <span class="lang-en">Drag the globe to spin it: visited countries fill in blue, and every city pin carries a date. Scroll on to the Pacific Northwest panel, then swipe right for the Salish Sea routes and a map of all 63 U.S. national parks. Scroll on again for the same Salish Sea chart drawn to scale on a screen of its own, and then for the race panels: one start line each, every course the organiser's own published line. Past the parks is a map of China (with Hong Kong, Macao and Taiwan) and its 30 famous mountains, each drawn after its own shape, solid where I have climbed it.</span>
+                  <span class="lang-zh" hidden>拖动地球仪即可旋转：到访过的国家填上蓝色，每个城市图钉都带有日期。继续向下滚动进入太平洋西北面板，再向右滑动查看萨利希海航线图，以及全美 63 座国家公园地图。继续往下，是同一片萨利希海的等比例版本，单独占满一屏；再往下是比赛面板，每场比赛一屏，赛道都取自主办方公布的实际路线。国家公园之后是一幅中国地图（含香港、澳门和台湾），标出 30 座名山，每座按各自的形态手绘，登过的画成实心。</span>
                </p>
             </div>
          </section>
@@ -3169,6 +3353,291 @@
     </section>
 
 
+    <!-- China: the 30 famous mountains, on its own screen after the parks. -->
+    <section id="china-mountains" aria-hidden="true"
+             aria-label="China: 30 famous mountains map">
+        <button class="back-to-globe sg-up" type="button" data-target="national-parks">
+            <span aria-hidden="true">↑</span> Parks
+        </button>
+
+                <div class="pnw-section-inner">
+                    <h2><span class="dot"></span>China · 中国名山<span class="pnw-subtitle" id="cmCount"></span></h2>
+                    <div id="cm-map-wrap">
+                        <svg id="cm-map" viewBox="0 0 1200 840" preserveAspectRatio="xMidYMid meet"
+                             role="img" aria-label="Map of China, with Hong Kong, Macao and Taiwan, showing 30 famous mountains drawn after their real character; the three climbed ones are solid">
+                            <defs>
+                                <!-- One drawing per mountain, about the origin at
+                                     roughly ±15 units, ground line at y = 9. Each
+                                     follows its mountain's real character, noted
+                                     above it. -->
+
+                                <!-- Everest: the black pyramid with a snow plume -->
+                                <g id="cm-everest">
+                                    <path class="cm-p rk2" d="M -15 9 L -5 -7 L 0 -16 L 4 -9.5 L 7 -11.5 L 15 9 Z"/>
+                                    <path class="cm-p sn" d="M -5.4 -6.6 L 0 -16 L 4 -9.5 L 7 -11.5 L 9.4 -6 L 5 -7.6 L 2 -4.6 L -1.4 -7.2 L -3.6 -4.8 Z"/>
+                                    <path class="cm-p n fine" d="M 0 -16 Q 6 -18.6 12.5 -16.6"/>
+                                </g>
+
+                                <!-- Meili: glacier-hung Kawagebo -->
+                                <g id="cm-meili">
+                                    <path class="cm-p rk2" d="M -15 9 L -9.5 -3 L -5.5 -11.5 L -1.5 -3 L 3 -15 L 8 -4 L 11 -8 L 15 9 Z"/>
+                                    <path class="cm-p sn" d="M -8 -6.4 L -5.5 -11.5 L -3 -6.4 Q -5.5 -8 -8 -6.4 Z"/>
+                                    <path class="cm-p sn" d="M 0.2 -8.2 L 3 -15 L 6 -7.4 Q 3 -9.6 0.2 -8.2 Z"/>
+                                    <path class="cm-p wt" d="M 1 -2.4 L 4.6 -4.6 L 7.4 3 L 4 8.4 L 1.8 3 Z"/>
+                                </g>
+
+                                <!-- Siguniang: four sisters in a row -->
+                                <g id="cm-siguniang">
+                                    <path class="cm-p rk2" d="M -15 9 L -11 -1.5 L -8.4 -13 L -5.6 -2.5 L -2.6 -9.5 L 0.2 -2 L 3.2 -6 L 6 0 L 9 -3 L 15 9 Z"/>
+                                    <path class="cm-p sn" d="M -9.8 -6 L -8.4 -13 L -6.8 -6.2 Q -8.4 -7.6 -9.8 -6 Z"/>
+                                    <path class="cm-p sn" d="M -4.2 -5 L -2.6 -9.5 L -1.2 -4.8 Q -2.7 -6.2 -4.2 -5 Z"/>
+                                    <path class="cm-p sn" d="M 1.8 -2.8 L 3.2 -6 L 4.4 -2.8 Q 3.1 -3.8 1.8 -2.8 Z"/>
+                                </g>
+
+                                <!-- Emei: green tiers, a golden summit and its halo -->
+                                <g id="cm-emei">
+                                    <path class="cm-p g1" d="M -15 9 Q -9 -1 -4 -6 Q 0 -12 4 -8.4 Q 10 -3 15 9 Z"/>
+                                    <path class="cm-p g2" d="M -10 9 Q -5 3 -2 0 Q 1 -2.6 4 0 Q 8 4 11 9 Z"/>
+                                    <circle class="cm-p n" stroke="#d69a24" cx="0.4" cy="-12" r="4.6"/>
+                                    <path class="cm-p gd" d="M -2.4 -9.6 L 0.4 -14.4 L 3.2 -9.6 Z"/>
+                                    <path class="cm-p n fine" stroke="#ffffff" stroke-width="1.6" d="M -15 6.6 Q -11 3.6 -7 6.6 T 1 6.6 T 9 6.6 T 15 6.6"/>
+                                </g>
+
+                                <!-- Qingcheng: round, wooded, a pavilion on top -->
+                                <g id="cm-qingcheng">
+                                    <path class="cm-p g2" d="M -14.5 9 Q -13 -3 -5 -6 Q 0 -8 5 -6 Q 13 -3 14.5 9 Z"/>
+                                    <path class="cm-p g1" d="M -9 9 Q -8 1 -2 -1 Q 3 -2 7 2 Q 9 5 10 9 Z"/>
+                                    <path class="cm-p wh" d="M -2.2 -7 H 2.2 V -9.4 H -2.2 Z"/>
+                                    <path class="cm-p rd" d="M -4.4 -9.4 L 0 -14 L 4.4 -9.4 Z"/>
+                                </g>
+
+                                <!-- Wutai: five flat terraces and a white stupa -->
+                                <g id="cm-wutai">
+                                    <path class="cm-p g3" d="M -15 9 L -14 2 L -10 2 L -9.4 -3 L -5.4 -3 L -4.8 -7 L 0.4 -7 L 1 -3 L 5 -3 L 5.6 2 L 10 2 L 11.4 9 Z"/>
+                                    <path class="cm-p n fine" d="M -10 2 V 9 M -5.4 -3 V 9 M 1 -3 V 9 M 5.6 2 V 9"/>
+                                    <path class="cm-p wh" d="M -1.6 -7 Q -2 -10.4 -2 -11.4 L 1.2 -11.4 Q 1.2 -10.4 1.6 -7 Z"/>
+                                    <path class="cm-p gd" d="M -1.6 -11.4 L -0.4 -14 L 0.8 -11.4 Z"/>
+                                </g>
+
+                                <!-- Heng (north): a sheer cliff with a temple hung on it -->
+                                <g id="cm-hengN">
+                                    <path class="cm-p rk" d="M -15 9 L -10 -6 L -3 -12 L 3 -9 L 8 -12 L 15 9 Z"/>
+                                    <path class="cm-p rk2" d="M -3 -12 L 3 -9 L 1 9 L -5 9 Z"/>
+                                    <path class="cm-p rd" d="M -3.6 -1 H 3.4 V 3 H -3.6 Z"/>
+                                    <path class="cm-p rd" d="M -5 -1 L 0 -4.6 L 5 -1 Z"/>
+                                    <path class="cm-p n fine" d="M -2.6 3 V 6.4 M 0 3 V 6.4 M 2.4 3 V 6.4"/>
+                                </g>
+
+                                <!-- Changbai: a caldera lake and its waterfall -->
+                                <g id="cm-changbai">
+                                    <path class="cm-p rk" d="M -15 9 L -10.5 -5 L -5 -9.6 L 5 -9.6 L 10.5 -5 L 15 9 Z"/>
+                                    <path class="cm-p sn" d="M -10.5 -5 L -5 -9.6 L -3.4 -7.6 L -6.4 -6.2 L -8.6 -3.4 Z"/>
+                                    <path class="cm-p sn" d="M 10.5 -5 L 5 -9.6 L 3.4 -7.6 L 6.4 -6.2 L 8.6 -3.4 Z"/>
+                                    <ellipse class="cm-p wt" cx="0" cy="-8.2" rx="6.4" ry="2.4"/>
+                                    <path class="cm-p n" stroke="#ffffff" stroke-width="1.8" d="M 6.6 -6.4 Q 8.4 0 7.4 7"/>
+                                </g>
+
+                                <!-- Fanjing: a mushroom rock on a stone stem -->
+                                <g id="cm-fanjing">
+                                    <path class="cm-p g2" d="M -15 9 Q -9 2 -4 3 L 4 3 Q 9 2 15 9 Z"/>
+                                    <path class="cm-p rk" d="M -2.4 3.4 L -1.6 -7 L 1.6 -7 L 2.4 3.4 Z"/>
+                                    <path class="cm-p sd" d="M -7.4 -7.4 Q -4 -15.4 0 -15.4 Q 4 -15.4 7.4 -7.4 Q 0 -5.4 -7.4 -7.4 Z"/>
+                                    <path class="cm-p n fine" d="M -3.4 -11.4 Q 0 -12.6 3.4 -11.4"/>
+                                </g>
+
+                                <!-- Laojun: ridge in snow, a gold-roofed temple -->
+                                <g id="cm-laojun">
+                                    <path class="cm-p g2" d="M -15 9 L -6.4 -4.6 L -2.4 -9 L 2.6 -5.6 L 7 -9.4 L 15 9 Z"/>
+                                    <path class="cm-p sn" d="M -6.4 -4.6 L -2.4 -9 L 0.4 -6.6 L -2 -5.4 L -3.8 -6.8 Z"/>
+                                    <path class="cm-p sn" d="M 3.8 -8.2 L 7 -9.4 L 9.4 -6.4 L 7 -6 L 5.4 -7 Z"/>
+                                    <path class="cm-p gd" d="M 3.6 -9.6 L 7 -14.4 L 10.4 -9.6 Z"/>
+                                    <path class="cm-p rd" d="M 4.8 -9.6 H 9.2 V -7.8 H 4.8 Z"/>
+                                </g>
+
+                                <!-- Wuyi: red Danxia dome with the nine-bend stream -->
+                                <g id="cm-wuyi">
+                                    <path class="cm-p rd" d="M -15 9 Q -13.6 -7.4 -5.4 -9 Q 0 -10.4 4.4 -8.4 Q 14 -5.4 15 9 Z"/>
+                                    <path class="cm-p g1" d="M -9.4 -8.2 Q -4 -12.6 2 -10.6 Q 5.4 -9.6 6 -8 Q -1 -7 -9.4 -8.2 Z"/>
+                                    <path class="cm-p n fine" d="M -12.4 -2 Q -4 -0.6 6 -2.4 M -13.6 3 Q -4 4.4 11 2.4"/>
+                                    <path class="cm-p n" stroke="#4e97c4" stroke-width="2.2" d="M -9 9 Q -3.6 4.6 0.6 7 T 8.6 5"/>
+                                </g>
+
+                                <!-- Hua: five granite peaks, sheer on every side -->
+                                <g id="cm-hua">
+                                    <path class="cm-p rk" d="M -13 9 L -10 -2 L -8 -8 L -5 -16 L -2.4 -8.4 L 1 -13 L 4.4 -6 L 7 -9.4 L 9.4 -2 L 13 9 Z"/>
+                                    <path class="cm-p rk2" d="M -5 -16 L -2.4 -8.4 L -3 9 L -6.6 9 L -6.2 -4 Z"/>
+                                    <path class="cm-p rk2" d="M 1 -13 L 4.4 -6 L 4 9 L 0.4 9 L 0.8 -4 Z"/>
+                                    <path class="cm-p rk2" d="M 7 -9.4 L 9.4 -2 L 13 9 L 8.6 9 Z"/>
+                                    <path class="cm-p n fine" d="M -9 -1 V 9 M -1 -6 V 9 M 5.4 -2 V 9"/>
+                                </g>
+
+                                <!-- Song: a long ridge of many small peaks, a pagoda below -->
+                                <g id="cm-song">
+                                    <path class="cm-p sd" d="M -15 9 L -12.4 -1 L -10.4 -5 L -8.4 -2 L -6.2 -8 L -3.4 -3 L -1.2 -10 L 1.8 -4 L 4 -7 L 6.8 -2 L 9 -5 L 11 -1 L 15 9 Z"/>
+                                    <path class="cm-p g2" d="M -15 9 Q -8 5 0 6.6 Q 8 5 15 9 Z"/>
+                                    <path class="cm-p wh" d="M 7.6 6.4 V 0.6 L 9 -3.2 L 10.4 0.6 V 6.4 Z"/>
+                                </g>
+
+                                <!-- Tai: the broad throne, a stair and a rising sun -->
+                                <g id="cm-tai">
+                                    <circle class="cm-p gd" cx="7.6" cy="-12" r="3.6"/>
+                                    <path class="cm-p rk" d="M -15 9 L -7.4 -9 L 7.4 -9 L 15 9 Z"/>
+                                    <path class="cm-p rk2" d="M 7.4 -9 L 15 9 L 6 9 L 3 -9 Z"/>
+                                    <path class="cm-p rd" d="M -4.6 -9 V -12.4 H 4.6 V -9 Z"/>
+                                    <path class="cm-p n" stroke="#ffffff" stroke-width="1.3" d="M -1 9 L -4.4 5 L 2.6 1.4 L -2.6 -2.6 L 1.4 -6.6"/>
+                                </g>
+
+                                <!-- Huang: pine on a granite spire, sea of cloud -->
+                                <g id="cm-huang">
+                                    <path class="cm-p rk" d="M -14 9 L -9.4 -3 L -5.4 -10 L -2.4 -4 L 1.6 -14.4 L 5.8 -5 L 9 -8 L 14 9 Z"/>
+                                    <path class="cm-p rk2" d="M 1.6 -14.4 L 5.8 -5 L 3 9 L -1 9 Z"/>
+                                    <path class="cm-p n" stroke="#4b3a24" stroke-width="1.2" d="M 8.4 -6 L 9 -8.6"/>
+                                    <path class="cm-p g2" d="M 5.4 -9.4 Q 7 -12.4 10 -11 Q 12.4 -9.6 10.8 -8 Q 8 -7 5.4 -9.4 Z"/>
+                                    <path class="cm-p sn" d="M -15 6.6 Q -11.4 3.2 -7.6 6.4 Q -4 8.8 0 6 Q 4 3.4 8 6.2 Q 12 8.6 15 6 V 10 H -15 Z"/>
+                                </g>
+
+                                <!-- Tianzhu: one stone pillar over a wooded base -->
+                                <g id="cm-tianzhu">
+                                    <path class="cm-p rk" d="M -4.4 9 L -4.8 -8 Q -4.2 -14.8 0 -17 Q 4.2 -14.8 4.8 -8 L 5.4 9 Z"/>
+                                    <path class="cm-p rk2" d="M 0 -17 Q 4.2 -14.8 4.8 -8 L 5.4 9 L 1.6 9 Q 2.2 -4 0 -17 Z"/>
+                                    <path class="cm-p g2" d="M -15 9 Q -10 2.6 -4.6 3.6 L 5.4 3.6 Q 10.4 2.6 15 9 Z"/>
+                                    <path class="cm-p n fine" d="M -2 -9 V 2 M -0.4 -12 V -6"/>
+                                </g>
+
+                                <!-- Jiuhua: a lotus of nine peaks -->
+                                <g id="cm-jiuhua">
+                                    <path class="cm-p pk" d="M -2.4 9 Q -14.4 8 -14.6 -1 Q -7 -0.4 -2.4 9 Z"/>
+                                    <path class="cm-p pk" d="M 2.4 9 Q 14.4 8 14.6 -1 Q 7 -0.4 2.4 9 Z"/>
+                                    <path class="cm-p pk" d="M -2 9 Q -11.4 3 -9.6 -9 Q -3.4 -4 -2 9 Z"/>
+                                    <path class="cm-p pk" d="M 2 9 Q 11.4 3 9.6 -9 Q 3.4 -4 2 9 Z"/>
+                                    <path class="cm-p pk" d="M 0 9.4 Q -5.4 -1 0 -15 Q 5.4 -1 0 9.4 Z"/>
+                                    <path class="cm-p g2" d="M -6 9.4 Q 0 5.6 6 9.4 Z"/>
+                                </g>
+
+                                <!-- Lu: a misted dome and a falling stream -->
+                                <g id="cm-lu">
+                                    <path class="cm-p g1" d="M -15 9 Q -10.4 -6.4 -2 -9 Q 6.4 -11.4 10.4 -5 Q 14.4 0 15 9 Z"/>
+                                    <path class="cm-p n" stroke="#ffffff" stroke-width="2.6" d="M -4.6 -8 Q -6 0 -4.6 8"/>
+                                    <path class="cm-p n fine" stroke="#4e97c4" d="M -4.6 -8 Q -6 0 -4.6 8"/>
+                                    <path class="cm-p sn" d="M -15 3.6 Q -10 0.6 -5 3.4 T 5 3.4 T 15 3.4 V 5.6 Q 10 8.4 5 5.6 T -5 5.6 T -15 5.6 Z"/>
+                                </g>
+
+                                <!-- Sanqing: three jade spires, the Three Pure Ones -->
+                                <g id="cm-sanqing">
+                                    <path class="cm-p g3" d="M -14 9 L -9.6 -9 L -5 9 Z"/>
+                                    <path class="cm-p g3" d="M 5 9 L 9.6 -10 L 14 9 Z"/>
+                                    <path class="cm-p rk" d="M -6.4 9 L 0 -16 L 6.4 9 Z"/>
+                                    <path class="cm-p rk2" d="M 0 -16 L 6.4 9 L 1.6 9 Z"/>
+                                    <path class="cm-p g2" d="M -15 9 Q -8 5.4 0 7.4 Q 8 5.4 15 9 Z"/>
+                                </g>
+
+                                <!-- Wugong: rolling alpine meadow, tents on the ridge -->
+                                <g id="cm-wugong">
+                                    <path class="cm-p g3" d="M -15 9 Q -11.6 -3 -6.4 -2.4 Q -2.4 -8.4 2.6 -3.6 Q 8 -10 12 -2.4 Q 14.4 1.6 15 9 Z"/>
+                                    <path class="cm-p n fine" d="M -10 4 Q -5 1.4 0 3.6 M 4 2 Q 8 0 12 2.6"/>
+                                    <path class="cm-p rd" d="M -1.6 -3.4 L 0.4 -7.4 L 2.4 -3.4 Z"/>
+                                    <path class="cm-p wt" d="M 7.4 -2.6 L 9 -6 L 10.6 -2.6 Z"/>
+                                </g>
+
+                                <!-- Longhu: red Danxia towers and a cave in the cliff -->
+                                <g id="cm-longhu">
+                                    <path class="cm-p rd" d="M -14 9 L -13.4 -4 Q -11 -9 -8.4 -4 L -7.4 9 Z"/>
+                                    <path class="cm-p rd2" d="M -5.8 9 L -5.4 -9 Q -2.4 -14.4 0.8 -9 L 1.6 9 Z"/>
+                                    <path class="cm-p rd" d="M 3.4 9 L 4 -2 Q 6.6 -7 9 -2 L 10.4 9 Z"/>
+                                    <path class="cm-p ink" d="M -3.6 2.8 Q -3.6 -1.2 -1.6 -1.2 Q 0.4 -1.2 0.4 2.8 Z"/>
+                                    <path class="cm-p n" stroke="#4e97c4" stroke-width="2" d="M -15 8.6 Q -8 6.4 0 8.2 T 15 7.6"/>
+                                </g>
+
+                                <!-- Wudang: a single peak, a golden hall, a taiji -->
+                                <g id="cm-wudang">
+                                    <path class="cm-p g2" d="M -15 9 L -5 -2 L -2.6 -10.4 L 0 -14 L 2.6 -10.4 L 5 -2 L 15 9 Z"/>
+                                    <path class="cm-p gd" d="M -3.6 -14 L 0 -18.4 L 3.6 -14 Z"/>
+                                    <path class="cm-p rd" d="M -2.4 -14 H 2.4 V -12.2 H -2.4 Z"/>
+                                    <circle class="cm-p wh" cx="9.4" cy="3.6" r="3.4"/>
+                                    <path class="cm-p ink" d="M 9.4 0.2 A 3.4 3.4 0 0 1 9.4 7 A 1.7 1.7 0 0 1 9.4 3.6 A 1.7 1.7 0 0 0 9.4 0.2 Z"/>
+                                </g>
+
+                                <!-- Zhangjiajie: a forest of sandstone pillars -->
+                                <g id="cm-zhangjiajie">
+                                    <path class="cm-p sd" d="M -14.6 9 L -14 -2 L -12 -2 L -11.4 9 Z"/>
+                                    <path class="cm-p sd" d="M -10.8 9 L -10.4 -9 L -8 -9 L -7.4 9 Z"/>
+                                    <path class="cm-p sd" d="M -6.4 9 L -6 -5 L -4.2 -5 L -3.6 9 Z"/>
+                                    <path class="cm-p sd" d="M -2.8 9 L -2.4 -16 L 0.6 -16 L 1.2 9 Z"/>
+                                    <path class="cm-p sd" d="M 2.2 9 L 2.6 -7 L 4.8 -7 L 5.4 9 Z"/>
+                                    <path class="cm-p sd" d="M 6.2 9 L 6.6 -11 L 9 -11 L 9.6 9 Z"/>
+                                    <path class="cm-p sd" d="M 10.4 9 L 10.8 -3 L 12.8 -3 L 13.4 9 Z"/>
+                                    <path class="cm-p g2" d="M -11.2 -9 Q -9.4 -12.4 -7.6 -9 Z"/>
+                                    <path class="cm-p g2" d="M -3.2 -16 Q -0.9 -19.6 1.2 -16 Z"/>
+                                    <path class="cm-p g2" d="M 6.2 -11 Q 7.8 -14.4 9.4 -11 Z"/>
+                                    <path class="cm-p g2" d="M -6.8 -5 Q -5.2 -8 -3.8 -5 Z"/>
+                                    <path class="cm-p g2" d="M 2.2 -7 Q 3.7 -10 5.2 -7 Z"/>
+                                </g>
+
+                                <!-- Heng (south): lush layered green, temple roof, incense -->
+                                <g id="cm-hengS">
+                                    <path class="cm-p g1" d="M -15 9 Q -11 -2 -6 -4 Q -2 -6 2 -3 Q 8 -6 15 9 Z"/>
+                                    <path class="cm-p g2" d="M -9 9 Q -4 -2 1 -8 Q 4.6 -12 8 -6 Q 12 0 13 9 Z"/>
+                                    <path class="cm-p rd" d="M 2.6 -8.6 L 5 -12.4 L 7.4 -8.6 Z"/>
+                                    <path class="cm-p n fine" d="M 5 -12.6 Q 3.4 -14.6 5.2 -16 Q 6.6 -17 5.6 -18"/>
+                                </g>
+
+                                <!-- Yandang: sea-cut spires in pairs -->
+                                <g id="cm-yandang">
+                                    <path class="cm-p rk2" d="M -15 7 L -12.4 -9.6 L -10 -3 L -7 -15 L -3.4 1 L -1.6 -5 L 1.4 3 L 4 -12 L 7.6 -2 L 10 -8 L 15 7 Z"/>
+                                    <path class="cm-p n fine" d="M -7 -15 L -6.4 4 M 4 -12 L 4.8 3 M -12.4 -9.6 L -11.6 4"/>
+                                    <path class="cm-p n" stroke="#4e97c4" stroke-width="1.6" d="M -15 8.6 q 3 -2.4 6 0 t 6 0 t 6 0 t 6 0 t 6 0"/>
+                                </g>
+
+                                <!-- Xuedou: a thousand-foot fall over a temple pool -->
+                                <g id="cm-xuedou">
+                                    <path class="cm-p g1" d="M -15 9 L -8.6 -8.6 L -2.4 -12 L 5.4 -10 L 15 9 Z"/>
+                                    <path class="cm-p rk" d="M -3 -11.6 L 5 -10 L 6.6 9 L -3.4 9 Z"/>
+                                    <path class="cm-p n" stroke="#ffffff" stroke-width="2.8" d="M 1.4 -10.6 L 1.2 6"/>
+                                    <ellipse class="cm-p wt" cx="1.4" cy="7.4" rx="5.6" ry="2"/>
+                                    <path class="cm-p wh" d="M -11 9 V 3 L -9.4 -1.4 L -7.8 3 V 9 Z"/>
+                                </g>
+
+                                <!-- Taimu: piled granite boulders facing the sea -->
+                                <g id="cm-taimu">
+                                    <ellipse class="cm-p sd" cx="-8" cy="4.6" rx="6.4" ry="4.4"/>
+                                    <ellipse class="cm-p sd" cx="8.4" cy="4.8" rx="6.2" ry="4.2"/>
+                                    <ellipse class="cm-p sd" cx="0" cy="2.4" rx="7" ry="5.4"/>
+                                    <ellipse class="cm-p sd" cx="-3" cy="-4.4" rx="5" ry="4"/>
+                                    <ellipse class="cm-p sd" cx="3.6" cy="-8.6" rx="3.8" ry="3.4"/>
+                                    <path class="cm-p n" stroke="#4e97c4" stroke-width="1.4" d="M -15 10 q 3 -2 6 0 t 6 0 t 6 0 t 6 0 t 6 0"/>
+                                </g>
+
+                                <!-- Putuo: an island in the sea, a pagoda and Guanyin -->
+                                <g id="cm-putuo">
+                                    <path class="cm-p g1" d="M -12.4 6.6 Q -7 -3.4 0 -3.6 Q 7 -3.4 12.4 6.6 Z"/>
+                                    <path class="cm-p wh" d="M -1.8 -3 L 0 -11 L 1.8 -3 Z"/>
+                                    <circle class="cm-p gd" cx="0" cy="-12.6" r="1.6"/>
+                                    <path class="cm-p wh" d="M 6.6 -0.6 V -5 L 8 -8.4 L 9.4 -5 V -0.6 Z"/>
+                                    <path class="cm-p n" stroke="#4e97c4" stroke-width="1.6" d="M -15 8.6 q 3 -3 6 0 t 6 0 t 6 0 t 6 0 t 6 0"/>
+                                </g>
+
+                                <!-- Qiyun: a red stone dome with a cave temple -->
+                                <g id="cm-qiyun">
+                                    <path class="cm-p rd2" d="M -15 9 Q -14.4 -5 -8 -8 L 3 -8 Q 12 -6 15 9 Z"/>
+                                    <path class="cm-p ink" d="M -4 9 Q -4.4 -0.4 0 -0.4 Q 4.4 -0.4 4 9 Z"/>
+                                    <path class="cm-p g2" d="M -8.4 -8 Q -4 -11.6 1 -9.6 Q 3 -8.8 3 -8 Z"/>
+                                    <path class="cm-p n fine" d="M -12 -1 Q -8 0 -6.4 -2 M 7 -3 Q 10 -2 12 1"/>
+                                </g>
+
+                                <!-- Twin Hills: two small, round, made hills -->
+                                <g id="cm-shuangzi">
+                                    <path class="cm-p g1" d="M -14.4 9 Q -9.4 -5.6 -2.6 9 Z"/>
+                                    <path class="cm-p g1" d="M 0.2 9 Q 6.2 -8 14 9 Z"/>
+                                    <path class="cm-p n" d="M 6.4 -5.4 V -11.4"/>
+                                    <path class="cm-p rd" d="M 6.4 -11.4 L 10.4 -10 L 6.4 -8.6 Z"/>
+                                </g>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+    </section>
+
          <p class="more rise">
             <a class="link" href="/creativity.html">
                <span class="lang-en">How these maps are drawn — Creativity</span><span class="lang-zh" hidden>这些地图是怎么画出来的——创作</span> →
@@ -4362,11 +4831,11 @@
             }, { passive: true });
         })();
     
-        /* The national parks section has one panel, so it needs no pager of its
-           own: just reveal-on-scroll and a way back up to the charts. The race
+        /* The national parks and China sections have one panel each, so they need
+           no pager of their own: just reveal-on-scroll and a way back up to the charts. The race
            section used to be here too and is now a pager, handled above. */
         (function () {
-            ['national-parks'].forEach(id => {
+            ['national-parks', 'china-mountains'].forEach(id => {
                 const section = document.getElementById(id);
                 if (!section) return;
                 const io = new IntersectionObserver(entries => {
@@ -4393,6 +4862,358 @@
             });
         }());
 </script>
+    <!-- ============================================================
+         China: 30 famous mountains
+         Provinces (with Hong Kong, Macao and Taiwan), the big rivers, and
+         the thirty peaks of the "30 mountains worth climbing" list, each
+         drawn after its own character. Climbed = solid, not yet = half
+         strength. Province outlines: maps/data/china-provinces.json.
+         ============================================================ -->
+    <script>
+        (function () {
+            if (typeof d3 === 'undefined') return;
+
+            const mapEl = document.getElementById('cm-map');
+            if (!mapEl) return;
+
+            const W = 1200, H = 840;
+            const MAP_BOX = [[40, 30], [1190, 810]];
+
+            /* e = height in metres; v = climbed; ic = drawing; s = scale on
+               the drawing (follows height a little, so Everest stands tall and
+               the 48 m Twin Hills stay small but findable). */
+            const MTS = [
+                { zh: '珠穆朗玛峰', en: 'Mount Everest',   e: 8848, p: 'Tibet',        lat: 27.99, lon: 86.93,  ic: 'cm-everest' },
+                { zh: '梅里雪山',   en: 'Meili Snow Mtn',  e: 6740, p: 'Yunnan',       lat: 28.45, lon: 98.67,  ic: 'cm-meili' },
+                { zh: '四姑娘山',   en: 'Mount Siguniang', e: 6250, p: 'Sichuan',      lat: 31.10, lon: 102.90, ic: 'cm-siguniang' },
+                { zh: '峨眉山',     en: 'Mount Emei',      e: 3099, p: 'Sichuan',      lat: 29.52, lon: 103.33, ic: 'cm-emei' },
+                { zh: '青城山',     en: 'Mount Qingcheng', e: 1260, p: 'Sichuan',      lat: 30.90, lon: 103.57, ic: 'cm-qingcheng' },
+                { zh: '五台山',     en: 'Mount Wutai',     e: 3061, p: 'Shanxi',       lat: 39.07, lon: 113.58, ic: 'cm-wutai' },
+                { zh: '恒山',       en: 'Mount Heng (N)',  e: 2016, p: 'Shanxi',       lat: 39.67, lon: 113.73, ic: 'cm-hengN' },
+                { zh: '长白山',     en: 'Changbai Mtn',    e: 2749, p: 'Jilin',        lat: 42.00, lon: 128.08, ic: 'cm-changbai' },
+                { zh: '梵净山',     en: 'Mount Fanjing',   e: 2572, p: 'Guizhou',      lat: 27.92, lon: 108.70, ic: 'cm-fanjing' },
+                { zh: '老君山',     en: 'Mount Laojun',    e: 2217, p: 'Henan',        lat: 33.75, lon: 111.63, ic: 'cm-laojun' },
+                { zh: '武夷山',     en: 'Mount Wuyi',      e: 2158, p: 'Fujian',       lat: 27.73, lon: 117.68, ic: 'cm-wuyi' },
+                { zh: '华山',       en: 'Mount Hua',       e: 2155, p: 'Shaanxi',      lat: 34.48, lon: 110.08, ic: 'cm-hua', v: 1 },
+                { zh: '嵩山',       en: 'Mount Song',      e: 1492, p: 'Henan',        lat: 34.49, lon: 113.04, ic: 'cm-song' },
+                { zh: '泰山',       en: 'Mount Tai',       e: 1545, p: 'Shandong',     lat: 36.25, lon: 117.10, ic: 'cm-tai' },
+                { zh: '黄山',       en: 'Mount Huang',     e: 1864, p: 'Anhui',        lat: 30.13, lon: 118.17, ic: 'cm-huang' },
+                { zh: '天柱山',     en: 'Mount Tianzhu',   e: 1489, p: 'Anhui',        lat: 30.73, lon: 116.45, ic: 'cm-tianzhu', v: 1 },
+                { zh: '九华山',     en: 'Mount Jiuhua',    e: 1344, p: 'Anhui',        lat: 30.48, lon: 117.80, ic: 'cm-jiuhua' },
+                { zh: '齐云山',     en: 'Mount Qiyun',     e: 585,  p: 'Anhui',        lat: 29.80, lon: 118.00, ic: 'cm-qiyun' },
+                { zh: '庐山',       en: 'Mount Lu',        e: 1474, p: 'Jiangxi',      lat: 29.55, lon: 115.98, ic: 'cm-lu' },
+                { zh: '三清山',     en: 'Mount Sanqing',   e: 1820, p: 'Jiangxi',      lat: 28.90, lon: 118.07, ic: 'cm-sanqing' },
+                { zh: '武功山',     en: 'Mount Wugong',    e: 1918, p: 'Jiangxi',      lat: 27.45, lon: 114.17, ic: 'cm-wugong' },
+                { zh: '龙虎山',     en: 'Mount Longhu',    e: 1300, p: 'Jiangxi',      lat: 28.10, lon: 116.97, ic: 'cm-longhu' },
+                { zh: '武当山',     en: 'Wudang Mtns',     e: 1437, p: 'Hubei',        lat: 32.40, lon: 111.00, ic: 'cm-wudang' },
+                { zh: '张家界',     en: 'Zhangjiajie',     e: 1518, p: 'Hunan',        lat: 29.32, lon: 110.43, ic: 'cm-zhangjiajie', v: 1 },
+                { zh: '衡山',       en: 'Mount Heng (S)',  e: 1300, p: 'Hunan',        lat: 27.25, lon: 112.70, ic: 'cm-hengS' },
+                { zh: '雁荡山',     en: 'Mount Yandang',   e: 1057, p: 'Zhejiang',     lat: 28.37, lon: 121.07, ic: 'cm-yandang' },
+                { zh: '雪窦山',     en: 'Mount Xuedou',    e: 800,  p: 'Zhejiang',     lat: 29.67, lon: 121.20, ic: 'cm-xuedou' },
+                { zh: '普陀山',     en: 'Mount Putuo',     e: 286,  p: 'Zhejiang',     lat: 30.00, lon: 122.38, ic: 'cm-putuo' },
+                { zh: '太姥山',     en: 'Mount Taimu',     e: 917,  p: 'Fujian',       lat: 27.13, lon: 120.20, ic: 'cm-taimu' },
+                { zh: '双子山',     en: 'Twin Hills',      e: 48,   p: 'Shanghai',     lat: 31.17, lon: 121.47, ic: 'cm-shuangzi' }
+            ];
+
+            /* Rivers as lon/lat waypoints, drawn as one smooth line each.
+               Hand-set from the maps, so they are the course and not the
+               survey: the right bends in the right provinces. */
+            const RIVERS = [
+                { zh: '长江', en: 'Yangtze', w: 2.4, name: 1, at: 0.1, pts: [[91.1,33.4],[93.0,34.0],[95.6,33.2],[97.0,32.6],[98.6,31.6],[99.1,30.0],[98.8,28.6],[99.9,26.9],[100.9,27.7],[101.6,26.7],[102.9,26.9],[104.6,28.8],[105.4,28.9],[106.55,29.55],[108.4,30.8],[109.5,31.0],[111.3,30.7],[112.2,30.3],[113.0,29.7],[114.3,30.55],[116.0,29.7],[117.05,30.5],[118.8,32.05],[119.6,32.25],[120.9,31.95],[121.9,31.7]] },
+                { zh: '黄河', en: 'Yellow River', w: 2.2, name: 1, at: 0.11, pts: [[96.0,34.5],[98.2,34.9],[100.2,34.5],[101.5,33.4],[102.5,33.8],[103.2,35.0],[103.8,36.05],[105.2,37.5],[106.3,38.5],[106.8,39.7],[107.6,40.5],[109.0,40.7],[111.0,40.2],[111.2,39.0],[110.6,38.0],[110.5,36.6],[110.3,35.0],[110.4,34.6],[111.4,34.8],[113.6,34.95],[114.6,35.0],[117.0,36.7],[118.2,37.4],[119.1,37.75]] },
+                { zh: '珠江', en: 'Pearl River', w: 1.8, name: 1, at: 0.4, pts: [[103.8,25.5],[105.0,24.9],[106.4,24.7],[107.4,24.1],[108.1,23.7],[109.2,23.7],[110.2,23.4],[111.3,23.5],[112.45,23.05],[113.3,22.95],[113.7,22.5]] },
+                { zh: '黑龙江', en: 'Heilong River', w: 1.8, name: 1, at: 0.5, pts: [[122.3,52.6],[124.4,53.3],[126.5,52.8],[127.5,50.2],[127.8,49.5],[130.5,48.2],[132.5,47.7],[134.7,48.3]] },
+                { zh: '松花江', en: '', w: 1.4, pts: [[124.5,49.4],[124.0,47.3],[124.8,45.2],[126.6,45.8],[128.5,46.7],[130.5,47.5],[132.5,47.65]] },
+                { zh: '雅鲁藏布江', en: '', w: 1.5, name: 1, at: 0.3, pts: [[82.0,30.4],[85.0,29.3],[88.0,29.25],[91.0,29.25],[92.5,29.35],[94.0,29.7],[95.2,29.85],[95.4,29.0],[96.0,28.2]] },
+                { zh: '澜沧江', en: '', w: 1.3, pts: [[96.0,31.5],[97.2,30.3],[98.7,28.5],[99.2,26.5],[100.3,24.5],[100.8,22.5],[101.2,21.5]] },
+                { zh: '怒江', en: '', w: 1.3, pts: [[92.0,31.5],[94.0,30.6],[97.5,29.0],[98.8,27.0],[98.9,25.5],[98.6,24.0]] },
+                { zh: '淮河', en: '', w: 1.2, pts: [[113.3,32.4],[115.0,32.5],[116.6,33.0],[118.2,33.3],[119.2,33.4]] },
+                { zh: '塔里木河', en: '', w: 1.3, pts: [[76.0,39.5],[80.5,40.7],[84.0,41.0],[87.5,40.5],[88.5,40.2]] }
+            ];
+
+            const CLIMBED = MTS.filter(m => m.v);
+            const countEl = document.getElementById('cmCount');
+            if (countEl) countEl.textContent = CLIMBED.length + ' of ' + MTS.length + ' climbed';
+
+            const svg = d3.select('#cm-map');
+            svg.select('defs').append('clipPath').attr('id', 'cm-frame-clip')
+                .append('rect').attr('x', 0).attr('y', 0).attr('width', W).attr('height', H);
+            const frame = svg.append('g').attr('clip-path', 'url(#cm-frame-clip)');
+
+            const fmt = n => n.toLocaleString('en-US');
+            let drawn = false;
+
+            function draw() {
+                if (drawn) return;
+                drawn = true;
+                d3.json('/maps/data/china-provinces.json').then(geo => {
+                    /* Albers, centred on 105E: the usual shape of China. */
+                    const proj = d3.geoAlbers().rotate([-105, 0]).center([0, 36]).parallels([25, 47])
+                        .fitExtent(MAP_BOX, geo);
+                    const path = d3.geoPath(proj);
+
+                    // provinces, with Hong Kong and Macao picked out because
+                    // they are too small to see at this scale otherwise
+                    const gLand = frame.append('g');
+                    gLand.selectAll('path').data(geo.features).enter().append('path')
+                        .attr('class', d => 'cm-prov ' + (d.properties.name === '香港' || d.properties.name === '澳门' ? 'sar' : 'c' + d.properties.c))
+                        .attr('d', path)
+                        .append('title').text(d => d.properties.name + ' · ' + d.properties.en);
+
+                    // outer coastline glow, so the nation reads as one shape
+                    frame.append('g').selectAll('path').data(geo.features).enter().append('path')
+                        .attr('class', 'cm-coast').attr('d', path);
+
+                    // rivers
+                    const gRiver = frame.append('g');
+                    const line = d3.line().curve(d3.curveCatmullRom.alpha(0.5));
+                    const defs = svg.select('defs');
+                    RIVERS.forEach((r, i) => {
+                        const pts = r.pts.map(p => proj(p));
+                        const id = 'cm-river-' + i;
+                        defs.append('path').attr('id', id).attr('d', line(pts));
+                        gRiver.append('use').attr('href', '#' + id)
+                            .attr('class', 'cm-river').attr('stroke-width', r.w);
+                    });
+                    RIVERS.forEach((r, i) => {
+                        if (!r.name) return;
+                        gRiver.append('text').attr('class', 'cm-river-name')
+                            .append('textPath').attr('href', '#cm-river-' + i)
+                            .attr('startOffset', Math.round(r.at * 100) + '%')
+                            .attr('text-anchor', 'middle')
+                            .attr('dy', -4)
+                            .text(r.zh + (r.en ? ' ' + r.en : ''));
+                    });
+
+                    // province names, faint, under the peaks
+                    const SKIP = new Set(['香港', '澳门', '北京', '天津', '上海', '台湾', '宁夏']);
+                    const gNames = frame.append('g');
+                    geo.features.forEach(f => {
+                        if (SKIP.has(f.properties.name)) return;
+                        const c = proj(d3.geoCentroid(f));
+                        gNames.append('text').attr('class', 'cm-prov-name')
+                            .attr('x', c[0]).attr('y', c[1] + 3).text(f.properties.name);
+                    });
+
+                    // Taiwan, Hong Kong, Macao: named outright, with a hairline
+                    const find = n => geo.features.find(f => f.properties.name === n);
+                    const SAR = [
+                        { n: '台湾', en: 'Taiwan', dx: 30, dy: -4 },
+                        { n: '香港', en: 'Hong Kong', dx: 16, dy: 34 },
+                        { n: '澳门', en: 'Macao', dx: -14, dy: 28 }
+                    ];
+                    const obstacles = [];
+                    const gSar = frame.append('g');
+                    SAR.forEach(s => {
+                        const c = proj(d3.geoCentroid(find(s.n)));
+                        const anchor = s.n === '台湾' ? [c[0] + 4, c[1] + 2] : c;
+                        gSar.append('path').attr('class', 'cm-sar-line')
+                            .attr('d', 'M' + anchor[0] + ',' + anchor[1] + ' L' + (c[0] + s.dx) + ',' + (c[1] + s.dy));
+                        const t = gSar.append('text').attr('class', 'cm-sar-name')
+                            .attr('x', c[0] + s.dx + (s.dx >= 0 ? 3 : -3))
+                            .attr('y', c[1] + s.dy + 3)
+                            .attr('text-anchor', s.dx >= 0 ? 'start' : 'end');
+                        t.append('tspan').text(s.n + ' ');
+                        t.append('tspan').attr('class', 'cm-sar-en').text(s.en);
+                        const bx = c[0] + s.dx, by = c[1] + s.dy, bw = 70;
+                        obstacles.push({ x: bx, y: by, l: s.dx >= 0 ? 0 : -bw, r: s.dx >= 0 ? bw : 0, t: -8, b: 8 });
+                    });
+                    const hn = proj(d3.geoCentroid(find('海南')));
+                    gSar.append('text').attr('class', 'cm-sar-name').attr('style', 'fill:#4a5636')
+                        .attr('x', hn[0] - 14).attr('y', hn[1] + 6).attr('text-anchor', 'end')
+                        .text('海南 ')
+                        .append('tspan').attr('class', 'cm-sar-en').text('Hainan');
+
+                    placeMountains(proj, obstacles, geo);
+                    drawLegend();
+                }).catch(() => { drawLegend(); });
+            }
+
+            /* ---- the mountains --------------------------------------
+               The rule: a mountain is always drawn inside its own province.
+               Several share a province and sit a pixel or two apart at this
+               scale (Huang, Jiuhua, Qiyun, Tianzhu...), so the drawings are
+               placed first, each at the nearest spot to its true dot that is
+               inside its province and clear of the others, shrinking a
+               little where a province is full. A hairline tether runs from
+               the true dot wherever the drawing had to move. The names are
+               set afterwards, beside the drawing where there is room and on
+               a short leader where there is not. */
+            function placeMountains(proj, obstacles, geo) {
+                const home = {};
+                geo.features.forEach(f => { home[f.properties.en] = f; });
+                const inProv = (a, x, y) => {
+                    const f = home[a.m.p];
+                    return !f || d3.geoContains(f, proj.invert([x, y]));
+                };
+
+                const items = MTS.map(m => {
+                    const xy = proj([m.lon, m.lat]);
+                    const s = 0.8 + 0.46 * Math.pow(m.e / 8848, 0.33) * (m.v ? 1.1 : 1);
+                    const lw = Math.max(m.zh.length * 13.2, m.en.length * 4.8) + 3;
+                    return { m, s, r: 15 * s, lw, left: m.lon < 116.2, x0: xy[0], y0: xy[1], x: xy[0], y: xy[1] };
+                });
+                items.forEach(a => {
+                    a.nn = Math.min.apply(null, items.filter(o => o !== a)
+                        .map(o => Math.hypot(o.x0 - a.x0, o.y0 - a.y0)));
+                });
+                // the climbed ones claim their spots first, then the most crowded
+                const order = items.slice().sort((p, q) => (q.m.v ? 1 : 0) - (p.m.v ? 1 : 0) || p.nn - q.nn);
+
+                const fixedBoxes = obstacles.map(o => ({ x1: o.x + o.l, x2: o.x + o.r, y1: o.y + o.t, y2: o.y + o.b }));
+                const clash = (p, q, pad) => p.x1 < q.x2 + pad && q.x1 < p.x2 + pad &&
+                                             p.y1 < q.y2 + pad && q.y1 < p.y2 + pad;
+
+                /* 1. the drawings. Strictest first: the whole drawing inside
+                   the province; then its centre; then a smaller drawing. */
+                const done = [];
+                const fits = (a, x, y, r, pts) => {
+                    if (!inProv(a, x, y)) return false;
+                    if (pts > 1) {
+                        const k = r * 0.62;
+                        if (![[-k, 0], [k, 0], [0, -k], [0, k]].every(d => inProv(a, x + d[0], y + d[1]))) return false;
+                    }
+                    return true;
+                };
+                const clear = (x, y, r) => done.every(o => Math.hypot(o.x - x, o.y - y) >= (o.r + r) * 0.82) &&
+                    fixedBoxes.every(b => !clash({ x1: x - r, x2: x + r, y1: y - r, y2: y + r }, b, 0));
+                const levels = [[5, 1], [1, 1], [1, 0.85], [1, 0.7], [1, 0.55]];
+                order.forEach(a => {
+                    const r0 = a.r, s0 = a.s;
+                    for (const lv of levels) {
+                        const r = r0 * lv[1];
+                        for (let rho = 0; rho <= 320; rho += 2) {
+                            const steps = rho === 0 ? 1 : Math.max(10, Math.round(2 * Math.PI * rho / 7));
+                            for (let k = 0; k < steps; k++) {
+                                const th = (k / steps) * 2 * Math.PI;
+                                const x = a.x0 + rho * Math.cos(th), y = a.y0 + rho * Math.sin(th);
+                                if (x < r + 4 || x > W - r - 4 || y < r + 4 || y > H - r - 4) continue;
+                                if (!fits(a, x, y, r, lv[0]) || !clear(x, y, r)) continue;
+                                a.x = x; a.y = y; a.r = r; a.s = s0 * lv[1];
+                                done.push(a);
+                                return;
+                            }
+                        }
+                    }
+                    // last resort: on its own dot, which is in its province
+                    a.x = a.x0; a.y = a.y0; a.r = r0 * 0.55; a.s = s0 * 0.55;
+                    done.push(a);
+                });
+
+                /* 2. the names. Beside the drawing first, then further out
+                   along the same eight directions. */
+                const doodleBox = a => ({ x1: a.x - a.r, x2: a.x + a.r, y1: a.y - a.r * 1.15, y2: a.y + a.r * 0.7 });
+                const boxes = items.map(doodleBox).concat(fixedBoxes);
+                const lblBoxes = [];
+                const LH = 24, G = 2;
+                order.slice().sort((p, q) => p.nn - q.nn).forEach(a => {
+                    const dirs = a.left
+                        ? [[-1, 0], [1, 0], [0, 1], [0, -1], [-1, 1], [-1, -1], [1, 1], [1, -1]]
+                        : [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]];
+                    let best = null;
+                    for (let extra = 0; extra <= 260 && !best; extra += 5) {
+                        for (const d of dirs) {
+                            let x1, y1;
+                            const off = extra;
+                            if (d[0] === 1) x1 = a.x + a.r + G + off * 1;
+                            else if (d[0] === -1) x1 = a.x - a.r - G - a.lw - off;
+                            else x1 = a.x - a.lw / 2;
+                            if (d[1] === 1) y1 = a.y + a.r * 0.7 + G + (d[0] === 0 ? off : off * 0.6);
+                            else if (d[1] === -1) y1 = a.y - a.r * 1.15 - G - LH - (d[0] === 0 ? off : off * 0.6);
+                            else y1 = a.y - LH / 2 + 2;
+                            if (d[0] !== 0 && d[1] !== 0) {
+                                // diagonals hug the corner of the drawing
+                                x1 = d[0] === 1 ? a.x + a.r * 0.55 + off : a.x - a.r * 0.55 - a.lw - off;
+                            }
+                            const bx = { x1, x2: x1 + a.lw, y1, y2: y1 + LH };
+                            if (bx.x1 < 4 || bx.x2 > W - 4 || bx.y1 < 4 || bx.y2 > H - 4) continue;
+                            if (boxes.some(p => clash(bx, p, 1)) || lblBoxes.some(p => clash(bx, p, 1))) continue;
+                            best = { bx, d, off };
+                            break;
+                        }
+                    }
+                    if (!best) {
+                        const x1 = a.left ? a.x - a.r - G - a.lw : a.x + a.r + G;
+                        best = { bx: { x1, x2: x1 + a.lw, y1: a.y - LH / 2 + 2, y2: a.y + LH / 2 + 2 }, d: a.left ? [-1, 0] : [1, 0], off: 0 };
+                    }
+                    a.lbl = best;
+                    lblBoxes.push(best.bx);
+                });
+
+                const gTeth = frame.append('g');
+                const gPeaks = frame.append('g');
+                // not yet first, climbed on top
+                items.slice().sort((p, q) => (p.m.v ? 1 : 0) - (q.m.v ? 1 : 0)).forEach(a => {
+                    const m = a.m, v = !!m.v, bx = a.lbl.bx;
+                    if (Math.hypot(a.x - a.x0, a.y - a.y0) > a.r * 0.5) {
+                        gTeth.append('line').attr('class', 'cm-tether')
+                            .attr('x1', a.x0).attr('y1', a.y0).attr('x2', a.x).attr('y2', a.y);
+                    }
+                    gTeth.append('circle').attr('class', 'cm-anchor').attr('cx', a.x0).attr('cy', a.y0).attr('r', 2.1);
+
+                    // a name that could not sit beside its drawing gets a leader
+                    const cx = Math.max(bx.x1, Math.min(bx.x2, a.x)), cy = Math.max(bx.y1, Math.min(bx.y2, a.y));
+                    if (Math.hypot(cx - a.x, cy - a.y) > a.r + 10) {
+                        gTeth.append('line').attr('class', 'cm-tether')
+                            .attr('x1', a.x).attr('y1', a.y).attr('x2', cx).attr('y2', cy);
+                    }
+
+                    const g = gPeaks.append('g')
+                        .attr('class', 'cm-peak ' + (v ? 'visited' : 'unvisited'));
+                    g.append('title').text(m.zh + ' · ' + m.en + ' · ' + fmt(m.e) + ' m · ' + m.p + (v ? ' · climbed' : ''));
+                    g.append('circle').attr('class', 'cm-hit').attr('cx', a.x).attr('cy', a.y).attr('r', a.r + 3);
+                    g.append('use').attr('class', 'cm-art').attr('href', '#' + m.ic)
+                        .attr('transform', 'translate(' + a.x + ',' + a.y + ') scale(' + a.s + ')');
+
+                    // text anchored toward the drawing, so it reads as its caption
+                    const d = a.lbl.d;
+                    const anchor = d[0] === 0 ? 'middle' : (d[0] === 1 ? 'start' : 'end');
+                    const tx = d[0] === 0 ? (bx.x1 + bx.x2) / 2 : (d[0] === 1 ? bx.x1 : bx.x2);
+                    g.append('text').attr('class', 'cm-zh')
+                        .attr('x', tx).attr('y', bx.y1 + 11).attr('text-anchor', anchor).text(m.zh);
+                    g.append('text').attr('class', 'cm-en')
+                        .attr('x', tx).attr('y', bx.y1 + 21.5).attr('text-anchor', anchor)
+                        .text(m.en);
+                });
+            }
+
+            /* The key, in the empty corner below Tibet. */
+            function drawLegend() {
+                const x = 16, y = H - 124;
+                const card = svg.append('g').attr('transform', 'translate(' + x + ',' + y + ')');
+                card.append('rect').attr('class', 'cm-legend-card').attr('width', 252).attr('height', 108).attr('rx', 10);
+                card.append('text').attr('class', 'cm-legend-title').attr('x', 14).attr('y', 22)
+                    .text('中国名山 · ' + MTS.length + ' Famous Mountains');
+                const r1 = card.append('g').attr('transform', 'translate(30,52)');
+                r1.append('use').attr('href', '#cm-hua').attr('transform', 'scale(0.82)');
+                card.append('text').attr('class', 'cm-legend-text').attr('x', 56).attr('y', 50)
+                    .text('已登 climbed (' + CLIMBED.length + ')');
+                card.append('text').attr('class', 'cm-legend-sub').attr('x', 56).attr('y', 62)
+                    .text(CLIMBED.map(m => m.zh).join(' · '));
+                const r2 = card.append('g').attr('transform', 'translate(30,86)');
+                r2.append('use').attr('href', '#cm-hua').attr('opacity', 0.5).attr('transform', 'scale(0.82)');
+                card.append('text').attr('class', 'cm-legend-text').attr('x', 56).attr('y', 88)
+                    .text('未登 not yet (' + (MTS.length - CLIMBED.length) + ')');
+                card.append('text').attr('class', 'cm-legend-sub').attr('x', 56).attr('y', 100)
+                    .text('drawing size follows height');
+            }
+
+            /* Drawn when the screen scrolls into view, so the boundary file is
+               not fetched on page load. */
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { draw(); io.disconnect(); } });
+            }, { threshold: 0.05 });
+            io.observe(mapEl);
+
+            // touch has no hover: a tap pins a faded mountain to full strength
+            mapEl.addEventListener('touchstart', (e) => {
+                const hitEl = e.target.closest ? e.target.closest('.cm-peak.unvisited') : null;
+                const was = hitEl && hitEl.classList.contains('pinned');
+                mapEl.querySelectorAll('.cm-peak.pinned').forEach(p => p.classList.remove('pinned'));
+                if (hitEl && !was) hitEl.classList.add('pinned');
+            }, { passive: true });
+        })();
+    </script>
     <script>
         // Discourage saving the pictures: no context menu or drag on any image,
         // map, canvas or video, and no draggable images.
