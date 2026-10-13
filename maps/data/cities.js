@@ -23,6 +23,7 @@ CITIES =
    {name: 'Olympic NP Hurricane Ridge, WA', latitude: 47.9766, longitude: -123.5177, radius: 3, fillKey: 'city', date: ''},
    {name: 'Crater Lake NP, OR', latitude: 42.9295, longitude: -122.1279, radius: 3, fillKey: 'city', date: '2023'},
    {name: 'North Cascades NP, WA', latitude: 48.7718, longitude: -121.2985, radius: 3, fillKey: 'city', date: '2017'},
+   {name: 'Mount Baker-Snoqualmie National Forest, WA', latitude: 48.7200, longitude: -121.6500, radius: 3, fillKey: 'city', date: '2026'},
    {name: 'Mount Rainier NP, WA', latitude: 46.8523, longitude: -121.7603, radius: 3, fillKey: 'city', date: '2016'},
    {name: 'Mt. Si, WA', latitude: 47.4877, longitude: -121.7233, radius: 3, fillKey: 'city', date: '2026-08-26'},
    {name: 'North Bend, WA', latitude: 47.4958, longitude: -121.7849, radius: 3, fillKey: 'city', date: '2026-08-26'},

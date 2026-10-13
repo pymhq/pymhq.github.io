@@ -105,9 +105,9 @@ SHEETS = [
              "Diablo Lake and the pass beyond it are",
              "on the mountains sheet.",
              "",
-             "Baker and Shuksan are half transparent.",
+             "Baker and Shuksan are both solid.",
              "I have watched both all my life from",
-             "the water and stood on neither.",
+             "the water.",
          ]),
     dict(key="olympic", kind="map",
          title="THE OLYMPIC PENINSULA &amp; HOOD CANAL",
@@ -842,10 +842,10 @@ POIS = [
 
 # ------------------------------------------------------- unclimbed summits etc.
 SUMMITS = [
-    dict(key="baker", at=(48.7767, -121.8144), glyph="baker",
+    dict(key="baker", at=(48.7767, -121.8144), glyph="baker", visited=True,
          label=("Mt. Baker · 10,781 ft", 0, 40, "middle")),
-    dict(key="shuksan", at=(48.8314, -121.6019), glyph="shuksan",
-         label=(None, 0, 0, "middle")),
+    dict(key="shuksan", at=(48.8314, -121.6019), glyph="shuksan", visited=True,
+         label=("Mt. Shuksan · 9,131 ft", -4, 30, "start")),
     dict(key="glacier_peak", at=(48.1118, -121.1132), glyph="glacier_peak",
          label=("Glacier Peak · 10,541 ft", -4, 40, "end")),
     dict(key="olympus", at=(47.7986, -123.7062), glyph="mtns", scale=1.25,
