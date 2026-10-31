@@ -239,6 +239,15 @@ def count_words(n: int) -> tuple[str, str]:
 EVENTS = [
  ("2026", "Bellevue, Seattle", "Bellevue、西雅图", [
    dict(
+     venue_en="China Entrepreneur Network · University of Washington",
+     venue_zh="China Entrepreneur Network · 华盛顿大学西雅图分校",
+     title_en="Dinner With Professionals (DWP)",
+     title_zh="Dinner With Professionals（DWP）",
+     note_en='Invited professional · October 2026 · Intellectual House, University of Washington · Seattle · <a href="https://mp.weixin.qq.com/s/KOqo6jR8f3Zs4whP7uDK3g" target="_blank" rel="noopener">write-up</a>',
+     note_zh='受邀职场嘉宾 · 2026 年 10 月 · 华盛顿大学 Intellectual House · 西雅图 · <a href="https://mp.weixin.qq.com/s/KOqo6jR8f3Zs4whP7uDK3g" target="_blank" rel="noopener">活动记录</a>',
+     alt="Dinner With Professionals, hosted by the China Entrepreneur Network at the University of Washington, October 2026.",
+     frames=[("2026-cen-dwp", None)]),
+   dict(
      venue_en="Fremont Brewing's Urban Beer Garden · Seattle",
      venue_zh="Fremont Brewing's Urban Beer Garden · 西雅图",
      title_en="The RLHF Book Launch", title_zh="RLHF 新书发布会",

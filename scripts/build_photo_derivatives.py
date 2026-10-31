@@ -69,6 +69,11 @@ QUALITY = 82
 # the page; a single-frame occasion takes no letter.
 SOURCES: tuple[tuple[str, str, str], ...] = (
     # ---- 2026 ----
+    # China Entrepreneur Network, Dinner With Professionals, October 2026. The
+    # frame is a phone shot of the venue screen with no EXIF, so the occasion
+    # carries the month alone.
+    ("/Users/pym/Documents/part time llc/cen/16.jpg", "events", "2026-cen-dwp"),
+
     # The RLHF Book Launch for Nathan Lambert's Reinforcement Learning from
     # Human Feedback, at Fremont Brewing's Urban Beer Garden. EXIF on the
     # phone frame reads 10 August 2026, 17:24 local.
