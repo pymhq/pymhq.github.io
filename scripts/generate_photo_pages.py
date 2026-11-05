@@ -266,8 +266,9 @@ EVENTS = [
              '<a href="/blog/2026/madrona/">the write-up</a>',
      note_zh="嘉宾 · 2026 年 9 月 29 日至 30 日 · 西雅图四季酒店 · "
              '<a href="/blog/2026/madrona/">文字记录</a>',
-     alt="My IA40 Summit 2026 name badge, presented by Madrona, Four Seasons Hotel Seattle, September 2026.",
-     frames=[("2026-madrona-ia40", None)]),
+     alt="Intelligent Applications 40 (IA40) Summit 2026, presented by Madrona, Four Seasons Hotel Seattle, September 2026.",
+     frames=[("2026-madrona-ia40-a", None), ("2026-madrona-ia40-b", None),
+             ("2026-madrona-ia40-c", None)]),
    dict(
      venue_en="Fremont Brewing's Urban Beer Garden · Seattle",
      venue_zh="Fremont Brewing's Urban Beer Garden · 西雅图",

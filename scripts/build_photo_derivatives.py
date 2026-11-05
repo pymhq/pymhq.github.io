@@ -83,9 +83,12 @@ SOURCES: tuple[tuple[str, str, str], ...] = (
     ("/Users/pym/Documents/part time llc/cen/16.jpg", "events", "2026-cen-dwp"),
 
     # Madrona IA40 Summit 2026, Four Seasons Hotel Seattle, 29 to 30 September.
-    # The frame is the name badge already published with blog/2026/madrona, so
-    # it stays in the repo.
-    ("assets/blog/2026/madrona/01-ia40summit.jpg", "events", "2026-madrona-ia40"),
+    # Frame a is the name badge already published with blog/2026/madrona, so it
+    # stays in the repo. Frame b is the sponsor wall, c the panel Harnessing the
+    # Value of Harnesses; EXIF on c reads 30 September 2026, 11:14 local.
+    ("assets/blog/2026/madrona/01-ia40summit.jpg", "events", "2026-madrona-ia40-a"),
+    ("~/Pictures/events/2026-madrona-ia40-b.jpg",  "events", "2026-madrona-ia40-b"),
+    ("~/Pictures/events/2026-madrona-ia40-c.heic", "events", "2026-madrona-ia40-c"),
 
     # The RLHF Book Launch for Nathan Lambert's Reinforcement Learning from
     # Human Feedback, at Fremont Brewing's Urban Beer Garden. EXIF on the
