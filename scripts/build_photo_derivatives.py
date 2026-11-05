@@ -69,6 +69,14 @@ QUALITY = 82
 # the page; a single-frame occasion takes no letter.
 SOURCES: tuple[tuple[str, str, str], ...] = (
     # ---- 2026 ----
+    # Fireworks Forge, San Francisco, 3 November 2026, Pier 27. Five iPhone
+    # HEICs, ordered by EXIF capture time.
+    ("~/Pictures/events/2026-fireworks-forge-a.heic", "events", "2026-fireworks-forge-a"),
+    ("~/Pictures/events/2026-fireworks-forge-b.heic", "events", "2026-fireworks-forge-b"),
+    ("~/Pictures/events/2026-fireworks-forge-c.heic", "events", "2026-fireworks-forge-c"),
+    ("~/Pictures/events/2026-fireworks-forge-d.heic", "events", "2026-fireworks-forge-d"),
+    ("~/Pictures/events/2026-fireworks-forge-e.heic", "events", "2026-fireworks-forge-e"),
+
     # China Entrepreneur Network, Dinner With Professionals, October 2026. The
     # frame is a phone shot of the venue screen with no EXIF, so the occasion
     # carries the month alone.

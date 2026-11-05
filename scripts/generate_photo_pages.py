@@ -237,7 +237,17 @@ def count_words(n: int) -> tuple[str, str]:
     return (f"{_count_en(n)} frame" + ("" if n == 1 else "s"), f"{_count_zh(n)}张")
 
 EVENTS = [
- ("2026", "Bellevue, Seattle", "Bellevue、西雅图", [
+ ("2026", "San Francisco, Bellevue, Seattle", "旧金山、Bellevue、西雅图", [
+   dict(
+     venue_en="Fireworks AI · Pier 27, San Francisco",
+     venue_zh="Fireworks AI · 旧金山 Pier 27",
+     title_en="Forge", title_zh="Forge",
+     note_en='Guest · 3 November 2026 · Pier 27 · San Francisco · <a href="https://fireworks.ai/forge" target="_blank" rel="noopener">event page</a>',
+     note_zh='嘉宾 · 2026 年 11 月 3 日 · Pier 27 · 旧金山 · <a href="https://fireworks.ai/forge" target="_blank" rel="noopener">活动页面</a>',
+     alt="Forge, an event by Fireworks AI, Pier 27, San Francisco, 3 November 2026.",
+     frames=[("2026-fireworks-forge-a", None), ("2026-fireworks-forge-b", None),
+             ("2026-fireworks-forge-c", None), ("2026-fireworks-forge-d", None),
+             ("2026-fireworks-forge-e", None)]),
    dict(
      venue_en="China Entrepreneur Network · University of Washington",
      venue_zh="China Entrepreneur Network · 华盛顿大学西雅图分校",
