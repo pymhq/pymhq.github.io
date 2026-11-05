@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>A note on FACT · Peng, Andy</title>
+      <meta name="author" content="Peng, Andy">
+      <meta name="description" content="A short introduction from Andy Peng to the FACT team: interest in force-aware dexterous manipulation, and the evaluation, post-training and systems skills I could bring.">
+      <meta name="robots" content="noindex, nofollow">
+      <link rel="canonical" href="https://pengandy.com/fact/">
+
+      <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml">
+      <link rel="icon" href="/assets/brand/icon-512.png" sizes="512x512" type="image/png">
+      <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
+      <link rel="manifest" href="/site.webmanifest">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="/assets/css/shell.css">
+      <script src="/assets/js/shell.js" defer></script>
+   </head>
+
+   <body data-nav-match="fact">
+      <a class="skip" href="#main">Skip to content</a>
+      <nav class="nav" aria-label="Primary" data-shell-nav></nav>
+
+      <header class="shell page-head">
+         <p class="eyebrow">A note to the FACT team</p>
+         <h1 class="page-title">Hello, I am Andy Peng.</h1>
+         <p class="page-lede">
+            I work on large models at AWS. FACT made me curious about dexterous robots, and I am writing to learn from your team.
+         </p>
+      </header>
+
+      <main class="shell" id="main" style="padding-bottom:var(--movement)">
+         <div class="record">
+
+            <!-- ==================== ABOUT ==================== -->
+            <section class="record-group rise">
+               <h2 class="record-year">Who I am</h2>
+               <div class="prose">
+                  <p>
+                     I have spent more than ten years at Amazon Web Services, most recently as a machine learning research engineer and engineering lead. My work has mostly been where models meet production: how they are served, measured, made safer and made faster. I am not a roboticist, so please read this as a note from a curious outsider.
+                  </p>
+                  <ul>
+                     <li><strong>Model evaluation and inference.</strong> I worked with Anthropic on the shared inference stack and on evaluation and benchmark methodology, and helped lead the Bedrock releases of Claude 3 Opus, Claude 3.5 Sonnet v2 (computer use) and Claude 3.5 Haiku.</li>
+                     <li><strong>Post-training and efficient inference.</strong> I worked on EAGLE adaptive speculative decoding on Amazon SageMaker AI and the follow-on P-EAGLE parallel drafting, including the training recipes and the training systems behind them.</li>
+                     <li><strong>Trust and safety.</strong> I helped build and operate classifiers used to gate frontier-model launches.</li>
+                     <li><strong>Community.</strong> I served on the NeurIPS 2025 organizing committee, review for a few ML conferences, have given guest lectures at the University of Washington, and wrote a practical book, <em>DeepSeek in Practice</em> (Packt, 2025).</li>
+                  </ul>
+                  <p>
+                     More on <a href="/experience">experience</a>, <a href="/publications.html">publications</a> and <a href="/invited-talks.html">talks</a>.
+                  </p>
+               </div>
+            </section>
+
+            <!-- ==================== WHY FACT ==================== -->
+            <section class="record-group rise">
+               <h2 class="record-year">Why FACT</h2>
+               <div class="prose">
+                  <p>
+                     I read the paper as an outsider, so I may have details wrong. The idea that stayed with me is simple: where a hand goes is guided by vision, but how the fingers finish the motion depends on contact force, and almost no human data records force. Three choices stood out.
+                  </p>
+                  <ul>
+                     <li><strong>Force is a prediction target, not only an input.</strong> The Force-Action Joint Refiner denoises future fingertip force together with the action, so each shapes the other at every step. The ablations back this up: removing human force supervision drops test-tube cap opening from 80% to 0%.</li>
+                     <li><strong>EgoForce.</strong> About 2,000 hours of human demonstrations with glove forces calibrated against a reference pressure sensor, and a task mix that is two thirds fine manipulation rather than pick and place. The calibration work seems important, since it is what makes the force signal comparable across gloves and sessions.</li>
+                     <li><strong>A slow clock and a fast clock.</strong> The 5B video planner runs a few times per second, and the small refiner reuses its cached key-value states for every tactile update. This is close to the latency and quality trade-offs I know from LLM serving, but applied to a body that has to react in real time, which looks much harder.</li>
+                  </ul>
+                  <p>
+                     The result I found most encouraging is the human-to-robot ratio study: with a 100-trajectory fine-tuning budget, human demonstrations help almost as much as robot ones. If that holds as data grows, it would make dexterity much easier to scale.
+                  </p>
+               </div>
+            </section>
+
+            <!-- ==================== WHAT I BRING ==================== -->
+            <section class="record-group rise">
+               <h2 class="record-year">Where I might be able to help</h2>
+               <ul class="record-list">
+                  <li>
+                     <span class="record-key">Evaluation and benchmarks</span>
+                     <span class="record-val">
+                        <p>FACT is evaluated on ten real-robot tasks with ten rollouts each, which is expensive to run. I have experience with benchmark design for language models: task design, scoring, statistical confidence, failure analysis, and cheaper offline proxies. I do not know yet how much of that carries over to robots.</p>
+                     </span>
+                  </li>
+                  <li>
+                     <span class="record-key">Post-training and RL</span>
+                     <span class="record-val">
+                        <p>FACT is trained by imitation. I have worked with SFT, DPO, RLAIF and RLVR in the language-model setting. If the team ever explores improving a policy beyond its demonstrations, I would be glad to help and to learn how it differs for robots.</p>
+                     </span>
+                  </li>
+                  <li>
+                     <span class="record-key">Training and inference systems</span>
+                     <span class="record-val">
+                        <p>Distributed training (FSDP, DeepSpeed, NCCL), speculative decoding, quantization, and serving on GPUs and Trainium. This might help with inference speed for a 5B planner plus a tactile refiner.</p>
+                     </span>
+                  </li>
+                  <li>
+                     <span class="record-key">Data pipelines</span>
+                     <span class="record-val">
+                        <p>Large multimodal datasets need synchronization checks, quality filters and sensible mixing ratios. I have built data and evaluation pipelines for language models and could help with similar work here.</p>
+                     </span>
+                  </li>
+                  <li>
+                     <span class="record-key">Agents on top of skills</span>
+                     <span class="record-val">
+                        <p>I have worked on agent harnesses, tool use and computer use. A language-model layer that sequences skills such as FACT's is something I would enjoy exploring.</p>
+                     </span>
+                  </li>
+               </ul>
+            </section>
+
+            <!-- ==================== WHERE I FIT ==================== -->
+            <section class="record-group rise">
+               <h2 class="record-year">Where I might fit</h2>
+               <div class="prose">
+                  <ul>
+                     <li><strong>Research engineer, evaluation and benchmarks</strong> for dexterous manipulation.</li>
+                     <li><strong>Research engineer, post-training and RL</strong> on top of FACT-style policies.</li>
+                     <li><strong>Research engineer, training and inference systems</strong> for large video-action models.</li>
+                     <li><strong>Data engineering</strong> for tactile and egocentric datasets such as EgoForce.</li>
+                  </ul>
+                  <p>
+                     To be clear about the gap: I have not built robot hardware or tactile sensing systems, and I would need to learn that side from your team. I would be happy to start small, in whatever role is most useful.
+                  </p>
+               </div>
+            </section>
+
+            <!-- ==================== QUESTIONS ==================== -->
+            <section class="record-group rise">
+               <h2 class="record-year">Questions I am curious about</h2>
+               <div class="prose">
+                  <ul>
+                     <li>How large is the gap between human glove forces and robot fingertip forces, and how much of it does the model absorb during fine-tuning?</li>
+                     <li>Is the next step reinforcement learning, a world model, or more data?</li>
+                     <li>What would a shared benchmark for force-aware dexterity need to include?</li>
+                  </ul>
+                  <p>
+                     If it is useful, I would be glad to talk briefly, or to help with a small evaluation or systems task. Thank you for taking the time to read this.
+                  </p>
+                  <p>
+                     <a href="mailto:pengandy.build@gmail.com">pengandy.build@gmail.com</a> · <a href="https://pengandy.com/">pengandy.com</a> · <a href="https://linkedin.com/in/pengandy-us" target="_blank" rel="noopener">LinkedIn</a>
+                  </p>
+               </div>
+            </section>
+
+         </div>
+      </main>
+
+      <footer class="foot" data-shell-footer></footer>
+   </body>
+</html>
