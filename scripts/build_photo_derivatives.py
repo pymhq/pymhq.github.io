@@ -69,12 +69,13 @@ QUALITY = 82
 # the page; a single-frame occasion takes no letter.
 SOURCES: tuple[tuple[str, str, str], ...] = (
     # ---- 2026 ----
-    # Fireworks Forge, San Francisco, 3 November 2026, Pier 27. Five iPhone
-    # HEICs, ordered by EXIF capture time.
+    # Fireworks Forge, San Francisco, 3 November 2026, Pier 27. Five frames,
+    # ordered by EXIF capture time. Frame d is an illustrated standing
+    # portrait (765x1024 JPEG), so it builds as a single 765w file.
     ("~/Pictures/events/2026-fireworks-forge-a.heic", "events", "2026-fireworks-forge-a"),
     ("~/Pictures/events/2026-fireworks-forge-b.heic", "events", "2026-fireworks-forge-b"),
     ("~/Pictures/events/2026-fireworks-forge-c.heic", "events", "2026-fireworks-forge-c"),
-    ("~/Pictures/events/2026-fireworks-forge-d.heic", "events", "2026-fireworks-forge-d"),
+    ("~/Pictures/events/2026-fireworks-forge-d.jpeg", "events", "2026-fireworks-forge-d"),
     ("~/Pictures/events/2026-fireworks-forge-e.heic", "events", "2026-fireworks-forge-e"),
 
     # China Entrepreneur Network, Dinner With Professionals, October 2026. The
