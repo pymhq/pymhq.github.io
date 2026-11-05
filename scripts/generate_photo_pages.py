@@ -258,6 +258,17 @@ EVENTS = [
      alt="Dinner With Professionals, hosted by the China Entrepreneur Network at the University of Washington, October 2026.",
      frames=[("2026-cen-dwp", None)]),
    dict(
+     venue_en="Madrona · Four Seasons Hotel Seattle",
+     venue_zh="Madrona · 西雅图四季酒店",
+     title_en="Intelligent Applications 40 (IA40) Summit 2026",
+     title_zh="Intelligent Applications 40（IA40）峰会 2026",
+     note_en="Guest · 29 to 30 September 2026 · Four Seasons Hotel Seattle · "
+             '<a href="/blog/2026/madrona/">the write-up</a>',
+     note_zh="嘉宾 · 2026 年 9 月 29 日至 30 日 · 西雅图四季酒店 · "
+             '<a href="/blog/2026/madrona/">文字记录</a>',
+     alt="My IA40 Summit 2026 name badge, presented by Madrona, Four Seasons Hotel Seattle, September 2026.",
+     frames=[("2026-madrona-ia40", None)]),
+   dict(
      venue_en="Fremont Brewing's Urban Beer Garden · Seattle",
      venue_zh="Fremont Brewing's Urban Beer Garden · 西雅图",
      title_en="The RLHF Book Launch", title_zh="RLHF 新书发布会",

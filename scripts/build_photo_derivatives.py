@@ -82,6 +82,11 @@ SOURCES: tuple[tuple[str, str, str], ...] = (
     # carries the month alone.
     ("/Users/pym/Documents/part time llc/cen/16.jpg", "events", "2026-cen-dwp"),
 
+    # Madrona IA40 Summit 2026, Four Seasons Hotel Seattle, 29 to 30 September.
+    # The frame is the name badge already published with blog/2026/madrona, so
+    # it stays in the repo.
+    ("assets/blog/2026/madrona/01-ia40summit.jpg", "events", "2026-madrona-ia40"),
+
     # The RLHF Book Launch for Nathan Lambert's Reinforcement Learning from
     # Human Feedback, at Fremont Brewing's Urban Beer Garden. EXIF on the
     # phone frame reads 10 August 2026, 17:24 local.
