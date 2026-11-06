@@ -256,7 +256,7 @@ EVENTS = [
      note_en='Invited professional · October 2026 · Intellectual House, University of Washington · Seattle · <a href="https://mp.weixin.qq.com/s/KOqo6jR8f3Zs4whP7uDK3g" target="_blank" rel="noopener">write-up</a>',
      note_zh='受邀职场嘉宾 · 2026 年 10 月 · 华盛顿大学 Intellectual House · 西雅图 · <a href="https://mp.weixin.qq.com/s/KOqo6jR8f3Zs4whP7uDK3g" target="_blank" rel="noopener">活动记录</a>',
      alt="Dinner With Professionals, hosted by the China Entrepreneur Network at the University of Washington, October 2026.",
-     frames=[("2026-cen-dwp", None)]),
+     frames=[("2026-cen-dwp-a", None), ("2026-cen-dwp-b", None)]),
    dict(
      venue_en="Madrona · Four Seasons Hotel Seattle",
      venue_zh="Madrona · 西雅图四季酒店",
