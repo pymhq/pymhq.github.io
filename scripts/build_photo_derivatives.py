@@ -69,6 +69,24 @@ QUALITY = 82
 # the page; a single-frame occasion takes no letter.
 SOURCES: tuple[tuple[str, str, str], ...] = (
     # ---- 2026 ----
+    # Evals for AI Engineers book launch (Shreya Shankar and Hamel Husain,
+    # O'Reilly), organized by Dan Olsen, Intuit Building 9, Mountain View,
+    # 12 November 2026: the visitor badge is dated 11/12/2026 and the four
+    # iPhone frames are ordered by EXIF capture time. Frame a is that badge. Its
+    # QR sits on the lower right of the card and the detector does not resolve
+    # it at this size, so the box is placed by eye with the usual padding on
+    # top, measured on the rotated 3024x4032 frame.
+    ("~/Pictures/pics/events/2026-evals-book-launch-a.heic", "events", "2026-evals-book-launch-a",
+     ((0.7150, 0.5560, 0.0900, 0.0610),)),
+    ("~/Pictures/pics/events/2026-evals-book-launch-b.heic", "events", "2026-evals-book-launch-b"),
+    ("~/Pictures/pics/events/2026-evals-book-launch-c.heic", "events", "2026-evals-book-launch-c"),
+    ("~/Pictures/pics/events/2026-evals-book-launch-d.heic", "events", "2026-evals-book-launch-d"),
+
+    # NYU Tandon CS-GY 9223 guest lecture, 12 November 2026, over Zoom. Two
+    # screen captures, dated by their filenames; no EXIF to read.
+    ("~/Pictures/pics/events/2026-nyu-cs-gy-9223-a.jpg", "events", "2026-nyu-cs-gy-9223-a"),
+    ("~/Pictures/pics/events/2026-nyu-cs-gy-9223-b.jpg", "events", "2026-nyu-cs-gy-9223-b"),
+
     # Fireworks Forge, San Francisco, 3 November 2026, Pier 27. Five frames,
     # ordered by EXIF capture time. Frame d is an illustrated standing
     # portrait (765x1024 JPEG), so it builds as a single 765w file.

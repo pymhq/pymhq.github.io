@@ -237,7 +237,49 @@ def count_words(n: int) -> tuple[str, str]:
     return (f"{_count_en(n)} frame" + ("" if n == 1 else "s"), f"{_count_zh(n)}张")
 
 EVENTS = [
- ("2026", "San Francisco, Bellevue, Seattle", "旧金山、Bellevue、西雅图", [
+ ("2026", "Mountain View, San Francisco, Bellevue, Seattle, online", "山景城、旧金山、Bellevue、西雅图、线上", [
+   dict(
+     venue_en="Intuit · Mountain View", venue_zh="Intuit · 山景城",
+     title_en="Evals for AI Engineers Book Launch", title_zh="《Evals for AI Engineers》新书发布会",
+     note_en="Guest · 12 November 2026 · Intuit Building 9, 2600 Casey Ave, "
+             "Mountain View, CA · Shreya Shankar and Hamel Husain's Evals for AI "
+             'Engineers (O\'Reilly) · organized by <a href="https://dan-olsen.com/" '
+             'target="_blank" rel="noopener">Dan Olsen</a> · '
+             '<a href="https://events.ticketleap.com/tickets/dan-olsen/evals" '
+             'target="_blank" rel="noopener">event page</a>',
+     note_zh="嘉宾 · 2026 年 11 月 12 日 · Intuit 9 号楼，2600 Casey Ave，Mountain "
+             "View, CA · Shreya Shankar、Hamel Husain 合著《Evals for AI "
+             "Engineers》（O'Reilly）· 主办：<a href=\"https://dan-olsen.com/\" "
+             'target="_blank" rel="noopener">Dan Olsen</a> · '
+             '<a href="https://events.ticketleap.com/tickets/dan-olsen/evals" '
+             'target="_blank" rel="noopener">活动页面</a>',
+     alt="The Evals for AI Engineers book launch at Intuit Building 9, Mountain View, 12 November 2026.",
+     frames=[("2026-evals-book-launch-a", None,
+              "Andy Peng's Intuit visitor badge for MTV Building 9, dated 11/12/2026"),
+             ("2026-evals-book-launch-b", None,
+              "Two speakers at the front of the room, with a slide on the screen reading Who should label the data?"),
+             ("2026-evals-book-launch-c", None,
+              "The cover of Evals for AI Engineers by Shreya Shankar and Hamel Husain, published by O'Reilly"),
+             ("2026-evals-book-launch-d", None,
+              "The title page of Evals for AI Engineers, carrying the authors' signatures")]),
+   dict(
+     venue_en="New York University · Tandon School of Engineering",
+     venue_zh="纽约大学 · 坦登工程学院",
+     title_en="Cloud Native Computing Foundation", title_zh="云原生计算基金会（CNCF）",
+     note_en="Guest lecturer · 12 November 2026 · online · CS-GY 9223: Selected "
+             "Topics in Computer Science, Fall 2026 · hosted by Catherine Dodge "
+             "(Principal Product Manager at Adobe; Adjunct Professor in Computer "
+             "Science and Engineering, New York University) · "
+             '<a href="/invited-talks.html">talk record</a>',
+     note_zh="客座讲师 · 2026 年 11 月 12 日 · 线上 · CS-GY 9223：计算机科学专题，"
+             "2026 年秋季学期 · 邀请人：Catherine Dodge（Adobe 首席产品经理；纽约大学"
+             "计算机科学与工程系兼职教授）· "
+             '<a href="/invited-talks.html">讲座记录</a>',
+     alt="NYU Tandon School of Engineering, CS-GY 9223 guest lecture over Zoom, 12 November 2026.",
+     frames=[("2026-nyu-cs-gy-9223-a", None,
+              "A screen shared over Zoom showing the Prefill and Decode diagram from the LLM Native Primitives post, with the host and guest lecturer in the video panel"),
+             ("2026-nyu-cs-gy-9223-b", None,
+              "Catherine Dodge on screen against an NYU Tandon virtual background, with the class chat open at the end of the lecture")]),
    dict(
      venue_en="Fireworks AI · Pier 27, San Francisco",
      venue_zh="Fireworks AI · 旧金山 Pier 27",
