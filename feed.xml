@@ -25,20 +25,20 @@
       <enclosure url="https://pengandy.com/assets/blog/fifa/with-irene.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>How Google Gemini Helped Me Survive My French Riviera Trip</title>
-      <link>https://pengandy.com/blog/2026/french-riviera</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2026/french-riviera</guid>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-      <description>How Google Gemini Helped Me Survive My French Riviera Trip</description>
-      <enclosure url="https://pengandy.com/assets/blog/french-riviera/hero.jpg" type="image/png" length="0" />
-    </item>
-    <item>
       <title>A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试</title>
       <link>https://pengandy.com/blog/2026/storyline</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2026/storyline</guid>
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
       <description>A Worldview: Storyline-Driven Plot Progression / 一个世界观：故事线推动的剧情发展和完成度尝试</description>
       <enclosure url="https://pengandy.com/assets/blog/storyline/nantucket-map.svg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>How Google Gemini Helped Me Survive My French Riviera Trip</title>
+      <link>https://pengandy.com/blog/2026/french-riviera</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2026/french-riviera</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <description>How Google Gemini Helped Me Survive My French Riviera Trip</description>
+      <enclosure url="https://pengandy.com/assets/blog/french-riviera/hero.jpg" type="image/png" length="0" />
     </item>
     <item>
       <title>Open vs Closed</title>
@@ -57,14 +57,6 @@
       <enclosure url="https://pengandy.com/assets/blog/2026/flywheel/flywheel-card.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>Trendings on Speculative Decoding</title>
-      <link>https://pengandy.com/blog/2026/speculativedecoding</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2026/speculativedecoding</guid>
-      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
-      <description>Trendings on Speculative Decoding</description>
-      <enclosure url="https://pengandy.com/assets/blog/2026/speculativedecoding/og-card.png" type="image/png" length="0" />
-    </item>
-    <item>
       <title>My Story with Anthropic</title>
       <link>https://pengandy.com/blog/2026/ant</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2026/ant</guid>
@@ -79,6 +71,14 @@
       <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
       <description>Curiosity-Driven Builder&#x27;s Journey</description>
       <enclosure url="https://pengandy.com/assets/blog/curiosity-driven-builder/og-card.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Trendings on Speculative Decoding</title>
+      <link>https://pengandy.com/blog/2026/speculativedecoding</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2026/speculativedecoding</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Trendings on Speculative Decoding</description>
+      <enclosure url="https://pengandy.com/assets/blog/2026/speculativedecoding/og-card.png" type="image/png" length="0" />
     </item>
     <item>
       <title>Lunch with CTO of The Linux Foundation &amp; PyTorch Foundation Matt White</title>
@@ -113,6 +113,14 @@
       <enclosure url="https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Full-Logo.png" type="image/png" length="0" />
     </item>
     <item>
+      <title>NeurIPS CDMX Trip</title>
+      <link>https://pengandy.com/blog/2025/neurips</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/neurips</guid>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <description>NeurIPS CDMX Trip</description>
+      <enclosure url="https://pengandy.com/assets/blog/nips/nips25_mex.PNG" type="image/png" length="0" />
+    </item>
+    <item>
       <title>DeepSeek: Large Language Model of Year 2025 (and new book!)</title>
       <link>https://pengandy.com/blog/2025/deepseek</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/deepseek</guid>
@@ -129,14 +137,6 @@
       <enclosure url="https://pengandy.com/assets/blog/llm/Still-Life-with-TPU-Chip-and-Coffee-Mug-ChatGPT-2025.jpg" type="image/png" length="0" />
     </item>
     <item>
-      <title>NeurIPS CDMX Trip</title>
-      <link>https://pengandy.com/blog/2025/neurips</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/neurips</guid>
-      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
-      <description>NeurIPS CDMX Trip</description>
-      <enclosure url="https://pengandy.com/assets/blog/nips/nips25_mex.PNG" type="image/png" length="0" />
-    </item>
-    <item>
       <title>Research vs Engineering</title>
       <link>https://pengandy.com/blog/2025/RSRCHORENG</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/RSRCHORENG</guid>
@@ -145,20 +145,20 @@
       <enclosure url="https://pengandy.com/assets/blog/rsrchvseng/sde.png" type="image/png" length="0" />
     </item>
     <item>
-      <title>Talent Shuffle</title>
-      <link>https://pengandy.com/blog/2025/talentshuffle</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2025/talentshuffle</guid>
-      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
-      <description>Talent Shuffle</description>
-      <enclosure url="https://pengandy.com/assets/blog/talentshuffle/talentshuffle.png" type="image/png" length="0" />
-    </item>
-    <item>
       <title>ICML 2025 Recap</title>
       <link>https://pengandy.com/blog/2025/icml</link>
       <guid isPermaLink="true">https://pengandy.com/blog/2025/icml</guid>
       <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
       <description>ICML 2025 Recap</description>
       <enclosure url="https://pengandy.com/assets/brand/icon-512.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Talent Shuffle</title>
+      <link>https://pengandy.com/blog/2025/talentshuffle</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2025/talentshuffle</guid>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <description>Talent Shuffle</description>
+      <enclosure url="https://pengandy.com/assets/blog/talentshuffle/talentshuffle.png" type="image/png" length="0" />
     </item>
     <item>
       <title>LLM Open Source Programs 2025 June</title>
