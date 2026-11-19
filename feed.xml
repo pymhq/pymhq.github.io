@@ -6,8 +6,16 @@
     <description>Andy Peng&#x27;s notes on research, products, and technical exploration.</description>
     <language>en-us</language>
     <managingEditor>Andy Peng</managingEditor>
-    <lastBuildDate>Wed, 30 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 18:55:39 +0000</lastBuildDate>
     <atom:link href="https://pengandy.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My Story with Anthropic</title>
+      <link>https://pengandy.com/blog/2026/ant</link>
+      <guid isPermaLink="true">https://pengandy.com/blog/2026/ant</guid>
+      <pubDate>Thu, 19 Nov 2026 18:55:39 +0000</pubDate>
+      <description>My Story with Anthropic</description>
+      <enclosure url="https://pengandy.com/assets/blog/2026/ant/og-card.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Madrona IA40 Summit 2026 / Madrona IA40 峰会 2026</title>
       <link>https://pengandy.com/blog/2026/madrona/</link>
@@ -55,14 +63,6 @@
       <pubDate>Sun, 07 Jun 2026 00:00:00 +0000</pubDate>
       <description>Flywheel for Small Business and The Personal Brand</description>
       <enclosure url="https://pengandy.com/assets/blog/2026/flywheel/flywheel-card.png" type="image/png" length="0" />
-    </item>
-    <item>
-      <title>My Story with Anthropic</title>
-      <link>https://pengandy.com/blog/2026/ant</link>
-      <guid isPermaLink="true">https://pengandy.com/blog/2026/ant</guid>
-      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
-      <description>My Story with Anthropic</description>
-      <enclosure url="https://pengandy.com/assets/blog/2026/ant/og-card.png" type="image/png" length="0" />
     </item>
     <item>
       <title>Curiosity-Driven Builder&#x27;s Journey</title>
