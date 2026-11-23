@@ -229,6 +229,8 @@
                <ol>
                   <li><a href="#foundation-model">Foundation Model: Open vs Closed</a></li>
                   <li><a href="#trust-safety">Evaluation, Alignment, Interpretability, Trust &amp; Safety</a></li>
+                  <li><a href="#ai-math">AI for Math<span class="t26">2026</span></a></li>
+                  <li><a href="#physical-ai">Physical AI<span class="t26">2026</span></a></li>
                   <li><a href="#academia-industry">Academia vs Industry Fusion</a></li>
                   <li><a href="#neo-labs">Neo Labs<span class="t26">2026</span></a></li>
                   <li><a href="#post-training-rl">Post-Training RL<span class="t26">2026</span></a></li>
@@ -253,6 +255,22 @@
             <p>Despite these industry shifts, my favorite AI breakthrough this year remains DeepSeek. DeepSeek proved that <em>open source is the way</em>. Their unwavering commitment to openness, even as giants like Meta retreated, has inspired a new generation of open-source models including Alibaba Qwen, Kimi, Xiaomi MiMo, MiniMax and AI2's OLMo. Open source enables innovation, research, and democratization of AI technology.</p>
 
             <div class="timeline">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">November 18, 2026</div>
+                     <div class="timeline-description">Google released <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" target="_blank">Gemini 4 Neon</a> (the middle of the Gemini 4 family, between Carbon and Hydrogen; 1M context)</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">November 17, 2026</div>
+                     <div class="timeline-description">OpenAI released <a href="https://openai.com/index/introducing-gpt-6-2-astra-sol" target="_blank">GPT-6.2 Astra and GPT-6.2 Sol</a></div>
+                  </div>
+               </div>
+
                <div class="timeline-item">
                   <div class="timeline-marker"></div>
                   <div class="timeline-content">
@@ -439,6 +457,76 @@
             <div class="comment-note-2026">
                <span class="note-date">Jul 2026 ·</span> Anthropic Research: <a href="https://www.anthropic.com/research/global-workspace" target="_blank">A Global Workspace in Language Models</a>.
             </div>
+            <br>
+
+            <h2 id="ai-math" class="h2-2026">AI for Math<span class="yr-chip">New · 2026</span></h2>
+            <p>Math is where "verifiable" stops being a metaphor. A proof assistant like Lean either accepts a proof or rejects it, which makes formal math the cleanest reward signal for post-training RL and the hardest test of whether a model is really reasoning. In 2026 that combination moved from competition problems to the research frontier.</p>
+
+            <div class="timeline tl-2026">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">November 20, 2026</div>
+                     <div class="timeline-description">Anthropic research scientist <em>Levent Alpöge</em> released a Lean 4 library of about 17 million lines, built with Claude, <a href="https://github.com/tamnd/riemann-lean" target="_blank">claiming a proof of the Riemann Hypothesis</a> (plus the Generalized Riemann Hypothesis for Dirichlet L-functions). The next day the Lean FRO and Mathlib Initiative issued a <a href="https://x.com/leanprover/status/2124159121645801562" target="_blank">joint statement</a> that the theorem statement matches Mathlib's and the proof checks. No human-readable proof exists yet, so mathematicians still have to absorb the ideas behind it</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">October 2026</div>
+                     <div class="timeline-description">Axiom released a <a href="https://spectrum.ieee.org/enormous-theorem-ai" target="_blank">43.1-million-line Lean formalization of the Classification of Finite Simple Groups</a>, written by AI agents in 24 days from a human proof of roughly 15,000 pages. The translation surfaced gaps in the published arguments along the way</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">March 2026</div>
+                     <div class="timeline-description"><a href="https://axiommath.ai/" target="_blank">Axiom Math</a>, founded by <em>Carina Hong</em> (洪乐潼), <a href="https://x.com/CarinaLHong/status/2032124589162299522" target="_blank">raised a $200M Series A</a> at a $1.6B+ valuation, led by Menlo Ventures, to extend its lead in formal math into "Verified AI". Its system had scored a perfect Putnam in December 2025</div>
+                  </div>
+               </div>
+            </div>
+            <p>The pattern is the one from the Post-Training RL section below, taken to its limit: when the verifier is perfect, the bottleneck becomes search and scale, not trust. The human job shifts from checking the proof to checking that the theorem says what we mean.</p>
+            <br>
+
+            <h2 id="physical-ai" class="h2-2026">Physical AI<span class="yr-chip">New · 2026</span></h2>
+            <p>By late 2026, Silicon Valley has converged on one bet for physical AI: the robot brain is a frontier LLM. Instead of training separate robotics models from scratch, the labs are wiring their general-purpose models to hardware and letting the same reasoning that writes code drive arms, microscopes and machines.</p>
+
+            <div class="timeline tl-2026">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">November 13, 2026</div>
+                     <div class="timeline-description">OpenAI <a href="https://fortune.com/2026/11/13/openai-disbands-robotics-team-as-its-general-models-start-running-robots/" target="_blank">disbanded its stand-alone robotics team</a> (Fortune exclusive). Research moved under Chief Research Officer <em>Mark Chen</em>, applied robotics and hardware into <em>Greg Brockman</em>'s Applied org, because general models like GPT-6 Astra can now be applied directly to robots. In an Nvidia study, an Astra-powered agent reached 74.8% on a simulated manipulation benchmark, against 51.0% for the best specialized robot models. The humanoid demo is still targeted for 2027</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">August 27, 2026</div>
+                     <div class="timeline-description">Anthropic previewed the <a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" target="_blank">Model Hardware Standard (MHS)</a>, a common driver layer so AI agents can discover and safely operate microscopes, liquid handlers and robotic arms. Co-developed with HHMI Janelia, model-agnostic and designed to work alongside MCP, with AWS and Doosan Robotics among early supporters; Anthropic plans to open-source it once safety evaluations are in place (<a href="https://www.cnbc.com/2026/08/27/anthropic-pushes-into-physical-world-with-new-standard-to-help-ai-agents-operate-machines.html" target="_blank">CNBC</a>)</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">May 31, 2026</div>
+                     <div class="timeline-description"><em>Greg Brockman</em>: "<a href="https://x.com/gdb/status/2061145994121871656" target="_blank">OpenAI Robotics is making rapid progress towards building AI that can help people in the physical world</a>."</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">January 15, 2026</div>
+                     <div class="timeline-description">OpenAI <a href="https://www.bloomberg.com/news/articles/2026-01-15/openai-seeks-us-based-suppliers-for-planned-robotics-ai-device-push" target="_blank">sought US-based suppliers</a> (motors, silicon and other components) for its planned robotics and device push</div>
+                  </div>
+               </div>
+            </div>
+            <p>The two labs share the premise but not the strategy. OpenAI is going vertical, toward its own humanoid. Anthropic is going horizontal, with a standard that plays the role MCP played for software tools. The dissent is about the edges, not the core: MIT's <em>Russ Tedrake</em> argues real-world deployment data still gives robotics companies an edge, and CMU's <em>Guanya Shi</em> expects small specialized models on the robot itself to remain necessary.</p>
             <br>
 
             <h2 id="academia-industry">Academia vs Industry Fusion</h2>
@@ -737,6 +825,8 @@
                <ol>
                   <li><a href="#foundation-model-zh">基础模型：开权 vs 闭源</a></li>
                   <li><a href="#trust-safety-zh">评测、对齐、可解释性、信任与安全</a></li>
+                  <li><a href="#ai-math-zh">AI 数学<span class="t26">2026</span></a></li>
+                  <li><a href="#physical-ai-zh">物理 AI<span class="t26">2026</span></a></li>
                   <li><a href="#academia-industry-zh">学术界与产业界的融合</a></li>
                   <li><a href="#neo-labs-zh">新型实验室<span class="t26">2026</span></a></li>
                   <li><a href="#post-training-rl-zh">后训练强化学习<span class="t26">2026</span></a></li>
@@ -761,6 +851,22 @@
             <p>尽管行业出现了这些转变，我今年最喜欢的 AI 突破仍然是 DeepSeek。DeepSeek 证明了<em>开源可行</em>。他们对开放性坚定不移的承诺——即便像 Meta 这样的巨头都在退缩——启发了新一代开源模型，包括阿里巴巴 Qwen、Kimi、小米 MiMo、MiniMax 以及 AI2 的 OLMo。开源推动了创新、研究，以及 AI 技术的民主化。</p>
 
             <div class="timeline">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 11 月 18 日</div>
+                     <div class="timeline-description">Google 发布 <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" target="_blank">Gemini 4 Neon</a>，Gemini 4 家族的中间档，介于 Carbon 与 Hydrogen 之间，支持 1M 上下文</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 11 月 17 日</div>
+                     <div class="timeline-description">OpenAI 发布 <a href="https://openai.com/index/introducing-gpt-6-2-astra-sol" target="_blank">GPT-6.2 Astra 与 GPT-6.2 Sol</a></div>
+                  </div>
+               </div>
+
                <div class="timeline-item">
                   <div class="timeline-marker"></div>
                   <div class="timeline-content">
@@ -944,6 +1050,76 @@
             <div class="comment-note-2026">
                <span class="note-date">2026 年 7 月 ·</span> Anthropic 研究博客：<a href="https://www.anthropic.com/research/global-workspace" target="_blank">A Global Workspace in Language Models</a>。
             </div>
+            <br>
+
+            <h2 id="ai-math-zh" class="h2-2026">AI 数学<span class="yr-chip">新 · 2026</span></h2>
+            <p>在数学里，「可验证」不再是比喻。Lean 这样的证明助手要么接受一个证明，要么拒绝它，这让形式化数学成为后训练强化学习最干净的奖励信号，也是检验模型是否真正在推理的最严格考题。2026 年，这一组合从竞赛题走到了研究前沿。</p>
+
+            <div class="timeline tl-2026">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 11 月 20 日</div>
+                     <div class="timeline-description">Anthropic 研究科学家 <em>Levent Alpöge</em> 发布了一个借助 Claude 构建、约 1700 万行的 Lean 4 代码库，<a href="https://github.com/tamnd/riemann-lean" target="_blank">声称证明了黎曼猜想</a>（以及狄利克雷 L 函数的广义黎曼猜想）。次日，Lean FRO 与 Mathlib Initiative 发表<a href="https://x.com/leanprover/status/2124159121645801562" target="_blank">联合声明</a>：定理陈述与 Mathlib 中的一致，证明通过检验。目前还没有人类可读的证明，数学界仍需消化其背后的思路</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 10 月</div>
+                     <div class="timeline-description">Axiom 发布了<a href="https://spectrum.ieee.org/enormous-theorem-ai" target="_blank">有限单群分类定理的 Lean 形式化</a>，共 4310 万行，由 AI 智能体在 24 天内依据约 15,000 页的人类证明写成，过程中还发现了已发表论证中的若干漏洞</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 3 月</div>
+                     <div class="timeline-description"><em>洪乐潼</em>（Carina Hong）创办的 <a href="https://axiommath.ai/" target="_blank">Axiom Math</a> <a href="https://x.com/CarinaLHong/status/2032124589162299522" target="_blank">完成 2 亿美元 A 轮融资</a>，估值超过 16 亿美元，由 Menlo Ventures 领投，目标是把形式化数学上的领先延伸到「可验证 AI」。此前其系统在 2025 年 12 月的 Putnam 竞赛中拿到满分</div>
+                  </div>
+               </div>
+            </div>
+            <p>这正是下文「后训练强化学习」一节的逻辑推到极致：当验证器完美无缺，瓶颈就从信任变成了搜索与规模。人的工作从检查证明，转向检查定理陈述是否真的是我们想要的那个命题。</p>
+            <br>
+
+            <h2 id="physical-ai-zh" class="h2-2026">物理 AI<span class="yr-chip">新 · 2026</span></h2>
+            <p>到 2026 年底，硅谷在物理 AI 上已形成共识：机器人的大脑就是前沿 LLM。各家实验室不再从零训练独立的机器人模型，而是把通用大模型接上硬件，让写代码的同一套推理能力去驱动机械臂、显微镜和各种机器。</p>
+
+            <div class="timeline tl-2026">
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 11 月 13 日</div>
+                     <div class="timeline-description">OpenAI <a href="https://fortune.com/2026/11/13/openai-disbands-robotics-team-as-its-general-models-start-running-robots/" target="_blank">解散了独立的机器人团队</a>（Fortune 独家）。研究人员并入首席研究官 <em>Mark Chen</em> 的研究团队，应用机器人与硬件团队并入 <em>Greg Brockman</em> 领导的 Applied 部门，理由是 GPT-6 Astra 等通用模型已能直接用于机器人。在一项 Nvidia 研究中，基于 Astra 的智能体在模拟操作基准上达到 74.8% 的成功率，而最好的专用机器人模型为 51.0%。人形机器人的首次公开演示仍定在 2027 年</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 8 月 27 日</div>
+                     <div class="timeline-description">Anthropic 预览发布 <a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" target="_blank">Model Hardware Standard（MHS）</a>，一套通用驱动层，让 AI 智能体能发现并安全操作显微镜、液体处理器和机械臂。它与 HHMI Janelia 共同开发，不绑定特定模型，可与 MCP 配合使用，AWS、斗山机器人等是首批支持方；Anthropic 计划在安全评估到位后将其开源（<a href="https://www.cnbc.com/2026/08/27/anthropic-pushes-into-physical-world-with-new-standard-to-help-ai-agents-operate-machines.html" target="_blank">CNBC</a>）</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 5 月 31 日</div>
+                     <div class="timeline-description"><em>Greg Brockman</em>：「<a href="https://x.com/gdb/status/2061145994121871656" target="_blank">OpenAI Robotics 正在快速推进，打造能在物理世界中帮助人们的 AI</a>。」</div>
+                  </div>
+               </div>
+
+               <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+                  <div class="timeline-content">
+                     <div class="timeline-date">2026 年 1 月 15 日</div>
+                     <div class="timeline-description">OpenAI <a href="https://www.bloomberg.com/news/articles/2026-01-15/openai-seeks-us-based-suppliers-for-planned-robotics-ai-device-push" target="_blank">在美国寻找供应商</a>（电机、芯片等零部件），为其机器人与设备计划做准备</div>
+                  </div>
+               </div>
+            </div>
+            <p>两家前提相同，路线不同。OpenAI 走垂直路线，自研人形机器人；Anthropic 走水平路线，用一套标准扮演 MCP 之于软件工具的角色。异议集中在边缘而非核心：MIT 的 <em>Russ Tedrake</em> 认为真实部署数据仍是机器人公司的优势，CMU 的 <em>Guanya Shi</em> 则认为机器人本体上仍需要小型专用模型。</p>
             <br>
 
             <h2 id="academia-industry-zh">学术界与产业界的融合</h2>
