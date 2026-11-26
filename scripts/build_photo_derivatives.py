@@ -69,9 +69,12 @@ QUALITY = 82
 # the page; a single-frame occasion takes no letter.
 SOURCES: tuple[tuple[str, str, str], ...] = (
     # ---- 2026 ----
-    # AI Fest: Tsunami Surfers Edition, Seattle, 24 November 2026. One frame,
-    # a 1900x1068 JPEG with no EXIF; the date is the event's.
-    ("~/Pictures/pics/events/2026-ai-fest-tsunami-surfers.jpeg", "events", "2026-ai-fest-tsunami-surfers"),
+    # AI Fest: Tsunami Surfers Edition, Labour Temple, Seattle, 24 November
+    # 2026. Two frames, neither carrying EXIF; the date is the event's. Frame a
+    # is a 1080x1350 AVIF of Ajit Banerjee interviewing Andy Peng, frame b a
+    # 1900x1068 JPEG.
+    ("~/Pictures/pics/events/2026-ai-fest-tsunami-surfers-a.avif", "events", "2026-ai-fest-tsunami-surfers-a"),
+    ("~/Pictures/pics/events/2026-ai-fest-tsunami-surfers-b.jpeg", "events", "2026-ai-fest-tsunami-surfers-b"),
 
     # Evals for AI Engineers book launch (Shreya Shankar and Hamel Husain,
     # O'Reilly), organized by Dan Olsen, Intuit Building 9, Mountain View,

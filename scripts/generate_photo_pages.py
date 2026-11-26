@@ -241,17 +241,21 @@ EVENTS = [
    dict(
      venue_en="Labour Temple · Seattle", venue_zh="Labour Temple · 西雅图",
      title_en="AI Fest: Tsunami Surfers Edition", title_zh="AI Fest：Tsunami Surfers Edition",
-     note_en="Guest · 24 November 2026 · Labour Temple · Seattle · with Steve Yegge (Advisor; "
-             "ex-Senior Staff Software Engineer, Google; ex-Senior Manager, Amazon), "
-             "Ryan Snodgrass (Founder and CTO, SageOx; ex-Sr. Principal Engineer and "
-             "Director, Amazon) and Ajit Banerjee (Founder and CEO, SageOx; "
-             "ex-Principal Engineer, Amazon)",
-     note_zh="嘉宾 · 2026 年 11 月 24 日 · Labour Temple · 西雅图 · 同行：Steve Yegge（顾问；前 Google "
-             "高级主任软件工程师；前亚马逊高级经理）、Ryan Snodgrass（SageOx 联合创始人兼 "
-             "CTO；前亚马逊高级首席工程师、总监）、Ajit Banerjee（SageOx 联合创始人兼 "
-             "CEO；前亚马逊首席工程师）",
+     note_en="Guest · 24 November 2026 · Labour Temple · Seattle · with Ajit Banerjee "
+             "(Founder and CEO, SageOx; ex-Principal Engineer, Amazon), Ryan Snodgrass "
+             "(Founder and CTO, SageOx; ex-Sr. Principal Engineer and Director, Amazon) "
+             "and Steve Yegge (Advisor; ex-Senior Staff Software Engineer, Google; "
+             "ex-Senior Manager, Amazon)"
+             ' · <a href="https://sageox.ai/blog/the-mexican-wave" target="_blank" rel="noopener">blog</a> by Ajit Banerjee',
+     note_zh="嘉宾 · 2026 年 11 月 24 日 · Labour Temple · 西雅图 · 同行：Ajit Banerjee（SageOx "
+             "联合创始人兼 CEO；前亚马逊首席工程师）、Ryan Snodgrass（SageOx 联合创始人兼 "
+             "CTO；前亚马逊高级首席工程师、总监）、Steve Yegge（顾问；前 Google "
+             "高级主任软件工程师；前亚马逊高级经理）"
+             ' · Ajit Banerjee 撰写的<a href="https://sageox.ai/blog/the-mexican-wave" target="_blank" rel="noopener">博客</a>',
      alt="AI Fest: Tsunami Surfers Edition, Labour Temple, Seattle, 24 November 2026.",
-     frames=[("2026-ai-fest-tsunami-surfers", None,
+     frames=[("2026-ai-fest-tsunami-surfers-a", None,
+              "Ajit Banerjee interviewing Andy Peng at a cocktail table, both holding lapel microphones, with paintings on the gallery wall behind them"),
+             ("2026-ai-fest-tsunami-surfers-b", None,
               "Three people talking over drinks in a brick and timber loft under ring pendant lights, one wearing a name tag that reads Ryan")]),
    dict(
      venue_en="Intuit · Mountain View", venue_zh="Intuit · 山景城",
