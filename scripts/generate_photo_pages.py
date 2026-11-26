@@ -239,6 +239,21 @@ def count_words(n: int) -> tuple[str, str]:
 EVENTS = [
  ("2026", "Mountain View, San Francisco, Bellevue, Seattle, online", "山景城、旧金山、Bellevue、西雅图、线上", [
    dict(
+     venue_en="Labour Temple · Seattle", venue_zh="Labour Temple · 西雅图",
+     title_en="AI Fest: Tsunami Surfers Edition", title_zh="AI Fest：Tsunami Surfers Edition",
+     note_en="Guest · 24 November 2026 · Labour Temple · Seattle · with Steve Yegge (Advisor; "
+             "ex-Senior Staff Software Engineer, Google; ex-Senior Manager, Amazon), "
+             "Ryan Snodgrass (Founder and CTO, SageOx; ex-Sr. Principal Engineer and "
+             "Director, Amazon) and Ajit Banerjee (Founder and CEO, SageOx; "
+             "ex-Principal Engineer, Amazon)",
+     note_zh="嘉宾 · 2026 年 11 月 24 日 · Labour Temple · 西雅图 · 同行：Steve Yegge（顾问；前 Google "
+             "高级主任软件工程师；前亚马逊高级经理）、Ryan Snodgrass（SageOx 联合创始人兼 "
+             "CTO；前亚马逊高级首席工程师、总监）、Ajit Banerjee（SageOx 联合创始人兼 "
+             "CEO；前亚马逊首席工程师）",
+     alt="AI Fest: Tsunami Surfers Edition, Labour Temple, Seattle, 24 November 2026.",
+     frames=[("2026-ai-fest-tsunami-surfers", None,
+              "Three people talking over drinks in a brick and timber loft under ring pendant lights, one wearing a name tag that reads Ryan")]),
+   dict(
      venue_en="Intuit · Mountain View", venue_zh="Intuit · 山景城",
      title_en="Evals for AI Engineers Book Launch", title_zh="《Evals for AI Engineers》新书发布会",
      note_en="Guest · 12 November 2026 · Intuit Building 9, 2600 Casey Ave, "
